@@ -1,0 +1,13 @@
+import { ReactNode } from "react";
+import { SiteFooter } from "@/components/site/SiteFooter";
+import { SiteHeader } from "@/components/site/SiteHeader";
+
+export function PageShell({ children }: { children: ReactNode }) {
+  return (
+    <div className="min-h-screen bg-background text-foreground">
+      <SiteHeader />
+      {children}
+      <SiteFooter />
+    </div>
+  );
+}
