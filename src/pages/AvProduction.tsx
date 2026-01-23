@@ -8,11 +8,17 @@ import heroImage from "@/assets/hero-av-production.jpg";
 import audioImage from "@/assets/category-audio.jpg";
 import visionImage from "@/assets/category-vision.jpg";
 import lightingImage from "@/assets/category-lighting.jpg";
+import stagingImage from "@/assets/category-staging.jpg";
+import drapingImage from "@/assets/category-draping.jpg";
+import videoRecordingImage from "@/assets/category-video-recording.jpg";
 
 const categories = [
   { title: "Audio", imageSrc: audioImage, to: "/contact" },
-  { title: "Vision", imageSrc: visionImage, to: "/contact" },
+  { title: "Visuals", imageSrc: visionImage, to: "/contact" },
   { title: "Lighting", imageSrc: lightingImage, to: "/contact" },
+  { title: "Staging", imageSrc: stagingImage, to: "/contact" },
+  { title: "Draping", imageSrc: drapingImage, to: "/contact" },
+  { title: "Video (Recording)", imageSrc: videoRecordingImage, to: "/contact" },
 ];
 
 export default function AvProduction() {
