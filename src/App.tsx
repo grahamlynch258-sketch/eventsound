@@ -7,6 +7,11 @@ import Index from "./pages/Index";
 import AvProduction from "./pages/AvProduction";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import AdminLogin from "./pages/admin/Login";
+import AdminDashboard from "./pages/admin/Dashboard";
+import AdminCategories from "./pages/admin/Categories";
+import AdminContent from "./pages/admin/Content";
+import AdminImages from "./pages/admin/Images";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +25,11 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/av-production" element={<AvProduction />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin/categories" element={<AdminCategories />} />
+          <Route path="/admin/content" element={<AdminContent />} />
+          <Route path="/admin/images" element={<AdminImages />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
