@@ -3,6 +3,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { PageShell } from "@/components/site/PageShell";
 import { CategoryCard } from "@/components/site/CategoryCard";
 import { Link } from "react-router-dom";
+import { useCategories } from "@/hooks/useSiteContent";
+import { Skeleton } from "@/components/ui/skeleton";
 
 import heroImage from "@/assets/hero-av-production.jpg";
 import audioImage from "@/assets/category-audio.jpg";
@@ -12,7 +14,8 @@ import stagingImage from "@/assets/category-staging.jpg";
 import drapingImage from "@/assets/category-draping.jpg";
 import videoRecordingImage from "@/assets/category-video-recording.jpg";
 
-const categories = [
+// Fallback categories if database is empty
+const fallbackCategories = [
   { title: "Audio", imageSrc: audioImage, to: "/contact" },
   { title: "Visuals", imageSrc: visionImage, to: "/contact" },
   { title: "Lighting", imageSrc: lightingImage, to: "/contact" },
@@ -22,6 +25,13 @@ const categories = [
 ];
 
 export default function AvProduction() {
+  const { data: dbCategories, isLoading } = useCategories();
+
+  // Use database categories if available, otherwise fallback to static
+  const categories = dbCategories && dbCategories.length > 0
+    ? dbCategories.map((c) => ({ title: c.title, imageSrc: c.image_url, to: c.link }))
+    : fallbackCategories;
+
   return (
     <PageShell>
       <main>
@@ -60,9 +70,17 @@ export default function AvProduction() {
           </div>
 
           <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {categories.map((c) => (
-              <CategoryCard key={c.title} title={c.title} imageSrc={c.imageSrc} to={c.to} />
-            ))}
+            {isLoading ? (
+              <>
+                {[1, 2, 3, 4, 5, 6].map((i) => (
+                  <Skeleton key={i} className="aspect-[4/3] w-full rounded-lg" />
+                ))}
+              </>
+            ) : (
+              categories.map((c) => (
+                <CategoryCard key={c.title} title={c.title} imageSrc={c.imageSrc} to={c.to} />
+              ))
+            )}
           </div>
         </section>
 
