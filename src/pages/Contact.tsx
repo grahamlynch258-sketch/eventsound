@@ -29,10 +29,10 @@ export default function Contact() {
       <main className="container py-14 md:py-20">
         <div className="grid gap-10 md:grid-cols-12">
           <section className="md:col-span-5">
-            <h1 className={`text-4xl font-semibold tracking-tight ${main.getAlignClass("headline")}`}>
+            <h1 className={`text-4xl font-semibold tracking-tight ${main.getAlignClass("headline")}`} style={main.getStyle("headline")}>
               {main.getText("headline", "Request a quote")}
             </h1>
-            <p className={`mt-4 text-muted-foreground ${main.getAlignClass("description")}`}>
+            <p className={`mt-4 text-muted-foreground ${main.getAlignClass("description")}`} style={main.getStyle("description")}>
               {main.getText("description", "Tell us what you're building—date, venue, audience size, and any must-haves. We'll recommend a clean package and confirm availability.")}
             </p>
 
