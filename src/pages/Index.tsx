@@ -23,10 +23,10 @@ const Index = () => {
           </div>
 
           <div className="container relative py-20 md:py-28">
-            <h1 className={`max-w-3xl text-4xl font-semibold tracking-tight md:text-6xl ${hero.getAlignClass("headline")}`}>
+            <h1 className={`max-w-3xl text-4xl font-semibold tracking-tight md:text-6xl ${hero.getAlignClass("headline")}`} style={hero.getStyle("headline")}>
               {hero.getText("headline", "Premium event production—without the chaos.")}
             </h1>
-            <p className={`mt-5 max-w-2xl text-base text-muted-foreground md:text-lg ${hero.getAlignClass("subheadline")}`}>
+            <p className={`mt-5 max-w-2xl text-base text-muted-foreground md:text-lg ${hero.getAlignClass("subheadline")}`} style={hero.getStyle("subheadline")}>
               {hero.getText("subheadline", "AV, vision, lighting and staging packages for modern events. Delivered, installed and supported by calm, capable technicians.")}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -43,12 +43,12 @@ const Index = () => {
         <section className="container py-14 md:py-16">
           <div className="grid gap-6 md:grid-cols-12 md:items-start">
             <div className="md:col-span-5">
-              <h2 className={`text-3xl font-semibold tracking-tight md:text-4xl ${features.getAlignClass("section_title")}`}>
+              <h2 className={`text-3xl font-semibold tracking-tight md:text-4xl ${features.getAlignClass("section_title")}`} style={features.getStyle("section_title")}>
                 {features.getText("section_title", "Built for producers and venues")}
               </h2>
             </div>
             <div className="md:col-span-7">
-              <p className={`text-muted-foreground ${features.getAlignClass("section_description")}`}>
+              <p className={`text-muted-foreground ${features.getAlignClass("section_description")}`} style={features.getStyle("section_description")}>
                 {features.getText("section_description", "We combine premium equipment with practical delivery, setup and operator support—so your event looks sharp and runs on schedule.")}
               </p>
             </div>
@@ -57,33 +57,33 @@ const Index = () => {
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             <Card>
               <CardHeader>
-                <CardTitle className={features.getAlignClass("feature_1_title")}>
+                <CardTitle className={features.getAlignClass("feature_1_title")} style={features.getStyle("feature_1_title")}>
                   {features.getText("feature_1_title", "Fast, tidy builds")}
                 </CardTitle>
               </CardHeader>
-              <CardContent className={`text-sm text-muted-foreground ${features.getAlignClass("feature_1_description")}`}>
+              <CardContent className={`text-sm text-muted-foreground ${features.getAlignClass("feature_1_description")}`} style={features.getStyle("feature_1_description")}>
                 {features.getText("feature_1_description", "Clean cabling, sensible patching, and a plan for bump-in/bump-out.")}
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader>
-                <CardTitle className={features.getAlignClass("feature_2_title")}>
+                <CardTitle className={features.getAlignClass("feature_2_title")} style={features.getStyle("feature_2_title")}>
                   {features.getText("feature_2_title", "Show-ready systems")}
                 </CardTitle>
               </CardHeader>
-              <CardContent className={`text-sm text-muted-foreground ${features.getAlignClass("feature_2_description")}`}>
+              <CardContent className={`text-sm text-muted-foreground ${features.getAlignClass("feature_2_description")}`} style={features.getStyle("feature_2_description")}>
                 {features.getText("feature_2_description", "Audio clarity, punchy lighting, reliable vision—tested before doors.")}
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader>
-                <CardTitle className={features.getAlignClass("feature_3_title")}>
+                <CardTitle className={features.getAlignClass("feature_3_title")} style={features.getStyle("feature_3_title")}>
                   {features.getText("feature_3_title", "People you can trust")}
                 </CardTitle>
               </CardHeader>
-              <CardContent className={`text-sm text-muted-foreground ${features.getAlignClass("feature_3_description")}`}>
+              <CardContent className={`text-sm text-muted-foreground ${features.getAlignClass("feature_3_description")}`} style={features.getStyle("feature_3_description")}>
                 {features.getText("feature_3_description", "Techs who communicate, adapt, and keep the room calm.")}
               </CardContent>
             </Card>
