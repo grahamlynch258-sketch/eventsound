@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { Slider } from "@/components/ui/slider";
 import { useToast } from "@/components/ui/use-toast";
 import { useAuth } from "@/hooks/useAuth";
 import { useSiteContent, useUpdateContent } from "@/hooks/useSiteContent";
@@ -74,6 +75,8 @@ export default function AdminContent() {
   const [currentPage, setCurrentPage] = useState("home");
   const [formData, setFormData] = useState<Record<string, Record<string, string>>>({});
   const [alignData, setAlignData] = useState<Record<string, Record<string, string>>>({});
+  const [sizeData, setSizeData] = useState<Record<string, Record<string, number>>>({});
+  const [colorData, setColorData] = useState<Record<string, Record<string, string>>>({});
 
   useEffect(() => {
     if (!loading && (!user || !isAdmin)) {
@@ -103,28 +106,49 @@ export default function AdminContent() {
     }));
   }
 
+  function handleSizeChange(section: string, key: string, size: number) {
+    setSizeData((prev) => ({
+      ...prev,
+      [section]: { ...prev[section], [key]: size },
+    }));
+  }
+
+  function handleColorChange(section: string, key: string, color: string) {
+    setColorData((prev) => ({
+      ...prev,
+      [section]: { ...prev[section], [key]: color },
+    }));
+  }
+
   async function handleSave(section: string) {
     const sectionValues = formData[section];
     const sectionAligns = alignData[section];
-    if (!sectionValues && !sectionAligns) return;
+    const sectionSizes = sizeData[section];
+    const sectionColors = colorData[section];
+    if (!sectionValues && !sectionAligns && !sectionSizes && !sectionColors) return;
 
     const allKeys = new Set([
       ...Object.keys(sectionValues || {}),
       ...Object.keys(sectionAligns || {}),
+      ...Object.keys(sectionSizes || {}),
+      ...Object.keys(sectionColors || {}),
     ]);
 
     try {
       for (const key of allKeys) {
         const value = sectionValues?.[key];
         const alignment = sectionAligns?.[key];
-        if (value === undefined && alignment === undefined) continue;
-        // Only send value if it was actually edited (not undefined)
-        const mutationData: { page: string; section: string; key: string; value: string; alignment?: string } = {
+        const font_size = sectionSizes?.[key];
+        const font_color = sectionColors?.[key];
+        if (value === undefined && alignment === undefined && font_size === undefined && font_color === undefined) continue;
+        const mutationData: any = {
           page: currentPage,
           section,
           key,
           value: value !== undefined ? value : formData[section]?.[key] ?? "",
           alignment,
+          font_size,
+          font_color,
         };
         await updateContent.mutateAsync(mutationData);
       }
@@ -173,8 +197,12 @@ export default function AdminContent() {
                     fields={fields}
                     formData={formData}
                     alignData={alignData}
+                    sizeData={sizeData}
+                    colorData={colorData}
                     onChange={handleChange}
                     onAlignChange={handleAlignChange}
+                    onSizeChange={handleSizeChange}
+                    onColorChange={handleColorChange}
                     onSave={handleSave}
                     isSaving={updateContent.isPending}
                   />
@@ -194,8 +222,12 @@ function SectionEditor({
   fields,
   formData,
   alignData,
+  sizeData,
+  colorData,
   onChange,
   onAlignChange,
+  onSizeChange,
+  onColorChange,
   onSave,
   isSaving,
 }: {
@@ -204,8 +236,12 @@ function SectionEditor({
   fields: ContentField[];
   formData: Record<string, Record<string, string>>;
   alignData: Record<string, Record<string, string>>;
+  sizeData: Record<string, Record<string, number>>;
+  colorData: Record<string, Record<string, string>>;
   onChange: (section: string, key: string, value: string) => void;
   onAlignChange: (section: string, key: string, alignment: string) => void;
+  onSizeChange: (section: string, key: string, size: number) => void;
+  onColorChange: (section: string, key: string, color: string) => void;
   onSave: (section: string) => void;
   isSaving: boolean;
 }) {
@@ -220,6 +256,16 @@ function SectionEditor({
     if (content && !alignData[sectionKey]) {
       fields.forEach((field) => {
         onAlignChange(sectionKey, field.key, content.alignments[field.key] || "left");
+      });
+    }
+    if (content && !sizeData[sectionKey]) {
+      fields.forEach((field) => {
+        onSizeChange(sectionKey, field.key, content.fontSizes[field.key] || 16);
+      });
+    }
+    if (content && !colorData[sectionKey]) {
+      fields.forEach((field) => {
+        onColorChange(sectionKey, field.key, content.fontColors[field.key] || "#000000");
       });
     }
   }, [content]);
@@ -238,12 +284,14 @@ function SectionEditor({
     <Card>
       <CardHeader>
         <CardTitle className="capitalize">{sectionKey.replace(/_/g, " ")}</CardTitle>
-        <CardDescription>Edit content and alignment for this section</CardDescription>
+        <CardDescription>Edit content, alignment, size and color for this section</CardDescription>
       </CardHeader>
       <CardContent className="grid gap-4">
         {fields.map((field) => {
           const currentAlign = alignData[sectionKey]?.[field.key] || content?.alignments[field.key] || "left";
           const currentValue = formData[sectionKey]?.[field.key] ?? content?.values[field.key] ?? "";
+          const currentSize = sizeData[sectionKey]?.[field.key] ?? content?.fontSizes[field.key] ?? 16;
+          const currentColor = colorData[sectionKey]?.[field.key] ?? content?.fontColors[field.key] ?? "#000000";
 
           return (
             <div key={field.key} className="grid gap-2">
@@ -268,20 +316,42 @@ function SectionEditor({
                   </ToggleGroupItem>
                 </ToggleGroup>
               </div>
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2 min-w-[180px]">
+                  <Label className="text-xs text-muted-foreground whitespace-nowrap">Size: {currentSize}px</Label>
+                  <Slider
+                    value={[currentSize]}
+                    onValueChange={([val]) => onSizeChange(sectionKey, field.key, val)}
+                    min={10}
+                    max={72}
+                    step={1}
+                    className="w-24"
+                  />
+                </div>
+                <div className="flex items-center gap-2">
+                  <Label className="text-xs text-muted-foreground">Color</Label>
+                  <input
+                    type="color"
+                    value={currentColor}
+                    onChange={(e) => onColorChange(sectionKey, field.key, e.target.value)}
+                    className="h-8 w-8 cursor-pointer rounded border border-input p-0"
+                  />
+                </div>
+              </div>
               {field.type === "textarea" ? (
                 <Textarea
                   value={currentValue}
                   onChange={(e) => onChange(sectionKey, field.key, e.target.value)}
                   placeholder={field.placeholder}
                   rows={3}
-                  style={{ textAlign: currentAlign as any }}
+                  style={{ textAlign: currentAlign as any, fontSize: `${currentSize}px`, color: currentColor }}
                 />
               ) : (
                 <Input
                   value={currentValue}
                   onChange={(e) => onChange(sectionKey, field.key, e.target.value)}
                   placeholder={field.placeholder}
-                  style={{ textAlign: currentAlign as any }}
+                  style={{ textAlign: currentAlign as any, fontSize: `${currentSize}px`, color: currentColor }}
                 />
               )}
             </div>

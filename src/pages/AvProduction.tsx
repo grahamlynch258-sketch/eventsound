@@ -46,10 +46,10 @@ export default function AvProduction() {
           </div>
           <div className="container relative py-20 md:py-28">
             <p className="text-sm text-muted-foreground">Services</p>
-            <h1 className={`mt-3 max-w-2xl text-4xl font-semibold tracking-tight md:text-5xl ${hero.getAlignClass("headline")}`}>
+            <h1 className={`mt-3 max-w-2xl text-4xl font-semibold tracking-tight md:text-5xl ${hero.getAlignClass("headline")}`} style={hero.getStyle("headline")}>
               {hero.getText("headline", "AV & Production")}
             </h1>
-            <p className={`mt-4 max-w-2xl text-base text-muted-foreground md:text-lg ${hero.getAlignClass("subheadline")}`}>
+            <p className={`mt-4 max-w-2xl text-base text-muted-foreground md:text-lg ${hero.getAlignClass("subheadline")}`} style={hero.getStyle("subheadline")}>
               {hero.getText("subheadline", "Want to make the moment feel bigger? We supply premium gear and calm, capable crew—so your event runs smooth and looks incredible.")}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -65,10 +65,10 @@ export default function AvProduction() {
 
         <section className="container py-14 md:py-16">
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className={`text-3xl font-semibold tracking-tight md:text-4xl ${cats.getAlignClass("section_title")}`}>
+            <h2 className={`text-3xl font-semibold tracking-tight md:text-4xl ${cats.getAlignClass("section_title")}`} style={cats.getStyle("section_title")}>
               {cats.getText("section_title", "Create vibrant atmospheres")}
             </h2>
-            <p className={`mt-4 text-muted-foreground ${cats.getAlignClass("section_description")}`}>
+            <p className={`mt-4 text-muted-foreground ${cats.getAlignClass("section_description")}`} style={cats.getStyle("section_description")}>
               {cats.getText("section_description", "From intimate launches to high-capacity conferences, we bring together audio, vision, lighting and staging into one clean, reliable production package.")}
             </p>
           </div>

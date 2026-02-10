@@ -51,6 +51,8 @@ export type Database = {
         Row: {
           alignment: string
           created_at: string
+          font_color: string | null
+          font_size: number | null
           id: string
           key: string
           page: string
@@ -61,6 +63,8 @@ export type Database = {
         Insert: {
           alignment?: string
           created_at?: string
+          font_color?: string | null
+          font_size?: number | null
           id?: string
           key: string
           page: string
@@ -71,6 +75,8 @@ export type Database = {
         Update: {
           alignment?: string
           created_at?: string
+          font_color?: string | null
+          font_size?: number | null
           id?: string
           key?: string
           page?: string
