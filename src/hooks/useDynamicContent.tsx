@@ -9,7 +9,7 @@ export function useDynamicText(page: string, section: string) {
   const { data, isLoading } = useSiteContent(page, section);
 
   function getText(key: string, fallback: string): string {
-    if (data?.values && key in data.values && data.values[key] !== "") {
+    if (data?.values && key in data.values) {
       return data.values[key];
     }
     return fallback;
@@ -34,13 +34,27 @@ export function useDynamicText(page: string, section: string) {
     return data?.fontColors[key] || "#000000";
   }
 
+  function getFontWeight(key: string): string {
+    return data?.fontWeights[key] || "normal";
+  }
+
+  function getFontFamily(key: string): string {
+    return data?.fontFamilies[key] || "";
+  }
+
   function getStyle(key: string): React.CSSProperties {
-    return {
+    const style: React.CSSProperties = {
       textAlign: getAlign(key) as any,
       fontSize: `${getFontSize(key)}px`,
       color: getFontColor(key),
+      fontWeight: getFontWeight(key),
     };
+    const family = getFontFamily(key);
+    if (family) {
+      style.fontFamily = family;
+    }
+    return style;
   }
 
-  return { getText, getAlign, getAlignClass, getFontSize, getFontColor, getStyle, isLoading };
+  return { getText, getAlign, getAlignClass, getFontSize, getFontColor, getFontWeight, getFontFamily, getStyle, isLoading };
 }
