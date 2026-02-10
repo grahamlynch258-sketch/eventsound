@@ -92,6 +92,9 @@ export default function AdminContent() {
   const navigate = useNavigate();
   const { toast } = useToast();
   const updateContent = useUpdateContent();
+  // Load content for linked sections so the master box color picker shows saved values
+  const { data: featuresContent } = useSiteContent("home", "features");
+  const { data: cta2Content } = useSiteContent("home", "cta2");
 
   const [currentPage, setCurrentPage] = useState("home");
   const [formData, setFormData] = useState<Record<string, Record<string, string>>>({});
@@ -241,12 +244,77 @@ export default function AdminContent() {
           {Object.entries(pageContent).map(([pageKey, page]) => (
             <TabsContent key={pageKey} value={pageKey}>
               <div className="grid gap-6">
+                {pageKey === "home" && (() => {
+                  // Master box color picker for all sections below the hero
+                  const linkedSections = ["features", "cta2"];
+                  const linkedContentMap: Record<string, typeof featuresContent> = { features: featuresContent, cta2: cta2Content };
+                  const allLinkedFields = linkedSections.flatMap(s => (page.sections[s] || []).map(f => ({ section: s, key: f.key })));
+                  const firstLinked = allLinkedFields[0];
+                  const masterBgColor = firstLinked
+                    ? (bgColorData[firstLinked.section]?.[firstLinked.key] ?? linkedContentMap[firstLinked.section]?.bgColors[firstLinked.key] ?? "")
+                    : "";
+                  const masterBgOpacity = firstLinked
+                    ? (bgOpacityData[firstLinked.section]?.[firstLinked.key] ?? linkedContentMap[firstLinked.section]?.bgOpacities[firstLinked.key] ?? 1)
+                    : 1;
+
+                  return (
+                    <Card className="border-2 border-primary/30 bg-primary/5">
+                      <CardHeader className="pb-3">
+                        <div className="flex items-center gap-2">
+                          <Palette className="h-5 w-5 text-primary" />
+                          <CardTitle className="text-base">Shared Box Color — All Sections Below Hero</CardTitle>
+                        </div>
+                        <CardDescription>This single colour picker controls the background of all feature cards and the CTA section at the bottom.</CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="flex items-center gap-4 flex-wrap">
+                          <div className="flex items-center gap-2">
+                            <Label className="text-xs text-muted-foreground">Color</Label>
+                            <input
+                              type="color"
+                              value={masterBgColor || "#ffffff"}
+                              onChange={(e) => {
+                                allLinkedFields.forEach(({ section, key }) => handleBgColorChange(section, key, e.target.value));
+                              }}
+                              className="h-9 w-9 cursor-pointer rounded border border-input p-0"
+                            />
+                            {masterBgColor && (
+                              <button
+                                type="button"
+                                className="text-xs text-muted-foreground underline"
+                                onClick={() => allLinkedFields.forEach(({ section, key }) => handleBgColorChange(section, key, ""))}
+                              >
+                                Clear
+                              </button>
+                            )}
+                          </div>
+                          {masterBgColor && (
+                            <div className="flex items-center gap-2 min-w-[200px]">
+                              <Label className="text-xs text-muted-foreground whitespace-nowrap">Opacity: {Math.round(masterBgOpacity * 100)}%</Label>
+                              <Slider
+                                value={[masterBgOpacity * 100]}
+                                onValueChange={([val]) => allLinkedFields.forEach(({ section, key }) => handleBgOpacityChange(section, key, val / 100))}
+                                min={0}
+                                max={100}
+                                step={5}
+                                className="w-32"
+                              />
+                            </div>
+                          )}
+                        </div>
+                        {masterBgColor && (
+                          <p className="text-xs text-muted-foreground mt-3">Remember to save both the <strong>Features</strong> and <strong>CTA2</strong> sections below for changes to take effect.</p>
+                        )}
+                      </CardContent>
+                    </Card>
+                  );
+                })()}
                 {Object.entries(page.sections).map(([sectionKey, fields]) => {
-                  // Features & CTA2: linked box color; Hero CTAs: individual pickers
-                  const linkedBoxColor = pageKey === "home" && (sectionKey === "features" || sectionKey === "cta2");
                   const individualBoxKeys = pageKey === "home" && sectionKey === "hero"
                     ? ["cta_primary", "cta_secondary"]
                     : undefined;
+                  // Hide per-field box pickers for linked sections
+                  const linkedBoxColor = pageKey === "home" && (sectionKey === "features" || sectionKey === "cta2");
                   return (
                     <SectionEditor
                       key={sectionKey}
@@ -458,55 +526,6 @@ function SectionEditor({
             <p className="text-xs text-muted-foreground">Controls the skin colour at the bottom of the hero image and how quickly it fades in. Higher = more visible sooner.</p>
           </div>
         )}
-        {linkedBoxColor && (() => {
-          const firstKey = fields[0]?.key || "";
-          const sharedBgColor = bgColorData[sectionKey]?.[firstKey] ?? content?.bgColors[firstKey] ?? "";
-          const sharedBgOpacity = bgOpacityData[sectionKey]?.[firstKey] ?? content?.bgOpacities[firstKey] ?? 1;
-          return (
-            <div className="rounded-lg border-2 border-primary/30 bg-primary/5 p-4 mb-2 grid gap-3">
-              <div className="flex items-center gap-2">
-                <Palette className="h-4 w-4 text-primary" />
-                <Label className="text-sm font-semibold">Section Box Color</Label>
-              </div>
-              <p className="text-xs text-muted-foreground">This colour applies to all text boxes in this section at once.</p>
-              <div className="flex items-center gap-4 flex-wrap">
-                <div className="flex items-center gap-2">
-                  <Label className="text-xs text-muted-foreground">Color</Label>
-                  <input
-                    type="color"
-                    value={sharedBgColor || "#ffffff"}
-                    onChange={(e) => {
-                      fields.forEach((f) => onBgColorChange(sectionKey, f.key, e.target.value));
-                    }}
-                    className="h-9 w-9 cursor-pointer rounded border border-input p-0"
-                  />
-                  {sharedBgColor && (
-                    <button
-                      type="button"
-                      className="text-xs text-muted-foreground underline"
-                      onClick={() => fields.forEach((f) => onBgColorChange(sectionKey, f.key, ""))}
-                    >
-                      Clear
-                    </button>
-                  )}
-                </div>
-                {sharedBgColor && (
-                  <div className="flex items-center gap-2 min-w-[200px]">
-                    <Label className="text-xs text-muted-foreground whitespace-nowrap">Opacity: {Math.round(sharedBgOpacity * 100)}%</Label>
-                    <Slider
-                      value={[sharedBgOpacity * 100]}
-                      onValueChange={([val]) => fields.forEach((f) => onBgOpacityChange(sectionKey, f.key, val / 100))}
-                      min={0}
-                      max={100}
-                      step={5}
-                      className="w-32"
-                    />
-                  </div>
-                )}
-              </div>
-            </div>
-          );
-        })()}
         {fields.map((field) => {
           const currentAlign = alignData[sectionKey]?.[field.key] || content?.alignments[field.key] || "left";
           const currentValue = formData[sectionKey]?.[field.key] ?? content?.values[field.key] ?? "";
