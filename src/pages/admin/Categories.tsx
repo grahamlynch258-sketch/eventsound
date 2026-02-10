@@ -240,16 +240,26 @@ export default function AdminCategories() {
         <div className="grid gap-4">
           {categories?.map((category) => (
             <Card key={category.id}>
-              <CardContent className="flex items-center gap-4 py-4">
-                <GripVertical className="h-5 w-5 text-muted-foreground" />
-                <img
-                  src={category.image_url}
-                  alt={category.title}
-                  className="h-16 w-24 rounded object-cover"
-                />
-
+              <CardContent className="py-4">
                 {editingId === category.id ? (
-                  <div className="flex flex-1 flex-col gap-4">
+                  <div className="flex flex-col gap-4">
+                    <div className="relative aspect-video overflow-hidden rounded-lg">
+                      <img
+                        src={editForm.image_url || category.image_url}
+                        alt={category.title}
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+                    <label className="flex cursor-pointer items-center justify-center gap-2 rounded border border-dashed px-4 py-3 text-sm hover:bg-muted">
+                      <Upload className="h-4 w-4" />
+                      Change Image
+                      <input
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={(e) => handleImageUpload(e, false)}
+                      />
+                    </label>
                     <div className="grid gap-4 md:grid-cols-3">
                       <div className="grid gap-1">
                         <Label className="text-xs">Title</Label>
@@ -284,16 +294,6 @@ export default function AdminCategories() {
                       </div>
                     </div>
                     <div className="flex items-center gap-4">
-                      <label className="flex cursor-pointer items-center gap-2 rounded border border-dashed px-3 py-1.5 text-sm hover:bg-muted">
-                        <Upload className="h-4 w-4" />
-                        Change Image
-                        <input
-                          type="file"
-                          accept="image/*"
-                          className="hidden"
-                          onChange={(e) => handleImageUpload(e, false)}
-                        />
-                      </label>
                       <div className="flex items-center gap-2">
                         <Switch
                           checked={editForm.is_active}
@@ -325,33 +325,42 @@ export default function AdminCategories() {
                     </div>
                   </div>
                 ) : (
-                  <>
-                    <div className="flex-1">
-                      <p className="font-medium">{category.title}</p>
-                      <p className="text-sm text-muted-foreground">{category.link}</p>
+                  <div className="flex flex-col gap-4">
+                    <div className="relative aspect-video overflow-hidden rounded-lg">
+                      <img
+                        src={category.image_url}
+                        alt={category.title}
+                        className="h-full w-full object-cover"
+                      />
                     </div>
-                    <div className="flex items-center gap-2">
-                      <span
-                        className={`rounded px-2 py-0.5 text-xs ${
-                          category.is_active
-                            ? "bg-green-500/10 text-green-600"
-                            : "bg-muted text-muted-foreground"
-                        }`}
-                      >
-                        {category.is_active ? "Active" : "Hidden"}
-                      </span>
-                      <Button size="sm" variant="outline" onClick={() => startEdit(category)}>
-                        Edit
-                      </Button>
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        onClick={() => handleDelete(category.id)}
-                      >
-                        <Trash2 className="h-4 w-4 text-destructive" />
-                      </Button>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="font-medium">{category.title}</p>
+                        <p className="text-sm text-muted-foreground">{category.link}</p>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span
+                          className={`rounded px-2 py-0.5 text-xs ${
+                            category.is_active
+                              ? "bg-green-500/10 text-green-600"
+                              : "bg-muted text-muted-foreground"
+                          }`}
+                        >
+                          {category.is_active ? "Active" : "Hidden"}
+                        </span>
+                        <Button size="sm" variant="outline" onClick={() => startEdit(category)}>
+                          Edit
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          onClick={() => handleDelete(category.id)}
+                        >
+                          <Trash2 className="h-4 w-4 text-destructive" />
+                        </Button>
+                      </div>
                     </div>
-                  </>
+                  </div>
                 )}
               </CardContent>
             </Card>
