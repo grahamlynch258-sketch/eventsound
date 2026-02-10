@@ -391,6 +391,11 @@ function SectionEditor({
     );
   }
 
+  const gradientColor = bgColorData[sectionKey]?.["_gradient_color"] ?? content?.bgColors["_gradient_color"] ?? "";
+  const gradientOpacity = bgOpacityData[sectionKey]?.["_gradient_color"] ?? content?.bgOpacities["_gradient_color"] ?? 0.6;
+
+  const showGradientControls = pageKey === "home" && sectionKey === "hero";
+
   return (
     <Card>
       <CardHeader>
@@ -398,6 +403,43 @@ function SectionEditor({
         <CardDescription>Edit content, style, alignment, size and color for this section</CardDescription>
       </CardHeader>
       <CardContent className="grid gap-4">
+        {showGradientControls && (
+          <div className="rounded-md border p-4 mb-2 grid gap-3">
+            <Label className="text-sm font-semibold">Hero Gradient Overlay</Label>
+            <div className="flex items-center gap-4 flex-wrap">
+              <div className="flex items-center gap-2">
+                <Label className="text-xs text-muted-foreground">Gradient Color</Label>
+                <input
+                  type="color"
+                  value={gradientColor || "#edf2f7"}
+                  onChange={(e) => onBgColorChange(sectionKey, "_gradient_color", e.target.value)}
+                  className="h-8 w-8 cursor-pointer rounded border border-input p-0"
+                />
+                {gradientColor && (
+                  <button
+                    type="button"
+                    className="text-xs text-muted-foreground underline"
+                    onClick={() => onBgColorChange(sectionKey, "_gradient_color", "")}
+                  >
+                    Reset
+                  </button>
+                )}
+              </div>
+              <div className="flex items-center gap-2 min-w-[220px]">
+                <Label className="text-xs text-muted-foreground whitespace-nowrap">Fade speed: {Math.round(gradientOpacity * 100)}%</Label>
+                <Slider
+                  value={[gradientOpacity * 100]}
+                  onValueChange={([val]) => onBgOpacityChange(sectionKey, "_gradient_color", val / 100)}
+                  min={0}
+                  max={100}
+                  step={5}
+                  className="w-32"
+                />
+              </div>
+            </div>
+            <p className="text-xs text-muted-foreground">Controls the skin colour at the bottom of the hero image and how quickly it fades in. Higher = more visible sooner.</p>
+          </div>
+        )}
         {fields.map((field) => {
           const currentAlign = alignData[sectionKey]?.[field.key] || content?.alignments[field.key] || "left";
           const currentValue = formData[sectionKey]?.[field.key] ?? content?.values[field.key] ?? "";
