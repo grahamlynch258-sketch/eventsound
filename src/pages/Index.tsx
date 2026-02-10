@@ -19,7 +19,7 @@ const Index = () => {
         <section className="relative">
           <div className="absolute inset-0">
             <img src={heroImage} alt="Event stage with lighting and screens" className="h-full w-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-b from-background/75 via-background/45 to-background" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
           </div>
 
           <div className="container relative py-20 md:py-28">
