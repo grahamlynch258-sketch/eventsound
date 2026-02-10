@@ -180,6 +180,13 @@ export default function AdminContent() {
       ...Object.keys(sectionOffsetsY || {}),
     ]);
 
+    // Lookup existing DB content so we don't overwrite text with empty string
+    const contentLookup: Record<string, typeof featuresContent> = {
+      features: featuresContent,
+      cta2: cta2Content,
+    };
+    const dbContent = contentLookup[section];
+
     try {
       for (const key of allKeys) {
         const value = sectionValues?.[key];
@@ -193,11 +200,13 @@ export default function AdminContent() {
         const offset_x = sectionOffsetsX?.[key];
         const offset_y = sectionOffsetsY?.[key];
         if (value === undefined && alignment === undefined && font_size === undefined && font_color === undefined && font_weight === undefined && font_family === undefined && bg_color === undefined && bg_opacity === undefined && offset_x === undefined && offset_y === undefined) continue;
+        // Use formData first, then DB content, then empty string
+        const resolvedValue = value !== undefined ? value : (formData[section]?.[key] ?? dbContent?.values[key] ?? "");
         await updateContent.mutateAsync({
           page: currentPage,
           section,
           key,
-          value: value !== undefined ? value : formData[section]?.[key] ?? "",
+          value: resolvedValue,
           alignment,
           font_size,
           font_color,
@@ -302,9 +311,21 @@ export default function AdminContent() {
                             </div>
                           )}
                         </div>
-                        {masterBgColor && (
-                          <p className="text-xs text-muted-foreground mt-3">Remember to save both the <strong>Features</strong> and <strong>CTA2</strong> sections below for changes to take effect.</p>
-                        )}
+                        <div className="flex items-center justify-between mt-3">
+                          <p className="text-xs text-muted-foreground">Applies to all feature cards and the bottom CTA section.</p>
+                          <Button
+                            size="sm"
+                            disabled={updateContent.isPending}
+                            onClick={async () => {
+                              for (const s of linkedSections) {
+                                await handleSave(s);
+                              }
+                            }}
+                          >
+                            <Save className="mr-2 h-4 w-4" />
+                            {updateContent.isPending ? "Saving..." : "Save Box Color"}
+                          </Button>
+                        </div>
                       </CardContent>
                     </Card>
                   );
