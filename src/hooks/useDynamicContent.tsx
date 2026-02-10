@@ -42,6 +42,14 @@ export function useDynamicText(page: string, section: string) {
     return data?.fontFamilies[key] || "";
   }
 
+  function getBgColor(key: string): string {
+    return data?.bgColors[key] || "";
+  }
+
+  function getBgOpacity(key: string): number {
+    return data?.bgOpacities[key] != null ? data.bgOpacities[key] : 1;
+  }
+
   function getStyle(key: string): React.CSSProperties {
     const style: React.CSSProperties = {
       textAlign: getAlign(key) as any,
@@ -56,5 +64,16 @@ export function useDynamicText(page: string, section: string) {
     return style;
   }
 
-  return { getText, getAlign, getAlignClass, getFontSize, getFontColor, getFontWeight, getFontFamily, getStyle, isLoading };
+  function getBoxStyle(key: string): React.CSSProperties {
+    const color = getBgColor(key);
+    const opacity = getBgOpacity(key);
+    if (!color) return {};
+    // Convert hex to rgba
+    const r = parseInt(color.slice(1, 3), 16);
+    const g = parseInt(color.slice(3, 5), 16);
+    const b = parseInt(color.slice(5, 7), 16);
+    return { backgroundColor: `rgba(${r}, ${g}, ${b}, ${opacity})` };
+  }
+
+  return { getText, getAlign, getAlignClass, getFontSize, getFontColor, getFontWeight, getFontFamily, getBgColor, getBgOpacity, getStyle, getBoxStyle, isLoading };
 }
