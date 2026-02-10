@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAuth } from "@/hooks/useAuth";
-import { FileText, Image, LayoutGrid, LogOut } from "lucide-react";
+import { FileText, Image, LayoutGrid, LogOut, FolderOpen } from "lucide-react";
 
 export default function AdminDashboard() {
   const { user, isAdmin, loading, signOut } = useAuth();
@@ -121,6 +121,27 @@ export default function AdminDashboard() {
               <CardContent>
                 <p className="text-sm text-muted-foreground">
                   Upload and swap hero images, backgrounds, and more.
+                </p>
+              </CardContent>
+            </Card>
+          </Link>
+
+          <Link to="/admin/library">
+            <Card className="transition-shadow hover:shadow-md">
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <div className="rounded-lg bg-primary/10 p-2">
+                    <FolderOpen className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <CardTitle className="text-lg">Image Library</CardTitle>
+                    <CardDescription>Organise reusable assets</CardDescription>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  Store headline, supplement, portfolio, and logo images.
                 </p>
               </CardContent>
             </Card>

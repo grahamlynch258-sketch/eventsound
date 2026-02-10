@@ -47,6 +47,33 @@ export type Database = {
         }
         Relationships: []
       }
+      library_images: {
+        Row: {
+          alt_text: string | null
+          category: string
+          created_at: string
+          file_name: string
+          id: string
+          image_url: string
+        }
+        Insert: {
+          alt_text?: string | null
+          category: string
+          created_at?: string
+          file_name: string
+          id?: string
+          image_url: string
+        }
+        Update: {
+          alt_text?: string | null
+          category?: string
+          created_at?: string
+          file_name?: string
+          id?: string
+          image_url?: string
+        }
+        Relationships: []
+      }
       site_content: {
         Row: {
           alignment: string
