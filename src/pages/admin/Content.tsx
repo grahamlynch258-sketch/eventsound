@@ -241,36 +241,45 @@ export default function AdminContent() {
           {Object.entries(pageContent).map(([pageKey, page]) => (
             <TabsContent key={pageKey} value={pageKey}>
               <div className="grid gap-6">
-                {Object.entries(page.sections).map(([sectionKey, fields]) => (
-                  <SectionEditor
-                    key={sectionKey}
-                    pageKey={pageKey}
-                    sectionKey={sectionKey}
-                    fields={fields}
-                    formData={formData}
-                    alignData={alignData}
-                    sizeData={sizeData}
-                    colorData={colorData}
-                    weightData={weightData}
-                    familyData={familyData}
-                    bgColorData={bgColorData}
-                    bgOpacityData={bgOpacityData}
-                    onChange={handleChange}
-                    onAlignChange={handleAlignChange}
-                    onSizeChange={handleSizeChange}
-                    onColorChange={handleColorChange}
-                    onWeightChange={handleWeightChange}
-                    onFamilyChange={handleFamilyChange}
-                    onBgColorChange={handleBgColorChange}
-                    onBgOpacityChange={handleBgOpacityChange}
-                    onOffsetXChange={handleOffsetXChange}
-                    onOffsetYChange={handleOffsetYChange}
-                    offsetXData={offsetXData}
-                    offsetYData={offsetYData}
-                    onSave={handleSave}
-                    isSaving={updateContent.isPending}
-                  />
-                ))}
+                {Object.entries(page.sections).map(([sectionKey, fields]) => {
+                  // Features & CTA2: linked box color; Hero CTAs: individual pickers
+                  const linkedBoxColor = pageKey === "home" && (sectionKey === "features" || sectionKey === "cta2");
+                  const individualBoxKeys = pageKey === "home" && sectionKey === "hero"
+                    ? ["cta_primary", "cta_secondary"]
+                    : undefined;
+                  return (
+                    <SectionEditor
+                      key={sectionKey}
+                      pageKey={pageKey}
+                      sectionKey={sectionKey}
+                      fields={fields}
+                      formData={formData}
+                      alignData={alignData}
+                      sizeData={sizeData}
+                      colorData={colorData}
+                      weightData={weightData}
+                      familyData={familyData}
+                      bgColorData={bgColorData}
+                      bgOpacityData={bgOpacityData}
+                      onChange={handleChange}
+                      onAlignChange={handleAlignChange}
+                      onSizeChange={handleSizeChange}
+                      onColorChange={handleColorChange}
+                      onWeightChange={handleWeightChange}
+                      onFamilyChange={handleFamilyChange}
+                      onBgColorChange={handleBgColorChange}
+                      onBgOpacityChange={handleBgOpacityChange}
+                      onOffsetXChange={handleOffsetXChange}
+                      onOffsetYChange={handleOffsetYChange}
+                      offsetXData={offsetXData}
+                      offsetYData={offsetYData}
+                      onSave={handleSave}
+                      isSaving={updateContent.isPending}
+                      linkedBoxColor={linkedBoxColor}
+                      individualBoxKeys={individualBoxKeys}
+                    />
+                  );
+                })}
               </div>
             </TabsContent>
           ))}
@@ -306,6 +315,8 @@ function SectionEditor({
   onOffsetYChange,
   onSave,
   isSaving,
+  linkedBoxColor = false,
+  individualBoxKeys,
 }: {
   pageKey: string;
   sectionKey: string;
@@ -332,6 +343,8 @@ function SectionEditor({
   onOffsetYChange: (section: string, key: string, val: number) => void;
   onSave: (section: string) => void;
   isSaving: boolean;
+  linkedBoxColor?: boolean;
+  individualBoxKeys?: string[];
 }) {
   const { data: content, isLoading } = useSiteContent(pageKey, sectionKey);
 
@@ -445,6 +458,52 @@ function SectionEditor({
             <p className="text-xs text-muted-foreground">Controls the skin colour at the bottom of the hero image and how quickly it fades in. Higher = more visible sooner.</p>
           </div>
         )}
+        {linkedBoxColor && (() => {
+          const firstKey = fields[0]?.key || "";
+          const sharedBgColor = bgColorData[sectionKey]?.[firstKey] ?? content?.bgColors[firstKey] ?? "";
+          const sharedBgOpacity = bgOpacityData[sectionKey]?.[firstKey] ?? content?.bgOpacities[firstKey] ?? 1;
+          return (
+            <div className="rounded-md border p-4 mb-2 grid gap-3">
+              <Label className="text-sm font-semibold">Section Box Color</Label>
+              <div className="flex items-center gap-4 flex-wrap">
+                <div className="flex items-center gap-2">
+                  <Label className="text-xs text-muted-foreground">Color</Label>
+                  <input
+                    type="color"
+                    value={sharedBgColor || "#ffffff"}
+                    onChange={(e) => {
+                      fields.forEach((f) => onBgColorChange(sectionKey, f.key, e.target.value));
+                    }}
+                    className="h-8 w-8 cursor-pointer rounded border border-input p-0"
+                  />
+                  {sharedBgColor && (
+                    <button
+                      type="button"
+                      className="text-xs text-muted-foreground underline"
+                      onClick={() => fields.forEach((f) => onBgColorChange(sectionKey, f.key, ""))}
+                    >
+                      Clear
+                    </button>
+                  )}
+                </div>
+                {sharedBgColor && (
+                  <div className="flex items-center gap-2 min-w-[180px]">
+                    <Label className="text-xs text-muted-foreground whitespace-nowrap">Opacity: {Math.round(sharedBgOpacity * 100)}%</Label>
+                    <Slider
+                      value={[sharedBgOpacity * 100]}
+                      onValueChange={([val]) => fields.forEach((f) => onBgOpacityChange(sectionKey, f.key, val / 100))}
+                      min={0}
+                      max={100}
+                      step={5}
+                      className="w-24"
+                    />
+                  </div>
+                )}
+              </div>
+              <p className="text-xs text-muted-foreground">Applies to all text boxes in this section.</p>
+            </div>
+          );
+        })()}
         {fields.map((field) => {
           const currentAlign = alignData[sectionKey]?.[field.key] || content?.alignments[field.key] || "left";
           const currentValue = formData[sectionKey]?.[field.key] ?? content?.values[field.key] ?? "";
@@ -518,36 +577,40 @@ function SectionEditor({
                     </SelectContent>
                   </Select>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Label className="text-xs text-muted-foreground">Box</Label>
-                  <input
-                    type="color"
-                    value={currentBgColor || "#ffffff"}
-                    onChange={(e) => onBgColorChange(sectionKey, field.key, e.target.value)}
-                    className="h-8 w-8 cursor-pointer rounded border border-input p-0"
-                  />
-                  {currentBgColor && (
-                    <button
-                      type="button"
-                      className="text-xs text-muted-foreground underline"
-                      onClick={() => onBgColorChange(sectionKey, field.key, "")}
-                    >
-                      Clear
-                    </button>
-                  )}
-                </div>
-                {currentBgColor && (
-                  <div className="flex items-center gap-2 min-w-[180px]">
-                    <Label className="text-xs text-muted-foreground whitespace-nowrap">Opacity: {Math.round(currentBgOpacity * 100)}%</Label>
-                    <Slider
-                      value={[currentBgOpacity * 100]}
-                      onValueChange={([val]) => onBgOpacityChange(sectionKey, field.key, val / 100)}
-                      min={0}
-                      max={100}
-                      step={5}
-                      className="w-24"
-                    />
-                  </div>
+                {(!linkedBoxColor && (!individualBoxKeys || individualBoxKeys.includes(field.key))) && (
+                  <>
+                    <div className="flex items-center gap-2">
+                      <Label className="text-xs text-muted-foreground">Box</Label>
+                      <input
+                        type="color"
+                        value={currentBgColor || "#ffffff"}
+                        onChange={(e) => onBgColorChange(sectionKey, field.key, e.target.value)}
+                        className="h-8 w-8 cursor-pointer rounded border border-input p-0"
+                      />
+                      {currentBgColor && (
+                        <button
+                          type="button"
+                          className="text-xs text-muted-foreground underline"
+                          onClick={() => onBgColorChange(sectionKey, field.key, "")}
+                        >
+                          Clear
+                        </button>
+                      )}
+                    </div>
+                    {currentBgColor && (
+                      <div className="flex items-center gap-2 min-w-[180px]">
+                        <Label className="text-xs text-muted-foreground whitespace-nowrap">Opacity: {Math.round(currentBgOpacity * 100)}%</Label>
+                        <Slider
+                          value={[currentBgOpacity * 100]}
+                          onValueChange={([val]) => onBgOpacityChange(sectionKey, field.key, val / 100)}
+                          min={0}
+                          max={100}
+                          step={5}
+                          className="w-24"
+                        />
+                      </div>
+                    )}
+                  </>
                 )}
               </div>
               <div className="flex items-center gap-4 flex-wrap">
