@@ -8,7 +8,10 @@ export function useDynamicText(page: string, section: string) {
   const { data, isLoading } = useSiteContent(page, section);
 
   function getText(key: string, fallback: string): string {
-    return data?.values[key] || fallback;
+    if (data?.values && key in data.values && data.values[key] !== "") {
+      return data.values[key];
+    }
+    return fallback;
   }
 
   function getAlign(key: string): string {
