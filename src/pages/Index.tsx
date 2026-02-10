@@ -15,116 +15,121 @@ const Index = () => {
 
   return (
     <PageShell>
-      <main>
-        <section className="relative">
-          <div className="absolute inset-0">
-            <img src={heroImage} alt="Event stage with lighting and screens" className="h-full w-full object-cover" />
-            <div
-              className="absolute inset-0"
-              style={{
-                background: (() => {
-                  const gradColor = hero.getBgColor("_gradient_color") || "";
-                  const gradOpacity = hero.getBgOpacity("_gradient_color");
-                  if (!gradColor) return "linear-gradient(to bottom, transparent, transparent 40%, hsl(var(--background)))";
-                  const [r, g, b] = [
-                    parseInt(gradColor.slice(1, 3), 16),
-                    parseInt(gradColor.slice(3, 5), 16),
-                    parseInt(gradColor.slice(5, 7), 16),
-                  ];
-                  const stopPct = Math.round((1 - gradOpacity) * 100);
-                  return `linear-gradient(to bottom, transparent ${stopPct}%, rgba(${r},${g},${b},1))`;
-                })(),
-              }}
-            />
-          </div>
+      {(() => {
+        const gradColor = hero.getBgColor("_gradient_color") || "";
+        const gradOpacity = hero.getBgOpacity("_gradient_color");
+        const rgb = gradColor
+          ? [
+              parseInt(gradColor.slice(1, 3), 16),
+              parseInt(gradColor.slice(3, 5), 16),
+              parseInt(gradColor.slice(5, 7), 16),
+            ]
+          : null;
+        // Fade start: higher opacity = gradient kicks in sooner (from top). 
+        // Range: 0% opacity → gradient starts at 70%, 100% → starts at 10%
+        const fadeStart = rgb ? Math.round(70 - gradOpacity * 60) : 40;
+        const heroGradient = rgb
+          ? `linear-gradient(to bottom, transparent ${fadeStart}%, rgba(${rgb[0]},${rgb[1]},${rgb[2]},0.6) ${fadeStart + 20}%, rgba(${rgb[0]},${rgb[1]},${rgb[2]},1) 100%)`
+          : "linear-gradient(to bottom, transparent, transparent 40%, hsl(var(--background)))";
+        const pageBg = rgb ? `rgb(${rgb[0]},${rgb[1]},${rgb[2]})` : undefined;
 
-          <div className="container relative py-32 md:py-44">
-            <h1 className={`max-w-3xl text-4xl font-semibold tracking-tight md:text-6xl ${hero.getAlignClass("headline")}`} style={hero.getStyle("headline")}>
-              {hero.getText("headline", "Premium event production—without the chaos.")}
-            </h1>
-            <p className={`mt-5 max-w-2xl text-base text-muted-foreground md:text-lg ${hero.getAlignClass("subheadline")}`} style={hero.getStyle("subheadline")}>
-              {hero.getText("subheadline", "AV, vision, lighting and staging packages for modern events. Delivered, installed and supported by calm, capable technicians.")}
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3" style={hero.getStyle("cta_primary")}>
-              <Button asChild>
-                <Link to="/av-production">{hero.getText("cta_primary", "Request a quote")}</Link>
-              </Button>
-              <Button asChild variant="outline">
-                <Link to="/contact">{hero.getText("cta_secondary", "Explore AV & Production")}</Link>
-              </Button>
-            </div>
-          </div>
-        </section>
+        return (
+          <main style={pageBg ? { backgroundColor: pageBg } : undefined}>
+            <section className="relative">
+              <div className="absolute inset-0">
+                <img src={heroImage} alt="Event stage with lighting and screens" className="h-full w-full object-cover" />
+                <div className="absolute inset-0" style={{ background: heroGradient }} />
+              </div>
 
-        <section className="container py-14 md:py-16">
-          <div className="grid gap-6 md:grid-cols-12 md:items-start">
-            <div className="md:col-span-5">
-              <h2 className={`text-3xl font-semibold tracking-tight md:text-4xl ${features.getAlignClass("section_title")}`} style={features.getStyle("section_title")}>
-                {features.getText("section_title", "Built for producers and venues")}
-              </h2>
-            </div>
-            <div className="md:col-span-7">
-              <p className={`text-muted-foreground ${features.getAlignClass("section_description")}`} style={features.getStyle("section_description")}>
-                {features.getText("section_description", "We combine premium equipment with practical delivery, setup and operator support—so your event looks sharp and runs on schedule.")}
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            <Card style={features.getBoxStyle("feature_1_title")}>
-              <CardHeader>
-                <CardTitle className={features.getAlignClass("feature_1_title")} style={features.getStyle("feature_1_title")}>
-                  {features.getText("feature_1_title", "Fast, tidy builds")}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className={`text-sm text-muted-foreground ${features.getAlignClass("feature_1_description")}`} style={features.getStyle("feature_1_description")}>
-                {features.getText("feature_1_description", "Clean cabling, sensible patching, and a plan for bump-in/bump-out.")}
-              </CardContent>
-            </Card>
-
-            <Card style={features.getBoxStyle("feature_2_title")}>
-              <CardHeader>
-                <CardTitle className={features.getAlignClass("feature_2_title")} style={features.getStyle("feature_2_title")}>
-                  {features.getText("feature_2_title", "Show-ready systems")}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className={`text-sm text-muted-foreground ${features.getAlignClass("feature_2_description")}`} style={features.getStyle("feature_2_description")}>
-                {features.getText("feature_2_description", "Audio clarity, punchy lighting, reliable vision—tested before doors.")}
-              </CardContent>
-            </Card>
-
-            <Card style={features.getBoxStyle("feature_3_title")}>
-              <CardHeader>
-                <CardTitle className={features.getAlignClass("feature_3_title")} style={features.getStyle("feature_3_title")}>
-                  {features.getText("feature_3_title", "People you can trust")}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className={`text-sm text-muted-foreground ${features.getAlignClass("feature_3_description")}`} style={features.getStyle("feature_3_description")}>
-                {features.getText("feature_3_description", "Techs who communicate, adapt, and keep the room calm.")}
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        <section className="container pb-16">
-          <div className="rounded-lg border bg-card p-8 md:p-10">
-            <div className="grid gap-6 md:grid-cols-12 md:items-center">
-              <div className="md:col-span-8">
-                <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">Tell us the brief. We'll build the package.</h2>
-                <p className="mt-3 text-muted-foreground">
-                  Send your date, venue, audience size, and any must-haves. We'll come back with a clear recommendation
-                  and a quote.
+              <div className="container relative py-32 md:py-44">
+                <h1 className={`max-w-3xl text-4xl font-semibold tracking-tight md:text-6xl ${hero.getAlignClass("headline")}`} style={hero.getStyle("headline")}>
+                  {hero.getText("headline", "Premium event production—without the chaos.")}
+                </h1>
+                <p className={`mt-5 max-w-2xl text-base text-muted-foreground md:text-lg ${hero.getAlignClass("subheadline")}`} style={hero.getStyle("subheadline")}>
+                  {hero.getText("subheadline", "AV, vision, lighting and staging packages for modern events. Delivered, installed and supported by calm, capable technicians.")}
                 </p>
+                <div className="mt-8 flex flex-wrap gap-3" style={hero.getStyle("cta_primary")}>
+                  <Button asChild>
+                    <Link to="/av-production">{hero.getText("cta_primary", "Request a quote")}</Link>
+                  </Button>
+                  <Button asChild variant="outline">
+                    <Link to="/contact">{hero.getText("cta_secondary", "Explore AV & Production")}</Link>
+                  </Button>
+                </div>
               </div>
-              <div className="md:col-span-4 md:text-right">
-                <Button asChild size="lg">
-                  <Link to="/contact">Get a quote</Link>
-                </Button>
+            </section>
+
+            <section className="container py-14 md:py-16">
+              <div className="grid gap-6 md:grid-cols-12 md:items-start">
+                <div className="md:col-span-5">
+                  <h2 className={`text-3xl font-semibold tracking-tight md:text-4xl ${features.getAlignClass("section_title")}`} style={features.getStyle("section_title")}>
+                    {features.getText("section_title", "Built for producers and venues")}
+                  </h2>
+                </div>
+                <div className="md:col-span-7">
+                  <p className={`text-muted-foreground ${features.getAlignClass("section_description")}`} style={features.getStyle("section_description")}>
+                    {features.getText("section_description", "We combine premium equipment with practical delivery, setup and operator support—so your event looks sharp and runs on schedule.")}
+                  </p>
+                </div>
               </div>
-            </div>
-          </div>
-        </section>
-      </main>
+
+              <div className="mt-10 grid gap-6 md:grid-cols-3">
+                <Card style={features.getBoxStyle("feature_1_title")}>
+                  <CardHeader>
+                    <CardTitle className={features.getAlignClass("feature_1_title")} style={features.getStyle("feature_1_title")}>
+                      {features.getText("feature_1_title", "Fast, tidy builds")}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className={`text-sm text-muted-foreground ${features.getAlignClass("feature_1_description")}`} style={features.getStyle("feature_1_description")}>
+                    {features.getText("feature_1_description", "Clean cabling, sensible patching, and a plan for bump-in/bump-out.")}
+                  </CardContent>
+                </Card>
+
+                <Card style={features.getBoxStyle("feature_2_title")}>
+                  <CardHeader>
+                    <CardTitle className={features.getAlignClass("feature_2_title")} style={features.getStyle("feature_2_title")}>
+                      {features.getText("feature_2_title", "Show-ready systems")}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className={`text-sm text-muted-foreground ${features.getAlignClass("feature_2_description")}`} style={features.getStyle("feature_2_description")}>
+                    {features.getText("feature_2_description", "Audio clarity, punchy lighting, reliable vision—tested before doors.")}
+                  </CardContent>
+                </Card>
+
+                <Card style={features.getBoxStyle("feature_3_title")}>
+                  <CardHeader>
+                    <CardTitle className={features.getAlignClass("feature_3_title")} style={features.getStyle("feature_3_title")}>
+                      {features.getText("feature_3_title", "People you can trust")}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className={`text-sm text-muted-foreground ${features.getAlignClass("feature_3_description")}`} style={features.getStyle("feature_3_description")}>
+                    {features.getText("feature_3_description", "Techs who communicate, adapt, and keep the room calm.")}
+                  </CardContent>
+                </Card>
+              </div>
+            </section>
+
+            <section className="container pb-16">
+              <div className="rounded-lg border bg-card p-8 md:p-10">
+                <div className="grid gap-6 md:grid-cols-12 md:items-center">
+                  <div className="md:col-span-8">
+                    <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">Tell us the brief. We'll build the package.</h2>
+                    <p className="mt-3 text-muted-foreground">
+                      Send your date, venue, audience size, and any must-haves. We'll come back with a clear recommendation
+                      and a quote.
+                    </p>
+                  </div>
+                  <div className="md:col-span-4 md:text-right">
+                    <Button asChild size="lg">
+                      <Link to="/contact">Get a quote</Link>
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </main>
+        );
+      })()}
     </PageShell>
   );
 };
