@@ -42,6 +42,8 @@ const Index = () => {
               <div className="absolute inset-0">
                 <img src={heroImage} alt="Event stage with lighting and screens" className="h-full w-full object-cover" />
                 <div className="absolute inset-0" style={{ background: heroGradient }} />
+                {/* Soft fade at the bottom edge of the hero */}
+                <div className="absolute bottom-0 left-0 right-0 h-32" style={{ background: `linear-gradient(to bottom, transparent, ${pageBg || 'hsl(var(--background))'})` }} />
               </div>
 
               <div className="container relative py-32 md:py-44">
@@ -66,11 +68,32 @@ const Index = () => {
             <div className="relative">
               {portraits && portraits.some(p => p.image_url) && (
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                  <div className="grid grid-cols-3 h-full">
-                    {["portrait_1", "portrait_2", "portrait_3"].map((key) => {
+                  {/* Soft fade at the top of the portraits */}
+                  <div className="absolute top-0 left-0 right-0 h-32 z-10" style={{ background: `linear-gradient(to bottom, ${pageBg || 'hsl(var(--background))'}, transparent)` }} />
+                  {/* Soft fade at the bottom of the portraits */}
+                  <div className="absolute bottom-0 left-0 right-0 h-32 z-10" style={{ background: `linear-gradient(to top, ${pageBg || 'hsl(var(--background))'}, transparent)` }} />
+                  <div className="flex h-full">
+                    {["portrait_1", "portrait_2", "portrait_3"].map((key, i) => {
                       const img = getPortrait(key);
+                      // Use polygon clips: each image has diagonal / edges
+                      // Left image: rect with right edge angled /
+                      // Middle image: parallelogram shape
+                      // Right image: rect with left edge angled /
+                      const clips = [
+                        "polygon(0 0, 100% 0, 85% 100%, 0 100%)",
+                        "polygon(15% 0, 100% 0, 85% 100%, 0 100%)",
+                        "polygon(15% 0, 100% 0, 100% 100%, 0 100%)",
+                      ];
                       return (
-                        <div key={key} className="relative h-full">
+                        <div
+                          key={key}
+                          className="relative h-full"
+                          style={{
+                            flex: '1 0 38%',
+                            marginLeft: i > 0 ? '-5%' : undefined,
+                            clipPath: clips[i],
+                          }}
+                        >
                           {img?.image_url ? (
                             <img
                               src={img.image_url}
