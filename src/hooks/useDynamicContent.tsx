@@ -64,6 +64,8 @@ export function useDynamicText(page: string, section: string) {
       fontSize: `${getFontSize(key)}px`,
       color: getFontColor(key),
       fontWeight: getFontWeight(key),
+      position: 'relative',
+      zIndex: 1,
     };
     const family = getFontFamily(key);
     if (family) {
