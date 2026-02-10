@@ -29,7 +29,7 @@ const Index = () => {
             <p className={`mt-5 max-w-2xl text-base text-muted-foreground md:text-lg ${hero.getAlignClass("subheadline")}`} style={hero.getStyle("subheadline")}>
               {hero.getText("subheadline", "AV, vision, lighting and staging packages for modern events. Delivered, installed and supported by calm, capable technicians.")}
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-wrap gap-3" style={hero.getStyle("cta_primary")}>
               <Button asChild>
                 <Link to="/contact">{hero.getText("cta_primary", "Request a quote")}</Link>
               </Button>
