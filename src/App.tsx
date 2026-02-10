@@ -12,6 +12,7 @@ import AdminDashboard from "./pages/admin/Dashboard";
 import AdminCategories from "./pages/admin/Categories";
 import AdminContent from "./pages/admin/Content";
 import AdminImages from "./pages/admin/Images";
+import AdminLibrary from "./pages/admin/Library";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,7 @@ const App = () => (
           <Route path="/admin/categories" element={<AdminCategories />} />
           <Route path="/admin/content" element={<AdminContent />} />
           <Route path="/admin/images" element={<AdminImages />} />
+          <Route path="/admin/library" element={<AdminLibrary />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
