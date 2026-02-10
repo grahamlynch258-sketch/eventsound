@@ -95,6 +95,8 @@ export default function AdminContent() {
   const [colorData, setColorData] = useState<Record<string, Record<string, string>>>({});
   const [weightData, setWeightData] = useState<Record<string, Record<string, string>>>({});
   const [familyData, setFamilyData] = useState<Record<string, Record<string, string>>>({});
+  const [bgColorData, setBgColorData] = useState<Record<string, Record<string, string>>>({});
+  const [bgOpacityData, setBgOpacityData] = useState<Record<string, Record<string, number>>>({});
 
   useEffect(() => {
     if (!loading && (!user || !isAdmin)) {
@@ -129,6 +131,12 @@ export default function AdminContent() {
     const normalized = family === "default" ? "" : family;
     setFamilyData((prev) => ({ ...prev, [section]: { ...prev[section], [key]: normalized } }));
   }
+  function handleBgColorChange(section: string, key: string, color: string) {
+    setBgColorData((prev) => ({ ...prev, [section]: { ...prev[section], [key]: color } }));
+  }
+  function handleBgOpacityChange(section: string, key: string, opacity: number) {
+    setBgOpacityData((prev) => ({ ...prev, [section]: { ...prev[section], [key]: opacity } }));
+  }
 
   async function handleSave(section: string) {
     const sectionValues = formData[section];
@@ -137,7 +145,9 @@ export default function AdminContent() {
     const sectionColors = colorData[section];
     const sectionWeights = weightData[section];
     const sectionFamilies = familyData[section];
-    if (!sectionValues && !sectionAligns && !sectionSizes && !sectionColors && !sectionWeights && !sectionFamilies) return;
+    const sectionBgColors = bgColorData[section];
+    const sectionBgOpacities = bgOpacityData[section];
+    if (!sectionValues && !sectionAligns && !sectionSizes && !sectionColors && !sectionWeights && !sectionFamilies && !sectionBgColors && !sectionBgOpacities) return;
 
     const allKeys = new Set([
       ...Object.keys(sectionValues || {}),
@@ -146,6 +156,8 @@ export default function AdminContent() {
       ...Object.keys(sectionColors || {}),
       ...Object.keys(sectionWeights || {}),
       ...Object.keys(sectionFamilies || {}),
+      ...Object.keys(sectionBgColors || {}),
+      ...Object.keys(sectionBgOpacities || {}),
     ]);
 
     try {
@@ -156,7 +168,9 @@ export default function AdminContent() {
         const font_color = sectionColors?.[key];
         const font_weight = sectionWeights?.[key];
         const font_family = sectionFamilies?.[key];
-        if (value === undefined && alignment === undefined && font_size === undefined && font_color === undefined && font_weight === undefined && font_family === undefined) continue;
+        const bg_color = sectionBgColors?.[key];
+        const bg_opacity = sectionBgOpacities?.[key];
+        if (value === undefined && alignment === undefined && font_size === undefined && font_color === undefined && font_weight === undefined && font_family === undefined && bg_color === undefined && bg_opacity === undefined) continue;
         await updateContent.mutateAsync({
           page: currentPage,
           section,
@@ -167,6 +181,8 @@ export default function AdminContent() {
           font_color,
           font_weight,
           font_family,
+          bg_color,
+          bg_opacity,
         });
       }
       toast({ title: "Content saved" });
@@ -216,12 +232,16 @@ export default function AdminContent() {
                     colorData={colorData}
                     weightData={weightData}
                     familyData={familyData}
+                    bgColorData={bgColorData}
+                    bgOpacityData={bgOpacityData}
                     onChange={handleChange}
                     onAlignChange={handleAlignChange}
                     onSizeChange={handleSizeChange}
                     onColorChange={handleColorChange}
                     onWeightChange={handleWeightChange}
                     onFamilyChange={handleFamilyChange}
+                    onBgColorChange={handleBgColorChange}
+                    onBgOpacityChange={handleBgOpacityChange}
                     onSave={handleSave}
                     isSaving={updateContent.isPending}
                   />
@@ -245,12 +265,16 @@ function SectionEditor({
   colorData,
   weightData,
   familyData,
+  bgColorData,
+  bgOpacityData,
   onChange,
   onAlignChange,
   onSizeChange,
   onColorChange,
   onWeightChange,
   onFamilyChange,
+  onBgColorChange,
+  onBgOpacityChange,
   onSave,
   isSaving,
 }: {
@@ -263,12 +287,16 @@ function SectionEditor({
   colorData: Record<string, Record<string, string>>;
   weightData: Record<string, Record<string, string>>;
   familyData: Record<string, Record<string, string>>;
+  bgColorData: Record<string, Record<string, string>>;
+  bgOpacityData: Record<string, Record<string, number>>;
   onChange: (section: string, key: string, value: string) => void;
   onAlignChange: (section: string, key: string, alignment: string) => void;
   onSizeChange: (section: string, key: string, size: number) => void;
   onColorChange: (section: string, key: string, color: string) => void;
   onWeightChange: (section: string, key: string, weight: string) => void;
   onFamilyChange: (section: string, key: string, family: string) => void;
+  onBgColorChange: (section: string, key: string, color: string) => void;
+  onBgOpacityChange: (section: string, key: string, opacity: number) => void;
   onSave: (section: string) => void;
   isSaving: boolean;
 }) {
@@ -305,6 +333,16 @@ function SectionEditor({
         onFamilyChange(sectionKey, field.key, content.fontFamilies[field.key] || "");
       });
     }
+    if (content && !bgColorData[sectionKey]) {
+      fields.forEach((field) => {
+        onBgColorChange(sectionKey, field.key, content.bgColors[field.key] || "");
+      });
+    }
+    if (content && !bgOpacityData[sectionKey]) {
+      fields.forEach((field) => {
+        onBgOpacityChange(sectionKey, field.key, content.bgOpacities[field.key] != null ? content.bgOpacities[field.key] : 1);
+      });
+    }
   }, [content]);
 
   if (isLoading) {
@@ -329,6 +367,8 @@ function SectionEditor({
           const currentColor = colorData[sectionKey]?.[field.key] ?? content?.fontColors[field.key] ?? "#000000";
           const currentWeight = weightData[sectionKey]?.[field.key] ?? content?.fontWeights[field.key] ?? "normal";
           const currentFamily = familyData[sectionKey]?.[field.key] ?? content?.fontFamilies[field.key] ?? "";
+          const currentBgColor = bgColorData[sectionKey]?.[field.key] ?? content?.bgColors[field.key] ?? "";
+          const currentBgOpacity = bgOpacityData[sectionKey]?.[field.key] ?? content?.bgOpacities[field.key] ?? 1;
 
           return (
             <div key={field.key} className="grid gap-2">
@@ -391,6 +431,37 @@ function SectionEditor({
                     </SelectContent>
                   </Select>
                 </div>
+                <div className="flex items-center gap-2">
+                  <Label className="text-xs text-muted-foreground">Box</Label>
+                  <input
+                    type="color"
+                    value={currentBgColor || "#ffffff"}
+                    onChange={(e) => onBgColorChange(sectionKey, field.key, e.target.value)}
+                    className="h-8 w-8 cursor-pointer rounded border border-input p-0"
+                  />
+                  {currentBgColor && (
+                    <button
+                      type="button"
+                      className="text-xs text-muted-foreground underline"
+                      onClick={() => onBgColorChange(sectionKey, field.key, "")}
+                    >
+                      Clear
+                    </button>
+                  )}
+                </div>
+                {currentBgColor && (
+                  <div className="flex items-center gap-2 min-w-[180px]">
+                    <Label className="text-xs text-muted-foreground whitespace-nowrap">Opacity: {Math.round(currentBgOpacity * 100)}%</Label>
+                    <Slider
+                      value={[currentBgOpacity * 100]}
+                      onValueChange={([val]) => onBgOpacityChange(sectionKey, field.key, val / 100)}
+                      min={0}
+                      max={100}
+                      step={5}
+                      className="w-24"
+                    />
+                  </div>
+                )}
               </div>
               {field.type === "textarea" ? (
                 <Textarea
