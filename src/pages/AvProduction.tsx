@@ -44,7 +44,7 @@ export default function AvProduction() {
             <img src={heroImage} alt="Stage lighting and LED screens" className="h-full w-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/40 to-background" />
           </div>
-          <div className="container relative py-20 md:py-28">
+          <div className="container relative py-32 md:py-44">
             <p className="text-sm text-muted-foreground">Services</p>
             <h1 className={`mt-3 max-w-2xl text-4xl font-semibold tracking-tight md:text-5xl ${hero.getAlignClass("headline")}`} style={hero.getStyle("headline")}>
               {hero.getText("headline", "AV & Production")}
