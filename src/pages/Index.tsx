@@ -19,7 +19,23 @@ const Index = () => {
         <section className="relative">
           <div className="absolute inset-0">
             <img src={heroImage} alt="Event stage with lighting and screens" className="h-full w-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
+            <div
+              className="absolute inset-0"
+              style={{
+                background: (() => {
+                  const gradColor = hero.getBgColor("_gradient_color") || "";
+                  const gradOpacity = hero.getBgOpacity("_gradient_color");
+                  if (!gradColor) return "linear-gradient(to bottom, transparent, transparent 40%, hsl(var(--background)))";
+                  const [r, g, b] = [
+                    parseInt(gradColor.slice(1, 3), 16),
+                    parseInt(gradColor.slice(3, 5), 16),
+                    parseInt(gradColor.slice(5, 7), 16),
+                  ];
+                  const stopPct = Math.round((1 - gradOpacity) * 100);
+                  return `linear-gradient(to bottom, transparent ${stopPct}%, rgba(${r},${g},${b},1))`;
+                })(),
+              }}
+            />
           </div>
 
           <div className="container relative py-32 md:py-44">
