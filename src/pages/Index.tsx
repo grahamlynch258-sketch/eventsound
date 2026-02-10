@@ -10,6 +10,7 @@ import fallbackHeroImage from "@/assets/hero-av-production.jpg";
 const Index = () => {
   const hero = useDynamicText("home", "hero");
   const features = useDynamicText("home", "features");
+  const cta = useDynamicText("home", "cta");
   const { data: heroImageData } = useSiteImage("home", "hero", "background");
   const heroImage = heroImageData?.image_url || fallbackHeroImage;
 
@@ -110,18 +111,19 @@ const Index = () => {
             </section>
 
             <section className="container pb-16">
-              <div className="rounded-lg border bg-card p-8 md:p-10">
+              <div className="rounded-lg border bg-card p-8 md:p-10" style={cta.getBoxStyle("headline")}>
                 <div className="grid gap-6 md:grid-cols-12 md:items-center">
                   <div className="md:col-span-8">
-                    <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">Tell us the brief. We'll build the package.</h2>
-                    <p className="mt-3 text-muted-foreground">
-                      Send your date, venue, audience size, and any must-haves. We'll come back with a clear recommendation
-                      and a quote.
+                    <h2 className={`text-2xl font-semibold tracking-tight md:text-3xl ${cta.getAlignClass("headline")}`} style={cta.getStyle("headline")}>
+                      {cta.getText("headline", "Tell us the brief. We'll build the package.")}
+                    </h2>
+                    <p className={`mt-3 text-muted-foreground ${cta.getAlignClass("description")}`} style={cta.getStyle("description")}>
+                      {cta.getText("description", "Send your date, venue, audience size, and any must-haves. We'll come back with a clear recommendation and a quote.")}
                     </p>
                   </div>
                   <div className="md:col-span-4 md:text-right">
                     <Button asChild size="lg">
-                      <Link to="/contact">Get a quote</Link>
+                      <Link to="/contact">{cta.getText("button_text", "Get a quote")}</Link>
                     </Button>
                   </div>
                 </div>
