@@ -49,7 +49,7 @@ export function useDynamicText(page: string, section: string) {
   const { data, isLoading } = useSiteContent(page, section);
 
   function getText(key: string, fallback: string): string {
-    if (data?.values && key in data.values) {
+    if (data?.values && key in data.values && data.values[key]) {
       return data.values[key];
     }
     return fallback;
