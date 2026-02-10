@@ -50,6 +50,14 @@ export function useDynamicText(page: string, section: string) {
     return data?.bgOpacities[key] != null ? data.bgOpacities[key] : 1;
   }
 
+  function getOffsetX(key: string): number {
+    return data?.offsetsX[key] || 0;
+  }
+
+  function getOffsetY(key: string): number {
+    return data?.offsetsY[key] || 0;
+  }
+
   function getStyle(key: string): React.CSSProperties {
     const style: React.CSSProperties = {
       textAlign: getAlign(key) as any,
@@ -60,6 +68,11 @@ export function useDynamicText(page: string, section: string) {
     const family = getFontFamily(key);
     if (family) {
       style.fontFamily = family;
+    }
+    const x = getOffsetX(key);
+    const y = getOffsetY(key);
+    if (x || y) {
+      style.transform = `translate(${x}px, ${y}px)`;
     }
     return style;
   }
@@ -75,5 +88,5 @@ export function useDynamicText(page: string, section: string) {
     return { backgroundColor: `rgba(${r}, ${g}, ${b}, ${opacity})` };
   }
 
-  return { getText, getAlign, getAlignClass, getFontSize, getFontColor, getFontWeight, getFontFamily, getBgColor, getBgOpacity, getStyle, getBoxStyle, isLoading };
+  return { getText, getAlign, getAlignClass, getFontSize, getFontColor, getFontWeight, getFontFamily, getBgColor, getBgOpacity, getOffsetX, getOffsetY, getStyle, getBoxStyle, isLoading };
 }

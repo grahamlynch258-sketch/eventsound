@@ -86,6 +86,8 @@ export type Database = {
           font_weight: string
           id: string
           key: string
+          offset_x: number | null
+          offset_y: number | null
           page: string
           section: string
           updated_at: string
@@ -102,6 +104,8 @@ export type Database = {
           font_weight?: string
           id?: string
           key: string
+          offset_x?: number | null
+          offset_y?: number | null
           page: string
           section: string
           updated_at?: string
@@ -118,6 +122,8 @@ export type Database = {
           font_weight?: string
           id?: string
           key?: string
+          offset_x?: number | null
+          offset_y?: number | null
           page?: string
           section?: string
           updated_at?: string
