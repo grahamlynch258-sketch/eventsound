@@ -5,9 +5,10 @@ import { CategoryCard } from "@/components/site/CategoryCard";
 import { Link } from "react-router-dom";
 import { useCategories } from "@/hooks/useSiteContent";
 import { useDynamicText } from "@/hooks/useDynamicContent";
+import { useSiteImage } from "@/hooks/useSiteImage";
 import { Skeleton } from "@/components/ui/skeleton";
 
-import heroImage from "@/assets/hero-av-production.jpg";
+import fallbackHeroImage from "@/assets/hero-av-production.jpg";
 import audioImage from "@/assets/category-audio.jpg";
 import visionImage from "@/assets/category-vision.jpg";
 import lightingImage from "@/assets/category-lighting.jpg";
@@ -28,6 +29,8 @@ export default function AvProduction() {
   const { data: dbCategories, isLoading } = useCategories();
   const hero = useDynamicText("av-production", "hero");
   const cats = useDynamicText("av-production", "categories");
+  const { data: heroImageData } = useSiteImage("av-production", "hero", "background");
+  const heroImage = heroImageData?.image_url || fallbackHeroImage;
 
   const categories = dbCategories && dbCategories.length > 0
     ? dbCategories.map((c) => ({ title: c.title, imageSrc: c.image_url, to: c.link }))

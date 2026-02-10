@@ -3,12 +3,15 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { useDynamicText } from "@/hooks/useDynamicContent";
+import { useSiteImage } from "@/hooks/useSiteImage";
 
-import heroImage from "@/assets/hero-av-production.jpg";
+import fallbackHeroImage from "@/assets/hero-av-production.jpg";
 
 const Index = () => {
   const hero = useDynamicText("home", "hero");
   const features = useDynamicText("home", "features");
+  const { data: heroImageData } = useSiteImage("home", "hero", "background");
+  const heroImage = heroImageData?.image_url || fallbackHeroImage;
 
   return (
     <PageShell>
