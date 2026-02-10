@@ -509,8 +509,8 @@ function SectionEditor({
                   <Slider
                     value={[currentOffsetX]}
                     onValueChange={([val]) => onOffsetXChange(sectionKey, field.key, val)}
-                    min={-200}
-                    max={200}
+                    min={-800}
+                    max={800}
                     step={1}
                     className="w-28"
                   />
@@ -520,8 +520,8 @@ function SectionEditor({
                   <Slider
                     value={[currentOffsetY]}
                     onValueChange={([val]) => onOffsetYChange(sectionKey, field.key, val)}
-                    min={-200}
-                    max={200}
+                    min={-800}
+                    max={800}
                     step={1}
                     className="w-28"
                   />
