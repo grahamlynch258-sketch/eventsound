@@ -118,13 +118,15 @@ export default function AdminContent() {
         const value = sectionValues?.[key];
         const alignment = sectionAligns?.[key];
         if (value === undefined && alignment === undefined) continue;
-        await updateContent.mutateAsync({
+        // Only send value if it was actually edited (not undefined)
+        const mutationData: { page: string; section: string; key: string; value: string; alignment?: string } = {
           page: currentPage,
           section,
           key,
-          value: value ?? "",
+          value: value !== undefined ? value : formData[section]?.[key] ?? "",
           alignment,
-        });
+        };
+        await updateContent.mutateAsync(mutationData);
       }
       toast({ title: "Content saved" });
     } catch (error) {
