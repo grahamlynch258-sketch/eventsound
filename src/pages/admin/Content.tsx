@@ -8,10 +8,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Slider } from "@/components/ui/slider";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Toggle } from "@/components/ui/toggle";
 import { useToast } from "@/components/ui/use-toast";
 import { useAuth } from "@/hooks/useAuth";
 import { useSiteContent, useUpdateContent } from "@/hooks/useSiteContent";
-import { ArrowLeft, Save, AlignLeft, AlignCenter, AlignRight } from "lucide-react";
+import { ArrowLeft, Save, AlignLeft, AlignCenter, AlignRight, Bold } from "lucide-react";
 
 type ContentField = {
   key: string;
@@ -19,6 +21,20 @@ type ContentField = {
   type: "input" | "textarea";
   placeholder?: string;
 };
+
+const FONT_FAMILIES = [
+  { label: "Default", value: "" },
+  { label: "Inter", value: "Inter, sans-serif" },
+  { label: "Georgia", value: "Georgia, serif" },
+  { label: "Playfair Display", value: "'Playfair Display', serif" },
+  { label: "Roboto", value: "Roboto, sans-serif" },
+  { label: "Open Sans", value: "'Open Sans', sans-serif" },
+  { label: "Montserrat", value: "Montserrat, sans-serif" },
+  { label: "Lato", value: "Lato, sans-serif" },
+  { label: "Merriweather", value: "Merriweather, serif" },
+  { label: "Oswald", value: "Oswald, sans-serif" },
+  { label: "Raleway", value: "Raleway, sans-serif" },
+];
 
 const pageContent: Record<string, { title: string; sections: Record<string, ContentField[]> }> = {
   home: {
@@ -77,6 +93,8 @@ export default function AdminContent() {
   const [alignData, setAlignData] = useState<Record<string, Record<string, string>>>({});
   const [sizeData, setSizeData] = useState<Record<string, Record<string, number>>>({});
   const [colorData, setColorData] = useState<Record<string, Record<string, string>>>({});
+  const [weightData, setWeightData] = useState<Record<string, Record<string, string>>>({});
+  const [familyData, setFamilyData] = useState<Record<string, Record<string, string>>>({});
 
   useEffect(() => {
     if (!loading && (!user || !isAdmin)) {
@@ -93,31 +111,23 @@ export default function AdminContent() {
   }
 
   function handleChange(section: string, key: string, value: string) {
-    setFormData((prev) => ({
-      ...prev,
-      [section]: { ...prev[section], [key]: value },
-    }));
+    setFormData((prev) => ({ ...prev, [section]: { ...prev[section], [key]: value } }));
   }
-
   function handleAlignChange(section: string, key: string, alignment: string) {
-    setAlignData((prev) => ({
-      ...prev,
-      [section]: { ...prev[section], [key]: alignment },
-    }));
+    setAlignData((prev) => ({ ...prev, [section]: { ...prev[section], [key]: alignment } }));
   }
-
   function handleSizeChange(section: string, key: string, size: number) {
-    setSizeData((prev) => ({
-      ...prev,
-      [section]: { ...prev[section], [key]: size },
-    }));
+    setSizeData((prev) => ({ ...prev, [section]: { ...prev[section], [key]: size } }));
   }
-
   function handleColorChange(section: string, key: string, color: string) {
-    setColorData((prev) => ({
-      ...prev,
-      [section]: { ...prev[section], [key]: color },
-    }));
+    setColorData((prev) => ({ ...prev, [section]: { ...prev[section], [key]: color } }));
+  }
+  function handleWeightChange(section: string, key: string, weight: string) {
+    setWeightData((prev) => ({ ...prev, [section]: { ...prev[section], [key]: weight } }));
+  }
+  function handleFamilyChange(section: string, key: string, family: string) {
+    const normalized = family === "default" ? "" : family;
+    setFamilyData((prev) => ({ ...prev, [section]: { ...prev[section], [key]: normalized } }));
   }
 
   async function handleSave(section: string) {
@@ -125,13 +135,17 @@ export default function AdminContent() {
     const sectionAligns = alignData[section];
     const sectionSizes = sizeData[section];
     const sectionColors = colorData[section];
-    if (!sectionValues && !sectionAligns && !sectionSizes && !sectionColors) return;
+    const sectionWeights = weightData[section];
+    const sectionFamilies = familyData[section];
+    if (!sectionValues && !sectionAligns && !sectionSizes && !sectionColors && !sectionWeights && !sectionFamilies) return;
 
     const allKeys = new Set([
       ...Object.keys(sectionValues || {}),
       ...Object.keys(sectionAligns || {}),
       ...Object.keys(sectionSizes || {}),
       ...Object.keys(sectionColors || {}),
+      ...Object.keys(sectionWeights || {}),
+      ...Object.keys(sectionFamilies || {}),
     ]);
 
     try {
@@ -140,8 +154,10 @@ export default function AdminContent() {
         const alignment = sectionAligns?.[key];
         const font_size = sectionSizes?.[key];
         const font_color = sectionColors?.[key];
-        if (value === undefined && alignment === undefined && font_size === undefined && font_color === undefined) continue;
-        const mutationData: any = {
+        const font_weight = sectionWeights?.[key];
+        const font_family = sectionFamilies?.[key];
+        if (value === undefined && alignment === undefined && font_size === undefined && font_color === undefined && font_weight === undefined && font_family === undefined) continue;
+        await updateContent.mutateAsync({
           page: currentPage,
           section,
           key,
@@ -149,8 +165,9 @@ export default function AdminContent() {
           alignment,
           font_size,
           font_color,
-        };
-        await updateContent.mutateAsync(mutationData);
+          font_weight,
+          font_family,
+        });
       }
       toast({ title: "Content saved" });
     } catch (error) {
@@ -180,9 +197,7 @@ export default function AdminContent() {
         <Tabs value={currentPage} onValueChange={setCurrentPage}>
           <TabsList className="mb-6">
             {Object.entries(pageContent).map(([key, value]) => (
-              <TabsTrigger key={key} value={key}>
-                {value.title}
-              </TabsTrigger>
+              <TabsTrigger key={key} value={key}>{value.title}</TabsTrigger>
             ))}
           </TabsList>
 
@@ -199,10 +214,14 @@ export default function AdminContent() {
                     alignData={alignData}
                     sizeData={sizeData}
                     colorData={colorData}
+                    weightData={weightData}
+                    familyData={familyData}
                     onChange={handleChange}
                     onAlignChange={handleAlignChange}
                     onSizeChange={handleSizeChange}
                     onColorChange={handleColorChange}
+                    onWeightChange={handleWeightChange}
+                    onFamilyChange={handleFamilyChange}
                     onSave={handleSave}
                     isSaving={updateContent.isPending}
                   />
@@ -224,10 +243,14 @@ function SectionEditor({
   alignData,
   sizeData,
   colorData,
+  weightData,
+  familyData,
   onChange,
   onAlignChange,
   onSizeChange,
   onColorChange,
+  onWeightChange,
+  onFamilyChange,
   onSave,
   isSaving,
 }: {
@@ -238,10 +261,14 @@ function SectionEditor({
   alignData: Record<string, Record<string, string>>;
   sizeData: Record<string, Record<string, number>>;
   colorData: Record<string, Record<string, string>>;
+  weightData: Record<string, Record<string, string>>;
+  familyData: Record<string, Record<string, string>>;
   onChange: (section: string, key: string, value: string) => void;
   onAlignChange: (section: string, key: string, alignment: string) => void;
   onSizeChange: (section: string, key: string, size: number) => void;
   onColorChange: (section: string, key: string, color: string) => void;
+  onWeightChange: (section: string, key: string, weight: string) => void;
+  onFamilyChange: (section: string, key: string, family: string) => void;
   onSave: (section: string) => void;
   isSaving: boolean;
 }) {
@@ -268,14 +295,22 @@ function SectionEditor({
         onColorChange(sectionKey, field.key, content.fontColors[field.key] || "#000000");
       });
     }
+    if (content && !weightData[sectionKey]) {
+      fields.forEach((field) => {
+        onWeightChange(sectionKey, field.key, content.fontWeights[field.key] || "normal");
+      });
+    }
+    if (content && !familyData[sectionKey]) {
+      fields.forEach((field) => {
+        onFamilyChange(sectionKey, field.key, content.fontFamilies[field.key] || "");
+      });
+    }
   }, [content]);
 
   if (isLoading) {
     return (
       <Card>
-        <CardContent className="py-6 text-center text-muted-foreground">
-          Loading...
-        </CardContent>
+        <CardContent className="py-6 text-center text-muted-foreground">Loading...</CardContent>
       </Card>
     );
   }
@@ -284,7 +319,7 @@ function SectionEditor({
     <Card>
       <CardHeader>
         <CardTitle className="capitalize">{sectionKey.replace(/_/g, " ")}</CardTitle>
-        <CardDescription>Edit content, alignment, size and color for this section</CardDescription>
+        <CardDescription>Edit content, style, alignment, size and color for this section</CardDescription>
       </CardHeader>
       <CardContent className="grid gap-4">
         {fields.map((field) => {
@@ -292,31 +327,35 @@ function SectionEditor({
           const currentValue = formData[sectionKey]?.[field.key] ?? content?.values[field.key] ?? "";
           const currentSize = sizeData[sectionKey]?.[field.key] ?? content?.fontSizes[field.key] ?? 16;
           const currentColor = colorData[sectionKey]?.[field.key] ?? content?.fontColors[field.key] ?? "#000000";
+          const currentWeight = weightData[sectionKey]?.[field.key] ?? content?.fontWeights[field.key] ?? "normal";
+          const currentFamily = familyData[sectionKey]?.[field.key] ?? content?.fontFamilies[field.key] ?? "";
 
           return (
             <div key={field.key} className="grid gap-2">
               <div className="flex items-center justify-between">
                 <Label>{field.label}</Label>
-                <ToggleGroup
-                  type="single"
-                  value={currentAlign}
-                  onValueChange={(val) => {
-                    if (val) onAlignChange(sectionKey, field.key, val);
-                  }}
-                  size="sm"
-                >
-                  <ToggleGroupItem value="left" aria-label="Align left">
-                    <AlignLeft className="h-4 w-4" />
-                  </ToggleGroupItem>
-                  <ToggleGroupItem value="center" aria-label="Align center">
-                    <AlignCenter className="h-4 w-4" />
-                  </ToggleGroupItem>
-                  <ToggleGroupItem value="right" aria-label="Align right">
-                    <AlignRight className="h-4 w-4" />
-                  </ToggleGroupItem>
-                </ToggleGroup>
+                <div className="flex items-center gap-2">
+                  <Toggle
+                    pressed={currentWeight === "bold"}
+                    onPressedChange={(pressed) => onWeightChange(sectionKey, field.key, pressed ? "bold" : "normal")}
+                    size="sm"
+                    aria-label="Toggle bold"
+                  >
+                    <Bold className="h-4 w-4" />
+                  </Toggle>
+                  <ToggleGroup
+                    type="single"
+                    value={currentAlign}
+                    onValueChange={(val) => { if (val) onAlignChange(sectionKey, field.key, val); }}
+                    size="sm"
+                  >
+                    <ToggleGroupItem value="left" aria-label="Align left"><AlignLeft className="h-4 w-4" /></ToggleGroupItem>
+                    <ToggleGroupItem value="center" aria-label="Align center"><AlignCenter className="h-4 w-4" /></ToggleGroupItem>
+                    <ToggleGroupItem value="right" aria-label="Align right"><AlignRight className="h-4 w-4" /></ToggleGroupItem>
+                  </ToggleGroup>
+                </div>
               </div>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4 flex-wrap">
                 <div className="flex items-center gap-2 min-w-[180px]">
                   <Label className="text-xs text-muted-foreground whitespace-nowrap">Size: {currentSize}px</Label>
                   <Slider
@@ -337,6 +376,21 @@ function SectionEditor({
                     className="h-8 w-8 cursor-pointer rounded border border-input p-0"
                   />
                 </div>
+                <div className="flex items-center gap-2">
+                  <Label className="text-xs text-muted-foreground">Font</Label>
+                  <Select value={currentFamily} onValueChange={(val) => onFamilyChange(sectionKey, field.key, val)}>
+                    <SelectTrigger className="w-[160px] h-8 text-xs">
+                      <SelectValue placeholder="Default" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {FONT_FAMILIES.map((f) => (
+                        <SelectItem key={f.value} value={f.value || "default"} style={{ fontFamily: f.value || undefined }}>
+                          {f.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
               {field.type === "textarea" ? (
                 <Textarea
@@ -344,14 +398,26 @@ function SectionEditor({
                   onChange={(e) => onChange(sectionKey, field.key, e.target.value)}
                   placeholder={field.placeholder}
                   rows={3}
-                  style={{ textAlign: currentAlign as any, fontSize: `${currentSize}px`, color: currentColor }}
+                  style={{
+                    textAlign: currentAlign as any,
+                    fontSize: `${currentSize}px`,
+                    color: currentColor,
+                    fontWeight: currentWeight,
+                    fontFamily: currentFamily || undefined,
+                  }}
                 />
               ) : (
                 <Input
                   value={currentValue}
                   onChange={(e) => onChange(sectionKey, field.key, e.target.value)}
                   placeholder={field.placeholder}
-                  style={{ textAlign: currentAlign as any, fontSize: `${currentSize}px`, color: currentColor }}
+                  style={{
+                    textAlign: currentAlign as any,
+                    fontSize: `${currentSize}px`,
+                    color: currentColor,
+                    fontWeight: currentWeight,
+                    fontFamily: currentFamily || undefined,
+                  }}
                 />
               )}
             </div>
