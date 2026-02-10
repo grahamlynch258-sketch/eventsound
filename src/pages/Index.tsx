@@ -31,10 +31,10 @@ const Index = () => {
             </p>
             <div className="mt-8 flex flex-wrap gap-3" style={hero.getStyle("cta_primary")}>
               <Button asChild>
-                <Link to="/contact">{hero.getText("cta_primary", "Request a quote")}</Link>
+                <Link to="/av-production">{hero.getText("cta_primary", "Request a quote")}</Link>
               </Button>
               <Button asChild variant="outline">
-                <Link to="/av-production">{hero.getText("cta_secondary", "Explore AV & Production")}</Link>
+                <Link to="/contact">{hero.getText("cta_secondary", "Explore AV & Production")}</Link>
               </Button>
             </div>
           </div>
