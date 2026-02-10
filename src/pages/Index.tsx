@@ -49,10 +49,10 @@ const Index = () => {
                   {hero.getText("subheadline", "AV, vision, lighting and staging packages for modern events. Delivered, installed and supported by calm, capable technicians.")}
                 </p>
                 <div className="mt-8 flex flex-col sm:flex-row gap-3 items-start" style={{ transform: `translate(${hero.getOffsetX("cta_primary")}px, ${hero.getOffsetY("cta_primary")}px)` }}>
-                  <Button asChild className="w-full sm:w-auto shrink-0">
+                  <Button asChild className="w-full sm:w-auto shrink-0" style={{ fontSize: `${hero.getFontSize("cta_primary")}px`, padding: `${Math.max(8, hero.getFontSize("cta_primary") * 0.6)}px ${Math.max(16, hero.getFontSize("cta_primary") * 1.5)}px` }}>
                     <Link to="/av-production" style={{ color: hero.getFontColor("cta_primary") || undefined }}>{hero.getText("cta_primary", "Request a quote")}</Link>
                   </Button>
-                  <Button asChild variant="outline" className="w-full sm:w-auto shrink-0">
+                  <Button asChild variant="outline" className="w-full sm:w-auto shrink-0" style={{ fontSize: `${hero.getFontSize("cta_secondary")}px`, padding: `${Math.max(8, hero.getFontSize("cta_secondary") * 0.6)}px ${Math.max(16, hero.getFontSize("cta_secondary") * 1.5)}px` }}>
                     <Link to="/contact" style={{ color: hero.getFontColor("cta_secondary") || undefined }}>{hero.getText("cta_secondary", "Explore AV & Production")}</Link>
                   </Button>
                 </div>
