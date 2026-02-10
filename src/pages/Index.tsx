@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { useDynamicText } from "@/hooks/useDynamicContent";
-import { useSiteImage } from "@/hooks/useSiteImage";
+import { useSiteImage, useSiteImages } from "@/hooks/useSiteImage";
 
 import fallbackHeroImage from "@/assets/hero-av-production.jpg";
 
@@ -13,6 +13,8 @@ const Index = () => {
   const cta = useDynamicText("home", "cta2");
   const { data: heroImageData } = useSiteImage("home", "hero", "background");
   const heroImage = heroImageData?.image_url || fallbackHeroImage;
+  const { data: portraits } = useSiteImages("home", "bottom_portraits");
+  const getPortrait = (key: string) => portraits?.find(p => p.key === key);
 
   return (
     <PageShell>
@@ -60,75 +62,99 @@ const Index = () => {
               </div>
             </section>
 
-            <section className="container py-14 md:py-16">
-              <div className="grid gap-6 md:grid-cols-12 md:items-start">
-                <div className="md:col-span-5">
-                  <h2 className={`text-3xl font-semibold tracking-tight md:text-4xl ${features.getAlignClass("section_title")}`} style={features.getStyle("section_title")}>
-                    {features.getText("section_title", "Built for producers and venues")}
-                  </h2>
+            {/* Bottom content with portrait images behind */}
+            <div className="relative">
+              {portraits && portraits.some(p => p.image_url) && (
+                <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                  <div className="grid grid-cols-3 h-full">
+                    {["portrait_1", "portrait_2", "portrait_3"].map((key) => {
+                      const img = getPortrait(key);
+                      return (
+                        <div key={key} className="relative h-full">
+                          {img?.image_url ? (
+                            <img
+                              src={img.image_url}
+                              alt={img.alt_text || ""}
+                              className="h-full w-full object-cover"
+                            />
+                          ) : null}
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
-                <div className="md:col-span-7">
-                  <p className={`text-muted-foreground ${features.getAlignClass("section_description")}`} style={features.getStyle("section_description")}>
-                    {features.getText("section_description", "We combine premium equipment with practical delivery, setup and operator support—so your event looks sharp and runs on schedule.")}
-                  </p>
-                </div>
-              </div>
+              )}
 
-              <div className="mt-10 grid gap-6 md:grid-cols-3">
-                <Card style={features.getBoxStyle("feature_1_title")}>
-                  <CardHeader>
-                    <CardTitle className={features.getAlignClass("feature_1_title")} style={features.getStyle("feature_1_title")}>
-                      {features.getText("feature_1_title", "Fast, tidy builds")}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className={`text-sm text-muted-foreground ${features.getAlignClass("feature_1_description")}`} style={features.getStyle("feature_1_description")}>
-                    {features.getText("feature_1_description", "Clean cabling, sensible patching, and a plan for bump-in/bump-out.")}
-                  </CardContent>
-                </Card>
-
-                <Card style={features.getBoxStyle("feature_2_title")}>
-                  <CardHeader>
-                    <CardTitle className={features.getAlignClass("feature_2_title")} style={features.getStyle("feature_2_title")}>
-                      {features.getText("feature_2_title", "Show-ready systems")}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className={`text-sm text-muted-foreground ${features.getAlignClass("feature_2_description")}`} style={features.getStyle("feature_2_description")}>
-                    {features.getText("feature_2_description", "Audio clarity, punchy lighting, reliable vision—tested before doors.")}
-                  </CardContent>
-                </Card>
-
-                <Card style={features.getBoxStyle("feature_3_title")}>
-                  <CardHeader>
-                    <CardTitle className={features.getAlignClass("feature_3_title")} style={features.getStyle("feature_3_title")}>
-                      {features.getText("feature_3_title", "People you can trust")}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className={`text-sm text-muted-foreground ${features.getAlignClass("feature_3_description")}`} style={features.getStyle("feature_3_description")}>
-                    {features.getText("feature_3_description", "Techs who communicate, adapt, and keep the room calm.")}
-                  </CardContent>
-                </Card>
-              </div>
-            </section>
-
-            <section className="container pb-16">
-              <div className="rounded-lg border bg-card p-8 md:p-10" style={cta.getBoxStyle("headline")}>
-                <div className="grid gap-6 md:grid-cols-12 md:items-center">
-                  <div className="md:col-span-8">
-                    <h2 className={`text-2xl font-semibold tracking-tight md:text-3xl ${cta.getAlignClass("headline")}`} style={cta.getStyle("headline")}>
-                      {cta.getText("headline", "Tell us the brief. We'll build the package.")}
+              <section className="container relative py-14 md:py-16">
+                <div className="grid gap-6 md:grid-cols-12 md:items-start">
+                  <div className="md:col-span-5">
+                    <h2 className={`text-3xl font-semibold tracking-tight md:text-4xl ${features.getAlignClass("section_title")}`} style={features.getStyle("section_title")}>
+                      {features.getText("section_title", "Built for producers and venues")}
                     </h2>
-                    <p className={`mt-3 text-muted-foreground ${cta.getAlignClass("description")}`} style={cta.getStyle("description")}>
-                      {cta.getText("description", "Send your date, venue, audience size, and any must-haves. We'll come back with a clear recommendation and a quote.")}
+                  </div>
+                  <div className="md:col-span-7">
+                    <p className={`text-muted-foreground ${features.getAlignClass("section_description")}`} style={features.getStyle("section_description")}>
+                      {features.getText("section_description", "We combine premium equipment with practical delivery, setup and operator support—so your event looks sharp and runs on schedule.")}
                     </p>
                   </div>
-                  <div className="md:col-span-4 md:text-right">
-                    <Button asChild size="lg">
-                      <Link to="/contact">{cta.getText("button_text", "Get a quote")}</Link>
-                    </Button>
+                </div>
+
+                <div className="mt-10 grid gap-6 md:grid-cols-3">
+                  <Card style={features.getBoxStyle("feature_1_title")}>
+                    <CardHeader>
+                      <CardTitle className={features.getAlignClass("feature_1_title")} style={features.getStyle("feature_1_title")}>
+                        {features.getText("feature_1_title", "Fast, tidy builds")}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className={`text-sm text-muted-foreground ${features.getAlignClass("feature_1_description")}`} style={features.getStyle("feature_1_description")}>
+                      {features.getText("feature_1_description", "Clean cabling, sensible patching, and a plan for bump-in/bump-out.")}
+                    </CardContent>
+                  </Card>
+
+                  <Card style={features.getBoxStyle("feature_2_title")}>
+                    <CardHeader>
+                      <CardTitle className={features.getAlignClass("feature_2_title")} style={features.getStyle("feature_2_title")}>
+                        {features.getText("feature_2_title", "Show-ready systems")}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className={`text-sm text-muted-foreground ${features.getAlignClass("feature_2_description")}`} style={features.getStyle("feature_2_description")}>
+                      {features.getText("feature_2_description", "Audio clarity, punchy lighting, reliable vision—tested before doors.")}
+                    </CardContent>
+                  </Card>
+
+                  <Card style={features.getBoxStyle("feature_3_title")}>
+                    <CardHeader>
+                      <CardTitle className={features.getAlignClass("feature_3_title")} style={features.getStyle("feature_3_title")}>
+                        {features.getText("feature_3_title", "People you can trust")}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className={`text-sm text-muted-foreground ${features.getAlignClass("feature_3_description")}`} style={features.getStyle("feature_3_description")}>
+                      {features.getText("feature_3_description", "Techs who communicate, adapt, and keep the room calm.")}
+                    </CardContent>
+                  </Card>
+                </div>
+              </section>
+
+              <section className="container relative pb-16">
+                <div className="rounded-lg border bg-card p-8 md:p-10" style={cta.getBoxStyle("headline")}>
+                  <div className="grid gap-6 md:grid-cols-12 md:items-center">
+                    <div className="md:col-span-8">
+                      <h2 className={`text-2xl font-semibold tracking-tight md:text-3xl ${cta.getAlignClass("headline")}`} style={cta.getStyle("headline")}>
+                        {cta.getText("headline", "Tell us the brief. We'll build the package.")}
+                      </h2>
+                      <p className={`mt-3 text-muted-foreground ${cta.getAlignClass("description")}`} style={cta.getStyle("description")}>
+                        {cta.getText("description", "Send your date, venue, audience size, and any must-haves. We'll come back with a clear recommendation and a quote.")}
+                      </p>
+                    </div>
+                    <div className="md:col-span-4 md:text-right">
+                      <Button asChild size="lg">
+                        <Link to="/contact">{cta.getText("button_text", "Get a quote")}</Link>
+                      </Button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </section>
+              </section>
+            </div>
           </main>
         );
       })()}

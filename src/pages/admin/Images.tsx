@@ -24,6 +24,9 @@ type SiteImage = {
 const imageSlots = [
   { page: "home", section: "hero", key: "background", label: "Homepage Hero Background" },
   { page: "av-production", section: "hero", key: "background", label: "AV Production Hero Background" },
+  { page: "home", section: "bottom_portraits", key: "portrait_1", label: "Homepage Portrait 1 (Left)" },
+  { page: "home", section: "bottom_portraits", key: "portrait_2", label: "Homepage Portrait 2 (Centre)" },
+  { page: "home", section: "bottom_portraits", key: "portrait_3", label: "Homepage Portrait 3 (Right)" },
 ];
 
 export default function AdminImages() {

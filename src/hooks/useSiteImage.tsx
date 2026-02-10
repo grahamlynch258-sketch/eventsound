@@ -18,3 +18,19 @@ export function useSiteImage(page: string, section: string, key: string) {
     },
   });
 }
+
+export function useSiteImages(page: string, section: string) {
+  return useQuery({
+    queryKey: ["site-images", page, section],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("site_images")
+        .select("key, image_url, alt_text")
+        .eq("page", page)
+        .eq("section", section);
+
+      if (error) throw error;
+      return data as { key: string; image_url: string; alt_text: string | null }[];
+    },
+  });
+}
