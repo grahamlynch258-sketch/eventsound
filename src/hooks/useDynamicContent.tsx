@@ -74,6 +74,18 @@ export function useDynamicText(page: string, section: string) {
     if (x || y) {
       style.transform = `translate(${x}px, ${y}px)`;
     }
+    // Apply background color behind text
+    const bgColor = getBgColor(key);
+    if (bgColor) {
+      const opacity = getBgOpacity(key);
+      const r = parseInt(bgColor.slice(1, 3), 16);
+      const g = parseInt(bgColor.slice(3, 5), 16);
+      const b = parseInt(bgColor.slice(5, 7), 16);
+      style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${opacity})`;
+      style.padding = '0.25em 0.5em';
+      style.borderRadius = '4px';
+      style.display = 'inline-block';
+    }
     return style;
   }
 
