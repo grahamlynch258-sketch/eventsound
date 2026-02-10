@@ -25,6 +25,8 @@ export type ContentData = {
   fontColors: Record<string, string>;
   fontWeights: Record<string, string>;
   fontFamilies: Record<string, string>;
+  bgColors: Record<string, string>;
+  bgOpacities: Record<string, number>;
 };
 
 export function useSiteContent(page: string, section: string) {
@@ -45,6 +47,8 @@ export function useSiteContent(page: string, section: string) {
       const fontColors: Record<string, string> = {};
       const fontWeights: Record<string, string> = {};
       const fontFamilies: Record<string, string> = {};
+      const bgColors: Record<string, string> = {};
+      const bgOpacities: Record<string, number> = {};
       data?.forEach((item: any) => {
         values[item.key] = item.value;
         alignments[item.key] = item.alignment || "left";
@@ -52,8 +56,10 @@ export function useSiteContent(page: string, section: string) {
         fontColors[item.key] = item.font_color || "#000000";
         fontWeights[item.key] = item.font_weight || "normal";
         fontFamilies[item.key] = item.font_family || "";
+        bgColors[item.key] = item.bg_color || "";
+        bgOpacities[item.key] = item.bg_opacity != null ? Number(item.bg_opacity) : 1;
       });
-      return { values, alignments, fontSizes, fontColors, fontWeights, fontFamilies } as ContentData;
+      return { values, alignments, fontSizes, fontColors, fontWeights, fontFamilies, bgColors, bgOpacities } as ContentData;
     },
   });
 }
@@ -87,6 +93,8 @@ export function useUpdateContent() {
       font_color,
       font_weight,
       font_family,
+      bg_color,
+      bg_opacity,
     }: {
       page: string;
       section: string;
@@ -97,6 +105,8 @@ export function useUpdateContent() {
       font_color?: string;
       font_weight?: string;
       font_family?: string;
+      bg_color?: string;
+      bg_opacity?: number;
     }) => {
       const upsertData: any = { page, section, key, value };
       if (alignment) upsertData.alignment = alignment;
@@ -104,6 +114,8 @@ export function useUpdateContent() {
       if (font_color !== undefined) upsertData.font_color = font_color;
       if (font_weight !== undefined) upsertData.font_weight = font_weight;
       if (font_family !== undefined) upsertData.font_family = font_family;
+      if (bg_color !== undefined) upsertData.bg_color = bg_color || null;
+      if (bg_opacity !== undefined) upsertData.bg_opacity = bg_opacity;
       const { data, error } = await supabase
         .from("site_content")
         .upsert(upsertData, { onConflict: "page,section,key" })

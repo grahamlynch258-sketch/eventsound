@@ -77,6 +77,8 @@ export type Database = {
       site_content: {
         Row: {
           alignment: string
+          bg_color: string | null
+          bg_opacity: number | null
           created_at: string
           font_color: string | null
           font_family: string | null
@@ -91,6 +93,8 @@ export type Database = {
         }
         Insert: {
           alignment?: string
+          bg_color?: string | null
+          bg_opacity?: number | null
           created_at?: string
           font_color?: string | null
           font_family?: string | null
@@ -105,6 +109,8 @@ export type Database = {
         }
         Update: {
           alignment?: string
+          bg_color?: string | null
+          bg_opacity?: number | null
           created_at?: string
           font_color?: string | null
           font_family?: string | null
