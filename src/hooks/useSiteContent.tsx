@@ -57,7 +57,7 @@ export function useSiteContent(page: string, section: string) {
         values[item.key] = item.value;
         alignments[item.key] = item.alignment || "left";
         fontSizes[item.key] = item.font_size || 16;
-        fontColors[item.key] = item.font_color || "#000000";
+        fontColors[item.key] = item.font_color || "";
         fontWeights[item.key] = item.font_weight || "normal";
         fontFamilies[item.key] = item.font_family || "";
         bgColors[item.key] = item.bg_color || "";
