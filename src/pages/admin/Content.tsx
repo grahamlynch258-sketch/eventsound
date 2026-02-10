@@ -56,6 +56,11 @@ const pageContent: Record<string, { title: string; sections: Record<string, Cont
         { key: "feature_3_title", label: "Feature 3 Title", type: "input", placeholder: "People you can trust" },
         { key: "feature_3_description", label: "Feature 3 Description", type: "textarea", placeholder: "Techs who communicate, adapt, and keep the room calm." },
       ],
+      cta: [
+        { key: "headline", label: "Headline", type: "input", placeholder: "Tell us the brief. We'll build the package." },
+        { key: "description", label: "Description", type: "textarea", placeholder: "Send your date, venue, audience size, and any must-haves. We'll come back with a clear recommendation and a quote." },
+        { key: "button_text", label: "Button Text", type: "input", placeholder: "Get a quote" },
+      ],
     },
   },
   "av-production": {
