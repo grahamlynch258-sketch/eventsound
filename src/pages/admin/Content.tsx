@@ -13,7 +13,7 @@ import { Toggle } from "@/components/ui/toggle";
 import { useToast } from "@/components/ui/use-toast";
 import { useAuth } from "@/hooks/useAuth";
 import { useSiteContent, useUpdateContent } from "@/hooks/useSiteContent";
-import { ArrowLeft, Save, AlignLeft, AlignCenter, AlignRight, Bold } from "lucide-react";
+import { ArrowLeft, Save, AlignLeft, AlignCenter, AlignRight, Bold, Palette } from "lucide-react";
 
 type ContentField = {
   key: string;
@@ -463,8 +463,12 @@ function SectionEditor({
           const sharedBgColor = bgColorData[sectionKey]?.[firstKey] ?? content?.bgColors[firstKey] ?? "";
           const sharedBgOpacity = bgOpacityData[sectionKey]?.[firstKey] ?? content?.bgOpacities[firstKey] ?? 1;
           return (
-            <div className="rounded-md border p-4 mb-2 grid gap-3">
-              <Label className="text-sm font-semibold">Section Box Color</Label>
+            <div className="rounded-lg border-2 border-primary/30 bg-primary/5 p-4 mb-2 grid gap-3">
+              <div className="flex items-center gap-2">
+                <Palette className="h-4 w-4 text-primary" />
+                <Label className="text-sm font-semibold">Section Box Color</Label>
+              </div>
+              <p className="text-xs text-muted-foreground">This colour applies to all text boxes in this section at once.</p>
               <div className="flex items-center gap-4 flex-wrap">
                 <div className="flex items-center gap-2">
                   <Label className="text-xs text-muted-foreground">Color</Label>
@@ -474,7 +478,7 @@ function SectionEditor({
                     onChange={(e) => {
                       fields.forEach((f) => onBgColorChange(sectionKey, f.key, e.target.value));
                     }}
-                    className="h-8 w-8 cursor-pointer rounded border border-input p-0"
+                    className="h-9 w-9 cursor-pointer rounded border border-input p-0"
                   />
                   {sharedBgColor && (
                     <button
@@ -487,7 +491,7 @@ function SectionEditor({
                   )}
                 </div>
                 {sharedBgColor && (
-                  <div className="flex items-center gap-2 min-w-[180px]">
+                  <div className="flex items-center gap-2 min-w-[200px]">
                     <Label className="text-xs text-muted-foreground whitespace-nowrap">Opacity: {Math.round(sharedBgOpacity * 100)}%</Label>
                     <Slider
                       value={[sharedBgOpacity * 100]}
@@ -495,12 +499,11 @@ function SectionEditor({
                       min={0}
                       max={100}
                       step={5}
-                      className="w-24"
+                      className="w-32"
                     />
                   </div>
                 )}
               </div>
-              <p className="text-xs text-muted-foreground">Applies to all text boxes in this section.</p>
             </div>
           );
         })()}
