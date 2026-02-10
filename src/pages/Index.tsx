@@ -55,7 +55,7 @@ const Index = () => {
           </div>
 
           <div className="mt-10 grid gap-6 md:grid-cols-3">
-            <Card style={features.getBoxStyle("feature_1_title")}>
+            <Card>
               <CardHeader>
                 <CardTitle className={features.getAlignClass("feature_1_title")} style={features.getStyle("feature_1_title")}>
                   {features.getText("feature_1_title", "Fast, tidy builds")}
@@ -66,7 +66,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card style={features.getBoxStyle("feature_2_title")}>
+            <Card>
               <CardHeader>
                 <CardTitle className={features.getAlignClass("feature_2_title")} style={features.getStyle("feature_2_title")}>
                   {features.getText("feature_2_title", "Show-ready systems")}
@@ -77,7 +77,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card style={features.getBoxStyle("feature_3_title")}>
+            <Card>
               <CardHeader>
                 <CardTitle className={features.getAlignClass("feature_3_title")} style={features.getStyle("feature_3_title")}>
                   {features.getText("feature_3_title", "People you can trust")}
