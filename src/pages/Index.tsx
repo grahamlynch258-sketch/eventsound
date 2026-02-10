@@ -10,7 +10,7 @@ import fallbackHeroImage from "@/assets/hero-av-production.jpg";
 const Index = () => {
   const hero = useDynamicText("home", "hero");
   const features = useDynamicText("home", "features");
-  const cta = useDynamicText("home", "cta");
+  const cta = useDynamicText("home", "cta2");
   const { data: heroImageData } = useSiteImage("home", "hero", "background");
   const heroImage = heroImageData?.image_url || fallbackHeroImage;
 
