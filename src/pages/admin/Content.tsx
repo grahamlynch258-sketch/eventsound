@@ -97,6 +97,8 @@ export default function AdminContent() {
   const [familyData, setFamilyData] = useState<Record<string, Record<string, string>>>({});
   const [bgColorData, setBgColorData] = useState<Record<string, Record<string, string>>>({});
   const [bgOpacityData, setBgOpacityData] = useState<Record<string, Record<string, number>>>({});
+  const [offsetXData, setOffsetXData] = useState<Record<string, Record<string, number>>>({});
+  const [offsetYData, setOffsetYData] = useState<Record<string, Record<string, number>>>({});
 
   useEffect(() => {
     if (!loading && (!user || !isAdmin)) {
@@ -137,6 +139,12 @@ export default function AdminContent() {
   function handleBgOpacityChange(section: string, key: string, opacity: number) {
     setBgOpacityData((prev) => ({ ...prev, [section]: { ...prev[section], [key]: opacity } }));
   }
+  function handleOffsetXChange(section: string, key: string, val: number) {
+    setOffsetXData((prev) => ({ ...prev, [section]: { ...prev[section], [key]: val } }));
+  }
+  function handleOffsetYChange(section: string, key: string, val: number) {
+    setOffsetYData((prev) => ({ ...prev, [section]: { ...prev[section], [key]: val } }));
+  }
 
   async function handleSave(section: string) {
     const sectionValues = formData[section];
@@ -147,7 +155,9 @@ export default function AdminContent() {
     const sectionFamilies = familyData[section];
     const sectionBgColors = bgColorData[section];
     const sectionBgOpacities = bgOpacityData[section];
-    if (!sectionValues && !sectionAligns && !sectionSizes && !sectionColors && !sectionWeights && !sectionFamilies && !sectionBgColors && !sectionBgOpacities) return;
+    const sectionOffsetsX = offsetXData[section];
+    const sectionOffsetsY = offsetYData[section];
+    if (!sectionValues && !sectionAligns && !sectionSizes && !sectionColors && !sectionWeights && !sectionFamilies && !sectionBgColors && !sectionBgOpacities && !sectionOffsetsX && !sectionOffsetsY) return;
 
     const allKeys = new Set([
       ...Object.keys(sectionValues || {}),
@@ -158,6 +168,8 @@ export default function AdminContent() {
       ...Object.keys(sectionFamilies || {}),
       ...Object.keys(sectionBgColors || {}),
       ...Object.keys(sectionBgOpacities || {}),
+      ...Object.keys(sectionOffsetsX || {}),
+      ...Object.keys(sectionOffsetsY || {}),
     ]);
 
     try {
@@ -170,7 +182,9 @@ export default function AdminContent() {
         const font_family = sectionFamilies?.[key];
         const bg_color = sectionBgColors?.[key];
         const bg_opacity = sectionBgOpacities?.[key];
-        if (value === undefined && alignment === undefined && font_size === undefined && font_color === undefined && font_weight === undefined && font_family === undefined && bg_color === undefined && bg_opacity === undefined) continue;
+        const offset_x = sectionOffsetsX?.[key];
+        const offset_y = sectionOffsetsY?.[key];
+        if (value === undefined && alignment === undefined && font_size === undefined && font_color === undefined && font_weight === undefined && font_family === undefined && bg_color === undefined && bg_opacity === undefined && offset_x === undefined && offset_y === undefined) continue;
         await updateContent.mutateAsync({
           page: currentPage,
           section,
@@ -183,6 +197,8 @@ export default function AdminContent() {
           font_family,
           bg_color,
           bg_opacity,
+          offset_x,
+          offset_y,
         });
       }
       toast({ title: "Content saved" });
@@ -242,6 +258,10 @@ export default function AdminContent() {
                     onFamilyChange={handleFamilyChange}
                     onBgColorChange={handleBgColorChange}
                     onBgOpacityChange={handleBgOpacityChange}
+                    onOffsetXChange={handleOffsetXChange}
+                    onOffsetYChange={handleOffsetYChange}
+                    offsetXData={offsetXData}
+                    offsetYData={offsetYData}
                     onSave={handleSave}
                     isSaving={updateContent.isPending}
                   />
@@ -267,6 +287,8 @@ function SectionEditor({
   familyData,
   bgColorData,
   bgOpacityData,
+  offsetXData,
+  offsetYData,
   onChange,
   onAlignChange,
   onSizeChange,
@@ -275,6 +297,8 @@ function SectionEditor({
   onFamilyChange,
   onBgColorChange,
   onBgOpacityChange,
+  onOffsetXChange,
+  onOffsetYChange,
   onSave,
   isSaving,
 }: {
@@ -289,6 +313,8 @@ function SectionEditor({
   familyData: Record<string, Record<string, string>>;
   bgColorData: Record<string, Record<string, string>>;
   bgOpacityData: Record<string, Record<string, number>>;
+  offsetXData: Record<string, Record<string, number>>;
+  offsetYData: Record<string, Record<string, number>>;
   onChange: (section: string, key: string, value: string) => void;
   onAlignChange: (section: string, key: string, alignment: string) => void;
   onSizeChange: (section: string, key: string, size: number) => void;
@@ -297,6 +323,8 @@ function SectionEditor({
   onFamilyChange: (section: string, key: string, family: string) => void;
   onBgColorChange: (section: string, key: string, color: string) => void;
   onBgOpacityChange: (section: string, key: string, opacity: number) => void;
+  onOffsetXChange: (section: string, key: string, val: number) => void;
+  onOffsetYChange: (section: string, key: string, val: number) => void;
   onSave: (section: string) => void;
   isSaving: boolean;
 }) {
@@ -343,6 +371,16 @@ function SectionEditor({
         onBgOpacityChange(sectionKey, field.key, content.bgOpacities[field.key] != null ? content.bgOpacities[field.key] : 1);
       });
     }
+    if (content && !offsetXData[sectionKey]) {
+      fields.forEach((field) => {
+        onOffsetXChange(sectionKey, field.key, content.offsetsX[field.key] || 0);
+      });
+    }
+    if (content && !offsetYData[sectionKey]) {
+      fields.forEach((field) => {
+        onOffsetYChange(sectionKey, field.key, content.offsetsY[field.key] || 0);
+      });
+    }
   }, [content]);
 
   if (isLoading) {
@@ -369,6 +407,8 @@ function SectionEditor({
           const currentFamily = familyData[sectionKey]?.[field.key] ?? content?.fontFamilies[field.key] ?? "";
           const currentBgColor = bgColorData[sectionKey]?.[field.key] ?? content?.bgColors[field.key] ?? "";
           const currentBgOpacity = bgOpacityData[sectionKey]?.[field.key] ?? content?.bgOpacities[field.key] ?? 1;
+          const currentOffsetX = offsetXData[sectionKey]?.[field.key] ?? content?.offsetsX[field.key] ?? 0;
+          const currentOffsetY = offsetYData[sectionKey]?.[field.key] ?? content?.offsetsY[field.key] ?? 0;
 
           return (
             <div key={field.key} className="grid gap-2">
@@ -461,6 +501,42 @@ function SectionEditor({
                       className="w-24"
                     />
                   </div>
+                )}
+              </div>
+              <div className="flex items-center gap-4 flex-wrap">
+                <div className="flex items-center gap-2 min-w-[200px]">
+                  <Label className="text-xs text-muted-foreground whitespace-nowrap">X offset: {currentOffsetX}px</Label>
+                  <Slider
+                    value={[currentOffsetX]}
+                    onValueChange={([val]) => onOffsetXChange(sectionKey, field.key, val)}
+                    min={-200}
+                    max={200}
+                    step={1}
+                    className="w-28"
+                  />
+                </div>
+                <div className="flex items-center gap-2 min-w-[200px]">
+                  <Label className="text-xs text-muted-foreground whitespace-nowrap">Y offset: {currentOffsetY}px</Label>
+                  <Slider
+                    value={[currentOffsetY]}
+                    onValueChange={([val]) => onOffsetYChange(sectionKey, field.key, val)}
+                    min={-200}
+                    max={200}
+                    step={1}
+                    className="w-28"
+                  />
+                </div>
+                {(currentOffsetX !== 0 || currentOffsetY !== 0) && (
+                  <button
+                    type="button"
+                    className="text-xs text-muted-foreground underline"
+                    onClick={() => {
+                      onOffsetXChange(sectionKey, field.key, 0);
+                      onOffsetYChange(sectionKey, field.key, 0);
+                    }}
+                  >
+                    Reset position
+                  </button>
                 )}
               </div>
               {field.type === "textarea" ? (
