@@ -29,6 +29,7 @@ export default function AvProduction() {
   const { data: dbCategories, isLoading } = useCategories();
   const hero = useDynamicText("av-production", "hero");
   const cats = useDynamicText("av-production", "categories");
+  const info = useDynamicText("av-production", "info_cards");
   const { data: heroImageData } = useSiteImage("av-production", "hero", "background");
   const heroImage = heroImageData?.image_url || fallbackHeroImage;
 
@@ -53,11 +54,11 @@ export default function AvProduction() {
               {hero.getText("subheadline", "Want to make the moment feel bigger? We supply premium gear and calm, capable crew—so your event runs smooth and looks incredible.")}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild>
-                <Link to="/contact">Request a quote</Link>
+              <Button asChild style={{ fontSize: `${hero.getFontSize("cta_primary")}px`, padding: `${Math.max(8, hero.getFontSize("cta_primary") * 0.6)}px ${Math.max(16, hero.getFontSize("cta_primary") * 1.5)}px`, color: hero.getFontColor("cta_primary") || undefined }}>
+                <Link to="/contact">{hero.getText("cta_primary", "Request a quote")}</Link>
               </Button>
-              <Button asChild variant="outline">
-                <Link to="/">View services</Link>
+              <Button asChild variant="outline" style={{ fontSize: `${hero.getFontSize("cta_secondary")}px`, padding: `${Math.max(8, hero.getFontSize("cta_secondary") * 0.6)}px ${Math.max(16, hero.getFontSize("cta_secondary") * 1.5)}px`, color: hero.getFontColor("cta_secondary") || undefined }}>
+                <Link to="/">{hero.getText("cta_secondary", "View services")}</Link>
               </Button>
             </div>
           </div>
@@ -90,33 +91,45 @@ export default function AvProduction() {
 
         <section className="container pb-16">
           <div className="grid gap-6 md:grid-cols-3">
-            <Card>
+            <Card style={info.getBoxStyle("card_1_title")}>
               <CardHeader>
-                <CardTitle>Delivered + installed</CardTitle>
-                <CardDescription>We arrive early, build clean, and hand over confidently.</CardDescription>
+                <CardTitle className={info.getAlignClass("card_1_title")} style={info.getStyle("card_1_title")}>
+                  {info.getText("card_1_title", "Delivered + installed")}
+                </CardTitle>
+                <CardDescription className={info.getAlignClass("card_1_description")} style={info.getStyle("card_1_description")}>
+                  {info.getText("card_1_description", "We arrive early, build clean, and hand over confidently.")}
+                </CardDescription>
               </CardHeader>
-              <CardContent className="text-sm text-muted-foreground">
-                Logistics, bump-in, patching, testing—handled. You focus on the run sheet.
+              <CardContent className={`text-sm text-muted-foreground ${info.getAlignClass("card_1_content")}`} style={info.getStyle("card_1_content")}>
+                {info.getText("card_1_content", "Logistics, bump-in, patching, testing—handled. You focus on the run sheet.")}
               </CardContent>
             </Card>
 
-            <Card>
+            <Card style={info.getBoxStyle("card_2_title")}>
               <CardHeader>
-                <CardTitle>Operator support</CardTitle>
-                <CardDescription>Technicians who keep it calm when it matters.</CardDescription>
+                <CardTitle className={info.getAlignClass("card_2_title")} style={info.getStyle("card_2_title")}>
+                  {info.getText("card_2_title", "Operator support")}
+                </CardTitle>
+                <CardDescription className={info.getAlignClass("card_2_description")} style={info.getStyle("card_2_description")}>
+                  {info.getText("card_2_description", "Technicians who keep it calm when it matters.")}
+                </CardDescription>
               </CardHeader>
-              <CardContent className="text-sm text-muted-foreground">
-                Audio, vision, lighting ops available—so you're never stuck troubleshooting mid-show.
+              <CardContent className={`text-sm text-muted-foreground ${info.getAlignClass("card_2_content")}`} style={info.getStyle("card_2_content")}>
+                {info.getText("card_2_content", "Audio, vision, lighting ops available—so you're never stuck troubleshooting mid-show.")}
               </CardContent>
             </Card>
 
-            <Card>
+            <Card style={info.getBoxStyle("card_3_title")}>
               <CardHeader>
-                <CardTitle>Built for venues</CardTitle>
-                <CardDescription>Power, rigging, staging—planned with safety first.</CardDescription>
+                <CardTitle className={info.getAlignClass("card_3_title")} style={info.getStyle("card_3_title")}>
+                  {info.getText("card_3_title", "Built for venues")}
+                </CardTitle>
+                <CardDescription className={info.getAlignClass("card_3_description")} style={info.getStyle("card_3_description")}>
+                  {info.getText("card_3_description", "Power, rigging, staging—planned with safety first.")}
+                </CardDescription>
               </CardHeader>
-              <CardContent className="text-sm text-muted-foreground">
-                Clear cabling, tidy builds, and practical solutions that look premium on camera.
+              <CardContent className={`text-sm text-muted-foreground ${info.getAlignClass("card_3_content")}`} style={info.getStyle("card_3_content")}>
+                {info.getText("card_3_content", "Clear cabling, tidy builds, and practical solutions that look premium on camera.")}
               </CardContent>
             </Card>
           </div>
