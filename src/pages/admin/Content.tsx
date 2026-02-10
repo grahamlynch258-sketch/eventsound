@@ -69,10 +69,23 @@ const pageContent: Record<string, { title: string; sections: Record<string, Cont
       hero: [
         { key: "headline", label: "Headline", type: "textarea", placeholder: "AV & Production" },
         { key: "subheadline", label: "Subheadline", type: "textarea", placeholder: "Want to make the moment feel bigger? We supply premium gear and calm, capable crew—so your event runs smooth and looks incredible." },
+        { key: "cta_primary", label: "Primary CTA", type: "input", placeholder: "Request a quote" },
+        { key: "cta_secondary", label: "Secondary CTA", type: "input", placeholder: "View services" },
       ],
       categories: [
         { key: "section_title", label: "Section Title", type: "input", placeholder: "Create vibrant atmospheres" },
         { key: "section_description", label: "Section Description", type: "textarea", placeholder: "From intimate launches to high-capacity conferences, we bring together audio, vision, lighting and staging into one clean, reliable production package." },
+      ],
+      info_cards: [
+        { key: "card_1_title", label: "Card 1 Title", type: "input", placeholder: "Delivered + installed" },
+        { key: "card_1_description", label: "Card 1 Description", type: "input", placeholder: "We arrive early, build clean, and hand over confidently." },
+        { key: "card_1_content", label: "Card 1 Content", type: "textarea", placeholder: "Logistics, bump-in, patching, testing—handled. You focus on the run sheet." },
+        { key: "card_2_title", label: "Card 2 Title", type: "input", placeholder: "Operator support" },
+        { key: "card_2_description", label: "Card 2 Description", type: "input", placeholder: "Technicians who keep it calm when it matters." },
+        { key: "card_2_content", label: "Card 2 Content", type: "textarea", placeholder: "Audio, vision, lighting ops available—so you're never stuck troubleshooting mid-show." },
+        { key: "card_3_title", label: "Card 3 Title", type: "input", placeholder: "Built for venues" },
+        { key: "card_3_description", label: "Card 3 Description", type: "input", placeholder: "Power, rigging, staging—planned with safety first." },
+        { key: "card_3_content", label: "Card 3 Content", type: "textarea", placeholder: "Clear cabling, tidy builds, and practical solutions that look premium on camera." },
       ],
     },
   },
@@ -82,6 +95,17 @@ const pageContent: Record<string, { title: string; sections: Record<string, Cont
       main: [
         { key: "headline", label: "Page Headline", type: "input", placeholder: "Request a quote" },
         { key: "description", label: "Description", type: "textarea", placeholder: "Tell us what you're building—date, venue, audience size, and any must-haves. We'll recommend a clean package and confirm availability." },
+      ],
+      sidebar: [
+        { key: "info_title", label: "Info Card Title", type: "input", placeholder: "What we can cover" },
+        { key: "info_description", label: "Info Card Description", type: "input", placeholder: "AV, vision, lighting, staging + operator support." },
+        { key: "info_content", label: "Info Card Content", type: "textarea", placeholder: "If you already have a run sheet or floorplan, include it in your message and we'll work from that." },
+      ],
+      form: [
+        { key: "form_title", label: "Form Title", type: "input", placeholder: "Quote details" },
+        { key: "form_description", label: "Form Description", type: "input", placeholder: "We usually respond within one business day." },
+        { key: "button_text", label: "Submit Button Text", type: "input", placeholder: "Send request" },
+        { key: "disclaimer", label: "Disclaimer Text", type: "input", placeholder: "No spam—just production details." },
       ],
     },
   },
@@ -95,6 +119,12 @@ export default function AdminContent() {
   // Load content for linked sections so the master box color picker shows saved values
   const { data: featuresContent } = useSiteContent("home", "features");
   const { data: cta2Content } = useSiteContent("home", "cta2");
+  const { data: avHeroContent } = useSiteContent("av-production", "hero");
+  const { data: avCatsContent } = useSiteContent("av-production", "categories");
+  const { data: avInfoContent } = useSiteContent("av-production", "info_cards");
+  const { data: contactMainContent } = useSiteContent("contact", "main");
+  const { data: contactSidebarContent } = useSiteContent("contact", "sidebar");
+  const { data: contactFormContent } = useSiteContent("contact", "form");
 
   const [currentPage, setCurrentPage] = useState("home");
   const [formData, setFormData] = useState<Record<string, Record<string, string>>>({});
@@ -184,6 +214,12 @@ export default function AdminContent() {
     const contentLookup: Record<string, typeof featuresContent> = {
       features: featuresContent,
       cta2: cta2Content,
+      hero: avHeroContent,
+      categories: avCatsContent,
+      info_cards: avInfoContent,
+      main: contactMainContent,
+      sidebar: contactSidebarContent,
+      form: contactFormContent,
     };
     const dbContent = contentLookup[section];
 
