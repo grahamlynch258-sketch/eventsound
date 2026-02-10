@@ -6,10 +6,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { useToast } from "@/components/ui/use-toast";
 import { useAuth } from "@/hooks/useAuth";
 import { useSiteContent, useUpdateContent } from "@/hooks/useSiteContent";
-import { ArrowLeft, Save } from "lucide-react";
+import { ArrowLeft, Save, AlignLeft, AlignCenter, AlignRight } from "lucide-react";
 
 type ContentField = {
   key: string;
@@ -72,10 +73,7 @@ export default function AdminContent() {
 
   const [currentPage, setCurrentPage] = useState("home");
   const [formData, setFormData] = useState<Record<string, Record<string, string>>>({});
-  const [hasChanges, setHasChanges] = useState(false);
-
-  // Load content for all sections of current page
-  const sections = Object.keys(pageContent[currentPage]?.sections || {});
+  const [alignData, setAlignData] = useState<Record<string, Record<string, string>>>({});
 
   useEffect(() => {
     if (!loading && (!user || !isAdmin)) {
@@ -94,29 +92,41 @@ export default function AdminContent() {
   function handleChange(section: string, key: string, value: string) {
     setFormData((prev) => ({
       ...prev,
-      [section]: {
-        ...prev[section],
-        [key]: value,
-      },
+      [section]: { ...prev[section], [key]: value },
     }));
-    setHasChanges(true);
+  }
+
+  function handleAlignChange(section: string, key: string, alignment: string) {
+    setAlignData((prev) => ({
+      ...prev,
+      [section]: { ...prev[section], [key]: alignment },
+    }));
   }
 
   async function handleSave(section: string) {
-    const sectionData = formData[section];
-    if (!sectionData) return;
+    const sectionValues = formData[section];
+    const sectionAligns = alignData[section];
+    if (!sectionValues && !sectionAligns) return;
+
+    const allKeys = new Set([
+      ...Object.keys(sectionValues || {}),
+      ...Object.keys(sectionAligns || {}),
+    ]);
 
     try {
-      for (const [key, value] of Object.entries(sectionData)) {
+      for (const key of allKeys) {
+        const value = sectionValues?.[key];
+        const alignment = sectionAligns?.[key];
+        if (value === undefined && alignment === undefined) continue;
         await updateContent.mutateAsync({
           page: currentPage,
           section,
           key,
-          value,
+          value: value ?? "",
+          alignment,
         });
       }
       toast({ title: "Content saved" });
-      setHasChanges(false);
     } catch (error) {
       toast({
         title: "Save failed",
@@ -160,7 +170,9 @@ export default function AdminContent() {
                     sectionKey={sectionKey}
                     fields={fields}
                     formData={formData}
+                    alignData={alignData}
                     onChange={handleChange}
+                    onAlignChange={handleAlignChange}
                     onSave={handleSave}
                     isSaving={updateContent.isPending}
                   />
@@ -179,7 +191,9 @@ function SectionEditor({
   sectionKey,
   fields,
   formData,
+  alignData,
   onChange,
+  onAlignChange,
   onSave,
   isSaving,
 }: {
@@ -187,21 +201,23 @@ function SectionEditor({
   sectionKey: string;
   fields: ContentField[];
   formData: Record<string, Record<string, string>>;
+  alignData: Record<string, Record<string, string>>;
   onChange: (section: string, key: string, value: string) => void;
+  onAlignChange: (section: string, key: string, alignment: string) => void;
   onSave: (section: string) => void;
   isSaving: boolean;
 }) {
   const { data: content, isLoading } = useSiteContent(pageKey, sectionKey);
 
-  // Initialize form data with loaded content
   useEffect(() => {
     if (content && !formData[sectionKey]) {
-      const initial: Record<string, string> = {};
       fields.forEach((field) => {
-        initial[field.key] = content[field.key] || "";
+        onChange(sectionKey, field.key, content.values[field.key] || "");
       });
-      Object.entries(initial).forEach(([key, value]) => {
-        onChange(sectionKey, key, value);
+    }
+    if (content && !alignData[sectionKey]) {
+      fields.forEach((field) => {
+        onAlignChange(sectionKey, field.key, content.alignments[field.key] || "left");
       });
     }
   }, [content]);
@@ -220,28 +236,55 @@ function SectionEditor({
     <Card>
       <CardHeader>
         <CardTitle className="capitalize">{sectionKey.replace(/_/g, " ")}</CardTitle>
-        <CardDescription>Edit content for this section</CardDescription>
+        <CardDescription>Edit content and alignment for this section</CardDescription>
       </CardHeader>
       <CardContent className="grid gap-4">
-        {fields.map((field) => (
-          <div key={field.key} className="grid gap-2">
-            <Label>{field.label}</Label>
-            {field.type === "textarea" ? (
-              <Textarea
-                value={formData[sectionKey]?.[field.key] ?? content?.[field.key] ?? ""}
-                onChange={(e) => onChange(sectionKey, field.key, e.target.value)}
-                placeholder={field.placeholder}
-                rows={3}
-              />
-            ) : (
-              <Input
-                value={formData[sectionKey]?.[field.key] ?? content?.[field.key] ?? ""}
-                onChange={(e) => onChange(sectionKey, field.key, e.target.value)}
-                placeholder={field.placeholder}
-              />
-            )}
-          </div>
-        ))}
+        {fields.map((field) => {
+          const currentAlign = alignData[sectionKey]?.[field.key] || content?.alignments[field.key] || "left";
+          const currentValue = formData[sectionKey]?.[field.key] ?? content?.values[field.key] ?? "";
+
+          return (
+            <div key={field.key} className="grid gap-2">
+              <div className="flex items-center justify-between">
+                <Label>{field.label}</Label>
+                <ToggleGroup
+                  type="single"
+                  value={currentAlign}
+                  onValueChange={(val) => {
+                    if (val) onAlignChange(sectionKey, field.key, val);
+                  }}
+                  size="sm"
+                >
+                  <ToggleGroupItem value="left" aria-label="Align left">
+                    <AlignLeft className="h-4 w-4" />
+                  </ToggleGroupItem>
+                  <ToggleGroupItem value="center" aria-label="Align center">
+                    <AlignCenter className="h-4 w-4" />
+                  </ToggleGroupItem>
+                  <ToggleGroupItem value="right" aria-label="Align right">
+                    <AlignRight className="h-4 w-4" />
+                  </ToggleGroupItem>
+                </ToggleGroup>
+              </div>
+              {field.type === "textarea" ? (
+                <Textarea
+                  value={currentValue}
+                  onChange={(e) => onChange(sectionKey, field.key, e.target.value)}
+                  placeholder={field.placeholder}
+                  rows={3}
+                  style={{ textAlign: currentAlign as any }}
+                />
+              ) : (
+                <Input
+                  value={currentValue}
+                  onChange={(e) => onChange(sectionKey, field.key, e.target.value)}
+                  placeholder={field.placeholder}
+                  style={{ textAlign: currentAlign as any }}
+                />
+              )}
+            </div>
+          );
+        })}
         <div className="flex justify-end">
           <Button onClick={() => onSave(sectionKey)} disabled={isSaving}>
             <Save className="mr-2 h-4 w-4" />
