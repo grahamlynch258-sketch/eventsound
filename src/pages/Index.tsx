@@ -109,16 +109,18 @@ const Index = () => {
               )}
 
               <section className="container relative py-14 md:py-16">
-                <div className="grid gap-6 md:grid-cols-12 md:items-start">
-                  <div className="md:col-span-5">
-                    <h2 className={`text-3xl font-semibold tracking-tight md:text-4xl ${features.getAlignClass("section_title")}`} style={features.getStyle("section_title")}>
-                      {features.getText("section_title", "Built for producers and venues")}
-                    </h2>
-                  </div>
-                  <div className="md:col-span-7">
-                    <p className={`text-muted-foreground ${features.getAlignClass("section_description")}`} style={features.getStyle("section_description")}>
-                      {features.getText("section_description", "We combine premium equipment with practical delivery, setup and operator support—so your event looks sharp and runs on schedule.")}
-                    </p>
+                <div className="rounded-lg border bg-card p-8 md:p-10" style={features.getBoxStyle("section_title")}>
+                  <div className="grid gap-6 md:grid-cols-12 md:items-start">
+                    <div className="md:col-span-5">
+                      <h2 className={`text-3xl font-semibold tracking-tight md:text-4xl ${features.getAlignClass("section_title")}`} style={features.getStyle("section_title")}>
+                        {features.getText("section_title", "Built for producers and venues")}
+                      </h2>
+                    </div>
+                    <div className="md:col-span-7">
+                      <p className={`text-muted-foreground ${features.getAlignClass("section_description")}`} style={features.getStyle("section_description")}>
+                        {features.getText("section_description", "We combine premium equipment with practical delivery, setup and operator support—so your event looks sharp and runs on schedule.")}
+                      </p>
+                    </div>
                   </div>
                 </div>
 
