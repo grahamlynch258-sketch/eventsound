@@ -317,8 +317,23 @@ export default function AdminContent() {
                             size="sm"
                             disabled={updateContent.isPending}
                             onClick={async () => {
-                              for (const s of linkedSections) {
-                                await handleSave(s);
+                              try {
+                                for (const { section, key } of allLinkedFields) {
+                                  const color = bgColorData[section]?.[key] ?? linkedContentMap[section]?.bgColors[key] ?? "";
+                                  const opacity = bgOpacityData[section]?.[key] ?? linkedContentMap[section]?.bgOpacities[key] ?? 1;
+                                  const existingValue = formData[section]?.[key] ?? linkedContentMap[section]?.values[key] ?? "";
+                                  await updateContent.mutateAsync({
+                                    page: "home",
+                                    section,
+                                    key,
+                                    value: existingValue,
+                                    bg_color: color,
+                                    bg_opacity: opacity,
+                                  });
+                                }
+                                toast({ title: "Box color saved for all sections" });
+                              } catch (error) {
+                                toast({ title: "Save failed", description: error instanceof Error ? error.message : "Unknown error", variant: "destructive" });
                               }
                             }}
                           >
