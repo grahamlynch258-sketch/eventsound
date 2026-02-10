@@ -48,12 +48,12 @@ const Index = () => {
                 <p className={`mt-5 max-w-2xl text-base text-muted-foreground md:text-lg ${hero.getAlignClass("subheadline")}`} style={hero.getStyle("subheadline")}>
                   {hero.getText("subheadline", "AV, vision, lighting and staging packages for modern events. Delivered, installed and supported by calm, capable technicians.")}
                 </p>
-                <div className="mt-8 flex flex-col sm:flex-row gap-3">
-                  <Button asChild style={hero.getStyle("cta_primary")}>
-                    <Link to="/av-production">{hero.getText("cta_primary", "Request a quote")}</Link>
+                <div className="mt-8 flex flex-col sm:flex-row gap-3 items-start">
+                  <Button asChild className="w-full sm:w-auto shrink-0">
+                    <Link to="/av-production" style={{ color: hero.getFontColor("cta_primary") || undefined }}>{hero.getText("cta_primary", "Request a quote")}</Link>
                   </Button>
-                  <Button asChild variant="outline" style={hero.getStyle("cta_secondary")}>
-                    <Link to="/contact">{hero.getText("cta_secondary", "Explore AV & Production")}</Link>
+                  <Button asChild variant="outline" className="w-full sm:w-auto shrink-0">
+                    <Link to="/contact" style={{ color: hero.getFontColor("cta_secondary") || undefined }}>{hero.getText("cta_secondary", "Explore AV & Production")}</Link>
                   </Button>
                 </div>
               </div>
