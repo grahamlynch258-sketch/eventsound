@@ -22,7 +22,7 @@ const Index = () => {
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
           </div>
 
-          <div className="container relative py-20 md:py-28">
+          <div className="container relative py-32 md:py-44">
             <h1 className={`max-w-3xl text-4xl font-semibold tracking-tight md:text-6xl ${hero.getAlignClass("headline")}`} style={hero.getStyle("headline")}>
               {hero.getText("headline", "Premium event production—without the chaos.")}
             </h1>
