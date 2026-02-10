@@ -2,6 +2,46 @@ import React from "react";
 import { useSiteContent } from "./useSiteContent";
 
 /**
+ * Returns relative luminance of an RGB color (0 = darkest, 1 = lightest).
+ */
+function luminance(r: number, g: number, b: number): number {
+  const [rs, gs, bs] = [r, g, b].map((c) => {
+    const s = c / 255;
+    return s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4);
+  });
+  return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs;
+}
+
+function hexToRgb(hex: string): [number, number, number] {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return [r, g, b];
+}
+
+/**
+ * Given a background color hex + opacity, return a text color that ensures readability.
+ * If the user's chosen text color already has good contrast, use it.
+ * Otherwise, pick white or black for best contrast.
+ */
+function ensureReadableColor(textColor: string, bgColor: string, bgOpacity: number): string {
+  if (!bgColor || bgOpacity < 0.3) return textColor; // bg too transparent to matter
+  const [br, bg, bb] = hexToRgb(bgColor);
+  const bgLum = luminance(br, bg, bb);
+  const [tr, tg, tb] = hexToRgb(textColor);
+  const textLum = luminance(tr, tg, tb);
+
+  // WCAG contrast ratio
+  const lighter = Math.max(bgLum, textLum);
+  const darker = Math.min(bgLum, textLum);
+  const contrast = (lighter + 0.05) / (darker + 0.05);
+
+  if (contrast >= 3) return textColor; // acceptable contrast
+  // Pick white or black based on bg luminance
+  return bgLum > 0.5 ? "#000000" : "#ffffff";
+}
+
+/**
  * Hook to get a content value with alignment for a specific page/section/key.
  * Returns { text, align, className } for easy use in components.
  */
@@ -31,7 +71,7 @@ export function useDynamicText(page: string, section: string) {
   }
 
   function getFontColor(key: string): string {
-    return data?.fontColors[key] || "#000000";
+    return data?.fontColors[key] || "";
   }
 
   function getFontWeight(key: string): string {
@@ -62,11 +102,24 @@ export function useDynamicText(page: string, section: string) {
     const style: React.CSSProperties = {
       textAlign: getAlign(key) as any,
       fontSize: `${getFontSize(key)}px`,
-      color: getFontColor(key),
       fontWeight: getFontWeight(key),
       position: 'relative',
       zIndex: 1,
     };
+
+    const textColor = getFontColor(key);
+    const bgColor = getBgColor(key);
+    const bgOpacity = getBgOpacity(key);
+
+    // Only set color if the user explicitly chose one
+    if (textColor) {
+      if (bgColor) {
+        style.color = ensureReadableColor(textColor, bgColor, bgOpacity);
+      } else {
+        style.color = textColor;
+      }
+    }
+
     const family = getFontFamily(key);
     if (family) {
       style.fontFamily = family;
@@ -76,14 +129,11 @@ export function useDynamicText(page: string, section: string) {
     if (x || y) {
       style.transform = `translate(${x}px, ${y}px)`;
     }
+
     // Apply background color behind text
-    const bgColor = getBgColor(key);
     if (bgColor) {
-      const opacity = getBgOpacity(key);
-      const r = parseInt(bgColor.slice(1, 3), 16);
-      const g = parseInt(bgColor.slice(3, 5), 16);
-      const b = parseInt(bgColor.slice(5, 7), 16);
-      style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${opacity})`;
+      const [r, g, b] = hexToRgb(bgColor);
+      style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${bgOpacity})`;
       style.padding = '0.25em 0.5em';
       style.borderRadius = '4px';
       style.display = 'inline-block';
@@ -95,10 +145,7 @@ export function useDynamicText(page: string, section: string) {
     const color = getBgColor(key);
     const opacity = getBgOpacity(key);
     if (!color) return {};
-    // Convert hex to rgba
-    const r = parseInt(color.slice(1, 3), 16);
-    const g = parseInt(color.slice(3, 5), 16);
-    const b = parseInt(color.slice(5, 7), 16);
+    const [r, g, b] = hexToRgb(color);
     return { backgroundColor: `rgba(${r}, ${g}, ${b}, ${opacity})` };
   }
 
