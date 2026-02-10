@@ -23,6 +23,8 @@ export type ContentData = {
   alignments: Record<string, string>;
   fontSizes: Record<string, number>;
   fontColors: Record<string, string>;
+  fontWeights: Record<string, string>;
+  fontFamilies: Record<string, string>;
 };
 
 export function useSiteContent(page: string, section: string) {
@@ -41,13 +43,17 @@ export function useSiteContent(page: string, section: string) {
       const alignments: Record<string, string> = {};
       const fontSizes: Record<string, number> = {};
       const fontColors: Record<string, string> = {};
+      const fontWeights: Record<string, string> = {};
+      const fontFamilies: Record<string, string> = {};
       data?.forEach((item: any) => {
         values[item.key] = item.value;
         alignments[item.key] = item.alignment || "left";
         fontSizes[item.key] = item.font_size || 16;
         fontColors[item.key] = item.font_color || "#000000";
+        fontWeights[item.key] = item.font_weight || "normal";
+        fontFamilies[item.key] = item.font_family || "";
       });
-      return { values, alignments, fontSizes, fontColors } as ContentData;
+      return { values, alignments, fontSizes, fontColors, fontWeights, fontFamilies } as ContentData;
     },
   });
 }
@@ -79,6 +85,8 @@ export function useUpdateContent() {
       alignment,
       font_size,
       font_color,
+      font_weight,
+      font_family,
     }: {
       page: string;
       section: string;
@@ -87,11 +95,15 @@ export function useUpdateContent() {
       alignment?: string;
       font_size?: number;
       font_color?: string;
+      font_weight?: string;
+      font_family?: string;
     }) => {
       const upsertData: any = { page, section, key, value };
       if (alignment) upsertData.alignment = alignment;
       if (font_size !== undefined) upsertData.font_size = font_size;
       if (font_color !== undefined) upsertData.font_color = font_color;
+      if (font_weight !== undefined) upsertData.font_weight = font_weight;
+      if (font_family !== undefined) upsertData.font_family = font_family;
       const { data, error } = await supabase
         .from("site_content")
         .upsert(upsertData, { onConflict: "page,section,key" })

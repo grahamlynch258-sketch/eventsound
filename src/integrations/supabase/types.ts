@@ -52,7 +52,9 @@ export type Database = {
           alignment: string
           created_at: string
           font_color: string | null
+          font_family: string | null
           font_size: number | null
+          font_weight: string
           id: string
           key: string
           page: string
@@ -64,7 +66,9 @@ export type Database = {
           alignment?: string
           created_at?: string
           font_color?: string | null
+          font_family?: string | null
           font_size?: number | null
+          font_weight?: string
           id?: string
           key: string
           page: string
@@ -76,7 +80,9 @@ export type Database = {
           alignment?: string
           created_at?: string
           font_color?: string | null
+          font_family?: string | null
           font_size?: number | null
+          font_weight?: string
           id?: string
           key?: string
           page?: string
