@@ -21,6 +21,8 @@ export type Category = {
 export type ContentData = {
   values: Record<string, string>;
   alignments: Record<string, string>;
+  fontSizes: Record<string, number>;
+  fontColors: Record<string, string>;
 };
 
 export function useSiteContent(page: string, section: string) {
@@ -37,11 +39,15 @@ export function useSiteContent(page: string, section: string) {
 
       const values: Record<string, string> = {};
       const alignments: Record<string, string> = {};
+      const fontSizes: Record<string, number> = {};
+      const fontColors: Record<string, string> = {};
       data?.forEach((item: any) => {
         values[item.key] = item.value;
         alignments[item.key] = item.alignment || "left";
+        fontSizes[item.key] = item.font_size || 16;
+        fontColors[item.key] = item.font_color || "#000000";
       });
-      return { values, alignments } as ContentData;
+      return { values, alignments, fontSizes, fontColors } as ContentData;
     },
   });
 }
@@ -71,15 +77,21 @@ export function useUpdateContent() {
       key,
       value,
       alignment,
+      font_size,
+      font_color,
     }: {
       page: string;
       section: string;
       key: string;
       value: string;
       alignment?: string;
+      font_size?: number;
+      font_color?: string;
     }) => {
       const upsertData: any = { page, section, key, value };
       if (alignment) upsertData.alignment = alignment;
+      if (font_size !== undefined) upsertData.font_size = font_size;
+      if (font_color !== undefined) upsertData.font_color = font_color;
       const { data, error } = await supabase
         .from("site_content")
         .upsert(upsertData, { onConflict: "page,section,key" })

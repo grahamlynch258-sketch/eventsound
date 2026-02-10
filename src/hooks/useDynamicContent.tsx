@@ -1,3 +1,4 @@
+import React from "react";
 import { useSiteContent } from "./useSiteContent";
 
 /**
@@ -25,5 +26,21 @@ export function useDynamicText(page: string, section: string) {
     return "text-left";
   }
 
-  return { getText, getAlign, getAlignClass, isLoading };
+  function getFontSize(key: string): number {
+    return data?.fontSizes[key] || 16;
+  }
+
+  function getFontColor(key: string): string {
+    return data?.fontColors[key] || "#000000";
+  }
+
+  function getStyle(key: string): React.CSSProperties {
+    return {
+      textAlign: getAlign(key) as any,
+      fontSize: `${getFontSize(key)}px`,
+      color: getFontColor(key),
+    };
+  }
+
+  return { getText, getAlign, getAlignClass, getFontSize, getFontColor, getStyle, isLoading };
 }
