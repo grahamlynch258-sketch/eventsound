@@ -12,6 +12,8 @@ export default function Contact() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const main = useDynamicText("contact", "main");
+  const sidebar = useDynamicText("contact", "sidebar");
+  const form = useDynamicText("contact", "form");
 
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -36,22 +38,30 @@ export default function Contact() {
               {main.getText("description", "Tell us what you're building—date, venue, audience size, and any must-haves. We'll recommend a clean package and confirm availability.")}
             </p>
 
-            <Card className="mt-8">
+            <Card className="mt-8" style={sidebar.getBoxStyle("info_title")}>
               <CardHeader>
-                <CardTitle>What we can cover</CardTitle>
-                <CardDescription>AV, vision, lighting, staging + operator support.</CardDescription>
+                <CardTitle className={sidebar.getAlignClass("info_title")} style={sidebar.getStyle("info_title")}>
+                  {sidebar.getText("info_title", "What we can cover")}
+                </CardTitle>
+                <CardDescription className={sidebar.getAlignClass("info_description")} style={sidebar.getStyle("info_description")}>
+                  {sidebar.getText("info_description", "AV, vision, lighting, staging + operator support.")}
+                </CardDescription>
               </CardHeader>
-              <CardContent className="text-sm text-muted-foreground">
-                If you already have a run sheet or floorplan, include it in your message and we'll work from that.
+              <CardContent className={`text-sm text-muted-foreground ${sidebar.getAlignClass("info_content")}`} style={sidebar.getStyle("info_content")}>
+                {sidebar.getText("info_content", "If you already have a run sheet or floorplan, include it in your message and we'll work from that.")}
               </CardContent>
             </Card>
           </section>
 
           <section className="md:col-span-7">
-            <Card>
+            <Card style={form.getBoxStyle("form_title")}>
               <CardHeader>
-                <CardTitle>Quote details</CardTitle>
-                <CardDescription>We usually respond within one business day.</CardDescription>
+                <CardTitle className={form.getAlignClass("form_title")} style={form.getStyle("form_title")}>
+                  {form.getText("form_title", "Quote details")}
+                </CardTitle>
+                <CardDescription className={form.getAlignClass("form_description")} style={form.getStyle("form_description")}>
+                  {form.getText("form_description", "We usually respond within one business day.")}
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <form onSubmit={onSubmit} className="grid gap-5">
@@ -89,9 +99,11 @@ export default function Contact() {
                   </div>
 
                   <div className="flex flex-wrap items-center justify-between gap-3">
-                    <p className="text-sm text-muted-foreground">No spam—just production details.</p>
-                    <Button type="submit" disabled={isSubmitting}>
-                      {isSubmitting ? "Sending…" : "Send request"}
+                    <p className={`text-sm text-muted-foreground ${form.getAlignClass("disclaimer")}`} style={form.getStyle("disclaimer")}>
+                      {form.getText("disclaimer", "No spam—just production details.")}
+                    </p>
+                    <Button type="submit" disabled={isSubmitting} style={{ fontSize: `${form.getFontSize("button_text")}px`, color: form.getFontColor("button_text") || undefined }}>
+                      {isSubmitting ? "Sending…" : form.getText("button_text", "Send request")}
                     </Button>
                   </div>
                 </form>
