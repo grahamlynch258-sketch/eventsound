@@ -18,6 +18,11 @@ export type Category = {
   is_active: boolean;
 };
 
+export type ContentData = {
+  values: Record<string, string>;
+  alignments: Record<string, string>;
+};
+
 export function useSiteContent(page: string, section: string) {
   return useQuery({
     queryKey: ["site-content", page, section],
@@ -30,12 +35,13 @@ export function useSiteContent(page: string, section: string) {
 
       if (error) throw error;
 
-      // Convert to a key-value map for easy access
-      const contentMap: Record<string, string> = {};
-      data?.forEach((item) => {
-        contentMap[item.key] = item.value;
+      const values: Record<string, string> = {};
+      const alignments: Record<string, string> = {};
+      data?.forEach((item: any) => {
+        values[item.key] = item.value;
+        alignments[item.key] = item.alignment || "left";
       });
-      return contentMap;
+      return { values, alignments } as ContentData;
     },
   });
 }
@@ -64,18 +70,19 @@ export function useUpdateContent() {
       section,
       key,
       value,
+      alignment,
     }: {
       page: string;
       section: string;
       key: string;
       value: string;
+      alignment?: string;
     }) => {
+      const upsertData: any = { page, section, key, value };
+      if (alignment) upsertData.alignment = alignment;
       const { data, error } = await supabase
         .from("site_content")
-        .upsert(
-          { page, section, key, value },
-          { onConflict: "page,section,key" }
-        )
+        .upsert(upsertData, { onConflict: "page,section,key" })
         .select()
         .single();
 
