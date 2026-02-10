@@ -130,14 +130,6 @@ export function useDynamicText(page: string, section: string) {
       style.transform = `translate(${x}px, ${y}px)`;
     }
 
-    // Apply background color behind text
-    if (bgColor) {
-      const [r, g, b] = hexToRgb(bgColor);
-      style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${bgOpacity})`;
-      style.padding = '0.25em 0.5em';
-      style.borderRadius = '4px';
-      style.display = 'inline-block';
-    }
     return style;
   }
 
