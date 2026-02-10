@@ -16,6 +16,7 @@ import {
   Category,
 } from "@/hooks/useSiteContent";
 import { ArrowLeft, Plus, Trash2, Upload, GripVertical } from "lucide-react";
+import ImageLibraryPicker from "@/components/admin/ImageLibraryPicker";
 
 export default function AdminCategories() {
   const { user, isAdmin, loading } = useAuth();
@@ -217,6 +218,9 @@ export default function AdminCategories() {
                       onChange={(e) => handleImageUpload(e, true)}
                     />
                   </label>
+                  <ImageLibraryPicker
+                    onSelect={(url) => setNewCategory((prev) => ({ ...prev, image_url: url }))}
+                  />
                 </div>
               </div>
               <div className="flex gap-2">
@@ -252,7 +256,7 @@ export default function AdminCategories() {
                     </div>
                     <label className="flex cursor-pointer items-center justify-center gap-2 rounded border border-dashed px-4 py-3 text-sm hover:bg-muted">
                       <Upload className="h-4 w-4" />
-                      Change Image
+                      Upload New Image
                       <input
                         type="file"
                         accept="image/*"
@@ -260,6 +264,9 @@ export default function AdminCategories() {
                         onChange={(e) => handleImageUpload(e, false)}
                       />
                     </label>
+                    <ImageLibraryPicker
+                      onSelect={(url) => setEditForm((prev) => ({ ...prev, image_url: url }))}
+                    />
                     <div className="grid gap-4 md:grid-cols-3">
                       <div className="grid gap-1">
                         <Label className="text-xs">Title</Label>

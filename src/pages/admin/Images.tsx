@@ -10,6 +10,7 @@ import { useUploadImage } from "@/hooks/useSiteContent";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeft, Upload, Trash2 } from "lucide-react";
+import ImageLibraryPicker from "@/components/admin/ImageLibraryPicker";
 
 type SiteImage = {
   id: string;
@@ -158,16 +159,29 @@ export default function AdminImages() {
                       <p className="text-sm text-muted-foreground">No image set</p>
                     </div>
                   )}
-                  <label className="flex cursor-pointer items-center justify-center gap-2 rounded border border-dashed px-4 py-3 text-sm hover:bg-muted">
-                    <Upload className="h-4 w-4" />
-                    {image?.image_url ? "Replace Image" : "Upload Image"}
-                    <input
-                      type="file"
-                      accept="image/*"
-                      className="hidden"
-                      onChange={(e) => handleUpload(e, slot)}
+                  <div className="flex gap-2">
+                    <label className="flex flex-1 cursor-pointer items-center justify-center gap-2 rounded border border-dashed px-4 py-3 text-sm hover:bg-muted">
+                      <Upload className="h-4 w-4" />
+                      Upload
+                      <input
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={(e) => handleUpload(e, slot)}
+                      />
+                    </label>
+                    <ImageLibraryPicker
+                      onSelect={async (url) => {
+                        await updateImage.mutateAsync({
+                          page: slot.page,
+                          section: slot.section,
+                          key: slot.key,
+                          image_url: url,
+                        });
+                        toast({ title: "Image updated from library" });
+                      }}
                     />
-                  </label>
+                  </div>
                 </CardContent>
               </Card>
             );
