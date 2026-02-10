@@ -4,6 +4,7 @@ import { PageShell } from "@/components/site/PageShell";
 import { CategoryCard } from "@/components/site/CategoryCard";
 import { Link } from "react-router-dom";
 import { useCategories } from "@/hooks/useSiteContent";
+import { useDynamicText } from "@/hooks/useDynamicContent";
 import { Skeleton } from "@/components/ui/skeleton";
 
 import heroImage from "@/assets/hero-av-production.jpg";
@@ -14,7 +15,6 @@ import stagingImage from "@/assets/category-staging.jpg";
 import drapingImage from "@/assets/category-draping.jpg";
 import videoRecordingImage from "@/assets/category-video-recording.jpg";
 
-// Fallback categories if database is empty
 const fallbackCategories = [
   { title: "Audio", imageSrc: audioImage, to: "/contact" },
   { title: "Visuals", imageSrc: visionImage, to: "/contact" },
@@ -26,8 +26,9 @@ const fallbackCategories = [
 
 export default function AvProduction() {
   const { data: dbCategories, isLoading } = useCategories();
+  const hero = useDynamicText("av-production", "hero");
+  const cats = useDynamicText("av-production", "categories");
 
-  // Use database categories if available, otherwise fallback to static
   const categories = dbCategories && dbCategories.length > 0
     ? dbCategories.map((c) => ({ title: c.title, imageSrc: c.image_url, to: c.link }))
     : fallbackCategories;
@@ -42,12 +43,11 @@ export default function AvProduction() {
           </div>
           <div className="container relative py-20 md:py-28">
             <p className="text-sm text-muted-foreground">Services</p>
-            <h1 className="mt-3 max-w-2xl text-4xl font-semibold tracking-tight md:text-5xl">
-              AV & Production
+            <h1 className={`mt-3 max-w-2xl text-4xl font-semibold tracking-tight md:text-5xl ${hero.getAlignClass("headline")}`}>
+              {hero.getText("headline", "AV & Production")}
             </h1>
-            <p className="mt-4 max-w-2xl text-base text-muted-foreground md:text-lg">
-              Want to make the moment feel bigger? We supply premium gear and calm, capable crew—so your event runs smooth
-              and looks incredible.
+            <p className={`mt-4 max-w-2xl text-base text-muted-foreground md:text-lg ${hero.getAlignClass("subheadline")}`}>
+              {hero.getText("subheadline", "Want to make the moment feel bigger? We supply premium gear and calm, capable crew—so your event runs smooth and looks incredible.")}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild>
@@ -62,10 +62,11 @@ export default function AvProduction() {
 
         <section className="container py-14 md:py-16">
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">Create vibrant atmospheres</h2>
-            <p className="mt-4 text-muted-foreground">
-              From intimate launches to high-capacity conferences, we bring together audio, vision, lighting and staging
-              into one clean, reliable production package.
+            <h2 className={`text-3xl font-semibold tracking-tight md:text-4xl ${cats.getAlignClass("section_title")}`}>
+              {cats.getText("section_title", "Create vibrant atmospheres")}
+            </h2>
+            <p className={`mt-4 text-muted-foreground ${cats.getAlignClass("section_description")}`}>
+              {cats.getText("section_description", "From intimate launches to high-capacity conferences, we bring together audio, vision, lighting and staging into one clean, reliable production package.")}
             </p>
           </div>
 
@@ -102,7 +103,7 @@ export default function AvProduction() {
                 <CardDescription>Technicians who keep it calm when it matters.</CardDescription>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground">
-                Audio, vision, lighting ops available—so you’re never stuck troubleshooting mid-show.
+                Audio, vision, lighting ops available—so you're never stuck troubleshooting mid-show.
               </CardContent>
             </Card>
 

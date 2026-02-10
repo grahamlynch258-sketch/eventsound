@@ -49,6 +49,7 @@ export type Database = {
       }
       site_content: {
         Row: {
+          alignment: string
           created_at: string
           id: string
           key: string
@@ -58,6 +59,7 @@ export type Database = {
           value: string
         }
         Insert: {
+          alignment?: string
           created_at?: string
           id?: string
           key: string
@@ -67,6 +69,7 @@ export type Database = {
           value: string
         }
         Update: {
+          alignment?: string
           created_at?: string
           id?: string
           key?: string
