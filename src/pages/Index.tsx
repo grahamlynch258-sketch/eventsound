@@ -23,24 +23,25 @@ const Index = () => {
     <PageShell>
       <main>
         {/* Hero */}
-        <section className="relative min-h-[85vh] flex items-center">
+        <section className="relative min-h-[90vh] flex items-center">
           <div className="absolute inset-0">
             <HeroSlideshow fallbackImage={fallbackHeroImage} singleImage={heroImage} />
-            <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/50 to-background" />
+            <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/60 to-background" />
           </div>
 
-          <div className="container relative py-32 md:py-40">
+          <div className="container relative py-32 md:py-44">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="max-w-3xl"
             >
-              <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-4">
+              <p className="section-kicker mb-4">
                 Premium Event Production — Ireland
               </p>
+              <div className="gold-rule mb-6" />
               <h1
-                className={`text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-tight ${hero.getAlignClass("headline")}`}
+                className={`text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold tracking-tight leading-[1.1] ${hero.getAlignClass("headline")}`}
                 style={hero.getStyle("headline")}
               >
                 {hero.getText("headline", "Production that makes your event unforgettable.")}
@@ -51,13 +52,13 @@ const Index = () => {
               >
                 {hero.getText("subheadline", "AV, vision, lighting and staging packages for corporate events, conferences and live shows. Delivered, installed and supported by experienced technicians across Ireland.")}
               </p>
-              <div className="mt-8 flex flex-col sm:flex-row gap-3">
-                <Button asChild size="lg" className="font-semibold">
+              <div className="mt-10 flex flex-col sm:flex-row gap-3">
+                <Button asChild size="lg" className="font-semibold shadow-gold text-base px-8">
                   <Link to="/contact">
                     {hero.getText("cta_primary", "Get a Free Quote")} <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg">
+                <Button asChild variant="outline" size="lg" className="text-base px-8">
                   <Link to="/av-production">{hero.getText("cta_secondary", "Explore Services")}</Link>
                 </Button>
               </div>
@@ -65,19 +66,10 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Trust Bar */}
         <TrustBar />
-
-        {/* Services */}
         <ServicesGrid />
-
-        {/* Process */}
         <ProcessSection />
-
-        {/* Testimonials */}
         <TestimonialsSection />
-
-        {/* CTA */}
         <CTASection />
       </main>
     </PageShell>

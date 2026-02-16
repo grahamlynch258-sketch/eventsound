@@ -37,11 +37,12 @@ export default function Gallery() {
         {/* Hero */}
         <section className="container py-16 md:py-24">
           <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">Portfolio</p>
+            <p className="section-kicker mb-3">Portfolio</p>
+            <div className="gold-rule mb-5" />
             <h1 className="text-4xl md:text-5xl font-semibold tracking-tight">
               Our work in action
             </h1>
-            <p className="mt-4 text-muted-foreground">
+            <p className="mt-4 text-muted-foreground leading-relaxed">
               Browse our portfolio of corporate events, conferences, galas, and live shows delivered across Ireland.
             </p>
           </div>
@@ -54,9 +55,9 @@ export default function Gallery() {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 rounded-full text-sm font-medium border transition-colors capitalize ${
+                className={`px-4 py-2 rounded-full text-sm font-medium border transition-all capitalize ${
                   activeCategory === cat
-                    ? "border-primary bg-primary/10 text-primary"
+                    ? "border-primary bg-primary/10 text-primary shadow-gold"
                     : "border-border text-muted-foreground hover:border-primary/50 hover:text-foreground"
                 }`}
               >
@@ -66,34 +67,38 @@ export default function Gallery() {
           </div>
         </section>
 
-        {/* Gallery grid */}
+        {/* Gallery grid — masonry-like with varied spans */}
         <section className="container pb-20 md:pb-28">
           {isLoading ? (
             <div className="grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
               {Array.from({ length: 8 }).map((_, i) => (
-                <Skeleton key={i} className="aspect-[4/3] rounded-lg" />
+                <Skeleton key={i} className="aspect-[4/3] rounded-xl" />
               ))}
             </div>
           ) : filtered && filtered.length > 0 ? (
-            <div className="grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-              {filtered.map((img) => (
+            <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+              {filtered.map((img, i) => (
                 <motion.button
                   key={img.id}
-                  layout
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
+                  transition={{ delay: i * 0.03 }}
                   onClick={() => setLightboxImage({ url: img.image_url, alt: img.alt_text || img.file_name })}
-                  className="group relative aspect-[4/3] overflow-hidden rounded-lg border border-border/50 bg-card"
+                  className="group relative w-full overflow-hidden rounded-xl border border-border/50 bg-card break-inside-avoid"
                 >
                   <img
                     src={img.image_url}
                     alt={img.alt_text || img.file_name}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                    <p className="text-sm font-medium text-foreground">{img.alt_text || img.file_name}</p>
+                    <div>
+                      <p className="text-sm font-medium text-foreground">{img.alt_text || img.file_name}</p>
+                      {img.category && (
+                        <p className="text-xs text-primary capitalize mt-0.5">{img.category}</p>
+                      )}
+                    </div>
                   </div>
                 </motion.button>
               ))}
@@ -114,23 +119,24 @@ export default function Gallery() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[100] flex items-center justify-center bg-background/90 backdrop-blur-sm p-4"
+              className="fixed inset-0 z-[100] flex items-center justify-center bg-background/95 backdrop-blur-md p-4"
               onClick={() => setLightboxImage(null)}
             >
               <button
-                className="absolute top-6 right-6 p-2 text-muted-foreground hover:text-foreground transition-colors"
+                className="absolute top-6 right-6 p-2.5 rounded-full bg-card/80 text-muted-foreground hover:text-foreground transition-colors"
                 onClick={() => setLightboxImage(null)}
                 aria-label="Close lightbox"
               >
-                <X className="h-6 w-6" />
+                <X className="h-5 w-5" />
               </button>
               <motion.img
-                initial={{ scale: 0.9, opacity: 0 }}
+                initial={{ scale: 0.92, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.9, opacity: 0 }}
+                exit={{ scale: 0.92, opacity: 0 }}
+                transition={{ duration: 0.2 }}
                 src={lightboxImage.url}
                 alt={lightboxImage.alt}
-                className="max-h-[85vh] max-w-[90vw] rounded-lg object-contain shadow-2xl"
+                className="max-h-[85vh] max-w-[90vw] rounded-xl object-contain shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
               />
             </motion.div>

@@ -5,12 +5,14 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { Mail, Phone, MapPin, Clock, ArrowRight, ArrowLeft, Check } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, ArrowRight, ArrowLeft, Check, Shield } from "lucide-react";
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const SERVICE_OPTIONS = ["Audio", "Visuals / LED", "Lighting", "Staging", "Video Recording", "Draping & Décor", "Full Production"];
 const BUDGET_OPTIONS = ["Under €3,000", "€3,000 – €10,000", "€10,000 – €25,000", "€25,000+", "Not sure yet"];
+
+const STEP_LABELS = ["Details", "Event", "Services"];
 
 export default function Contact() {
   const { toast } = useToast();
@@ -31,11 +33,7 @@ export default function Contact() {
     }));
   };
 
-  const canNext = step === 0
-    ? form.name.trim() && form.email.trim()
-    : step === 1
-    ? true
-    : true;
+  const canNext = step === 0 ? form.name.trim() && form.email.trim() : true;
 
   async function onSubmit() {
     setIsSubmitting(true);
@@ -124,9 +122,9 @@ export default function Contact() {
               key={s}
               type="button"
               onClick={() => toggleService(s)}
-              className={`px-3 py-1.5 rounded-full text-sm border transition-colors ${
+              className={`px-3.5 py-2 rounded-lg text-sm border transition-all ${
                 form.services.includes(s)
-                  ? "border-primary bg-primary/10 text-primary"
+                  ? "border-primary bg-primary/10 text-primary shadow-gold"
                   : "border-border text-muted-foreground hover:border-primary/50"
               }`}
             >
@@ -143,9 +141,9 @@ export default function Contact() {
               key={b}
               type="button"
               onClick={() => update("budget_range", form.budget_range === b ? "" : b)}
-              className={`px-3 py-1.5 rounded-full text-sm border transition-colors ${
+              className={`px-3.5 py-2 rounded-lg text-sm border transition-all ${
                 form.budget_range === b
-                  ? "border-primary bg-primary/10 text-primary"
+                  ? "border-primary bg-primary/10 text-primary shadow-gold"
                   : "border-border text-muted-foreground hover:border-primary/50"
               }`}
             >
@@ -167,11 +165,12 @@ export default function Contact() {
         {/* Hero */}
         <section className="container py-16 md:py-24">
           <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">Get in Touch</p>
+            <p className="section-kicker mb-3">Get in Touch</p>
+            <div className="gold-rule mb-5" />
             <h1 className="text-4xl md:text-5xl font-semibold tracking-tight">
               Let's plan your event
             </h1>
-            <p className="mt-4 text-muted-foreground">
+            <p className="mt-4 text-muted-foreground leading-relaxed">
               Share your details and we'll come back with a clear recommendation and quote — usually within 24 hours.
             </p>
           </div>
@@ -182,23 +181,33 @@ export default function Contact() {
             {/* Form */}
             <div className="lg:col-span-7">
               {submitted ? (
-                <div className="rounded-lg border border-primary/30 bg-card p-8 md:p-12 text-center">
+                <div className="rounded-xl border border-primary/30 bg-card p-8 md:p-12 text-center">
                   <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 mb-6">
                     <Check className="h-8 w-8 text-primary" />
                   </div>
                   <h2 className="font-serif text-2xl font-semibold mb-3">Quote request sent!</h2>
-                  <p className="text-muted-foreground">We'll review your brief and get back to you within 24 hours. Check your email for confirmation.</p>
+                  <p className="text-muted-foreground leading-relaxed">We'll review your brief and get back to you within 24 hours. Check your email for confirmation.</p>
                 </div>
               ) : (
-                <div className="rounded-lg border border-border/50 bg-card p-6 md:p-8">
-                  {/* Progress */}
-                  <div className="flex items-center gap-2 mb-8">
-                    {[0, 1, 2].map((i) => (
-                      <div key={i} className="flex items-center gap-2">
-                        <div className={`h-2 flex-1 rounded-full transition-colors ${i <= step ? "bg-primary" : "bg-muted"}`} style={{ width: "4rem" }} />
-                      </div>
+                <div className="rounded-xl border border-border/50 bg-card p-6 md:p-8">
+                  {/* Stepper */}
+                  <div className="flex items-center gap-3 mb-8">
+                    {STEP_LABELS.map((label, i) => (
+                      <button
+                        key={label}
+                        onClick={() => { if (i < step || canNext) setStep(i); }}
+                        className="flex items-center gap-2 group"
+                        type="button"
+                      >
+                        <div className={`flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold transition-colors ${
+                          i <= step ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"
+                        }`}>
+                          {i < step ? <Check className="h-3.5 w-3.5" /> : i + 1}
+                        </div>
+                        <span className={`text-sm font-medium hidden sm:inline ${i <= step ? "text-foreground" : "text-muted-foreground"}`}>{label}</span>
+                        {i < STEP_LABELS.length - 1 && <div className={`w-8 h-px ${i < step ? "bg-primary" : "bg-border"}`} />}
+                      </button>
                     ))}
-                    <span className="ml-2 text-xs text-muted-foreground">Step {step + 1} of 3</span>
                   </div>
 
                   <AnimatePresence mode="wait">
@@ -207,7 +216,7 @@ export default function Contact() {
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: -20 }}
-                      transition={{ duration: 0.25 }}
+                      transition={{ duration: 0.2 }}
                     >
                       {steps[step]}
                     </motion.div>
@@ -224,32 +233,39 @@ export default function Contact() {
                         Next <ArrowRight className="ml-2 h-4 w-4" />
                       </Button>
                     ) : (
-                      <Button onClick={onSubmit} disabled={isSubmitting} className="font-semibold">
+                      <Button onClick={onSubmit} disabled={isSubmitting} className="font-semibold shadow-gold">
                         {isSubmitting ? "Sending…" : "Submit Quote Request"}
                       </Button>
                     )}
                   </div>
                 </div>
               )}
+              {/* Trust signal below form */}
+              {!submitted && (
+                <div className="flex items-center gap-2 mt-4 text-xs text-muted-foreground">
+                  <Shield className="h-3.5 w-3.5 text-primary" />
+                  <span>No spam. Your data is private and secure.</span>
+                </div>
+              )}
             </div>
 
             {/* Sidebar */}
             <div className="lg:col-span-5 space-y-6">
-              <div className="rounded-lg border border-border/50 bg-card p-6">
+              <div className="rounded-xl border border-border/50 bg-card p-6">
                 <h3 className="font-serif text-lg font-semibold mb-4">Contact info</h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
                     <Mail className="h-5 w-5 text-primary mt-0.5 shrink-0" />
                     <div>
                       <p className="text-sm font-medium">Email</p>
-                      <p className="text-sm text-muted-foreground">hello@stagespark.ie</p>
+                      <a href="mailto:hello@stagespark.ie" className="text-sm text-muted-foreground hover:text-primary transition-colors">hello@stagespark.ie</a>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <Phone className="h-5 w-5 text-primary mt-0.5 shrink-0" />
                     <div>
                       <p className="text-sm font-medium">Phone</p>
-                      <p className="text-sm text-muted-foreground">+353 1 234 5678</p>
+                      <a href="tel:+35312345678" className="text-sm text-muted-foreground hover:text-primary transition-colors">+353 1 234 5678</a>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
@@ -269,7 +285,7 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="rounded-lg border border-border/50 bg-card p-6">
+              <div className="rounded-xl border border-border/50 bg-card p-6">
                 <h3 className="font-serif text-lg font-semibold mb-3">What happens next?</h3>
                 <ol className="space-y-3 text-sm text-muted-foreground">
                   <li className="flex gap-3"><span className="text-primary font-semibold shrink-0">1.</span> We review your brief and confirm availability</li>
