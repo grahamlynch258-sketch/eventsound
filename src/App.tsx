@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import AvProduction from "./pages/AvProduction";
 import Contact from "./pages/Contact";
+import Gallery from "./pages/Gallery";
 import NotFound from "./pages/NotFound";
 import AdminLogin from "./pages/admin/Login";
 import AdminDashboard from "./pages/admin/Dashboard";
@@ -13,6 +14,8 @@ import AdminCategories from "./pages/admin/Categories";
 import AdminContent from "./pages/admin/Content";
 import AdminImages from "./pages/admin/Images";
 import AdminLibrary from "./pages/admin/Library";
+import AdminTestimonials from "./pages/admin/Testimonials";
+import AdminQuotes from "./pages/admin/Quotes";
 
 const queryClient = new QueryClient();
 
@@ -26,12 +29,15 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/av-production" element={<AvProduction />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/gallery" element={<Gallery />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/admin/categories" element={<AdminCategories />} />
           <Route path="/admin/content" element={<AdminContent />} />
           <Route path="/admin/images" element={<AdminImages />} />
           <Route path="/admin/library" element={<AdminLibrary />} />
+          <Route path="/admin/testimonials" element={<AdminTestimonials />} />
+          <Route path="/admin/quotes" element={<AdminQuotes />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
