@@ -10,14 +10,14 @@ export function SiteFooter({ className }: { className?: string }) {
             <p className="font-serif text-xl font-semibold tracking-tight">
               Stage<span className="text-primary">Spark</span>
             </p>
-            <p className="mt-3 text-sm text-muted-foreground max-w-xs">
+            <p className="mt-3 text-sm text-muted-foreground max-w-xs leading-relaxed">
               Premium event production — AV, lighting, staging & crew. Delivered and supported across Ireland.
             </p>
           </div>
 
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-4">Quick Links</h4>
-            <nav className="flex flex-col gap-2">
+            <h4 className="section-kicker mb-4">Quick Links</h4>
+            <nav className="flex flex-col gap-2.5">
               <Link to="/" className="text-sm text-muted-foreground hover:text-primary transition-colors">Home</Link>
               <Link to="/av-production" className="text-sm text-muted-foreground hover:text-primary transition-colors">Services</Link>
               <Link to="/gallery" className="text-sm text-muted-foreground hover:text-primary transition-colors">Gallery</Link>
@@ -26,9 +26,14 @@ export function SiteFooter({ className }: { className?: string }) {
           </div>
 
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-4">Contact</h4>
+            <h4 className="section-kicker mb-4">Contact</h4>
             <p className="text-sm text-muted-foreground">Ireland-wide service</p>
-            <p className="text-sm text-muted-foreground mt-1">hello@stagespark.ie</p>
+            <a href="mailto:hello@stagespark.ie" className="text-sm text-muted-foreground hover:text-primary transition-colors mt-1 block">
+              hello@stagespark.ie
+            </a>
+            <a href="tel:+35312345678" className="text-sm text-muted-foreground hover:text-primary transition-colors mt-1 block">
+              +353 1 234 5678
+            </a>
           </div>
         </div>
 

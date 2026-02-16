@@ -8,6 +8,7 @@ import { useDynamicText } from "@/hooks/useDynamicContent";
 import { useSiteImage } from "@/hooks/useSiteImage";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ArrowRight, Mic, Monitor, Lightbulb, Frame, Clapperboard, Wand2 } from "lucide-react";
+import { motion } from "framer-motion";
 
 import fallbackHeroImage from "@/assets/hero-av-production.jpg";
 import audioImage from "@/assets/category-audio.jpg";
@@ -52,18 +53,19 @@ export default function AvProduction() {
         <section className="relative">
           <div className="absolute inset-0">
             <img src={heroImage} alt="Stage lighting and LED screens" className="h-full w-full object-cover" loading="lazy" />
-            <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/50 to-background" />
+            <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/60 to-background" />
           </div>
           <div className="container relative py-28 md:py-40">
-            <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">Our Services</p>
+            <p className="section-kicker mb-3">Our Services</p>
+            <div className="gold-rule mb-5" />
             <h1 className={`max-w-2xl text-4xl md:text-5xl font-semibold tracking-tight ${hero.getAlignClass("headline")}`} style={hero.getStyle("headline")}>
               {hero.getText("headline", "AV & Production")}
             </h1>
-            <p className={`mt-4 max-w-2xl text-base text-muted-foreground md:text-lg ${hero.getAlignClass("subheadline")}`} style={hero.getStyle("subheadline")}>
+            <p className={`mt-4 max-w-2xl text-base text-muted-foreground md:text-lg leading-relaxed ${hero.getAlignClass("subheadline")}`} style={hero.getStyle("subheadline")}>
               {hero.getText("subheadline", "Premium gear and experienced crew — so your event runs smooth and looks incredible.")}
             </p>
             <div className="mt-8">
-              <Button asChild size="lg" className="font-semibold">
+              <Button asChild size="lg" className="font-semibold shadow-gold">
                 <Link to="/contact">Request a Quote <ArrowRight className="ml-2 h-4 w-4" /></Link>
               </Button>
             </div>
@@ -73,7 +75,8 @@ export default function AvProduction() {
         {/* Categories gallery */}
         <section className="container py-20 md:py-28">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <p className="text-sm font-semibold uppercase tracking-wider text-primary mb-3">Categories</p>
+            <p className="section-kicker mb-3">Categories</p>
+            <div className="gold-rule mx-auto mb-5" />
             <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
               Create vibrant atmospheres
             </h2>
@@ -82,28 +85,44 @@ export default function AvProduction() {
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {isLoading ? (
               Array.from({ length: 6 }).map((_, i) => (
-                <Skeleton key={i} className="aspect-[4/3] w-full rounded-lg" />
+                <Skeleton key={i} className="aspect-[4/3] w-full rounded-xl" />
               ))
             ) : (
-              categories.map((c) => (
-                <CategoryCard key={c.title} title={c.title} imageSrc={c.imageSrc} to={c.to} />
+              categories.map((c, i) => (
+                <motion.div
+                  key={c.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08, duration: 0.4 }}
+                >
+                  <CategoryCard title={c.title} imageSrc={c.imageSrc} to={c.to} />
+                </motion.div>
               ))
             )}
           </div>
         </section>
 
         {/* Service details grid */}
-        <section className="bg-card/50 border-y border-border/50">
+        <section className="bg-card/30 border-y border-border/50">
           <div className="container py-20 md:py-28">
             <div className="text-center max-w-2xl mx-auto mb-14">
-              <p className="text-sm font-semibold uppercase tracking-wider text-primary mb-3">Capabilities</p>
+              <p className="section-kicker mb-3">Capabilities</p>
+              <div className="gold-rule mx-auto mb-5" />
               <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
                 What's included
               </h2>
             </div>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {serviceDetails.map((s) => (
-                <div key={s.title} className="rounded-lg border border-border/50 bg-card p-6">
+              {serviceDetails.map((s, i) => (
+                <motion.div
+                  key={s.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08, duration: 0.4 }}
+                  className="rounded-xl border border-border/50 bg-card p-6"
+                >
                   <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary/10 mb-4">
                     <s.icon className="h-5 w-5 text-primary" />
                   </div>
@@ -116,7 +135,7 @@ export default function AvProduction() {
                       </li>
                     ))}
                   </ul>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
