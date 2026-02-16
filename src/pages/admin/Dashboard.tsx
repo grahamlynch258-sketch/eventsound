@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAuth } from "@/hooks/useAuth";
-import { FileText, Image, LayoutGrid, LogOut, FolderOpen } from "lucide-react";
+import { FileText, Image, LayoutGrid, LogOut, FolderOpen, MessageSquare, Inbox } from "lucide-react";
 
 export default function AdminDashboard() {
   const { user, isAdmin, loading, signOut } = useAuth();
@@ -142,6 +142,48 @@ export default function AdminDashboard() {
               <CardContent>
                 <p className="text-sm text-muted-foreground">
                   Store headline, supplement, portfolio, and logo images.
+                </p>
+              </CardContent>
+            </Card>
+          </Link>
+
+          <Link to="/admin/testimonials">
+            <Card className="transition-shadow hover:shadow-md">
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <div className="rounded-lg bg-primary/10 p-2">
+                    <MessageSquare className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <CardTitle className="text-lg">Testimonials</CardTitle>
+                    <CardDescription>Manage client reviews</CardDescription>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  Add, edit, and feature client testimonials on the homepage.
+                </p>
+              </CardContent>
+            </Card>
+          </Link>
+
+          <Link to="/admin/quotes">
+            <Card className="transition-shadow hover:shadow-md">
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <div className="rounded-lg bg-primary/10 p-2">
+                    <Inbox className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <CardTitle className="text-lg">Quote Submissions</CardTitle>
+                    <CardDescription>View & manage leads</CardDescription>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  Review incoming quote requests and track their status.
                 </p>
               </CardContent>
             </Card>
