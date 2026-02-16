@@ -27,7 +27,10 @@ export interface HomeContent {
 /**
  * Safely extract homepage hero content from CMS data with fallbacks
  */
-export function mapHeroContent(cmsData: ContentData | undefined, fallback: HomeHeroContent): HomeHeroContent {
+export function mapHeroContent(
+  cmsData: ContentData | undefined,
+  fallback: HomeHeroContent
+): HomeHeroContent {
   if (!cmsData || !cmsData.values || Object.keys(cmsData.values).length === 0) {
     return fallback;
   }
@@ -46,7 +49,7 @@ export function mapHeroContent(cmsData: ContentData | undefined, fallback: HomeH
  */
 export function mapFeaturesContent(
   cmsData: ContentData | undefined,
-  fallback: HomeFeaturesContent,
+  fallback: HomeFeaturesContent
 ): HomeFeaturesContent {
   if (!cmsData || !cmsData.values || Object.keys(cmsData.values).length === 0) {
     return fallback;
@@ -59,7 +62,10 @@ export function mapFeaturesContent(
 /**
  * Safely extract homepage CTA2 content from CMS data with fallbacks
  */
-export function mapCta2Content(cmsData: ContentData | undefined, fallback: HomeCta2Content): HomeCta2Content {
+export function mapCta2Content(
+  cmsData: ContentData | undefined,
+  fallback: HomeCta2Content
+): HomeCta2Content {
   if (!cmsData || !cmsData.values || Object.keys(cmsData.values).length === 0) {
     return fallback;
   }
