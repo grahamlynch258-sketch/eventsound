@@ -1,7 +1,7 @@
 export const siteConfig = {
   brandName: "Event Sound Pro Audio & Entertainment",
   shortName: "Event Sound",
-  tagline: "LED Walls • Staging • Lighting • Audio",
+ tagline: "Premium Event Production — Ireland",
   legalName: "Event Sound Pro Audio & Entertainment",
 
   email: "info@eventsound.ie",
