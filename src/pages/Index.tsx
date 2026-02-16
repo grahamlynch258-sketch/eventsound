@@ -9,6 +9,7 @@ import { ServicesGrid } from "@/components/site/ServicesGrid";
 import { ProcessSection } from "@/components/site/ProcessSection";
 import { TestimonialsSection } from "@/components/site/TestimonialsSection";
 import { CTASection } from "@/components/site/CTASection";
+import { siteConfig } from "@/config/site";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -37,7 +38,7 @@ const Index = () => {
               className="max-w-3xl"
             >
               <p className="section-kicker mb-4">
-                Premium Event Production — Ireland
+                {siteConfig.tagline} — {siteConfig.primaryLocation}
               </p>
               <div className="gold-rule mb-6" />
               <h1
@@ -50,7 +51,7 @@ const Index = () => {
                 className={`mt-6 max-w-2xl text-base md:text-lg text-muted-foreground leading-relaxed ${hero.getAlignClass("subheadline")}`}
                 style={hero.getStyle("subheadline")}
               >
-                {hero.getText("subheadline", "AV, vision, lighting and staging packages for corporate events, conferences and live shows. Delivered, installed and supported by experienced technicians across Ireland.")}
+                {hero.getText("subheadline", "LED walls, staging, lighting and audio packages for corporate events, conferences and live shows. Delivered, installed and supported by experienced technicians across Ireland.")}
               </p>
               <div className="mt-10 flex flex-col sm:flex-row gap-3">
                 <Button asChild size="lg" className="font-semibold shadow-gold text-base px-8">

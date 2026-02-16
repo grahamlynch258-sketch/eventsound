@@ -4,9 +4,9 @@ import { Star, Quote } from "lucide-react";
 import { motion } from "framer-motion";
 
 const fallbackTestimonials = [
-  { client_name: "Sarah Mitchell", client_role: "Event Director", company: "Accenture Ireland", quote: "StageSpark transformed our annual conference. The AV was flawless, crew were professional, and setup was faster than we expected.", rating: 5 },
-  { client_name: "David O'Brien", client_role: "Production Manager", company: "RDS Events", quote: "Reliable, creative, and calm under pressure. They've become our go-to production partner for all major events.", rating: 5 },
-  { client_name: "Emma Walsh", client_role: "Marketing Lead", company: "Tech Ireland Summit", quote: "From lighting to live streaming, everything was handled beautifully. Our attendees were genuinely impressed.", rating: 5 },
+  { client_name: "Recent Client", client_role: "Event Director", company: "", quote: "The production quality was outstanding. From load-in to wrap, the crew were professional, responsive, and genuinely invested in making our event a success.", rating: 5 },
+  { client_name: "Corporate Partner", client_role: "Production Manager", company: "", quote: "Reliable, creative, and calm under pressure. They've become our go-to production partner for all major events.", rating: 5 },
+  { client_name: "Conference Organiser", client_role: "Marketing Lead", company: "", quote: "From lighting to live streaming, everything was handled beautifully. Our attendees were genuinely impressed with the production value.", rating: 5 },
 ];
 
 export function TestimonialsSection() {
@@ -29,10 +29,10 @@ export function TestimonialsSection() {
   return (
     <section className="container py-20 md:py-28">
       <div className="text-center max-w-2xl mx-auto mb-14">
-        <p className="section-kicker mb-3">Client Reviews</p>
+        <p className="section-kicker mb-3">Client Feedback</p>
         <div className="gold-rule mx-auto mb-5" />
         <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
-          Trusted by Ireland's leading brands
+          What our clients say
         </h2>
       </div>
 
