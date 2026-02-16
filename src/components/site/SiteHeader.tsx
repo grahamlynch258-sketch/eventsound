@@ -6,8 +6,11 @@ import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { to: "/", label: "Home", end: true },
-  { to: "/av-production", label: "Services" },
+  { to: "/about", label: "About" },
+  { to: "/services", label: "Services" },
   { to: "/gallery", label: "Gallery" },
+  { to: "/faq", label: "FAQ" },
+  { to: "/reviews", label: "Reviews" },
   { to: "/contact", label: "Contact" },
 ];
 
@@ -48,7 +51,7 @@ export function SiteHeader({ className }: { className?: string }) {
           Event<span className="text-primary"> Sound</span>
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-6 lg:flex" aria-label="Primary">
           {navLinks.map((l) => (
             <NavLink key={l.to} to={l.to} className={navLinkClass} end={l.end}>
               {l.label}
@@ -57,11 +60,11 @@ export function SiteHeader({ className }: { className?: string }) {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Button asChild size="sm" className="hidden md:inline-flex font-semibold shadow-gold">
+          <Button asChild size="sm" className="hidden lg:inline-flex font-semibold shadow-gold">
             <Link to="/contact">Get a Quote</Link>
           </Button>
           <button
-            className="md:hidden p-2 text-muted-foreground hover:text-foreground transition-colors"
+            className="lg:hidden p-2 text-muted-foreground hover:text-foreground transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
             aria-expanded={mobileOpen}
@@ -72,7 +75,7 @@ export function SiteHeader({ className }: { className?: string }) {
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden fixed inset-x-0 top-16 bottom-0 z-40 bg-background/98 backdrop-blur-lg animate-in fade-in slide-in-from-top-2 duration-200 overflow-y-auto">
+        <div className="lg:hidden fixed inset-x-0 top-16 bottom-0 z-40 bg-background/98 backdrop-blur-lg animate-in fade-in slide-in-from-top-2 duration-200 overflow-y-auto">
           <nav className="container flex flex-col gap-1 py-6" aria-label="Mobile">
             {navLinks.map((l) => (
               <NavLink

@@ -4,14 +4,19 @@ export const siteConfig = {
   tagline: "LED Walls • Staging • Lighting • Audio",
   legalName: "Event Sound Pro Audio & Entertainment",
 
-  email: "TODO_EMAIL",
-  phone: "TODO_PHONE",
-  phoneDisplay: "TODO_PHONE_DISPLAY",
-  whatsapp: "TODO_WHATSAPP",
+  email: "info@eventsound.ie",
+  emailSecondary: "Graham@eventsound.ie",
+  phone: "+353872888761",
+  phoneDisplay: "+353 87 288 8761",
+  phoneSecondary: "+353868311851",
+  phoneSecondaryDisplay: "+353 86 831 1851",
+  phoneTertiary: "+353863520476",
+  phoneTertiaryDisplay: "+353 86 352 0476",
 
   addressLocality: "Drogheda",
   addressRegion: "Co. Louth",
-  postalCode: "TODO_POSTALCODE",
+  addressStreet: "Townrath",
+  postalCode: "",
   country: "IE",
   primaryLocation: "Drogheda, Co. Louth, Ireland",
   serviceAreas: ["Louth", "Dublin", "Meath", "Nationwide Ireland"],
@@ -19,21 +24,22 @@ export const siteConfig = {
   quoteResponseSLA: "within 24 hours",
 
   social: {
-    facebook: "TODO_FACEBOOK_URL",
-    instagram: "TODO_INSTAGRAM_URL",
-    linkedin: "TODO_LINKEDIN_URL",
+    facebook: "",
+    instagram: "",
+    linkedin: "https://ie.linkedin.com/company/event-sound-pro-audio",
   },
 
-  ogImage: "https://lovable.dev/opengraph-image-p98pqg.png",
+  ogImage: "https://eventsound.lovable.app/og-image.png",
   canonicalBase: "https://eventsound.lovable.app",
 
   serviceTypes: [
-    "LED Video Walls",
-    "Stage Design & Build",
-    "Event Lighting",
-    "Audio & PA Systems",
-    "Live Streaming",
-    "Video Production",
+    "Live Event Production",
+    "Audio Equipment",
+    "LED Video & Display Screens",
+    "Hybrid Events",
+    "Lighting & Effects",
+    "Stage Hire & Pipe & Drape",
+    "Video Equipment",
   ],
 } as const;
 
