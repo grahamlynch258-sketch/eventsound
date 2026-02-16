@@ -1,4 +1,10 @@
-import { ContentData } from "@/hooks/useSiteContent";
+export type CmsSection =
+  | { values?: Record<string, unknown> | null }
+  | null
+  | undefined;
+
+const s = (v: unknown, fb = "") =>
+  typeof v === "string" && v.trim() ? v.trim() : fb;
 
 export interface HomeHeroContent {
   tagline: string;
@@ -6,6 +12,9 @@ export interface HomeHeroContent {
   subheadline: string;
   cta_primary: string;
   cta_secondary: string;
+  // optional href support if you add it later
+  cta_primary_href?: string;
+  cta_secondary_href?: string;
 }
 
 export interface TrustBarItem {
@@ -19,90 +28,77 @@ export interface HomeFeaturesContent {
 
 export interface HomeCta2Content {
   title: string;
-  description: string;
+  description?: string;
   primaryCtaLabel: string;
   secondaryCtaLabel: string;
-  primaryHref?: string;
-  secondaryHref?: string;
+  primaryHref: string;
+  secondaryHref: string;
 }
 
-export interface HomeContent {
-  hero: HomeHeroContent;
-  features: HomeFeaturesContent;
-  cta2: HomeCta2Content;
-}
-
-/**
- * Safely extract homepage hero content from CMS data with fallbacks
- */
 export function mapHeroContent(
-  cmsData: ContentData | undefined,
+  cms: CmsSection,
   fallback: HomeHeroContent
 ): HomeHeroContent {
-  if (!cmsData || !cmsData.values || Object.keys(cmsData.values).length === 0) {
-    return fallback;
-  }
+  const v = (cms?.values ?? {}) as Record<string, unknown>;
 
   return {
-    tagline: cmsData.values.tagline ?? fallback.tagline,
-    headline: cmsData.values.headline ?? fallback.headline,
-    subheadline: cmsData.values.subheadline ?? fallback.subheadline,
-    cta_primary: cmsData.values.cta_primary ?? fallback.cta_primary,
-    cta_secondary: cmsData.values.cta_secondary ?? fallback.cta_secondary,
+    tagline: s(v.tagline, fallback.tagline),
+    headline: s(v.headline ?? v.title, fallback.headline),
+    subheadline: s(v.subheadline ?? v.description, fallback.subheadline),
+    cta_primary: s(
+      v.cta_primary ?? v.primary_button_text ?? v.button_text,
+      fallback.cta_primary
+    ),
+    cta_secondary: s(
+      v.cta_secondary ?? v.secondary_button_text,
+      fallback.cta_secondary
+    ),
+    cta_primary_href: s(v.cta_primary_href ?? v.primary_href, fallback.cta_primary_href),
+    cta_secondary_href: s(v.cta_secondary_href ?? v.secondary_href, fallback.cta_secondary_href),
   };
 }
 
-/**
- * Safely extract homepage features (TrustBar) content from CMS data with fallbacks
- * Expected CMS keys: feature_1_value, feature_1_label, feature_2_value, feature_2_label, etc.
- */
 export function mapFeaturesContent(
-  cmsData: ContentData | undefined,
+  cms: CmsSection,
   fallback: HomeFeaturesContent
 ): HomeFeaturesContent {
-  if (!cmsData || !cmsData.values || Object.keys(cmsData.values).length === 0) {
-    return fallback;
+  const v = (cms?.values ?? {}) as Record<string, unknown>;
+
+  // Support direct items array (if you ever store it that way)
+  const rawItems = v.items;
+  if (Array.isArray(rawItems)) {
+    const items = rawItems
+      .map((x) => {
+        const obj = x as Record<string, unknown>;
+        return { value: s(obj.value), label: s(obj.label) };
+      })
+      .filter((i) => i.value && i.label);
+    if (items.length) return { items };
   }
 
-  // Extract items from CMS data
+  // Support existing admin pattern: feature_1_title + feature_1_description
   const items: TrustBarItem[] = [];
-  let index = 1;
-  
-  while (cmsData.values[`feature_${index}_value`] || cmsData.values[`feature_${index}_label`]) {
-    const value = cmsData.values[`feature_${index}_value`];
-    const label = cmsData.values[`feature_${index}_label`];
-    
-    // Only add if both value and label exist and are non-empty
-    if (value && label && value.trim() && label.trim()) {
-      items.push({ value: value.trim(), label: label.trim() });
-    }
-    
-    index++;
-    // Safety limit to prevent infinite loops
-    if (index > 10) break;
+  for (let i = 1; i <= 6; i++) {
+    const value = s(v[`feature_${i}_title`], "");
+    const label = s(v[`feature_${i}_description`], "");
+    if (value && label) items.push({ value, label });
   }
 
-  // Return CMS items if any valid ones found, otherwise fallback
-  return items.length > 0 ? { items } : fallback;
+  return items.length ? { items } : fallback;
 }
 
-/**
- * Safely extract homepage CTA2 content from CMS data with fallbacks
- */
 export function mapCta2Content(
-  cmsData: ContentData | undefined,
+  cms: CmsSection,
   fallback: HomeCta2Content
 ): HomeCta2Content {
-  if (!cmsData || !cmsData.values || Object.keys(cmsData.values).length === 0) {
-    return fallback;
-  }
+  const v = (cms?.values ?? {}) as Record<string, unknown>;
 
   return {
-    title: cmsData.values.title ?? fallback.title,
-    description: cmsData.values.description ?? fallback.description,
-    primaryCtaLabel: cmsData.values.primaryCtaLabel ?? fallback.primaryCtaLabel,
-    secondaryCtaLabel: cmsData.values.secondaryCtaLabel ?? fallback.secondaryCtaLabel,
-    primaryHref: cmsData.values.primaryHref ?? fallback.primaryHref,
-    secondaryHref: cmsData.values.secondaryHref ?? fallback.secondaryHref,
+    title: s(v.title ?? v.headline, fallback.title),
+    description: s(v.description, fallback.description ?? ""),
+    primaryCtaLabel: s(v.primaryCtaLabel ?? v.button_text ?? v.primary_button_text, fallback.primaryCtaLabel),
+    secondaryCtaLabel: s(v.secondaryCtaLabel ?? v.secondary_button_text, fallback.secondaryCtaLabel),
+    primaryHref: s(v.primaryHref ?? v.primary_href, fallback.primaryHref),
+    secondaryHref: s(v.secondaryHref ?? v.secondary_href, fallback.secondaryHref),
   };
 }
