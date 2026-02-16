@@ -1,0 +1,117 @@
+import { Mic, Monitor, Lightbulb, Frame, Clapperboard, Wand2, Radio } from "lucide-react";
+
+export const services = [
+  {
+    slug: "live-event-production",
+    icon: Radio,
+    title: "Live Event Production",
+    shortDescription: "Expert planning, design, and full technical delivery for events of every scale.",
+    description: "With decades of industry experience and a dedicated team of technical event specialists, we handle expert planning and design from start to finish. It starts with a consultation where we listen to your vision, offer tailored advice, and help choose the perfect venue. From selecting the ideal equipment — crystal-clear PA systems and dazzling LED displays — to providing hands-on technical support before and during your event, we handle every detail. Our goal is to lift the stress off your shoulders and deliver an experience packed with wow-factor moments your guests won't forget.",
+    features: [
+      "Full event planning and design consultation",
+      "Venue selection advice and site surveys",
+      "Equipment specification and sourcing",
+      "On-site technical crew and production management",
+      "Load-in, setup, operation, and de-rig",
+    ],
+  },
+  {
+    slug: "audio-equipment",
+    icon: Mic,
+    title: "Audio Equipment",
+    shortDescription: "PA systems, wireless mics, and audio engineering — tuned for your venue.",
+    description: "PA hire is where Event Sound began over two decades ago, and it remains the heartbeat of nearly every event we deliver. From intimate meetings to grand gala evenings and sprawling outdoor concerts, we supply a diverse range of PA systems tailored to every occasion. Our technical specialists select the perfect speakers to match your space, audience, and vision — ensuring flawless sound that captivates. Our modern line array and column speakers deliver precision coverage without obstructing sightlines.",
+    features: [
+      "L-Acoustics, Martin Audio, LD Systems, Celto Acoustique",
+      "Line array and column speaker systems",
+      "Allen & Heath, Yamaha digital mixing desks",
+      "Shure and Sennheiser wireless microphones",
+      "Foldback, monitoring, and audio engineering",
+    ],
+    brands: ["L-Acoustics", "Martin Audio", "Allen & Heath", "Yamaha", "Shure", "Sennheiser"],
+  },
+  {
+    slug: "led-video-display-screens",
+    icon: Monitor,
+    title: "LED Video & Display Screens",
+    shortDescription: "State-of-the-art LED walls and screens with unmatched clarity and brightness.",
+    description: "Elevate your live events with state-of-the-art LED video displays. Powered by industry leaders like Unilumin, Samsung, and LG, our screens deliver jaw-dropping visuals for every setting — live spectacles, sleek virtual presentations, or hybrid experiences. With unmatched contrast, brightness, colour accuracy, and dynamic imagery, your audience won't just watch — they'll be immersed.",
+    features: [
+      "Pro-level LED wall installation for any venue size",
+      "Content management and digital signage",
+      "Multi-screen synchronised setups",
+      "Dynamic promo, live social feeds, and integrated signage",
+      "Unilumin, Samsung, and LG display technology",
+    ],
+    brands: ["Unilumin", "Samsung", "LG"],
+  },
+  {
+    slug: "hybrid-events",
+    icon: Clapperboard,
+    title: "Hybrid Events",
+    shortDescription: "Seamless virtual, in-person, or hybrid event production and streaming.",
+    description: "We turn every event into a triumph — virtual, in-person, or hybrid. With decades of expertise, we plan and deliver with precision, leaving nothing to chance. We define sharp goals tailored to your event's purpose and audience, choose the right platform for your scale, and handle every technical detail so you can focus on your content and guests.",
+    features: [
+      "Virtual and hybrid event platform setup",
+      "Live streaming with multi-camera coverage",
+      "Audience engagement tools and Q&A integration",
+      "Recording and post-event content delivery",
+      "Technical rehearsals and dry runs",
+    ],
+  },
+  {
+    slug: "lighting-effects",
+    icon: Lightbulb,
+    title: "Lighting & Effects",
+    shortDescription: "Dynamic, precision-controlled lighting that sets the mood and steals the spotlight.",
+    description: "We don't just light up spaces — we craft unforgettable atmospheres with dynamic, precision-controlled effects that set the mood. From moving head spots and pixel-mapped brilliance to wash effects and camera-ready front lighting, every detail is considered. We use Chamsys control systems for seamless, professional execution, complemented by atmospheric haze and smoke effects.",
+    features: [
+      "Moving head spots and wash fixtures",
+      "Pixel-mapped and architectural lighting",
+      "Camera-ready front lighting with colour temperature control",
+      "Chamsys lighting control systems",
+      "Haze, smoke, and atmospheric effects",
+    ],
+    brands: ["Chamsys"],
+  },
+  {
+    slug: "stage-hire-pipe-drape",
+    icon: Frame,
+    title: "Stage Hire & Pipe & Drape",
+    shortDescription: "Premium staging platforms, risers, and versatile draping solutions.",
+    description: "Set the stage for brilliance with our top-tier stage hire solutions. From intimate conferences to large-scale festivals, we stock premium GUIL stage platforms in metric sizes with accessories including steps, barriers, wheelchair ramps, and skirts. Our versatile decks suit any occasion with adjustable legs for bespoke setups. Add our Pipe & Drape system for slick backdrops, dividers, or side tabs to transform any space.",
+    features: [
+      "GUIL stage platforms — TUV-certified",
+      "Adjustable legs for custom configurations",
+      "Steps, barriers, wheelchair ramps, and skirts",
+      "Pipe & Drape backdrop and divider systems",
+      "Surface carpeting in custom colours",
+      "DJ booths with LED panels or printed boards",
+    ],
+    brands: ["GUIL"],
+  },
+  {
+    slug: "video-equipment",
+    icon: Clapperboard,
+    title: "Video Equipment",
+    shortDescription: "Multi-camera capture, live streaming, and post-production — in 4K or 1080p.",
+    description: "Capture every moment in stunning detail with our video equipment expertise. Whether your event fills a grand hall or streams to a global crowd, our seasoned videographers deliver crystal-clear visuals — 4K or 1080p — that shine live and online. We assess your venue, audience, and every angle to build a video package that fits perfectly, with full recordings and highlight reels ready for social media.",
+    features: [
+      "Multi-camera 4K and 1080p recording",
+      "Live streaming to any platform",
+      "PTZ and manned camera positions",
+      "Post-production and highlight reels",
+      "Pre-event video and slide preparation",
+    ],
+  },
+];
+
+/** Simplified list for homepage services grid */
+export const serviceGridItems = [
+  { icon: Mic, title: "Audio", description: "Crystal-clear PA, wireless mics, foldback — tuned for your venue.", slug: "audio-equipment" },
+  { icon: Monitor, title: "LED Visuals", description: "LED walls, projection, playback — show-ready and reliable.", slug: "led-video-display-screens" },
+  { icon: Lightbulb, title: "Lighting", description: "Architectural washes, stage lighting, intelligent fixtures.", slug: "lighting-effects" },
+  { icon: Frame, title: "Staging", description: "Custom staging, risers, set builds — safe and camera-ready.", slug: "stage-hire-pipe-drape" },
+  { icon: Clapperboard, title: "Video & Streaming", description: "Multi-cam capture, live streaming, post-production.", slug: "video-equipment" },
+  { icon: Wand2, title: "Draping & Décor", description: "Pipe and drape, star cloth, scenic elements for atmosphere.", slug: "stage-hire-pipe-drape" },
+];

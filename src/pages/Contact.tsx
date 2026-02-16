@@ -258,7 +258,9 @@ export default function Contact() {
                     <Phone className="h-5 w-5 text-primary mt-0.5 shrink-0" />
                     <div>
                       <p className="text-sm font-medium">Phone</p>
-                      <a href={`tel:${siteConfig.phone}`} className="text-sm text-muted-foreground hover:text-primary transition-colors">{siteConfig.phoneDisplay}</a>
+                      <a href={`tel:${siteConfig.phone}`} className="text-sm text-muted-foreground hover:text-primary transition-colors block">{siteConfig.phoneDisplay}</a>
+                      <a href={`tel:${siteConfig.phoneSecondary}`} className="text-sm text-muted-foreground hover:text-primary transition-colors block">{siteConfig.phoneSecondaryDisplay}</a>
+                      <a href={`tel:${siteConfig.phoneTertiary}`} className="text-sm text-muted-foreground hover:text-primary transition-colors block">{siteConfig.phoneTertiaryDisplay}</a>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
