@@ -16,6 +16,7 @@ import AdminImages from "./pages/admin/Images";
 import AdminLibrary from "./pages/admin/Library";
 import AdminTestimonials from "./pages/admin/Testimonials";
 import AdminQuotes from "./pages/admin/Quotes";
+import AdminRoute from "./components/admin/AdminRoute";
 
 const queryClient = new QueryClient();
 
@@ -31,13 +32,13 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/admin/login" element={<AdminLogin />} />
-          <Route path="/admin" element={<AdminDashboard />} />
-          <Route path="/admin/categories" element={<AdminCategories />} />
-          <Route path="/admin/content" element={<AdminContent />} />
-          <Route path="/admin/images" element={<AdminImages />} />
-          <Route path="/admin/library" element={<AdminLibrary />} />
-          <Route path="/admin/testimonials" element={<AdminTestimonials />} />
-          <Route path="/admin/quotes" element={<AdminQuotes />} />
+          <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
+          <Route path="/admin/categories" element={<AdminRoute><AdminCategories /></AdminRoute>} />
+          <Route path="/admin/content" element={<AdminRoute><AdminContent /></AdminRoute>} />
+          <Route path="/admin/images" element={<AdminRoute><AdminImages /></AdminRoute>} />
+          <Route path="/admin/library" element={<AdminRoute><AdminLibrary /></AdminRoute>} />
+          <Route path="/admin/testimonials" element={<AdminRoute><AdminTestimonials /></AdminRoute>} />
+          <Route path="/admin/quotes" element={<AdminRoute><AdminQuotes /></AdminRoute>} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
