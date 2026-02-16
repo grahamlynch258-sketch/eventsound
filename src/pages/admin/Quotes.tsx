@@ -1,8 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { useAuth } from "@/hooks/useAuth";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { ArrowLeft, Mail, Phone, Calendar, MapPin, Users, DollarSign, Clock } from "lucide-react";
@@ -18,14 +15,9 @@ const statusColors: Record<string, string> = {
 };
 
 export default function AdminQuotes() {
-  const { user, isAdmin, loading } = useAuth();
-  const navigate = useNavigate();
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
-  useEffect(() => {
-    if (!loading && (!user || !isAdmin)) navigate("/admin/login");
-  }, [user, isAdmin, loading, navigate]);
 
   const { data: quotes, isLoading } = useQuery({
     queryKey: ["admin-quotes"],
@@ -37,7 +29,7 @@ export default function AdminQuotes() {
       if (error) throw error;
       return data;
     },
-    enabled: isAdmin,
+    enabled: true,
   });
 
   const updateStatus = useMutation({
@@ -51,7 +43,7 @@ export default function AdminQuotes() {
     },
   });
 
-  if (loading || !isAdmin) return null;
+  
 
   return (
     <div className="min-h-screen bg-background text-foreground">

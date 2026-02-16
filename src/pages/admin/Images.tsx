@@ -73,11 +73,6 @@ export default function AdminImages() {
     },
   });
 
-  useEffect(() => {
-    if (!loading && (!user || !isAdmin)) {
-      navigate("/admin/login");
-    }
-  }, [user, isAdmin, loading, navigate]);
 
   if (loading || imagesLoading) {
     return (

@@ -1,50 +1,11 @@
-import { useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAuth } from "@/hooks/useAuth";
 import { FileText, Image, LayoutGrid, LogOut, FolderOpen, MessageSquare, Inbox } from "lucide-react";
 
 export default function AdminDashboard() {
-  const { user, isAdmin, loading, signOut } = useAuth();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!loading && !user) {
-      navigate("/admin/login");
-    }
-  }, [user, loading, navigate]);
-
-  if (loading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <p className="text-muted-foreground">Loading...</p>
-      </div>
-    );
-  }
-
-  if (!isAdmin) {
-    return (
-      <div className="flex min-h-screen flex-col items-center justify-center gap-4 p-4">
-        <Card className="w-full max-w-md text-center">
-          <CardHeader>
-            <CardTitle>Access Denied</CardTitle>
-            <CardDescription>
-              You don't have admin access. Contact the site administrator to request access.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-col gap-2">
-              <p className="text-sm text-muted-foreground">Logged in as: {user?.email}</p>
-              <Button variant="outline" onClick={signOut}>
-                Sign Out
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
+  const { user, signOut } = useAuth();
 
   return (
     <div className="min-h-screen bg-background">
