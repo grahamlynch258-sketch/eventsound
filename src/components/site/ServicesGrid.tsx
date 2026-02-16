@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { Mic, Monitor, Lightbulb, Frame, Clapperboard, Wand2 } from "lucide-react";
+import { Mic, Monitor, Lightbulb, Frame, Clapperboard, Wand2, ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 const services = [
   { icon: Mic, title: "Audio", description: "Crystal-clear PA, wireless mics, foldback — tuned for your venue." },
@@ -13,29 +14,40 @@ const services = [
 export function ServicesGrid() {
   return (
     <section className="container py-20 md:py-28">
-      <div className="text-center max-w-2xl mx-auto mb-12">
-        <p className="text-sm font-semibold uppercase tracking-wider text-primary mb-3">What We Do</p>
+      <div className="text-center max-w-2xl mx-auto mb-14">
+        <p className="section-kicker mb-3">What We Do</p>
+        <div className="gold-rule mx-auto mb-5" />
         <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
           Full-service event production
         </h2>
-        <p className="mt-4 text-muted-foreground">
+        <p className="mt-4 text-muted-foreground leading-relaxed">
           Everything you need for corporate events, conferences, galas, and live shows — delivered, installed, and operated by experienced crew.
         </p>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {services.map((service) => (
-          <Link
+        {services.map((service, i) => (
+          <motion.div
             key={service.title}
-            to="/contact"
-            className="group relative rounded-lg border border-border/50 bg-card p-6 transition-all duration-300 hover:border-primary/30 hover:bg-card/80 hover:shadow-lg"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.08, duration: 0.5 }}
           >
-            <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary/10 mb-4 transition-colors group-hover:bg-primary/20">
-              <service.icon className="h-5 w-5 text-primary" />
-            </div>
-            <h3 className="font-serif text-lg font-semibold mb-2">{service.title}</h3>
-            <p className="text-sm text-muted-foreground">{service.description}</p>
-          </Link>
+            <Link
+              to="/contact"
+              className="group relative flex flex-col rounded-xl border border-border/50 bg-card p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 h-full"
+            >
+              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary/10 mb-4 transition-colors group-hover:bg-primary/15">
+                <service.icon className="h-5 w-5 text-primary" />
+              </div>
+              <h3 className="font-serif text-lg font-semibold mb-2">{service.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed flex-1">{service.description}</p>
+              <div className="mt-4 flex items-center gap-1 text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                Enquire <ArrowUpRight className="h-3 w-3" />
+              </div>
+            </Link>
+          </motion.div>
         ))}
       </div>
     </section>

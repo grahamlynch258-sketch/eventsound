@@ -38,6 +38,11 @@
 
     --radius: 0.5rem;
 
+    /* Extended palette */
+    --primary-glow: 42 78% 65%;
+    --surface: 220 18% 12%;
+    --surface-elevated: 220 16% 18%;
+
     --sidebar-background: 220 20% 8%;
     --sidebar-foreground: 40 10% 92%;
     --sidebar-primary: 42 78% 55%;
@@ -67,6 +72,7 @@
     --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.2), 0 4px 6px -4px hsl(0 0% 0% / 0.15);
     --shadow-xl: 0 20px 25px -5px hsl(0 0% 0% / 0.2), 0 8px 10px -6px hsl(0 0% 0% / 0.15);
     --shadow-2xl: 0 25px 50px -12px hsl(0 0% 0% / 0.4);
+    --shadow-gold: 0 4px 20px -4px hsl(42 78% 55% / 0.2);
 
     --tracking-normal: 0em;
     --spacing: 0.25rem;
@@ -84,5 +90,27 @@
 
   h1, h2, h3 {
     font-family: var(--font-serif);
+  }
+
+  /* Better focus styles for accessibility */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-ring;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Section label — reusable kicker style */
+  .section-kicker {
+    @apply text-xs font-semibold uppercase tracking-[0.2em] text-primary;
+  }
+
+  /* Gold shimmer line */
+  .gold-rule {
+    @apply h-px w-12 bg-gradient-to-r from-primary/0 via-primary to-primary/0;
   }
 }
