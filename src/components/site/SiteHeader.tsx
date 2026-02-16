@@ -28,7 +28,6 @@ export function SiteHeader({ className }: { className?: string }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
@@ -46,7 +45,7 @@ export function SiteHeader({ className }: { className?: string }) {
     >
       <div className="container flex h-16 items-center justify-between gap-6">
         <Link to="/" className="font-serif text-xl font-semibold tracking-tight text-foreground">
-          Stage<span className="text-primary">Spark</span>
+          Event<span className="text-primary"> Sound</span>
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
@@ -72,7 +71,6 @@ export function SiteHeader({ className }: { className?: string }) {
         </div>
       </div>
 
-      {/* Mobile menu */}
       {mobileOpen && (
         <div className="md:hidden fixed inset-x-0 top-16 bottom-0 z-40 bg-background/98 backdrop-blur-lg animate-in fade-in slide-in-from-top-2 duration-200 overflow-y-auto">
           <nav className="container flex flex-col gap-1 py-6" aria-label="Mobile">
