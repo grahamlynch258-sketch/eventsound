@@ -10,10 +10,34 @@ import { CTASection } from "@/components/site/CTASection";
 import { siteConfig } from "@/config/site";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { usePageContent } from "@/lib/contentMapper";
 
 import fallbackHeroImage from "@/assets/hero-av-production.jpg";
 
+// Static fallback content
+const FALLBACK_CONTENT = {
+  hero: {
+    tagline: siteConfig.tagline,
+    headline: "Production by Professionals",
+    subheadline: "From Concept to Delivery, Our Team supports you to help Delivery your Event flawlessly",
+    cta_primary: "Get a Free Quote",
+    cta_secondary: "Explore Services",
+  },
+  features: {
+    // Add feature fallbacks if needed
+  },
+  cta2: {
+    // Add CTA2 fallbacks if needed
+  },
+};
+
 const Index = () => {
+  const { getContent, isLoading } = usePageContent(
+    "home",
+    ["hero", "features", "cta2"],
+    FALLBACK_CONTENT
+  );
+
   return (
     <PageShell>
       <main>
@@ -31,25 +55,27 @@ const Index = () => {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="max-w-3xl"
             >
-              <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-4">{siteConfig.tagline}</p>
+              <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-4">
+                {getContent("hero", "tagline")}
+              </p>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold tracking-tight leading-[1.1]">
-                Production by Professionals
+                {getContent("hero", "headline")}
               </h1>
 
               <p className="mt-6 max-w-2xl text-base md:text-lg text-muted-foreground leading-relaxed">
-                From Concept to Delivery, Our Team supports you to help Delivery your Event flawlessly
+                {getContent("hero", "subheadline")}
               </p>
 
               <div className="mt-10 flex flex-col sm:flex-row gap-3">
                 <Button asChild size="lg" className="font-semibold shadow-gold text-base px-8">
                   <Link to="/contact">
-                    Get a Free Quote
+                    {getContent("hero", "cta_primary")}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="text-base px-8">
-                  <Link to="/services">Explore Services</Link>
+                  <Link to="/services">{getContent("hero", "cta_secondary")}</Link>
                 </Button>
               </div>
             </motion.div>
