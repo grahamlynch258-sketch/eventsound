@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { siteConfig } from "@/config/site";
 
 export function CTASection() {
   return (
     <section className="relative border-y border-border/50 overflow-hidden">
-      {/* Subtle radial glow */}
       <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent pointer-events-none" />
       <div className="container relative py-20 md:py-28">
         <div className="max-w-3xl mx-auto text-center">
@@ -14,7 +14,7 @@ export function CTASection() {
             Ready to elevate your next event?
           </h2>
           <p className="mt-4 text-muted-foreground max-w-xl mx-auto leading-relaxed">
-            Tell us your date, venue, and vision. We'll come back with a clear recommendation and a transparent quote — usually within 24 hours.
+            Tell us your date, venue, and vision. We'll come back with a clear recommendation and a transparent quote — {siteConfig.quoteResponseSLA}.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
             <Button asChild size="lg" className="font-semibold shadow-gold">

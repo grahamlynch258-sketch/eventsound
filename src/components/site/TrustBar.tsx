@@ -2,10 +2,10 @@ import { Shield, Clock, Award, Users } from "lucide-react";
 import { motion } from "framer-motion";
 
 const stats = [
-  { icon: Award, label: "Years Experience", value: "15+" },
-  { icon: Users, label: "Events Delivered", value: "500+" },
+  { icon: Award, label: "Full-Service Production", value: "End-to-End" },
+  { icon: Users, label: "Experienced Crew", value: "Expert" },
   { icon: Shield, label: "Fully Insured", value: "100%" },
-  { icon: Clock, label: "Response Time", value: "<24h" },
+  { icon: Clock, label: "Quote Response", value: "<24h" },
 ];
 
 export function TrustBar() {
