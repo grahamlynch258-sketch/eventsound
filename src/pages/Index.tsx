@@ -33,11 +33,21 @@ const FALLBACK_HERO: HomeHeroContent = {
 };
 
 const FALLBACK_FEATURES: HomeFeaturesContent = {
-  // Add feature fallbacks if needed
+  items: [
+    { value: "End-to-End", label: "Full-Service Production" },
+    { value: "Expert", label: "Experienced Crew" },
+    { value: "100%", label: "Fully Insured" },
+    { value: "<24h", label: "Quote Response" },
+  ],
 };
 
 const FALLBACK_CTA2: HomeCta2Content = {
-  // Add CTA2 fallbacks if needed
+  title: "Ready to elevate your next event?",
+  description: `Tell us your date, venue, and vision. We'll come back with a clear recommendation and a transparent quote — ${siteConfig.quoteResponseSLA}.`,
+  primaryCtaLabel: "Get a Free Quote",
+  secondaryCtaLabel: "View Our Services",
+  primaryHref: "/contact",
+  secondaryHref: "/av-production",
 };
 
 const Index = () => {
@@ -102,11 +112,18 @@ const Index = () => {
           </div>
         </section>
 
-        <TrustBar />
+        <TrustBar items={featuresContent.items} />
         <ServicesGrid />
         <ProcessSection />
         <TestimonialsSection />
-        <CTASection />
+        <CTASection
+          title={cta2Content.title}
+          description={cta2Content.description}
+          primaryCtaLabel={cta2Content.primaryCtaLabel}
+          secondaryCtaLabel={cta2Content.secondaryCtaLabel}
+          primaryHref={cta2Content.primaryHref}
+          secondaryHref={cta2Content.secondaryHref}
+        />
       </main>
     </PageShell>
   );
