@@ -4,9 +4,13 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
-import AvProduction from "./pages/AvProduction";
+import About from "./pages/About";
+import Services from "./pages/Services";
 import Contact from "./pages/Contact";
 import Gallery from "./pages/Gallery";
+import FAQ from "./pages/FAQ";
+import Reviews from "./pages/Reviews";
+import HealthAndSafety from "./pages/HealthAndSafety";
 import NotFound from "./pages/NotFound";
 import AdminLogin from "./pages/admin/Login";
 import AdminDashboard from "./pages/admin/Dashboard";
@@ -28,9 +32,15 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/av-production" element={<AvProduction />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/gallery" element={<Gallery />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/reviews" element={<Reviews />} />
+          <Route path="/health-and-safety" element={<HealthAndSafety />} />
+          {/* Legacy route redirect */}
+          <Route path="/av-production" element={<Services />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
           <Route path="/admin/categories" element={<AdminRoute><AdminCategories /></AdminRoute>} />
