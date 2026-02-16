@@ -20,6 +20,7 @@ export function SiteFooter({ className }: { className?: string }) {
             <nav className="flex flex-col gap-2">
               <Link to="/" className="text-sm text-muted-foreground hover:text-primary transition-colors">Home</Link>
               <Link to="/av-production" className="text-sm text-muted-foreground hover:text-primary transition-colors">Services</Link>
+              <Link to="/gallery" className="text-sm text-muted-foreground hover:text-primary transition-colors">Gallery</Link>
               <Link to="/contact" className="text-sm text-muted-foreground hover:text-primary transition-colors">Get a Quote</Link>
             </nav>
           </div>

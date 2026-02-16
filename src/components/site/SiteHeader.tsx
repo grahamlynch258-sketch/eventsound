@@ -27,6 +27,9 @@ export function SiteHeader({ className }: { className?: string }) {
           <NavLink to="/av-production" className={navLinkClass}>
             Services
           </NavLink>
+          <NavLink to="/gallery" className={navLinkClass}>
+            Gallery
+          </NavLink>
           <NavLink to="/contact" className={navLinkClass}>
             Contact
           </NavLink>
@@ -55,6 +58,9 @@ export function SiteHeader({ className }: { className?: string }) {
             </NavLink>
             <NavLink to="/av-production" className={({ isActive }) => cn("py-3 px-3 rounded-md text-sm font-medium transition-colors", isActive ? "text-primary bg-secondary" : "text-muted-foreground hover:text-foreground hover:bg-secondary/50")} onClick={() => setMobileOpen(false)}>
               Services
+            </NavLink>
+            <NavLink to="/gallery" className={({ isActive }) => cn("py-3 px-3 rounded-md text-sm font-medium transition-colors", isActive ? "text-primary bg-secondary" : "text-muted-foreground hover:text-foreground hover:bg-secondary/50")} onClick={() => setMobileOpen(false)}>
+              Gallery
             </NavLink>
             <NavLink to="/contact" className={({ isActive }) => cn("py-3 px-3 rounded-md text-sm font-medium transition-colors", isActive ? "text-primary bg-secondary" : "text-muted-foreground hover:text-foreground hover:bg-secondary/50")} onClick={() => setMobileOpen(false)}>
               Contact
