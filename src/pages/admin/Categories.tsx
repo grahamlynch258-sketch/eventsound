@@ -39,11 +39,6 @@ export default function AdminCategories() {
     sort_order: 0,
   });
 
-  useEffect(() => {
-    if (!loading && (!user || !isAdmin)) {
-      navigate("/admin/login");
-    }
-  }, [user, isAdmin, loading, navigate]);
 
   if (loading || categoriesLoading) {
     return (

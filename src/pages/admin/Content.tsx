@@ -138,11 +138,6 @@ export default function AdminContent() {
   const [offsetXData, setOffsetXData] = useState<Record<string, Record<string, number>>>({});
   const [offsetYData, setOffsetYData] = useState<Record<string, Record<string, number>>>({});
 
-  useEffect(() => {
-    if (!loading && (!user || !isAdmin)) {
-      navigate("/admin/login");
-    }
-  }, [user, isAdmin, loading, navigate]);
 
   if (loading) {
     return (

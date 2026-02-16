@@ -1,8 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { useAuth } from "@/hooks/useAuth";
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -13,14 +11,8 @@ import { Plus, Trash2, Star, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function AdminTestimonials() {
-  const { user, isAdmin, loading } = useAuth();
-  const navigate = useNavigate();
   const { toast } = useToast();
   const queryClient = useQueryClient();
-
-  useEffect(() => {
-    if (!loading && (!user || !isAdmin)) navigate("/admin/login");
-  }, [user, isAdmin, loading, navigate]);
 
   const { data: testimonials, isLoading } = useQuery({
     queryKey: ["admin-testimonials"],
@@ -32,7 +24,7 @@ export default function AdminTestimonials() {
       if (error) throw error;
       return data;
     },
-    enabled: isAdmin,
+    enabled: true,
   });
 
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -77,7 +69,7 @@ export default function AdminTestimonials() {
     setForm({ client_name: t.client_name, client_role: t.client_role || "", company: t.company || "", quote: t.quote, rating: t.rating, is_featured: t.is_featured, sort_order: t.sort_order });
   };
 
-  if (loading || !isAdmin) return null;
+  
 
   return (
     <div className="min-h-screen bg-background text-foreground">
