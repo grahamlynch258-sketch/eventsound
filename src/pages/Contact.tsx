@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { siteConfig } from "@/config/site";
 import { Mail, Phone, MapPin, Clock, ArrowRight, ArrowLeft, Check, Shield } from "lucide-react";
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -53,15 +54,14 @@ export default function Contact() {
     setIsSubmitting(false);
 
     if (error) {
-      toast({ title: "Something went wrong", description: "Please try again or email us directly.", variant: "destructive" });
+      toast({ title: "Something went wrong", description: `Please try again or email us at ${siteConfig.email}.`, variant: "destructive" });
     } else {
       setSubmitted(true);
-      toast({ title: "Quote request sent!", description: "We'll get back to you within 24 hours." });
+      toast({ title: "Quote request sent!", description: `We'll get back to you ${siteConfig.quoteResponseSLA}.` });
     }
   }
 
   const steps = [
-    // Step 1: Contact info
     <div key="step0" className="grid gap-5">
       <h3 className="font-serif text-xl font-semibold">Your details</h3>
       <div className="grid gap-4 md:grid-cols-2">
@@ -86,7 +86,6 @@ export default function Contact() {
       </div>
     </div>,
 
-    // Step 2: Event details
     <div key="step1" className="grid gap-5">
       <h3 className="font-serif text-xl font-semibold">Event details</h3>
       <div className="grid gap-4 md:grid-cols-2">
@@ -111,7 +110,6 @@ export default function Contact() {
       </div>
     </div>,
 
-    // Step 3: Services + message
     <div key="step2" className="grid gap-5">
       <h3 className="font-serif text-xl font-semibold">What do you need?</h3>
       <div>
@@ -162,7 +160,6 @@ export default function Contact() {
   return (
     <PageShell>
       <main>
-        {/* Hero */}
         <section className="container py-16 md:py-24">
           <div className="max-w-2xl">
             <p className="section-kicker mb-3">Get in Touch</p>
@@ -171,14 +168,13 @@ export default function Contact() {
               Let's plan your event
             </h1>
             <p className="mt-4 text-muted-foreground leading-relaxed">
-              Share your details and we'll come back with a clear recommendation and quote — usually within 24 hours.
+              Share your details and we'll come back with a clear recommendation and quote — {siteConfig.quoteResponseSLA}.
             </p>
           </div>
         </section>
 
         <section className="container pb-20 md:pb-28">
           <div className="grid gap-10 lg:grid-cols-12">
-            {/* Form */}
             <div className="lg:col-span-7">
               {submitted ? (
                 <div className="rounded-xl border border-primary/30 bg-card p-8 md:p-12 text-center">
@@ -186,11 +182,10 @@ export default function Contact() {
                     <Check className="h-8 w-8 text-primary" />
                   </div>
                   <h2 className="font-serif text-2xl font-semibold mb-3">Quote request sent!</h2>
-                  <p className="text-muted-foreground leading-relaxed">We'll review your brief and get back to you within 24 hours. Check your email for confirmation.</p>
+                  <p className="text-muted-foreground leading-relaxed">We'll review your brief and get back to you {siteConfig.quoteResponseSLA}. Check your email for confirmation.</p>
                 </div>
               ) : (
                 <div className="rounded-xl border border-border/50 bg-card p-6 md:p-8">
-                  {/* Stepper */}
                   <div className="flex items-center gap-3 mb-8">
                     {STEP_LABELS.map((label, i) => (
                       <button
@@ -240,7 +235,6 @@ export default function Contact() {
                   </div>
                 </div>
               )}
-              {/* Trust signal below form */}
               {!submitted && (
                 <div className="flex items-center gap-2 mt-4 text-xs text-muted-foreground">
                   <Shield className="h-3.5 w-3.5 text-primary" />
@@ -249,7 +243,6 @@ export default function Contact() {
               )}
             </div>
 
-            {/* Sidebar */}
             <div className="lg:col-span-5 space-y-6">
               <div className="rounded-xl border border-border/50 bg-card p-6">
                 <h3 className="font-serif text-lg font-semibold mb-4">Contact info</h3>
@@ -258,28 +251,28 @@ export default function Contact() {
                     <Mail className="h-5 w-5 text-primary mt-0.5 shrink-0" />
                     <div>
                       <p className="text-sm font-medium">Email</p>
-                      <a href="mailto:hello@stagespark.ie" className="text-sm text-muted-foreground hover:text-primary transition-colors">hello@stagespark.ie</a>
+                      <a href={`mailto:${siteConfig.email}`} className="text-sm text-muted-foreground hover:text-primary transition-colors">{siteConfig.email}</a>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <Phone className="h-5 w-5 text-primary mt-0.5 shrink-0" />
                     <div>
                       <p className="text-sm font-medium">Phone</p>
-                      <a href="tel:+35312345678" className="text-sm text-muted-foreground hover:text-primary transition-colors">+353 1 234 5678</a>
+                      <a href={`tel:${siteConfig.phone}`} className="text-sm text-muted-foreground hover:text-primary transition-colors">{siteConfig.phoneDisplay}</a>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <MapPin className="h-5 w-5 text-primary mt-0.5 shrink-0" />
                     <div>
                       <p className="text-sm font-medium">Location</p>
-                      <p className="text-sm text-muted-foreground">Dublin, Ireland — nationwide service</p>
+                      <p className="text-sm text-muted-foreground">{siteConfig.primaryLocation} — nationwide service</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <Clock className="h-5 w-5 text-primary mt-0.5 shrink-0" />
                     <div>
                       <p className="text-sm font-medium">Response time</p>
-                      <p className="text-sm text-muted-foreground">Within 24 hours</p>
+                      <p className="text-sm text-muted-foreground">Usually {siteConfig.quoteResponseSLA}</p>
                     </div>
                   </div>
                 </div>
