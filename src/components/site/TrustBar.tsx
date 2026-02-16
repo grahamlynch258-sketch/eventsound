@@ -1,4 +1,5 @@
 import { Shield, Clock, Award, Users } from "lucide-react";
+import { motion } from "framer-motion";
 
 const stats = [
   { icon: Award, label: "Years Experience", value: "15+" },
@@ -9,19 +10,26 @@ const stats = [
 
 export function TrustBar() {
   return (
-    <section className="border-y border-border/50 bg-card/50">
-      <div className="container py-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-          {stats.map((stat) => (
-            <div key={stat.label} className="flex items-center gap-3">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+    <section className="border-y border-border/50 bg-card/30">
+      <div className="container py-10 md:py-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          {stats.map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.5 }}
+              className="flex items-center gap-4"
+            >
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 border border-primary/20">
                 <stat.icon className="h-5 w-5 text-primary" />
               </div>
               <div>
-                <p className="text-lg font-semibold text-foreground">{stat.value}</p>
-                <p className="text-xs text-muted-foreground">{stat.label}</p>
+                <p className="text-2xl font-bold text-foreground tracking-tight">{stat.value}</p>
+                <p className="text-xs text-muted-foreground font-medium">{stat.label}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

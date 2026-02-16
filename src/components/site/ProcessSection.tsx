@@ -1,4 +1,5 @@
 import { MessageSquare, FileText, Truck, Headphones } from "lucide-react";
+import { motion } from "framer-motion";
 
 const steps = [
   { icon: MessageSquare, step: "01", title: "Brief", description: "Share your event details — date, venue, audience, and must-haves." },
@@ -9,31 +10,39 @@ const steps = [
 
 export function ProcessSection() {
   return (
-    <section className="bg-card/50 border-y border-border/50">
+    <section className="bg-card/30 border-y border-border/50">
       <div className="container py-20 md:py-28">
-        <div className="text-center max-w-2xl mx-auto mb-14">
-          <p className="text-sm font-semibold uppercase tracking-wider text-primary mb-3">How It Works</p>
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <p className="section-kicker mb-3">How It Works</p>
+          <div className="gold-rule mx-auto mb-5" />
           <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
             From brief to bump-out
           </h2>
-          <p className="mt-4 text-muted-foreground">
+          <p className="mt-4 text-muted-foreground leading-relaxed">
             A streamlined process designed to take the stress out of event production.
           </p>
         </div>
 
         <div className="grid gap-8 md:grid-cols-4">
           {steps.map((s, i) => (
-            <div key={s.step} className="relative text-center md:text-left">
+            <motion.div
+              key={s.step}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.12, duration: 0.5 }}
+              className="relative text-center md:text-left"
+            >
               {i < steps.length - 1 && (
-                <div className="hidden md:block absolute top-7 left-[60%] w-[80%] h-px bg-border/50" />
+                <div className="hidden md:block absolute top-7 left-[60%] w-[80%] h-px bg-gradient-to-r from-primary/30 to-transparent" />
               )}
-              <div className="inline-flex h-14 w-14 items-center justify-center rounded-full border border-primary/30 bg-primary/10 mb-4">
+              <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-primary/20 bg-primary/10 mb-4">
                 <s.icon className="h-6 w-6 text-primary" />
               </div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-1">Step {s.step}</p>
+              <p className="section-kicker mb-1">Step {s.step}</p>
               <h3 className="font-serif text-lg font-semibold mb-2">{s.title}</h3>
-              <p className="text-sm text-muted-foreground">{s.description}</p>
-            </div>
+              <p className="text-sm text-muted-foreground leading-relaxed">{s.description}</p>
+            </motion.div>
           ))}
         </div>
       </div>
