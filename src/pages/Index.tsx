@@ -26,7 +26,8 @@ import fallbackHeroImage from "@/assets/hero-av-production.jpg";
 const FALLBACK_HERO: HomeHeroContent = {
   tagline: siteConfig.tagline,
   headline: "Production by Professionals",
-  subheadline: "From Concept to Delivery, Our Team supports you to help Delivery your Event flawlessly",
+  subheadline:
+    "From Concept to Delivery, Our Team supports you to help Delivery your Event flawlessly",
   cta_primary: "Get a Free Quote",
   cta_secondary: "Explore Services",
 };
@@ -56,7 +57,10 @@ const Index = () => {
         {/* Hero */}
         <section className="relative min-h-[90vh] flex items-center">
           <div className="absolute inset-0">
-            <HeroSlideshow fallbackImage={fallbackHeroImage} singleImage={fallbackHeroImage} />
+            <HeroSlideshow
+              fallbackImage={fallbackHeroImage}
+              singleImage={fallbackHeroImage}
+            />
             <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/60 to-background" />
           </div>
 
@@ -67,7 +71,9 @@ const Index = () => {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="max-w-3xl"
             >
-              <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-4">{heroContent.tagline}</p>
+              <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-4">
+                {heroContent.tagline}
+              </p>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold tracking-tight leading-[1.1]">
                 {heroContent.headline}
@@ -78,7 +84,11 @@ const Index = () => {
               </p>
 
               <div className="mt-10 flex flex-col sm:flex-row gap-3">
-                <Button asChild size="lg" className="font-semibold shadow-gold text-base px-8">
+                <Button
+                  asChild
+                  size="lg"
+                  className="font-semibold shadow-gold text-base px-8"
+                >
                   <Link to="/contact">
                     {heroContent.cta_primary}
                     <ArrowRight className="ml-2 h-4 w-4" />
