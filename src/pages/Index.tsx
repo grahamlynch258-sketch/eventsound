@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { useDynamicText } from "@/hooks/useDynamicContent";
 import { useSiteImage } from "@/hooks/useSiteImage";
+import { HeroSlideshow } from "@/components/site/HeroSlideshow";
 
 import fallbackHeroImage from "@/assets/hero-av-production.jpg";
 
@@ -38,7 +39,7 @@ const Index = () => {
           <main>
             <section className="relative">
               <div className="absolute inset-0">
-                <img src={heroImage} alt="Event stage with lighting and screens" className="h-full w-full object-cover" />
+                <HeroSlideshow fallbackImage={fallbackHeroImage} singleImage={heroImage} />
                 <div className="absolute inset-0" style={{ background: heroGradient }} />
                 <div className="absolute bottom-0 left-0 right-0 h-32" style={{ background: "linear-gradient(to bottom, transparent, hsl(var(--background)))" }} />
               </div>
