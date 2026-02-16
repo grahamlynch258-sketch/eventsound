@@ -45,13 +45,13 @@ const Index = () => {
                 className={`text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold tracking-tight leading-[1.1] ${hero.getAlignClass("headline")}`}
                 style={hero.getStyle("headline")}
               >
-                {hero.getText("headline", "Production that makes your event unforgettable.")}
+                {hero.getText("headline", "Looking for an experienced event production partner?")}
               </h1>
               <p
                 className={`mt-6 max-w-2xl text-base md:text-lg text-muted-foreground leading-relaxed ${hero.getAlignClass("subheadline")}`}
                 style={hero.getStyle("subheadline")}
               >
-                {hero.getText("subheadline", "LED walls, staging, lighting and audio packages for corporate events, conferences and live shows. Delivered, installed and supported by experienced technicians across Ireland.")}
+                {hero.getText("subheadline", "For over two decades, Event Sound has delivered LED walls, staging, lighting and audio for corporate events, conferences and live shows across Ireland. Expert crew, premium gear, flawless execution.")}
               </p>
               <div className="mt-10 flex flex-col sm:flex-row gap-3">
                 <Button asChild size="lg" className="font-semibold shadow-gold text-base px-8">
@@ -60,7 +60,7 @@ const Index = () => {
                   </Link>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="text-base px-8">
-                  <Link to="/av-production">{hero.getText("cta_secondary", "Explore Services")}</Link>
+                  <Link to="/services">{hero.getText("cta_secondary", "Explore Services")}</Link>
                 </Button>
               </div>
             </motion.div>

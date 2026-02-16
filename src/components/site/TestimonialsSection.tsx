@@ -1,13 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { testimonials as fallbackData } from "@/content/testimonials";
 import { Star, Quote } from "lucide-react";
 import { motion } from "framer-motion";
-
-const fallbackTestimonials = [
-  { client_name: "Recent Client", client_role: "Event Director", company: "", quote: "The production quality was outstanding. From load-in to wrap, the crew were professional, responsive, and genuinely invested in making our event a success.", rating: 5 },
-  { client_name: "Corporate Partner", client_role: "Production Manager", company: "", quote: "Reliable, creative, and calm under pressure. They've become our go-to production partner for all major events.", rating: 5 },
-  { client_name: "Conference Organiser", client_role: "Marketing Lead", company: "", quote: "From lighting to live streaming, everything was handled beautifully. Our attendees were genuinely impressed with the production value.", rating: 5 },
-];
 
 export function TestimonialsSection() {
   const { data: dbTestimonials } = useQuery({
@@ -24,7 +19,8 @@ export function TestimonialsSection() {
     },
   });
 
-  const testimonials = dbTestimonials && dbTestimonials.length > 0 ? dbTestimonials : fallbackTestimonials;
+  const featured = fallbackData.filter((t) => t.is_featured);
+  const testimonials = dbTestimonials && dbTestimonials.length > 0 ? dbTestimonials : featured;
 
   return (
     <section className="container py-20 md:py-28">
@@ -55,9 +51,11 @@ export function TestimonialsSection() {
                 ))}
               </div>
               <p className="text-sm font-semibold text-foreground">{t.client_name}</p>
-              <p className="text-xs text-muted-foreground">
-                {t.client_role}{t.company ? `, ${t.company}` : ""}
-              </p>
+              {(t.client_role || t.company) && (
+                <p className="text-xs text-muted-foreground">
+                  {t.client_role}{t.client_role && t.company ? ", " : ""}{t.company}
+                </p>
+              )}
             </div>
           </motion.div>
         ))}

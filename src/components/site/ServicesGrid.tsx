@@ -1,15 +1,7 @@
 import { Link } from "react-router-dom";
-import { Mic, Monitor, Lightbulb, Frame, Clapperboard, Wand2, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
-
-const services = [
-  { icon: Mic, title: "Audio", description: "Crystal-clear PA, wireless mics, foldback — tuned for your venue." },
-  { icon: Monitor, title: "Visuals", description: "LED walls, projection, playback — show-ready and reliable." },
-  { icon: Lightbulb, title: "Lighting", description: "Architectural washes, stage lighting, intelligent fixtures." },
-  { icon: Frame, title: "Staging", description: "Custom staging, risers, set builds — safe and camera-ready." },
-  { icon: Clapperboard, title: "Video Recording", description: "Multi-cam capture, live streaming, post-production." },
-  { icon: Wand2, title: "Draping & Décor", description: "Pipe and drape, star cloth, scenic elements for atmosphere." },
-];
+import { serviceGridItems } from "@/content/services";
 
 export function ServicesGrid() {
   return (
@@ -26,7 +18,7 @@ export function ServicesGrid() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {services.map((service, i) => (
+        {serviceGridItems.map((service, i) => (
           <motion.div
             key={service.title}
             initial={{ opacity: 0, y: 20 }}
@@ -35,7 +27,7 @@ export function ServicesGrid() {
             transition={{ delay: i * 0.08, duration: 0.5 }}
           >
             <Link
-              to="/contact"
+              to={`/services#${service.slug}`}
               className="group relative flex flex-col rounded-xl border border-border/50 bg-card p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 h-full"
             >
               <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary/10 mb-4 transition-colors group-hover:bg-primary/15">
@@ -44,7 +36,7 @@ export function ServicesGrid() {
               <h3 className="font-serif text-lg font-semibold mb-2">{service.title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed flex-1">{service.description}</p>
               <div className="mt-4 flex items-center gap-1 text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                Enquire <ArrowUpRight className="h-3 w-3" />
+                Learn more <ArrowUpRight className="h-3 w-3" />
               </div>
             </Link>
           </motion.div>

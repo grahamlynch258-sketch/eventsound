@@ -6,7 +6,7 @@ export function SiteFooter({ className }: { className?: string }) {
   return (
     <footer className={cn("border-t border-border/50 bg-card", className)}>
       <div className="container py-12 md:py-16">
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-4">
           <div>
             <p className="font-serif text-xl font-semibold tracking-tight">
               Event<span className="text-primary"> Sound</span>
@@ -17,11 +17,21 @@ export function SiteFooter({ className }: { className?: string }) {
           </div>
 
           <div>
-            <h4 className="section-kicker mb-4">Quick Links</h4>
+            <h4 className="section-kicker mb-4">Pages</h4>
             <nav className="flex flex-col gap-2.5">
               <Link to="/" className="text-sm text-muted-foreground hover:text-primary transition-colors">Home</Link>
-              <Link to="/av-production" className="text-sm text-muted-foreground hover:text-primary transition-colors">Services</Link>
+              <Link to="/about" className="text-sm text-muted-foreground hover:text-primary transition-colors">About</Link>
+              <Link to="/services" className="text-sm text-muted-foreground hover:text-primary transition-colors">Services</Link>
               <Link to="/gallery" className="text-sm text-muted-foreground hover:text-primary transition-colors">Gallery</Link>
+            </nav>
+          </div>
+
+          <div>
+            <h4 className="section-kicker mb-4">Support</h4>
+            <nav className="flex flex-col gap-2.5">
+              <Link to="/faq" className="text-sm text-muted-foreground hover:text-primary transition-colors">FAQ</Link>
+              <Link to="/reviews" className="text-sm text-muted-foreground hover:text-primary transition-colors">Reviews</Link>
+              <Link to="/health-and-safety" className="text-sm text-muted-foreground hover:text-primary transition-colors">Health & Safety</Link>
               <Link to="/contact" className="text-sm text-muted-foreground hover:text-primary transition-colors">Get a Quote</Link>
             </nav>
           </div>
@@ -35,6 +45,11 @@ export function SiteFooter({ className }: { className?: string }) {
             <a href={`tel:${siteConfig.phone}`} className="text-sm text-muted-foreground hover:text-primary transition-colors mt-1 block">
               {siteConfig.phoneDisplay}
             </a>
+            {siteConfig.social.linkedin && (
+              <a href={siteConfig.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary transition-colors mt-1 block">
+                LinkedIn
+              </a>
+            )}
           </div>
         </div>
 
