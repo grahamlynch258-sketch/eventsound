@@ -43,6 +43,9 @@ export function HeroSlideshow({ fallbackImage, singleImage, intervalMs = 5000 }:
           key={img.url}
           src={img.url}
           alt={img.alt}
+          loading={i === 0 ? "eager" : "lazy"}
+          decoding="async"
+          fetchPriority={i === 0 ? "high" : undefined}
           className="absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ease-in-out"
           style={{ opacity: i === currentIndex ? 1 : 0 }}
         />

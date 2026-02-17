@@ -29,8 +29,8 @@ export const siteConfig = {
     linkedin: "https://ie.linkedin.com/company/event-sound-pro-audio",
   },
 
-  ogImage: "https://eventsound.lovable.app/og-image.png",
-  canonicalBase: "https://eventsound.lovable.app",
+  ogImage: "https://www.eventsound.ie/og-image.png",
+  canonicalBase: "https://www.eventsound.ie",
 
   serviceTypes: [
     "Live Event Production",
