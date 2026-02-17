@@ -10,63 +10,128 @@ import { Mail, Phone, MapPin, Clock, ArrowRight, ArrowLeft, Check, Shield } from
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+const TURNSTILE_SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY as string | undefined;
 const SERVICE_OPTIONS = ["Audio", "Visuals / LED", "Lighting", "Staging", "Video Recording", "Draping & Décor", "Full Production"];
 const BUDGET_OPTIONS = ["Under €3,000", "€3,000 – €10,000", "€10,000 – €25,000", "€25,000+", "Not sure yet"];
-
 const STEP_LABELS = ["Details", "Event", "Services"];
+
+// Inject Turnstile script once
+function useTurnstile(siteKey: string | undefined, onToken: (token: string) => void) {
+  const widgetRef = React.useRef<HTMLDivElement>(null);
+  const renderedRef = React.useRef(false);
+
+  React.useEffect(() => {
+    if (!siteKey || renderedRef.current || !widgetRef.current) return;
+    const scriptId = "cf-turnstile-script";
+    if (!document.getElementById(scriptId)) {
+      const script = document.createElement("script");
+      script.id = scriptId;
+      script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+    }
+    const tryRender = () => {
+      if (window.turnstile && widgetRef.current && !renderedRef.current) {
+        renderedRef.current = true;
+        window.turnstile.render(widgetRef.current, {
+          sitekey: siteKey,
+          callback: onToken,
+          theme: "dark",
+        });
+      } else {
+        setTimeout(tryRender, 300);
+      }
+    };
+    tryRender();
+  }, [siteKey, onToken]);
+
+  return widgetRef;
+}
+
+// Extend window for Turnstile
+declare global {
+  interface Window {
+    turnstile?: {
+      render: (el: HTMLElement, opts: { sitekey: string; callback: (token: string) => void; theme?: string }) => void;
+    };
+  }
+}
 
 export default function Contact() {
   const { toast } = useToast();
   const [step, setStep] = React.useState(0);
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [submitted, setSubmitted] = React.useState(false);
+  const [turnstileToken, setTurnstileToken] = React.useState("");
   const [form, setForm] = React.useState({
     name: "", email: "", phone: "", company: "",
     event_date: "", event_type: "", venue: "", audience_size: "",
     services: [] as string[], budget_range: "", message: "",
-    // Honeypot field — hidden from real users
-    website: "",
+    website: "", // honeypot
   });
 
-  const update = (field: string, value: string | string[]) => setForm((f) => ({ ...f, [field]: value }));
-  const toggleService = (s: string) => {
+  const turnstileRef = useTurnstile(TURNSTILE_SITE_KEY, setTurnstileToken);
+  const update = (field: string, value: string | string[]) =>
+    setForm((f) => ({ ...f, [field]: value }));
+  const toggleService = (s: string) =>
     setForm((f) => ({
       ...f,
-      services: f.services.includes(s) ? f.services.filter((x) => x !== s) : [...f.services, s],
+      services: f.services.includes(s)
+        ? f.services.filter((x) => x !== s)
+        : [...f.services, s],
     }));
-  };
-
   const canNext = step === 0 ? form.name.trim() && form.email.trim() : true;
 
   async function onSubmit() {
-    // Honeypot check — bots fill hidden fields
+    // Honeypot — bots fill hidden field
     if (form.website) {
       setSubmitted(true);
       toast({ title: "Quote request sent!", description: `We'll get back to you ${siteConfig.quoteResponseSLA}.` });
       return;
     }
 
-    setIsSubmitting(true);
-    const { error } = await supabase.from("quote_submissions").insert({
-      name: form.name.trim(),
-      email: form.email.trim(),
-      phone: form.phone.trim() || null,
-      company: form.company.trim() || null,
-      event_date: form.event_date.trim() || null,
-      event_type: form.event_type.trim() || null,
-      venue: form.venue.trim() || null,
-      audience_size: form.audience_size.trim() || null,
-      services: form.services.length > 0 ? form.services : null,
-      budget_range: form.budget_range || null,
-      message: form.message.trim() || null,
-    });
-    setIsSubmitting(false);
+    // Turnstile check (client-side gate — edge function re-checks server-side)
+    if (TURNSTILE_SITE_KEY && !turnstileToken) {
+      toast({ title: "Please complete the CAPTCHA", variant: "destructive" });
+      return;
+    }
 
-    if (error) {
-      toast({ title: "Something went wrong", description: `Please try again or email us at ${siteConfig.email}.`, variant: "destructive" });
-    } else {
+    setIsSubmitting(true);
+
+    // Use edge function if available (has server-side Turnstile verification)
+    const fnUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-quote`;
+    try {
+      const res = await fetch(fnUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
+        },
+        body: JSON.stringify({ ...form, turnstileToken }),
+      });
+      const json = await res.json();
+      if (!res.ok || json.error) throw new Error(json.error ?? "Submission failed");
       setSubmitted(true);
       toast({ title: "Quote request sent!", description: `We'll get back to you ${siteConfig.quoteResponseSLA}.` });
+    } catch {
+      // Fallback: direct Supabase insert (honeypot already checked above)
+      const { error } = await supabase.from("quote_submissions").insert({
+        name: form.name.trim(), email: form.email.trim(),
+        phone: form.phone.trim() || null, company: form.company.trim() || null,
+        event_date: form.event_date.trim() || null, event_type: form.event_type.trim() || null,
+        venue: form.venue.trim() || null, audience_size: form.audience_size.trim() || null,
+        services: form.services.length > 0 ? form.services : null,
+        budget_range: form.budget_range || null, message: form.message.trim() || null,
+      });
+      if (error) {
+        toast({ title: "Something went wrong", description: `Please try again or email us at ${siteConfig.email}.`, variant: "destructive" });
+      } else {
+        setSubmitted(true);
+        toast({ title: "Quote request sent!", description: `We'll get back to you ${siteConfig.quoteResponseSLA}.` });
+      }
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -96,17 +161,9 @@ export default function Contact() {
       {/* Honeypot — visually hidden, traps bots */}
       <div className="absolute -left-[9999px] -top-[9999px]" aria-hidden="true" tabIndex={-1}>
         <Label htmlFor="website">Website</Label>
-        <Input
-          id="website"
-          name="website"
-          value={form.website}
-          onChange={(e) => update("website", e.target.value)}
-          tabIndex={-1}
-          autoComplete="off"
-        />
+        <Input id="website" name="website" value={form.website} onChange={(e) => update("website", e.target.value)} tabIndex={-1} autoComplete="off" />
       </div>
     </div>,
-
     <div key="step1" className="grid gap-5">
       <h3 className="font-serif text-xl font-semibold">Event details</h3>
       <div className="grid gap-4 md:grid-cols-2">
@@ -130,23 +187,14 @@ export default function Contact() {
         </div>
       </div>
     </div>,
-
     <div key="step2" className="grid gap-5">
       <h3 className="font-serif text-xl font-semibold">What do you need?</h3>
       <div>
         <Label className="mb-3 block">Services required</Label>
         <div className="flex flex-wrap gap-2">
           {SERVICE_OPTIONS.map((s) => (
-            <button
-              key={s}
-              type="button"
-              onClick={() => toggleService(s)}
-              className={`px-3.5 py-2 rounded-lg text-sm border transition-all ${
-                form.services.includes(s)
-                  ? "border-primary bg-primary/10 text-primary shadow-gold"
-                  : "border-border text-muted-foreground hover:border-primary/50"
-              }`}
-            >
+            <button key={s} type="button" onClick={() => toggleService(s)}
+              className={`px-3.5 py-2 rounded-lg text-sm border transition-all ${form.services.includes(s) ? "border-primary bg-primary/10 text-primary shadow-gold" : "border-border text-muted-foreground hover:border-primary/50"}`}>
               {s}
             </button>
           ))}
@@ -156,16 +204,8 @@ export default function Contact() {
         <Label className="mb-3 block">Budget range</Label>
         <div className="flex flex-wrap gap-2">
           {BUDGET_OPTIONS.map((b) => (
-            <button
-              key={b}
-              type="button"
-              onClick={() => update("budget_range", form.budget_range === b ? "" : b)}
-              className={`px-3.5 py-2 rounded-lg text-sm border transition-all ${
-                form.budget_range === b
-                  ? "border-primary bg-primary/10 text-primary shadow-gold"
-                  : "border-border text-muted-foreground hover:border-primary/50"
-              }`}
-            >
+            <button key={b} type="button" onClick={() => update("budget_range", form.budget_range === b ? "" : b)}
+              className={`px-3.5 py-2 rounded-lg text-sm border transition-all ${form.budget_range === b ? "border-primary bg-primary/10 text-primary shadow-gold" : "border-border text-muted-foreground hover:border-primary/50"}`}>
               {b}
             </button>
           ))}
@@ -175,6 +215,12 @@ export default function Contact() {
         <Label htmlFor="message">Anything else?</Label>
         <Textarea id="message" value={form.message} onChange={(e) => update("message", e.target.value)} placeholder="Run sheet, special requirements, questions..." rows={4} />
       </div>
+      {/* Turnstile CAPTCHA widget — only rendered when site key is configured */}
+      {TURNSTILE_SITE_KEY && (
+        <div className="flex justify-start mt-2">
+          <div ref={turnstileRef} />
+        </div>
+      )}
     </div>,
   ];
 
@@ -185,15 +231,12 @@ export default function Contact() {
           <div className="max-w-2xl">
             <p className="section-kicker mb-3">Get in Touch</p>
             <div className="gold-rule mb-5" />
-            <h1 className="text-4xl md:text-5xl font-semibold tracking-tight">
-              Let's plan your event
-            </h1>
+            <h1 className="text-4xl md:text-5xl font-semibold tracking-tight">Let's plan your event</h1>
             <p className="mt-4 text-muted-foreground leading-relaxed">
               Share your details and we'll come back with a clear recommendation and quote — {siteConfig.quoteResponseSLA}.
             </p>
           </div>
         </section>
-
         <section className="container pb-20 md:pb-28">
           <div className="grid gap-10 lg:grid-cols-12">
             <div className="lg:col-span-7 relative">
@@ -209,15 +252,8 @@ export default function Contact() {
                 <div className="rounded-xl border border-border/50 bg-card p-6 md:p-8">
                   <div className="flex items-center gap-3 mb-8">
                     {STEP_LABELS.map((label, i) => (
-                      <button
-                        key={label}
-                        onClick={() => { if (i < step || canNext) setStep(i); }}
-                        className="flex items-center gap-2 group"
-                        type="button"
-                      >
-                        <div className={`flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold transition-colors ${
-                          i <= step ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"
-                        }`}>
+                      <button key={label} onClick={() => { if (i < step || canNext) setStep(i); }} className="flex items-center gap-2 group" type="button">
+                        <div className={`flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold transition-colors ${i <= step ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"}`}>
                           {i < step ? <Check className="h-3.5 w-3.5" /> : i + 1}
                         </div>
                         <span className={`text-sm font-medium hidden sm:inline ${i <= step ? "text-foreground" : "text-muted-foreground"}`}>{label}</span>
@@ -225,19 +261,11 @@ export default function Contact() {
                       </button>
                     ))}
                   </div>
-
                   <AnimatePresence mode="wait">
-                    <motion.div
-                      key={step}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -20 }}
-                      transition={{ duration: 0.2 }}
-                    >
+                    <motion.div key={step} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.2 }}>
                       {steps[step]}
                     </motion.div>
                   </AnimatePresence>
-
                   <div className="flex items-center justify-between mt-8 pt-6 border-t border-border/50">
                     {step > 0 ? (
                       <Button variant="ghost" onClick={() => setStep(step - 1)}>
@@ -263,7 +291,6 @@ export default function Contact() {
                 </div>
               )}
             </div>
-
             <div className="lg:col-span-5 space-y-6">
               <div className="rounded-xl border border-border/50 bg-card p-6">
                 <h3 className="font-serif text-lg font-semibold mb-4">Contact info</h3>
@@ -300,7 +327,6 @@ export default function Contact() {
                   </div>
                 </div>
               </div>
-
               <div className="rounded-xl border border-border/50 bg-card p-6">
                 <h3 className="font-serif text-lg font-semibold mb-3">What happens next?</h3>
                 <ol className="space-y-3 text-sm text-muted-foreground">
