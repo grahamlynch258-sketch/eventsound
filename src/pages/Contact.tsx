@@ -83,57 +83,57 @@ export default function Contact() {
     }));
   const canNext = step === 0 ? form.name.trim() && form.email.trim() : true;
 
-  async function onSubmit() {
-    // Honeypot — bots fill hidden field
-    if (form.website) {
-      setSubmitted(true);
-      toast({ title: "Quote request sent!", description: `We'll get back to you ${siteConfig.quoteResponseSLA}.` });
-      return;
-    }
-
-    // Turnstile check (client-side gate — edge function re-checks server-side)
-    if (TURNSTILE_SITE_KEY && !turnstileToken) {
-      toast({ title: "Please complete the CAPTCHA", variant: "destructive" });
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    // Use edge function if available (has server-side Turnstile verification)
-    const fnUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-quote`;
-    try {
-      const res = await fetch(fnUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
-        },
-        body: JSON.stringify({ ...form, turnstileToken }),
-      });
-      const json = await res.json();
-      if (!res.ok || json.error) throw new Error(json.error ?? "Submission failed");
-      setSubmitted(true);
-      toast({ title: "Quote request sent!", description: `We'll get back to you ${siteConfig.quoteResponseSLA}.` });
-    } catch {
-      // Fallback: direct Supabase insert (honeypot already checked above)
-      const { error } = await supabase.from("quote_submissions").insert({
-        name: form.name.trim(), email: form.email.trim(),
-        phone: form.phone.trim() || null, company: form.company.trim() || null,
-        event_date: form.event_date.trim() || null, event_type: form.event_type.trim() || null,
-        venue: form.venue.trim() || null, audience_size: form.audience_size.trim() || null,
-        services: form.services.length > 0 ? form.services : null,
-        budget_range: form.budget_range || null, message: form.message.trim() || null,
-      });
-      if (error) {
-        toast({ title: "Something went wrong", description: `Please try again or email us at ${siteConfig.email}.`, variant: "destructive" });
-      } else {
-        setSubmitted(true);
-        toast({ title: "Quote request sent!", description: `We'll get back to you ${siteConfig.quoteResponseSLA}.` });
-      }
-    } finally {
-      setIsSubmitting(false);
-    }
+ async function onSubmit() {
+  // Honeypot -- bots fill hidden field
+  if (form.website) {
+    setSubmitted(true);
+    toast({ title: "Quote request sent!", description: `We'll get back to you ${siteConfig.quoteResponseSLA}.` });
+    return;
   }
+
+  // Turnstile check (client-side gate — edge function re-checks server-side)
+  if (TURNSTILE_SITE_KEY && !turnstileToken) {
+    toast({ title: "Please complete the CAPTCHA", variant: "destructive" });
+    return;
+  }
+
+  setIsSubmitting(true);
+
+  // Call Netlify Function instead of Supabase Edge Function
+  const fnUrl = `/.netlify/functions/contact`;
+  try {
+    const res = await fetch(fnUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ 
+        ...form, 
+        turnstileToken,
+      }),
+    });
+    
+    const data = await res.json();
+    
+    if (!res.ok || !data.ok) {
+      throw new Error(data.error || "Failed to send quote request");
+    }
+    
+    // Success
+    setSubmitted(true);
+    toast({ title: "Quote request sent!", description: `We'll get back to you ${siteConfig.quoteResponseSLA}.` });
+    
+  } catch (error: any) {
+    console.error("Submit error:", error);
+    toast({ 
+      title: "Something went wrong", 
+      description: `Please try again or email us at ${siteConfig.email}.`, 
+      variant: "destructive" 
+    });
+  } finally {
+    setIsSubmitting(false);
+  }
+}
 
   const steps = [
     <div key="step0" className="grid gap-5">
