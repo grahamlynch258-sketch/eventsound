@@ -18,13 +18,14 @@ import {
   type HomeHeroContent,
   type HomeFeaturesContent,
   type HomeCta2Content,
-} from "@/lib/content/homeContentMapper";
+} from "@/lib/contentMapper";
+import { CMS_PAGES, CMS_SECTIONS } from "@/lib/cmsKeys";
 import fallbackHeroImage from "@/assets/hero-av-production.jpg";
 
 const FALLBACK_HERO: HomeHeroContent = {
   tagline: siteConfig.tagline,
   headline: "Production by Professionals",
-  subheadline: "From Concept to Delivery, Our Team supports you to help Delivery your Event flawlessly",
+  subheadline: "From concept to delivery, our team supports you to deliver your event flawlessly.",
   cta_primary: "Get a Free Quote",
   cta_secondary: "Explore Services",
 };
@@ -44,13 +45,13 @@ const FALLBACK_CTA2: HomeCta2Content = {
   primaryCtaLabel: "Get a Free Quote",
   secondaryCtaLabel: "View Our Services",
   primaryHref: "/contact",
-  secondaryHref: "/av-production",
+  secondaryHref: "/services",
 };
 
 const Index = () => {
-  const { data: heroData } = useSiteContent("home", "hero");
-  const { data: featuresData } = useSiteContent("home", "features");
-  const { data: cta2Data } = useSiteContent("home", "cta2");
+  const { data: heroData } = useSiteContent(CMS_PAGES.home, CMS_SECTIONS.home.hero);
+  const { data: featuresData } = useSiteContent(CMS_PAGES.home, CMS_SECTIONS.home.features);
+  const { data: cta2Data } = useSiteContent(CMS_PAGES.home, CMS_SECTIONS.home.cta2);
 
   const heroContent = mapHeroContent(heroData, FALLBACK_HERO);
   const featuresContent = mapFeaturesContent(featuresData, FALLBACK_FEATURES);
