@@ -1,53 +1,116 @@
-/* Marquee components */
-.marquee-track {
-  @apply flex gap-3 w-max;
-  animation: marquee-scroll linear infinite;
-}
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-.marquee-track:hover,
-.marquee-track:focus-within {
-  animation-play-state: paused;
-}
+@layer base {
+  :root {
+    /* Dark cinematic palette — charcoal base, warm gold accent */
+    --background: 220 20% 10%;
+    --foreground: 40 10% 92%;
 
-.marquee-pill {
-  @apply inline-flex items-center px-4 py-2 rounded-full border border-border/50 bg-card/50 text-sm font-medium text-foreground transition-all duration-200;
-  @apply hover:border-primary/30 hover:bg-card hover:shadow-sm focus-visible:border-primary/50 focus-visible:bg-card focus-visible:shadow-sm;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
+    --card: 220 18% 14%;
+    --card-foreground: 40 10% 92%;
 
-.marquee-fade-left,
-.marquee-fade-right {
-  @apply absolute top-0 bottom-0 w-16 sm:w-24 pointer-events-none z-10;
-}
+    --popover: 220 18% 14%;
+    --popover-foreground: 40 10% 92%;
 
-.marquee-fade-left {
-  @apply left-0;
-  background: linear-gradient(to right, hsl(var(--background)), transparent);
-}
+    --primary: 42 78% 55%;
+    --primary-foreground: 220 20% 10%;
 
-.marquee-fade-right {
-  @apply right-0;
-  background: linear-gradient(to left, hsl(var(--background)), transparent);
-}
+    --secondary: 220 14% 22%;
+    --secondary-foreground: 40 10% 92%;
 
-/* Reduced motion support - disable animation and enable horizontal scroll */
-@media (prefers-reduced-motion: reduce) {
-  .marquee-track {
-    animation: none !important;
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
+    --muted: 220 12% 28%;
+    --muted-foreground: 220 10% 62%;
+
+    --accent: 42 78% 55%;
+    --accent-foreground: 220 20% 10%;
+
+    --destructive: 0 72% 50%;
+    --destructive-foreground: 0 85% 97%;
+
+    --border: 220 12% 22%;
+    --input: 220 12% 22%;
+    --ring: 42 78% 55%;
+
+    --radius: 0.5rem;
+
+    /* Extended palette */
+    --primary-glow: 42 78% 65%;
+    --surface: 220 18% 12%;
+    --surface-elevated: 220 16% 18%;
+
+    --sidebar-background: 220 20% 8%;
+    --sidebar-foreground: 40 10% 92%;
+    --sidebar-primary: 42 78% 55%;
+    --sidebar-primary-foreground: 220 20% 10%;
+    --sidebar-accent: 220 14% 22%;
+    --sidebar-accent-foreground: 40 10% 92%;
+    --sidebar-border: 220 12% 22%;
+    --sidebar-ring: 42 78% 55%;
+
+    --chart-1: 42 78% 55%;
+    --chart-2: 200 60% 50%;
+    --chart-3: 220 10% 62%;
+    --chart-4: 220 14% 40%;
+    --chart-5: 0 72% 50%;
+
+    --sidebar: 220 20% 8%;
+
+    --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+    --font-serif: 'Playfair Display', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+    --font-mono: 'Space Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+
+    --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.1);
+    --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.15);
+    --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.2), 0 1px 2px -1px hsl(0 0% 0% / 0.15);
+    --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.2), 0 1px 2px -1px hsl(0 0% 0% / 0.15);
+    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.2), 0 2px 4px -2px hsl(0 0% 0% / 0.15);
+    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.2), 0 4px 6px -4px hsl(0 0% 0% / 0.15);
+    --shadow-xl: 0 20px 25px -5px hsl(0 0% 0% / 0.2), 0 8px 10px -6px hsl(0 0% 0% / 0.15);
+    --shadow-2xl: 0 25px 50px -12px hsl(0 0% 0% / 0.4);
+    --shadow-gold: 0 4px 20px -4px hsl(42 78% 55% / 0.2);
+
+    --tracking-normal: 0em;
+    --spacing: 0.25rem;
   }
 }
 
-/* Keyframes for marquee scroll */
-@keyframes marquee-scroll {
-  0% {
-    transform: translateX(0);
+@layer base {
+  * {
+    @apply border-border;
   }
-  100% {
-    transform: translateX(-33.333%);
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-serif);
+  }
+
+  /* Better focus styles for accessibility */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-ring;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Section label — reusable kicker style */
+  .section-kicker {
+    @apply text-xs font-semibold uppercase tracking-[0.2em] text-primary;
+  }
+
+  /* Gold shimmer line */
+  .gold-rule {
+    @apply h-px w-12 bg-gradient-to-r from-primary/0 via-primary to-primary/0;
   }
 }
