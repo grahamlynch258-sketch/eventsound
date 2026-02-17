@@ -15,10 +15,11 @@ export function CategoryCard({ title, imageSrc, to, className }: CategoryCardPro
     <Link to={to} className={cn("group block", className)}>
       <Card className="overflow-hidden rounded-xl border-border/50">
         <div className="relative aspect-[4/3]">
-          <img
+         <img
             src={imageSrc}
             alt={`${title} category`}
             loading="lazy"
+            decoding="async"
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />

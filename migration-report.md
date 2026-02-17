@@ -1,4 +1,4 @@
-# Migration Report: eventsound.ie → eventsound.lovable.app
+# Migration Report: eventsound.ie → www.eventsound.ie
 
 ## URL Mapping
 

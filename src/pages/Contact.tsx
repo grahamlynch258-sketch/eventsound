@@ -24,6 +24,8 @@ export default function Contact() {
     name: "", email: "", phone: "", company: "",
     event_date: "", event_type: "", venue: "", audience_size: "",
     services: [] as string[], budget_range: "", message: "",
+    // Honeypot field — hidden from real users
+    website: "",
   });
 
   const update = (field: string, value: string | string[]) => setForm((f) => ({ ...f, [field]: value }));
@@ -37,6 +39,13 @@ export default function Contact() {
   const canNext = step === 0 ? form.name.trim() && form.email.trim() : true;
 
   async function onSubmit() {
+    // Honeypot check — bots fill hidden fields
+    if (form.website) {
+      setSubmitted(true);
+      toast({ title: "Quote request sent!", description: `We'll get back to you ${siteConfig.quoteResponseSLA}.` });
+      return;
+    }
+
     setIsSubmitting(true);
     const { error } = await supabase.from("quote_submissions").insert({
       name: form.name.trim(),
@@ -83,6 +92,18 @@ export default function Contact() {
           <Label htmlFor="company">Company</Label>
           <Input id="company" value={form.company} onChange={(e) => update("company", e.target.value)} placeholder="Optional" />
         </div>
+      </div>
+      {/* Honeypot — visually hidden, traps bots */}
+      <div className="absolute -left-[9999px] -top-[9999px]" aria-hidden="true" tabIndex={-1}>
+        <Label htmlFor="website">Website</Label>
+        <Input
+          id="website"
+          name="website"
+          value={form.website}
+          onChange={(e) => update("website", e.target.value)}
+          tabIndex={-1}
+          autoComplete="off"
+        />
       </div>
     </div>,
 
@@ -175,7 +196,7 @@ export default function Contact() {
 
         <section className="container pb-20 md:pb-28">
           <div className="grid gap-10 lg:grid-cols-12">
-            <div className="lg:col-span-7">
+            <div className="lg:col-span-7 relative">
               {submitted ? (
                 <div className="rounded-xl border border-primary/30 bg-card p-8 md:p-12 text-center">
                   <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 mb-6">
