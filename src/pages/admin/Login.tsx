@@ -6,13 +6,15 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
 import { useAuth } from "@/hooks/useAuth";
+import { Lock } from "lucide-react";
+
+const ALLOW_SIGNUP = import.meta.env.VITE_ALLOW_ADMIN_SIGNUP === "true";
 
 export default function AdminLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [isSignUp, setIsSignUp] = useState(false);
-  const { signIn, signUp } = useAuth();
+  const { signIn } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -20,9 +22,7 @@ export default function AdminLogin() {
     e.preventDefault();
     setIsLoading(true);
 
-    const { error } = isSignUp
-      ? await signUp(email, password)
-      : await signIn(email, password);
+    const { error } = await signIn(email, password);
 
     if (error) {
       toast({
@@ -31,15 +31,8 @@ export default function AdminLogin() {
         variant: "destructive",
       });
     } else {
-      toast({
-        title: isSignUp ? "Account created" : "Signed in",
-        description: isSignUp
-          ? "Your account has been created. Contact an admin to get access."
-          : "Welcome back!",
-      });
-      if (!isSignUp) {
-        navigate("/admin");
-      }
+      toast({ title: "Signed in", description: "Welcome back!" });
+      navigate("/admin");
     }
 
     setIsLoading(false);
@@ -49,11 +42,9 @@ export default function AdminLogin() {
     <div className="flex min-h-screen items-center justify-center bg-background p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
-          <CardTitle>{isSignUp ? "Create Admin Account" : "Admin Login"}</CardTitle>
+          <CardTitle>Admin Login</CardTitle>
           <CardDescription>
-            {isSignUp
-              ? "Create an account to manage site content"
-              : "Sign in to manage site content"}
+            Sign in to manage site content
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -82,18 +73,15 @@ export default function AdminLogin() {
               />
             </div>
             <Button type="submit" disabled={isLoading}>
-              {isLoading ? "Loading..." : isSignUp ? "Create Account" : "Sign In"}
+              {isLoading ? "Signing in…" : "Sign In"}
             </Button>
           </form>
-          <div className="mt-4 text-center text-sm text-muted-foreground">
-            <button
-              type="button"
-              onClick={() => setIsSignUp(!isSignUp)}
-              className="underline underline-offset-4 hover:text-foreground"
-            >
-              {isSignUp ? "Already have an account? Sign in" : "Need an account? Sign up"}
-            </button>
-          </div>
+          {!ALLOW_SIGNUP && (
+            <div className="mt-6 flex items-center gap-2 justify-center text-sm text-muted-foreground">
+              <Lock className="h-3.5 w-3.5" />
+              <span>Admin access is by invitation only.</span>
+            </div>
+          )}
         </CardContent>
       </Card>
     </div>
