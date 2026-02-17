@@ -2,12 +2,8 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { serviceGridItems } from "@/content/services";
-import { WhatWeDoMarquee } from "./WhatWeDoMarquee";
 
 export function ServicesGrid() {
-  // Extract marquee items from serviceGridItems (title + slug only)
-  const marqueeItems = serviceGridItems.map(({ title, slug }) => ({ title, slug }));
-
   return (
     <section className="container py-20 md:py-28">
       <div className="text-center max-w-2xl mx-auto mb-14">
@@ -20,9 +16,6 @@ export function ServicesGrid() {
           Everything you need for corporate events, conferences, galas, and live shows — delivered, installed, and operated by experienced crew.
         </p>
       </div>
-
-      {/* Marquee banner */}
-      <WhatWeDoMarquee items={marqueeItems} durationSec={30} />
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {serviceGridItems.map((service, i) => (
