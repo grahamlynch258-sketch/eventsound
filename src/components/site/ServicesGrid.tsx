@@ -6,6 +6,7 @@ import { WhatWeDoMarquee } from "./WhatWeDoMarquee";
 
 const marqueeItems = serviceGridItems.map((s) => ({
   label: s.title,
+  icon: s.icon,
   href: `/services#${s.slug}`,
 }));
 
