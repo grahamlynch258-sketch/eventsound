@@ -15,7 +15,7 @@ interface WhatWeDoMarqueeProps {
   intervalSec?: number;
 }
 
-export function WhatWeDoMarquee({ items, intervalSec = 5 }: WhatWeDoMarqueeProps) {
+export function WhatWeDoMarquee({ items, intervalSec = 2 }: WhatWeDoMarqueeProps) {
   const visibleCount = 4;
   const [startIndex, setStartIndex] = useState(0);
   const [paused, setPaused] = useState(false);
