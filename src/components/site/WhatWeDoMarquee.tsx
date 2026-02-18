@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { useState, useEffect, useCallback, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useCallback } from "react";
 
 interface MarqueeItem {
   label: string;
@@ -16,43 +15,119 @@ interface WhatWeDoMarqueeProps {
   intervalSec?: number;
 }
 
-export function WhatWeDoMarquee({ items, intervalSec = 4 }: WhatWeDoMarqueeProps) {
+export function WhatWeDoMarquee({ items, intervalSec = 5 }: WhatWeDoMarqueeProps) {
   const visibleCount = 4;
   const [startIndex, setStartIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [animating, setAnimating] = useState(false);
+  const [direction, setDirection] = useState<"left" | "right">("left");
+  const [slideOffset, setSlideOffset] = useState(0);
 
-  const advance = useCallback(() => {
-    setStartIndex((prev) => (prev + 1) % items.length);
-  }, [items.length]);
+  const getItems = (start: number, count: number) => {
+    const result: { item: MarqueeItem; key: number }[] = [];
+    for (let i = 0; i < count; i++) {
+      const idx = ((start + i) % items.length + items.length) % items.length;
+      result.push({ item: items[idx], key: start + i });
+    }
+    return result;
+  };
+
+  const navigate = useCallback(
+    (dir: "left" | "right") => {
+      if (animating) return;
+      setDirection(dir);
+      setAnimating(true);
+      setSlideOffset(dir === "left" ? -(100 / visibleCount) : (100 / visibleCount));
+    },
+    [animating, visibleCount]
+  );
+
+  const handleTransitionEnd = useCallback(() => {
+    setStartIndex((prev) => {
+      if (direction === "left") {
+        return (prev + 1 + items.length) % items.length;
+      } else {
+        return (prev - 1 + items.length) % items.length;
+      }
+    });
+    setSlideOffset(0);
+    setAnimating(false);
+  }, [direction, items.length]);
 
   useEffect(() => {
     if (paused) return;
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReduced) return;
-    const id = setInterval(advance, intervalSec * 1000);
+    const id = setInterval(() => navigate("left"), intervalSec * 1000);
     return () => clearInterval(id);
-  }, [paused, advance, intervalSec]);
+  }, [paused, navigate, intervalSec]);
 
-  const visible: { item: MarqueeItem; originalIndex: number }[] = [];
-  for (let i = 0; i < visibleCount; i++) {
-    const idx = (startIndex + i) % items.length;
-    visible.push({ item: items[idx], originalIndex: idx });
-  }
+  const displayStart =
+    direction === "right" && animating
+      ? (startIndex - 1 + items.length) % items.length
+      : startIndex;
+  const displayItems = getItems(displayStart, visibleCount + 1);
+  const cardWidthPct = 100 / visibleCount;
 
   return (
     <div
-      className="relative py-6 overflow-hidden"
+      className="relative py-6"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocus={() => setPaused(true)}
       onBlur={() => setPaused(false)}
     >
-      <div className="flex gap-4">
-        <AnimatePresence initial={false} mode="popLayout">
-          {visible.map(({ item, originalIndex }) => (
-            <ServiceCard key={originalIndex} item={item} />
+      <div className="overflow-hidden">
+        <div
+          className="flex"
+          style={{
+            transform: `translateX(${slideOffset}%)`,
+            transition: animating ? "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)" : "none",
+            willChange: "transform",
+          }}
+          onTransitionEnd={handleTransitionEnd}
+        >
+          {displayItems.map(({ item, key }) => (
+            <div
+              key={key}
+              className="flex-shrink-0 px-2"
+              style={{ width: `${cardWidthPct}%` }}
+            >
+              <ServiceCard item={item} />
+            </div>
           ))}
-        </AnimatePresence>
+        </div>
+      </div>
+
+      <button
+        onClick={() => navigate("right")}
+        disabled={animating}
+        aria-label="Previous"
+        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-card border border-border/50 shadow-md text-foreground hover:bg-primary hover:text-primary-foreground transition-colors disabled:opacity-40"
+      >
+        <ChevronLeft className="h-5 w-5" />
+      </button>
+
+      <button
+        onClick={() => navigate("left")}
+        disabled={animating}
+        aria-label="Next"
+        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-card border border-border/50 shadow-md text-foreground hover:bg-primary hover:text-primary-foreground transition-colors disabled:opacity-40"
+      >
+        <ChevronRight className="h-5 w-5" />
+      </button>
+
+      <div className="flex justify-center gap-1.5 mt-5">
+        {items.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => { if (!animating) setStartIndex(i); }}
+            aria-label={`Go to slide ${i + 1}`}
+            className={`h-1.5 rounded-full transition-all duration-300 ${
+              i === startIndex ? "w-6 bg-primary" : "w-1.5 bg-border hover:bg-primary/50"
+            }`}
+          />
+        ))}
       </div>
     </div>
   );
@@ -60,15 +135,9 @@ export function WhatWeDoMarquee({ items, intervalSec = 4 }: WhatWeDoMarqueeProps
 
 function ServiceCard({ item }: { item: MarqueeItem }) {
   const Icon = item.icon;
-
   const card = (
-    <motion.div
-      layout
-      initial={{ opacity: 0, x: 300, scale: 0.95 }}
-      animate={{ opacity: 1, x: 0, scale: 1 }}
-      exit={{ opacity: 0, x: -300, scale: 0.95 }}
-      transition={{ type: "spring", stiffness: 200, damping: 28, mass: 1 }}
-      className="group flex flex-col rounded-xl border border-border/50 bg-card p-7 transition-colors duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 h-full w-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+    <div
+      className="group flex flex-col rounded-xl border border-border/50 bg-card p-7 transition-colors duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 h-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
       tabIndex={0}
     >
       {Icon && (
@@ -83,16 +152,14 @@ function ServiceCard({ item }: { item: MarqueeItem }) {
       <div className="mt-5 flex items-center gap-1 text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">
         Learn more <ArrowUpRight className="h-3 w-3" />
       </div>
-    </motion.div>
+    </div>
   );
 
   return item.href ? (
-    <Link to={item.href} className="flex-1 min-w-0">
+    <Link to={item.href} className="block h-full">
       {card}
     </Link>
   ) : (
-    <div className="flex-1 min-w-0">
-      {card}
-    </div>
+    <div className="h-full">{card}</div>
   );
 }
