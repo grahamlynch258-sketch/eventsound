@@ -24,7 +24,7 @@ export function ServicesGrid() {
         </p>
       </div>
 
-      <WhatWeDoMarquee items={marqueeItems} durationSec={30} />
+      <WhatWeDoMarquee items={marqueeItems} />
     </section>
   );
 }
