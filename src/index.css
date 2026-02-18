@@ -113,4 +113,28 @@
   .gold-rule {
     @apply h-px w-12 bg-gradient-to-r from-primary/0 via-primary to-primary/0;
   }
+
+  /* Marquee */
+  @keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-33.333%); }
+  }
+
+  .marquee-track {
+    animation: marquee-scroll var(--marquee-duration, 20s) linear infinite;
+  }
+
+  .marquee-container:hover .marquee-track,
+  .marquee-container:focus-within .marquee-track {
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+    }
+    .marquee-container {
+      overflow-x: auto;
+    }
+  }
 }
