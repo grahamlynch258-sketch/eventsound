@@ -18,393 +18,391 @@ const STEP_LABELS = ["Details", "Event", "Services"];
 
 // Inject Turnstile script once, then render widget via callback ref
 function useTurnstile(siteKey: string | undefined, onToken: (token: string) => void) {
-    const renderedRef = React.useRef(false);
-    const onTokenRef = React.useRef(onToken);
-    onTokenRef.current = onToken;
+  const renderedRef = React.useRef(false);
+  const onTokenRef = React.useRef(onToken);
+  onTokenRef.current = onToken;
 
   // Ensure the CF script is loaded once
   React.useEffect(() => {
-        if (!siteKey) return;
-        const scriptId = "cf-turnstile-script";
-        if (!document.getElementById(scriptId)) {
-                const script = document.createElement("script");
-                script.id = scriptId;
-                script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
-                script.async = true;
-                script.defer = true;
-                document.head.appendChild(script);
-        }
+    if (!siteKey) return;
+    const scriptId = "cf-turnstile-script";
+    if (!document.getElementById(scriptId)) {
+      const script = document.createElement("script");
+      script.id = scriptId;
+      script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+    }
   }, [siteKey]);
 
   // Callback ref — fires whenever the div mounts/unmounts
   const callbackRef = React.useCallback(
-        (node: HTMLDivElement | null) => {
-                if (!node || !siteKey || renderedRef.current) return;
+    (node: HTMLDivElement | null) => {
+      if (!node || !siteKey || renderedRef.current) return;
 
-          const tryRender = () => {
-                    if (window.turnstile) {
-                                renderedRef.current = true;
-                                window.turnstile.render(node, {
-                                              sitekey: siteKey,
-                                              callback: (token: string) => onTokenRef.current(token),
-                                              theme: "dark",
-                                });
-                    } else {
-                                setTimeout(tryRender, 300);
-                    }
-          };
-                tryRender();
-        },
-        [siteKey]
-      );
+      const tryRender = () => {
+        if (window.turnstile) {
+          renderedRef.current = true;
+          window.turnstile.render(node, {
+            sitekey: siteKey,
+            callback: (token: string) => onTokenRef.current(token),
+            theme: "dark",
+          });
+        } else {
+          setTimeout(tryRender, 300);
+        }
+      };
+      tryRender();
+    },
+    [siteKey]
+  );
 
   return callbackRef;
 }
 
 // Extend window for Turnstile
 declare global {
-    interface Window {
-          turnstile?: {
-                  render: (el: HTMLElement, opts: { sitekey: string; callback: (token: string) => void; theme?: string }) => void;
-          };
-    }
+  interface Window {
+    turnstile?: {
+      render: (el: HTMLElement, opts: { sitekey: string; callback: (token: string) => void; theme?: string }) => void;
+    };
+  }
 }
 
 export default function Contact() {
-    const { toast } = useToast();
-    const [step, setStep] = React.useState(0);
-    const [isSubmitting, setIsSubmitting] = React.useState(false);
-    const [submitted, setSubmitted] = React.useState(false);
-    const [turnstileToken, setTurnstileToken] = React.useState("");
-    const [form, setForm] = React.useState({
-          name: "",
-          email: "",
-          phone: "",
-          company: "",
-          event_date: "",
-          event_type: "",
-          venue: "",
-          audience_size: "",
-          services: [] as string[],
-          budget_range: "",
-          message: "",
-          website: "", // honeypot
-    });
+  const { toast } = useToast();
+  const [step, setStep] = React.useState(0);
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [submitted, setSubmitted] = React.useState(false);
+  const [turnstileToken, setTurnstileToken] = React.useState("");
+  const [form, setForm] = React.useState({
+    name: "",
+    email: "",
+    phone: "",
+    company: "",
+    event_date: "",
+    event_type: "",
+    venue: "",
+    audience_size: "",
+    services: [] as string[],
+    budget_range: "",
+    message: "",
+    website: "", // honeypot
+  });
 
   const turnstileRef = useTurnstile(TURNSTILE_SITE_KEY, setTurnstileToken);
 
   const update = (field: string, value: string | string[]) => setForm((f) => ({ ...f, [field]: value }));
-    const toggleService = (s: string) =>
-          setForm((f) => ({
-                  ...f,
-                  services: f.services.includes(s) ? f.services.filter((x) => x !== s) : [...f.services, s],
-          }));
+  const toggleService = (s: string) =>
+    setForm((f) => ({
+      ...f,
+      services: f.services.includes(s) ? f.services.filter((x) => x !== s) : [...f.services, s],
+    }));
 
   const canNext = step === 0 ? form.name.trim() && form.email.trim() : true;
 
   async function onSubmit() {
-        // Honeypot -- bots fill hidden field
-      if (form.website) {
-              setSubmitted(true);
-              toast({ title: "Quote request sent!", description: `We'll get back to you ${siteConfig.quoteResponseSLA}.` });
-              return;
+    // Honeypot -- bots fill hidden field
+    if (form.website) {
+      setSubmitted(true);
+      toast({ title: "Quote request sent!", description: `We'll get back to you ${siteConfig.quoteResponseSLA}.` });
+      return;
+    }
+
+    // Turnstile check (client-side gate — edge function re-checks server-side)
+    if (TURNSTILE_SITE_KEY && !turnstileToken) {
+      toast({ title: "Please complete the CAPTCHA", variant: "destructive" });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    // Call Netlify Function instead of Supabase Edge Function
+    const fnUrl = `/.netlify/functions/contact`;
+    try {
+      const res = await fetch(fnUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...form,
+          turnstileToken,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data.ok) {
+        throw new Error(data.error || "Failed to send quote request");
       }
 
-      // Turnstile check (client-side gate — edge function re-checks server-side)
-      if (TURNSTILE_SITE_KEY && !turnstileToken) {
-              toast({ title: "Please complete the CAPTCHA", variant: "destructive" });
-              return;
-      }
-
-      setIsSubmitting(true);
-
-      // Call Netlify Function instead of Supabase Edge Function
-      const fnUrl = `/.netlify/functions/contact`;
-        try {
-                const res = await fetch(fnUrl, {
-                          method: "POST",
-                          headers: {
-                                      "Content-Type": "application/json",
-                          },
-                          body: JSON.stringify({
-                                      ...form,
-                                      turnstileToken,
-                          }),
-                });
-
-          const data = await res.json();
-
-          if (!res.ok || !data.ok) {
-                    throw new Error(data.error || "Failed to send quote request");
-          }
-
-          // Success
-          setSubmitted(true);
-                toast({ title: "Quote request sent!", description: `We'll get back to you ${siteConfig.quoteResponseSLA}.` });
-        } catch (error: any) {
-                console.error("Submit error:", error);
-                toast({
-                          title: "Something went wrong",
-                          description: `Please try again or email us at ${siteConfig.email}.`,
-                          variant: "destructive"
-                });
-        } finally {
-                setIsSubmitting(false);
-        }
+      // Success
+      setSubmitted(true);
+      toast({ title: "Quote request sent!", description: `We'll get back to you ${siteConfig.quoteResponseSLA}.` });
+    } catch (error: any) {
+      console.error("Submit error:", error);
+      toast({
+        title: "Something went wrong",
+        description: `Please try again or email us at ${siteConfig.email}.`,
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   const steps = [
-        <div key="step0" className="grid gap-5">
-              <h3 className="font-serif text-xl font-semibold">Your details</h3>h3>
-              <div className="grid gap-4 md:grid-cols-2">
-                      <div className="grid gap-2">
-                                <Label htmlFor="name">Name *</Label>Label>
-                                <Input id="name" value={form.name} onChange={(e) => update("name", e.target.value)} placeholder="Your name" required />
-                      </div>div>
-                      <div className="grid gap-2">
-                                <Label htmlFor="email">Email *</Label>Label>
-                                <Input id="email" type="email" value={form.email} onChange={(e) => update("email", e.target.value)} placeholder="you@company.com" required />
-                      </div>div>
-              </div>div>
-              <div className="grid gap-4 md:grid-cols-2">
-                      <div className="grid gap-2">
-                                <Label htmlFor="phone">Phone</Label>Label>
-                                <Input id="phone" value={form.phone} onChange={(e) => update("phone", e.target.value)} placeholder="Optional" />
-                      </div>div>
-                      <div className="grid gap-2">
-                                <Label htmlFor="company">Company</Label>Label>
-                                <Input id="company" value={form.company} onChange={(e) => update("company", e.target.value)} placeholder="Optional" />
-                      </div>div>
-              </div>div>
-          {/* Honeypot — visually hidden, traps bots */}
-              <div className="absolute -left-[9999px] -top-[9999px]" aria-hidden="true" tabIndex={-1}>
-                      <Label htmlFor="website">Website</Label>Label>
-                      <Input
-                                  id="website"
-                                  name="website"
-                                  value={form.website}
-                                  onChange={(e) => update("website", e.target.value)}
-                                  tabIndex={-1}
-                                  autoComplete="off"
-                                />
-              </div>div>
-        </div>div>,
-    
-        <div key="step1" className="grid gap-5">
-              <h3 className="font-serif text-xl font-semibold">Event details</h3>h3>
-              <div className="grid gap-4 md:grid-cols-2">
-                      <div className="grid gap-2">
-                                <Label htmlFor="event_date">Event date</Label>Label>
-                                <Input id="event_date" value={form.event_date} onChange={(e) => update("event_date", e.target.value)} placeholder="e.g. 12 Mar 2026" />
-                      </div>div>
-                      <div className="grid gap-2">
-                                <Label htmlFor="event_type">Event type</Label>Label>
-                                <Input id="event_type" value={form.event_type} onChange={(e) => update("event_type", e.target.value)} placeholder="Conference, gala, launch..." />
-                      </div>div>
-              </div>div>
-              <div className="grid gap-4 md:grid-cols-2">
-                      <div className="grid gap-2">
-                                <Label htmlFor="venue">Venue</Label>Label>
-                                <Input id="venue" value={form.venue} onChange={(e) => update("venue", e.target.value)} placeholder="Venue name or location" />
-                      </div>div>
-                      <div className="grid gap-2">
-                                <Label htmlFor="audience_size">Audience size</Label>Label>
-                                <Input id="audience_size" value={form.audience_size} onChange={(e) => update("audience_size", e.target.value)} placeholder="e.g. 200" />
-                      </div>div>
-              </div>div>
-        </div>div>,
-    
-        <div key="step2" className="grid gap-5">
-              <h3 className="font-serif text-xl font-semibold">What do you need?</h3>h3>
-              <div>
-                      <Label className="mb-3 block">Services required</Label>Label>
-                      <div className="flex flex-wrap gap-2">
-                        {SERVICE_OPTIONS.map((s) => (
+    <div key="step0" className="grid gap-5">
+      <h3 className="font-serif text-xl font-semibold">Your details</h3>
+      <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-2">
+          <Label htmlFor="name">Name *</Label>
+          <Input id="name" value={form.name} onChange={(e) => update("name", e.target.value)} placeholder="Your name" required />
+        </div>
+        <div className="grid gap-2">
+          <Label htmlFor="email">Email *</Label>
+          <Input id="email" type="email" value={form.email} onChange={(e) => update("email", e.target.value)} placeholder="you@company.com" required />
+        </div>
+      </div>
+      <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-2">
+          <Label htmlFor="phone">Phone</Label>
+          <Input id="phone" value={form.phone} onChange={(e) => update("phone", e.target.value)} placeholder="Optional" />
+        </div>
+        <div className="grid gap-2">
+          <Label htmlFor="company">Company</Label>
+          <Input id="company" value={form.company} onChange={(e) => update("company", e.target.value)} placeholder="Optional" />
+        </div>
+      </div>
+      <div className="absolute -left-[9999px] -top-[9999px]" aria-hidden="true" tabIndex={-1}>
+        <Label htmlFor="website">Website</Label>
+        <Input
+          id="website"
+          name="website"
+          value={form.website}
+          onChange={(e) => update("website", e.target.value)}
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+    </div>,
+
+    <div key="step1" className="grid gap-5">
+      <h3 className="font-serif text-xl font-semibold">Event details</h3>
+      <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-2">
+          <Label htmlFor="event_date">Event date</Label>
+          <Input id="event_date" value={form.event_date} onChange={(e) => update("event_date", e.target.value)} placeholder="e.g. 12 Mar 2026" />
+        </div>
+        <div className="grid gap-2">
+          <Label htmlFor="event_type">Event type</Label>
+          <Input id="event_type" value={form.event_type} onChange={(e) => update("event_type", e.target.value)} placeholder="Conference, gala, launch..." />
+        </div>
+      </div>
+      <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-2">
+          <Label htmlFor="venue">Venue</Label>
+          <Input id="venue" value={form.venue} onChange={(e) => update("venue", e.target.value)} placeholder="Venue name or location" />
+        </div>
+        <div className="grid gap-2">
+          <Label htmlFor="audience_size">Audience size</Label>
+          <Input id="audience_size" value={form.audience_size} onChange={(e) => update("audience_size", e.target.value)} placeholder="e.g. 200" />
+        </div>
+      </div>
+    </div>,
+
+    <div key="step2" className="grid gap-5">
+      <h3 className="font-serif text-xl font-semibold">What do you need?</h3>
+      <div>
+        <Label className="mb-3 block">Services required</Label>
+        <div className="flex flex-wrap gap-2">
+          {SERVICE_OPTIONS.map((s) => (
+            <button
+              key={s}
+              type="button"
+              onClick={() => toggleService(s)}
+              className={`px-3.5 py-2 rounded-lg text-sm border transition-all ${
+                form.services.includes(s)
+                  ? "border-primary bg-primary/10 text-primary shadow-gold"
+                  : "border-border text-muted-foreground hover:border-primary/50"
+              }`}>
+              {s}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div>
+        <Label className="mb-3 block">Budget range</Label>
+        <div className="flex flex-wrap gap-2">
+          {BUDGET_OPTIONS.map((b) => (
+            <button
+              key={b}
+              type="button"
+              onClick={() => update("budget_range", form.budget_range === b ? "" : b)}
+              className={`px-3.5 py-2 rounded-lg text-sm border transition-all ${
+                form.budget_range === b
+                  ? "border-primary bg-primary/10 text-primary shadow-gold"
+                  : "border-border text-muted-foreground hover:border-primary/50"
+              }`}>
+              {b}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div className="grid gap-2">
+        <Label htmlFor="message">Anything else?</Label>
+        <Textarea
+          id="message"
+          value={form.message}
+          onChange={(e) => update("message", e.target.value)}
+          placeholder="Run sheet, special requirements, questions..."
+          rows={4}
+        />
+      </div>
+      {TURNSTILE_SITE_KEY && (
+        <div className="flex justify-start mt-2">
+          <div ref={turnstileRef} />
+        </div>
+      )}
+    </div>,
+  ];
+
+  return (
+    <PageShell>
+      <main>
+        <section className="container py-16 md:py-24">
+          <div className="max-w-2xl">
+            <p className="section-kicker mb-3">Get in Touch</p>
+            <div className="gold-rule mb-5" />
+            <h1 className="text-4xl md:text-5xl font-semibold tracking-tight">Let's plan your event</h1>
+            <p className="mt-4 text-muted-foreground leading-relaxed">
+              Share your details and we'll come back with a clear recommendation and quote — {siteConfig.quoteResponseSLA}.
+            </p>
+          </div>
+        </section>
+
+        <section className="container pb-20 md:pb-28">
+          <div className="grid gap-10 lg:grid-cols-12">
+            <div className="lg:col-span-7 relative">
+              {submitted ? (
+                <div className="rounded-xl border border-primary/30 bg-card p-8 md:p-12 text-center">
+                  <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 mb-6">
+                    <Check className="h-8 w-8 text-primary" />
+                  </div>
+                  <h2 className="font-serif text-2xl font-semibold mb-3">Quote request sent!</h2>
+                  <p className="text-muted-foreground leading-relaxed">We'll review your brief and get back to you {siteConfig.quoteResponseSLA}. Check your email for confirmation.</p>
+                </div>
+              ) : (
+                <div className="rounded-xl border border-border/50 bg-card p-6 md:p-8">
+                  <div className="flex items-center gap-3 mb-8">
+                    {STEP_LABELS.map((label, i) => (
                       <button
-                                      key={s}
-                                      type="button"
-                                      onClick={() => toggleService(s)}
-                                      className={`px-3.5 py-2 rounded-lg text-sm border transition-all ${
-                                                        form.services.includes(s)
-                                                          ? "border-primary bg-primary/10 text-primary shadow-gold"
-                                                          : "border-border text-muted-foreground hover:border-primary/50"
-                                      }`}>
-                        {s}
-                      </button>button>
+                        key={label}
+                        onClick={() => { if (i < step || canNext) setStep(i); }}
+                        className="flex items-center gap-2 group"
+                        type="button">
+                        <div className={`flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold transition-colors ${
+                          i <= step ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"
+                        }`}>
+                          {i < step ? <Check className="h-3.5 w-3.5" /> : i + 1}
+                        </div>
+                        <span className={`text-sm font-medium hidden sm:inline ${i <= step ? "text-foreground" : "text-muted-foreground"}`}>{label}</span>
+                        {i < STEP_LABELS.length - 1 && <div className={`w-8 h-px ${i < step ? "bg-primary" : "bg-border"}`} />}
+                      </button>
                     ))}
-                      </div>div>
-              </div>div>
-              <div>
-                      <Label className="mb-3 block">Budget range</Label>Label>
-                      <div className="flex flex-wrap gap-2">
-                        {BUDGET_OPTIONS.map((b) => (
-                      <button
-                                      key={b}
-                                      type="button"
-                                      onClick={() => update("budget_range", form.budget_range === b ? "" : b)}
-                                      className={`px-3.5 py-2 rounded-lg text-sm border transition-all ${
-                                                        form.budget_range === b
-                                                          ? "border-primary bg-primary/10 text-primary shadow-gold"
-                                                          : "border-border text-muted-foreground hover:border-primary/50"
-                                      }`}>
-                        {b}
-                      </button>button>
-                    ))}
-                      </div>div>
-              </div>div>
-              <div className="grid gap-2">
-                      <Label htmlFor="message">Anything else?</Label>Label>
-                      <Textarea
-                                  id="message"
-                                  value={form.message}
-                                  onChange={(e) => update("message", e.target.value)}
-                                  placeholder="Run sheet, special requirements, questions..."
-                                  rows={4}
-                                />
-              </div>div>
-          {/* Turnstile CAPTCHA widget — only rendered when site key is configured */}
-          {TURNSTILE_SITE_KEY && (
-                  <div className="flex justify-start mt-2">
-                            <div ref={turnstileRef} />
-                  </div>div>
+                  </div>
+
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={step}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{ duration: 0.2 }}>
+                      {steps[step]}
+                    </motion.div>
+                  </AnimatePresence>
+
+                  <div className="flex items-center justify-between mt-8 pt-6 border-t border-border/50">
+                    {step > 0 ? (
+                      <Button variant="ghost" onClick={() => setStep(step - 1)}>
+                        <ArrowLeft className="mr-2 h-4 w-4" />
+                        Back
+                      </Button>
+                    ) : <div />}
+                    {step < 2 ? (
+                      <Button onClick={() => setStep(step + 1)} disabled={!canNext}>
+                        Next
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    ) : (
+                      <Button onClick={onSubmit} disabled={isSubmitting} className="font-semibold shadow-gold">
+                        {isSubmitting ? "Sending…" : "Submit Quote Request"}
+                      </Button>
+                    )}
+                  </div>
+                </div>
               )}
-        </div>div>,
-      ];
-  
-    return (
-          <PageShell>
-                <main>
-                        <section className="container py-16 md:py-24">
-                                  <div className="max-w-2xl">
-                                              <p className="section-kicker mb-3">Get in Touch</p>p>
-                                              <div className="gold-rule mb-5" />
-                                              <h1 className="text-4xl md:text-5xl font-semibold tracking-tight">Let's plan your event</h1>h1>
-                                              <p className="mt-4 text-muted-foreground leading-relaxed">
-                                                            Share your details and we'll come back with a clear recommendation and quote — {siteConfig.quoteResponseSLA}.
-                                              </p>p>
-                                  </div>div>
-                        </section>section>
-                
-                        <section className="container pb-20 md:pb-28">
-                                  <div className="grid gap-10 lg:grid-cols-12">
-                                              <div className="lg:col-span-7 relative">
-                                                {submitted ? (
-                            <div className="rounded-xl border border-primary/30 bg-card p-8 md:p-12 text-center">
-                                              <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 mb-6">
-                                                                  <Check className="h-8 w-8 text-primary" />
-                                              </div>div>
-                                              <h2 className="font-serif text-2xl font-semibold mb-3">Quote request sent!</h2>h2>
-                                              <p className="text-muted-foreground leading-relaxed">We'll review your brief and get back to you {siteConfig.quoteResponseSLA}. Check your email for confirmation.</p>p>
-                            </div>div>
-                          ) : (
-                            <div className="rounded-xl border border-border/50 bg-card p-6 md:p-8">
-                                              <div className="flex items-center gap-3 mb-8">
-                                                {STEP_LABELS.map((label, i) => (
-                                                    <button
-                                                                              key={label}
-                                                                              onClick={() => { if (i < step || canNext) setStep(i); }}
-                                                                              className="flex items-center gap-2 group"
-                                                                              type="button">
-                                                                            <div className={`flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold transition-colors ${
-                                                                                                          i <= step ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"
-                                                                                }`}>
-                                                                              {i < step ? <Check className="h-3.5 w-3.5" /> : i + 1}
-                                                                              </div>div>
-                                                                            <span className={`text-sm font-medium hidden sm:inline ${i <= step ? "text-foreground" : "text-muted-foreground"}`}>{label}</span>span>
-                                                      {i < STEP_LABELS.length - 1 && <div className={`w-8 h-px ${i < step ? "bg-primary" : "bg-border"}`} />}
-                                                    </button>button>
-                                                  ))}
-                                              </div>div>
-                            
-                                              <AnimatePresence mode="wait">
-                                                                  <motion.div
-                                                                                          key={step}
-                                                                                          initial={{ opacity: 0, x: 20 }}
-                                                                                          animate={{ opacity: 1, x: 0 }}
-                                                                                          exit={{ opacity: 0, x: -20 }}
-                                                                                          transition={{ duration: 0.2 }}>
-                                                                    {steps[step]}
-                                                                  </motion.div>motion.div>
-                                              </AnimatePresence>AnimatePresence>
-                            
-                                              <div className="flex items-center justify-between mt-8 pt-6 border-t border-border/50">
-                                                {step > 0 ? (
-                                                                        <Button variant="ghost" onClick={() => setStep(step - 1)}>
-                                                                                                <ArrowLeft className="mr-2 h-4 w-4" />
-                                                                                                Back
-                                                                        </Button>Button>
-                                                  ) : <div />}
-                                                {step < 2 ? (
-                                                    <Button onClick={() => setStep(step + 1)} disabled={!canNext}>
-                                                                            Next
-                                                                            <ArrowRight className="ml-2 h-4 w-4" />
-                                                    </Button>Button>
-                                                  ) : (
-                                                    <Button onClick={onSubmit} disabled={isSubmitting} className="font-semibold shadow-gold">
-                                                      {isSubmitting ? "Sending…" : "Submit Quote Request"}
-                                                    </Button>Button>
-                                                                  )}
-                                              </div>div>
-                            </div>
-                          )}
-                                              
-                                                {!submitted && (
-                            <div className="flex items-center gap-2 mt-4 text-xs text-muted-foreground">
-                                              <Shield className="h-3.5 w-3.5 text-primary" />
-                                              <span>No spam. Your data is private and secure.</span>span>
-                            </div>div>
-                                                            )}
-                                              </div>div>
-                                  
-                                              <div className="lg:col-span-5 space-y-6">
-                                                            <div className="rounded-xl border border-border/50 bg-card p-6">
-                                                                            <h3 className="font-serif text-lg font-semibold mb-4">Contact info</h3>h3>
-                                                                            <div className="space-y-4">
-                                                                                              <div className="flex items-start gap-3">
-                                                                                                                  <Mail className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                                                                                                                  <div>
-                                                                                                                                        <p className="text-sm font-medium">Email</p>p>
-                                                                                                                                        <a href={`mailto:${siteConfig.email}`} className="text-sm text-muted-foreground hover:text-primary transition-colors">{siteConfig.email}</a>a>
-                                                                                                                    </div>div>
-                                                                                                </div>div>
-                                                                                              <div className="flex items-start gap-3">
-                                                                                                                  <Phone className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                                                                                                                  <div>
-                                                                                                                                        <p className="text-sm font-medium">Phone</p>p>
-                                                                                                                                        <a href={`tel:${siteConfig.phone}`} className="text-sm text-muted-foreground hover:text-primary transition-colors block">{siteConfig.phoneDisplay}</a>a>
-                                                                                                                                        <a href={`tel:${siteConfig.phoneSecondary}`} className="text-sm text-muted-foreground hover:text-primary transition-colors block">{siteConfig.phoneSecondaryDisplay}</a>a>
-                                                                                                                                        <a href={`tel:${siteConfig.phoneTertiary}`} className="text-sm text-muted-foreground hover:text-primary transition-colors block">{siteConfig.phoneTertiaryDisplay}</a>a>
-                                                                                                                    </div>div>
-                                                                                                </div>div>
-                                                                                              <div className="flex items-start gap-3">
-                                                                                                                  <MapPin className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                                                                                                                  <div>
-                                                                                                                                        <p className="text-sm font-medium">Location</p>p>
-                                                                                                                                        <p className="text-sm text-muted-foreground">{siteConfig.primaryLocation} — nationwide service</p>p>
-                                                                                                                    </div>div>
-                                                                                                </div>div>
-                                                                                              <div className="flex items-start gap-3">
-                                                                                                                  <Clock className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                                                                                                                  <div>
-                                                                                                                                        <p className="text-sm font-medium">Response time</p>p>
-                                                                                                                                        <p className="text-sm text-muted-foreground">Usually {siteConfig.quoteResponseSLA}</p>p>
-                                                                                                                    </div>div>
-                                                                                                </div>div>
-                                                                            </div>div>
-                                                            </div>div>
-                                              
-                                                            <div className="rounded-xl border border-border/50 bg-card p-6">
-                                                                            <h3 className="font-serif text-lg font-semibold mb-3">What happens next?</h3>h3>
-                                                                            <ol className="space-y-3 text-sm text-muted-foreground">
-                                                                                              <li className="flex gap-3"><span className="text-primary font-semibold shrink-0">1.</span>span> We review your brief and confirm availability</li>li>
-                                                                                              <li className="flex gap-3"><span className="text-primary font-semibold shrink-0">2.</span>span> We recommend a production package</li>li>
-                                                                                              <li className="flex gap-3"><span className="text-primary font-semibold shrink-0">3.</span>span> You get a clear, itemised quote</li>li>
-                                                                            </ol>ol>
-                                                            </div>div>
-                                              </div>div>
-                                  </div>div>
-                        </section>section>
-                </main>main>
-          </PageShell>PageShell>
-        );
-}</div>
+
+              {!submitted && (
+                <div className="flex items-center gap-2 mt-4 text-xs text-muted-foreground">
+                  <Shield className="h-3.5 w-3.5 text-primary" />
+                  <span>No spam. Your data is private and secure.</span>
+                </div>
+              )}
+            </div>
+
+            <div className="lg:col-span-5 space-y-6">
+              <div className="rounded-xl border border-border/50 bg-card p-6">
+                <h3 className="font-serif text-lg font-semibold mb-4">Contact info</h3>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <Mail className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                    <div>
+                      <p className="text-sm font-medium">Email</p>
+                      <a href={`mailto:${siteConfig.email}`} className="text-sm text-muted-foreground hover:text-primary transition-colors">{siteConfig.email}</a>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Phone className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                    <div>
+                      <p className="text-sm font-medium">Phone</p>
+                      <a href={`tel:${siteConfig.phone}`} className="text-sm text-muted-foreground hover:text-primary transition-colors block">{siteConfig.phoneDisplay}</a>
+                      <a href={`tel:${siteConfig.phoneSecondary}`} className="text-sm text-muted-foreground hover:text-primary transition-colors block">{siteConfig.phoneSecondaryDisplay}</a>
+                      <a href={`tel:${siteConfig.phoneTertiary}`} className="text-sm text-muted-foreground hover:text-primary transition-colors block">{siteConfig.phoneTertiaryDisplay}</a>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <MapPin className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                    <div>
+                      <p className="text-sm font-medium">Location</p>
+                      <p className="text-sm text-muted-foreground">{siteConfig.primaryLocation} — nationwide service</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Clock className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                    <div>
+                      <p className="text-sm font-medium">Response time</p>
+                      <p className="text-sm text-muted-foreground">Usually {siteConfig.quoteResponseSLA}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="rounded-xl border border-border/50 bg-card p-6">
+                <h3 className="font-serif text-lg font-semibold mb-3">What happens next?</h3>
+                <ol className="space-y-3 text-sm text-muted-foreground">
+                  <li className="flex gap-3"><span className="text-primary font-semibold shrink-0">1.</span> We review your brief and confirm availability</li>
+                  <li className="flex gap-3"><span className="text-primary font-semibold shrink-0">2.</span> We recommend a production package</li>
+                  <li className="flex gap-3"><span className="text-primary font-semibold shrink-0">3.</span> You get a clear, itemised quote</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </PageShell>
+  );
+}
