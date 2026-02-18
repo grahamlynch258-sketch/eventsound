@@ -2,11 +2,17 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { serviceGridItems } from "@/content/services";
+import { WhatWeDoMarquee } from "./WhatWeDoMarquee";
+
+const marqueeItems = serviceGridItems.map((s) => ({
+  label: s.title,
+  href: `/services#${s.slug}`,
+}));
 
 export function ServicesGrid() {
   return (
     <section className="container py-20 md:py-28">
-      <div className="text-center max-w-2xl mx-auto mb-14">
+      <div className="text-center max-w-2xl mx-auto mb-10">
         <p className="section-kicker mb-3">What We Do</p>
         <div className="gold-rule mx-auto mb-5" />
         <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
@@ -17,7 +23,9 @@ export function ServicesGrid() {
         </p>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <WhatWeDoMarquee items={marqueeItems} durationSec={18} />
+
+      <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {serviceGridItems.map((service, i) => (
           <motion.div
             key={service.title}
