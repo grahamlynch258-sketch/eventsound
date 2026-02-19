@@ -1,5 +1,13 @@
-User-agent: *
-Allow: /
-Disallow: /admin/
+# BETA: block all crawlers while the site is in development.
+# When ready to go live, replace this file with the production version below.
+#
+# --- PRODUCTION VERSION (uncomment when going live) ---
+# User-agent: *
+# Allow: /
+# Disallow: /admin/
+#
+# Sitemap: https://www.eventsound.ie/sitemap.xml
+# --- END PRODUCTION VERSION ---
 
-Sitemap: https://www.eventsound.ie/sitemap.xml
+User-agent: *
+Disallow: /
