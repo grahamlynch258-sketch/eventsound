@@ -148,7 +148,7 @@ export function SiteHeader({ className }: { className?: string }) {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-16 bottom-0 z-40 bg-background/98 backdrop-blur-lg animate-in fade-in slide-in-from-top-2 duration-200 overflow-y-auto">
+        <div className="lg:hidden fixed inset-x-0 top-16 bottom-0 z-50 bg-background backdrop-blur-lg animate-in fade-in slide-in-from-top-2 duration-200 overflow-y-auto">
           <nav className="container flex flex-col gap-1 py-6" aria-label="Mobile">
             {mainLinks.map((l) => (
               <NavLink
