@@ -23,22 +23,10 @@ export function WhatWeDoMarquee({ items, intervalSec = 2 }: WhatWeDoMarqueeProps
   const [direction, setDirection] = useState<"left" | "right">("left");
   const [slideOffset, setSlideOffset] = useState(0);
 
-  useEffect(() => {
-    const update = () => {
-      const w = window.innerWidth;
-      if (w < 640) setVisibleCount(1);
-      else if (w < 1024) setVisibleCount(2);
-      else setVisibleCount(4);
-    };
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, []);
-
   const getItems = (start: number, count: number) => {
     const result: { item: MarqueeItem; key: number }[] = [];
     for (let i = 0; i < count; i++) {
-      const idx = ((start + i) % items.length + items.length) % items.length;
+      const idx = (((start + i) % items.length) + items.length) % items.length;
       result.push({ item: items[idx], key: start + i });
     }
     return result;
@@ -49,9 +37,9 @@ export function WhatWeDoMarquee({ items, intervalSec = 2 }: WhatWeDoMarqueeProps
       if (animating) return;
       setDirection(dir);
       setAnimating(true);
-      setSlideOffset(dir === "left" ? -(100 / visibleCount) : (100 / visibleCount));
+      setSlideOffset(dir === "left" ? -(100 / visibleCount) : 100 / visibleCount);
     },
-    [animating, visibleCount]
+    [animating, visibleCount],
   );
 
   const handleTransitionEnd = useCallback(() => {
@@ -67,21 +55,14 @@ export function WhatWeDoMarquee({ items, intervalSec = 2 }: WhatWeDoMarqueeProps
   }, [direction, items.length]);
 
   useEffect(() => {
+    if (paused) return;
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReduced) return;
-    const id = setInterval(() => {
-      setPaused((p) => {
-        if (!p) navigate("left");
-        return p;
-      });
-    }, intervalSec * 1000);
+    const id = setInterval(() => navigate("left"), intervalSec * 1000);
     return () => clearInterval(id);
-  }, [navigate, intervalSec]);
+  }, [paused, navigate, intervalSec]);
 
-  const displayStart =
-    direction === "right" && animating
-      ? (startIndex - 1 + items.length) % items.length
-      : startIndex;
+  const displayStart = direction === "right" && animating ? (startIndex - 1 + items.length) % items.length : startIndex;
   const displayItems = getItems(displayStart, visibleCount + 1);
   const cardWidthPct = 100 / visibleCount;
 
@@ -104,11 +85,7 @@ export function WhatWeDoMarquee({ items, intervalSec = 2 }: WhatWeDoMarqueeProps
           onTransitionEnd={handleTransitionEnd}
         >
           {displayItems.map(({ item, key }) => (
-            <div
-              key={key}
-              className="flex-shrink-0 px-2"
-              style={{ width: `${cardWidthPct}%` }}
-            >
+            <div key={key} className="flex-shrink-0 px-2" style={{ width: `${cardWidthPct}%` }}>
               <ServiceCard item={item} />
             </div>
           ))}
@@ -137,7 +114,9 @@ export function WhatWeDoMarquee({ items, intervalSec = 2 }: WhatWeDoMarqueeProps
         {items.map((_, i) => (
           <button
             key={i}
-            onClick={() => { if (!animating) setStartIndex(i); }}
+            onClick={() => {
+              if (!animating) setStartIndex(i);
+            }}
             aria-label={`Go to slide ${i + 1}`}
             className={`h-1.5 rounded-full transition-all duration-300 ${
               i === startIndex ? "w-6 bg-primary" : "w-1.5 bg-border hover:bg-primary/50"
@@ -153,7 +132,7 @@ function ServiceCard({ item }: { item: MarqueeItem }) {
   const Icon = item.icon;
   const card = (
     <div
-      className="group relative flex flex-col rounded-xl border border-border/50 bg-card p-7 transition-colors duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 h-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+      className="group flex flex-col rounded-xl border border-border/50 bg-card p-7 transition-colors duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 h-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
       tabIndex={0}
     >
       {Icon && (
@@ -162,10 +141,8 @@ function ServiceCard({ item }: { item: MarqueeItem }) {
         </div>
       )}
       <h3 className="font-serif text-xl font-semibold mb-3 text-foreground">{item.label}</h3>
-      {item.description && (
-        <p className="text-sm text-muted-foreground leading-relaxed flex-1 pb-6">{item.description}</p>
-      )}
-      <div className="absolute bottom-7 left-7 flex items-center gap-1 text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+      {item.description && <p className="text-sm text-muted-foreground leading-relaxed flex-1">{item.description}</p>}
+      <div className="mt-5 flex items-center gap-1 text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">
         Learn more <ArrowUpRight className="h-3 w-3" />
       </div>
     </div>
