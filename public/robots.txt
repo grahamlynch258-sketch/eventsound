@@ -1,3 +1,2 @@
-# BETA: block all crawlers while the site is in development.
 User-agent: *
 Disallow: /
