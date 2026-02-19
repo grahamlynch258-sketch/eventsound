@@ -26,8 +26,8 @@ export const testimonials: Testimonial[] = [
   },
   {
     client_name: "Phil Nulty",
-    client_role: "",
-    company: "",
+    client_role: "Event Organiser",
+    company: "Nulty Events",
     quote: "Ronan and Mark are great guys to deal with and have everything you need for your event. 100% professional service.",
     rating: 5,
     is_featured: true,

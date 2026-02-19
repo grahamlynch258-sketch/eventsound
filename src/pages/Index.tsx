@@ -28,6 +28,8 @@ const FALLBACK_HERO: HomeHeroContent = {
   subheadline: "From concept to delivery, our team supports you to deliver your event flawlessly.",
   cta_primary: "Get a Free Quote",
   cta_secondary: "Explore Services",
+  cta_primary_href: "/contact",
+  cta_secondary_href: "/services",
 };
 
 const FALLBACK_FEATURES: HomeFeaturesContent = {
@@ -54,6 +56,8 @@ const Index = () => {
   const { data: cta2Data } = useSiteContent(CMS_PAGES.home, CMS_SECTIONS.home.cta2);
 
   const heroContent = mapHeroContent(heroData, FALLBACK_HERO);
+  const primaryHref = heroContent.cta_primary_href || "/contact";
+  const secondaryHref = heroContent.cta_secondary_href || "/services";
   const featuresContent = mapFeaturesContent(featuresData, FALLBACK_FEATURES);
   const cta2Content = mapCta2Content(cta2Data, FALLBACK_CTA2);
 
@@ -63,7 +67,7 @@ const Index = () => {
         <section className="relative min-h-[90vh] flex items-center">
           <div className="absolute inset-0">
             <HeroSlideshow fallbackImage={fallbackHeroImage} singleImage={fallbackHeroImage} />
-            <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/60 to-background" />
+            <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/70 to-background" />
           </div>
           <div className="container relative py-32 md:py-44">
             <motion.div
@@ -83,13 +87,13 @@ const Index = () => {
               </p>
               <div className="mt-10 flex flex-col sm:flex-row gap-3">
                 <Button asChild size="lg" className="font-semibold shadow-gold text-base px-8">
-                  <Link to="/contact">
+                  <Link to={primaryHref}>
                     {heroContent.cta_primary}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="text-base px-8">
-                  <Link to="/services">{heroContent.cta_secondary}</Link>
+                  <Link to={secondaryHref}>{heroContent.cta_secondary}</Link>
                 </Button>
               </div>
             </motion.div>
