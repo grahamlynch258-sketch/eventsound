@@ -1,33 +1,95 @@
-Here's the complete test results:
-Test Results Summary
-1. Dashboard Cards — ⚠️ PARTIAL
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
+import { FileText, Image, Users, BookOpen, Tag, Search } from "lucide-react";
 
-❌ Quote Submissions card is STILL present (should be removed)
-❌ Gallery card is NOT on the dashboard (but the route /admin/gallery works!)
-❌ SEO card is NOT on the dashboard (but the route /admin/seo works!)
-The dashboard UI hasn't been updated yet, but both new admin pages are accessible via direct URL.
+export default function Dashboard() {
+  const navigate = useNavigate();
 
-2. Gallery — ✅ PASSED
+  const adminSections = [
+    {
+      title: "Gallery",
+      description: "Manage gallery images and portfolio items",
+      icon: Image,
+      path: "/admin/gallery",
+      color: "text-blue-600"
+    },
+    {
+      title: "SEO",
+      description: "Manage page metadata and search optimization",
+      icon: Search,
+      path: "/admin/seo",
+      color: "text-green-600"
+    },
+    {
+      title: "Content",
+      description: "Manage page content and sections",
+      icon: FileText,
+      path: "/admin/content",
+      color: "text-purple-600"
+    },
+    {
+      title: "Testimonials",
+      description: "Manage client reviews and testimonials",
+      icon: Users,
+      path: "/admin/testimonials",
+      color: "text-orange-600"
+    },
+    {
+      title: "Library",
+      description: "Manage image library and assets",
+      icon: BookOpen,
+      path: "/admin/library",
+      color: "text-pink-600"
+    },
+    {
+      title: "Categories",
+      description: "Manage service and content categories",
+      icon: Tag,
+      path: "/admin/categories",
+      color: "text-indigo-600"
+    },
+    {
+      title: "Images",
+      description: "Upload and manage images",
+      icon: Image,
+      path: "/admin/images",
+      color: "text-teal-600"
+    }
+  ];
 
-/admin/gallery page loads with "Gallery Management" heading
-"Add New Item" form works with all fields: Title, Category, Select from Library, Image URL, Alt Text, Sort Order, Published toggle
-Successfully created test item: "Test Event" with image, alt text, and published status
-Item displays correctly with edit/delete buttons
+  return (
+    <div className="container mx-auto p-6 space-y-6">
+      <div>
+        <h1 className="text-3xl font-bold mb-2">Admin Dashboard</h1>
+        <p className="text-muted-foreground">Manage your EventSound website content</p>
+      </div>
 
-3. SEO — ✅ PASSED
-
-/admin/seo page loads with "SEO Management" heading
-Quick Page Presets work (Home, Services, Gallery, Contact, About)
-Clicked "Home" → form pre-filled path as /
-Successfully saved SEO data for home page
-Shows in "Existing Pages" list after saving
-
-4. Meta Tags on Public Homepage — ✅ PASSED
-All meta tags are loading correctly on the public site:
-Meta TagValueTitleEventSound \Meta DescriptionProfessional AV and event production services in IrelandCanonical URLhttps://eventsound.ie/OG TitleEventSound \OG DescriptionProfessional AV and event production services in IrelandOG Imagehttps://www.eventsound.ie/og-image.pngOG Typewebsite
-Remaining Fix Needed
-The admin dashboard (/admin) needs to be updated to:
-
-Add a "Gallery" card linking to /admin/gallery
-Add an "SEO" card linking to /admin/seo
-Remove the "Quote Submissions" card
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {adminSections.map((section) => {
+          const Icon = section.icon;
+          return (
+            <Card key={section.path} className="hover:shadow-lg transition-shadow">
+              <CardHeader>
+                <div className="flex items-start justify-between">
+                  <Icon className={`h-8 w-8 ${section.color}`} />
+                </div>
+                <CardTitle>{section.title}</CardTitle>
+                <CardDescription>{section.description}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Button
+                  onClick={() => navigate(section.path)}
+                  className="w-full"
+                  variant="outline"
+                >
+                  Manage {section.title}
+                </Button>
+              </CardContent>
+            </Card>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
