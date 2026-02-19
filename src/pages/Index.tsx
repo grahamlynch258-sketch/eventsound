@@ -28,8 +28,8 @@ const FALLBACK_HERO: HomeHeroContent = {
   subheadline: "From concept to delivery, our team supports you to deliver your event flawlessly.",
   cta_primary: "Get a Free Quote",
   cta_secondary: "Explore Services",
-  cta_primary_href: "/contact",
-  cta_secondary_href: "/services",
+  cta_primary_href: "/services",
+  cta_secondary_href: "/contact",
 };
 
 const FALLBACK_FEATURES: HomeFeaturesContent = {
