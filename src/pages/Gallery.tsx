@@ -19,6 +19,7 @@ export default function Gallery() {
       const { data, error } = await supabase
         .from("gallery_items")
         .select("id, title, image_url, category, alt_text, sort_order")
+        .eq("is_published", true) // Only fetch published items
         .order("sort_order", { ascending: true });
       if (error) throw error;
       return data;
