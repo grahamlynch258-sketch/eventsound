@@ -94,7 +94,10 @@
 
   /* Better focus styles for accessibility */
   :focus-visible {
-    @apply outline-2 outline-offset-2 outline-ring;
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: 2px;
+    box-shadow: 0 0 0 4px hsl(var(--background)), 0 0 0 6px hsl(var(--ring));
   }
 
   /* Smooth scrolling */

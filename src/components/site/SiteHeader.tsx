@@ -98,7 +98,7 @@ export function SiteHeader({ className }: { className?: string }) {
               aria-haspopup="true"
               aria-expanded={dropdownOpen}
             >
-              Connect
+              Contact
               <ChevronDown
                 className={cn("h-3.5 w-3.5 transition-transform duration-200", dropdownOpen && "rotate-180")}
               />
@@ -169,7 +169,7 @@ export function SiteHeader({ className }: { className?: string }) {
 
             {/* Connect group in mobile */}
             <div className="mt-2 mb-1 px-4">
-              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground/60">Connect</p>
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground/60">Contact</p>
             </div>
             {connectLinks.map(({ to, label, icon: Icon }) => (
               <NavLink
