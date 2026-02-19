@@ -14,6 +14,30 @@ export type Database = {
   }
   public: {
     Tables: {
+      about_images: {
+        Row: {
+          alt: string
+          created_at: string | null
+          id: string
+          image_url: string
+          sort_order: number | null
+        }
+        Insert: {
+          alt: string
+          created_at?: string | null
+          id?: string
+          image_url: string
+          sort_order?: number | null
+        }
+        Update: {
+          alt?: string
+          created_at?: string | null
+          id?: string
+          image_url?: string
+          sort_order?: number | null
+        }
+        Relationships: []
+      }
       categories: {
         Row: {
           created_at: string
@@ -44,6 +68,36 @@ export type Database = {
           sort_order?: number
           title?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      gallery_items: {
+        Row: {
+          alt_text: string | null
+          category: string
+          created_at: string | null
+          id: string
+          image_url: string
+          sort_order: number | null
+          title: string
+        }
+        Insert: {
+          alt_text?: string | null
+          category: string
+          created_at?: string | null
+          id?: string
+          image_url: string
+          sort_order?: number | null
+          title: string
+        }
+        Update: {
+          alt_text?: string | null
+          category?: string
+          created_at?: string | null
+          id?: string
+          image_url?: string
+          sort_order?: number | null
+          title?: string
         }
         Relationships: []
       }

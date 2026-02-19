@@ -4,6 +4,8 @@ import { about } from "@/content/about";
 import { siteConfig } from "@/config/site";
 import { Shield, Users, Zap, Award } from "lucide-react";
 import { motion } from "framer-motion";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 
 const highlights = [
   { icon: Users, title: "Experienced Crew", text: "Seasoned technicians on every event, from load-in to wrap." },
@@ -11,6 +13,62 @@ const highlights = [
   { icon: Award, title: "Two Decades of Trust", text: "Delivering events across Ireland for over twenty years." },
   { icon: Shield, title: "Safety First", text: "TUV-certified staging, European-manufactured rigging, trained crew." },
 ];
+
+const FALLBACK_IMAGES = [
+  { image_url: "/placeholder.svg", alt: "Event setup behind the scenes" },
+  { image_url: "/placeholder.svg", alt: "Audio equipment preparation" },
+  { image_url: "/placeholder.svg", alt: "Lighting rig installation" },
+  { image_url: "/placeholder.svg", alt: "Stage construction in progress" },
+  { image_url: "/placeholder.svg", alt: "LED wall configuration" },
+  { image_url: "/placeholder.svg", alt: "Sound check before event" },
+];
+
+function BehindTheScenes() {
+  const { data: dbImages } = useQuery({
+    queryKey: ["about-images"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("about_images")
+        .select("image_url, alt, sort_order")
+        .order("sort_order", { ascending: true });
+      if (error) throw error;
+      return data;
+    },
+  });
+
+  const images = dbImages && dbImages.length > 0 ? dbImages : FALLBACK_IMAGES;
+
+  return (
+    <section className="container py-20 md:py-28">
+      <div className="max-w-3xl mx-auto mb-10">
+        <p className="section-kicker mb-3">Portfolio</p>
+        <div className="gold-rule mb-5" />
+        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
+          Behind the Scenes
+        </h2>
+      </div>
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        {images.map((img, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.06, duration: 0.4 }}
+            className="overflow-hidden rounded-xl border border-border/50"
+          >
+            <img
+              src={img.image_url}
+              alt={img.alt}
+              className="w-full aspect-[4/3] object-cover"
+              loading="lazy"
+            />
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  );
+}
 
 export default function About() {
   return (
@@ -77,6 +135,8 @@ export default function About() {
             </p>
           </div>
         </section>
+
+        <BehindTheScenes />
 
         <CTASection />
       </main>

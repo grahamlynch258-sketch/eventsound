@@ -7,27 +7,25 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
+const CATEGORIES = ["All", "LED Walls", "Lighting", "Audio", "Staging", "Corporate"] as const;
+
 export default function Gallery() {
-  const [activeCategory, setActiveCategory] = useState<string>("all");
+  const [activeCategory, setActiveCategory] = useState<string>("All");
   const [lightboxImage, setLightboxImage] = useState<{ url: string; alt: string } | null>(null);
 
   const { data: images, isLoading } = useQuery({
-    queryKey: ["library-images-gallery"],
+    queryKey: ["gallery-items"],
     queryFn: async () => {
       const { data, error } = await supabase
-        .from("library_images")
-        .select("id, image_url, alt_text, file_name, category")
-        .order("created_at", { ascending: false });
+        .from("gallery_items")
+        .select("id, title, image_url, category, alt_text, sort_order")
+        .order("sort_order", { ascending: true });
       if (error) throw error;
       return data;
     },
   });
 
-  const categories = images
-    ? ["all", ...Array.from(new Set(images.map((img) => img.category)))]
-    : ["all"];
-
-  const filtered = activeCategory === "all"
+  const filtered = activeCategory === "All"
     ? images
     : images?.filter((img) => img.category === activeCategory);
 
@@ -51,11 +49,11 @@ export default function Gallery() {
         {/* Filters */}
         <section className="container pb-6">
           <div className="flex flex-wrap gap-2">
-            {categories.map((cat) => (
+            {CATEGORIES.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 rounded-full text-sm font-medium border transition-all capitalize ${
+                className={`px-4 py-2 rounded-full text-sm font-medium border transition-all ${
                   activeCategory === cat
                     ? "border-primary bg-primary/10 text-primary shadow-gold"
                     : "border-border text-muted-foreground hover:border-primary/50 hover:text-foreground"
@@ -67,7 +65,7 @@ export default function Gallery() {
           </div>
         </section>
 
-        {/* Gallery grid — masonry-like with varied spans */}
+        {/* Gallery grid */}
         <section className="container pb-20 md:pb-28">
           {isLoading ? (
             <div className="grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -83,19 +81,19 @@ export default function Gallery() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: i * 0.03 }}
-                  onClick={() => setLightboxImage({ url: img.image_url, alt: img.alt_text || img.file_name })}
+                  onClick={() => setLightboxImage({ url: img.image_url, alt: img.alt_text || img.title })}
                   className="group relative w-full overflow-hidden rounded-xl border border-border/50 bg-card break-inside-avoid"
                 >
                   <img
                     src={img.image_url}
-                    alt={img.alt_text || img.file_name}
+                    alt={img.alt_text || img.title}
                     className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                     decoding="async"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                     <div>
-                      <p className="text-sm font-medium text-foreground">{img.alt_text || img.file_name}</p>
+                      <p className="text-sm font-medium text-foreground">{img.alt_text || img.title}</p>
                       {img.category && (
                         <p className="text-xs text-primary capitalize mt-0.5">{img.category}</p>
                       )}
