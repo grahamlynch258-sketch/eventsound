@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useSeo } from "@/hooks/useSeo";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Services from "./pages/Services";
@@ -25,38 +26,50 @@ import AdminRoute from "./components/admin/AdminRoute";
 
 const queryClient = new QueryClient();
 
+function AppRoutes() {
+  useSeo(); // Apply SEO metadata on route changes
+  
+  return (
+    <Routes>
+      <Route path="/" element={<Index />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/services" element={<Services />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/gallery" element={<Gallery />} />
+      <Route path="/faq" element={<FAQ />} />
+      <Route path="/reviews" element={<Reviews />} />
+      <Route path="/health-and-safety" element={<HealthAndSafety />} />
+      
+      {/* Legacy route redirect */}
+      <Route path="/av-production" element={<Services />} />
+      
+      {/* Admin routes */}
+      <Route path="/admin/login" element={<AdminLogin />} />
+      <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
+      <Route path="/admin/categories" element={<AdminRoute><AdminCategories /></AdminRoute>} />
+      <Route path="/admin/content" element={<AdminRoute><AdminContent /></AdminRoute>} />
+      <Route path="/admin/images" element={<AdminRoute><AdminImages /></AdminRoute>} />
+      <Route path="/admin/library" element={<AdminRoute><AdminLibrary /></AdminRoute>} />
+      <Route path="/admin/testimonials" element={<AdminRoute><AdminTestimonials /></AdminRoute>} />
+      <Route path="/admin/gallery" element={<AdminRoute><AdminGallery /></AdminRoute>} />
+      <Route path="/admin/seo" element={<AdminRoute><AdminSeo /></AdminRoute>} />
+      
+      {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  );
+}
+
 const App = () => (
-    <QueryClientProvider client={queryClient}>
-          <TooltipProvider>
-                <Toaster />
-                <Sonner />
-                <BrowserRouter>
-                        <Routes>
-                                  <Route path="/" element={<Index />} />
-                                  <Route path="/about" element={<About />} />
-                                  <Route path="/services" element={<Services />} />
-                                  <Route path="/contact" element={<Contact />} />
-                                  <Route path="/gallery" element={<Gallery />} />
-                                  <Route path="/faq" element={<FAQ />} />
-                                  <Route path="/reviews" element={<Reviews />} />
-                                  <Route path="/health-and-safety" element={<HealthAndSafety />} />
-                          {/* Legacy route redirect */}
-                                  <Route path="/av-production" element={<Services />} />
-                                  <Route path="/admin/login" element={<AdminLogin />} />
-                                  <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>AdminRoute>} />
-                                            <Route path="/admin/categories" element={<AdminRoute><AdminCategories /></AdminRoute>AdminRoute>} />
-                                                      <Route path="/admin/content" element={<AdminRoute><AdminContent /></AdminRoute>AdminRoute>} />
-                                                                <Route path="/admin/images" element={<AdminRoute><AdminImages /></AdminRoute>AdminRoute>} />
-                                                                          <Route path="/admin/library" element={<AdminRoute><AdminLibrary /></AdminRoute>AdminRoute>} />
-                                                                                    <Route path="/admin/testimonials" element={<AdminRoute><AdminTestimonials /></AdminRoute>AdminRoute>} />
-                                                                                              <Route path="/admin/gallery" element={<AdminRoute><AdminGallery /></AdminRoute>AdminRoute>} />
-                                                                                                        <Route path="/admin/seo" element={<AdminRoute><AdminSeo /></AdminRoute>AdminRoute>} />
-                                                                                                          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                                                                                                                  <Route path="*" element={<NotFound />} />
-                                                                                                          </Route>Routes>
-                                                                                                </Route>BrowserRouter>
-                                                                                    </Route>TooltipProvider>
-                                                                          </Route>QueryClientProvider>
-                                                                );
-                                                                
-                                                                export default App;</TooltipProvider>
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
+);
+
+export default App;
