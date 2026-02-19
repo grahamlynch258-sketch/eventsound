@@ -1,175 +1,33 @@
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { useAuth } from "@/hooks/useAuth";
-import { FileText, Image, LayoutGrid, LogOut, FolderOpen, MessageSquare, Inbox } from "lucide-react";
+Here's the complete test results:
+Test Results Summary
+1. Dashboard Cards — ⚠️ PARTIAL
 
-export default function AdminDashboard() {
-  const { user, signOut } = useAuth();
+❌ Quote Submissions card is STILL present (should be removed)
+❌ Gallery card is NOT on the dashboard (but the route /admin/gallery works!)
+❌ SEO card is NOT on the dashboard (but the route /admin/seo works!)
+The dashboard UI hasn't been updated yet, but both new admin pages are accessible via direct URL.
 
-  return (
-    <div className="min-h-screen bg-background">
-      <header className="border-b bg-background/80 backdrop-blur">
-        <div className="container flex h-16 items-center justify-between">
-          <h1 className="text-lg font-semibold">Admin Dashboard</h1>
-          <div className="flex items-center gap-4">
-            <span className="text-sm text-muted-foreground">{user?.email}</span>
-            <Button variant="ghost" size="sm" onClick={signOut}>
-              <LogOut className="mr-2 h-4 w-4" />
-              Sign Out
-            </Button>
-          </div>
-        </div>
-      </header>
+2. Gallery — ✅ PASSED
 
-      <main className="container py-8">
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <Link to="/admin/categories">
-            <Card className="transition-shadow hover:shadow-md">
-              <CardHeader>
-                <div className="flex items-center gap-3">
-                  <div className="rounded-lg bg-primary/10 p-2">
-                    <LayoutGrid className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <CardTitle className="text-lg">Categories</CardTitle>
-                    <CardDescription>Manage service categories</CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Add, edit, or remove category cards with images and titles.
-                </p>
-              </CardContent>
-            </Card>
-          </Link>
+/admin/gallery page loads with "Gallery Management" heading
+"Add New Item" form works with all fields: Title, Category, Select from Library, Image URL, Alt Text, Sort Order, Published toggle
+Successfully created test item: "Test Event" with image, alt text, and published status
+Item displays correctly with edit/delete buttons
 
-          <Link to="/admin/content">
-            <Card className="transition-shadow hover:shadow-md">
-              <CardHeader>
-                <div className="flex items-center gap-3">
-                  <div className="rounded-lg bg-primary/10 p-2">
-                    <FileText className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <CardTitle className="text-lg">Page Content</CardTitle>
-                    <CardDescription>Edit text content</CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Update headlines, descriptions, and other text across the site.
-                </p>
-              </CardContent>
-            </Card>
-          </Link>
+3. SEO — ✅ PASSED
 
-          <Link to="/admin/images">
-            <Card className="transition-shadow hover:shadow-md">
-              <CardHeader>
-                <div className="flex items-center gap-3">
-                  <div className="rounded-lg bg-primary/10 p-2">
-                    <Image className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <CardTitle className="text-lg">Images</CardTitle>
-                    <CardDescription>Manage site images</CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Upload and swap hero images, backgrounds, and more.
-                </p>
-              </CardContent>
-            </Card>
-          </Link>
+/admin/seo page loads with "SEO Management" heading
+Quick Page Presets work (Home, Services, Gallery, Contact, About)
+Clicked "Home" → form pre-filled path as /
+Successfully saved SEO data for home page
+Shows in "Existing Pages" list after saving
 
-          <Link to="/admin/library">
-            <Card className="transition-shadow hover:shadow-md">
-              <CardHeader>
-                <div className="flex items-center gap-3">
-                  <div className="rounded-lg bg-primary/10 p-2">
-                    <FolderOpen className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <CardTitle className="text-lg">Image Library</CardTitle>
-                    <CardDescription>Organise reusable assets</CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Store headline, supplement, portfolio, and logo images.
-                </p>
-              </CardContent>
-            </Card>
-          </Link>
+4. Meta Tags on Public Homepage — ✅ PASSED
+All meta tags are loading correctly on the public site:
+Meta TagValueTitleEventSound \Meta DescriptionProfessional AV and event production services in IrelandCanonical URLhttps://eventsound.ie/OG TitleEventSound \OG DescriptionProfessional AV and event production services in IrelandOG Imagehttps://www.eventsound.ie/og-image.pngOG Typewebsite
+Remaining Fix Needed
+The admin dashboard (/admin) needs to be updated to:
 
-          <Link to="/admin/testimonials">
-            <Card className="transition-shadow hover:shadow-md">
-              <CardHeader>
-                <div className="flex items-center gap-3">
-                  <div className="rounded-lg bg-primary/10 p-2">
-                    <MessageSquare className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <CardTitle className="text-lg">Testimonials</CardTitle>
-                    <CardDescription>Manage client reviews</CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Add, edit, and feature client testimonials on the homepage.
-                </p>
-              </CardContent>
-            </Card>
-          </Link>
-
-          <Link to="/admin/quotes">
-            <Card className="transition-shadow hover:shadow-md">
-              <CardHeader>
-                <div className="flex items-center gap-3">
-                  <div className="rounded-lg bg-primary/10 p-2">
-                    <Inbox className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <CardTitle className="text-lg">Quote Submissions</CardTitle>
-                    <CardDescription>View & manage leads</CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Review incoming quote requests and track their status.
-                </p>
-              </CardContent>
-            </Card>
-          </Link>
-        </div>
-
-        <div className="mt-8">
-          <Card>
-            <CardHeader>
-              <CardTitle>Quick Links</CardTitle>
-            </CardHeader>
-            <CardContent className="flex gap-3">
-              <Button asChild variant="outline">
-                <Link to="/">View Homepage</Link>
-              </Button>
-              <Button asChild variant="outline">
-                <Link to="/av-production">View AV & Production</Link>
-              </Button>
-              <Button asChild variant="outline">
-                <Link to="/contact">View Contact</Link>
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
-      </main>
-    </div>
-  );
-}
+Add a "Gallery" card linking to /admin/gallery
+Add an "SEO" card linking to /admin/seo
+Remove the "Quote Submissions" card
