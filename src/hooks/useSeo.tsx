@@ -2,57 +2,71 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 
+const DEFAULT_TITLE = "EventSound | Premium Event Production Ireland";
+const DEFAULT_DESCRIPTION = "Professional AV and event production services across Ireland";
+const SITE_URL = "https://eventsound.ie";
+
 export function useSeo() {
   const location = useLocation();
 
   useEffect(() => {
     const loadSeo = async () => {
       try {
-        // Fetch SEO data for current path
         const { data, error } = await supabase
           .from("page_seo")
           .select("*")
           .eq("path", location.pathname)
           .single();
 
-        if (error || !data) {
-          // Set default meta tags if no custom SEO data
-          document.title = "EventSound | Premium Event Production Ireland";
-          return;
-        }
+        // Set defaults or from database
+        const metaTitle = data?.meta_title || DEFAULT_TITLE;
+        const metaDescription = data?.meta_description || DEFAULT_DESCRIPTION;
+        const canonicalUrl = data?.canonical_url || `${SITE_URL}${location.pathname}`;
+        const ogTitle = data?.og_title || data?.meta_title || DEFAULT_TITLE;
+        const ogDescription = data?.og_description || data?.meta_description || DEFAULT_DESCRIPTION;
+        const ogImage = data?.og_image_url || `${SITE_URL}/og-image.png`;
 
-        // Apply meta title
-        if (data.meta_title) {
-          document.title = data.meta_title;
-        }
+        // Update title
+        document.title = metaTitle;
 
-        // Apply meta description
-        updateMetaTag("name", "description", data.meta_description);
+        // Update or create meta tags
+        updateOrCreateMetaTag("name", "description", metaDescription);
+        
+        // Canonical URL
+        updateOrCreateLinkTag("canonical", canonicalUrl);
 
-        // Apply canonical URL
-        updateLinkTag("canonical", data.canonical_url);
+        // Open Graph tags
+        updateOrCreateMetaTag("property", "og:title", ogTitle);
+        updateOrCreateMetaTag("property", "og:description", ogDescription);
+        updateOrCreateMetaTag("property", "og:image", ogImage);
+        updateOrCreateMetaTag("property", "og:url", canonicalUrl);
+        updateOrCreateMetaTag("property", "og:type", "website");
 
-        // Apply Open Graph tags
-        updateMetaTag("property", "og:title", data.og_title);
-        updateMetaTag("property", "og:description", data.og_description);
-        updateMetaTag("property", "og:image", data.og_image_url);
-        updateMetaTag("property", "og:url", data.canonical_url || window.location.href);
+        // Twitter Card tags
+        updateOrCreateMetaTag("name", "twitter:card", "summary_large_image");
+        updateOrCreateMetaTag("name", "twitter:title", ogTitle);
+        updateOrCreateMetaTag("name", "twitter:description", ogDescription);
+        updateOrCreateMetaTag("name", "twitter:image", ogImage);
 
-        // Apply Twitter Card tags
-        updateMetaTag("name", "twitter:card", "summary_large_image");
-        updateMetaTag("name", "twitter:title", data.og_title);
-        updateMetaTag("name", "twitter:description", data.og_description);
-        updateMetaTag("name", "twitter:image", data.og_image_url);
-
-        // Apply robots meta (noindex if specified)
-        if (data.noindex) {
-          updateMetaTag("name", "robots", "noindex, nofollow");
+        // Robots meta tag (if noindex specified)
+        if (data?.noindex) {
+          updateOrCreateMetaTag("name", "robots", "noindex, nofollow");
         } else {
+          // Remove robots meta if not needed (allow indexing)
           removeMetaTag("name", "robots");
         }
 
       } catch (err) {
-        console.error("Error loading SEO data:", err);
+        // If no SEO data found, set defaults
+        document.title = DEFAULT_TITLE;
+        updateOrCreateMetaTag("name", "description", DEFAULT_DESCRIPTION);
+        updateOrCreateLinkTag("canonical", `${SITE_URL}${location.pathname}`);
+        
+        // Set default OG tags
+        updateOrCreateMetaTag("property", "og:title", DEFAULT_TITLE);
+        updateOrCreateMetaTag("property", "og:description", DEFAULT_DESCRIPTION);
+        updateOrCreateMetaTag("property", "og:url", `${SITE_URL}${location.pathname}`);
+        updateOrCreateMetaTag("property", "og:type", "website");
       }
     };
 
@@ -60,9 +74,7 @@ export function useSeo() {
   }, [location.pathname]);
 }
 
-function updateMetaTag(attribute: string, key: string, value: string | null) {
-  if (!value) return;
-
+function updateOrCreateMetaTag(attribute: string, key: string, value: string) {
   let element = document.querySelector(`meta[${attribute}="${key}"]`);
   if (!element) {
     element = document.createElement("meta");
@@ -79,9 +91,7 @@ function removeMetaTag(attribute: string, key: string) {
   }
 }
 
-function updateLinkTag(rel: string, href: string | null) {
-  if (!href) return;
-
+function updateOrCreateLinkTag(rel: string, href: string) {
   let element = document.querySelector(`link[rel="${rel}"]`) as HTMLLinkElement;
   if (!element) {
     element = document.createElement("link");
