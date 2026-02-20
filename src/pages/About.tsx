@@ -47,13 +47,13 @@ function BehindTheScenes() {
         </h2>
       </div>
       {isLoading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {Array.from({ length: 6 }).map((_, i) => (
             <div key={i} className="aspect-[4/3] rounded-xl bg-muted animate-pulse" />
           ))}
         </div>
       ) : dbImages && dbImages.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {dbImages.map((img, i) => (
             <motion.figure
               key={img.id}
