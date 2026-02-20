@@ -12,8 +12,8 @@ export function useSeo() {
   useEffect(() => {
     const loadSeo = async () => {
       try {
-        const { data, error } = await supabase
-          .from("page_seo")
+        const { data, error } = await (supabase
+          .from("page_seo") as any)
           .select("*")
           .eq("path", location.pathname)
           .single();
