@@ -51,8 +51,8 @@ export default function AdminSeo() {
 
   const fetchPages = async () => {
     try {
-      const { data, error } = await supabase
-        .from("page_seo")
+      const { data, error } = await (supabase
+        .from("page_seo") as any)
         .select("*")
         .order("path");
 
@@ -106,8 +106,8 @@ export default function AdminSeo() {
     }
 
     try {
-      const { error } = await supabase
-        .from("page_seo")
+      const { error } = await (supabase
+        .from("page_seo") as any)
         .upsert(formData, { onConflict: "path" });
 
       if (error) throw error;
