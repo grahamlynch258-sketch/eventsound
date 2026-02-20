@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 
 interface MarqueeItem {
   label: string;
@@ -23,6 +23,22 @@ export function WhatWeDoMarquee({ items, intervalSec = 2 }: WhatWeDoMarqueeProps
   const [direction, setDirection] = useState<"left" | "right">("left");
   const [slideOffset, setSlideOffset] = useState(0);
 
+  const pausedRef = useRef(paused);
+  const animatingRef = useRef(animating);
+  pausedRef.current = paused;
+  animatingRef.current = animating;
+
+  useEffect(() => {
+    const update = () => {
+      if (window.innerWidth < 640) setVisibleCount(1);
+      else if (window.innerWidth < 1024) setVisibleCount(2);
+      else setVisibleCount(4);
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
   const getItems = (start: number, count: number) => {
     const result: { item: MarqueeItem; key: number }[] = [];
     for (let i = 0; i < count; i++) {
@@ -34,12 +50,12 @@ export function WhatWeDoMarquee({ items, intervalSec = 2 }: WhatWeDoMarqueeProps
 
   const navigate = useCallback(
     (dir: "left" | "right") => {
-      if (animating) return;
+      if (animatingRef.current) return;
       setDirection(dir);
       setAnimating(true);
       setSlideOffset(dir === "left" ? -(100 / visibleCount) : 100 / visibleCount);
     },
-    [animating, visibleCount],
+    [visibleCount],
   );
 
   const handleTransitionEnd = useCallback(() => {
@@ -55,12 +71,15 @@ export function WhatWeDoMarquee({ items, intervalSec = 2 }: WhatWeDoMarqueeProps
   }, [direction, items.length]);
 
   useEffect(() => {
-    if (paused) return;
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReduced) return;
-    const id = setInterval(() => navigate("left"), intervalSec * 1000);
+    const id = setInterval(() => {
+      if (!pausedRef.current && !animatingRef.current) {
+        navigate("left");
+      }
+    }, intervalSec * 1000);
     return () => clearInterval(id);
-  }, [paused, navigate, intervalSec]);
+  }, [navigate, intervalSec]);
 
   const displayStart = direction === "right" && animating ? (startIndex - 1 + items.length) % items.length : startIndex;
   const displayItems = getItems(displayStart, visibleCount + 1);
@@ -132,7 +151,7 @@ function ServiceCard({ item }: { item: MarqueeItem }) {
   const Icon = item.icon;
   const card = (
     <div
-      className="group flex flex-col rounded-xl border border-border/50 bg-card p-7 transition-colors duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 h-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+      className="group relative flex flex-col rounded-xl border border-border/50 bg-card p-7 min-h-[220px] transition-colors duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 h-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
       tabIndex={0}
     >
       {Icon && (
@@ -142,7 +161,7 @@ function ServiceCard({ item }: { item: MarqueeItem }) {
       )}
       <h3 className="font-serif text-xl font-semibold mb-3 text-foreground">{item.label}</h3>
       {item.description && <p className="text-sm text-muted-foreground leading-relaxed flex-1">{item.description}</p>}
-      <div className="mt-5 flex items-center gap-1 text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+      <div className="absolute bottom-7 left-7 flex items-center gap-1 text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">
         Learn more <ArrowUpRight className="h-3 w-3" />
       </div>
     </div>
