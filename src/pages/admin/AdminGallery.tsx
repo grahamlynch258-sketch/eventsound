@@ -22,7 +22,7 @@ interface GalleryItem {
 interface LibraryImage {
   id: string;
   image_url: string;
-  title: string;
+  file_name: string;
 }
 
 export default function AdminGallery() {
@@ -67,7 +67,7 @@ export default function AdminGallery() {
     try {
       const { data, error } = await supabase
         .from("library_images")
-        .select("id, image_url, title")
+        .select("id, image_url, file_name")
         .order("created_at", { ascending: false });
 
       if (error) throw error;
@@ -225,11 +225,11 @@ export default function AdminGallery() {
                   <img
                     key={img.id}
                     src={img.image_url}
-                    alt={img.title}
+                    alt={img.file_name}
                     className={`cursor-pointer border-2 rounded hover:opacity-75 ${
                       formData.image_url === img.image_url ? "border-primary" : "border-transparent"
                     }`}
-                    onClick={() => selectLibraryImage(img.image_url, img.title)}
+                    onClick={() => selectLibraryImage(img.image_url, img.file_name)}
                   />
                 ))}
               </div>
