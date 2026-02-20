@@ -89,9 +89,26 @@ export function WhatWeDoMarquee({ items, intervalSec = 2 }: WhatWeDoMarqueeProps
     <div
       className="relative py-6"
       onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
+      onMouseLeave={() => {
+        // Don't unpause if still animating — prevents flicker from sliding elements
+        if (!animatingRef.current) {
+          setPaused(false);
+        } else {
+          // Schedule unpause for after animation completes
+          const check = () => {
+            if (!animatingRef.current) setPaused(false);
+            else requestAnimationFrame(check);
+          };
+          requestAnimationFrame(check);
+        }
+      }}
       onFocus={() => setPaused(true)}
-      onBlur={() => setPaused(false)}
+      onBlur={(e) => {
+        // Only unpause if focus leaves the container entirely
+        if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+          setPaused(false);
+        }
+      }}
     >
       <div className="overflow-hidden">
         <div
@@ -100,6 +117,7 @@ export function WhatWeDoMarquee({ items, intervalSec = 2 }: WhatWeDoMarqueeProps
             transform: `translateX(${slideOffset}%)`,
             transition: animating ? "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)" : "none",
             willChange: "transform",
+            pointerEvents: animating ? "none" : "auto",
           }}
           onTransitionEnd={handleTransitionEnd}
         >
