@@ -14,29 +14,28 @@ const highlights = [
   { icon: Shield, title: "Safety First", text: "TUV-certified staging, European-manufactured rigging, trained crew." },
 ];
 
-const FALLBACK_IMAGES = [
-  { image_url: "/placeholder.svg", alt: "Event setup behind the scenes" },
-  { image_url: "/placeholder.svg", alt: "Audio equipment preparation" },
-  { image_url: "/placeholder.svg", alt: "Lighting rig installation" },
-  { image_url: "/placeholder.svg", alt: "Stage construction in progress" },
-  { image_url: "/placeholder.svg", alt: "LED wall configuration" },
-  { image_url: "/placeholder.svg", alt: "Sound check before event" },
-];
-
 function BehindTheScenes() {
-  const { data: dbImages } = useQuery({
-    queryKey: ["about-images"],
+  const { data: dbImages, isLoading, isError } = useQuery({
+    queryKey: ["library-images", "supplements"],
     queryFn: async () => {
       const { data, error } = await supabase
-        .from("about_images")
-        .select("image_url, alt, sort_order")
-        .order("sort_order", { ascending: true });
+        .from("library_images")
+        .select("id, image_url, file_name, alt_text, category")
+        .eq("category", "supplements")
+        .order("created_at", { ascending: false });
       if (error) throw error;
       return data;
     },
   });
 
-  const images = dbImages && dbImages.length > 0 ? dbImages : FALLBACK_IMAGES;
+  function altFromFilename(filename: string): string {
+    return filename
+      .replace(/\.[^.]+$/, "")
+      .replace(/[-_]/g, " ")
+      .replace(/\b\w/g, (c) => c.toUpperCase());
+  }
+
+  if (isError) return null;
 
   return (
     <section className="container py-20 md:py-28">
@@ -47,25 +46,38 @@ function BehindTheScenes() {
           Behind the Scenes
         </h2>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-        {images.map((img, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.06, duration: 0.4 }}
-            className="overflow-hidden rounded-xl border border-border/50"
-          >
-            <img
-              src={img.image_url}
-              alt={img.alt}
-              className="w-full aspect-[4/3] object-cover"
-              loading="lazy"
-            />
-          </motion.div>
-        ))}
-      </div>
+      {isLoading ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div key={i} className="aspect-[4/3] rounded-xl bg-muted animate-pulse" />
+          ))}
+        </div>
+      ) : dbImages && dbImages.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {dbImages.map((img, i) => (
+            <motion.figure
+              key={img.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.06, duration: 0.4 }}
+              className="overflow-hidden rounded-xl border border-border/50"
+            >
+              <img
+                src={img.image_url}
+                alt={img.alt_text || altFromFilename(img.file_name)}
+                className="w-full aspect-[4/3] object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            </motion.figure>
+          ))}
+        </div>
+      ) : (
+        <p className="text-center py-12 text-muted-foreground">
+          No behind-the-scenes images available yet.
+        </p>
+      )}
     </section>
   );
 }
