@@ -78,6 +78,7 @@ export type Database = {
           created_at: string | null
           id: string
           image_url: string
+          is_published: boolean | null
           sort_order: number | null
           title: string
         }
@@ -87,6 +88,7 @@ export type Database = {
           created_at?: string | null
           id?: string
           image_url: string
+          is_published?: boolean | null
           sort_order?: number | null
           title: string
         }
@@ -96,6 +98,7 @@ export type Database = {
           created_at?: string | null
           id?: string
           image_url?: string
+          is_published?: boolean | null
           sort_order?: number | null
           title?: string
         }
@@ -125,6 +128,45 @@ export type Database = {
           file_name?: string
           id?: string
           image_url?: string
+        }
+        Relationships: []
+      }
+      page_seo: {
+        Row: {
+          canonical_url: string | null
+          created_at: string | null
+          meta_description: string | null
+          meta_title: string | null
+          noindex: boolean | null
+          og_description: string | null
+          og_image_url: string | null
+          og_title: string | null
+          path: string
+          updated_at: string | null
+        }
+        Insert: {
+          canonical_url?: string | null
+          created_at?: string | null
+          meta_description?: string | null
+          meta_title?: string | null
+          noindex?: boolean | null
+          og_description?: string | null
+          og_image_url?: string | null
+          og_title?: string | null
+          path: string
+          updated_at?: string | null
+        }
+        Update: {
+          canonical_url?: string | null
+          created_at?: string | null
+          meta_description?: string | null
+          meta_title?: string | null
+          noindex?: boolean | null
+          og_description?: string | null
+          og_image_url?: string | null
+          og_title?: string | null
+          path?: string
+          updated_at?: string | null
         }
         Relationships: []
       }
