@@ -1,118 +1,26 @@
 import { PageShell } from "@/components/site/PageShell";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
-import { HeroSlideshow } from "@/components/site/HeroSlideshow";
-import { TrustBar } from "@/components/site/TrustBar";
-import { ServicesGrid } from "@/components/site/ServicesGrid";
-import { ProcessSection } from "@/components/site/ProcessSection";
-import { TestimonialsSection } from "@/components/site/TestimonialsSection";
-import { CTASection } from "@/components/site/CTASection";
-import { siteConfig } from "@/config/site";
-import { ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
-import { useSiteContent } from "@/hooks/useSiteContent";
-import {
-  mapHeroContent,
-  mapFeaturesContent,
-  mapCta2Content,
-  type HomeHeroContent,
-  type HomeFeaturesContent,
-  type HomeCta2Content,
-} from "@/lib/contentMapper";
-import { CMS_PAGES, CMS_SECTIONS } from "@/lib/cmsKeys";
-import fallbackHeroImage from "@/assets/hero-av-production.jpg";
-
-const FALLBACK_HERO: HomeHeroContent = {
-  tagline: siteConfig.tagline,
-  headline: "Production by Professionals",
-  subheadline: "From concept to delivery, our team supports you to deliver your event flawlessly.",
-  cta_primary: "Get a Free Quote",
-  cta_secondary: "Explore Services",
-  cta_primary_href: "/services",
-  cta_secondary_href: "/contact",
-};
-
-const FALLBACK_FEATURES: HomeFeaturesContent = {
-  items: [
-    { value: "End-to-End", label: "Full-Service Production" },
-    { value: "Expert", label: "Experienced Crew" },
-    { value: "100%", label: "Fully Insured" },
-    { value: "<24h", label: "Quote Response" },
-  ],
-};
-
-const FALLBACK_CTA2: HomeCta2Content = {
-  title: "Ready to elevate your next event?",
-  description: `Tell us your date, venue, and vision. We'll come back with a clear recommendation and a transparent quote — ${siteConfig.quoteResponseSLA}.`,
-  primaryCtaLabel: "Get a Free Quote",
-  secondaryCtaLabel: "View Our Services",
-  primaryHref: "/contact",
-  secondaryHref: "/services",
-};
+import { Hero } from "@/components/site/Hero";
+import { ServicesSection } from "@/components/site/ServicesSection";
+import { TrustedBySection } from "@/components/site/TrustedBySection";
+import { CallToAction } from "@/components/site/CallToAction";
+import { useSeo } from "@/hooks/useSeo";
 
 const Index = () => {
-  const { data: heroData } = useSiteContent(CMS_PAGES.home, CMS_SECTIONS.home.hero);
-  const { data: featuresData } = useSiteContent(CMS_PAGES.home, CMS_SECTIONS.home.features);
-  const { data: cta2Data } = useSiteContent(CMS_PAGES.home, CMS_SECTIONS.home.cta2);
-
-  const heroContent = mapHeroContent(heroData, FALLBACK_HERO);
-  const primaryHref = heroContent.cta_primary_href || "/contact";
-  const secondaryHref = heroContent.cta_secondary_href || "/services";
-  const featuresContent = mapFeaturesContent(featuresData, FALLBACK_FEATURES);
-  const cta2Content = mapCta2Content(cta2Data, FALLBACK_CTA2);
+  useSeo({
+    title: "EventSound | Professional Event Production & AV Hire Ireland",
+    description: "Professional event production and AV equipment hire across Ireland. LED video walls, sound systems, lighting, and staging for corporate events, conferences, and live shows in Dublin, Leinster, and nationwide.",
+    canonical: "https://eventsound.ie/",
+    ogTitle: "EventSound | Professional Event Production & AV Hire Ireland",
+    ogDescription: "Professional AV equipment rental and event production services across Ireland. LED walls, sound systems, lighting, and staging for corporate events.",
+    ogType: "website"
+  });
 
   return (
     <PageShell>
-      <main>
-        <section className="relative min-h-[90vh] flex items-center">
-          <div className="absolute inset-0">
-            <HeroSlideshow fallbackImage={fallbackHeroImage} singleImage={fallbackHeroImage} />
-            <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/70 to-background" />
-          </div>
-          <div className="container relative py-32 md:py-44">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="max-w-3xl"
-            >
-              <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-4">
-                {heroContent.tagline}
-              </p>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold tracking-tight leading-[1.1]">
-                {heroContent.headline}
-              </h1>
-              <p className="mt-6 max-w-2xl text-base md:text-lg text-muted-foreground leading-relaxed">
-                {heroContent.subheadline}
-              </p>
-              <div className="mt-10 flex flex-col sm:flex-row gap-3">
-                <Button asChild size="lg" className="font-semibold shadow-gold text-base px-8">
-                  <Link to={primaryHref}>
-                    {heroContent.cta_primary}
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button asChild variant="outline" size="lg" className="text-base px-8">
-                  <Link to={secondaryHref}>{heroContent.cta_secondary}</Link>
-                </Button>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        <TrustBar items={featuresContent.items} />
-        <ServicesGrid />
-        <ProcessSection />
-        <TestimonialsSection />
-        <CTASection
-          title={cta2Content.title}
-          description={cta2Content.description}
-          primaryCtaLabel={cta2Content.primaryCtaLabel}
-          secondaryCtaLabel={cta2Content.secondaryCtaLabel}
-          primaryHref={cta2Content.primaryHref}
-          secondaryHref={cta2Content.secondaryHref}
-        />
-      </main>
+      <Hero />
+      <ServicesSection />
+      <TrustedBySection />
+      <CallToAction />
     </PageShell>
   );
 };
