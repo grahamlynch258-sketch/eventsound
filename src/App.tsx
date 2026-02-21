@@ -27,6 +27,8 @@ import AdminTestimonials from "./pages/admin/AdminTestimonials";
 import AdminLibrary from "./pages/admin/AdminLibrary";
 import AdminCategories from "./pages/admin/AdminCategories";
 import AdminImages from "./pages/admin/AdminImages";
+import AdminCaseStudies from "./pages/admin/AdminCaseStudies";
+import AdminCaseStudyEdit from "./pages/admin/AdminCaseStudyEdit";
 
 const queryClient = new QueryClient();
 
@@ -55,6 +57,8 @@ function AppRoutes() {
       <Route path="/admin/library" element={<AdminRoute><AdminLibrary /></AdminRoute>} />
       <Route path="/admin/categories" element={<AdminRoute><AdminCategories /></AdminRoute>} />
       <Route path="/admin/images" element={<AdminRoute><AdminImages /></AdminRoute>} />
+      <Route path="/admin/case-studies" element={<AdminRoute><AdminCaseStudies /></AdminRoute>} />
+      <Route path="/admin/case-studies/:id" element={<AdminRoute><AdminCaseStudyEdit /></AdminRoute>} />
       
       {/* 404 */}
       <Route path="*" element={<NotFound />} />
