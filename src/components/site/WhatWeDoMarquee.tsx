@@ -128,10 +128,10 @@ export function WhatWeDoMarquee({ items, intervalSec = 2 }: WhatWeDoMarqueeProps
                         {displayItems.map(({ item, key }) => (
                                               <div key={key} className="flex-shrink-0 px-2" style={{ width: `${cardWidthPct}%` }}>
                                                             <ServiceCard item={item} />
-                                              </div>div>
+                                              </div>
                                             ))}
                       </div>div>
-              </div>div>
+              </div>
         
               <button
                         onClick={() => navigate("right")}
