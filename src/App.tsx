@@ -16,67 +16,70 @@ import CaseStudies from "./pages/CaseStudies";
 import CaseStudyDetail from "./pages/CaseStudyDetail";
 import NotFound from "./pages/NotFound";
 
-// Admin imports - using capital A for Admin folder
-import AdminLogin from "./pages/admin/AdminLogin";
+// Admin imports
+import AdminLogin from "./pages/admin/Login";
 import Dashboard from "./pages/admin/Dashboard";
 import AdminRoute from "./components/admin/AdminRoute";
 import AdminGallery from "./pages/admin/AdminGallery";
 import AdminSeo from "./pages/admin/AdminSeo";
-import AdminContent from "./pages/admin/AdminContent";
-import AdminTestimonials from "./pages/admin/AdminTestimonials";
-import AdminLibrary from "./pages/admin/AdminLibrary";
-import AdminCategories from "./pages/admin/AdminCategories";
-import AdminImages from "./pages/admin/AdminImages";
+import AdminContent from "./pages/admin/Content";
+import AdminTestimonials from "./pages/admin/Testimonials";
+import AdminLibrary from "./pages/admin/Library";
+import AdminCategories from "./pages/admin/Categories";
+import AdminImages from "./pages/admin/Images";
 import AdminCaseStudies from "./pages/admin/AdminCaseStudies";
 import AdminCaseStudyEdit from "./pages/admin/AdminCaseStudyEdit";
 
 const queryClient = new QueryClient();
 
 function AppRoutes() {
-  return (
-    <Routes>
-      {/* Public routes */}
-      <Route path="/" element={<Index />} />
-      <Route path="/services" element={<Services />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/contact" element={<Contact />} />
-      <Route path="/gallery" element={<Gallery />} />
-      <Route path="/reviews" element={<Reviews />} />
-      <Route path="/faq" element={<FAQ />} />
-      <Route path="/health-and-safety" element={<HealthAndSafety />} />
-      <Route path="/case-studies" element={<CaseStudies />} />
-      <Route path="/case-studies/:slug" element={<CaseStudyDetail />} />
-      
-      {/* Admin routes */}
-      <Route path="/admin/login" element={<AdminLogin />} />
-      <Route path="/admin" element={<AdminRoute><Dashboard /></AdminRoute>} />
-      <Route path="/admin/gallery" element={<AdminRoute><AdminGallery /></AdminRoute>} />
-      <Route path="/admin/seo" element={<AdminRoute><AdminSeo /></AdminRoute>} />
-      <Route path="/admin/content" element={<AdminRoute><AdminContent /></AdminRoute>} />
-      <Route path="/admin/testimonials" element={<AdminRoute><AdminTestimonials /></AdminRoute>} />
-      <Route path="/admin/library" element={<AdminRoute><AdminLibrary /></AdminRoute>} />
-      <Route path="/admin/categories" element={<AdminRoute><AdminCategories /></AdminRoute>} />
-      <Route path="/admin/images" element={<AdminRoute><AdminImages /></AdminRoute>} />
-      <Route path="/admin/case-studies" element={<AdminRoute><AdminCaseStudies /></AdminRoute>} />
-      <Route path="/admin/case-studies/:id" element={<AdminRoute><AdminCaseStudyEdit /></AdminRoute>} />
-      
-      {/* 404 */}
-      <Route path="*" element={<NotFound />} />
-    </Routes>
-  );
-}
-
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <SiteSchema />
-        <AppRoutes />
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
-
-export default App;
+    return (
+          <Routes>
+            {/* Public routes */}
+                <Route path="/" element={<Index />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/gallery" element={<Gallery />} />
+                <Route path="/reviews" element={<Reviews />} />
+                <Route path="/faq" element={<FAQ />} />
+                <Route path="/health-and-safety" element={<HealthAndSafety />} />
+                <Route path="/case-studies" element={<CaseStudies />} />
+                <Route path="/case-studies/:slug" element={<CaseStudyDetail />} />
+          
+            {/* Legacy route redirect */}
+                <Route path="/av-production" element={<Services />} />
+          
+            {/* Admin routes */}
+                <Route path="/admin/login" element={<AdminLogin />} />
+                <Route path="/admin" element={<AdminRoute><Dashboard /></AdminRoute>AdminRoute>} />
+                      <Route path="/admin/gallery" element={<AdminRoute><AdminGallery /></AdminRoute>AdminRoute>} />
+                            <Route path="/admin/seo" element={<AdminRoute><AdminSeo /></AdminRoute>AdminRoute>} />
+                                  <Route path="/admin/content" element={<AdminRoute><AdminContent /></AdminRoute>AdminRoute>} />
+                                        <Route path="/admin/testimonials" element={<AdminRoute><AdminTestimonials /></AdminRoute>AdminRoute>} />
+                                              <Route path="/admin/library" element={<AdminRoute><AdminLibrary /></AdminRoute>AdminRoute>} />
+                                                    <Route path="/admin/categories" element={<AdminRoute><AdminCategories /></AdminRoute>AdminRoute>} />
+                                                          <Route path="/admin/images" element={<AdminRoute><AdminImages /></AdminRoute>AdminRoute>} />
+                                                                <Route path="/admin/case-studies" element={<AdminRoute><AdminCaseStudies /></AdminRoute>AdminRoute>} />
+                                                                      <Route path="/admin/case-studies/:id" element={<AdminRoute><AdminCaseStudyEdit /></AdminRoute>AdminRoute>} />
+                                                                      
+                                                                        {/* 404 */}
+                                                                            <Route path="*" element={<NotFound />} />
+                                                                      </Route>Routes>
+                                                                  );
+                                                                  }
+                                                                
+                                                                const App = () => (
+                                                                  <QueryClientProvider client={queryClient}>
+                                                                      <TooltipProvider>
+                                                                            <Toaster />
+                                                                            <Sonner />
+                                                                            <BrowserRouter>
+                                                                                    <SiteSchema />
+                                                                                    <AppRoutes />
+                                                                            </BrowserRouter>BrowserRouter>
+                                                                      </TooltipProvider>TooltipProvider>
+                                                                  </QueryClientProvider>QueryClientProvider>
+                                                                );
+                                                                
+                                                                export default App;</Routes>
