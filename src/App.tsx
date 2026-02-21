@@ -17,18 +17,18 @@ import CaseStudyDetail from "./pages/CaseStudyDetail";
 import NotFound from "./pages/NotFound";
 
 // Admin imports - using capital A for Admin folder
-import AdminLogin from "./pages/Admin/AdminLogin";
-import Dashboard from "./pages/Admin/Dashboard";
-import AdminRoute from "./components/Admin/AdminRoute";
-import AdminGallery from "./pages/Admin/AdminGallery";
-import AdminSeo from "./pages/Admin/AdminSeo";
-import AdminContent from "./pages/Admin/AdminContent";
-import AdminTestimonials from "./pages/Admin/AdminTestimonials";
-import AdminLibrary from "./pages/Admin/AdminLibrary";
-import AdminCategories from "./pages/Admin/AdminCategories";
-import AdminImages from "./pages/Admin/AdminImages";
-import AdminCaseStudies from "./pages/Admin/AdminCaseStudies";
-import AdminCaseStudyEdit from "./pages/Admin/AdminCaseStudyEdit";
+import AdminLogin from "./pages/admin/AdminLogin";
+import Dashboard from "./pages/admin/Dashboard";
+import AdminRoute from "./components/admin/AdminRoute";
+import AdminGallery from "./pages/admin/AdminGallery";
+import AdminSeo from "./pages/admin/AdminSeo";
+import AdminContent from "./pages/admin/AdminContent";
+import AdminTestimonials from "./pages/admin/AdminTestimonials";
+import AdminLibrary from "./pages/admin/AdminLibrary";
+import AdminCategories from "./pages/admin/AdminCategories";
+import AdminImages from "./pages/admin/AdminImages";
+import AdminCaseStudies from "./pages/admin/AdminCaseStudies";
+import AdminCaseStudyEdit from "./pages/admin/AdminCaseStudyEdit";
 
 const queryClient = new QueryClient();
 
