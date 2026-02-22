@@ -2,13 +2,17 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
-import { Menu, X, ChevronDown, HelpCircle, Star, Mail } from "lucide-react";
+import { Menu, X, ChevronDown, HelpCircle, Star, Mail, Images, BookOpen } from "lucide-react";
 
 const mainLinks = [
   { to: "/", label: "Home", end: true },
   { to: "/about", label: "About" },
   { to: "/services", label: "Services" },
-  { to: "/gallery", label: "Gallery" },
+];
+
+const portfolioLinks = [
+  { to: "/gallery", label: "Gallery", icon: Images, description: "Photos from our events" },
+  { to: "/case-studies", label: "Case Studies", icon: BookOpen, description: "In-depth project breakdowns" },
 ];
 
 const connectLinks = [
@@ -17,6 +21,7 @@ const connectLinks = [
   { to: "/contact", label: "Contact", icon: Mail, description: "Get a quote or get in touch" },
 ];
 
+const PORTFOLIO_PATHS = portfolioLinks.map((l) => l.to);
 const CONNECT_PATHS = connectLinks.map((l) => l.to);
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
@@ -28,11 +33,15 @@ const navLinkClass = ({ isActive }: { isActive: boolean }) =>
 
 export function SiteHeader({ className }: { className?: string }) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [portfolioOpen, setPortfolioOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [portfolioMobileOpen, setPortfolioMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const portfolioRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
 
+  const portfolioActive = PORTFOLIO_PATHS.some((p) => location.pathname.startsWith(p));
   const connectActive = CONNECT_PATHS.some((p) => location.pathname.startsWith(p));
 
   useEffect(() => {
@@ -41,9 +50,12 @@ export function SiteHeader({ className }: { className?: string }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close dropdown on outside click
+  // Close dropdowns on outside click
   useEffect(() => {
     const handler = (e: MouseEvent) => {
+      if (portfolioRef.current && !portfolioRef.current.contains(e.target as Node)) {
+        setPortfolioOpen(false);
+      }
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         setDropdownOpen(false);
       }
@@ -52,8 +64,21 @@ export function SiteHeader({ className }: { className?: string }) {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  // Close dropdown on route change
+  // Close dropdowns on ESC
   useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setPortfolioOpen(false);
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener("keydown", handler);
+    return () => document.removeEventListener("keydown", handler);
+  }, []);
+
+  // Close dropdowns on route change
+  useEffect(() => {
+    setPortfolioOpen(false);
     setDropdownOpen(false);
     setMobileOpen(false);
   }, [location.pathname]);
@@ -85,6 +110,50 @@ export function SiteHeader({ className }: { className?: string }) {
               {l.label}
             </NavLink>
           ))}
+
+          {/* Portfolio dropdown */}
+          <div className="relative" ref={portfolioRef}>
+            <button
+              onClick={() => setPortfolioOpen((o) => !o)}
+              className={cn(
+                "flex items-center gap-1 text-sm font-medium tracking-wide transition-colors hover:text-primary relative",
+                "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 hover:after:scale-x-100",
+                portfolioActive ? "text-primary after:scale-x-100" : "text-muted-foreground",
+              )}
+              aria-haspopup="true"
+              aria-expanded={portfolioOpen}
+            >
+              Portfolio
+              <ChevronDown
+                className={cn("h-3.5 w-3.5 transition-transform duration-200", portfolioOpen && "rotate-180")}
+              />
+            </button>
+
+            {portfolioOpen && (
+              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-56 rounded-xl border border-border/60 bg-background/98 backdrop-blur-lg shadow-xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-150">
+                {portfolioLinks.map(({ to, label, icon: Icon, description }) => (
+                  <Link
+                    key={to}
+                    to={to}
+                    className={cn(
+                      "flex items-start gap-3 px-4 py-3 transition-colors hover:bg-primary/10 group",
+                      location.pathname === to && "bg-primary/10",
+                    )}
+                  >
+                    <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                      <Icon className="h-3.5 w-3.5 text-primary" />
+                    </div>
+                    <div>
+                      <p className={cn("text-sm font-medium", location.pathname === to ? "text-primary" : "text-foreground")}>
+                        {label}
+                      </p>
+                      <p className="text-xs text-muted-foreground">{description}</p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
 
           {/* Connect dropdown */}
           <div className="relative" ref={dropdownRef}>
@@ -164,6 +233,38 @@ export function SiteHeader({ className }: { className?: string }) {
                 end={l.end}
               >
                 {l.label}
+              </NavLink>
+            ))}
+
+            {/* Portfolio group in mobile */}
+            <div className="mt-2 mb-1 px-4">
+              <button
+                onClick={() => setPortfolioMobileOpen((o) => !o)}
+                className={cn(
+                  "flex w-full items-center justify-between text-xs font-semibold uppercase tracking-widest transition-colors",
+                  portfolioActive ? "text-primary" : "text-muted-foreground/60 hover:text-muted-foreground",
+                )}
+              >
+                Portfolio
+                <ChevronDown
+                  className={cn("h-3.5 w-3.5 transition-transform duration-200", portfolioMobileOpen && "rotate-180")}
+                />
+              </button>
+            </div>
+            {portfolioMobileOpen && portfolioLinks.map(({ to, label, icon: Icon }) => (
+              <NavLink
+                key={to}
+                to={to}
+                className={({ isActive }) =>
+                  cn(
+                    "flex items-center gap-3 py-3 px-6 rounded-lg text-base font-medium transition-colors",
+                    isActive ? "text-primary bg-primary/10" : "text-muted-foreground hover:text-foreground hover:bg-secondary/50",
+                  )
+                }
+                onClick={() => setMobileOpen(false)}
+              >
+                <Icon className="h-4 w-4 shrink-0" />
+                {label}
               </NavLink>
             ))}
 
