@@ -95,8 +95,8 @@ const CaseStudies = () => {
               onClick={() => setSelectedCategory(null)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition ${
                 selectedCategory === null
-                  ? "bg-primary text-white"
-                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-secondary text-secondary-foreground hover:bg-secondary/70"
               }`}
             >
               All
@@ -107,8 +107,8 @@ const CaseStudies = () => {
                 onClick={() => setSelectedCategory(category)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition ${
                   selectedCategory === category
-                    ? "bg-primary text-white"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-secondary text-secondary-foreground hover:bg-secondary/70"
                 }`}
               >
                 {category}
@@ -120,7 +120,7 @@ const CaseStudies = () => {
         {/* Case Studies Grid */}
         {caseStudies.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-gray-600 text-lg">
+            <p className="text-muted-foreground text-lg">
               No case studies available yet. Check back soon!
             </p>
           </div>
@@ -152,10 +152,10 @@ const CaseStudies = () => {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-600 mb-4 line-clamp-3">
+                    <p className="text-muted-foreground mb-4 line-clamp-3">
                       {caseStudy.excerpt}
                     </p>
-                    <div className="flex flex-wrap gap-4 text-sm text-gray-500">
+                    <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
                       {caseStudy.location && (
                         <div className="flex items-center gap-1">
                           <MapPin className="w-4 h-4" />
