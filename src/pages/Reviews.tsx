@@ -1,6 +1,6 @@
 import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
-import { TestimonialsGrid } from "@/components/site/TestimonialsGrid";
+import { TestimonialsSection } from "@/components/site/TestimonialsSection";
 import { useSeo } from "@/hooks/useSeo";
 
 const Reviews = () => {
@@ -18,7 +18,7 @@ const Reviews = () => {
         title="Client Reviews"
         subtitle="See what our clients have to say about working with EventSound"
       />
-      <TestimonialsGrid />
+      <TestimonialsSection />
     </PageShell>
   );
 };
