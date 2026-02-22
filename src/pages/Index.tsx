@@ -1,8 +1,8 @@
 import { PageShell } from "@/components/site/PageShell";
 import { Hero } from "@/components/site/Hero";
-import { ServicesSection } from "@/components/site/ServicesSection";
-import { TrustedBySection } from "@/components/site/TrustedBySection";
-import { CallToAction } from "@/components/site/CallToAction";
+import { ServicesGrid } from "@/components/site/ServicesGrid";
+import { TrustBar } from "@/components/site/TrustBar";
+import { CTASection } from "@/components/site/CTASection";
 import { useSeo } from "@/hooks/useSeo";
 
 const Index = () => {
@@ -18,9 +18,9 @@ const Index = () => {
   return (
     <PageShell>
       <Hero />
-      <ServicesSection />
-      <TrustedBySection />
-      <CallToAction />
+      <ServicesGrid />
+      <TrustBar />
+      <CTASection />
     </PageShell>
   );
 };
