@@ -1,12 +1,5 @@
 # ============================================================
-# BETA NOINDEX — block ALL search-engine indexing site-wide
-# Remove this entire block when the site is ready to go live.
-# ============================================================
-/*
-  X-Robots-Tag: noindex, nofollow, noarchive
-
-# ============================================================
-# KEEP FOREVER — always block /admin/* from search engines
+# KEEP FOREVER — always block /admin/* from search engines.
 # Do NOT remove this block even after going live.
 # ============================================================
 /admin/*
