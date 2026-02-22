@@ -557,4 +557,21 @@ const AdminCaseStudyEdit = () => {
             <CardContent>
               <div className="flex items-center justify-between">
                 <div>
-                  <Label htmlFor="is
+                  <Label htmlFor="is_published">Published</Label>
+                  <p className="text-sm text-gray-500">Make this case study visible on the site</p>
+                </div>
+                <Switch
+                  id="is_published"
+                  checked={formData.is_published}
+                  onCheckedChange={(checked) => setFormData({ ...formData, is_published: checked })}
+                />
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default AdminCaseStudyEdit;
