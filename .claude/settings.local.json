@@ -6,7 +6,8 @@
       "Bash(git push:*)",
       "Bash(node:*)",
       "Bash(npm:*)",
-      "Bash(VITE_INDEXABLE=true npm run build:*)"
+      "Bash(VITE_INDEXABLE=true npm run build:*)",
+      "Bash(git checkout:*)"
     ]
   }
 }
