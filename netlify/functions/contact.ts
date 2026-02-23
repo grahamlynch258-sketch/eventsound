@@ -23,6 +23,23 @@ function checkRateLimit(ip: string): boolean {
   return true;
 }
 
+async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
+  const secret = process.env.TURNSTILE_SECRET_KEY;
+  if (!secret) return true; // Turnstile not configured — skip verification
+
+  const params = new URLSearchParams();
+  params.append("secret", secret);
+  params.append("response", token);
+  params.append("remoteip", ip);
+
+  const res = await fetch(
+    "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+    { method: "POST", body: params }
+  );
+  const data = await res.json() as { success: boolean };
+  return data.success === true;
+}
+
 export const handler: Handler = async (event) => {
   // Only allow POST
   if (event.httpMethod !== "POST") {
@@ -43,6 +60,7 @@ export const handler: Handler = async (event) => {
       venue,
       message,
       honeypot,
+      turnstileToken,
     } = body;
 
     // Honeypot check
@@ -62,6 +80,15 @@ export const handler: Handler = async (event) => {
         body: JSON.stringify({
           error: "Too many requests. Please try again later.",
         }),
+      };
+    }
+
+    // Turnstile verification
+    const turnstileOk = await verifyTurnstile(turnstileToken || "", clientIp);
+    if (!turnstileOk) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: "CAPTCHA verification failed. Please try again." }),
       };
     }
 
