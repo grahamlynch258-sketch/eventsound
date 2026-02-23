@@ -28,7 +28,7 @@ const Dashboard = () => {
           onClick={() => navigate("/admin/gallery")}
         >
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Gallery</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-800">Gallery</CardTitle>
             <Image className="h-4 w-4 text-blue-600" />
           </CardHeader>
           <CardContent>
@@ -44,7 +44,7 @@ const Dashboard = () => {
           onClick={() => navigate("/admin/case-studies")}
         >
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Case Studies</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-800">Case Studies</CardTitle>
             <Briefcase className="h-4 w-4 text-purple-600" />
           </CardHeader>
           <CardContent>
@@ -60,7 +60,7 @@ const Dashboard = () => {
           onClick={() => navigate("/admin/seo")}
         >
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">SEO</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-800">SEO</CardTitle>
             <Search className="h-4 w-4 text-green-600" />
           </CardHeader>
           <CardContent>
@@ -76,7 +76,7 @@ const Dashboard = () => {
           onClick={() => navigate("/admin/content")}
         >
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Content</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-800">Content</CardTitle>
             <FileText className="h-4 w-4 text-yellow-600" />
           </CardHeader>
           <CardContent>
@@ -92,7 +92,7 @@ const Dashboard = () => {
           onClick={() => navigate("/admin/testimonials")}
         >
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Testimonials</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-800">Testimonials</CardTitle>
             <MessageSquare className="h-4 w-4 text-pink-600" />
           </CardHeader>
           <CardContent>
@@ -108,7 +108,7 @@ const Dashboard = () => {
           onClick={() => navigate("/admin/library")}
         >
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Library</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-800">Library</CardTitle>
             <Library className="h-4 w-4 text-indigo-600" />
           </CardHeader>
           <CardContent>
@@ -124,7 +124,7 @@ const Dashboard = () => {
           onClick={() => navigate("/admin/categories")}
         >
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Categories</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-800">Categories</CardTitle>
             <Tag className="h-4 w-4 text-orange-600" />
           </CardHeader>
           <CardContent>
@@ -140,7 +140,7 @@ const Dashboard = () => {
           onClick={() => navigate("/admin/images")}
         >
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Images</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-800">Images</CardTitle>
             <Images className="h-4 w-4 text-teal-600" />
           </CardHeader>
           <CardContent>
