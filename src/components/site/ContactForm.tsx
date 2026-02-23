@@ -6,22 +6,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
 
-// Minimal type for the Cloudflare Turnstile global injected by their script
-declare global {
-  interface Window {
-    turnstile?: {
-      render: (
-        container: HTMLElement,
-        options: {
-          sitekey: string;
-          callback: (token: string) => void;
-          "expired-callback": () => void;
-        }
-      ) => void;
-    };
-  }
-}
-
 const TURNSTILE_SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY || "";
 
 interface FormState {
@@ -130,7 +114,6 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
-      {/* Honeypot — hidden from real users */}
       <input type="text" name="honeypot" value={form.honeypot} onChange={set("honeypot")}
         tabIndex={-1} aria-hidden="true" className="hidden" />
 
@@ -167,12 +150,7 @@ export function ContactForm() {
         <div ref={turnstileRef} className="flex justify-center" />
       )}
 
-      <Button
-        type="submit"
-        size="lg"
-        className="w-full"
-        disabled={submitting || (!!TURNSTILE_SITE_KEY && !turnstileToken)}
-      >
+      <Button type="submit" size="lg" className="w-full" disabled={submitting || (!!TURNSTILE_SITE_KEY && !turnstileToken)}>
         {submitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
         {submitting ? "Sending..." : "Send Message"}
       </Button>
