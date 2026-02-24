@@ -83,7 +83,7 @@ export default function About() {
     <PageShell>
       <main>
         <section className="container py-16 md:py-24">
-          <div className="max-w-3xl">
+          <div className="max-w-3xl mx-auto text-center">
             <p className="section-kicker mb-3">About Us</p>
             <div className="gold-rule mb-5" />
             <h1 className="text-4xl md:text-5xl font-semibold tracking-tight">
@@ -129,7 +129,7 @@ export default function About() {
         </section>
 
         <section className="container py-20 md:py-28">
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-3xl mx-auto text-center">
             <p className="section-kicker mb-3">Safety</p>
             <div className="gold-rule mb-5" />
             <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-6">

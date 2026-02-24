@@ -23,7 +23,7 @@ export default function VirtualEvents() {
         backgroundImage={hero || heroFallback}
       />
       <div className="container mx-auto px-4 py-12">
-        <div className="max-w-3xl mx-auto space-y-6">
+        <div className="max-w-3xl mx-auto space-y-6 text-center">
           <p className="text-lg text-muted-foreground">
             EventSound delivers professional virtual and hybrid event production for corporate clients, agencies, and organisations across Ireland. Whether your event is fully online, has a live audience with remote viewers, or combines multiple locations, we provide the technical infrastructure and production expertise to make it seamless.
           </p>
@@ -36,6 +36,7 @@ export default function VirtualEvents() {
             For fully virtual events, we can transform any venue or meeting room into a professional broadcast studio. This includes multi-camera setups, branded backdrops, professional lighting, teleprompter, and dedicated internet connectivity. We manage the entire technical production so your presenters can focus on delivering their content with confidence.
           </p>
           <h2 className="text-2xl font-semibold">Why EventSound for Virtual Events?</h2>
+          <div className="text-left inline-block">
           <ul className="space-y-2 text-muted-foreground list-disc list-inside">
             <li>End-to-end hybrid and virtual event production</li>
             <li>Professional studio setups in any venue</li>
@@ -43,6 +44,7 @@ export default function VirtualEvents() {
             <li>Audience interaction: Q&A, polls, chat moderation</li>
             <li>Dedicated technical team managing the entire broadcast</li>
           </ul>
+          </div>
 
           {gallery.length > 0 && (
             <div className="mt-8">
@@ -56,7 +58,7 @@ export default function VirtualEvents() {
           )}
 
           <h2 className="text-2xl font-semibold">Related Services</h2>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-3 justify-center">
             <Link to="/services/video-production"><Button variant="outline">Video Production</Button></Link>
             <Link to="/services/led-video-walls"><Button variant="outline">LED Video Walls</Button></Link>
             <Link to="/services/av-production"><Button variant="outline">AV Production</Button></Link>

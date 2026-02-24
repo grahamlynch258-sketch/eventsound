@@ -23,7 +23,7 @@ export default function LEDVideoWalls() {
         backgroundImage={hero || heroFallback}
       />
       <div className="container mx-auto px-4 py-12">
-        <div className="max-w-3xl mx-auto space-y-6">
+        <div className="max-w-3xl mx-auto space-y-6 text-center">
           <p className="text-lg text-muted-foreground">
             EventSound provides professional LED video wall hire for corporate events, conferences, product launches, awards ceremonies, and live shows across Ireland. Our Unilumin LED panels deliver stunning high-resolution visuals that transform any venue — from intimate boardrooms to large-scale arenas.
           </p>
@@ -36,6 +36,7 @@ export default function LEDVideoWalls() {
             When you hire LED walls from EventSound, you get more than just panels. Our service includes delivery, installation, content playback management, on-site technical operation, and breakdown. We work with your creative team or agency to ensure presentations, videos, and live feeds display exactly as intended. Our experienced operators are on hand throughout your event to manage transitions, troubleshoot, and keep everything running seamlessly.
           </p>
           <h2 className="text-2xl font-semibold">Why EventSound for LED Video Walls?</h2>
+          <div className="text-left inline-block">
           <ul className="space-y-2 text-muted-foreground list-disc list-inside">
             <li>Unilumin LED panels — industry-leading resolution and reliability</li>
             <li>Custom sizing from 2m² to 50m² and beyond</li>
@@ -43,6 +44,7 @@ export default function LEDVideoWalls() {
             <li>Experienced operators on-site for your entire event</li>
             <li>Serving Dublin, Leinster, and nationwide across Ireland</li>
           </ul>
+          </div>
 
           {gallery.length > 0 && (
             <div className="mt-8">
@@ -56,7 +58,7 @@ export default function LEDVideoWalls() {
           )}
 
           <h2 className="text-2xl font-semibold">Related Services</h2>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-3 justify-center">
             <Link to="/services/lighting-design"><Button variant="outline">Lighting Design</Button></Link>
             <Link to="/services/video-production"><Button variant="outline">Video Production</Button></Link>
             <Link to="/services/event-production"><Button variant="outline">Event Production</Button></Link>

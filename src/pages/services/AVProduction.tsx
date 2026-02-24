@@ -23,7 +23,7 @@ export default function AVProduction() {
         backgroundImage={hero || heroFallback}
       />
       <div className="container mx-auto px-4 py-12">
-        <div className="max-w-3xl mx-auto space-y-6">
+        <div className="max-w-3xl mx-auto space-y-6 text-center">
           <p className="text-lg text-muted-foreground">
             EventSound is a trusted AV production partner for corporate clients, agencies, and venues across Ireland. We provide complete audiovisual solutions for conferences, seminars, AGMs, product launches, and corporate events — combining professional sound, LED video walls, lighting, and experienced technical crew into a single, reliable production package.
           </p>
@@ -40,6 +40,7 @@ export default function AVProduction() {
             We use L-Acoustics speaker systems for crystal-clear audio, Unilumin LED panels for high-resolution visuals, and Chamsys MagicQ for intelligent lighting control. Our inventory covers events of every scale — from a 30-person boardroom to a 3,000-seat conference venue. All equipment is maintained, PAT-tested, and backed by spares on-site.
           </p>
           <h2 className="text-2xl font-semibold">Why EventSound for AV Production?</h2>
+          <div className="text-left inline-block">
           <ul className="space-y-2 text-muted-foreground list-disc list-inside">
             <li>Over 30 years of AV production experience across Ireland</li>
             <li>L-Acoustics, Unilumin, Chamsys — industry-leading brands</li>
@@ -48,6 +49,7 @@ export default function AVProduction() {
             <li>Full crew: sound engineers, lighting operators, video technicians</li>
             <li>Serving Dublin, Leinster, and nationwide</li>
           </ul>
+          </div>
 
           {gallery.length > 0 && (
             <div className="mt-8">
@@ -61,7 +63,7 @@ export default function AVProduction() {
           )}
 
           <h2 className="text-2xl font-semibold">Related Services</h2>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-3 justify-center">
             <Link to="/services/led-video-walls"><Button variant="outline">LED Video Walls</Button></Link>
             <Link to="/services/event-production"><Button variant="outline">Event Production</Button></Link>
             <Link to="/services/virtual-events"><Button variant="outline">Virtual Events</Button></Link>

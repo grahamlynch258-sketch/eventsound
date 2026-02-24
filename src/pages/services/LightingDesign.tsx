@@ -23,7 +23,7 @@ export default function LightingDesign() {
         backgroundImage={hero || heroFallback}
       />
       <div className="container mx-auto px-4 py-12">
-        <div className="max-w-3xl mx-auto space-y-6">
+        <div className="max-w-3xl mx-auto space-y-6 text-center">
           <p className="text-lg text-muted-foreground">
             Lighting sets the tone for every event. EventSound provides professional lighting design and hire for corporate events, gala dinners, conferences, concerts, and live shows across Ireland. From subtle architectural washes to dynamic stage lighting, our Chamsys-controlled systems create the perfect atmosphere for your event.
           </p>
@@ -36,6 +36,7 @@ export default function LightingDesign() {
             Whether you need focused stage lighting for a keynote speaker, colour-washed walls for a gala dinner, or full concert-grade lighting for a live performance, EventSound has the inventory and expertise to deliver. We also provide uplighting, pin spots, gobo projection, and atmospheric effects including haze to enhance beam visibility and create depth.
           </p>
           <h2 className="text-2xl font-semibold">Why EventSound for Lighting?</h2>
+          <div className="text-left inline-block">
           <ul className="space-y-2 text-muted-foreground list-disc list-inside">
             <li>Chamsys MagicQ lighting control — industry-standard programming</li>
             <li>Intelligent fixtures: moving heads, LED wash, spots, followspots</li>
@@ -43,6 +44,7 @@ export default function LightingDesign() {
             <li>Experienced lighting designers and operators on-site</li>
             <li>Architectural and atmospheric effects available</li>
           </ul>
+          </div>
 
           {gallery.length > 0 && (
             <div className="mt-8">
@@ -56,7 +58,7 @@ export default function LightingDesign() {
           )}
 
           <h2 className="text-2xl font-semibold">Related Services</h2>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-3 justify-center">
             <Link to="/services/led-video-walls"><Button variant="outline">LED Video Walls</Button></Link>
             <Link to="/services/staging-pipe-drape"><Button variant="outline">Staging & Drape</Button></Link>
             <Link to="/services/event-production"><Button variant="outline">Event Production</Button></Link>

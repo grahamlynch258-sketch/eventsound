@@ -20,7 +20,7 @@ const HealthAndSafety = () => {
         backgroundImage={heroFallback}
       />
       <div className="container mx-auto px-4 py-12">
-        <div className="prose prose-invert max-w-3xl mx-auto space-y-6">
+        <div className="prose prose-invert max-w-3xl mx-auto space-y-6 text-center">
           <p className="text-lg text-muted-foreground">
             At EventSound, the safety of our crew, our clients, and their audiences is the foundation of everything we do. We maintain rigorous health and safety standards across every event we deliver, from intimate corporate meetings to large-scale outdoor festivals.
           </p>

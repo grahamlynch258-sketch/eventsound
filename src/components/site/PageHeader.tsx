@@ -10,7 +10,7 @@ interface PageHeaderProps {
 export function PageHeader({ title, subtitle, backgroundImage, children }: PageHeaderProps) {
   if (backgroundImage) {
     return (
-      <section className="relative min-h-[40vh] flex items-center overflow-hidden">
+      <section className="relative min-h-[55vh] flex items-center overflow-hidden">
         <div className="absolute inset-0">
           <img
             src={backgroundImage}
