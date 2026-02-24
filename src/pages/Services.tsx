@@ -28,8 +28,16 @@ export default function Services() {
 
   return (
     <PageShell>
-      <PageHeader title="Our Services" subtitle="EventSound is your complete event production partner — from initial brief to final breakdown. We supply, install, and operate professional AV equipment for corporate events, conferences, awards nights, gala dinners, festivals, and live shows across Ireland." backgroundImage={heroImage} backgroundAlt="Professional AV production setup at a corporate event in Ireland" />
+      <PageHeader title="Our Services" subtitle="" backgroundImage={heroImage} backgroundAlt="Professional AV production setup at a corporate event in Ireland" />
       <div className="container mx-auto px-4 py-12">
+        <div className="max-w-3xl mx-auto text-center mb-12">
+          <div className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-6 md:p-8">
+            <p className="text-muted-foreground leading-relaxed">
+              EventSound is your complete event production partner — from initial brief to final breakdown. We supply, install, and operate professional AV equipment for corporate events, conferences, awards nights, gala dinners, festivals, and live shows across Ireland.
+            </p>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service) => (
             <Link key={service.href} to={service.href} className="group">
@@ -44,9 +52,13 @@ export default function Services() {
           ))}
         </div>
 
-        <div className="mt-16 text-center max-w-2xl mx-auto">
-          <h2 className="text-2xl font-semibold mb-3">Need a Custom Package?</h2>
-          <p className="text-muted-foreground mb-6">Most events need a combination of services. Tell us about your event and we'll put together a tailored production package with transparent pricing — no hidden fees.</p>
+        <div className="mt-16 max-w-2xl mx-auto text-center">
+          <h2 className="text-2xl font-semibold mb-4">Need a Custom Package?</h2>
+          <div className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-6 md:p-8 mb-6">
+            <p className="text-muted-foreground leading-relaxed">
+              Most events need a combination of services. Tell us about your event and we'll put together a tailored production package with transparent pricing — no hidden fees.
+            </p>
+          </div>
           <Link to="/contact"><Button size="lg">Get a Quote</Button></Link>
         </div>
       </div>
