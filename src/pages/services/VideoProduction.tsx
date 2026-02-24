@@ -18,7 +18,7 @@ export default function VideoProduction() {
 
   return (
     <PageShell>
-      <PageHeader title="Video Production & Streaming" subtitle="Capture and broadcast your event to any audience" backgroundImage={hero || heroFallback} />
+      <PageHeader title="Video Production & Streaming in Ireland" subtitle="Capture and broadcast your event to any audience" backgroundImage={hero || heroFallback} backgroundAlt="Multi-camera video production at a live event in Ireland" />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6 text-center">
           <p className="text-lg text-muted-foreground">

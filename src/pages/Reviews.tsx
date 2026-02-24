@@ -19,6 +19,7 @@ const Reviews = () => {
         title="Client Reviews"
         subtitle="Real feedback from event managers, agencies, and corporate clients who trust EventSound as their production partner across Ireland."
         backgroundImage={heroFallback}
+        backgroundAlt="Professional event production setup at a live event in Ireland"
       />
       <TestimonialsSection />
     </PageShell>

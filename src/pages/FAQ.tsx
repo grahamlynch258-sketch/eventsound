@@ -9,7 +9,7 @@ const FAQ = () => {
   const faqs = [
     {
       question: "What areas do you serve?",
-      answer: "We're based in Drogheda, Co. Louth and serve Dublin, Leinster, and nationwide across Ireland. We regularly work at venues throughout the country."
+      answer: "We're based in Dublin, Ireland and serve clients nationwide across the country. We regularly work at venues throughout Ireland."
     },
     {
       question: "How far in advance should I book?",
@@ -75,6 +75,7 @@ const FAQ = () => {
         title="Frequently Asked Questions"
         subtitle="Everything you need to know about our event production services"
         backgroundImage={heroFallback}
+        backgroundAlt="EventSound professional event production setup"
       />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6">

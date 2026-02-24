@@ -12,16 +12,16 @@ export const SiteSchema = () => {
       email: "info@eventsound.ie",
       address: {
         streetAddress: "", // TODO: Add street address if you want it public
-        addressLocality: "Drogheda",
-        addressRegion: "Leinster",
+        addressLocality: "Dublin",
+        addressRegion: "Ireland",
         postalCode: "", // TODO: Add if public
         addressCountry: "IE"
       },
       geo: {
-        latitude: 53.7175, // Drogheda coordinates
+        latitude: 53.7175, // Dublin coordinates
         longitude: -6.3478
       },
-      areaServed: ["Dublin", "Leinster", "Ireland"],
+      areaServed: ["Dublin", "Ireland"],
       image: "https://eventsound.ie/logo.png", // TODO: Update with actual image
       logo: "https://eventsound.ie/logo.png" // TODO: Update with actual logo
     });

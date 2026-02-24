@@ -18,6 +18,7 @@ const HealthAndSafety = () => {
         title="Health & Safety"
         subtitle="Our commitment to safe event production"
         backgroundImage={heroFallback}
+        backgroundAlt="EventSound crew setting up professional event production equipment"
       />
       <div className="container mx-auto px-4 py-12">
         <div className="prose prose-invert max-w-3xl mx-auto space-y-6 text-center">
@@ -47,7 +48,7 @@ const HealthAndSafety = () => {
 
           <h2 className="text-2xl font-semibold">Our Commitment</h2>
           <p className="text-muted-foreground">
-            We have an enviable safety record built over two decades of event production across Ireland. This record is achieved through a combination of ongoing training, meticulous forward planning, thorough pre-production processes, and rigorous equipment testing. When you choose EventSound as your production partner, you can be confident that safety is never compromised.
+            We have an enviable safety record built over three decades of event production across Ireland. This record is achieved through a combination of ongoing training, meticulous forward planning, thorough pre-production processes, and rigorous equipment testing. When you choose EventSound as your production partner, you can be confident that safety is never compromised.
           </p>
 
           <p className="text-sm text-muted-foreground italic mt-8">

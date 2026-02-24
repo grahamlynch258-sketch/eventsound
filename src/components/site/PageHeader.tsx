@@ -4,17 +4,18 @@ interface PageHeaderProps {
   title: string;
   subtitle?: string;
   backgroundImage?: string;
+  backgroundAlt?: string;
   children?: ReactNode;
 }
 
-export function PageHeader({ title, subtitle, backgroundImage, children }: PageHeaderProps) {
+export function PageHeader({ title, subtitle, backgroundImage, backgroundAlt, children }: PageHeaderProps) {
   if (backgroundImage) {
     return (
       <section className="relative min-h-[55vh] flex items-center overflow-hidden">
         <div className="absolute inset-0">
           <img
             src={backgroundImage}
-            alt=""
+            alt={backgroundAlt || ""}
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-background/70" />

@@ -19,9 +19,10 @@ export default function LEDVideoWalls() {
   return (
     <PageShell>
       <PageHeader
-        title="LED Video Wall Hire"
+        title="LED Video Wall Hire in Ireland"
         subtitle="High-impact visual displays for events of every scale"
         backgroundImage={hero || heroFallback}
+        backgroundAlt="Unilumin LED video wall installed at a corporate event in Ireland"
       />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6 text-center">
@@ -43,7 +44,7 @@ export default function LEDVideoWalls() {
             <li>Custom sizing from 2m² to 50m² and beyond</li>
             <li>Full content playback and signal management included</li>
             <li>Experienced operators on-site for your entire event</li>
-            <li>Serving Dublin, Leinster, and nationwide across Ireland</li>
+            <li>Serving clients nationwide across Ireland</li>
           </ul>
           </div>
 

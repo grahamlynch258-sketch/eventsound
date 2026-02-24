@@ -19,9 +19,10 @@ export default function VirtualEvents() {
   return (
     <PageShell>
       <PageHeader
-        title="Virtual & Hybrid Events"
+        title="Virtual & Hybrid Events in Ireland"
         subtitle="Professional production for online and hybrid audiences"
         backgroundImage={hero || heroFallback}
+        backgroundAlt="Virtual event production studio setup in Ireland"
       />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6 text-center">
