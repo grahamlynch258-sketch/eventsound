@@ -2,7 +2,6 @@ import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
 import { ContactForm } from "@/components/site/ContactForm";
 import { useSeo } from "@/hooks/useSeo";
-import heroFallback from "@/assets/hero-av-production.jpg";
 
 const Contact = () => {
   useSeo({
@@ -18,8 +17,6 @@ const Contact = () => {
       <PageHeader
         title="Contact Us"
         subtitle="Get in touch for a quote on your next event"
-        backgroundImage={heroFallback}
-        backgroundAlt="EventSound AV production setup at a corporate event in Ireland"
       />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-2xl mx-auto">
