@@ -1,6 +1,7 @@
 import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
+import { generateFAQSchema } from "@/lib/schema";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
@@ -8,10 +9,21 @@ import heroFallback from "@/assets/category-video-recording.jpg";
 import { BrandBanner } from "@/components/site/BrandSidebar";
 
 export default function VideoProduction() {
+  const faqs = [
+    { question: "What video production services do you offer for events?", answer: "We provide multi-camera live filming, live streaming, IMAG (image magnification) for large audiences, post-event highlight videos, speaker recording, and live vision mixing. All services include professional camera operators and equipment." },
+    { question: "Can you live stream our event?", answer: "Yes — we provide full live streaming to any platform including YouTube, Vimeo, Teams, Zoom, and custom RTMP destinations. Our streaming packages include encoding hardware, graphics overlays, and a dedicated streaming technician." },
+    { question: "What is IMAG and when do I need it?", answer: "IMAG stands for Image Magnification — projecting live camera feeds onto large screens so audiences can see speakers and performers close-up. It is essential for any event with 200+ attendees where not everyone has a clear sightline to the stage." },
+    { question: "How many cameras do you typically use?", answer: "Most corporate events use 2-3 cameras. Large concerts and conferences may use 4-6 cameras plus robotic PTZ cameras. We recommend a camera plan based on your event layout, content, and budget." },
+    { question: "Do you provide post-event video editing?", answer: "Yes — we offer full post-production including multi-camera editing, colour grading, graphics, and delivery in any format. Highlight reels are typically delivered within 5-10 working days after your event." },
+    { question: "What internet connection do I need for live streaming?", answer: "We recommend a minimum 10Mbps dedicated upload speed for HD streaming. We carry bonded cellular units as backup and can provide satellite uplink for venues with poor connectivity." }
+  ];
+
   useSeo({
     title: "Event Video Production & Live Streaming Ireland | EventSound",
     description: "Professional multi-camera video production and live streaming for events across Ireland. Capture, broadcast, and post-production for corporate events, conferences, and live shows.",
     canonical: "https://eventsound.ie/services/video-production",
+    schema: generateFAQSchema({ questions: faqs }),
+    schemaId: "faq-schema"
   });
 
   const { hero, gallery } = useServiceImages("service-video");
@@ -61,6 +73,19 @@ export default function VideoProduction() {
             <Link to="/services/led-video-walls"><Button variant="outline">LED Video Walls</Button></Link>
             <Link to="/services/virtual-events"><Button variant="outline">Virtual Events</Button></Link>
             <Link to="/services/event-production"><Button variant="outline">Event Production</Button></Link>
+          </div>
+
+          {/* FAQ Section */}
+          <div className="max-w-4xl mx-auto mt-16">
+            <h2 className="text-3xl font-bold text-foreground mb-8">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              {faqs.map((faq, i) => (
+                <div key={i} className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-6">
+                  <h3 className="text-lg font-semibold text-foreground mb-2">{faq.question}</h3>
+                  <p className="text-foreground/80 leading-relaxed">{faq.answer}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="mt-12 text-center">

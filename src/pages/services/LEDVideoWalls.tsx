@@ -1,6 +1,7 @@
 import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
+import { generateFAQSchema } from "@/lib/schema";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
@@ -8,10 +9,21 @@ import heroFallback from "@/assets/category-vision.jpg";
 import { BrandBanner } from "@/components/site/BrandSidebar";
 
 export default function LEDVideoWalls() {
+  const faqs = [
+    { question: "What size LED screen do I need for my event?", answer: "Screen size depends on your audience size and venue. For conferences of 100-300 people, a 3m x 2m screen works well. For outdoor concerts with 1,000+ attendees, you may need 5m x 3m or larger. We do a free site survey to recommend the perfect configuration for your space." },
+    { question: "Can LED walls be used outdoors in Ireland?", answer: "Yes — our LED panels are rated for outdoor use and can handle Irish weather conditions including rain and wind. We use weatherproof cabinets and provide covered rigging solutions for outdoor festivals, concerts, and council events." },
+    { question: "How far in advance should I book LED screen hire?", answer: "We recommend booking 4-6 weeks ahead for standard events and 2-3 months for large festivals or peak season (May-September). However, we can often accommodate shorter notice depending on availability." },
+    { question: "What content can be displayed on LED video walls?", answer: "Anything — live camera feeds, pre-recorded video, presentations, social media walls, sponsor logos, and live event graphics. We provide full content playback and can help with content formatting to ensure it looks perfect on screen." },
+    { question: "Do you provide operators with the LED screens?", answer: "Yes, all our LED wall hire packages include experienced technicians for setup, operation throughout your event, and breakdown. You never need to worry about the technical side." },
+    { question: "What is the difference between LED walls and projection screens?", answer: "LED walls are significantly brighter, work in daylight conditions, and offer superior image quality. Projection screens are affected by ambient light and are generally only suitable for darker indoor venues. For most events in Ireland, LED walls deliver a far better audience experience." }
+  ];
+
   useSeo({
     title: "LED Video Wall Hire Ireland | EventSound",
     description: "Professional LED video wall hire for corporate events, conferences, and live shows across Ireland. Custom sizes, content playback, and on-site operation included.",
     canonical: "https://eventsound.ie/services/led-video-walls",
+    schema: generateFAQSchema({ questions: faqs }),
+    schemaId: "faq-schema"
   });
 
   const { hero, gallery } = useServiceImages("service-led-walls");
@@ -66,6 +78,19 @@ export default function LEDVideoWalls() {
             <Link to="/services/lighting-design"><Button variant="outline">Lighting Design</Button></Link>
             <Link to="/services/video-production"><Button variant="outline">Video Production</Button></Link>
             <Link to="/services/event-production"><Button variant="outline">Event Production</Button></Link>
+          </div>
+
+          {/* FAQ Section */}
+          <div className="max-w-4xl mx-auto mt-16">
+            <h2 className="text-3xl font-bold text-foreground mb-8">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              {faqs.map((faq, i) => (
+                <div key={i} className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-6">
+                  <h3 className="text-lg font-semibold text-foreground mb-2">{faq.question}</h3>
+                  <p className="text-foreground/80 leading-relaxed">{faq.answer}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="mt-12 text-center">

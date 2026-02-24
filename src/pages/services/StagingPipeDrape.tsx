@@ -1,6 +1,7 @@
 import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
+import { generateFAQSchema } from "@/lib/schema";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
@@ -8,10 +9,21 @@ import heroFallback from "@/assets/category-staging.jpg";
 import { BrandBanner } from "@/components/site/BrandSidebar";
 
 export default function StagingPipeDrape() {
+  const faqs = [
+    { question: "What stage sizes are available for hire?", answer: "We offer modular staging from small 3m x 2m presentation platforms up to large 12m x 10m concert stages. The modular system means we can build to any custom size and shape to suit your venue and event requirements." },
+    { question: "Can staging be used on uneven ground outdoors?", answer: "Yes — our staging systems have adjustable legs that compensate for uneven ground. We regularly set up outdoor stages on grass, gravel, and sloped sites. All outdoor staging includes safety rails and weatherproof decking." },
+    { question: "What is pipe and drape used for?", answer: "Pipe and drape creates instant room divisions, backdrops, entrance features, and venue dressing. It is commonly used to transform blank venues, hide unsightly areas, create backstage spaces, and add visual impact to corporate events and exhibitions." },
+    { question: "How long does stage setup take?", answer: "A standard 6m x 4m indoor stage takes approximately 2-3 hours. Larger outdoor stages with roofing and safety barriers may require a full day. We always coordinate setup times with your venue and event schedule." },
+    { question: "Do you provide safety barriers and crowd management equipment?", answer: "Yes — we supply front-of-stage barriers, crowd control barriers, cable ramps, and safety rails as part of our staging packages. All installations comply with Irish health and safety regulations." },
+    { question: "Can pipe and drape match our event branding?", answer: "Yes — drape is available in a range of colours including black, white, and grey. We can also accommodate custom colours for branded events and add lighting to the drape for additional visual impact." }
+  ];
+
   useSeo({
     title: "Event Staging & Pipe and Drape Hire Ireland | EventSound",
     description: "Professional event staging, pipe and drape, star cloth, and scenic elements for corporate events, conferences, and live shows across Ireland. TUV-certified, safety-first.",
     canonical: "https://eventsound.ie/services/staging-pipe-drape",
+    schema: generateFAQSchema({ questions: faqs }),
+    schemaId: "faq-schema"
   });
 
   const { hero, gallery } = useServiceImages("service-staging");
@@ -66,6 +78,19 @@ export default function StagingPipeDrape() {
             <Link to="/services/lighting-design"><Button variant="outline">Lighting Design</Button></Link>
             <Link to="/services/event-production"><Button variant="outline">Event Production</Button></Link>
             <Link to="/services/led-video-walls"><Button variant="outline">LED Video Walls</Button></Link>
+          </div>
+
+          {/* FAQ Section */}
+          <div className="max-w-4xl mx-auto mt-16">
+            <h2 className="text-3xl font-bold text-foreground mb-8">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              {faqs.map((faq, i) => (
+                <div key={i} className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-6">
+                  <h3 className="text-lg font-semibold text-foreground mb-2">{faq.question}</h3>
+                  <p className="text-foreground/80 leading-relaxed">{faq.answer}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="mt-12 text-center">
