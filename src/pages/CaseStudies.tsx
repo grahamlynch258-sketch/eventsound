@@ -7,6 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin } from "lucide-react";
+import heroFallback from "@/assets/hero-av-production.jpg";
 
 interface CaseStudy {
   id: string;
@@ -72,6 +73,7 @@ const CaseStudies = () => {
         <PageHeader
           title="Case Studies"
           subtitle="Real-world event production success stories"
+          backgroundImage={heroFallback}
         />
         <div className="container mx-auto px-4 py-12">
           <div className="text-center">Loading case studies...</div>
@@ -85,6 +87,7 @@ const CaseStudies = () => {
       <PageHeader
         title="Case Studies"
         subtitle="Real-world event production success stories from across Ireland"
+        backgroundImage={heroFallback}
       />
       
       <div className="container mx-auto px-4 py-12">

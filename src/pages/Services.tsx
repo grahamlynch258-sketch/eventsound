@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Monitor, Volume2, Lightbulb, Theater, Clapperboard, Video, Wifi } from "lucide-react";
+import heroFallback from "@/assets/hero-av-production.jpg";
 
 const services = [
   { title: "LED Video Walls", description: "High-resolution LED displays for conferences, launches, and corporate events. Custom sizes and on-site operation.", href: "/services/led-video-walls", icon: Monitor },
@@ -25,7 +26,7 @@ export default function Services() {
 
   return (
     <PageShell>
-      <PageHeader title="Our Services" subtitle="EventSound is your complete event production partner — from initial brief to final breakdown. We supply, install, and operate professional AV equipment for corporate events, conferences, awards nights, gala dinners, festivals, and live shows across Ireland." />
+      <PageHeader title="Our Services" subtitle="EventSound is your complete event production partner — from initial brief to final breakdown. We supply, install, and operate professional AV equipment for corporate events, conferences, awards nights, gala dinners, festivals, and live shows across Ireland." backgroundImage={heroFallback} />
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service) => (

@@ -3,6 +3,8 @@ import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useServiceImages } from "@/hooks/useServiceImages";
+import heroFallback from "@/assets/hero-av-production.jpg";
 
 export default function EventProduction() {
   useSeo({
@@ -11,9 +13,15 @@ export default function EventProduction() {
     canonical: "https://eventsound.ie/services/event-production",
   });
 
+  const { hero, gallery } = useServiceImages("service-event-production");
+
   return (
     <PageShell>
-      <PageHeader title="Event Production Management" subtitle="Your dedicated production partner from planning to wrap" />
+      <PageHeader
+        title="Event Production Management"
+        subtitle="Your dedicated production partner from planning to wrap"
+        backgroundImage={hero || heroFallback}
+      />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6">
           <p className="text-lg text-muted-foreground">
@@ -35,6 +43,17 @@ export default function EventProduction() {
             <li>Works alongside event managers, agencies, and venues</li>
             <li>Complete crew coordination from load-in to breakdown</li>
           </ul>
+
+          {gallery.length > 0 && (
+            <div className="mt-8">
+              <h2 className="text-2xl font-semibold mb-4">Our Production Work</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {gallery.map((img) => (
+                  <img key={img.id} src={img.image_url} alt={img.alt_text || "Event production crew at work"} className="rounded-lg w-full h-64 object-cover" />
+                ))}
+              </div>
+            </div>
+          )}
 
           <h2 className="text-2xl font-semibold">Related Services</h2>
           <div className="flex flex-wrap gap-3">

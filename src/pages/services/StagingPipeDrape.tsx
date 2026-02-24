@@ -3,6 +3,8 @@ import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useServiceImages } from "@/hooks/useServiceImages";
+import heroFallback from "@/assets/category-staging.jpg";
 
 export default function StagingPipeDrape() {
   useSeo({
@@ -11,9 +13,15 @@ export default function StagingPipeDrape() {
     canonical: "https://eventsound.ie/services/staging-pipe-drape",
   });
 
+  const { hero, gallery } = useServiceImages("service-staging");
+
   return (
     <PageShell>
-      <PageHeader title="Staging, Pipe & Drape" subtitle="Safe, professional staging and scenic solutions for any venue" />
+      <PageHeader
+        title="Staging, Pipe & Drape"
+        subtitle="Safe, professional staging and scenic solutions for any venue"
+        backgroundImage={hero || heroFallback}
+      />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6">
           <p className="text-lg text-muted-foreground">
@@ -35,6 +43,17 @@ export default function StagingPipeDrape() {
             <li>Star cloth and scenic backdrops for atmosphere</li>
             <li>Installed by trained crew with full risk assessment</li>
           </ul>
+
+          {gallery.length > 0 && (
+            <div className="mt-8">
+              <h2 className="text-2xl font-semibold mb-4">Our Staging Work</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {gallery.map((img) => (
+                  <img key={img.id} src={img.image_url} alt={img.alt_text || "Event staging and drape installation"} className="rounded-lg w-full h-64 object-cover" />
+                ))}
+              </div>
+            </div>
+          )}
 
           <h2 className="text-2xl font-semibold">Related Services</h2>
           <div className="flex flex-wrap gap-3">

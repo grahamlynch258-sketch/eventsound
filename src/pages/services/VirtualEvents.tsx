@@ -3,6 +3,8 @@ import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useServiceImages } from "@/hooks/useServiceImages";
+import heroFallback from "@/assets/category-video-recording.jpg";
 
 export default function VirtualEvents() {
   useSeo({
@@ -11,9 +13,15 @@ export default function VirtualEvents() {
     canonical: "https://eventsound.ie/services/virtual-events",
   });
 
+  const { hero, gallery } = useServiceImages("service-virtual");
+
   return (
     <PageShell>
-      <PageHeader title="Virtual & Hybrid Events" subtitle="Professional production for online and hybrid audiences" />
+      <PageHeader
+        title="Virtual & Hybrid Events"
+        subtitle="Professional production for online and hybrid audiences"
+        backgroundImage={hero || heroFallback}
+      />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6">
           <p className="text-lg text-muted-foreground">
@@ -35,6 +43,17 @@ export default function VirtualEvents() {
             <li>Audience interaction: Q&A, polls, chat moderation</li>
             <li>Dedicated technical team managing the entire broadcast</li>
           </ul>
+
+          {gallery.length > 0 && (
+            <div className="mt-8">
+              <h2 className="text-2xl font-semibold mb-4">Our Virtual Event Work</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {gallery.map((img) => (
+                  <img key={img.id} src={img.image_url} alt={img.alt_text || "Virtual event production studio setup"} className="rounded-lg w-full h-64 object-cover" />
+                ))}
+              </div>
+            </div>
+          )}
 
           <h2 className="text-2xl font-semibold">Related Services</h2>
           <div className="flex flex-wrap gap-3">

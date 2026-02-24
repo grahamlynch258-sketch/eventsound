@@ -1,6 +1,7 @@
 import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
+import heroFallback from "@/assets/hero-av-production.jpg";
 
 const HealthAndSafety = () => {
   useSeo({
@@ -16,6 +17,7 @@ const HealthAndSafety = () => {
       <PageHeader
         title="Health & Safety"
         subtitle="Our commitment to safe event production"
+        backgroundImage={heroFallback}
       />
       <div className="container mx-auto px-4 py-12">
         <div className="prose prose-invert max-w-3xl mx-auto space-y-6">

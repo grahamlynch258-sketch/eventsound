@@ -3,6 +3,8 @@ import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useServiceImages } from "@/hooks/useServiceImages";
+import heroFallback from "@/assets/category-lighting.jpg";
 
 export default function LightingDesign() {
   useSeo({
@@ -11,9 +13,15 @@ export default function LightingDesign() {
     canonical: "https://eventsound.ie/services/lighting-design",
   });
 
+  const { hero, gallery } = useServiceImages("service-lighting");
+
   return (
     <PageShell>
-      <PageHeader title="Lighting Design & Hire" subtitle="Create atmosphere and impact with professional event lighting" />
+      <PageHeader
+        title="Lighting Design & Hire"
+        subtitle="Create atmosphere and impact with professional event lighting"
+        backgroundImage={hero || heroFallback}
+      />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6">
           <p className="text-lg text-muted-foreground">
@@ -35,6 +43,17 @@ export default function LightingDesign() {
             <li>Experienced lighting designers and operators on-site</li>
             <li>Architectural and atmospheric effects available</li>
           </ul>
+
+          {gallery.length > 0 && (
+            <div className="mt-8">
+              <h2 className="text-2xl font-semibold mb-4">Our Lighting in Action</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {gallery.map((img) => (
+                  <img key={img.id} src={img.image_url} alt={img.alt_text || "Professional event lighting setup"} className="rounded-lg w-full h-64 object-cover" />
+                ))}
+              </div>
+            </div>
+          )}
 
           <h2 className="text-2xl font-semibold">Related Services</h2>
           <div className="flex flex-wrap gap-3">
