@@ -20,18 +20,29 @@ type LibraryImage = {
 };
 
 const categories = [
-  { value: "headlines", label: "Headline Images" },
-  { value: "supplements", label: "Supplement Images" },
-  { value: "portfolio", label: "Portfolio Images" },
-  { value: "logos", label: "Logos" },
-  { value: "hero", label: "Hero Images" },
-  { value: "service-led-walls", label: "LED Video Walls" },
+  // Homepage
+  { value: "portfolio", label: "🏠 Homepage Slideshow" },
+
+  // Page Hero Images
+  { value: "hero-services", label: "🖼 Services Page Hero" },
+  { value: "hero-gallery", label: "🖼 Gallery Page Hero" },
+  { value: "hero-case-studies", label: "🖼 Case Studies Page Hero" },
+  { value: "hero-portfolio", label: "🖼 Portfolio Page Hero" },
+
+  // Service Page Images
+  { value: "service-led-walls", label: "LED Walls" },
   { value: "service-av-production", label: "AV Production" },
-  { value: "service-lighting", label: "Lighting Design" },
-  { value: "service-staging", label: "Staging & Drape" },
+  { value: "service-lighting", label: "Lighting" },
+  { value: "service-staging", label: "Staging" },
   { value: "service-event-production", label: "Event Production" },
   { value: "service-video", label: "Video Production" },
   { value: "service-virtual", label: "Virtual Events" },
+
+  // General
+  { value: "headlines", label: "Library" },
+  { value: "supplements", label: "Supplements" },
+  { value: "logos", label: "Logos" },
+  { value: "hero", label: "Hero (Legacy)" },
 ];
 
 export default function AdminLibrary() {
@@ -130,7 +141,7 @@ export default function AdminLibrary() {
           Upload and organise images for use across the website. Copy a URL to use it in content or categories.
         </p>
 
-        <Tabs defaultValue="headlines">
+        <Tabs defaultValue="portfolio">
           <TabsList className="mb-6">
             {categories.map((cat) => (
               <TabsTrigger key={cat.value} value={cat.value}>
@@ -154,6 +165,16 @@ export default function AdminLibrary() {
                   />
                 </label>
               </div>
+
+              {cat.value.startsWith("hero-") && (
+                <div className="bg-primary/10 border border-primary/20 rounded-lg p-3 mb-4">
+                  <p className="text-sm text-foreground">
+                    <strong>Page Header Image:</strong> The most recently uploaded image in this category will be used as the hero banner for the{" "}
+                    {cat.value === "hero-services" ? "Services" : cat.value === "hero-gallery" ? "Gallery" : cat.value === "hero-case-studies" ? "Case Studies" : "Portfolio"}{" "}
+                    page. Upload a new image to replace the current one. Recommended size: 1920×800px.
+                  </p>
+                </div>
+              )}
 
               {getImagesForCategory(cat.value).length === 0 ? (
                 <Card>
