@@ -1,10 +1,10 @@
 export const about = {
   headline: "About Event Sound",
-  intro: "For over two decades, we've built Event Sound into a cornerstone of exceptional event production, earning trust across Ireland and beyond.",
+  intro: "EventSound started over three decades ago as a sound rental company, providing PA systems and audio equipment for events across Ireland. Since then, we've evolved into a full-service event production partner — delivering LED video walls, stage lighting, custom staging, live streaming, and complete technical production alongside the professional sound services we built our reputation on. Based in Drogheda, Co. Louth, we work with agencies, venues, and corporate clients nationwide, bringing the same hands-on reliability to every event.",
   body: [
-    "Whether you're planning a sleek corporate conference, an electrifying live concert, or an intimate gathering, our seasoned team is with you every step of the way — from that first spark of inspiration to the final applause.",
-    "We bring your vision to life with personalised guidance, cutting-edge equipment including PA systems, LED video walls, and adaptable staging solutions, all backed by unwavering technical expertise.",
-    "Our promise is to deliver flawless, unforgettable events that linger in memories long after the lights dim.",
+    "Whether you're planning a corporate conference, an awards ceremony, a product launch, or a live concert, our experienced production team is with you from first brief to final breakdown. We don't just supply equipment — we act as your dedicated production partner, working closely with your team to ensure every technical detail is covered.",
+    "We bring your vision to life with industry-leading equipment including L-Acoustics sound systems, Unilumin LED video walls, Chamsys lighting control, and TUV-certified staging. Every hire includes personalised guidance from our production team, ensuring the right solution for your venue, audience, and budget.",
+    "Our promise is simple: reliable equipment, experienced crew, transparent pricing, and events that exceed expectations. That's why clients across Ireland choose EventSound as their long-term production partner.",
   ],
   healthAndSafety: {
     headline: "Health & Safety",

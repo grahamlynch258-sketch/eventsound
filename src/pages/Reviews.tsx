@@ -16,7 +16,7 @@ const Reviews = () => {
     <PageShell>
       <PageHeader
         title="Client Reviews"
-        subtitle="See what our clients have to say about working with EventSound"
+        subtitle="Real feedback from event managers, agencies, and corporate clients who trust EventSound as their production partner across Ireland."
       />
       <TestimonialsSection />
     </PageShell>
