@@ -1,6 +1,7 @@
 import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
+import { generateFAQSchema } from "@/lib/schema";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
@@ -8,10 +9,21 @@ import heroFallback from "@/assets/hero-av-production.jpg";
 import { BrandBanner } from "@/components/site/BrandSidebar";
 
 export default function EventProduction() {
+  const faqs = [
+    { question: "What does event production management include?", answer: "We handle all technical aspects of your event — AV equipment sourcing, stage and set design, crew coordination, supplier management, technical rehearsals, and on-site production management. Think of us as your technical production partner from planning through to breakdown." },
+    { question: "How far in advance should I engage a production company?", answer: "For large events like festivals or multi-day conferences, 3-6 months is ideal. Corporate events and awards nights typically need 6-8 weeks. We can work to tighter timelines but earlier engagement means better planning and availability." },
+    { question: "Do you manage other suppliers on my behalf?", answer: "Yes — we coordinate with staging companies, power suppliers, venues, caterers, and any other technical suppliers involved in your event. Having one production company manage all technical elements ensures everything works together seamlessly." },
+    { question: "Can you produce events anywhere in Ireland?", answer: "Yes, we produce events nationwide. While we are based in Dublin, we regularly deliver events across all 32 counties and have strong relationships with venues throughout Ireland." },
+    { question: "What size events do you handle?", answer: "Everything from boardroom presentations for 20 people to outdoor festivals for 10,000+. We scale our crew and equipment to match your event. Recent projects include the Swords Castle Summer Concerts (8,000+ per night) and intimate corporate conferences." },
+    { question: "What happens if equipment fails during my event?", answer: "We carry backup equipment on-site for all critical systems and our technicians are trained to handle any technical issues immediately. In over three decades of event production, we have built redundancy into every setup to ensure your event runs smoothly." }
+  ];
+
   useSeo({
     title: "Event Production Management Ireland | EventSound",
     description: "End-to-end event production management across Ireland. Technical direction, crew coordination, show calling, and on-site production support for corporate events and live shows.",
     canonical: "https://eventsound.ie/services/event-production",
+    schema: generateFAQSchema({ questions: faqs }),
+    schemaId: "faq-schema"
   });
 
   const { hero, gallery } = useServiceImages("service-event-production");
@@ -66,6 +78,19 @@ export default function EventProduction() {
             <Link to="/services/av-production"><Button variant="outline">AV Production</Button></Link>
             <Link to="/services/led-video-walls"><Button variant="outline">LED Video Walls</Button></Link>
             <Link to="/services/lighting-design"><Button variant="outline">Lighting Design</Button></Link>
+          </div>
+
+          {/* FAQ Section */}
+          <div className="max-w-4xl mx-auto mt-16">
+            <h2 className="text-3xl font-bold text-foreground mb-8">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              {faqs.map((faq, i) => (
+                <div key={i} className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-6">
+                  <h3 className="text-lg font-semibold text-foreground mb-2">{faq.question}</h3>
+                  <p className="text-foreground/80 leading-relaxed">{faq.answer}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="mt-12 text-center">

@@ -1,6 +1,7 @@
 import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
+import { generateFAQSchema } from "@/lib/schema";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
@@ -8,10 +9,21 @@ import heroFallback from "@/assets/category-video-recording.jpg";
 import { BrandBanner } from "@/components/site/BrandSidebar";
 
 export default function VirtualEvents() {
+  const faqs = [
+    { question: "What is a hybrid event?", answer: "A hybrid event combines a live in-person audience with a remote online audience. We provide the AV production, cameras, streaming, and platform integration to ensure both audiences have an engaging, professional experience." },
+    { question: "Which virtual event platforms do you support?", answer: "We work with all major platforms including Zoom, Microsoft Teams, Hopin, Webex, YouTube Live, Vimeo, and custom RTMP solutions. We can also recommend the best platform for your specific event requirements and audience size." },
+    { question: "Can virtual attendees interact with the live event?", answer: "Yes — we set up live Q&A, polling, chat moderation, and remote speaker integration so virtual attendees can participate fully. We have produced events where remote panellists appear on the main stage LED screens alongside in-person speakers." },
+    { question: "What equipment is needed at the venue for a hybrid event?", answer: "At minimum: cameras, microphones, an encoding system, and a reliable internet connection. For a professional production, we add LED screens for remote speaker display, graphics overlays, and a dedicated streaming operator." },
+    { question: "How reliable is live streaming for important events?", answer: "Very reliable with proper planning. We use broadcast-grade encoders, redundant internet connections (wired + bonded cellular), and monitoring throughout. In three decades of production, we have built robust failover systems for mission-critical streams." },
+    { question: "Do you provide a studio for virtual events?", answer: "We can transform any suitable space into a professional virtual studio with branded backdrops, lighting, cameras, and teleprompters. We also work with dedicated studio venues in Dublin if you need a purpose-built environment." }
+  ];
+
   useSeo({
     title: "Virtual & Hybrid Event Production Ireland | EventSound",
     description: "Professional virtual and hybrid event production across Ireland. Studio setups, live streaming, audience interaction tools, and full technical management for online events.",
     canonical: "https://eventsound.ie/services/virtual-events",
+    schema: generateFAQSchema({ questions: faqs }),
+    schemaId: "faq-schema"
   });
 
   const { hero, gallery } = useServiceImages("service-virtual");
@@ -66,6 +78,19 @@ export default function VirtualEvents() {
             <Link to="/services/video-production"><Button variant="outline">Video Production</Button></Link>
             <Link to="/services/led-video-walls"><Button variant="outline">LED Video Walls</Button></Link>
             <Link to="/services/av-production"><Button variant="outline">AV Production</Button></Link>
+          </div>
+
+          {/* FAQ Section */}
+          <div className="max-w-4xl mx-auto mt-16">
+            <h2 className="text-3xl font-bold text-foreground mb-8">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              {faqs.map((faq, i) => (
+                <div key={i} className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-6">
+                  <h3 className="text-lg font-semibold text-foreground mb-2">{faq.question}</h3>
+                  <p className="text-foreground/80 leading-relaxed">{faq.answer}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="mt-12 text-center">

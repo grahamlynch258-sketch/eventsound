@@ -1,6 +1,7 @@
 import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
+import { generateFAQSchema } from "@/lib/schema";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
@@ -8,10 +9,21 @@ import heroFallback from "@/assets/hero-av-production.jpg";
 import { BrandBanner } from "@/components/site/BrandSidebar";
 
 export default function AVProduction() {
+  const faqs = [
+    { question: "What does AV production include?", answer: "AV production covers all audio and visual technical elements for your event — PA systems, microphones, mixing desks, projection, LED screens, playback systems, and technical crew. We provide everything needed to ensure your event sounds and looks professional." },
+    { question: "What size PA system do I need?", answer: "PA sizing depends on your venue and audience. A boardroom needs a small column speaker, a conference for 200 needs a medium line array, and an outdoor event for 2,000+ needs a large concert PA. We always recommend the right system based on a venue assessment." },
+    { question: "Do you provide sound engineers?", answer: "Yes — all our AV packages include experienced sound engineers who manage the audio throughout your event. For larger events, we provide separate FOH (front of house) and monitor engineers." },
+    { question: "Can you handle presentations and playback?", answer: "Yes — we manage all presentation playback including PowerPoint, Keynote, video playback, and confidence monitors for speakers. We test all presentations before the event starts to avoid any issues during your programme." },
+    { question: "What happens during a site visit?", answer: "We assess the venue layout, power availability, rigging points, load-in access, and acoustics. This ensures we specify the right equipment and plan the setup efficiently. Site visits are free for all confirmed bookings." },
+    { question: "Do you carry backup equipment?", answer: "Yes — we carry backup for all critical equipment including spare microphones, cables, laptops, and switching systems. Our technicians are trained to swap faulty equipment within minutes so your event is never disrupted." }
+  ];
+
   useSeo({
     title: "AV Production & Conference AV Supplier Ireland | EventSound",
     description: "Professional AV production and conference AV solutions across Ireland. L-Acoustics sound, LED video walls, lighting, and full technical crew for corporate events and conferences.",
     canonical: "https://eventsound.ie/services/av-production",
+    schema: generateFAQSchema({ questions: faqs }),
+    schemaId: "faq-schema"
   });
 
   const { hero, gallery } = useServiceImages("service-av-production");
@@ -71,6 +83,19 @@ export default function AVProduction() {
             <Link to="/services/led-video-walls"><Button variant="outline">LED Video Walls</Button></Link>
             <Link to="/services/event-production"><Button variant="outline">Event Production</Button></Link>
             <Link to="/services/virtual-events"><Button variant="outline">Virtual Events</Button></Link>
+          </div>
+
+          {/* FAQ Section */}
+          <div className="max-w-4xl mx-auto mt-16">
+            <h2 className="text-3xl font-bold text-foreground mb-8">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              {faqs.map((faq, i) => (
+                <div key={i} className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-6">
+                  <h3 className="text-lg font-semibold text-foreground mb-2">{faq.question}</h3>
+                  <p className="text-foreground/80 leading-relaxed">{faq.answer}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="mt-12 text-center">

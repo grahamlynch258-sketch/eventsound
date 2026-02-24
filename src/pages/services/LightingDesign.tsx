@@ -1,6 +1,7 @@
 import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
+import { generateFAQSchema } from "@/lib/schema";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
@@ -8,10 +9,21 @@ import heroFallback from "@/assets/category-lighting.jpg";
 import { BrandBanner } from "@/components/site/BrandSidebar";
 
 export default function LightingDesign() {
+  const faqs = [
+    { question: "What types of event lighting do you provide?", answer: "We provide stage lighting, uplighting, wash lighting, moving heads, follow spots, architectural lighting, LED festoon, and custom mood lighting. Our inventory covers everything from intimate corporate dinners to large outdoor festival stages." },
+    { question: "Can you light outdoor events and festivals?", answer: "Absolutely. We have weatherproof fixtures and extensive experience lighting outdoor stages, festival grounds, and open-air venues across Ireland. All our outdoor setups include appropriate power distribution and safety measures." },
+    { question: "Do you provide a lighting designer for my event?", answer: "Yes — every lighting hire includes an experienced lighting technician who will program and operate the rig throughout your event. For larger productions, we provide a dedicated lighting designer who works with you on the creative vision." },
+    { question: "How does lighting design affect the audience experience?", answer: "Lighting sets the mood, directs attention, and creates atmosphere. Good lighting design can transform a plain venue into an immersive experience, improve video and photography quality, and keep audiences engaged throughout the event." },
+    { question: "How early do you need to set up stage lighting?", answer: "Typically 4-8 hours before the event for a standard corporate or conference setup. Festival stages and complex productions may require a full day. We always coordinate load-in schedules with your venue and other suppliers." },
+    { question: "Can you match lighting to our brand colours?", answer: "Yes — LED fixtures can be programmed to any colour. We regularly match lighting to corporate brand guidelines, event themes, and sponsor requirements. Just share your brand colours and we will programme them into the rig." }
+  ];
+
   useSeo({
     title: "Event Lighting Design & Hire Ireland | EventSound",
     description: "Professional stage lighting, architectural lighting, and custom lighting design for events across Ireland. Intelligent fixtures, moving heads, and experienced lighting designers.",
     canonical: "https://eventsound.ie/services/lighting-design",
+    schema: generateFAQSchema({ questions: faqs }),
+    schemaId: "faq-schema"
   });
 
   const { hero, gallery } = useServiceImages("service-lighting");
@@ -66,6 +78,19 @@ export default function LightingDesign() {
             <Link to="/services/led-video-walls"><Button variant="outline">LED Video Walls</Button></Link>
             <Link to="/services/staging-pipe-drape"><Button variant="outline">Staging & Drape</Button></Link>
             <Link to="/services/event-production"><Button variant="outline">Event Production</Button></Link>
+          </div>
+
+          {/* FAQ Section */}
+          <div className="max-w-4xl mx-auto mt-16">
+            <h2 className="text-3xl font-bold text-foreground mb-8">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              {faqs.map((faq, i) => (
+                <div key={i} className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-6">
+                  <h3 className="text-lg font-semibold text-foreground mb-2">{faq.question}</h3>
+                  <p className="text-foreground/80 leading-relaxed">{faq.answer}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="mt-12 text-center">
