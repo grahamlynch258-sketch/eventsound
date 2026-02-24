@@ -30,10 +30,10 @@ export function CTASection({
       <div className="container relative py-20 md:py-28">
         <div className="max-w-3xl mx-auto text-center">
           <p className="section-kicker mb-4">Ready?</p>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight transition-transform duration-300 hover:scale-[1.03] cursor-default">
             {title}
           </h2>
-          <p className="mt-4 text-muted-foreground max-w-xl mx-auto leading-relaxed">
+          <p className="mt-4 text-muted-foreground max-w-xl mx-auto leading-relaxed transition-transform duration-300 hover:scale-[1.02] cursor-default">
             {finalDescription}
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
