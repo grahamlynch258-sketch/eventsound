@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run generate:sitemap && vite build",
+    "build": "npm run generate:sitemap && vite build && node scripts/prerender.mjs",
     "build:dev": "vite build --mode development",
     "generate:sitemap": "node scripts/generate-sitemap.mjs",
     "lint": "eslint .",
@@ -85,6 +85,7 @@
     "globals": "^15.15.0",
     "jsdom": "^20.0.3",
     "postcss": "^8.5.6",
+    "puppeteer": "^24.37.5",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.38.0",
