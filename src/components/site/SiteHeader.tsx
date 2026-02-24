@@ -2,12 +2,22 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
-import { Menu, X, ChevronDown, HelpCircle, Star, Mail, Images, BookOpen } from "lucide-react";
+import { Menu, X, ChevronDown, HelpCircle, Star, Mail, Images, BookOpen, Monitor, Volume2, Lightbulb, Theater, Clapperboard, Video, Wifi, LayoutGrid } from "lucide-react";
 
 const mainLinks = [
   { to: "/", label: "Home", end: true },
   { to: "/about", label: "About" },
-  { to: "/services", label: "Services" },
+];
+
+const servicesLinks = [
+  { to: "/services", label: "All Services", icon: LayoutGrid, description: "Overview of all our services" },
+  { to: "/services/led-video-walls", label: "LED Video Walls", icon: Monitor, description: "High-resolution LED displays" },
+  { to: "/services/av-production", label: "AV Production", icon: Volume2, description: "Complete conference AV solutions" },
+  { to: "/services/lighting-design", label: "Lighting Design", icon: Lightbulb, description: "Stage and architectural lighting" },
+  { to: "/services/staging-pipe-drape", label: "Staging & Pipe & Drape", icon: Theater, description: "Safe, TUV-certified staging" },
+  { to: "/services/event-production", label: "Event Production", icon: Clapperboard, description: "End-to-end production management" },
+  { to: "/services/video-production", label: "Video Production", icon: Video, description: "Multi-camera capture and streaming" },
+  { to: "/services/virtual-events", label: "Virtual & Hybrid Events", icon: Wifi, description: "Online and hybrid event production" },
 ];
 
 const portfolioLinks = [
@@ -21,6 +31,7 @@ const connectLinks = [
   { to: "/contact", label: "Contact", icon: Mail, description: "Get a quote or get in touch" },
 ];
 
+const SERVICES_PATHS = servicesLinks.map((l) => l.to);
 const PORTFOLIO_PATHS = portfolioLinks.map((l) => l.to);
 const CONNECT_PATHS = connectLinks.map((l) => l.to);
 
@@ -33,14 +44,18 @@ const navLinkClass = ({ isActive }: { isActive: boolean }) =>
 
 export function SiteHeader({ className }: { className?: string }) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
   const [portfolioOpen, setPortfolioOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [servicesMobileOpen, setServicesMobileOpen] = useState(false);
   const [portfolioMobileOpen, setPortfolioMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const servicesRef = useRef<HTMLDivElement>(null);
   const portfolioRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
 
+  const servicesActive = SERVICES_PATHS.some((p) => location.pathname === p || location.pathname.startsWith(p + "/"));
   const portfolioActive = PORTFOLIO_PATHS.some((p) => location.pathname.startsWith(p));
   const connectActive = CONNECT_PATHS.some((p) => location.pathname.startsWith(p));
 
@@ -53,6 +68,9 @@ export function SiteHeader({ className }: { className?: string }) {
   // Close dropdowns on outside click
   useEffect(() => {
     const handler = (e: MouseEvent) => {
+      if (servicesRef.current && !servicesRef.current.contains(e.target as Node)) {
+        setServicesOpen(false);
+      }
       if (portfolioRef.current && !portfolioRef.current.contains(e.target as Node)) {
         setPortfolioOpen(false);
       }
@@ -68,6 +86,7 @@ export function SiteHeader({ className }: { className?: string }) {
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
+        setServicesOpen(false);
         setPortfolioOpen(false);
         setDropdownOpen(false);
       }
@@ -78,6 +97,7 @@ export function SiteHeader({ className }: { className?: string }) {
 
   // Close dropdowns on route change
   useEffect(() => {
+    setServicesOpen(false);
     setPortfolioOpen(false);
     setDropdownOpen(false);
     setMobileOpen(false);
@@ -110,6 +130,50 @@ export function SiteHeader({ className }: { className?: string }) {
               {l.label}
             </NavLink>
           ))}
+
+          {/* Services dropdown */}
+          <div className="relative" ref={servicesRef}>
+            <button
+              onClick={() => setServicesOpen((o) => !o)}
+              className={cn(
+                "flex items-center gap-1 text-sm font-medium tracking-wide transition-colors hover:text-primary relative",
+                "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 hover:after:scale-x-100",
+                servicesActive ? "text-primary after:scale-x-100" : "text-muted-foreground",
+              )}
+              aria-haspopup="true"
+              aria-expanded={servicesOpen}
+            >
+              Services
+              <ChevronDown
+                className={cn("h-3.5 w-3.5 transition-transform duration-200", servicesOpen && "rotate-180")}
+              />
+            </button>
+
+            {servicesOpen && (
+              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 rounded-xl border border-border/60 bg-background/98 backdrop-blur-lg shadow-xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-150">
+                {servicesLinks.map(({ to, label, icon: Icon, description }) => (
+                  <Link
+                    key={to}
+                    to={to}
+                    className={cn(
+                      "flex items-start gap-3 px-4 py-3 transition-colors hover:bg-primary/10 group",
+                      location.pathname === to && "bg-primary/10",
+                    )}
+                  >
+                    <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                      <Icon className="h-3.5 w-3.5 text-primary" />
+                    </div>
+                    <div>
+                      <p className={cn("text-sm font-medium", location.pathname === to ? "text-primary" : "text-foreground")}>
+                        {label}
+                      </p>
+                      <p className="text-xs text-muted-foreground">{description}</p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
 
           {/* Portfolio dropdown */}
           <div className="relative" ref={portfolioRef}>
@@ -233,6 +297,38 @@ export function SiteHeader({ className }: { className?: string }) {
                 end={l.end}
               >
                 {l.label}
+              </NavLink>
+            ))}
+
+            {/* Services group in mobile */}
+            <div className="mt-2 mb-1 px-4">
+              <button
+                onClick={() => setServicesMobileOpen((o) => !o)}
+                className={cn(
+                  "flex w-full items-center justify-between text-xs font-semibold uppercase tracking-widest transition-colors",
+                  servicesActive ? "text-primary" : "text-muted-foreground/60 hover:text-muted-foreground",
+                )}
+              >
+                Services
+                <ChevronDown
+                  className={cn("h-3.5 w-3.5 transition-transform duration-200", servicesMobileOpen && "rotate-180")}
+                />
+              </button>
+            </div>
+            {servicesMobileOpen && servicesLinks.map(({ to, label, icon: Icon }) => (
+              <NavLink
+                key={to}
+                to={to}
+                className={({ isActive }) =>
+                  cn(
+                    "flex items-center gap-3 py-3 px-6 rounded-lg text-base font-medium transition-colors",
+                    isActive ? "text-primary bg-primary/10" : "text-muted-foreground hover:text-foreground hover:bg-secondary/50",
+                  )
+                }
+                onClick={() => setMobileOpen(false)}
+              >
+                <Icon className="h-4 w-4 shrink-0" />
+                {label}
               </NavLink>
             ))}
 
