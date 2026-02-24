@@ -1,8 +1,9 @@
-import { useEffect } from "react";
 import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
 import { generateFAQSchema } from "@/lib/schema";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 import heroFallback from "@/assets/hero-av-production.jpg";
 
 const FAQ = () => {
@@ -78,17 +79,23 @@ const FAQ = () => {
         backgroundAlt="EventSound professional event production setup"
       />
       <div className="container mx-auto px-4 py-12">
-        <div className="max-w-3xl mx-auto space-y-6">
+        <div className="max-w-4xl mx-auto space-y-6">
           {faqs.map((faq, index) => (
-            <div key={index} className="border-b border-gray-200 pb-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                {faq.question}
-              </h3>
-              <p className="text-gray-600">
-                {faq.answer}
-              </p>
+            <div key={index} className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-6">
+              <div className="rounded-lg bg-primary/10 border border-primary/20 px-4 py-3 mb-4">
+                <h3 className="text-lg font-semibold text-primary">{faq.question}</h3>
+              </div>
+              <p className="text-foreground/90 leading-relaxed">{faq.answer}</p>
             </div>
           ))}
+        </div>
+
+        <div className="max-w-4xl mx-auto mt-12">
+          <div className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-8 text-center">
+            <h3 className="text-2xl font-bold mb-4 text-foreground">Still Have Questions?</h3>
+            <p className="text-muted-foreground mb-6">Get in touch and we will be happy to help with your event requirements</p>
+            <Link to="/contact"><Button size="lg">Get a Quote</Button></Link>
+          </div>
         </div>
       </div>
     </PageShell>
