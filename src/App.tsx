@@ -19,6 +19,10 @@ import NotFound from "./pages/NotFound";
 // Admin route guard — kept static (small, needed immediately for auth check)
 import AdminRoute from "./components/admin/AdminRoute";
 
+// Landing pages — Google Ads only, noindex
+const CorporateAVHireDublin = lazy(() => import("@/pages/landing/CorporateAVHireDublin"));
+const LEDWallHireIreland = lazy(() => import("@/pages/landing/LEDWallHireIreland"));
+
 // Service sub-pages — lazy loaded for code splitting
 const LEDVideoWalls = lazy(() => import("@/pages/services/LEDVideoWalls"));
 const AVProduction = lazy(() => import("@/pages/services/AVProduction"));
@@ -66,6 +70,10 @@ function AppRoutes() {
       <Route path="/services/event-production" element={<Suspense fallback={null}><EventProduction /></Suspense>} />
       <Route path="/services/video-production" element={<Suspense fallback={null}><VideoProduction /></Suspense>} />
       <Route path="/services/virtual-events" element={<Suspense fallback={null}><VirtualEvents /></Suspense>} />
+
+      {/* Landing pages — Google Ads only, noindex */}
+      <Route path="/landing/corporate-av-hire-dublin" element={<Suspense fallback={null}><CorporateAVHireDublin /></Suspense>} />
+      <Route path="/landing/led-wall-hire-ireland" element={<Suspense fallback={null}><LEDWallHireIreland /></Suspense>} />
 
       {/* Legacy route redirect */}
       <Route path="/av-production" element={<Services />} />
