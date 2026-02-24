@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { PageShell } from "@/components/site/PageShell";
 import { CTASection } from "@/components/site/CTASection";
 import { about } from "@/content/about";
@@ -24,6 +25,20 @@ const FALLBACK_IMAGES = [
 ];
 
 function BehindTheScenes() {
+  const [supplementImages, setSupplementImages] = useState<{id: string; image_url: string; alt_text: string | null}[]>([]);
+
+  useEffect(() => {
+    async function fetchSupplements() {
+      const { data } = await supabase
+        .from("library_images")
+        .select("id, image_url, alt_text")
+        .eq("category", "supplements")
+        .order("created_at", { ascending: true });
+      if (data && data.length > 0) setSupplementImages(data);
+    }
+    fetchSupplements();
+  }, []);
+
   const { data: dbImages } = useQuery({
     queryKey: ["about-images"],
     queryFn: async () => {
@@ -48,23 +63,41 @@ function BehindTheScenes() {
         </h2>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-        {images.map((img, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.06, duration: 0.4 }}
-            className="overflow-hidden rounded-xl border border-border/50"
-          >
-            <img
-              src={img.image_url}
-              alt={img.alt}
-              className="w-full aspect-[4/3] object-cover"
-              loading="lazy"
-            />
-          </motion.div>
-        ))}
+        {supplementImages.length > 0
+          ? supplementImages.map((img, i) => (
+              <motion.div
+                key={img.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.06, duration: 0.4 }}
+                className="overflow-hidden rounded-xl border border-border/50"
+              >
+                <img
+                  src={img.image_url}
+                  alt={img.alt_text || "Behind the scenes at EventSound"}
+                  className="rounded-lg w-full aspect-video object-cover"
+                  loading="lazy"
+                />
+              </motion.div>
+            ))
+          : images.map((img, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.06, duration: 0.4 }}
+                className="overflow-hidden rounded-xl border border-border/50"
+              >
+                <img
+                  src={img.image_url}
+                  alt={img.alt}
+                  className="w-full aspect-[4/3] object-cover"
+                  loading="lazy"
+                />
+              </motion.div>
+            ))}
       </div>
     </section>
   );
