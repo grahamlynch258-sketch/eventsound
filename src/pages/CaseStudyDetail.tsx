@@ -173,13 +173,13 @@ const CaseStudyDetail = () => {
           {caseStudy.category && (
             <Badge className="mb-4">{caseStudy.category}</Badge>
           )}
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
             {caseStudy.title}
           </h1>
         </div>
 
         {/* Metadata Row */}
-        <div className="max-w-4xl mx-auto mb-8 flex flex-wrap gap-6 text-gray-600">
+        <div className="max-w-4xl mx-auto mb-8 flex flex-wrap gap-6 text-muted-foreground">
           {caseStudy.location && (
             <div className="flex items-center gap-2">
               <MapPin className="w-5 h-5" />
@@ -220,15 +220,15 @@ const CaseStudyDetail = () => {
         {/* Excerpt */}
         {caseStudy.excerpt && (
           <div className="max-w-4xl mx-auto mb-8">
-            <p className="text-xl text-gray-700 leading-relaxed">
+            <p className="text-xl text-foreground leading-relaxed">
               {caseStudy.excerpt}
             </p>
           </div>
         )}
 
         {/* Body Content */}
-        <div className="max-w-4xl mx-auto prose prose-lg mb-12">
-          <div className="whitespace-pre-wrap text-gray-700 leading-relaxed">
+        <div className="max-w-4xl mx-auto prose prose-lg prose-invert mb-12">
+          <div className="whitespace-pre-wrap text-foreground leading-relaxed">
             {caseStudy.body_content}
           </div>
         </div>
