@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
 import heroFallback from "@/assets/category-video-recording.jpg";
-import { BrandSidebar } from "@/components/site/BrandSidebar";
+import { BrandBanner } from "@/components/site/BrandSidebar";
 
 export default function VirtualEvents() {
   useSeo({
@@ -24,8 +24,7 @@ export default function VirtualEvents() {
         backgroundImage={hero || heroFallback}
       />
       <div className="container mx-auto px-4 py-12">
-        <div className="flex flex-col lg:flex-row gap-12">
-          <div className="flex-1 max-w-3xl space-y-6 text-center">
+        <div className="max-w-3xl mx-auto space-y-6 text-center">
           <p className="text-lg text-muted-foreground">
             EventSound delivers professional virtual and hybrid event production for corporate clients, agencies, and organisations across Ireland. Whether your event is fully online, has a live audience with remote viewers, or combines multiple locations, we provide the technical infrastructure and production expertise to make it seamless.
           </p>
@@ -59,6 +58,8 @@ export default function VirtualEvents() {
             </div>
           )}
 
+          <BrandBanner serviceKey="virtual-events" />
+
           <h2 className="text-2xl font-semibold">Related Services</h2>
           <div className="flex flex-wrap gap-3 justify-center">
             <Link to="/services/video-production"><Button variant="outline">Video Production</Button></Link>
@@ -72,12 +73,6 @@ export default function VirtualEvents() {
             <Link to="/contact"><Button size="lg">Get a Quote</Button></Link>
           </div>
         </div>
-        <aside className="lg:w-64 flex-shrink-0">
-          <div className="lg:sticky lg:top-24">
-            <BrandSidebar serviceKey="virtual-events" />
-          </div>
-        </aside>
-      </div>
       </div>
     </PageShell>
   );

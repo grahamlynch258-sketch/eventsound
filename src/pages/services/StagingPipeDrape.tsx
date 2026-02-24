@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
 import heroFallback from "@/assets/category-staging.jpg";
-import { BrandSidebar } from "@/components/site/BrandSidebar";
+import { BrandBanner } from "@/components/site/BrandSidebar";
 
 export default function StagingPipeDrape() {
   useSeo({
@@ -24,8 +24,7 @@ export default function StagingPipeDrape() {
         backgroundImage={hero || heroFallback}
       />
       <div className="container mx-auto px-4 py-12">
-        <div className="flex flex-col lg:flex-row gap-12">
-          <div className="flex-1 max-w-3xl space-y-6 text-center">
+        <div className="max-w-3xl mx-auto space-y-6 text-center">
           <p className="text-lg text-muted-foreground">
             EventSound provides professional staging, pipe and drape, star cloth, and scenic elements for corporate events, conferences, awards ceremonies, and live shows across Ireland. All our staging is TUV-certified and European-manufactured, installed by trained crew with safety as the primary consideration.
           </p>
@@ -59,6 +58,8 @@ export default function StagingPipeDrape() {
             </div>
           )}
 
+          <BrandBanner serviceKey="staging-pipe-drape" />
+
           <h2 className="text-2xl font-semibold">Related Services</h2>
           <div className="flex flex-wrap gap-3 justify-center">
             <Link to="/services/lighting-design"><Button variant="outline">Lighting Design</Button></Link>
@@ -72,12 +73,6 @@ export default function StagingPipeDrape() {
             <Link to="/contact"><Button size="lg">Get a Quote</Button></Link>
           </div>
         </div>
-        <aside className="lg:w-64 flex-shrink-0">
-          <div className="lg:sticky lg:top-24">
-            <BrandSidebar serviceKey="staging-pipe-drape" />
-          </div>
-        </aside>
-      </div>
       </div>
     </PageShell>
   );

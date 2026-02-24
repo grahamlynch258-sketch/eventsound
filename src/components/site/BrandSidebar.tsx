@@ -39,40 +39,41 @@ const SERVICE_BRANDS: Record<string, string[]> = {
   "virtual-events": ["blackmagic", "roland", "sony"],
 };
 
-interface BrandSidebarProps {
+interface BrandBannerProps {
   serviceKey: string;
 }
 
-export function BrandSidebar({ serviceKey }: BrandSidebarProps) {
+export function BrandBanner({ serviceKey }: BrandBannerProps) {
   const brandKeys = SERVICE_BRANDS[serviceKey] || [];
   const brands = brandKeys.map((k) => ALL_BRANDS[k]).filter(Boolean);
 
   if (brands.length === 0) return null;
 
   return (
-    <div className="space-y-4">
-      <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Brands We Use</h3>
-      <div className="space-y-3">
-        {brands.map((brand) => (
-          <a
-            key={brand.name}
-            href={brand.url}
-            target={brand.url === "#" ? undefined : "_blank"}
-            rel={brand.url === "#" ? undefined : "noopener noreferrer"}
-            className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted/50 transition-colors group"
-          >
-            <div className="w-16 h-16 flex-shrink-0 bg-white rounded-md flex items-center justify-center p-1.5">
-              <img
-                src={brand.logo}
-                alt={`${brand.name} logo`}
-                className="max-w-full max-h-full object-contain"
-                loading="lazy"
-              />
-            </div>
-            <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">{brand.name}</span>
-            {brand.url !== "#" && <ExternalLink className="h-3 w-3 text-muted-foreground/50 ml-auto" />}
-          </a>
-        ))}
+    <div className="border-y border-border/50 bg-card/30 py-8 my-10">
+      <div className="container mx-auto px-4">
+        <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground text-center mb-6">Equipment We Use</p>
+        <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10">
+          {brands.map((brand) => (
+            <a
+              key={brand.name}
+              href={brand.url}
+              target={brand.url === "#" ? undefined : "_blank"}
+              rel={brand.url === "#" ? undefined : "noopener noreferrer"}
+              className="group"
+              title={brand.name}
+            >
+              <div className="w-20 h-20 md:w-24 md:h-24 bg-white rounded-lg flex items-center justify-center p-2 transition-transform group-hover:scale-105">
+                <img
+                  src={brand.logo}
+                  alt={`${brand.name} logo`}
+                  className="max-w-full max-h-full object-contain"
+                  loading="lazy"
+                />
+              </div>
+            </a>
+          ))}
+        </div>
       </div>
     </div>
   );
