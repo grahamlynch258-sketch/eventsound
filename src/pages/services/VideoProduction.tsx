@@ -19,7 +19,7 @@ export default function VideoProduction() {
     <PageShell>
       <PageHeader title="Video Production & Streaming" subtitle="Capture and broadcast your event to any audience" backgroundImage={hero || heroFallback} />
       <div className="container mx-auto px-4 py-12">
-        <div className="max-w-3xl mx-auto space-y-6">
+        <div className="max-w-3xl mx-auto space-y-6 text-center">
           <p className="text-lg text-muted-foreground">
             EventSound provides professional multi-camera video production and live streaming for corporate events, conferences, product launches, and live shows across Ireland. Whether you need to capture your event for post-production or broadcast it live to a global audience, our video team delivers broadcast-quality results.
           </p>
@@ -32,6 +32,7 @@ export default function VideoProduction() {
             Extend your event's reach with professional live streaming to platforms including YouTube, Vimeo, Teams, Zoom, and custom RTMP destinations. We handle encoding, bandwidth management, and stream monitoring to ensure a reliable, high-quality broadcast. Graphics overlays, lower thirds, and picture-in-picture layouts are available to give your stream a polished, branded look.
           </p>
           <h2 className="text-2xl font-semibold">Why EventSound for Video?</h2>
+          <div className="text-left inline-block">
           <ul className="space-y-2 text-muted-foreground list-disc list-inside">
             <li>Broadcast-grade cameras and vision mixing</li>
             <li>Live streaming to any platform with custom branding</li>
@@ -39,6 +40,7 @@ export default function VideoProduction() {
             <li>Post-production editing available</li>
             <li>Integrates seamlessly with our sound and lighting services</li>
           </ul>
+          </div>
 
           {gallery.length > 0 && (
             <div className="mt-8">
@@ -52,7 +54,7 @@ export default function VideoProduction() {
           )}
 
           <h2 className="text-2xl font-semibold">Related Services</h2>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-3 justify-center">
             <Link to="/services/led-video-walls"><Button variant="outline">LED Video Walls</Button></Link>
             <Link to="/services/virtual-events"><Button variant="outline">Virtual Events</Button></Link>
             <Link to="/services/event-production"><Button variant="outline">Event Production</Button></Link>

@@ -23,7 +23,7 @@ export default function StagingPipeDrape() {
         backgroundImage={hero || heroFallback}
       />
       <div className="container mx-auto px-4 py-12">
-        <div className="max-w-3xl mx-auto space-y-6">
+        <div className="max-w-3xl mx-auto space-y-6 text-center">
           <p className="text-lg text-muted-foreground">
             EventSound provides professional staging, pipe and drape, star cloth, and scenic elements for corporate events, conferences, awards ceremonies, and live shows across Ireland. All our staging is TUV-certified and European-manufactured, installed by trained crew with safety as the primary consideration.
           </p>
@@ -36,6 +36,7 @@ export default function StagingPipeDrape() {
             Transform your venue with pipe and drape systems, star cloth backdrops, and custom scenic elements. Whether you need to divide a space, create a branded backdrop, mask backstage areas, or add atmosphere to a gala dinner, our draping solutions are clean, professional, and available in a range of colours and fabrics. Star cloth adds a dramatic effect for awards nights and evening events.
           </p>
           <h2 className="text-2xl font-semibold">Why EventSound for Staging & Drape?</h2>
+          <div className="text-left inline-block">
           <ul className="space-y-2 text-muted-foreground list-disc list-inside">
             <li>TUV-certified staging — European-manufactured, safety-first</li>
             <li>Modular platforms and risers for any configuration</li>
@@ -43,6 +44,7 @@ export default function StagingPipeDrape() {
             <li>Star cloth and scenic backdrops for atmosphere</li>
             <li>Installed by trained crew with full risk assessment</li>
           </ul>
+          </div>
 
           {gallery.length > 0 && (
             <div className="mt-8">
@@ -56,7 +58,7 @@ export default function StagingPipeDrape() {
           )}
 
           <h2 className="text-2xl font-semibold">Related Services</h2>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-3 justify-center">
             <Link to="/services/lighting-design"><Button variant="outline">Lighting Design</Button></Link>
             <Link to="/services/event-production"><Button variant="outline">Event Production</Button></Link>
             <Link to="/services/led-video-walls"><Button variant="outline">LED Video Walls</Button></Link>

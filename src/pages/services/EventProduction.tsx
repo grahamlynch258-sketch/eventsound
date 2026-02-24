@@ -23,7 +23,7 @@ export default function EventProduction() {
         backgroundImage={hero || heroFallback}
       />
       <div className="container mx-auto px-4 py-12">
-        <div className="max-w-3xl mx-auto space-y-6">
+        <div className="max-w-3xl mx-auto space-y-6 text-center">
           <p className="text-lg text-muted-foreground">
             EventSound provides end-to-end event production management for corporate events, conferences, product launches, awards ceremonies, and live shows across Ireland. As your dedicated production partner, we handle the technical planning, crew coordination, and on-site execution — so you can focus on your event content and guests.
           </p>
@@ -36,6 +36,7 @@ export default function EventProduction() {
             For events that require precise timing and coordination — award shows, product reveals, multi-speaker conferences — we provide technical direction and show calling. Our technical directors manage cue-to-cue execution, ensuring every lighting change, video roll, and audio transition happens exactly on time. We work from detailed run sheets and maintain clear communication with all crew positions throughout your event.
           </p>
           <h2 className="text-2xl font-semibold">Why EventSound for Production?</h2>
+          <div className="text-left inline-block">
           <ul className="space-y-2 text-muted-foreground list-disc list-inside">
             <li>Over 30 years of event production experience</li>
             <li>Single point of contact for all technical elements</li>
@@ -43,6 +44,7 @@ export default function EventProduction() {
             <li>Works alongside event managers, agencies, and venues</li>
             <li>Complete crew coordination from load-in to breakdown</li>
           </ul>
+          </div>
 
           {gallery.length > 0 && (
             <div className="mt-8">
@@ -56,7 +58,7 @@ export default function EventProduction() {
           )}
 
           <h2 className="text-2xl font-semibold">Related Services</h2>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-3 justify-center">
             <Link to="/services/av-production"><Button variant="outline">AV Production</Button></Link>
             <Link to="/services/led-video-walls"><Button variant="outline">LED Video Walls</Button></Link>
             <Link to="/services/lighting-design"><Button variant="outline">Lighting Design</Button></Link>
