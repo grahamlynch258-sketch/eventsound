@@ -136,14 +136,14 @@ const CaseStudyDetail = () => {
   return (
     <PageShell>
       {/* Breadcrumb */}
-      <div className="bg-gray-50 border-b">
+      <div className="bg-card/30 border-b border-border/50">
         <div className="container mx-auto px-4 py-4">
-          <nav className="flex items-center gap-2 text-sm text-gray-600">
-            <Link to="/" className="hover:text-primary">Home</Link>
+          <nav className="flex items-center gap-2 text-sm text-muted-foreground">
+            <Link to="/" className="hover:text-primary transition-colors">Home</Link>
             <span>/</span>
-            <Link to="/case-studies" className="hover:text-primary">Case Studies</Link>
+            <Link to="/case-studies" className="hover:text-primary transition-colors">Case Studies</Link>
             <span>/</span>
-            <span className="text-gray-900">{caseStudy.title}</span>
+            <span className="text-foreground">{caseStudy.title}</span>
           </nav>
         </div>
       </div>
@@ -220,38 +220,36 @@ const CaseStudyDetail = () => {
         {/* Excerpt */}
         {caseStudy.excerpt && (
           <div className="max-w-4xl mx-auto mb-8">
-            <p className="text-xl text-foreground leading-relaxed">
-              {caseStudy.excerpt}
-            </p>
+            <div className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-6 md:p-8">
+              <p className="text-lg text-foreground/90 leading-relaxed">{caseStudy.excerpt}</p>
+            </div>
           </div>
         )}
 
         {/* Body Content */}
-        <div className="max-w-4xl mx-auto prose prose-lg prose-invert mb-12">
-          <div className="whitespace-pre-wrap text-foreground leading-relaxed">
-            {caseStudy.body_content}
+        <div className="max-w-4xl mx-auto mb-12">
+          <div className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-6 md:p-8">
+            <div className="whitespace-pre-wrap text-foreground/90 leading-relaxed text-base md:text-lg">
+              {caseStudy.body_content}
+            </div>
           </div>
         </div>
 
         {/* Call to Action */}
         <div className="max-w-4xl mx-auto mb-12">
-          <Card className="bg-primary/5 border-primary/20">
-            <CardContent className="p-8 text-center">
-              <h3 className="text-2xl font-bold mb-4">Need Similar Services?</h3>
-              <p className="text-gray-600 mb-6">
-                Get in touch to discuss your event production needs
-              </p>
-              <Link to="/contact">
-                <Button size="lg">Get a Quote</Button>
-              </Link>
-            </CardContent>
-          </Card>
+          <div className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-8 text-center">
+            <h3 className="text-2xl font-bold mb-4 text-foreground">Need Similar Services?</h3>
+            <p className="text-muted-foreground mb-6">
+              Get in touch to discuss your event production needs
+            </p>
+            <Link to="/contact"><Button size="lg">Get a Quote</Button></Link>
+          </div>
         </div>
 
         {/* Related Case Studies */}
         {relatedCaseStudies.length > 0 && (
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold mb-6">Related Case Studies</h2>
+            <h2 className="text-3xl font-bold mb-6 text-foreground">Related Case Studies</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {relatedCaseStudies.map((related) => (
                 <Link
