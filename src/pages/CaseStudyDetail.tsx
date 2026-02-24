@@ -85,22 +85,8 @@ const CaseStudyDetail = () => {
     }
   };
 
-  if (loading) {
-    return (
-      <PageShell>
-        <div className="container mx-auto px-4 py-12">
-          <div className="text-center">Loading case study...</div>
-        </div>
-      </PageShell>
-    );
-  }
-
-  if (!caseStudy) {
-    return null;
-  }
-
-  // Generate Article schema for this case study
-  const articleSchema = generateArticleSchema({
+  // Generate Article schema — only when data is available
+  const articleSchema = caseStudy ? generateArticleSchema({
     headline: caseStudy.title,
     description: caseStudy.excerpt || caseStudy.meta_description || "",
     image: caseStudy.og_image_url || caseStudy.featured_image_url,
@@ -117,21 +103,35 @@ const CaseStudyDetail = () => {
     keywords: caseStudy.tags?.join(", "),
     articleSection: caseStudy.category,
     articleBody: caseStudy.body_content
-  });
+  }) : undefined;
 
-  // Apply SEO
+  // useSeo called unconditionally — all hooks must be above any early returns
   useSeo({
-    title: caseStudy.meta_title || `${caseStudy.title} | EventSound Case Studies`,
-    description: caseStudy.meta_description || caseStudy.excerpt || "",
-    canonical: caseStudy.canonical_url || `https://eventsound.ie/case-studies/${caseStudy.slug}`,
-    ogTitle: caseStudy.meta_title || caseStudy.title,
-    ogDescription: caseStudy.meta_description || caseStudy.excerpt || "",
-    ogImage: caseStudy.og_image_url || caseStudy.featured_image_url,
+    title: caseStudy?.meta_title || (caseStudy?.title ? `${caseStudy.title} | EventSound Case Studies` : "Case Study | EventSound"),
+    description: caseStudy?.meta_description || caseStudy?.excerpt || "EventSound event production case study",
+    canonical: caseStudy?.canonical_url || (caseStudy?.slug ? `https://eventsound.ie/case-studies/${caseStudy.slug}` : undefined),
+    ogTitle: caseStudy?.meta_title || caseStudy?.title,
+    ogDescription: caseStudy?.meta_description || caseStudy?.excerpt || "",
+    ogImage: caseStudy?.og_image_url || caseStudy?.featured_image_url,
     ogType: "article",
-    noindex: caseStudy.noindex,
+    noindex: caseStudy?.noindex || false,
     schema: articleSchema,
     schemaId: "case-study-schema"
   });
+
+  if (loading) {
+    return (
+      <PageShell>
+        <div className="container mx-auto px-4 py-12">
+          <div className="text-center">Loading case study...</div>
+        </div>
+      </PageShell>
+    );
+  }
+
+  if (!caseStudy) {
+    return null;
+  }
 
   return (
     <PageShell>
@@ -227,7 +227,7 @@ const CaseStudyDetail = () => {
         )}
 
         {/* Body Content */}
-        <div className="max-w-4xl mx-auto prose prose-lg max-w-none mb-12">
+        <div className="max-w-4xl mx-auto prose prose-lg mb-12">
           <div className="whitespace-pre-wrap text-gray-700 leading-relaxed">
             {caseStudy.body_content}
           </div>
