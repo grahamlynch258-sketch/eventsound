@@ -21,6 +21,13 @@ const staticRoutes = [
   { path: '/faq', priority: '0.5', changefreq: 'monthly' },
   { path: '/contact', priority: '0.7', changefreq: 'monthly' },
   { path: '/health-and-safety', priority: '0.4', changefreq: 'yearly' },
+  { path: '/services/led-video-walls', priority: '0.8', changefreq: 'monthly' },
+  { path: '/services/av-production', priority: '0.8', changefreq: 'monthly' },
+  { path: '/services/lighting-design', priority: '0.8', changefreq: 'monthly' },
+  { path: '/services/staging-pipe-drape', priority: '0.8', changefreq: 'monthly' },
+  { path: '/services/event-production', priority: '0.8', changefreq: 'monthly' },
+  { path: '/services/video-production', priority: '0.8', changefreq: 'monthly' },
+  { path: '/services/virtual-events', priority: '0.8', changefreq: 'monthly' },
   ];
 
 async function generateSitemap() {

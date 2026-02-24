@@ -15,7 +15,7 @@ export function LandingShell({ children }: { children: React.ReactNode }) {
       <footer className="border-t border-border/50 py-6 mt-12">
         <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
           <p>© {new Date().getFullYear()} EventSound — Professional Event Production & AV Hire Ireland</p>
-          <p className="mt-1">Drogheda, Co. Louth | Serving Dublin, Leinster & Nationwide | <a href="mailto:info@eventsound.ie" className="underline">info@eventsound.ie</a></p>
+          <p className="mt-1">Dublin, Ireland | Serving clients nationwide | <a href="mailto:info@eventsound.ie" className="underline">info@eventsound.ie</a></p>
         </div>
       </footer>
     </div>
