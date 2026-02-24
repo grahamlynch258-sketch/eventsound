@@ -51,7 +51,7 @@ export default function LEDVideoWalls() {
               <h2 className="text-2xl font-semibold mb-4">Our LED Walls in Action</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {gallery.map((img) => (
-                  <img key={img.id} src={img.image_url} alt={img.alt_text || "LED video wall at event"} className="rounded-lg w-full h-64 object-cover" />
+                  <img key={img.id} src={img.image_url} alt={img.alt_text || "LED video wall at event"} className="rounded-lg w-full aspect-video object-cover" loading="lazy" />
                 ))}
               </div>
             </div>
