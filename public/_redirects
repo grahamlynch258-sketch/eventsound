@@ -1,0 +1,68 @@
+# ===========================================
+# EventSound 301 Redirect Map
+# Old WordPress URLs → New Vite/React URLs
+# ===========================================
+
+# --- Service Pages (slug changes) ---
+/services/live-event-production/    /services/event-production    301
+/services/live-event-production     /services/event-production    301
+/services/audio-equipment/          /services/av-production       301
+/services/audio-equipment           /services/av-production       301
+/services/hybrid-events/            /services/virtual-events      301
+/services/hybrid-events             /services/virtual-events      301
+/services/lighting-effects/         /services/lighting-design     301
+/services/lighting-effects          /services/lighting-design     301
+/services/stage-hire-pipe-drape/    /services/staging-pipe-drape  301
+/services/stage-hire-pipe-drape     /services/staging-pipe-drape  301
+/services/video-equipment/          /services/video-production    301
+/services/video-equipment           /services/video-production    301
+/services/led-video-display-screens/  /services/led-video-walls   301
+/services/led-video-display-screens   /services/led-video-walls   301
+
+# --- Individual Review Pages → Reviews listing ---
+/reviews/phil-nulty/                /reviews    301
+/reviews/phil-nulty                 /reviews    301
+/reviews/sarah-m/                   /reviews    301
+/reviews/sarah-m                    /reviews    301
+/reviews/john-k/                    /reviews    301
+/reviews/john-k                     /reviews    301
+/reviews/mairead-l/                 /reviews    301
+/reviews/mairead-l                  /reviews    301
+/reviews/emma-r/                    /reviews    301
+/reviews/emma-r                     /reviews    301
+/reviews/tom-f/                     /reviews    301
+/reviews/tom-f                      /reviews    301
+/reviews/kevin-rowe-events/         /reviews    301
+/reviews/kevin-rowe-events          /reviews    301
+/reviews/paul-barnes-events-manager-fingal-county-council/   /reviews    301
+/reviews/paul-barnes-events-manager-fingal-county-council    /reviews    301
+
+# --- Pages that exist on both (same slug, ensure trailing slash works) ---
+/about/              /about       301
+/contact/            /contact     301
+/faq/                /faq         301
+/gallery/            /gallery     301
+/health-and-safety/  /health-and-safety  301
+/reviews/            /reviews     301
+/services/           /services    301
+
+# --- Privacy Policy (no page on new site — redirect to homepage) ---
+/privacy-policy/     /            301
+/privacy-policy      /            301
+
+# --- WordPress artifacts (catch-all) ---
+/wp-content/*        /            301
+/wp-json/*           /            301
+/xmlrpc.php          /            301
+/wp-admin/*          /            301
+/wp-login.php        /            301
+/wp-includes/*       /            301
+/index.php/*         /            301
+
+# --- Legacy Joomla URLs (from audit) ---
+/index.php/2-uncategorised         /            301
+/sound-hire-vision-hire-dublin-ireland/  /services  301
+/sound-hire-vision-hire-dublin-ireland   /services  301
+
+# --- SPA fallback (must be LAST) ---
+/*                   /index.html  200
