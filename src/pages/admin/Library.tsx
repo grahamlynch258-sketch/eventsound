@@ -52,6 +52,8 @@ export default function AdminLibrary() {
   const queryClient = useQueryClient();
   const uploadImage = useUploadImage();
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [editingAlt, setEditingAlt] = useState<string | null>(null);
+  const [altTextValue, setAltTextValue] = useState("");
 
   const { data: images, isLoading: imagesLoading } = useQuery({
     queryKey: ["library-images"],
@@ -73,6 +75,21 @@ export default function AdminLibrary() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["library-images"] });
       toast({ title: "Image deleted" });
+    },
+  });
+
+  const updateAltText = useMutation({
+    mutationFn: async ({ id, alt_text }: { id: string; alt_text: string }) => {
+      const { error } = await supabase
+        .from("library_images")
+        .update({ alt_text })
+        .eq("id", id);
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["library-images"] });
+      setEditingAlt(null);
+      setAltTextValue("");
     },
   });
 
@@ -195,11 +212,61 @@ export default function AdminLibrary() {
                           className="h-full w-full object-cover"
                         />
                       </div>
-                      <CardContent className="p-3">
-                        <p className="truncate text-xs text-muted-foreground mb-2">
+                      <CardContent className="p-0">
+                        {/* Alt text editing */}
+                        <div className="p-2">
+                          {editingAlt === img.id ? (
+                            <div className="space-y-2">
+                              <input
+                                type="text"
+                                value={altTextValue}
+                                onChange={(e) => setAltTextValue(e.target.value)}
+                                placeholder="Describe this image for SEO & accessibility"
+                                className="w-full px-2 py-1 text-xs bg-background border border-border rounded"
+                                autoFocus
+                                onKeyDown={(e) => {
+                                  if (e.key === "Enter") {
+                                    updateAltText.mutate({ id: img.id, alt_text: altTextValue });
+                                  }
+                                  if (e.key === "Escape") {
+                                    setEditingAlt(null);
+                                  }
+                                }}
+                              />
+                              <div className="flex gap-1">
+                                <button
+                                  onClick={() => updateAltText.mutate({ id: img.id, alt_text: altTextValue })}
+                                  className="px-2 py-0.5 text-xs bg-primary text-primary-foreground rounded hover:bg-primary/90"
+                                >
+                                  Save
+                                </button>
+                                <button
+                                  onClick={() => setEditingAlt(null)}
+                                  className="px-2 py-0.5 text-xs bg-muted text-muted-foreground rounded hover:bg-muted/80"
+                                >
+                                  Cancel
+                                </button>
+                              </div>
+                            </div>
+                          ) : (
+                            <button
+                              onClick={() => {
+                                setEditingAlt(img.id);
+                                setAltTextValue(img.alt_text || "");
+                              }}
+                              className={`w-full text-left text-xs truncate px-1 py-0.5 rounded hover:bg-muted/50 ${
+                                img.alt_text ? "text-muted-foreground" : "text-destructive italic"
+                              }`}
+                              title={img.alt_text || "No alt text — click to add"}
+                            >
+                              {img.alt_text || "⚠ No alt text — click to add"}
+                            </button>
+                          )}
+                        </div>
+                        <p className="px-2 pb-1 text-xs text-muted-foreground/60 truncate" title={img.file_name}>
                           {img.file_name}
                         </p>
-                        <div className="flex gap-2">
+                        <div className="flex gap-2 p-2 pt-1">
                           <Button
                             variant="outline"
                             size="sm"
