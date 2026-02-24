@@ -3,6 +3,7 @@ import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
 import { GalleryGrid } from "@/components/site/GalleryGrid";
 import { useSeo } from "@/hooks/useSeo";
+import heroFallback from "@/assets/hero-av-production.jpg";
 
 const Gallery = () => {
   useSeo({
@@ -20,6 +21,7 @@ const Gallery = () => {
       <PageHeader
         title="Portfolio"
         subtitle="See our work across corporate events, conferences, and live productions"
+        backgroundImage={heroFallback}
       />
       <GalleryGrid 
         selectedCategory={selectedCategory}

@@ -3,6 +3,8 @@ import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useServiceImages } from "@/hooks/useServiceImages";
+import heroFallback from "@/assets/category-video-recording.jpg";
 
 export default function VideoProduction() {
   useSeo({
@@ -11,9 +13,11 @@ export default function VideoProduction() {
     canonical: "https://eventsound.ie/services/video-production",
   });
 
+  const { hero, gallery } = useServiceImages("service-video");
+
   return (
     <PageShell>
-      <PageHeader title="Video Production & Streaming" subtitle="Capture and broadcast your event to any audience" />
+      <PageHeader title="Video Production & Streaming" subtitle="Capture and broadcast your event to any audience" backgroundImage={hero || heroFallback} />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6">
           <p className="text-lg text-muted-foreground">
@@ -35,6 +39,17 @@ export default function VideoProduction() {
             <li>Post-production editing available</li>
             <li>Integrates seamlessly with our sound and lighting services</li>
           </ul>
+
+          {gallery.length > 0 && (
+            <div className="mt-8">
+              <h2 className="text-2xl font-semibold mb-4">Our Video Production Work</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {gallery.map((img) => (
+                  <img key={img.id} src={img.image_url} alt={img.alt_text || "Video production at live event"} className="rounded-lg w-full h-64 object-cover" />
+                ))}
+              </div>
+            </div>
+          )}
 
           <h2 className="text-2xl font-semibold">Related Services</h2>
           <div className="flex flex-wrap gap-3">

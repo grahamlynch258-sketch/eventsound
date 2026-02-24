@@ -3,6 +3,8 @@ import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useServiceImages } from "@/hooks/useServiceImages";
+import heroFallback from "@/assets/hero-av-production.jpg";
 
 export default function AVProduction() {
   useSeo({
@@ -11,9 +13,15 @@ export default function AVProduction() {
     canonical: "https://eventsound.ie/services/av-production",
   });
 
+  const { hero, gallery } = useServiceImages("service-av-production");
+
   return (
     <PageShell>
-      <PageHeader title="AV Production & Conference AV" subtitle="Complete audiovisual solutions for corporate events and conferences" />
+      <PageHeader
+        title="AV Production & Conference AV"
+        subtitle="Complete audiovisual solutions for corporate events and conferences"
+        backgroundImage={hero || heroFallback}
+      />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6">
           <p className="text-lg text-muted-foreground">
@@ -40,6 +48,17 @@ export default function AVProduction() {
             <li>Full crew: sound engineers, lighting operators, video technicians</li>
             <li>Serving Dublin, Leinster, and nationwide</li>
           </ul>
+
+          {gallery.length > 0 && (
+            <div className="mt-8">
+              <h2 className="text-2xl font-semibold mb-4">Our AV Production Work</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {gallery.map((img) => (
+                  <img key={img.id} src={img.image_url} alt={img.alt_text || "AV production setup at corporate event"} className="rounded-lg w-full h-64 object-cover" />
+                ))}
+              </div>
+            </div>
+          )}
 
           <h2 className="text-2xl font-semibold">Related Services</h2>
           <div className="flex flex-wrap gap-3">

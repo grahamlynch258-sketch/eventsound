@@ -3,6 +3,7 @@ import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
 import { generateFAQSchema } from "@/lib/schema";
+import heroFallback from "@/assets/hero-av-production.jpg";
 
 const FAQ = () => {
   const faqs = [
@@ -73,6 +74,7 @@ const FAQ = () => {
       <PageHeader
         title="Frequently Asked Questions"
         subtitle="Everything you need to know about our event production services"
+        backgroundImage={heroFallback}
       />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6">
