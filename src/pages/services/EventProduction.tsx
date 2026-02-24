@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
 import heroFallback from "@/assets/hero-av-production.jpg";
+import { BrandSidebar } from "@/components/site/BrandSidebar";
 
 export default function EventProduction() {
   useSeo({
@@ -23,7 +24,8 @@ export default function EventProduction() {
         backgroundImage={hero || heroFallback}
       />
       <div className="container mx-auto px-4 py-12">
-        <div className="max-w-3xl mx-auto space-y-6 text-center">
+        <div className="flex flex-col lg:flex-row gap-12">
+          <div className="flex-1 max-w-3xl space-y-6 text-center">
           <p className="text-lg text-muted-foreground">
             EventSound provides end-to-end event production management for corporate events, conferences, product launches, awards ceremonies, and live shows across Ireland. As your dedicated production partner, we handle the technical planning, crew coordination, and on-site execution — so you can focus on your event content and guests.
           </p>
@@ -70,6 +72,12 @@ export default function EventProduction() {
             <Link to="/contact"><Button size="lg">Get a Quote</Button></Link>
           </div>
         </div>
+        <aside className="lg:w-64 flex-shrink-0">
+          <div className="lg:sticky lg:top-24">
+            <BrandSidebar serviceKey="event-production" />
+          </div>
+        </aside>
+      </div>
       </div>
     </PageShell>
   );

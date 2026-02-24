@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
 import heroFallback from "@/assets/category-lighting.jpg";
+import { BrandSidebar } from "@/components/site/BrandSidebar";
 
 export default function LightingDesign() {
   useSeo({
@@ -23,7 +24,8 @@ export default function LightingDesign() {
         backgroundImage={hero || heroFallback}
       />
       <div className="container mx-auto px-4 py-12">
-        <div className="max-w-3xl mx-auto space-y-6 text-center">
+        <div className="flex flex-col lg:flex-row gap-12">
+          <div className="flex-1 max-w-3xl space-y-6 text-center">
           <p className="text-lg text-muted-foreground">
             Lighting sets the tone for every event. EventSound provides professional lighting design and hire for corporate events, gala dinners, conferences, concerts, and live shows across Ireland. From subtle architectural washes to dynamic stage lighting, our Chamsys-controlled systems create the perfect atmosphere for your event.
           </p>
@@ -70,6 +72,12 @@ export default function LightingDesign() {
             <Link to="/contact"><Button size="lg">Get a Quote</Button></Link>
           </div>
         </div>
+        <aside className="lg:w-64 flex-shrink-0">
+          <div className="lg:sticky lg:top-24">
+            <BrandSidebar serviceKey="lighting-design" />
+          </div>
+        </aside>
+      </div>
       </div>
     </PageShell>
   );
