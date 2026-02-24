@@ -150,7 +150,7 @@ export function SiteHeader({ className }: { className?: string }) {
             </button>
 
             {servicesOpen && (
-              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 rounded-xl border border-border/60 bg-background/98 backdrop-blur-lg shadow-xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-150">
+              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 rounded-xl border border-border/60 bg-background backdrop-blur-lg shadow-xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-150">
                 {servicesLinks.map(({ to, label, icon: Icon, description }) => (
                   <Link
                     key={to}
@@ -194,7 +194,7 @@ export function SiteHeader({ className }: { className?: string }) {
             </button>
 
             {portfolioOpen && (
-              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-56 rounded-xl border border-border/60 bg-background/98 backdrop-blur-lg shadow-xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-150">
+              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-56 rounded-xl border border-border/60 bg-background backdrop-blur-lg shadow-xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-150">
                 {portfolioLinks.map(({ to, label, icon: Icon, description }) => (
                   <Link
                     key={to}
@@ -238,7 +238,7 @@ export function SiteHeader({ className }: { className?: string }) {
             </button>
 
             {dropdownOpen && (
-              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-56 rounded-xl border border-border/60 bg-background/98 backdrop-blur-lg shadow-xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-150">
+              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-56 rounded-xl border border-border/60 bg-background backdrop-blur-lg shadow-xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-150">
                 {connectLinks.map(({ to, label, icon: Icon, description }) => (
                   <Link
                     key={to}
