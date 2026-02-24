@@ -15,14 +15,14 @@ interface CTASectionProps {
 export function CTASection({
   title = "Ready to elevate your next event?",
   description,
-  primaryCtaLabel = "View our Services",
-  secondaryCtaLabel = "Get a Quick Quote",
+  primaryCtaLabel = "Get a Quote",
+  secondaryCtaLabel = "View Our Services",
   primaryHref = "/contact",
-  secondaryHref = "/av-production",
+  secondaryHref = "/services",
 }: CTASectionProps) {
   const finalDescription =
     description ||
-    `Tell us your date, venue, and vision. We'll come back with a clear recommendation and a transparent quote — ${siteConfig.quoteResponseSLA}.`;
+    `Whether you need a full production setup or a single LED wall, EventSound is the production partner that makes it easy. Tell us your date, venue, and vision — we'll respond with a clear recommendation and transparent pricing within 24 hours. No hidden fees, no surprises. We're here to make your event look and sound exceptional.`;
 
   return (
     <section className="relative border-y border-border/50 overflow-hidden">
