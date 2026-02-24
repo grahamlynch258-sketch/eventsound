@@ -14,6 +14,13 @@ const ROUTES = [
   "/health-and-safety",
   "/case-studies",
   "/av-production",
+  "/services/led-video-walls",
+  "/services/av-production",
+  "/services/lighting-design",
+  "/services/staging-pipe-drape",
+  "/services/event-production",
+  "/services/video-production",
+  "/services/virtual-events",
 ];
 
 async function prerender() {

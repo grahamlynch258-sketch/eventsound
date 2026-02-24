@@ -19,6 +19,15 @@ import NotFound from "./pages/NotFound";
 // Admin route guard — kept static (small, needed immediately for auth check)
 import AdminRoute from "./components/admin/AdminRoute";
 
+// Service sub-pages — lazy loaded for code splitting
+const LEDVideoWalls = lazy(() => import("@/pages/services/LEDVideoWalls"));
+const AVProduction = lazy(() => import("@/pages/services/AVProduction"));
+const LightingDesign = lazy(() => import("@/pages/services/LightingDesign"));
+const StagingPipeDrape = lazy(() => import("@/pages/services/StagingPipeDrape"));
+const EventProduction = lazy(() => import("@/pages/services/EventProduction"));
+const VideoProduction = lazy(() => import("@/pages/services/VideoProduction"));
+const VirtualEvents = lazy(() => import("@/pages/services/VirtualEvents"));
+
 // Admin pages — lazy loaded so they are excluded from the public bundle
 const AdminLogin = lazy(() => import("./pages/admin/Login"));
 const Dashboard = lazy(() => import("./pages/admin/Dashboard"));
@@ -48,6 +57,15 @@ function AppRoutes() {
       <Route path="/health-and-safety" element={<HealthAndSafety />} />
       <Route path="/case-studies" element={<CaseStudies />} />
       <Route path="/case-studies/:slug" element={<CaseStudyDetail />} />
+
+      {/* Service sub-pages */}
+      <Route path="/services/led-video-walls" element={<Suspense fallback={null}><LEDVideoWalls /></Suspense>} />
+      <Route path="/services/av-production" element={<Suspense fallback={null}><AVProduction /></Suspense>} />
+      <Route path="/services/lighting-design" element={<Suspense fallback={null}><LightingDesign /></Suspense>} />
+      <Route path="/services/staging-pipe-drape" element={<Suspense fallback={null}><StagingPipeDrape /></Suspense>} />
+      <Route path="/services/event-production" element={<Suspense fallback={null}><EventProduction /></Suspense>} />
+      <Route path="/services/video-production" element={<Suspense fallback={null}><VideoProduction /></Suspense>} />
+      <Route path="/services/virtual-events" element={<Suspense fallback={null}><VirtualEvents /></Suspense>} />
 
       {/* Legacy route redirect */}
       <Route path="/av-production" element={<Services />} />

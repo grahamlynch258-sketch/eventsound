@@ -1,0 +1,55 @@
+import { PageShell } from "@/components/site/PageShell";
+import { PageHeader } from "@/components/site/PageHeader";
+import { useSeo } from "@/hooks/useSeo";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+
+export default function VideoProduction() {
+  useSeo({
+    title: "Event Video Production & Live Streaming Ireland | EventSound",
+    description: "Professional multi-camera video production and live streaming for events across Ireland. Capture, broadcast, and post-production for corporate events, conferences, and live shows.",
+    canonical: "https://eventsound.ie/services/video-production",
+  });
+
+  return (
+    <PageShell>
+      <PageHeader title="Video Production & Streaming" subtitle="Capture and broadcast your event to any audience" />
+      <div className="container mx-auto px-4 py-12">
+        <div className="max-w-3xl mx-auto space-y-6">
+          <p className="text-lg text-muted-foreground">
+            EventSound provides professional multi-camera video production and live streaming for corporate events, conferences, product launches, and live shows across Ireland. Whether you need to capture your event for post-production or broadcast it live to a global audience, our video team delivers broadcast-quality results.
+          </p>
+          <h2 className="text-2xl font-semibold">Multi-Camera Capture</h2>
+          <p className="text-muted-foreground">
+            Our multi-camera setups capture every angle of your event — from wide shots of the venue to close-ups of speakers and performers. We use broadcast-grade cameras, vision mixers, and recording systems to produce professional footage suitable for corporate communications, social media, and marketing content. Our camera operators are experienced in live event environments and work discreetly to capture natural, engaging footage.
+          </p>
+          <h2 className="text-2xl font-semibold">Live Streaming</h2>
+          <p className="text-muted-foreground">
+            Extend your event's reach with professional live streaming to platforms including YouTube, Vimeo, Teams, Zoom, and custom RTMP destinations. We handle encoding, bandwidth management, and stream monitoring to ensure a reliable, high-quality broadcast. Graphics overlays, lower thirds, and picture-in-picture layouts are available to give your stream a polished, branded look.
+          </p>
+          <h2 className="text-2xl font-semibold">Why EventSound for Video?</h2>
+          <ul className="space-y-2 text-muted-foreground list-disc list-inside">
+            <li>Broadcast-grade cameras and vision mixing</li>
+            <li>Live streaming to any platform with custom branding</li>
+            <li>Multi-camera setups for complete event coverage</li>
+            <li>Post-production editing available</li>
+            <li>Integrates seamlessly with our sound and lighting services</li>
+          </ul>
+
+          <h2 className="text-2xl font-semibold">Related Services</h2>
+          <div className="flex flex-wrap gap-3">
+            <Link to="/services/led-video-walls"><Button variant="outline">LED Video Walls</Button></Link>
+            <Link to="/services/virtual-events"><Button variant="outline">Virtual Events</Button></Link>
+            <Link to="/services/event-production"><Button variant="outline">Event Production</Button></Link>
+          </div>
+
+          <div className="mt-12 text-center">
+            <h3 className="text-xl font-semibold mb-2">Need Video for Your Event?</h3>
+            <p className="text-muted-foreground mb-4">Tell us your event format and streaming requirements — we'll design a video solution and quote within 24 hours.</p>
+            <Link to="/contact"><Button size="lg">Get a Quote</Button></Link>
+          </div>
+        </div>
+      </div>
+    </PageShell>
+  );
+}
