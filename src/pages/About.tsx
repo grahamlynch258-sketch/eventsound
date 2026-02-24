@@ -11,7 +11,7 @@ import { supabase } from "@/integrations/supabase/client";
 const highlights = [
   { icon: Users, title: "Experienced Crew", text: "Seasoned technicians on every event, from load-in to wrap." },
   { icon: Zap, title: "Cutting-Edge Gear", text: "L-Acoustics, Unilumin, Chamsys — industry-leading equipment." },
-  { icon: Award, title: "Two Decades of Trust", text: "Delivering events across Ireland for over twenty years." },
+  { icon: Award, title: "Three Decades of Trust", text: "Delivering events across Ireland for over thirty years." },
   { icon: Shield, title: "Safety First", text: "TUV-certified staging, European-manufactured rigging, trained crew." },
 ];
 

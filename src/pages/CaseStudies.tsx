@@ -74,6 +74,7 @@ const CaseStudies = () => {
           title="Case Studies"
           subtitle="Real-world event production success stories"
           backgroundImage={heroFallback}
+          backgroundAlt="EventSound event production success stories"
         />
         <div className="container mx-auto px-4 py-12">
           <div className="text-center">Loading case studies...</div>
@@ -88,6 +89,7 @@ const CaseStudies = () => {
         title="Case Studies"
         subtitle="Real-world event production success stories from across Ireland"
         backgroundImage={heroFallback}
+        backgroundAlt="EventSound event production success stories"
       />
       
       <div className="container mx-auto px-4 py-12">

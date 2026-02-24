@@ -19,9 +19,10 @@ export default function AVProduction() {
   return (
     <PageShell>
       <PageHeader
-        title="AV Production & Conference AV"
+        title="AV Production & Conference AV in Ireland"
         subtitle="Complete audiovisual solutions for corporate events and conferences"
         backgroundImage={hero || heroFallback}
+        backgroundAlt="Professional AV production setup at a conference in Ireland"
       />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6 text-center">
@@ -48,7 +49,7 @@ export default function AVProduction() {
             <li>Dedicated production manager as your single point of contact</li>
             <li>Conference-specialist: multi-room, breakout, plenary formats</li>
             <li>Full crew: sound engineers, lighting operators, video technicians</li>
-            <li>Serving Dublin, Leinster, and nationwide</li>
+            <li>Serving clients nationwide across Ireland</li>
           </ul>
           </div>
 

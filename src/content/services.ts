@@ -20,7 +20,7 @@ export const services = [
     icon: Mic,
     title: "Audio Equipment",
     shortDescription: "PA systems, wireless mics, and audio engineering — tuned for your venue.",
-    description: "PA hire is where Event Sound began over two decades ago, and it remains the heartbeat of nearly every event we deliver. From intimate meetings to grand gala evenings and sprawling outdoor concerts, we supply a diverse range of PA systems tailored to every occasion. Our technical specialists select the perfect speakers to match your space, audience, and vision — ensuring flawless sound that captivates. Our modern line array and column speakers deliver precision coverage without obstructing sightlines.",
+    description: "PA hire is where Event Sound began over three decades ago, and it remains the heartbeat of nearly every event we deliver. From intimate meetings to grand gala evenings and sprawling outdoor concerts, we supply a diverse range of PA systems tailored to every occasion. Our technical specialists select the perfect speakers to match your space, audience, and vision — ensuring flawless sound that captivates. Our modern line array and column speakers deliver precision coverage without obstructing sightlines.",
     features: [
       "L-Acoustics, Martin Audio, LD Systems, Celto Acoustique",
       "Line array and column speaker systems",

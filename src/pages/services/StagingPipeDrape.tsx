@@ -19,9 +19,10 @@ export default function StagingPipeDrape() {
   return (
     <PageShell>
       <PageHeader
-        title="Staging, Pipe & Drape"
+        title="Staging, Pipe & Drape in Ireland"
         subtitle="Safe, professional staging and scenic solutions for any venue"
         backgroundImage={hero || heroFallback}
+        backgroundAlt="Professional staging and pipe and drape installation at an event in Ireland"
       />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6 text-center">

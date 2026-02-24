@@ -19,9 +19,10 @@ export default function EventProduction() {
   return (
     <PageShell>
       <PageHeader
-        title="Event Production Management"
+        title="Event Production Management in Ireland"
         subtitle="Your dedicated production partner from planning to wrap"
         backgroundImage={hero || heroFallback}
+        backgroundAlt="Event production crew managing a corporate event in Ireland"
       />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6 text-center">

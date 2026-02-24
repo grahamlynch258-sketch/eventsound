@@ -22,6 +22,7 @@ const Gallery = () => {
         title="Portfolio"
         subtitle="See our work across corporate events, conferences, and live productions"
         backgroundImage={heroFallback}
+        backgroundAlt="Professional event production setup — EventSound portfolio"
       />
       <GalleryGrid 
         selectedCategory={selectedCategory}
