@@ -85,7 +85,9 @@ const FAQ = () => {
               <div className="rounded-lg bg-primary/10 border border-primary/20 px-4 py-3 mb-4">
                 <h3 className="text-lg font-semibold text-primary">{faq.question}</h3>
               </div>
-              <p className="text-foreground/90 leading-relaxed">{faq.answer}</p>
+              <div className="rounded-lg bg-card/60 border border-border/30 px-4 py-3">
+                <p className="text-foreground/90 leading-relaxed">{faq.answer}</p>
+              </div>
             </div>
           ))}
         </div>
