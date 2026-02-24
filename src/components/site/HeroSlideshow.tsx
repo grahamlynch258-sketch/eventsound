@@ -15,7 +15,7 @@ export function HeroSlideshow({ fallbackImage, singleImage, intervalMs = 5000 }:
       const { data, error } = await supabase
         .from("library_images")
         .select("id, image_url, alt_text, file_name")
-        .eq("category", "headlines")
+        .eq("category", "portfolio")
         .order("created_at", { ascending: true });
       if (error) throw error;
       return data;
