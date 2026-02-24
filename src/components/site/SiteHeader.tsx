@@ -111,7 +111,7 @@ export function SiteHeader({ className }: { className?: string }) {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 border-b transition-all duration-300",
+        "sticky top-0 z-[100] border-b transition-all duration-300",
         scrolled
           ? "border-border/50 bg-background/95 backdrop-blur-lg shadow-md"
           : "border-transparent bg-background/60 backdrop-blur-sm",
@@ -269,7 +269,7 @@ export function SiteHeader({ className }: { className?: string }) {
             <Link to="/contact">Get a Quote</Link>
           </Button>
           <button
-            className="lg:hidden p-2 text-muted-foreground hover:text-foreground transition-colors"
+            className="lg:hidden p-2 min-h-[44px] min-w-[44px] flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
             aria-expanded={mobileOpen}
@@ -281,7 +281,7 @@ export function SiteHeader({ className }: { className?: string }) {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-16 bottom-0 z-50 bg-background backdrop-blur-lg animate-in fade-in slide-in-from-top-2 duration-200 overflow-y-auto">
+        <div className="lg:hidden fixed inset-x-0 top-16 bottom-0 z-[99] bg-background/98 backdrop-blur-lg animate-in fade-in slide-in-from-top-2 duration-200 overflow-y-auto">
           <nav className="container flex flex-col gap-1 py-6" aria-label="Mobile">
             {mainLinks.map((l) => (
               <NavLink

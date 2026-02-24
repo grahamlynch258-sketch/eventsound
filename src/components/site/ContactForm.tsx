@@ -50,9 +50,9 @@ export function ContactForm() {
   const turnstileRef = useRef<HTMLDivElement>(null);
   const [step, setStep] = useState(1);
 
+  // Load Turnstile script (runs once)
   useEffect(() => {
     if (!TURNSTILE_SITE_KEY) return;
-
     const scriptId = "turnstile-script";
     if (!document.getElementById(scriptId)) {
       const script = document.createElement("script");
@@ -62,6 +62,11 @@ export function ContactForm() {
       script.defer = true;
       document.head.appendChild(script);
     }
+  }, []);
+
+  // Render Turnstile widget when step 3 is active
+  useEffect(() => {
+    if (!TURNSTILE_SITE_KEY || step !== 3) return;
 
     const renderWidget = () => {
       if (
@@ -77,6 +82,11 @@ export function ContactForm() {
       }
     };
 
+    if (window.turnstile) {
+      renderWidget();
+      return;
+    }
+
     const interval = setInterval(() => {
       if (window.turnstile) {
         renderWidget();
@@ -85,7 +95,7 @@ export function ContactForm() {
     }, 200);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [step]);
 
   const set = (field: keyof FormState) => (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
