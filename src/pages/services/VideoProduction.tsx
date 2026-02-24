@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
 import heroFallback from "@/assets/category-video-recording.jpg";
-import { BrandSidebar } from "@/components/site/BrandSidebar";
+import { BrandBanner } from "@/components/site/BrandSidebar";
 
 export default function VideoProduction() {
   useSeo({
@@ -20,8 +20,7 @@ export default function VideoProduction() {
     <PageShell>
       <PageHeader title="Video Production & Streaming" subtitle="Capture and broadcast your event to any audience" backgroundImage={hero || heroFallback} />
       <div className="container mx-auto px-4 py-12">
-        <div className="flex flex-col lg:flex-row gap-12">
-          <div className="flex-1 max-w-3xl space-y-6 text-center">
+        <div className="max-w-3xl mx-auto space-y-6 text-center">
           <p className="text-lg text-muted-foreground">
             EventSound provides professional multi-camera video production and live streaming for corporate events, conferences, product launches, and live shows across Ireland. Whether you need to capture your event for post-production or broadcast it live to a global audience, our video team delivers broadcast-quality results.
           </p>
@@ -55,6 +54,8 @@ export default function VideoProduction() {
             </div>
           )}
 
+          <BrandBanner serviceKey="video-production" />
+
           <h2 className="text-2xl font-semibold">Related Services</h2>
           <div className="flex flex-wrap gap-3 justify-center">
             <Link to="/services/led-video-walls"><Button variant="outline">LED Video Walls</Button></Link>
@@ -68,12 +69,6 @@ export default function VideoProduction() {
             <Link to="/contact"><Button size="lg">Get a Quote</Button></Link>
           </div>
         </div>
-        <aside className="lg:w-64 flex-shrink-0">
-          <div className="lg:sticky lg:top-24">
-            <BrandSidebar serviceKey="video-production" />
-          </div>
-        </aside>
-      </div>
       </div>
     </PageShell>
   );

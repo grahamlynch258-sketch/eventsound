@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
 import heroFallback from "@/assets/category-vision.jpg";
-import { BrandSidebar } from "@/components/site/BrandSidebar";
+import { BrandBanner } from "@/components/site/BrandSidebar";
 
 export default function LEDVideoWalls() {
   useSeo({
@@ -24,8 +24,7 @@ export default function LEDVideoWalls() {
         backgroundImage={hero || heroFallback}
       />
       <div className="container mx-auto px-4 py-12">
-        <div className="flex flex-col lg:flex-row gap-12">
-          <div className="flex-1 max-w-3xl space-y-6 text-center">
+        <div className="max-w-3xl mx-auto space-y-6 text-center">
           <p className="text-lg text-muted-foreground">
             EventSound provides professional LED video wall hire for corporate events, conferences, product launches, awards ceremonies, and live shows across Ireland. Our Unilumin LED panels deliver stunning high-resolution visuals that transform any venue — from intimate boardrooms to large-scale arenas.
           </p>
@@ -59,6 +58,8 @@ export default function LEDVideoWalls() {
             </div>
           )}
 
+          <BrandBanner serviceKey="led-video-walls" />
+
           <h2 className="text-2xl font-semibold">Related Services</h2>
           <div className="flex flex-wrap gap-3 justify-center">
             <Link to="/services/lighting-design"><Button variant="outline">Lighting Design</Button></Link>
@@ -72,12 +73,6 @@ export default function LEDVideoWalls() {
             <Link to="/contact"><Button size="lg">Get a Quote</Button></Link>
           </div>
         </div>
-        <aside className="lg:w-64 flex-shrink-0">
-          <div className="lg:sticky lg:top-24">
-            <BrandSidebar serviceKey="led-video-walls" />
-          </div>
-        </aside>
-      </div>
       </div>
     </PageShell>
   );
