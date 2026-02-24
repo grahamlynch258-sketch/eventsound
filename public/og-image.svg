@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0e1117"/>
+  <rect x="0" y="0" width="1200" height="6" fill="#D4A228"/>
+  <rect x="0" y="624" width="1200" height="6" fill="#D4A228"/>
+  <text x="600" y="270" text-anchor="middle" font-family="Georgia,serif" font-size="88" font-weight="bold" fill="#ECEAE5">EventSound</text>
+  <line x1="300" y1="320" x2="900" y2="320" stroke="#D4A228" stroke-width="2"/>
+  <text x="600" y="380" text-anchor="middle" font-family="Georgia,serif" font-size="28" fill="#A0A0AF">Professional Event Production | Ireland</text>
+  <text x="600" y="560" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" fill="#6E6E82">eventsound.ie</text>
+</svg>
