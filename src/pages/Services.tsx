@@ -1,6 +1,7 @@
 import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
+import { usePageHero } from "@/hooks/usePageHero";
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -18,6 +19,7 @@ const services = [
 ];
 
 export default function Services() {
+  const heroImage = usePageHero("hero-services", heroFallback);
   useSeo({
     title: "Event Production Services | AV Hire Ireland | EventSound",
     description: "Complete event production services across Ireland. LED video walls, sound systems, lighting design, staging, video production, and virtual event solutions. Professional AV equipment hire with experienced crew.",
@@ -26,7 +28,7 @@ export default function Services() {
 
   return (
     <PageShell>
-      <PageHeader title="Our Services" subtitle="EventSound is your complete event production partner — from initial brief to final breakdown. We supply, install, and operate professional AV equipment for corporate events, conferences, awards nights, gala dinners, festivals, and live shows across Ireland." backgroundImage={heroFallback} backgroundAlt="Professional AV production setup at a corporate event in Ireland" />
+      <PageHeader title="Our Services" subtitle="EventSound is your complete event production partner — from initial brief to final breakdown. We supply, install, and operate professional AV equipment for corporate events, conferences, awards nights, gala dinners, festivals, and live shows across Ireland." backgroundImage={heroImage} backgroundAlt="Professional AV production setup at a corporate event in Ireland" />
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service) => (

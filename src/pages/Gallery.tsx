@@ -3,6 +3,7 @@ import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
 import { GalleryGrid } from "@/components/site/GalleryGrid";
 import { useSeo } from "@/hooks/useSeo";
+import { usePageHero } from "@/hooks/usePageHero";
 import heroFallback from "@/assets/hero-av-production.jpg";
 
 const Gallery = () => {
@@ -14,6 +15,7 @@ const Gallery = () => {
     ogDescription: "View our portfolio of successful events across Ireland. LED wall installations, lighting designs, and audio setups."
   });
 
+  const heroImage = usePageHero("hero-gallery", heroFallback);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   return (
@@ -21,7 +23,7 @@ const Gallery = () => {
       <PageHeader
         title="Portfolio"
         subtitle="See our work across corporate events, conferences, and live productions"
-        backgroundImage={heroFallback}
+        backgroundImage={heroImage}
         backgroundAlt="Professional event production setup — EventSound portfolio"
       />
       <GalleryGrid 
