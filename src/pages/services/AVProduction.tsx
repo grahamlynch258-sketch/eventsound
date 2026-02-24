@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
 import heroFallback from "@/assets/hero-av-production.jpg";
+import { BrandSidebar } from "@/components/site/BrandSidebar";
 
 export default function AVProduction() {
   useSeo({
@@ -23,7 +24,8 @@ export default function AVProduction() {
         backgroundImage={hero || heroFallback}
       />
       <div className="container mx-auto px-4 py-12">
-        <div className="max-w-3xl mx-auto space-y-6 text-center">
+        <div className="flex flex-col lg:flex-row gap-12">
+          <div className="flex-1 max-w-3xl space-y-6 text-center">
           <p className="text-lg text-muted-foreground">
             EventSound is a trusted AV production partner for corporate clients, agencies, and venues across Ireland. We provide complete audiovisual solutions for conferences, seminars, AGMs, product launches, and corporate events — combining professional sound, LED video walls, lighting, and experienced technical crew into a single, reliable production package.
           </p>
@@ -75,6 +77,12 @@ export default function AVProduction() {
             <Link to="/contact"><Button size="lg">Get a Quote</Button></Link>
           </div>
         </div>
+        <aside className="lg:w-64 flex-shrink-0">
+          <div className="lg:sticky lg:top-24">
+            <BrandSidebar serviceKey="av-production" />
+          </div>
+        </aside>
+      </div>
       </div>
     </PageShell>
   );
