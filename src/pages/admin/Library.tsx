@@ -24,6 +24,14 @@ const categories = [
   { value: "supplements", label: "Supplement Images" },
   { value: "portfolio", label: "Portfolio Images" },
   { value: "logos", label: "Logos" },
+  { value: "hero", label: "Hero Images" },
+  { value: "service-led-walls", label: "LED Video Walls" },
+  { value: "service-av-production", label: "AV Production" },
+  { value: "service-lighting", label: "Lighting Design" },
+  { value: "service-staging", label: "Staging & Drape" },
+  { value: "service-event-production", label: "Event Production" },
+  { value: "service-video", label: "Video Production" },
+  { value: "service-virtual", label: "Virtual Events" },
 ];
 
 export default function AdminLibrary() {
