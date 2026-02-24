@@ -78,11 +78,13 @@ export default function VideoProduction() {
           {/* FAQ Section */}
           <div className="max-w-4xl mx-auto mt-16">
             <h2 className="text-3xl font-bold text-foreground mb-8">Frequently Asked Questions</h2>
-            <div className="space-y-4">
+            <div className="space-y-6">
               {faqs.map((faq, i) => (
                 <div key={i} className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-6">
-                  <h3 className="text-lg font-semibold text-foreground mb-2">{faq.question}</h3>
-                  <p className="text-foreground/80 leading-relaxed">{faq.answer}</p>
+                  <div className="rounded-lg bg-primary/10 border border-primary/20 px-4 py-3 mb-4">
+                    <h3 className="text-lg font-semibold text-primary">{faq.question}</h3>
+                  </div>
+                  <p className="text-foreground/90 leading-relaxed">{faq.answer}</p>
                 </div>
               ))}
             </div>
