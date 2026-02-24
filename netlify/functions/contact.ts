@@ -40,7 +40,7 @@ export const handler: Handler = async (event) => {
 
   try {
     const body = JSON.parse(event.body || "{}");
-    const { name, email, phone, company, event_date, venue, message, honeypot, turnstileToken } = body;
+    const { name, email, phone, company, event_date, venue, event_type, audience_size, services_needed, budget_range, message, honeypot, turnstileToken } = body;
 
     if (honeypot) {
       console.log("Honeypot triggered");
@@ -79,32 +79,45 @@ export const handler: Handler = async (event) => {
       auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
     });
 
-    const htmlContent = [
-      `<h2>New Contact Form Submission</h2>`,
-      `<p><strong>Name:</strong> ${name}</p>`,
-      `<p><strong>Email:</strong> ${email}</p>`,
-      phone ? `<p><strong>Phone:</strong> ${phone}</p>` : "",
-      company ? `<p><strong>Company:</strong> ${company}</p>` : "",
-      event_date ? `<p><strong>Event Date:</strong> ${event_date}</p>` : "",
-      venue ? `<p><strong>Venue:</strong> ${venue}</p>` : "",
-      `<p><strong>Message:</strong></p>`,
-      `<p>${message.replace(/\n/g, "<br/>")}</p>`,
-    ].filter(Boolean).join("\n");
+    const row = (label: string, value: string) =>
+      `<tr><td style="padding:8px;font-weight:bold;border-bottom:1px solid #eee;white-space:nowrap">${label}</td><td style="padding:8px;border-bottom:1px solid #eee">${value}</td></tr>`;
+
+    const htmlContent = `
+<h2 style="font-family:sans-serif">New Event Enquiry</h2>
+<table style="border-collapse:collapse;width:100%;font-family:sans-serif;font-size:14px">
+  ${row("Name", name)}
+  ${row("Email", `<a href="mailto:${email}">${email}</a>`)}
+  ${row("Phone", phone || "Not provided")}
+  ${row("Company", company || "Not provided")}
+  ${row("Event Type", event_type || "Not specified")}
+  ${row("Event Date", event_date || "Not provided")}
+  ${row("Venue", venue || "Not provided")}
+  ${row("Audience Size", audience_size || "Not specified")}
+  ${row("Services Needed", services_needed || "Not specified")}
+  ${row("Budget Range", budget_range || "Not specified")}
+</table>
+<h3 style="font-family:sans-serif;margin-top:24px">Additional Details</h3>
+<p style="font-family:sans-serif;white-space:pre-wrap">${message.replace(/\n/g, "<br/>")}</p>`;
 
     const textContent = [
-      "New Contact Form Submission", "",
-      `Name: ${name}`, `Email: ${email}`,
-      phone ? `Phone: ${phone}` : "",
-      company ? `Company: ${company}` : "",
-      event_date ? `Event Date: ${event_date}` : "",
-      venue ? `Venue: ${venue}` : "",
-      "", "Message:", message,
-    ].filter(Boolean).join("\n");
+      "New Event Enquiry", "",
+      `Name: ${name}`,
+      `Email: ${email}`,
+      `Phone: ${phone || "Not provided"}`,
+      `Company: ${company || "Not provided"}`,
+      `Event Type: ${event_type || "Not specified"}`,
+      `Event Date: ${event_date || "Not provided"}`,
+      `Venue: ${venue || "Not provided"}`,
+      `Audience Size: ${audience_size || "Not specified"}`,
+      `Services Needed: ${services_needed || "Not specified"}`,
+      `Budget Range: ${budget_range || "Not specified"}`,
+      "", "Additional Details:", message,
+    ].join("\n");
 
     await transporter.sendMail({
       from: process.env.EMAIL_FROM,
       to: process.env.EMAIL_TO,
-      subject: `New Contact Form: ${name}`,
+      subject: `New Enquiry from ${name} — ${event_type || "General"}`,
       text: textContent,
       html: htmlContent,
       replyTo: email,
