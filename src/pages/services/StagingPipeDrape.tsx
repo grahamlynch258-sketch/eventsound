@@ -38,20 +38,20 @@ export default function StagingPipeDrape() {
       />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6 text-center">
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
             EventSound provides professional staging, pipe and drape, star cloth, and scenic elements for corporate events, conferences, awards ceremonies, and live shows across Ireland. All our staging is TUV-certified and European-manufactured, installed by trained crew with safety as the primary consideration.
           </p>
-          <h2 className="text-2xl font-semibold">Modular Stage Solutions</h2>
-          <p className="text-muted-foreground">
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Modular Stage Solutions</h2>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
             Our modular staging systems are versatile, safe, and camera-ready. We supply platforms, risers, catwalks, presenter stages, and full stage builds in custom configurations to suit any venue — indoors or outdoors. All staging is levelled, skirted, and finished to a professional standard. We design layouts that optimise sightlines, access, and safety for your audience and performers.
           </p>
-          <h2 className="text-2xl font-semibold">Pipe & Drape, Star Cloth & Scenic</h2>
-          <p className="text-muted-foreground">
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Pipe & Drape, Star Cloth & Scenic</h2>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
             Transform your venue with pipe and drape systems, star cloth backdrops, and custom scenic elements. Whether you need to divide a space, create a branded backdrop, mask backstage areas, or add atmosphere to a gala dinner, our draping solutions are clean, professional, and available in a range of colours and fabrics. Star cloth adds a dramatic effect for awards nights and evening events.
           </p>
-          <h2 className="text-2xl font-semibold">Why EventSound for Staging & Drape?</h2>
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Why EventSound for Staging & Drape?</h2>
           <div className="text-left inline-block">
-          <ul className="space-y-2 text-muted-foreground list-disc list-inside">
+          <ul className="space-y-2 text-muted-foreground list-disc list-inside transition-transform duration-300 hover:scale-[1.04] cursor-default">
             <li>TUV-certified staging — European-manufactured, safety-first</li>
             <li>Modular platforms and risers for any configuration</li>
             <li>Pipe and drape in multiple colours and fabrics</li>
@@ -73,8 +73,8 @@ export default function StagingPipeDrape() {
 
           <BrandBanner serviceKey="staging-pipe-drape" />
 
-          <h2 className="text-2xl font-semibold">Related Services</h2>
-          <div className="flex flex-wrap gap-3 justify-center">
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Related Services</h2>
+          <div className="flex flex-wrap gap-3 justify-center transition-transform duration-300 hover:scale-[1.03] cursor-default">
             <Link to="/services/lighting-design"><Button variant="outline">Lighting Design</Button></Link>
             <Link to="/services/event-production"><Button variant="outline">Event Production</Button></Link>
             <Link to="/services/led-video-walls"><Button variant="outline">LED Video Walls</Button></Link>
@@ -82,10 +82,10 @@ export default function StagingPipeDrape() {
 
           {/* FAQ Section */}
           <div className="max-w-4xl mx-auto mt-16">
-            <h2 className="text-3xl font-bold text-foreground mb-8">Frequently Asked Questions</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-8 transition-transform duration-300 hover:scale-[1.05] cursor-default">Frequently Asked Questions</h2>
             <div className="space-y-6">
               {faqs.map((faq, i) => (
-                <div key={i} className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-6">
+                <div key={i} className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-6 transition-transform duration-300 hover:scale-[1.03] cursor-default">
                   <div className="rounded-lg bg-primary/10 border border-primary/20 px-4 py-3 mb-4">
                     <h3 className="text-lg font-semibold text-primary">{faq.question}</h3>
                   </div>
@@ -97,9 +97,9 @@ export default function StagingPipeDrape() {
             </div>
           </div>
 
-          <div className="mt-12 text-center">
+          <div className="mt-12 text-center transition-transform duration-300 hover:scale-[1.04] cursor-default">
             <h3 className="text-xl font-semibold mb-2">Need Staging or Draping?</h3>
-            <p className="text-muted-foreground mb-4">Tell us your venue and event requirements — we'll design a staging solution and quote within 24 hours.</p>
+            <p className="text-muted-foreground mb-4 transition-transform duration-300 hover:scale-[1.04] cursor-default">Tell us your venue and event requirements — we'll design a staging solution and quote within 24 hours.</p>
             <Link to="/contact"><Button size="lg">Get a Quote</Button></Link>
           </div>
         </div>
