@@ -1,7 +1,7 @@
 import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
-import { generateFAQSchema } from "@/lib/schema";
+import { generateFAQSchema, generateServiceSchema, generateBreadcrumbSchema } from "@/lib/schema";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
@@ -18,12 +18,29 @@ export default function LightingDesign() {
     { question: "Can you match lighting to our brand colours?", answer: "Yes — LED fixtures can be programmed to any colour. We regularly match lighting to corporate brand guidelines, event themes, and sponsor requirements. Just share your brand colours and we will programme them into the rig." }
   ];
 
+  const serviceSchema = generateServiceSchema({
+    name: "Event Lighting Design & Hire",
+    description: "Professional event lighting design and hire in Ireland. Stage lighting, uplighting, moving heads, and custom mood lighting for conferences, concerts and corporate events.",
+    serviceType: "Event Lighting Hire",
+    url: "https://eventsound.ie/services/lighting-design"
+  });
+
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "https://eventsound.ie/" },
+    { name: "Services", url: "https://eventsound.ie/services" },
+    { name: "Lighting Design", url: "https://eventsound.ie/services/lighting-design" }
+  ]);
+
   useSeo({
     title: "Event Lighting Design & Hire Ireland | EventSound",
     description: "Professional stage lighting, architectural lighting, and custom lighting design for events across Ireland. Intelligent fixtures, moving heads, and experienced lighting designers.",
     canonical: "https://eventsound.ie/services/lighting-design",
     schema: generateFAQSchema({ questions: faqs }),
-    schemaId: "faq-schema"
+    schemaId: "faq-schema",
+    additionalSchemas: [
+      { schema: serviceSchema, id: "service-schema" },
+      { schema: breadcrumbSchema, id: "breadcrumb-schema" }
+    ]
   });
 
   const { hero, gallery } = useServiceImages("service-lighting");

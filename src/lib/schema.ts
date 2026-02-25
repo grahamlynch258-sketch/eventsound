@@ -132,6 +132,59 @@ export function generateFAQSchema(data: FAQSchema): string {
   return JSON.stringify(schema);
 }
 
+// --- Service Schema ---
+export interface ServiceSchema {
+  name: string;
+  description: string;
+  serviceType: string;
+  url: string;
+}
+
+export function generateServiceSchema(data: ServiceSchema): string {
+  return JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": data.name,
+    "description": data.description,
+    "serviceType": data.serviceType,
+    "url": data.url,
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "EventSound",
+      "@id": "https://eventsound.ie/#organization",
+      "telephone": "+353872888761",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Dublin",
+        "addressCountry": "IE"
+      }
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "Ireland"
+    }
+  });
+}
+
+// --- BreadcrumbList Schema ---
+export interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
+export function generateBreadcrumbSchema(items: BreadcrumbItem[]): string {
+  return JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": items.map((item, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": item.name,
+      "item": item.url
+    }))
+  });
+}
+
 export function injectSchema(schema: string, id: string) {
   // Remove existing schema with this ID if present
   const existing = document.getElementById(id);

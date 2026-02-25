@@ -1,7 +1,7 @@
 import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
-import { generateFAQSchema } from "@/lib/schema";
+import { generateFAQSchema, generateServiceSchema, generateBreadcrumbSchema } from "@/lib/schema";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
@@ -18,12 +18,29 @@ export default function EventProduction() {
     { question: "What happens if equipment fails during my event?", answer: "We carry backup equipment on-site for all critical systems and our technicians are trained to handle any technical issues immediately. In over three decades of event production, we have built redundancy into every setup to ensure your event runs smoothly." }
   ];
 
+  const serviceSchema = generateServiceSchema({
+    name: "Event Production Services",
+    description: "End-to-end event production management in Ireland. AV coordination, stage design, crew management, and on-site production for conferences, concerts and corporate events.",
+    serviceType: "Event Production Management",
+    url: "https://eventsound.ie/services/event-production"
+  });
+
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "https://eventsound.ie/" },
+    { name: "Services", url: "https://eventsound.ie/services" },
+    { name: "Event Production", url: "https://eventsound.ie/services/event-production" }
+  ]);
+
   useSeo({
     title: "Event Production Management Ireland | EventSound",
     description: "End-to-end event production management across Ireland. Technical direction, crew coordination, show calling, and on-site production support for corporate events and live shows.",
     canonical: "https://eventsound.ie/services/event-production",
     schema: generateFAQSchema({ questions: faqs }),
-    schemaId: "faq-schema"
+    schemaId: "faq-schema",
+    additionalSchemas: [
+      { schema: serviceSchema, id: "service-schema" },
+      { schema: breadcrumbSchema, id: "breadcrumb-schema" }
+    ]
   });
 
   const { hero, gallery } = useServiceImages("service-event-production");

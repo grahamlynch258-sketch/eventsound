@@ -12,6 +12,7 @@ interface SeoProps {
   noindex?: boolean;
   schema?: string; // JSON-LD schema string
   schemaId?: string; // Unique ID for this schema
+  additionalSchemas?: Array<{ schema: string; id: string }>;
 }
 
 const DEFAULT_TITLE = "EventSound | Premium Event Production Services Ireland";
@@ -89,7 +90,8 @@ export const useSeo = ({
   ogType = "website",
   noindex = false,
   schema,
-  schemaId = "page-schema"
+  schemaId = "page-schema",
+  additionalSchemas
 }: SeoProps = {}) => {
   const location = useLocation();
 
@@ -138,10 +140,30 @@ export const useSeo = ({
       }
     }
 
+    // Inject additional schemas (Service, Breadcrumb, etc.)
+    // Clean up old additional schemas first
+    document.querySelectorAll('script[data-additional-schema]').forEach(el => el.remove());
+    if (additionalSchemas) {
+      additionalSchemas.forEach(({ schema: s, id }) => {
+        if (s) {
+          // Remove existing
+          const existing = document.getElementById(id);
+          if (existing) existing.remove();
+          // Create new
+          const script = document.createElement("script");
+          script.type = "application/ld+json";
+          script.id = id;
+          script.setAttribute("data-additional-schema", "true");
+          script.textContent = s;
+          document.head.appendChild(script);
+        }
+      });
+    }
+
     // Cleanup function - important for SPA to prevent stale tags
     return () => {
       // We don't remove tags on unmount, only update them on next mount
       // This prevents flashing and ensures tags are always present
     };
-  }, [location.pathname, title, description, canonical, ogTitle, ogDescription, ogImage, ogType, noindex, schema, schemaId]);
+  }, [location.pathname, title, description, canonical, ogTitle, ogDescription, ogImage, ogType, noindex, schema, schemaId, additionalSchemas]);
 };
