@@ -1,7 +1,7 @@
 import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
-import { generateFAQSchema } from "@/lib/schema";
+import { generateFAQSchema, generateServiceSchema, generateBreadcrumbSchema } from "@/lib/schema";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
@@ -18,12 +18,29 @@ export default function VideoProduction() {
     { question: "What internet connection do I need for live streaming?", answer: "We recommend a minimum 10Mbps dedicated upload speed for HD streaming. We carry bonded cellular units as backup and can provide satellite uplink for venues with poor connectivity." }
   ];
 
+  const serviceSchema = generateServiceSchema({
+    name: "Event Video Production",
+    description: "Professional event video production in Ireland. Multi-camera filming, live streaming, IMAG, and post-event editing for conferences, concerts and corporate events.",
+    serviceType: "Event Video Production",
+    url: "https://eventsound.ie/services/video-production"
+  });
+
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "https://eventsound.ie/" },
+    { name: "Services", url: "https://eventsound.ie/services" },
+    { name: "Video Production", url: "https://eventsound.ie/services/video-production" }
+  ]);
+
   useSeo({
     title: "Event Video Production & Live Streaming Ireland | EventSound",
     description: "Professional multi-camera video production and live streaming for events across Ireland. Capture, broadcast, and post-production for corporate events, conferences, and live shows.",
     canonical: "https://eventsound.ie/services/video-production",
     schema: generateFAQSchema({ questions: faqs }),
-    schemaId: "faq-schema"
+    schemaId: "faq-schema",
+    additionalSchemas: [
+      { schema: serviceSchema, id: "service-schema" },
+      { schema: breadcrumbSchema, id: "breadcrumb-schema" }
+    ]
   });
 
   const { hero, gallery } = useServiceImages("service-video");

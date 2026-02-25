@@ -1,7 +1,7 @@
 import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
-import { generateFAQSchema } from "@/lib/schema";
+import { generateFAQSchema, generateServiceSchema, generateBreadcrumbSchema } from "@/lib/schema";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
@@ -18,12 +18,29 @@ export default function StagingPipeDrape() {
     { question: "Can pipe and drape match our event branding?", answer: "Yes — drape is available in a range of colours including black, white, and grey. We can also accommodate custom colours for branded events and add lighting to the drape for additional visual impact." }
   ];
 
+  const serviceSchema = generateServiceSchema({
+    name: "Stage Hire & Pipe and Drape",
+    description: "Modular stage hire and pipe and drape solutions across Ireland. Indoor and outdoor staging for conferences, concerts and corporate events.",
+    serviceType: "Stage Hire",
+    url: "https://eventsound.ie/services/staging-pipe-drape"
+  });
+
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "https://eventsound.ie/" },
+    { name: "Services", url: "https://eventsound.ie/services" },
+    { name: "Staging & Pipe Drape", url: "https://eventsound.ie/services/staging-pipe-drape" }
+  ]);
+
   useSeo({
     title: "Event Staging & Pipe and Drape Hire Ireland | EventSound",
     description: "Professional event staging, pipe and drape, star cloth, and scenic elements for corporate events, conferences, and live shows across Ireland. TUV-certified, safety-first.",
     canonical: "https://eventsound.ie/services/staging-pipe-drape",
     schema: generateFAQSchema({ questions: faqs }),
-    schemaId: "faq-schema"
+    schemaId: "faq-schema",
+    additionalSchemas: [
+      { schema: serviceSchema, id: "service-schema" },
+      { schema: breadcrumbSchema, id: "breadcrumb-schema" }
+    ]
   });
 
   const { hero, gallery } = useServiceImages("service-staging");
