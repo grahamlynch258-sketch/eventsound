@@ -38,20 +38,20 @@ export default function LEDVideoWalls() {
       />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6 text-center">
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
             EventSound provides professional LED video wall hire for corporate events, conferences, product launches, awards ceremonies, and live shows across Ireland. Our Unilumin LED panels deliver stunning high-resolution visuals that transform any venue — from intimate boardrooms to large-scale arenas.
           </p>
-          <h2 className="text-2xl font-semibold">Custom Configurations for Every Venue</h2>
-          <p className="text-muted-foreground">
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Custom Configurations for Every Venue</h2>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
             Every event space is different, which is why we offer fully customisable LED wall sizes and configurations. Whether you need a single screen behind a keynote speaker, a wide-format display for a gala dinner, or a multi-screen setup for a conference breakout area, we design the layout to suit your venue and content. Our team handles pixel mapping, content scaling, and signal management so your visuals look perfect from every seat in the house.
           </p>
-          <h2 className="text-2xl font-semibold">Full-Service LED Wall Solutions</h2>
-          <p className="text-muted-foreground">
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Full-Service LED Wall Solutions</h2>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
             When you hire LED walls from EventSound, you get more than just panels. Our service includes delivery, installation, content playback management, on-site technical operation, and breakdown. We work with your creative team or agency to ensure presentations, videos, and live feeds display exactly as intended. Our experienced operators are on hand throughout your event to manage transitions, troubleshoot, and keep everything running seamlessly.
           </p>
-          <h2 className="text-2xl font-semibold">Why EventSound for LED Video Walls?</h2>
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Why EventSound for LED Video Walls?</h2>
           <div className="text-left inline-block">
-          <ul className="space-y-2 text-muted-foreground list-disc list-inside">
+          <ul className="space-y-2 text-muted-foreground list-disc list-inside transition-transform duration-300 hover:scale-[1.04] cursor-default">
             <li>Unilumin LED panels — industry-leading resolution and reliability</li>
             <li>Custom sizing from 2m² to 50m² and beyond</li>
             <li>Full content playback and signal management included</li>
@@ -73,8 +73,8 @@ export default function LEDVideoWalls() {
 
           <BrandBanner serviceKey="led-video-walls" />
 
-          <h2 className="text-2xl font-semibold">Related Services</h2>
-          <div className="flex flex-wrap gap-3 justify-center">
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Related Services</h2>
+          <div className="flex flex-wrap gap-3 justify-center transition-transform duration-300 hover:scale-[1.03] cursor-default">
             <Link to="/services/lighting-design"><Button variant="outline">Lighting Design</Button></Link>
             <Link to="/services/video-production"><Button variant="outline">Video Production</Button></Link>
             <Link to="/services/event-production"><Button variant="outline">Event Production</Button></Link>
@@ -82,10 +82,10 @@ export default function LEDVideoWalls() {
 
           {/* FAQ Section */}
           <div className="max-w-4xl mx-auto mt-16">
-            <h2 className="text-3xl font-bold text-foreground mb-8">Frequently Asked Questions</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-8 transition-transform duration-300 hover:scale-[1.05] cursor-default">Frequently Asked Questions</h2>
             <div className="space-y-6">
               {faqs.map((faq, i) => (
-                <div key={i} className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-6">
+                <div key={i} className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-6 transition-transform duration-300 hover:scale-[1.03] cursor-default">
                   <div className="rounded-lg bg-primary/10 border border-primary/20 px-4 py-3 mb-4">
                     <h3 className="text-lg font-semibold text-primary">{faq.question}</h3>
                   </div>
@@ -97,9 +97,9 @@ export default function LEDVideoWalls() {
             </div>
           </div>
 
-          <div className="mt-12 text-center">
+          <div className="mt-12 text-center transition-transform duration-300 hover:scale-[1.04] cursor-default">
             <h3 className="text-xl font-semibold mb-2">Need LED Walls for Your Event?</h3>
-            <p className="text-muted-foreground mb-4">Tell us your venue, date, and requirements — we'll respond with a tailored quote within 24 hours.</p>
+            <p className="text-muted-foreground mb-4 transition-transform duration-300 hover:scale-[1.04] cursor-default">Tell us your venue, date, and requirements — we'll respond with a tailored quote within 24 hours.</p>
             <Link to="/contact"><Button size="lg">Get a Quote</Button></Link>
           </div>
         </div>

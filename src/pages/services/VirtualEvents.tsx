@@ -38,20 +38,20 @@ export default function VirtualEvents() {
       />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6 text-center">
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
             EventSound delivers professional virtual and hybrid event production for corporate clients, agencies, and organisations across Ireland. Whether your event is fully online, has a live audience with remote viewers, or combines multiple locations, we provide the technical infrastructure and production expertise to make it seamless.
           </p>
-          <h2 className="text-2xl font-semibold">Hybrid Event Solutions</h2>
-          <p className="text-muted-foreground">
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Hybrid Event Solutions</h2>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
             Hybrid events combine a live in-person experience with a professional broadcast for remote attendees. EventSound manages both sides — delivering full AV production for the venue while simultaneously streaming to online platforms with broadcast-quality video, graphics, and audience interaction tools. We ensure remote viewers get the same polished experience as those in the room.
           </p>
-          <h2 className="text-2xl font-semibold">Virtual Event Studio Setups</h2>
-          <p className="text-muted-foreground">
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Virtual Event Studio Setups</h2>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
             For fully virtual events, we can transform any venue or meeting room into a professional broadcast studio. This includes multi-camera setups, branded backdrops, professional lighting, teleprompter, and dedicated internet connectivity. We manage the entire technical production so your presenters can focus on delivering their content with confidence.
           </p>
-          <h2 className="text-2xl font-semibold">Why EventSound for Virtual Events?</h2>
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Why EventSound for Virtual Events?</h2>
           <div className="text-left inline-block">
-          <ul className="space-y-2 text-muted-foreground list-disc list-inside">
+          <ul className="space-y-2 text-muted-foreground list-disc list-inside transition-transform duration-300 hover:scale-[1.04] cursor-default">
             <li>End-to-end hybrid and virtual event production</li>
             <li>Professional studio setups in any venue</li>
             <li>Live streaming with branded graphics and overlays</li>
@@ -73,8 +73,8 @@ export default function VirtualEvents() {
 
           <BrandBanner serviceKey="virtual-events" />
 
-          <h2 className="text-2xl font-semibold">Related Services</h2>
-          <div className="flex flex-wrap gap-3 justify-center">
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Related Services</h2>
+          <div className="flex flex-wrap gap-3 justify-center transition-transform duration-300 hover:scale-[1.03] cursor-default">
             <Link to="/services/video-production"><Button variant="outline">Video Production</Button></Link>
             <Link to="/services/led-video-walls"><Button variant="outline">LED Video Walls</Button></Link>
             <Link to="/services/av-production"><Button variant="outline">AV Production</Button></Link>
@@ -82,10 +82,10 @@ export default function VirtualEvents() {
 
           {/* FAQ Section */}
           <div className="max-w-4xl mx-auto mt-16">
-            <h2 className="text-3xl font-bold text-foreground mb-8">Frequently Asked Questions</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-8 transition-transform duration-300 hover:scale-[1.05] cursor-default">Frequently Asked Questions</h2>
             <div className="space-y-6">
               {faqs.map((faq, i) => (
-                <div key={i} className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-6">
+                <div key={i} className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-6 transition-transform duration-300 hover:scale-[1.03] cursor-default">
                   <div className="rounded-lg bg-primary/10 border border-primary/20 px-4 py-3 mb-4">
                     <h3 className="text-lg font-semibold text-primary">{faq.question}</h3>
                   </div>
@@ -97,9 +97,9 @@ export default function VirtualEvents() {
             </div>
           </div>
 
-          <div className="mt-12 text-center">
+          <div className="mt-12 text-center transition-transform duration-300 hover:scale-[1.04] cursor-default">
             <h3 className="text-xl font-semibold mb-2">Planning a Virtual or Hybrid Event?</h3>
-            <p className="text-muted-foreground mb-4">Tell us your event format and audience — we'll design a production plan and quote within 24 hours.</p>
+            <p className="text-muted-foreground mb-4 transition-transform duration-300 hover:scale-[1.04] cursor-default">Tell us your event format and audience — we'll design a production plan and quote within 24 hours.</p>
             <Link to="/contact"><Button size="lg">Get a Quote</Button></Link>
           </div>
         </div>
