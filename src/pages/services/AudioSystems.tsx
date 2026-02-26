@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 
 export default function AudioSystems() {
   useSeo({
-    title: "Audio System & PA Hire Ireland | EventSound",
+    title: "AV & PA System Hire Dublin & Ireland | Conference Audio | EventSound",
     description: "Professional sound system and PA hire for events across Ireland. L-Acoustics speakers, wireless microphones, audio mixing, and experienced sound engineers included.",
     canonical: "https://eventsound.ie/services/audio-systems",
   });

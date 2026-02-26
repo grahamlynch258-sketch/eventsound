@@ -32,7 +32,7 @@ export default function VirtualEvents() {
   ]);
 
   useSeo({
-    title: "Virtual & Hybrid Event Production Ireland | EventSound",
+    title: "Hybrid & Virtual Events Dublin & Ireland | Live Streaming | EventSound",
     description: "Professional virtual and hybrid event production across Ireland. Studio setups, live streaming, audience interaction tools, and full technical management for online events.",
     canonical: "https://eventsound.ie/services/virtual-events",
     schema: generateFAQSchema({ questions: faqs }),

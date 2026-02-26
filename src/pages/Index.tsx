@@ -7,7 +7,7 @@ import { useSeo } from "@/hooks/useSeo";
 
 const Index = () => {
   useSeo({
-    title: "EventSound | Professional Event Production & AV Hire Ireland",
+    title: "EventSound | Event Production & AV Hire Dublin & Ireland",
     description: "Professional event production and AV equipment hire across Ireland. LED video walls, sound systems, lighting, and staging for corporate events, conferences, and live shows across Ireland.",
     canonical: "https://eventsound.ie/",
     ogTitle: "EventSound | Professional Event Production & AV Hire Ireland",
