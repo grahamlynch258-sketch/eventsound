@@ -28,6 +28,7 @@ const staticRoutes = [
   { path: '/services/event-production', priority: '0.8', changefreq: 'monthly' },
   { path: '/services/video-production', priority: '0.8', changefreq: 'monthly' },
   { path: '/services/virtual-events', priority: '0.8', changefreq: 'monthly' },
+  { path: '/services/audio-systems', priority: '0.8', changefreq: 'monthly' },
   ];
 
 async function generateSitemap() {

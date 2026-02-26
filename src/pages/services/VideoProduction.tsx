@@ -32,7 +32,7 @@ export default function VideoProduction() {
   ]);
 
   useSeo({
-    title: "Event Video Production & Live Streaming Ireland | EventSound",
+    title: "Event Video Production & Streaming Dublin & Ireland | EventSound",
     description: "Professional multi-camera video production and live streaming for events across Ireland. Capture, broadcast, and post-production for corporate events, conferences, and live shows.",
     canonical: "https://eventsound.ie/services/video-production",
     schema: generateFAQSchema({ questions: faqs }),

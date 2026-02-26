@@ -32,7 +32,7 @@ export default function EventProduction() {
   ]);
 
   useSeo({
-    title: "Event Production Management Ireland | EventSound",
+    title: "Event Production Company Dublin & Ireland | Full-Service | EventSound",
     description: "End-to-end event production management across Ireland. Technical direction, crew coordination, show calling, and on-site production support for corporate events and live shows.",
     canonical: "https://eventsound.ie/services/event-production",
     schema: generateFAQSchema({ questions: faqs }),

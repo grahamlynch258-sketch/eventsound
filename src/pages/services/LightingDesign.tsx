@@ -32,7 +32,7 @@ export default function LightingDesign() {
   ]);
 
   useSeo({
-    title: "Event Lighting Design & Hire Ireland | EventSound",
+    title: "Event Lighting Hire Dublin & Ireland | Stage & Venue Lighting | EventSound",
     description: "Professional stage lighting, architectural lighting, and custom lighting design for events across Ireland. Intelligent fixtures, moving heads, and experienced lighting designers.",
     canonical: "https://eventsound.ie/services/lighting-design",
     schema: generateFAQSchema({ questions: faqs }),

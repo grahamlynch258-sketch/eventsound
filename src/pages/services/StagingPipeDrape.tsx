@@ -32,7 +32,7 @@ export default function StagingPipeDrape() {
   ]);
 
   useSeo({
-    title: "Event Staging & Pipe and Drape Hire Ireland | EventSound",
+    title: "Stage Hire Dublin & Ireland | Setup & Breakdown Included | EventSound",
     description: "Professional event staging, pipe and drape, star cloth, and scenic elements for corporate events, conferences, and live shows across Ireland. TUV-certified, safety-first.",
     canonical: "https://eventsound.ie/services/staging-pipe-drape",
     schema: generateFAQSchema({ questions: faqs }),

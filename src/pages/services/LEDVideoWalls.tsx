@@ -32,7 +32,7 @@ export default function LEDVideoWalls() {
   ]);
 
   useSeo({
-    title: "LED Video Wall Hire Ireland | EventSound",
+    title: "LED Screen & Video Wall Hire Dublin & Ireland | EventSound",
     description: "Professional LED video wall hire for corporate events, conferences, and live shows across Ireland. Custom sizes, content playback, and on-site operation included.",
     canonical: "https://eventsound.ie/services/led-video-walls",
     schema: generateFAQSchema({ questions: faqs }),
