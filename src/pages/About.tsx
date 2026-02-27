@@ -136,7 +136,7 @@ export default function About() {
         <section className="bg-card/30 border-y border-border/50">
           <div className="container py-20 md:py-28">
             <div className="text-center max-w-2xl mx-auto mb-14">
-              <p className="section-kicker mb-3">Why Event Sound</p>
+              <p className="section-kicker mb-3">Why EventSound</p>
               <div className="gold-rule mx-auto mb-5" />
               <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
                 Built on experience

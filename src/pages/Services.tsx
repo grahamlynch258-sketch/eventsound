@@ -12,7 +12,7 @@ const services = [
   { title: "LED Video Walls", description: "High-resolution LED displays for conferences, launches, and corporate events. Custom sizes and on-site operation.", href: "/services/led-video-walls", icon: Monitor },
   { title: "AV Production", description: "Complete audiovisual solutions for conferences and corporate events. L-Acoustics sound, LED walls, lighting, and crew.", href: "/services/av-production", icon: Volume2 },
   { title: "Lighting Design", description: "Intelligent stage lighting, architectural washes, and custom designs using Chamsys MagicQ control.", href: "/services/lighting-design", icon: Lightbulb },
-  { title: "Staging & Pipe & Drape", description: "TUV-certified modular staging, pipe and drape, star cloth, and scenic elements for any venue.", href: "/services/staging-pipe-drape", icon: Theater },
+  { title: "Staging, Pipe & Drape", description: "TUV-certified modular staging, pipe and drape, star cloth, and scenic elements for any venue.", href: "/services/staging-pipe-drape", icon: Theater },
   { title: "Event Production", description: "End-to-end production management, technical direction, and crew coordination from planning to wrap.", href: "/services/event-production", icon: Clapperboard },
   { title: "Video Production", description: "Multi-camera capture, live streaming, and post-production for corporate events and live shows.", href: "/services/video-production", icon: Video },
   { title: "Virtual & Hybrid Events", description: "Professional production for online and hybrid audiences with studio setups and live streaming.", href: "/services/virtual-events", icon: Wifi },
@@ -56,7 +56,7 @@ export default function Services() {
           <h2 className="text-2xl font-semibold mb-4">Need a Custom Package?</h2>
           <div className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-6 md:p-8 mb-6">
             <p className="text-muted-foreground leading-relaxed">
-              Most events need a combination of services. Tell us about your event and we'll put together a tailored production package with transparent pricing — no hidden fees.
+              Most events need a combination of services. Tell us about your event, and we'll put together a tailored production package with transparent pricing — no hidden fees.
             </p>
           </div>
           <Link to="/contact"><Button size="lg">Get a Quote</Button></Link>

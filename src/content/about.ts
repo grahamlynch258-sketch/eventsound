@@ -1,5 +1,5 @@
 export const about = {
-  headline: "About Event Sound",
+  headline: "About EventSound",
   intro: "EventSound started over three decades ago as a sound rental company, providing PA systems and audio equipment for events across Ireland. Since then, we've evolved into a full-service event production partner — delivering LED video walls, stage lighting, custom staging, live streaming, and complete technical production alongside the professional sound services we built our reputation on. Based in Dublin, Ireland, we work with agencies, venues, and corporate clients nationwide, bringing the same hands-on reliability to every event.",
   body: [
     "Whether you're planning a corporate conference, an awards ceremony, a product launch, or a live concert, our experienced production team is with you from first brief to final breakdown. We don't just supply equipment — we act as your dedicated production partner, working closely with your team to ensure every technical detail is covered.",

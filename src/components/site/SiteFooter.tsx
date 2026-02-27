@@ -33,7 +33,7 @@ export function SiteFooter({ className }: { className?: string }) {
               <Link to="/services/led-video-walls" className="text-sm text-muted-foreground hover:text-primary transition-colors">LED Video Walls</Link>
               <Link to="/services/av-production" className="text-sm text-muted-foreground hover:text-primary transition-colors">AV Production</Link>
               <Link to="/services/lighting-design" className="text-sm text-muted-foreground hover:text-primary transition-colors">Lighting Design</Link>
-              <Link to="/services/staging-pipe-drape" className="text-sm text-muted-foreground hover:text-primary transition-colors">Staging & Drape</Link>
+              <Link to="/services/staging-pipe-drape" className="text-sm text-muted-foreground hover:text-primary transition-colors">Staging, Pipe & Drape</Link>
               <Link to="/services/event-production" className="text-sm text-muted-foreground hover:text-primary transition-colors">Event Production</Link>
               <Link to="/services/video-production" className="text-sm text-muted-foreground hover:text-primary transition-colors">Video Production</Link>
               <Link to="/services/virtual-events" className="text-sm text-muted-foreground hover:text-primary transition-colors">Virtual Events</Link>

@@ -28,12 +28,12 @@ const HealthAndSafety = () => {
 
           <h2 className="text-2xl font-semibold">Our Safety Standards</h2>
           <p className="text-muted-foreground">
-            All EventSound staging is TUV-certified and European-manufactured, meeting the highest industry safety standards. Our rigging, trussing, and lifting equipment undergoes regular inspection and certification. Every piece of equipment deployed on your event has been tested, maintained, and verified safe for use.
+            All EventSound staging is TUV-certified and European-manufactured, meeting the highest industry safety standards. Our rigging, trussing, and lifting equipment undergoes regular inspection and certification. Every piece of equipment deployed at your event has been tested, maintained, and verified safe for use.
           </p>
 
           <h2 className="text-2xl font-semibold">Trained Personnel</h2>
           <p className="text-muted-foreground">
-            Our crew are trained in safe equipment operation, manual handling, working at height, and emergency procedures. Rigging is always undertaken by qualified personnel with relevant certifications. Every team member on your event understands that safety is the primary consideration — before, during, and after the show.
+            Our crew are trained in safe equipment operation, manual handling, working at height, and emergency procedures. Rigging is always undertaken by qualified personnel with relevant certifications. Every team member at your event understands that safety is the primary consideration — before, during, and after the show.
           </p>
 
           <h2 className="text-2xl font-semibold">Risk Assessment & Planning</h2>

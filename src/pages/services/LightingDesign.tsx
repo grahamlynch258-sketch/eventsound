@@ -15,7 +15,7 @@ export default function LightingDesign() {
     { question: "Do you provide a lighting designer for my event?", answer: "Yes — every lighting hire includes an experienced lighting technician who will program and operate the rig throughout your event. For larger productions, we provide a dedicated lighting designer who works with you on the creative vision." },
     { question: "How does lighting design affect the audience experience?", answer: "Lighting sets the mood, directs attention, and creates atmosphere. Good lighting design can transform a plain venue into an immersive experience, improve video and photography quality, and keep audiences engaged throughout the event." },
     { question: "How early do you need to set up stage lighting?", answer: "Typically 4-8 hours before the event for a standard corporate or conference setup. Festival stages and complex productions may require a full day. We always coordinate load-in schedules with your venue and other suppliers." },
-    { question: "Can you match lighting to our brand colours?", answer: "Yes — LED fixtures can be programmed to any colour. We regularly match lighting to corporate brand guidelines, event themes, and sponsor requirements. Just share your brand colours and we will programme them into the rig." }
+    { question: "Can you match lighting to our brand colours?", answer: "Yes — LED fixtures can be programmed to any colour. We regularly match lighting to corporate brand guidelines, event themes, and sponsor requirements. Just share your brand colours, and we will programme them into the rig." }
   ];
 
   const serviceSchema = generateServiceSchema({
