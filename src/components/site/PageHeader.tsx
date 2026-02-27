@@ -35,6 +35,7 @@ export function PageHeader({ title, subtitle, backgroundImage, backgroundAlt, ch
           )}
           <div className="absolute inset-0 bg-background/70" />
         </div>
+        <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-b from-transparent to-background z-[1] pointer-events-none" />
         <div className="container mx-auto px-4 relative z-10 py-16 md:py-24 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">{title}</h1>
           {subtitle && <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">{subtitle}</p>}
