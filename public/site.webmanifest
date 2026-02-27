@@ -3,12 +3,12 @@
   "short_name": "EventSound",
   "icons": [
     {
-      "src": "/favicon-192x192.png",
+      "src": "/Brand/icon_192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/favicon-512x512.png",
+      "src": "/Brand/icon_512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
