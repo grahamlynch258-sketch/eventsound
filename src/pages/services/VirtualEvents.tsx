@@ -4,7 +4,8 @@ import { useSeo } from "@/hooks/useSeo";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
-
+import { useServiceSections } from "@/hooks/useServiceSections";
+import { ServiceSections } from "@/components/site/ServiceSections";
 import { BrandBanner } from "@/components/site/BrandSidebar";
 
 export default function VirtualEvents() {
@@ -23,6 +24,7 @@ export default function VirtualEvents() {
     canonical: "https://eventsound.ie/services/virtual-events",
   });
   const { hero, gallery } = useServiceImages("service-virtual");
+  const { data: sections = [] } = useServiceSections("virtual-events");
 
   return (
     <PageShell>
@@ -55,6 +57,8 @@ export default function VirtualEvents() {
             <li>Dedicated technical team managing the entire broadcast</li>
           </ul>
           </div>
+
+          {sections.length > 0 && <ServiceSections sections={sections} />}
 
           {gallery.length > 0 && (
             <div className="mt-8">

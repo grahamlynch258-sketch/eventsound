@@ -4,6 +4,8 @@ import { useSeo } from "@/hooks/useSeo";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
+import { useServiceSections } from "@/hooks/useServiceSections";
+import { ServiceSections } from "@/components/site/ServiceSections";
 import { BrandBanner } from "@/components/site/BrandSidebar";
 
 export default function LEDVideoWalls() {
@@ -22,6 +24,7 @@ export default function LEDVideoWalls() {
     canonical: "https://eventsound.ie/services/led-video-walls",
   });
   const { hero, gallery } = useServiceImages("service-led-walls");
+  const { data: sections = [] } = useServiceSections("led-video-walls");
 
   return (
     <PageShell>
@@ -54,6 +57,8 @@ export default function LEDVideoWalls() {
             <li>Serving clients nationwide across Ireland</li>
           </ul>
           </div>
+
+          {sections.length > 0 && <ServiceSections sections={sections} />}
 
           {gallery.length > 0 && (
             <div className="mt-8">

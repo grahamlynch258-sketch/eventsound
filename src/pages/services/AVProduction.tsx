@@ -4,7 +4,8 @@ import { useSeo } from "@/hooks/useSeo";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
-
+import { useServiceSections } from "@/hooks/useServiceSections";
+import { ServiceSections } from "@/components/site/ServiceSections";
 import { BrandBanner } from "@/components/site/BrandSidebar";
 
 export default function AVProduction() {
@@ -23,6 +24,7 @@ export default function AVProduction() {
     canonical: "https://eventsound.ie/services/av-production",
   });
   const { hero, gallery } = useServiceImages("service-av-production");
+  const { data: sections = [] } = useServiceSections("av-production");
 
   return (
     <PageShell>
@@ -60,6 +62,8 @@ export default function AVProduction() {
             <li>Serving clients nationwide across Ireland</li>
           </ul>
           </div>
+
+          {sections.length > 0 && <ServiceSections sections={sections} />}
 
           {gallery.length > 0 && (
             <div className="mt-8">

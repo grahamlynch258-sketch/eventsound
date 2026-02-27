@@ -9,6 +9,7 @@ import { useUploadImage } from "@/hooks/useSiteContent";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeft, Upload, Trash2, Copy, Check } from "lucide-react";
+import ServiceSectionsManager from "@/components/admin/ServiceSectionsManager";
 
 type LibraryImage = {
   id: string;
@@ -37,6 +38,9 @@ const categories = [
   { value: "service-event-production", label: "Event Production" },
   { value: "service-video", label: "Video Production" },
   { value: "service-virtual", label: "Virtual Events" },
+
+  // Content Sections
+  { value: "service-sections", label: "📝 Content Sections" },
 
   // General
   { value: "headlines", label: "Library" },
@@ -169,6 +173,10 @@ export default function AdminLibrary() {
 
           {categories.map((cat) => (
             <TabsContent key={cat.value} value={cat.value}>
+              {cat.value === "service-sections" ? (
+                <ServiceSectionsManager />
+              ) : (
+              <>
               <div className="mb-6">
                 <label className="inline-flex cursor-pointer items-center gap-2 rounded-md border border-dashed px-4 py-3 text-sm hover:bg-muted transition-colors">
                   <Upload className="h-4 w-4" />
@@ -292,6 +300,8 @@ export default function AdminLibrary() {
                     </Card>
                   ))}
                 </div>
+              )}
+              </>
               )}
             </TabsContent>
           ))}
