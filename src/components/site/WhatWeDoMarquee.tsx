@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
-import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { useState, useEffect, useCallback, useRef } from "react";
 
 interface MarqueeItem {
   label: string;
@@ -12,156 +11,32 @@ interface MarqueeItem {
 
 interface WhatWeDoMarqueeProps {
   items: MarqueeItem[];
+  /** Seconds per card — lower = faster scroll */
   intervalSec?: number;
 }
 
-export function WhatWeDoMarquee({ items, intervalSec = 2 }: WhatWeDoMarqueeProps) {
-  const [visibleCount, setVisibleCount] = useState(4);
-  const [startIndex, setStartIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const [animating, setAnimating] = useState(false);
-  const [direction, setDirection] = useState<"left" | "right">("left");
-  const [slideOffset, setSlideOffset] = useState(0);
-
-  const pausedRef = useRef(paused);
-  const animatingRef = useRef(animating);
-  const hoveredRef = useRef(false);
-  pausedRef.current = paused;
-  animatingRef.current = animating;
-
-  useEffect(() => {
-    const update = () => {
-      if (window.innerWidth < 640) setVisibleCount(1);
-      else if (window.innerWidth < 1024) setVisibleCount(2);
-      else setVisibleCount(4);
-    };
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, []);
-
-  const getItems = (start: number, count: number) => {
-    const result: { item: MarqueeItem; key: number }[] = [];
-    for (let i = 0; i < count; i++) {
-      const idx = (((start + i) % items.length) + items.length) % items.length;
-      result.push({ item: items[idx], key: start + i });
-    }
-    return result;
-  };
-
-  const navigate = useCallback(
-    (dir: "left" | "right") => {
-      if (animatingRef.current) return;
-      setDirection(dir);
-      setAnimating(true);
-      setSlideOffset(dir === "left" ? -(100 / visibleCount) : 100 / visibleCount);
-    },
-    [visibleCount]
-  );
-
-  const handleTransitionEnd = useCallback(() => {
-    setStartIndex((prev) => {
-      if (direction === "left") {
-        return (prev + 1 + items.length) % items.length;
-      } else {
-        return (prev - 1 + items.length) % items.length;
-      }
-    });
-    setSlideOffset(0);
-    setAnimating(false);
-    if (hoveredRef.current) {
-      setPaused(true);
-    }
-  }, [direction, items.length]);
-
-  useEffect(() => {
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReduced) return;
-    const id = setInterval(() => {
-      if (!pausedRef.current && !animatingRef.current && !hoveredRef.current) {
-        navigate("left");
-      }
-    }, intervalSec * 1000);
-    return () => clearInterval(id);
-  }, [navigate, intervalSec]);
-
-  const displayStart =
-    direction === "right" && animating
-      ? (startIndex - 1 + items.length) % items.length
-      : startIndex;
-  const displayItems = getItems(displayStart, visibleCount + 1);
-  const cardWidthPct = 100 / visibleCount;
+export function WhatWeDoMarquee({ items, intervalSec = 3 }: WhatWeDoMarqueeProps) {
+  const duration = items.length * intervalSec;
 
   return (
-    <div
-      className="relative py-6"
-      onMouseEnter={() => {
-        hoveredRef.current = true;
-        setPaused(true);
-      }}
-      onMouseLeave={() => {
-        hoveredRef.current = false;
-        if (!animatingRef.current) {
-          setPaused(false);
-        }
-      }}
-      onFocus={() => setPaused(true)}
-      onBlur={(e) => {
-        if (!e.currentTarget.contains(e.relatedTarget as Node)) {
-          setPaused(false);
-        }
-      }}
-    >
+    <div className="marquee-container relative py-6">
       <div className="overflow-hidden">
         <div
-          className="flex"
-          style={{
-            transform: `translateX(${slideOffset}%)`,
-            transition: animating ? "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)" : "none",
-            willChange: "transform",
-            pointerEvents: animating ? "none" : "auto",
-          }}
-          onTransitionEnd={handleTransitionEnd}
+          className="marquee-track flex gap-4"
+          style={{ "--marquee-duration": `${duration}s` } as React.CSSProperties}
         >
-          {displayItems.map(({ item, key }) => (
-            <div key={key} className="flex-shrink-0 px-2" style={{ width: `${cardWidthPct}%` }}>
+          {items.map((item, i) => (
+            <div key={i} className="flex-shrink-0 w-72 sm:w-80">
+              <ServiceCard item={item} />
+            </div>
+          ))}
+          {/* Duplicate set for seamless loop */}
+          {items.map((item, i) => (
+            <div key={`dup-${i}`} className="flex-shrink-0 w-72 sm:w-80">
               <ServiceCard item={item} />
             </div>
           ))}
         </div>
-      </div>
-
-      <button
-        onClick={() => navigate("right")}
-        disabled={animating}
-        aria-label="Previous"
-        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-card border border-border/50 shadow-md text-foreground hover:bg-primary hover:text-primary-foreground transition-colors disabled:opacity-40"
-      >
-        <ChevronLeft className="h-5 w-5" />
-      </button>
-
-      <button
-        onClick={() => navigate("left")}
-        disabled={animating}
-        aria-label="Next"
-        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-card border border-border/50 shadow-md text-foreground hover:bg-primary hover:text-primary-foreground transition-colors disabled:opacity-40"
-      >
-        <ChevronRight className="h-5 w-5" />
-      </button>
-
-      <div className="flex justify-center gap-1.5 mt-5">
-        {items.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => {
-              if (!animating) setStartIndex(i);
-            }}
-            aria-label={`Go to slide ${i + 1}`}
-            className={`h-1.5 rounded-full transition-all duration-300 ${
-              i === startIndex ? "w-6 bg-accent" : "w-1.5 bg-border hover:bg-accent/50"
-            }`}
-          />
-        ))}
       </div>
     </div>
   );
