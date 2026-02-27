@@ -5,7 +5,7 @@ import { generateFAQSchema, generateServiceSchema, generateBreadcrumbSchema } fr
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
-import heroFallback from "@/assets/category-staging.jpg";
+
 import { BrandBanner } from "@/components/site/BrandSidebar";
 
 export default function StagingPipeDrape() {
@@ -50,7 +50,7 @@ export default function StagingPipeDrape() {
       <PageHeader
         title="Staging, Pipe & Drape in Ireland"
         subtitle="Safe, professional staging and scenic solutions for any venue"
-        backgroundImage={hero || heroFallback}
+        backgroundImage={hero}
         backgroundAlt="Professional staging and pipe and drape installation at an event in Ireland"
       />
       <div className="container mx-auto px-4 py-12">

@@ -5,7 +5,7 @@ import { generateFAQSchema, generateServiceSchema, generateBreadcrumbSchema } fr
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
-import heroFallback from "@/assets/hero-av-production.jpg";
+
 import { BrandBanner } from "@/components/site/BrandSidebar";
 
 export default function EventProduction() {
@@ -50,7 +50,7 @@ export default function EventProduction() {
       <PageHeader
         title="Event Production Management in Ireland"
         subtitle="Your dedicated production partner from planning to wrap"
-        backgroundImage={hero || heroFallback}
+        backgroundImage={hero}
         backgroundAlt="Event production crew managing a corporate event in Ireland"
       />
       <div className="container mx-auto px-4 py-12">

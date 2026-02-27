@@ -5,7 +5,7 @@ import { generateFAQSchema, generateServiceSchema, generateBreadcrumbSchema } fr
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
-import heroFallback from "@/assets/category-lighting.jpg";
+
 import { BrandBanner } from "@/components/site/BrandSidebar";
 
 export default function LightingDesign() {
@@ -50,7 +50,7 @@ export default function LightingDesign() {
       <PageHeader
         title="Lighting Design & Hire in Ireland"
         subtitle="Create atmosphere and impact with professional event lighting"
-        backgroundImage={hero || heroFallback}
+        backgroundImage={hero}
         backgroundAlt="Professional stage lighting design at a corporate event in Ireland"
       />
       <div className="container mx-auto px-4 py-12">

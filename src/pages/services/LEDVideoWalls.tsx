@@ -5,7 +5,6 @@ import { generateFAQSchema, generateServiceSchema, generateBreadcrumbSchema } fr
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
-import heroFallback from "@/assets/category-vision.jpg";
 import { BrandBanner } from "@/components/site/BrandSidebar";
 
 export default function LEDVideoWalls() {
@@ -50,7 +49,7 @@ export default function LEDVideoWalls() {
       <PageHeader
         title="LED Video Wall Hire in Ireland"
         subtitle="High-impact visual displays for events of every scale"
-        backgroundImage={hero || heroFallback}
+        backgroundImage={hero}
         backgroundAlt="Unilumin LED video wall installed at a corporate event in Ireland"
       />
       <div className="container mx-auto px-4 py-12">

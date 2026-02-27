@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
-import { usePageHero } from "@/hooks/usePageHero";
+import { useServiceImages } from "@/hooks/useServiceImages";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin } from "lucide-react";
-import heroFallback from "@/assets/hero-av-production.jpg";
+
 
 interface CaseStudy {
   id: string;
@@ -24,7 +24,7 @@ interface CaseStudy {
 }
 
 const CaseStudies = () => {
-  const heroImage = usePageHero("hero-case-studies", heroFallback);
+  const { hero } = useServiceImages("hero-case-studies");
   const [caseStudies, setCaseStudies] = useState<CaseStudy[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -75,7 +75,7 @@ const CaseStudies = () => {
         <PageHeader
           title="Case Studies"
           subtitle="Real-world event production success stories"
-          backgroundImage={heroImage}
+          backgroundImage={hero}
           backgroundAlt="EventSound event production success stories"
         />
         <div className="container mx-auto px-4 py-12">
@@ -90,7 +90,7 @@ const CaseStudies = () => {
       <PageHeader
         title="Case Studies"
         subtitle="Real-world event production success stories from across Ireland"
-        backgroundImage={heroImage}
+        backgroundImage={hero}
         backgroundAlt="EventSound event production success stories"
       />
       
