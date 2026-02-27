@@ -109,6 +109,7 @@ export function SiteHeader({ className }: { className?: string }) {
   }, [mobileOpen]);
 
   return (
+    <>
     <header
       className={cn(
         "sticky top-0 z-[100] border-b transition-all duration-300",
@@ -279,120 +280,122 @@ export function SiteHeader({ className }: { className?: string }) {
         </div>
       </div>
 
-      {/* Mobile menu */}
-      {mobileOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-16 bottom-0 z-[99] bg-background/98 backdrop-blur-lg animate-in fade-in slide-in-from-top-2 duration-200 overflow-y-auto">
-          <nav className="container flex flex-col gap-1 py-6" aria-label="Mobile">
-            {mainLinks.map((l) => (
-              <NavLink
-                key={l.to}
-                to={l.to}
-                className={({ isActive }) =>
-                  cn(
-                    "py-3.5 px-4 rounded-lg text-base font-medium transition-colors",
-                    isActive ? "text-primary bg-primary/10" : "text-muted-foreground hover:text-foreground hover:bg-secondary/50",
-                  )
-                }
-                onClick={() => setMobileOpen(false)}
-                end={l.end}
-              >
-                {l.label}
-              </NavLink>
-            ))}
-
-            {/* Services group in mobile */}
-            <div className="mt-2 mb-1 px-4">
-              <button
-                onClick={() => setServicesMobileOpen((o) => !o)}
-                className={cn(
-                  "flex w-full items-center justify-between text-xs font-semibold uppercase tracking-widest transition-colors",
-                  servicesActive ? "text-primary" : "text-muted-foreground/60 hover:text-muted-foreground",
-                )}
-              >
-                Services
-                <ChevronDown
-                  className={cn("h-3.5 w-3.5 transition-transform duration-200", servicesMobileOpen && "rotate-180")}
-                />
-              </button>
-            </div>
-            {servicesMobileOpen && servicesLinks.map(({ to, label, icon: Icon }) => (
-              <NavLink
-                key={to}
-                to={to}
-                className={({ isActive }) =>
-                  cn(
-                    "flex items-center gap-3 py-3 px-6 rounded-lg text-base font-medium transition-colors",
-                    isActive ? "text-primary bg-primary/10" : "text-muted-foreground hover:text-foreground hover:bg-secondary/50",
-                  )
-                }
-                onClick={() => setMobileOpen(false)}
-              >
-                <Icon className="h-4 w-4 shrink-0" />
-                {label}
-              </NavLink>
-            ))}
-
-            {/* Portfolio group in mobile */}
-            <div className="mt-2 mb-1 px-4">
-              <button
-                onClick={() => setPortfolioMobileOpen((o) => !o)}
-                className={cn(
-                  "flex w-full items-center justify-between text-xs font-semibold uppercase tracking-widest transition-colors",
-                  portfolioActive ? "text-primary" : "text-muted-foreground/60 hover:text-muted-foreground",
-                )}
-              >
-                Portfolio
-                <ChevronDown
-                  className={cn("h-3.5 w-3.5 transition-transform duration-200", portfolioMobileOpen && "rotate-180")}
-                />
-              </button>
-            </div>
-            {portfolioMobileOpen && portfolioLinks.map(({ to, label, icon: Icon }) => (
-              <NavLink
-                key={to}
-                to={to}
-                className={({ isActive }) =>
-                  cn(
-                    "flex items-center gap-3 py-3 px-6 rounded-lg text-base font-medium transition-colors",
-                    isActive ? "text-primary bg-primary/10" : "text-muted-foreground hover:text-foreground hover:bg-secondary/50",
-                  )
-                }
-                onClick={() => setMobileOpen(false)}
-              >
-                <Icon className="h-4 w-4 shrink-0" />
-                {label}
-              </NavLink>
-            ))}
-
-            {/* Connect group in mobile */}
-            <div className="mt-2 mb-1 px-4">
-              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground/60">Contact</p>
-            </div>
-            {connectLinks.map(({ to, label, icon: Icon }) => (
-              <NavLink
-                key={to}
-                to={to}
-                className={({ isActive }) =>
-                  cn(
-                    "flex items-center gap-3 py-3.5 px-4 rounded-lg text-base font-medium transition-colors",
-                    isActive ? "text-primary bg-primary/10" : "text-muted-foreground hover:text-foreground hover:bg-secondary/50",
-                  )
-                }
-                onClick={() => setMobileOpen(false)}
-              >
-                <Icon className="h-4 w-4 shrink-0" />
-                {label}
-              </NavLink>
-            ))}
-
-            <div className="pt-4 px-4">
-              <Button asChild className="w-full font-semibold" size="lg">
-                <Link to="/contact" onClick={() => setMobileOpen(false)}>Get a Quote</Link>
-              </Button>
-            </div>
-          </nav>
-        </div>
-      )}
     </header>
+
+    {/* Mobile menu — rendered outside <header> so backdrop-filter doesn't trap fixed positioning */}
+    {mobileOpen && (
+      <div className="lg:hidden fixed inset-x-0 top-16 bottom-0 z-[99] bg-background backdrop-blur-lg animate-in fade-in slide-in-from-top-2 duration-200 overflow-y-auto">
+        <nav className="container flex flex-col gap-1 py-6" aria-label="Mobile">
+          {mainLinks.map((l) => (
+            <NavLink
+              key={l.to}
+              to={l.to}
+              className={({ isActive }) =>
+                cn(
+                  "py-3.5 px-4 rounded-lg text-base font-medium transition-colors",
+                  isActive ? "text-primary bg-primary/10" : "text-muted-foreground hover:text-foreground hover:bg-secondary/50",
+                )
+              }
+              onClick={() => setMobileOpen(false)}
+              end={l.end}
+            >
+              {l.label}
+            </NavLink>
+          ))}
+
+          {/* Services group in mobile */}
+          <div className="mt-2 mb-1 px-4">
+            <button
+              onClick={() => setServicesMobileOpen((o) => !o)}
+              className={cn(
+                "flex w-full items-center justify-between text-xs font-semibold uppercase tracking-widest transition-colors",
+                servicesActive ? "text-primary" : "text-muted-foreground/60 hover:text-muted-foreground",
+              )}
+            >
+              Services
+              <ChevronDown
+                className={cn("h-3.5 w-3.5 transition-transform duration-200", servicesMobileOpen && "rotate-180")}
+              />
+            </button>
+          </div>
+          {servicesMobileOpen && servicesLinks.map(({ to, label, icon: Icon }) => (
+            <NavLink
+              key={to}
+              to={to}
+              className={({ isActive }) =>
+                cn(
+                  "flex items-center gap-3 py-3 px-6 rounded-lg text-base font-medium transition-colors",
+                  isActive ? "text-primary bg-primary/10" : "text-muted-foreground hover:text-foreground hover:bg-secondary/50",
+                )
+              }
+              onClick={() => setMobileOpen(false)}
+            >
+              <Icon className="h-4 w-4 shrink-0" />
+              {label}
+            </NavLink>
+          ))}
+
+          {/* Portfolio group in mobile */}
+          <div className="mt-2 mb-1 px-4">
+            <button
+              onClick={() => setPortfolioMobileOpen((o) => !o)}
+              className={cn(
+                "flex w-full items-center justify-between text-xs font-semibold uppercase tracking-widest transition-colors",
+                portfolioActive ? "text-primary" : "text-muted-foreground/60 hover:text-muted-foreground",
+              )}
+            >
+              Portfolio
+              <ChevronDown
+                className={cn("h-3.5 w-3.5 transition-transform duration-200", portfolioMobileOpen && "rotate-180")}
+              />
+            </button>
+          </div>
+          {portfolioMobileOpen && portfolioLinks.map(({ to, label, icon: Icon }) => (
+            <NavLink
+              key={to}
+              to={to}
+              className={({ isActive }) =>
+                cn(
+                  "flex items-center gap-3 py-3 px-6 rounded-lg text-base font-medium transition-colors",
+                  isActive ? "text-primary bg-primary/10" : "text-muted-foreground hover:text-foreground hover:bg-secondary/50",
+                )
+              }
+              onClick={() => setMobileOpen(false)}
+            >
+              <Icon className="h-4 w-4 shrink-0" />
+              {label}
+            </NavLink>
+          ))}
+
+          {/* Connect group in mobile */}
+          <div className="mt-2 mb-1 px-4">
+            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground/60">Contact</p>
+          </div>
+          {connectLinks.map(({ to, label, icon: Icon }) => (
+            <NavLink
+              key={to}
+              to={to}
+              className={({ isActive }) =>
+                cn(
+                  "flex items-center gap-3 py-3.5 px-4 rounded-lg text-base font-medium transition-colors",
+                  isActive ? "text-primary bg-primary/10" : "text-muted-foreground hover:text-foreground hover:bg-secondary/50",
+                )
+              }
+              onClick={() => setMobileOpen(false)}
+            >
+              <Icon className="h-4 w-4 shrink-0" />
+              {label}
+            </NavLink>
+          ))}
+
+          <div className="pt-4 px-4">
+            <Button asChild className="w-full font-semibold" size="lg">
+              <Link to="/contact" onClick={() => setMobileOpen(false)}>Get a Quote</Link>
+            </Button>
+          </div>
+        </nav>
+      </div>
+    )}
+    </>
   );
 }
