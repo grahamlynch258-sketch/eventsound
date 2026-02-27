@@ -88,9 +88,19 @@ function buildArticleSchema({ headline, description, image, datePublished, dateM
 }
 
 /** Return array of JSON-LD script tags to inject for a given route */
+const SCHEMA_TYPE_TO_ID = {
+  FAQPage: "faq-schema",
+  Service: "service-schema",
+  BreadcrumbList: "breadcrumb-schema",
+};
+
 function schemasToHtml(schemas) {
   return schemas
-    .map(s => `    <script type="application/ld+json">${JSON.stringify(s)}</script>`)
+    .map(s => {
+      const id = SCHEMA_TYPE_TO_ID[s["@type"]] || "";
+      const idAttr = id ? ` id="${id}"` : "";
+      return `    <script type="application/ld+json"${idAttr}>${JSON.stringify(s)}</script>`;
+    })
     .join('\n');
 }
 
