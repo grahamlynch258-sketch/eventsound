@@ -17,7 +17,7 @@ interface SeoProps {
 
 const DEFAULT_TITLE = "EventSound | Premium Event Production Services Ireland";
 const DEFAULT_DESCRIPTION = "Professional AV equipment rental and event production services across Ireland. LED walls, sound systems, lighting, and staging for corporate events, conferences, and live shows.";
-const DEFAULT_OG_IMAGE = "https://www.eventsound.ie/Brand/logo_social_1080.png";
+const DEFAULT_OG_IMAGE = "https://eventsound.ie/og-image.svg";
 
 function updateOrCreateMetaTag(property: string, content: string, isName = false) {
   const attribute = isName ? 'name' : 'property';
