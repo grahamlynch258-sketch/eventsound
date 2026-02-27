@@ -4,7 +4,8 @@ import { useSeo } from "@/hooks/useSeo";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
-
+import { useServiceSections } from "@/hooks/useServiceSections";
+import { ServiceSections } from "@/components/site/ServiceSections";
 import { BrandBanner } from "@/components/site/BrandSidebar";
 
 export default function StagingPipeDrape() {
@@ -23,6 +24,7 @@ export default function StagingPipeDrape() {
     canonical: "https://eventsound.ie/services/staging-pipe-drape",
   });
   const { hero, gallery } = useServiceImages("service-staging");
+  const { data: sections = [] } = useServiceSections("staging-pipe-drape");
 
   return (
     <PageShell>
@@ -55,6 +57,8 @@ export default function StagingPipeDrape() {
             <li>Installed by trained crew with full risk assessment</li>
           </ul>
           </div>
+
+          {sections.length > 0 && <ServiceSections sections={sections} />}
 
           {gallery.length > 0 && (
             <div className="mt-8">

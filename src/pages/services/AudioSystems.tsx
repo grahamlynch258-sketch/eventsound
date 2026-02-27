@@ -3,8 +3,12 @@ import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useServiceSections } from "@/hooks/useServiceSections";
+import { ServiceSections } from "@/components/site/ServiceSections";
 
 export default function AudioSystems() {
+  const { data: sections = [] } = useServiceSections("audio-systems");
+
   useSeo({
     title: "AV & PA System Hire Dublin & Ireland | Conference Audio | EventSound",
     description: "Professional sound system and PA hire for events across Ireland. L-Acoustics speakers, wireless microphones, audio mixing, and experienced sound engineers included.",
@@ -35,6 +39,8 @@ export default function AudioSystems() {
             <li>Venue-tuned audio — we optimise for your specific space</li>
             <li>Full wireless microphone systems for any format</li>
           </ul>
+
+          {sections.length > 0 && <ServiceSections sections={sections} />}
 
           <h2 className="text-2xl font-semibold">Related Services</h2>
           <div className="flex flex-wrap gap-3">

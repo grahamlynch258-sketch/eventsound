@@ -4,7 +4,8 @@ import { useSeo } from "@/hooks/useSeo";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
-
+import { useServiceSections } from "@/hooks/useServiceSections";
+import { ServiceSections } from "@/components/site/ServiceSections";
 import { BrandBanner } from "@/components/site/BrandSidebar";
 
 export default function EventProduction() {
@@ -23,6 +24,7 @@ export default function EventProduction() {
     canonical: "https://eventsound.ie/services/event-production",
   });
   const { hero, gallery } = useServiceImages("service-event-production");
+  const { data: sections = [] } = useServiceSections("event-production");
 
   return (
     <PageShell>
@@ -55,6 +57,8 @@ export default function EventProduction() {
             <li>Complete crew coordination from load-in to breakdown</li>
           </ul>
           </div>
+
+          {sections.length > 0 && <ServiceSections sections={sections} />}
 
           {gallery.length > 0 && (
             <div className="mt-8">

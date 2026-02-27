@@ -224,6 +224,48 @@ export type Database = {
         }
         Relationships: []
       }
+      service_sections: {
+        Row: {
+          id: string
+          service_key: string
+          image_url: string
+          file_name: string
+          alt_text: string
+          title_attr: string | null
+          caption: string | null
+          section_heading: string | null
+          section_description: string | null
+          sort_order: number
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          service_key: string
+          image_url: string
+          file_name: string
+          alt_text: string
+          title_attr?: string | null
+          caption?: string | null
+          section_heading?: string | null
+          section_description?: string | null
+          sort_order?: number
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          service_key?: string
+          image_url?: string
+          file_name?: string
+          alt_text?: string
+          title_attr?: string | null
+          caption?: string | null
+          section_heading?: string | null
+          section_description?: string | null
+          sort_order?: number
+          created_at?: string
+        }
+        Relationships: []
+      }
       site_content: {
         Row: {
           alignment: string
