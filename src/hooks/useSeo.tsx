@@ -120,10 +120,7 @@ export const useSeo = ({
     updateOrCreateMetaTag("twitter:image", ogImage || DEFAULT_OG_IMAGE, true);
 
     // Update robots meta.
-    // In beta builds (VITE_INDEXABLE unset/false) always stay noindex so the
-    // JS runtime can never accidentally upgrade the page to indexable.
-    const siteIndexable = import.meta.env.VITE_INDEXABLE === "true";
-    if (!siteIndexable || noindex) {
+    if (noindex) {
       updateOrCreateMetaTag("robots", "noindex, nofollow", true);
     } else {
       updateOrCreateMetaTag("robots", "index, follow, max-image-preview:large", true);
