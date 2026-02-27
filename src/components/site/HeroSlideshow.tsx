@@ -9,7 +9,7 @@ type Props = {
 };
 
 export function HeroSlideshow({ fallbackImage, singleImage, intervalMs = 5000 }: Props) {
-  const { data: headlines } = useQuery({
+  const { data: headlines, isLoading } = useQuery({
     queryKey: ["library-images", "headlines"],
     queryFn: async () => {
       const { data, error } = await supabase
@@ -22,11 +22,16 @@ export function HeroSlideshow({ fallbackImage, singleImage, intervalMs = 5000 }:
     },
   });
 
-  const images = headlines && headlines.length > 0
-    ? headlines.map((h) => ({ url: h.image_url, alt: h.alt_text || h.file_name }))
-    : [{ url: singleImage || fallbackImage, alt: "Event production" }];
-
+  const [firstImageLoaded, setFirstImageLoaded] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  // While Supabase is loading, render nothing — Hero.tsx shows a dark overlay underneath.
+  // Once loaded, use Supabase images or fall back to the static import.
+  const images = isLoading
+    ? []
+    : headlines && headlines.length > 0
+      ? headlines.map((h) => ({ url: h.image_url, alt: h.alt_text || h.file_name }))
+      : [{ url: singleImage || fallbackImage, alt: "Event production" }];
 
   useEffect(() => {
     if (images.length <= 1) return;
@@ -35,6 +40,8 @@ export function HeroSlideshow({ fallbackImage, singleImage, intervalMs = 5000 }:
     }, intervalMs);
     return () => clearInterval(timer);
   }, [images.length, intervalMs]);
+
+  if (images.length === 0) return null;
 
   return (
     <>
@@ -47,7 +54,8 @@ export function HeroSlideshow({ fallbackImage, singleImage, intervalMs = 5000 }:
           decoding="async"
           fetchPriority={i === 0 ? "high" : undefined}
           className="absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ease-in-out"
-          style={{ opacity: i === currentIndex ? 1 : 0 }}
+          style={{ opacity: firstImageLoaded && i === currentIndex ? 1 : 0 }}
+          onLoad={i === 0 ? () => setFirstImageLoaded(true) : undefined}
         />
       ))}
     </>

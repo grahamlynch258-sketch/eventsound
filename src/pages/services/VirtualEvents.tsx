@@ -5,7 +5,7 @@ import { generateFAQSchema, generateServiceSchema, generateBreadcrumbSchema } fr
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
-import heroFallback from "@/assets/category-video-recording.jpg";
+
 import { BrandBanner } from "@/components/site/BrandSidebar";
 
 export default function VirtualEvents() {
@@ -50,7 +50,7 @@ export default function VirtualEvents() {
       <PageHeader
         title="Virtual & Hybrid Events in Ireland"
         subtitle="Professional production for online and hybrid audiences"
-        backgroundImage={hero || heroFallback}
+        backgroundImage={hero}
         backgroundAlt="Virtual event production studio setup in Ireland"
       />
       <div className="container mx-auto px-4 py-12">

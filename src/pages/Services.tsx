@@ -1,12 +1,12 @@
 import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
-import { usePageHero } from "@/hooks/usePageHero";
+import { useServiceImages } from "@/hooks/useServiceImages";
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Monitor, Volume2, Lightbulb, Theater, Clapperboard, Video, Wifi } from "lucide-react";
-import heroFallback from "@/assets/hero-av-production.jpg";
+
 
 const services = [
   { title: "LED Video Walls", description: "High-resolution LED displays for conferences, launches, and corporate events. Custom sizes and on-site operation.", href: "/services/led-video-walls", icon: Monitor },
@@ -19,7 +19,7 @@ const services = [
 ];
 
 export default function Services() {
-  const heroImage = usePageHero("hero-services", heroFallback);
+  const { hero } = useServiceImages("hero-services");
   useSeo({
     title: "Event Production Services | AV Hire Ireland | EventSound",
     description: "Complete event production services across Ireland. LED video walls, sound systems, lighting design, staging, video production, and virtual event solutions. Professional AV equipment hire with experienced crew.",
@@ -28,7 +28,7 @@ export default function Services() {
 
   return (
     <PageShell>
-      <PageHeader title="Our Services" subtitle="" backgroundImage={heroImage} backgroundAlt="Professional AV production setup at a corporate event in Ireland" />
+      <PageHeader title="Our Services" subtitle="" backgroundImage={hero} backgroundAlt="Professional AV production setup at a corporate event in Ireland" />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <div className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-6 md:p-8">

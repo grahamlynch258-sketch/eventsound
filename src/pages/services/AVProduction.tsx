@@ -5,7 +5,7 @@ import { generateFAQSchema, generateServiceSchema, generateBreadcrumbSchema } fr
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
-import heroFallback from "@/assets/hero-av-production.jpg";
+
 import { BrandBanner } from "@/components/site/BrandSidebar";
 
 export default function AVProduction() {
@@ -50,7 +50,7 @@ export default function AVProduction() {
       <PageHeader
         title="AV Production & Conference AV in Ireland"
         subtitle="Complete audiovisual solutions for corporate events and conferences"
-        backgroundImage={hero || heroFallback}
+        backgroundImage={hero}
         backgroundAlt="Professional AV production setup at a conference in Ireland"
       />
       <div className="container mx-auto px-4 py-12">

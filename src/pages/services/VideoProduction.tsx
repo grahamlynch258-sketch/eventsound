@@ -5,7 +5,7 @@ import { generateFAQSchema, generateServiceSchema, generateBreadcrumbSchema } fr
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
-import heroFallback from "@/assets/category-video-recording.jpg";
+
 import { BrandBanner } from "@/components/site/BrandSidebar";
 
 export default function VideoProduction() {
@@ -47,7 +47,7 @@ export default function VideoProduction() {
 
   return (
     <PageShell>
-      <PageHeader title="Video Production & Streaming in Ireland" subtitle="Capture and broadcast your event to any audience" backgroundImage={hero || heroFallback} backgroundAlt="Multi-camera video production at a live event in Ireland" />
+      <PageHeader title="Video Production & Streaming in Ireland" subtitle="Capture and broadcast your event to any audience" backgroundImage={hero} backgroundAlt="Multi-camera video production at a live event in Ireland" />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6 text-center">
           <p className="text-lg text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
