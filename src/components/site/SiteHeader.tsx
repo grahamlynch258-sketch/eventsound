@@ -120,8 +120,8 @@ export function SiteHeader({ className }: { className?: string }) {
       )}
     >
       <div className="container flex h-16 items-center justify-between gap-6">
-        <Link to="/" className="font-serif text-xl font-semibold tracking-tight text-foreground">
-          Event<span className="text-accent"> Sound</span>
+        <Link to="/" className="flex items-center">
+          <img src="/Brand/logo_horizontal.png" alt="Event Sound" className="h-9 w-auto" />
         </Link>
 
         {/* Desktop nav */}
