@@ -10,7 +10,7 @@ const FAQ = () => {
   const faqs = [
     {
       question: "What areas do you serve?",
-      answer: "We're based in Dublin, Ireland and serve clients nationwide across the country. We regularly work at venues throughout Ireland."
+      answer: "We're based in Dublin, Ireland, and serve clients nationwide. We regularly work at venues throughout Ireland."
     },
     {
       question: "How far in advance should I book?",
@@ -95,7 +95,7 @@ const FAQ = () => {
         <div className="max-w-4xl mx-auto mt-12">
           <div className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-8 text-center">
             <h3 className="text-2xl font-bold mb-4 text-foreground">Still Have Questions?</h3>
-            <p className="text-muted-foreground mb-6">Get in touch and we will be happy to help with your event requirements</p>
+            <p className="text-muted-foreground mb-6">Get in touch, and we will be happy to help with your event requirements.</p>
             <Link to="/contact"><Button size="lg">Get a Quote</Button></Link>
           </div>
         </div>

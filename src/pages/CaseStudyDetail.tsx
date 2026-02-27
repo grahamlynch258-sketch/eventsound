@@ -240,7 +240,7 @@ const CaseStudyDetail = () => {
           <div className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-8 text-center">
             <h3 className="text-2xl font-bold mb-4 text-foreground">Need Similar Services?</h3>
             <p className="text-muted-foreground mb-6">
-              Get in touch to discuss your event production needs
+              Get in touch to discuss your event production needs.
             </p>
             <Link to="/contact"><Button size="lg">Get a Quote</Button></Link>
           </div>

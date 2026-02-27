@@ -9,7 +9,7 @@ export const faqs: FaqCategory[] = [
     items: [
       {
         question: "What areas do you serve?",
-        answer: "We're based in Dublin, Ireland and serve clients nationwide across the country. We regularly deliver events throughout Ireland and are happy to travel for the right project.",
+        answer: "We're based in Dublin, Ireland, and serve clients nationwide. We regularly deliver events throughout Ireland and are happy to travel for the right project.",
       },
       {
         question: "How do I get a quote for my event?",

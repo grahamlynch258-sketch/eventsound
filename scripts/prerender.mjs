@@ -121,7 +121,7 @@ const SERVICE_PAGE_SCHEMAS = {
       { question: "Do you provide a lighting designer for my event?", answer: "Yes — every lighting hire includes an experienced lighting technician who will program and operate the rig throughout your event. For larger productions, we provide a dedicated lighting designer who works with you on the creative vision." },
       { question: "How does lighting design affect the audience experience?", answer: "Lighting sets the mood, directs attention, and creates atmosphere. Good lighting design can transform a plain venue into an immersive experience, improve video and photography quality, and keep audiences engaged throughout the event." },
       { question: "How early do you need to set up stage lighting?", answer: "Typically 4-8 hours before the event for a standard corporate or conference setup. Festival stages and complex productions may require a full day. We always coordinate load-in schedules with your venue and other suppliers." },
-      { question: "Can you match lighting to our brand colours?", answer: "Yes — LED fixtures can be programmed to any colour. We regularly match lighting to corporate brand guidelines, event themes, and sponsor requirements. Just share your brand colours and we will programme them into the rig." },
+      { question: "Can you match lighting to our brand colours?", answer: "Yes — LED fixtures can be programmed to any colour. We regularly match lighting to corporate brand guidelines, event themes, and sponsor requirements. Just share your brand colours, and we will programme them into the rig." },
     ],
     service: { name: "Event Lighting Design & Hire", description: "Professional event lighting design and hire in Ireland. Stage lighting, uplighting, moving heads, and custom mood lighting for conferences, concerts and corporate events.", serviceType: "Event Lighting Hire", url: "https://eventsound.ie/services/lighting-design" },
     breadcrumb: [
@@ -218,7 +218,7 @@ const SERVICE_PAGE_SCHEMAS = {
 };
 
 const FAQ_PAGE_QUESTIONS = [
-  { question: "What areas do you serve?", answer: "We're based in Dublin, Ireland and serve clients nationwide across the country. We regularly work at venues throughout Ireland." },
+  { question: "What areas do you serve?", answer: "We're based in Dublin, Ireland, and serve clients nationwide. We regularly work at venues throughout Ireland." },
   { question: "How far in advance should I book?", answer: "We recommend booking as early as possible, especially for peak season (September-December). However, we can often accommodate last-minute requests depending on availability." },
   { question: "Do you provide setup and breakdown?", answer: "Yes, all our services include professional setup, operation during your event, and breakdown. Our experienced crew ensures everything runs smoothly." },
   { question: "What size events do you cater for?", answer: "We handle events of all sizes, from intimate corporate meetings to large-scale conferences and concerts with thousands of attendees." },

@@ -14,7 +14,7 @@ const servicesLinks = [
   { to: "/services/led-video-walls", label: "LED Video Walls", icon: Monitor, description: "High-resolution LED displays" },
   { to: "/services/av-production", label: "AV Production", icon: Volume2, description: "Complete conference AV solutions" },
   { to: "/services/lighting-design", label: "Lighting Design", icon: Lightbulb, description: "Stage and architectural lighting" },
-  { to: "/services/staging-pipe-drape", label: "Staging & Pipe & Drape", icon: Theater, description: "Safe, TUV-certified staging" },
+  { to: "/services/staging-pipe-drape", label: "Staging, Pipe & Drape", icon: Theater, description: "Safe, TUV-certified staging" },
   { to: "/services/event-production", label: "Event Production", icon: Clapperboard, description: "End-to-end production management" },
   { to: "/services/video-production", label: "Video Production", icon: Video, description: "Multi-camera capture and streaming" },
   { to: "/services/virtual-events", label: "Virtual & Hybrid Events", icon: Wifi, description: "Online and hybrid event production" },

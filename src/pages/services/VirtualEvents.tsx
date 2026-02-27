@@ -64,7 +64,7 @@ export default function VirtualEvents() {
           </p>
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Virtual Event Studio Setups</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            For fully virtual events, we can transform any venue or meeting room into a professional broadcast studio. This includes multi-camera setups, branded backdrops, professional lighting, teleprompter, and dedicated internet connectivity. We manage the entire technical production so your presenters can focus on delivering their content with confidence.
+            For fully virtual events, we can transform any venue or meeting room into a professional broadcast studio. This includes multi-camera setups, branded backdrops, professional lighting, a teleprompter, and dedicated internet connectivity. We manage the entire technical production so your presenters can focus on delivering their content with confidence.
           </p>
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Why EventSound for Virtual Events?</h2>
           <div className="text-left inline-block">
