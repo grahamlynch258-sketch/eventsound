@@ -1,7 +1,6 @@
 import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
-import { generateFAQSchema, generateServiceSchema, generateBreadcrumbSchema } from "@/lib/schema";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
@@ -18,31 +17,11 @@ export default function AVProduction() {
     { question: "Do you carry backup equipment?", answer: "Yes — we carry backup for all critical equipment including spare microphones, cables, laptops, and switching systems. Our technicians are trained to swap faulty equipment within minutes so your event is never disrupted." }
   ];
 
-  const serviceSchema = generateServiceSchema({
-    name: "AV Production & Hire",
-    description: "Professional AV production and equipment hire in Ireland. PA systems, microphones, mixing, projection, and full technical crew for conferences, concerts and corporate events.",
-    serviceType: "AV Equipment Hire",
-    url: "https://eventsound.ie/services/av-production"
-  });
-
-  const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Home", url: "https://eventsound.ie/" },
-    { name: "Services", url: "https://eventsound.ie/services" },
-    { name: "AV Production", url: "https://eventsound.ie/services/av-production" }
-  ]);
-
   useSeo({
     title: "AV Production & Conference AV Supplier Ireland | EventSound",
     description: "Professional AV production and conference AV solutions across Ireland. L-Acoustics sound, LED video walls, lighting, and full technical crew for corporate events and conferences.",
     canonical: "https://eventsound.ie/services/av-production",
-    schema: generateFAQSchema({ questions: faqs }),
-    schemaId: "faq-schema",
-    additionalSchemas: [
-      { schema: serviceSchema, id: "service-schema" },
-      { schema: breadcrumbSchema, id: "breadcrumb-schema" }
-    ]
   });
-
   const { hero, gallery } = useServiceImages("service-av-production");
 
   return (
