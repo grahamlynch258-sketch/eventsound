@@ -1,7 +1,6 @@
 import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
-import { generateFAQSchema } from "@/lib/schema";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import heroFallback from "@/assets/hero-av-production.jpg";
@@ -58,16 +57,12 @@ const FAQ = () => {
     }
   ];
 
-  const faqSchema = generateFAQSchema({ questions: faqs });
-
   useSeo({
     title: "FAQ | EventSound Event Production Ireland",
     description: "Frequently asked questions about EventSound's event production and AV hire services in Ireland. Learn about our services, coverage areas, and booking process.",
     canonical: "https://eventsound.ie/faq",
     ogTitle: "FAQ | EventSound Ireland",
     ogDescription: "Frequently asked questions about our event production and AV hire services in Ireland.",
-    schema: faqSchema,
-    schemaId: "faq-schema"
   });
 
   return (

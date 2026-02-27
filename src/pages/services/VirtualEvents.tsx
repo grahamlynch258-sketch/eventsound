@@ -1,7 +1,6 @@
 import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
-import { generateFAQSchema, generateServiceSchema, generateBreadcrumbSchema } from "@/lib/schema";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
@@ -18,31 +17,11 @@ export default function VirtualEvents() {
     { question: "Do you provide a studio for virtual events?", answer: "We can transform any suitable space into a professional virtual studio with branded backdrops, lighting, cameras, and teleprompters. We also work with dedicated studio venues in Dublin if you need a purpose-built environment." }
   ];
 
-  const serviceSchema = generateServiceSchema({
-    name: "Virtual & Hybrid Event Production",
-    description: "Professional virtual and hybrid event production in Ireland. Live streaming, remote speaker integration, and platform management for conferences and corporate events.",
-    serviceType: "Virtual Event Production",
-    url: "https://eventsound.ie/services/virtual-events"
-  });
-
-  const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Home", url: "https://eventsound.ie/" },
-    { name: "Services", url: "https://eventsound.ie/services" },
-    { name: "Virtual Events", url: "https://eventsound.ie/services/virtual-events" }
-  ]);
-
   useSeo({
     title: "Hybrid & Virtual Events Dublin & Ireland | Live Streaming | EventSound",
     description: "Professional virtual and hybrid event production across Ireland. Studio setups, live streaming, audience interaction tools, and full technical management for online events.",
     canonical: "https://eventsound.ie/services/virtual-events",
-    schema: generateFAQSchema({ questions: faqs }),
-    schemaId: "faq-schema",
-    additionalSchemas: [
-      { schema: serviceSchema, id: "service-schema" },
-      { schema: breadcrumbSchema, id: "breadcrumb-schema" }
-    ]
   });
-
   const { hero, gallery } = useServiceImages("service-virtual");
 
   return (

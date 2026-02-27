@@ -1,7 +1,6 @@
 import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
-import { generateFAQSchema, generateServiceSchema, generateBreadcrumbSchema } from "@/lib/schema";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
@@ -17,31 +16,11 @@ export default function LEDVideoWalls() {
     { question: "What is the difference between LED walls and projection screens?", answer: "LED walls are significantly brighter, work in daylight conditions, and offer superior image quality. Projection screens are affected by ambient light and are generally only suitable for darker indoor venues. For most events in Ireland, LED walls deliver a far better audience experience." }
   ];
 
-  const serviceSchema = generateServiceSchema({
-    name: "LED Video Wall Hire",
-    description: "Professional LED video wall hire for conferences, concerts, festivals and corporate events across Ireland. Custom configurations from 2m² to 50m²+.",
-    serviceType: "LED Screen Rental",
-    url: "https://eventsound.ie/services/led-video-walls"
-  });
-
-  const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Home", url: "https://eventsound.ie/" },
-    { name: "Services", url: "https://eventsound.ie/services" },
-    { name: "LED Video Walls", url: "https://eventsound.ie/services/led-video-walls" }
-  ]);
-
   useSeo({
     title: "LED Screen & Video Wall Hire Dublin & Ireland | EventSound",
     description: "Professional LED video wall hire for corporate events, conferences, and live shows across Ireland. Custom sizes, content playback, and on-site operation included.",
     canonical: "https://eventsound.ie/services/led-video-walls",
-    schema: generateFAQSchema({ questions: faqs }),
-    schemaId: "faq-schema",
-    additionalSchemas: [
-      { schema: serviceSchema, id: "service-schema" },
-      { schema: breadcrumbSchema, id: "breadcrumb-schema" }
-    ]
   });
-
   const { hero, gallery } = useServiceImages("service-led-walls");
 
   return (
