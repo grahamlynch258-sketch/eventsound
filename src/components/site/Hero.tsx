@@ -11,6 +11,7 @@ export function Hero() {
         <HeroSlideshow fallbackImage={heroFallback} />
         <div className="absolute inset-0 bg-background/60" />
       </div>
+      <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-b from-transparent to-background z-[1] pointer-events-none" />
       <div className="container relative z-10 py-24 md:py-32 text-center">
         <p className="section-kicker mb-4">Professional Event Production — Ireland</p>
         <h1 className="text-4xl md:text-6xl font-bold tracking-tight max-w-3xl leading-tight mx-auto transition-transform duration-300 hover:scale-[1.06] cursor-default">
