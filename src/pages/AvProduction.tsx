@@ -123,8 +123,8 @@ export default function AvProduction() {
                   transition={{ delay: i * 0.08, duration: 0.4 }}
                   className="rounded-xl border border-border/50 bg-card p-6"
                 >
-                  <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary/10 mb-4">
-                    <s.icon className="h-5 w-5 text-primary" />
+                  <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-accent/10 mb-4">
+                    <s.icon className="h-5 w-5 text-accent" />
                   </div>
                   <h3 className="font-serif text-lg font-semibold mb-3">{s.title}</h3>
                   <ul className="space-y-2">

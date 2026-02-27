@@ -122,7 +122,7 @@ export default function About() {
             <h1 className="text-4xl md:text-5xl font-semibold tracking-tight">
               {about.headline}
             </h1>
-            <div className="mt-8 rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-6 md:p-8">
+            <div className="mt-8 rounded-xl border border-accent/30 bg-card/40 backdrop-blur-sm p-6 md:p-8">
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p className="text-base md:text-lg text-foreground/90">{about.intro}</p>
                 {about.body.map((p, i) => (
@@ -152,8 +152,8 @@ export default function About() {
                   transition={{ delay: i * 0.08, duration: 0.4 }}
                   className="rounded-xl border border-border/50 bg-card p-6 text-center"
                 >
-                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 mb-4">
-                    <h.icon className="h-5 w-5 text-primary" />
+                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 mb-4">
+                    <h.icon className="h-5 w-5 text-accent" />
                   </div>
                   <h3 className="font-serif text-lg font-semibold mb-2">{h.title}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{h.text}</p>
@@ -170,7 +170,7 @@ export default function About() {
             <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-6">
               {about.healthAndSafety.headline}
             </h2>
-            <div className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-6 md:p-8">
+            <div className="rounded-xl border border-accent/30 bg-card/40 backdrop-blur-sm p-6 md:p-8">
               <p className="text-muted-foreground leading-relaxed mb-4">
                 {about.healthAndSafety.body}
               </p>

@@ -154,7 +154,7 @@ const CaseStudies = () => {
                     {caseStudy.category && (
                       <Badge className="mb-2 w-fit">{caseStudy.category}</Badge>
                     )}
-                    <CardTitle className="group-hover:text-primary transition-colors">
+                    <CardTitle className="group-hover:text-accent transition-colors">
                       {caseStudy.title}
                     </CardTitle>
                   </CardHeader>

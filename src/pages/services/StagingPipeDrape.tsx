@@ -102,9 +102,9 @@ export default function StagingPipeDrape() {
             <h2 className="text-3xl font-bold text-foreground mb-8 transition-transform duration-300 hover:scale-[1.05] cursor-default">Frequently Asked Questions</h2>
             <div className="space-y-6">
               {faqs.map((faq, i) => (
-                <div key={i} className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-6 transition-transform duration-300 hover:scale-[1.03] cursor-default">
-                  <div className="rounded-lg bg-primary/10 border border-primary/20 px-4 py-3 mb-4">
-                    <h3 className="text-lg font-semibold text-primary">{faq.question}</h3>
+                <div key={i} className="rounded-xl border border-accent/30 bg-card/40 backdrop-blur-sm p-6 transition-transform duration-300 hover:scale-[1.03] cursor-default">
+                  <div className="rounded-lg bg-accent/10 border border-accent/20 px-4 py-3 mb-4">
+                    <h3 className="text-lg font-semibold text-accent">{faq.question}</h3>
                   </div>
                   <div className="rounded-lg bg-card/60 border border-border/30 px-4 py-3">
                     <p className="text-foreground/90 leading-relaxed">{faq.answer}</p>

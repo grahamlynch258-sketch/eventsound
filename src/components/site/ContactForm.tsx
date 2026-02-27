@@ -171,7 +171,7 @@ export function ContactForm() {
           {STEPS.map((label, i) => (
             <span
               key={label}
-              className={i + 1 <= step ? "text-primary font-medium" : "text-muted-foreground"}
+              className={i + 1 <= step ? "text-accent font-medium" : "text-muted-foreground"}
             >
               {label}
             </span>
@@ -277,7 +277,7 @@ export function ContactForm() {
                   key={service}
                   className={`flex items-center gap-3 rounded-lg border p-3 cursor-pointer transition-colors ${
                     servicesNeeded.includes(service)
-                      ? "border-primary bg-primary/5"
+                      ? "border-accent bg-accent/5"
                       : "border-border"
                   }`}
                 >

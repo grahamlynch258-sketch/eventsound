@@ -46,7 +46,7 @@ export function PageHeader({ title, subtitle, backgroundImage, backgroundAlt, ch
   }
 
   return (
-    <section className="bg-gradient-to-br from-primary/10 to-primary/5 py-16 md:py-24">
+    <section className="bg-gradient-to-br from-accent/10 to-accent/5 py-16 md:py-24">
       <div className="container mx-auto px-4 text-center">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">{title}</h1>
         {subtitle && <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">{subtitle}</p>}

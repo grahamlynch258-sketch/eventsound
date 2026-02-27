@@ -26,7 +26,7 @@ export function CTASection({
 
   return (
     <section className="relative border-y border-border/50 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-accent/5 via-transparent to-transparent pointer-events-none" />
       <div className="container relative py-20 md:py-28">
         <div className="max-w-3xl mx-auto text-center">
           <p className="section-kicker mb-4">Ready?</p>

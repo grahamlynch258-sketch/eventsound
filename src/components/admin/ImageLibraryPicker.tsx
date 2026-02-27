@@ -85,7 +85,7 @@ export default function ImageLibraryPicker({ onSelect, trigger }: ImageLibraryPi
                     <button
                       key={img.id}
                       onClick={() => handleSelect(img.image_url)}
-                      className="group relative aspect-video overflow-hidden rounded-lg border bg-muted hover:ring-2 hover:ring-primary transition-all"
+                      className="group relative aspect-video overflow-hidden rounded-lg border bg-muted hover:ring-2 hover:ring-accent transition-all"
                     >
                       <img
                         src={img.image_url}
