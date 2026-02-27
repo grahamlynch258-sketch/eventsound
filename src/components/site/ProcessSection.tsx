@@ -34,10 +34,10 @@ export function ProcessSection() {
               className="relative text-center md:text-left"
             >
               {i < steps.length - 1 && (
-                <div className="hidden md:block absolute top-7 left-[60%] w-[80%] h-px bg-gradient-to-r from-primary/30 to-transparent" />
+                <div className="hidden md:block absolute top-7 left-[60%] w-[80%] h-px bg-gradient-to-r from-accent/30 to-transparent" />
               )}
-              <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-primary/20 bg-primary/10 mb-4">
-                <s.icon className="h-6 w-6 text-primary" />
+              <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-accent/20 bg-accent/10 mb-4">
+                <s.icon className="h-6 w-6 text-accent" />
               </div>
               <p className="section-kicker mb-1">Step {s.step}</p>
               <h3 className="font-serif text-lg font-semibold mb-2">{s.title}</h3>

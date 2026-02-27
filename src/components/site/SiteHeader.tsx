@@ -37,9 +37,9 @@ const CONNECT_PATHS = connectLinks.map((l) => l.to);
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
   cn(
-    "text-sm font-medium tracking-wide transition-colors hover:text-primary relative",
-    "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 hover:after:scale-x-100",
-    isActive ? "text-primary after:scale-x-100" : "text-muted-foreground",
+    "text-sm font-medium tracking-wide transition-colors hover:text-accent relative",
+    "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 hover:after:scale-x-100",
+    isActive ? "text-accent after:scale-x-100" : "text-muted-foreground",
   );
 
 export function SiteHeader({ className }: { className?: string }) {
@@ -121,7 +121,7 @@ export function SiteHeader({ className }: { className?: string }) {
     >
       <div className="container flex h-16 items-center justify-between gap-6">
         <Link to="/" className="font-serif text-xl font-semibold tracking-tight text-foreground">
-          Event<span className="text-primary"> Sound</span>
+          Event<span className="text-accent"> Sound</span>
         </Link>
 
         {/* Desktop nav */}
@@ -137,9 +137,9 @@ export function SiteHeader({ className }: { className?: string }) {
             <button
               onClick={() => setServicesOpen((o) => !o)}
               className={cn(
-                "flex items-center gap-1 text-sm font-medium tracking-wide transition-colors hover:text-primary relative",
-                "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 hover:after:scale-x-100",
-                servicesActive ? "text-primary after:scale-x-100" : "text-muted-foreground",
+                "flex items-center gap-1 text-sm font-medium tracking-wide transition-colors hover:text-accent relative",
+                "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 hover:after:scale-x-100",
+                servicesActive ? "text-accent after:scale-x-100" : "text-muted-foreground",
               )}
               aria-haspopup="true"
               aria-expanded={servicesOpen}
@@ -157,15 +157,15 @@ export function SiteHeader({ className }: { className?: string }) {
                     key={to}
                     to={to}
                     className={cn(
-                      "flex items-start gap-3 px-4 py-3 transition-colors hover:bg-primary/10 group",
-                      location.pathname === to && "bg-primary/10",
+                      "flex items-start gap-3 px-4 py-3 transition-colors hover:bg-accent/10 group",
+                      location.pathname === to && "bg-accent/10",
                     )}
                   >
-                    <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                      <Icon className="h-3.5 w-3.5 text-primary" />
+                    <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-accent/10 group-hover:bg-accent/20 transition-colors">
+                      <Icon className="h-3.5 w-3.5 text-accent" />
                     </div>
                     <div>
-                      <p className={cn("text-sm font-medium", location.pathname === to ? "text-primary" : "text-foreground")}>
+                      <p className={cn("text-sm font-medium", location.pathname === to ? "text-accent" : "text-foreground")}>
                         {label}
                       </p>
                       <p className="text-xs text-muted-foreground">{description}</p>
@@ -181,9 +181,9 @@ export function SiteHeader({ className }: { className?: string }) {
             <button
               onClick={() => setPortfolioOpen((o) => !o)}
               className={cn(
-                "flex items-center gap-1 text-sm font-medium tracking-wide transition-colors hover:text-primary relative",
-                "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 hover:after:scale-x-100",
-                portfolioActive ? "text-primary after:scale-x-100" : "text-muted-foreground",
+                "flex items-center gap-1 text-sm font-medium tracking-wide transition-colors hover:text-accent relative",
+                "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 hover:after:scale-x-100",
+                portfolioActive ? "text-accent after:scale-x-100" : "text-muted-foreground",
               )}
               aria-haspopup="true"
               aria-expanded={portfolioOpen}
@@ -201,15 +201,15 @@ export function SiteHeader({ className }: { className?: string }) {
                     key={to}
                     to={to}
                     className={cn(
-                      "flex items-start gap-3 px-4 py-3 transition-colors hover:bg-primary/10 group",
-                      location.pathname === to && "bg-primary/10",
+                      "flex items-start gap-3 px-4 py-3 transition-colors hover:bg-accent/10 group",
+                      location.pathname === to && "bg-accent/10",
                     )}
                   >
-                    <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                      <Icon className="h-3.5 w-3.5 text-primary" />
+                    <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-accent/10 group-hover:bg-accent/20 transition-colors">
+                      <Icon className="h-3.5 w-3.5 text-accent" />
                     </div>
                     <div>
-                      <p className={cn("text-sm font-medium", location.pathname === to ? "text-primary" : "text-foreground")}>
+                      <p className={cn("text-sm font-medium", location.pathname === to ? "text-accent" : "text-foreground")}>
                         {label}
                       </p>
                       <p className="text-xs text-muted-foreground">{description}</p>
@@ -225,9 +225,9 @@ export function SiteHeader({ className }: { className?: string }) {
             <button
               onClick={() => setDropdownOpen((o) => !o)}
               className={cn(
-                "flex items-center gap-1 text-sm font-medium tracking-wide transition-colors hover:text-primary relative",
-                "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 hover:after:scale-x-100",
-                connectActive ? "text-primary after:scale-x-100" : "text-muted-foreground",
+                "flex items-center gap-1 text-sm font-medium tracking-wide transition-colors hover:text-accent relative",
+                "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 hover:after:scale-x-100",
+                connectActive ? "text-accent after:scale-x-100" : "text-muted-foreground",
               )}
               aria-haspopup="true"
               aria-expanded={dropdownOpen}
@@ -245,15 +245,15 @@ export function SiteHeader({ className }: { className?: string }) {
                     key={to}
                     to={to}
                     className={cn(
-                      "flex items-start gap-3 px-4 py-3 transition-colors hover:bg-primary/10 group",
-                      location.pathname === to && "bg-primary/10",
+                      "flex items-start gap-3 px-4 py-3 transition-colors hover:bg-accent/10 group",
+                      location.pathname === to && "bg-accent/10",
                     )}
                   >
-                    <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                      <Icon className="h-3.5 w-3.5 text-primary" />
+                    <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-accent/10 group-hover:bg-accent/20 transition-colors">
+                      <Icon className="h-3.5 w-3.5 text-accent" />
                     </div>
                     <div>
-                      <p className={cn("text-sm font-medium", location.pathname === to ? "text-primary" : "text-foreground")}>
+                      <p className={cn("text-sm font-medium", location.pathname === to ? "text-accent" : "text-foreground")}>
                         {label}
                       </p>
                       <p className="text-xs text-muted-foreground">{description}</p>
@@ -293,7 +293,7 @@ export function SiteHeader({ className }: { className?: string }) {
               className={({ isActive }) =>
                 cn(
                   "py-3.5 px-4 rounded-lg text-base font-medium transition-colors",
-                  isActive ? "text-primary bg-primary/10" : "text-muted-foreground hover:text-foreground hover:bg-secondary/50",
+                  isActive ? "text-accent bg-accent/10" : "text-muted-foreground hover:text-foreground hover:bg-secondary/50",
                 )
               }
               onClick={() => setMobileOpen(false)}
@@ -309,7 +309,7 @@ export function SiteHeader({ className }: { className?: string }) {
               onClick={() => setServicesMobileOpen((o) => !o)}
               className={cn(
                 "flex w-full items-center justify-between text-xs font-semibold uppercase tracking-widest transition-colors",
-                servicesActive ? "text-primary" : "text-muted-foreground/60 hover:text-muted-foreground",
+                servicesActive ? "text-accent" : "text-muted-foreground/60 hover:text-muted-foreground",
               )}
             >
               Services
@@ -325,7 +325,7 @@ export function SiteHeader({ className }: { className?: string }) {
               className={({ isActive }) =>
                 cn(
                   "flex items-center gap-3 py-3 px-6 rounded-lg text-base font-medium transition-colors",
-                  isActive ? "text-primary bg-primary/10" : "text-muted-foreground hover:text-foreground hover:bg-secondary/50",
+                  isActive ? "text-accent bg-accent/10" : "text-muted-foreground hover:text-foreground hover:bg-secondary/50",
                 )
               }
               onClick={() => setMobileOpen(false)}
@@ -341,7 +341,7 @@ export function SiteHeader({ className }: { className?: string }) {
               onClick={() => setPortfolioMobileOpen((o) => !o)}
               className={cn(
                 "flex w-full items-center justify-between text-xs font-semibold uppercase tracking-widest transition-colors",
-                portfolioActive ? "text-primary" : "text-muted-foreground/60 hover:text-muted-foreground",
+                portfolioActive ? "text-accent" : "text-muted-foreground/60 hover:text-muted-foreground",
               )}
             >
               Portfolio
@@ -357,7 +357,7 @@ export function SiteHeader({ className }: { className?: string }) {
               className={({ isActive }) =>
                 cn(
                   "flex items-center gap-3 py-3 px-6 rounded-lg text-base font-medium transition-colors",
-                  isActive ? "text-primary bg-primary/10" : "text-muted-foreground hover:text-foreground hover:bg-secondary/50",
+                  isActive ? "text-accent bg-accent/10" : "text-muted-foreground hover:text-foreground hover:bg-secondary/50",
                 )
               }
               onClick={() => setMobileOpen(false)}
@@ -378,7 +378,7 @@ export function SiteHeader({ className }: { className?: string }) {
               className={({ isActive }) =>
                 cn(
                   "flex items-center gap-3 py-3.5 px-4 rounded-lg text-base font-medium transition-colors",
-                  isActive ? "text-primary bg-primary/10" : "text-muted-foreground hover:text-foreground hover:bg-secondary/50",
+                  isActive ? "text-accent bg-accent/10" : "text-muted-foreground hover:text-foreground hover:bg-secondary/50",
                 )
               }
               onClick={() => setMobileOpen(false)}

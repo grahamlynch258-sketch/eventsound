@@ -81,9 +81,9 @@ const FAQ = () => {
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto space-y-6">
           {faqs.map((faq, index) => (
-            <div key={index} className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-6">
-              <div className="rounded-lg bg-primary/10 border border-primary/20 px-4 py-3 mb-4">
-                <h3 className="text-lg font-semibold text-primary">{faq.question}</h3>
+            <div key={index} className="rounded-xl border border-accent/30 bg-card/40 backdrop-blur-sm p-6">
+              <div className="rounded-lg bg-accent/10 border border-accent/20 px-4 py-3 mb-4">
+                <h3 className="text-lg font-semibold text-accent">{faq.question}</h3>
               </div>
               <div className="rounded-lg bg-card/60 border border-border/30 px-4 py-3">
                 <p className="text-foreground/90 leading-relaxed">{faq.answer}</p>
@@ -93,7 +93,7 @@ const FAQ = () => {
         </div>
 
         <div className="max-w-4xl mx-auto mt-12">
-          <div className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-8 text-center">
+          <div className="rounded-xl border border-accent/30 bg-card/40 backdrop-blur-sm p-8 text-center">
             <h3 className="text-2xl font-bold mb-4 text-foreground">Still Have Questions?</h3>
             <p className="text-muted-foreground mb-6">Get in touch, and we will be happy to help with your event requirements.</p>
             <Link to="/contact"><Button size="lg">Get a Quote</Button></Link>

@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { format } from "date-fns";
 
 const statusColors: Record<string, string> = {
-  new: "bg-primary/10 text-primary",
+  new: "bg-accent/10 text-accent",
   contacted: "bg-blue-500/10 text-blue-400",
   quoted: "bg-amber-500/10 text-amber-400",
   confirmed: "bg-green-500/10 text-green-400",
@@ -103,7 +103,7 @@ export default function AdminQuotes() {
                 {q.services && q.services.length > 0 && (
                   <div className="flex flex-wrap gap-1 mb-3">
                     {q.services.map((s: string) => (
-                      <span key={s} className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">{s}</span>
+                      <span key={s} className="text-xs bg-accent/10 text-accent px-2 py-0.5 rounded-full">{s}</span>
                     ))}
                   </div>
                 )}

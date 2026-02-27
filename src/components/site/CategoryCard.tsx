@@ -26,12 +26,12 @@ export function CategoryCard({ title, imageSrc, to, className }: CategoryCardPro
           <div className="absolute inset-x-0 bottom-0 p-5 flex items-end justify-between">
             <div>
               <p className="text-lg font-semibold tracking-tight">{title}</p>
-              <p className="mt-1 text-sm text-primary font-medium">
+              <p className="mt-1 text-sm text-accent font-medium">
                 View options
               </p>
             </div>
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 border border-primary/20 opacity-0 group-hover:opacity-100 transition-opacity">
-              <ArrowUpRight className="h-3.5 w-3.5 text-primary" />
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-accent/10 border border-accent/20 opacity-0 group-hover:opacity-100 transition-opacity">
+              <ArrowUpRight className="h-3.5 w-3.5 text-accent" />
             </div>
           </div>
         </div>

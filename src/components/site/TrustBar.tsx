@@ -33,8 +33,8 @@ export function TrustBar({ items }: { items?: TrustItem[] }) {
                 transition={{ delay: i * 0.1, duration: 0.5 }}
                 className="flex items-center gap-4"
               >
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 border border-primary/20">
-                  <Icon className="h-5 w-5 text-primary" />
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent/10 border border-accent/20">
+                  <Icon className="h-5 w-5 text-accent" />
                 </div>
                 <div>
                   <p className="text-2xl font-bold text-foreground tracking-tight">

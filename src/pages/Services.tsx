@@ -31,7 +31,7 @@ export default function Services() {
       <PageHeader title="Our Services" subtitle="" backgroundImage={hero} backgroundAlt="Professional AV production setup at a corporate event in Ireland" />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto text-center mb-12">
-          <div className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-6 md:p-8">
+          <div className="rounded-xl border border-accent/30 bg-card/40 backdrop-blur-sm p-6 md:p-8">
             <p className="text-muted-foreground leading-relaxed">
               EventSound is your complete event production partner — from initial brief to final breakdown. We supply, install, and operate professional AV equipment for corporate events, conferences, awards nights, gala dinners, festivals, and live shows across Ireland.
             </p>
@@ -41,10 +41,10 @@ export default function Services() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service) => (
             <Link key={service.href} to={service.href} className="group">
-              <Card className="h-full transition-colors hover:border-primary/50">
+              <Card className="h-full transition-colors hover:border-accent/50">
                 <CardContent className="p-6 space-y-3">
-                  <service.icon className="h-8 w-8 text-primary" />
-                  <h2 className="text-xl font-semibold group-hover:text-primary transition-colors">{service.title}</h2>
+                  <service.icon className="h-8 w-8 text-accent" />
+                  <h2 className="text-xl font-semibold group-hover:text-accent transition-colors">{service.title}</h2>
                   <p className="text-muted-foreground text-sm">{service.description}</p>
                 </CardContent>
               </Card>
@@ -54,7 +54,7 @@ export default function Services() {
 
         <div className="mt-16 max-w-2xl mx-auto text-center">
           <h2 className="text-2xl font-semibold mb-4">Need a Custom Package?</h2>
-          <div className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-6 md:p-8 mb-6">
+          <div className="rounded-xl border border-accent/30 bg-card/40 backdrop-blur-sm p-6 md:p-8 mb-6">
             <p className="text-muted-foreground leading-relaxed">
               Most events need a combination of services. Tell us about your event, and we'll put together a tailored production package with transparent pricing — no hidden fees.
             </p>

@@ -15,7 +15,7 @@ export default function LEDWallHireIreland() {
   return (
     <LandingShell>
       <section className="container mx-auto px-4 py-16 text-center">
-        <p className="text-primary font-medium mb-3">LED Video Wall Hire — Nationwide</p>
+        <p className="text-accent font-medium mb-3">LED Video Wall Hire — Nationwide</p>
         <h1 className="text-4xl md:text-5xl font-bold mb-6">Stunning LED Video Walls for Any Event</h1>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
           EventSound supplies, installs, and operates high-resolution LED video walls for conferences, corporate events, product launches, and live shows across Ireland. Unilumin panels, custom sizes, and experienced operators included.
@@ -58,7 +58,7 @@ export default function LEDWallHireIreland() {
             "Available nationwide: Dublin, Cork, Galway, Limerick, Belfast, and beyond",
           ].map((point) => (
             <div key={point} className="flex items-start gap-3">
-              <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+              <Check className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
               <p className="text-muted-foreground">{point}</p>
             </div>
           ))}
@@ -79,7 +79,7 @@ export default function LEDWallHireIreland() {
         </div>
       </section>
 
-      <section className="bg-primary/10 border-y border-primary/20 py-16">
+      <section className="bg-accent/10 border-y border-accent/20 py-16">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Hire LED Walls?</h2>
           <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-8">

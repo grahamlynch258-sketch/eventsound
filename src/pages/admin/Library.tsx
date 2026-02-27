@@ -184,7 +184,7 @@ export default function AdminLibrary() {
               </div>
 
               {cat.value.startsWith("hero-") && (
-                <div className="bg-primary/10 border border-primary/20 rounded-lg p-3 mb-4">
+                <div className="bg-accent/10 border border-accent/20 rounded-lg p-3 mb-4">
                   <p className="text-sm text-foreground">
                     <strong>Page Header Image:</strong> The most recently uploaded image in this category will be used as the hero banner for the{" "}
                     {cat.value === "hero-services" ? "Services" : cat.value === "hero-gallery" ? "Gallery" : cat.value === "hero-case-studies" ? "Case Studies" : "Portfolio"}{" "}

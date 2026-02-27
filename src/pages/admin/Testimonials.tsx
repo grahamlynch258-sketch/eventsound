@@ -111,11 +111,11 @@ export default function AdminTestimonials() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
                     <p className="font-semibold text-sm">{t.client_name}</p>
-                    {t.is_featured && <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">Featured</span>}
+                    {t.is_featured && <span className="text-xs bg-accent/10 text-accent px-2 py-0.5 rounded-full">Featured</span>}
                   </div>
                   <p className="text-xs text-muted-foreground mb-2">{t.client_role}{t.company ? `, ${t.company}` : ""}</p>
                   <p className="text-sm text-muted-foreground line-clamp-2">"{t.quote}"</p>
-                  <div className="flex gap-0.5 mt-1">{Array.from({ length: t.rating }).map((_, i) => <Star key={i} className="h-3 w-3 fill-primary text-primary" />)}</div>
+                  <div className="flex gap-0.5 mt-1">{Array.from({ length: t.rating }).map((_, i) => <Star key={i} className="h-3 w-3 fill-accent text-accent" />)}</div>
                 </div>
                 <div className="flex gap-1 shrink-0">
                   <Button variant="ghost" size="sm" onClick={() => startEdit(t)}>Edit</Button>

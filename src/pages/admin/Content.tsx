@@ -298,10 +298,10 @@ export default function AdminContent() {
                     : 1;
 
                   return (
-                    <Card className="border-2 border-primary/30 bg-primary/5">
+                    <Card className="border-2 border-accent/30 bg-accent/5">
                       <CardHeader className="pb-3">
                         <div className="flex items-center gap-2">
-                          <Palette className="h-5 w-5 text-primary" />
+                          <Palette className="h-5 w-5 text-accent" />
                           <CardTitle className="text-base">Shared Box Color — All Sections Below Hero</CardTitle>
                         </div>
                         <CardDescription>This single colour picker controls the background of all feature cards and the CTA section at the bottom.</CardDescription>

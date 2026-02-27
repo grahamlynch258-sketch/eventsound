@@ -42,12 +42,12 @@ export function TestimonialsSection() {
             transition={{ delay: i * 0.1, duration: 0.5 }}
             className="relative rounded-xl border border-border/50 bg-card p-6 md:p-8 flex flex-col"
           >
-            <Quote className="h-8 w-8 text-primary/20 mb-4" />
+            <Quote className="h-8 w-8 text-accent/20 mb-4" />
             <p className="text-sm text-foreground/90 leading-relaxed mb-6 flex-1 italic">"{t.quote}"</p>
             <div>
               <div className="flex items-center gap-1 mb-3">
                 {Array.from({ length: t.rating ?? 5 }).map((_, j) => (
-                  <Star key={j} className="h-3.5 w-3.5 fill-primary text-primary" />
+                  <Star key={j} className="h-3.5 w-3.5 fill-accent text-accent" />
                 ))}
               </div>
               <p className="text-sm font-semibold text-foreground">{t.client_name}</p>

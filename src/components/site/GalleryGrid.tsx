@@ -52,7 +52,7 @@ export function GalleryGrid({ selectedCategory, onCategoryChange }: GalleryGridP
             className={`px-4 py-1.5 rounded-full text-sm border transition-colors ${
               !selectedCategory
                 ? "bg-primary text-primary-foreground border-primary"
-                : "border-border hover:border-primary/50"
+                : "border-border hover:border-accent/50"
             }`}
             onClick={() => onCategoryChange(null)}
           >
@@ -64,7 +64,7 @@ export function GalleryGrid({ selectedCategory, onCategoryChange }: GalleryGridP
               className={`px-4 py-1.5 rounded-full text-sm border transition-colors ${
                 selectedCategory === cat
                   ? "bg-primary text-primary-foreground border-primary"
-                  : "border-border hover:border-primary/50"
+                  : "border-border hover:border-accent/50"
               }`}
               onClick={() => onCategoryChange(cat)}
             >

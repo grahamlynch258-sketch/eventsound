@@ -21,13 +21,13 @@ const Contact = () => {
             <h1 className="text-4xl md:text-5xl font-semibold tracking-tight">
               Contact Us
             </h1>
-            <div className="mt-6 rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-6 md:p-8">
+            <div className="mt-6 rounded-xl border border-accent/30 bg-card/40 backdrop-blur-sm p-6 md:p-8">
               <p className="text-muted-foreground leading-relaxed">
                 Tell us about your event and we'll put together a tailored production package. Whether you need a full AV setup or a single LED wall, we're here to help.
               </p>
             </div>
           </div>
-          <div className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-6 md:p-8">
+          <div className="rounded-xl border border-accent/30 bg-card/40 backdrop-blur-sm p-6 md:p-8">
             <ContactForm />
           </div>
         </div>

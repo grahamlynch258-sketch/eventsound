@@ -227,7 +227,7 @@ export default function AdminGallery() {
                     src={img.image_url}
                     alt={img.file_name}
                     className={`cursor-pointer border-2 rounded hover:opacity-75 ${
-                      formData.image_url === img.image_url ? "border-primary" : "border-transparent"
+                      formData.image_url === img.image_url ? "border-accent" : "border-transparent"
                     }`}
                     onClick={() => selectLibraryImage(img.image_url, img.file_name)}
                   />

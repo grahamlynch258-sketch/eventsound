@@ -139,9 +139,9 @@ const CaseStudyDetail = () => {
       <div className="bg-card/30 border-b border-border/50">
         <div className="container mx-auto px-4 py-4">
           <nav className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Link to="/" className="hover:text-primary transition-colors">Home</Link>
+            <Link to="/" className="hover:text-accent transition-colors">Home</Link>
             <span>/</span>
-            <Link to="/case-studies" className="hover:text-primary transition-colors">Case Studies</Link>
+            <Link to="/case-studies" className="hover:text-accent transition-colors">Case Studies</Link>
             <span>/</span>
             <span className="text-foreground">{caseStudy.title}</span>
           </nav>
@@ -220,7 +220,7 @@ const CaseStudyDetail = () => {
         {/* Excerpt */}
         {caseStudy.excerpt && (
           <div className="max-w-4xl mx-auto mb-8">
-            <div className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-6 md:p-8">
+            <div className="rounded-xl border border-accent/30 bg-card/40 backdrop-blur-sm p-6 md:p-8">
               <p className="text-lg text-foreground/90 leading-relaxed">{caseStudy.excerpt}</p>
             </div>
           </div>
@@ -228,7 +228,7 @@ const CaseStudyDetail = () => {
 
         {/* Body Content */}
         <div className="max-w-4xl mx-auto mb-12">
-          <div className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-6 md:p-8">
+          <div className="rounded-xl border border-accent/30 bg-card/40 backdrop-blur-sm p-6 md:p-8">
             <div className="whitespace-pre-wrap text-foreground/90 leading-relaxed text-base md:text-lg">
               {caseStudy.body_content}
             </div>
@@ -237,7 +237,7 @@ const CaseStudyDetail = () => {
 
         {/* Call to Action */}
         <div className="max-w-4xl mx-auto mb-12">
-          <div className="rounded-xl border border-primary/30 bg-card/40 backdrop-blur-sm p-8 text-center">
+          <div className="rounded-xl border border-accent/30 bg-card/40 backdrop-blur-sm p-8 text-center">
             <h3 className="text-2xl font-bold mb-4 text-foreground">Need Similar Services?</h3>
             <p className="text-muted-foreground mb-6">
               Get in touch to discuss your event production needs.
@@ -269,7 +269,7 @@ const CaseStudyDetail = () => {
                       </div>
                     )}
                     <CardContent className="p-4">
-                      <h3 className="font-semibold group-hover:text-primary transition-colors line-clamp-2">
+                      <h3 className="font-semibold group-hover:text-accent transition-colors line-clamp-2">
                         {related.title}
                       </h3>
                     </CardContent>

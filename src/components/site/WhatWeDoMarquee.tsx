@@ -158,7 +158,7 @@ export function WhatWeDoMarquee({ items, intervalSec = 2 }: WhatWeDoMarqueeProps
             }}
             aria-label={`Go to slide ${i + 1}`}
             className={`h-1.5 rounded-full transition-all duration-300 ${
-              i === startIndex ? "w-6 bg-primary" : "w-1.5 bg-border hover:bg-primary/50"
+              i === startIndex ? "w-6 bg-accent" : "w-1.5 bg-border hover:bg-accent/50"
             }`}
           />
         ))}
@@ -171,19 +171,19 @@ function ServiceCard({ item }: { item: MarqueeItem }) {
   const Icon = item.icon;
   const card = (
     <div
-      className="group relative flex flex-col rounded-xl border border-border/50 bg-card p-7 min-h-[220px] transition-colors duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 h-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+      className="group relative flex flex-col rounded-xl border border-border/50 bg-card p-7 min-h-[220px] transition-colors duration-300 hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5 h-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
       tabIndex={0}
     >
       {Icon && (
-        <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 mb-5 transition-colors group-hover:bg-primary/15">
-          <Icon className="h-6 w-6 text-primary" />
+        <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-accent/10 mb-5 transition-colors group-hover:bg-accent/15">
+          <Icon className="h-6 w-6 text-accent" />
         </div>
       )}
       <h3 className="font-serif text-xl font-semibold mb-3 text-foreground">{item.label}</h3>
       {item.description && (
         <p className="text-sm text-muted-foreground leading-relaxed flex-1">{item.description}</p>
       )}
-      <div className="absolute bottom-7 left-7 flex items-center gap-1 text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+      <div className="absolute bottom-7 left-7 flex items-center gap-1 text-xs font-medium text-accent opacity-0 group-hover:opacity-100 transition-opacity">
         Learn more <ArrowUpRight className="h-3 w-3" />
       </div>
     </div>
