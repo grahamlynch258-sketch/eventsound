@@ -20,7 +20,7 @@ export function ServicesGrid() {
           Full-service event production
         </h2>
         <p className="mt-4 text-muted-foreground leading-relaxed transition-transform duration-300 hover:scale-[1.05] cursor-default">
-          EventSound provides end-to-end event production and AV equipment hire for corporate events, conferences, awards ceremonies, gala dinners, and live shows across Ireland. As your dedicated production partner, we go beyond simple equipment hire — every piece of kit is delivered, installed, tested, and operated by our experienced crew. We work closely with your team from planning through to wrap, so you can focus on your event while we handle the technical production.
+          EventSound is your complete event production partner — from initial brief to final breakdown. We supply, install, and operate professional AV equipment for corporate events, conferences, awards nights, gala dinners, festivals, and live shows across Ireland.
         </p>
       </div>
 

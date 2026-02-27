@@ -1,5 +1,6 @@
+import { useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 interface MarqueeItem {
@@ -17,11 +18,25 @@ interface WhatWeDoMarqueeProps {
 
 export function WhatWeDoMarquee({ items, intervalSec = 3 }: WhatWeDoMarqueeProps) {
   const duration = items.length * intervalSec;
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  const shift = useCallback((dir: "left" | "right") => {
+    const el = trackRef.current;
+    if (!el) return;
+    const anim = el.getAnimations()[0];
+    if (!anim || anim.currentTime == null) return;
+    const shiftMs = intervalSec * 1000;
+    const totalMs = duration * 1000;
+    let newTime = (anim.currentTime as number) + (dir === "left" ? shiftMs : -shiftMs);
+    newTime = ((newTime % totalMs) + totalMs) % totalMs;
+    anim.currentTime = newTime;
+  }, [intervalSec, duration]);
 
   return (
     <div className="marquee-container relative py-6">
       <div className="overflow-hidden">
         <div
+          ref={trackRef}
           className="marquee-track flex gap-4"
           style={{ "--marquee-duration": `${duration}s` } as React.CSSProperties}
         >
@@ -38,6 +53,22 @@ export function WhatWeDoMarquee({ items, intervalSec = 3 }: WhatWeDoMarqueeProps
           ))}
         </div>
       </div>
+
+      <button
+        onClick={() => shift("right")}
+        aria-label="Previous"
+        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-card border border-border/50 shadow-md text-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+      >
+        <ChevronLeft className="h-5 w-5" />
+      </button>
+
+      <button
+        onClick={() => shift("left")}
+        aria-label="Next"
+        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-card border border-border/50 shadow-md text-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+      >
+        <ChevronRight className="h-5 w-5" />
+      </button>
     </div>
   );
 }
