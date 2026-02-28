@@ -66,21 +66,25 @@ function ServiceSectionList({ serviceKey }: { serviceKey: string }) {
       toast({ title: "Image and alt text are required", variant: "destructive" });
       return;
     }
-    const maxOrder = sections.reduce((max, s) => Math.max(max, s.sort_order), -1);
-    await createSection.mutateAsync({
-      service_key: serviceKey,
-      image_url: form.image_url,
-      file_name: form.file_name,
-      alt_text: form.alt_text,
-      title_attr: form.title_attr || null,
-      caption: form.caption || null,
-      section_heading: form.section_heading || null,
-      section_description: form.section_description || null,
-      sort_order: maxOrder + 1,
-    });
-    resetForm();
-    setIsAdding(false);
-    toast({ title: "Section added" });
+    try {
+      const maxOrder = sections.reduce((max, s) => Math.max(max, s.sort_order), -1);
+      await createSection.mutateAsync({
+        service_key: serviceKey,
+        image_url: form.image_url,
+        file_name: form.file_name,
+        alt_text: form.alt_text,
+        title_attr: form.title_attr || null,
+        caption: form.caption || null,
+        section_heading: form.section_heading || null,
+        section_description: form.section_description || null,
+        sort_order: maxOrder + 1,
+      });
+      resetForm();
+      setIsAdding(false);
+      toast({ title: "Section added" });
+    } catch (err) {
+      toast({ title: "Failed to add section", description: err instanceof Error ? err.message : "Unknown error", variant: "destructive" });
+    }
   }
 
   async function handleUpdate(id: string) {
@@ -88,19 +92,23 @@ function ServiceSectionList({ serviceKey }: { serviceKey: string }) {
       toast({ title: "Alt text is required", variant: "destructive" });
       return;
     }
-    await updateSection.mutateAsync({
-      id,
-      serviceKey,
-      alt_text: form.alt_text,
-      title_attr: form.title_attr || null,
-      caption: form.caption || null,
-      section_heading: form.section_heading || null,
-      section_description: form.section_description || null,
-      ...(form.image_url ? { image_url: form.image_url, file_name: form.file_name } : {}),
-    });
-    resetForm();
-    setEditingId(null);
-    toast({ title: "Section updated" });
+    try {
+      await updateSection.mutateAsync({
+        id,
+        serviceKey,
+        alt_text: form.alt_text,
+        title_attr: form.title_attr || null,
+        caption: form.caption || null,
+        section_heading: form.section_heading || null,
+        section_description: form.section_description || null,
+        ...(form.image_url ? { image_url: form.image_url, file_name: form.file_name } : {}),
+      });
+      resetForm();
+      setEditingId(null);
+      toast({ title: "Section updated" });
+    } catch (err) {
+      toast({ title: "Failed to update section", description: err instanceof Error ? err.message : "Unknown error", variant: "destructive" });
+    }
   }
 
   function handleMove(index: number, direction: "up" | "down") {

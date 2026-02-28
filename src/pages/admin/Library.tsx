@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/components/ui/use-toast";
 import { useAuth } from "@/hooks/useAuth";
@@ -51,24 +51,28 @@ const categories = [
 
 export default function AdminLibrary() {
   const { user, isAdmin, loading } = useAuth();
-  const navigate = useNavigate();
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const uploadImage = useUploadImage();
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [editingAlt, setEditingAlt] = useState<string | null>(null);
   const [altTextValue, setAltTextValue] = useState("");
+  const [activeTab, setActiveTab] = useState("portfolio");
+
+  const isServiceSections = activeTab === "service-sections";
 
   const { data: images, isLoading: imagesLoading } = useQuery({
-    queryKey: ["library-images"],
+    queryKey: ["library-images", activeTab],
     queryFn: async () => {
       const { data, error } = await supabase
         .from("library_images")
         .select("*")
+        .eq("category", activeTab)
         .order("created_at", { ascending: false });
       if (error) throw error;
       return data as LibraryImage[];
     },
+    enabled: !isServiceSections,
   });
 
   const deleteImage = useMutation({
@@ -77,7 +81,7 @@ export default function AdminLibrary() {
       if (error) throw error;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["library-images"] });
+      queryClient.invalidateQueries({ queryKey: ["library-images", activeTab] });
       toast({ title: "Image deleted" });
     },
   });
@@ -91,14 +95,14 @@ export default function AdminLibrary() {
       if (error) throw error;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["library-images"] });
+      queryClient.invalidateQueries({ queryKey: ["library-images", activeTab] });
       setEditingAlt(null);
       setAltTextValue("");
     },
   });
 
 
-  if (loading || imagesLoading) {
+  if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center">
         <p className="text-muted-foreground">Loading...</p>
@@ -127,7 +131,7 @@ export default function AdminLibrary() {
         });
       }
     }
-    queryClient.invalidateQueries({ queryKey: ["library-images"] });
+    queryClient.invalidateQueries({ queryKey: ["library-images", category] });
     toast({ title: "Images uploaded" });
     e.target.value = "";
   }
@@ -137,10 +141,6 @@ export default function AdminLibrary() {
     setCopiedId(id);
     toast({ title: "URL copied to clipboard" });
     setTimeout(() => setCopiedId(null), 2000);
-  }
-
-  function getImagesForCategory(category: string) {
-    return images?.filter((img) => img.category === category) || [];
   }
 
   return (
@@ -162,7 +162,7 @@ export default function AdminLibrary() {
           Upload and organise images for use across the website. Copy a URL to use it in content or categories.
         </p>
 
-        <Tabs defaultValue="portfolio">
+        <Tabs defaultValue="portfolio" value={activeTab} onValueChange={setActiveTab}>
           <TabsList className="mb-6">
             {categories.map((cat) => (
               <TabsTrigger key={cat.value} value={cat.value}>
@@ -201,7 +201,9 @@ export default function AdminLibrary() {
                 </div>
               )}
 
-              {getImagesForCategory(cat.value).length === 0 ? (
+              {imagesLoading ? (
+                <p className="text-muted-foreground py-4">Loading images...</p>
+              ) : (images ?? []).length === 0 ? (
                 <Card>
                   <CardContent className="flex items-center justify-center py-12">
                     <p className="text-sm text-muted-foreground">
@@ -211,7 +213,7 @@ export default function AdminLibrary() {
                 </Card>
               ) : (
                 <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                  {getImagesForCategory(cat.value).map((img) => (
+                  {(images ?? []).map((img) => (
                     <Card key={img.id} className="overflow-hidden">
                       <div className="relative aspect-video bg-muted">
                         <img
