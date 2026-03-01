@@ -25,6 +25,9 @@ export function ServiceSections({ sections }: ServiceSectionsProps) {
                   title={section.title_attr || undefined}
                   className="w-full rounded-lg object-cover aspect-video"
                   loading="lazy"
+                  decoding="async"
+                  width={800}
+                  height={450}
                 />
                 {section.caption && (
                   <figcaption className="mt-2 text-sm text-muted-foreground text-center">

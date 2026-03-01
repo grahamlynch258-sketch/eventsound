@@ -60,7 +60,7 @@ export default function VideoProduction() {
               <h2 className="text-2xl font-semibold mb-4">Our Video Production Work</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {gallery.map((img) => (
-                  <img key={img.id} src={img.image_url} alt={img.alt_text || "Video production at live event"} className="rounded-lg w-full aspect-video object-cover" loading="lazy" />
+                  <img key={img.id} src={img.image_url} alt={img.alt_text || "Video production at live event"} className="rounded-lg w-full aspect-video object-cover" loading="lazy" decoding="async" width={600} height={338} />
                 ))}
               </div>
             </div>
