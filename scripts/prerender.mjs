@@ -340,6 +340,38 @@ async function getCaseStudies() {
   }
 }
 
+// ── Static above-fold shell for the homepage ─────────────────────────────────
+// Injected into <div id="root"> so the browser paints text before JS loads.
+// React's createRoot().render() replaces this content synchronously on mount.
+const HOMEPAGE_SHELL = `<div class="min-h-screen bg-background text-foreground">\
+<header class="sticky top-0 z-[100] border-b transition-all duration-300 border-transparent bg-background/60 backdrop-blur-sm">\
+<div class="container flex h-16 items-center justify-between gap-6">\
+<a href="/" class="font-serif text-xl font-semibold tracking-tight text-foreground">Event<span class="text-accent"> Sound</span></a>\
+<nav class="hidden items-center gap-6 lg:flex" aria-label="Primary"></nav>\
+<div class="flex items-center gap-3">\
+<a href="/contact" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-3 hidden lg:inline-flex font-semibold shadow-gold">Get a Quote</a>\
+</div>\
+</div>\
+</header>\
+<section class="relative min-h-[90vh] flex items-center overflow-hidden">\
+<div class="absolute inset-0">\
+<div class="absolute inset-0 bg-background/60"></div>\
+</div>\
+<div class="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-b from-transparent to-background z-[1] pointer-events-none"></div>\
+<div class="container relative z-10 py-24 md:py-32 text-center">\
+<p class="section-kicker mb-4">Professional Event Production — Ireland</p>\
+<h1 class="text-4xl md:text-6xl font-bold tracking-tight max-w-3xl leading-tight mx-auto">AV Hire &amp; Event Production Across Ireland</h1>\
+<p class="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed mx-auto">From corporate conferences and product launches to festivals and gala dinners, EventSound is your trusted event production partner across Ireland. Our services include LED video wall hire, professional sound system rental, intelligent stage lighting, custom staging, and live streaming — all installed and operated by our experienced technical crew. Based in Dublin and serving clients nationwide, we work alongside event managers, agencies, and venues as a reliable production partner, handling events of every scale with proven equipment and transparent pricing.</p>\
+<div class="mt-8 flex flex-wrap gap-4 justify-center">\
+<a href="/contact" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-8">\
+Get a Quote <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 h-4 w-4"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>\
+</a>\
+<a href="/services" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors border border-input bg-background hover:bg-accent hover:text-accent-foreground h-11 px-8">Our Services</a>\
+</div>\
+</div>\
+</section>\
+</div>`;
+
 // ── Main prerender ──────────────────────────────────────────────────────────
 
 async function prerender() {
@@ -408,6 +440,12 @@ async function prerender() {
     if (schemas.length > 0) {
       const schemaHtml = schemasToHtml(schemas);
       html = html.replace('</head>', `\n${schemaHtml}\n  </head>`);
+    }
+
+    // Inject static above-fold shell for the homepage so the browser can
+    // paint text before JS loads (improves FCP from ~3.4s to near-instant).
+    if (route.path === '/') {
+      html = html.replace('<div id="root"></div>', `<div id="root">${HOMEPAGE_SHELL}</div>`);
     }
 
     fs.writeFileSync(filePath, html);
