@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -22,7 +22,6 @@ export function HeroSlideshow({ fallbackImage, singleImage, intervalMs = 5000 }:
     },
   });
 
-  const [firstImageLoaded, setFirstImageLoaded] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // While Supabase is loading, render nothing — Hero.tsx shows a dark overlay underneath.
@@ -53,9 +52,8 @@ export function HeroSlideshow({ fallbackImage, singleImage, intervalMs = 5000 }:
           loading={i === 0 ? "eager" : "lazy"}
           decoding="async"
           fetchPriority={i === 0 ? "high" : undefined}
-          className="absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ease-in-out"
-          style={{ opacity: firstImageLoaded && i === currentIndex ? 1 : 0 }}
-          onLoad={i === 0 ? () => setFirstImageLoaded(true) : undefined}
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{ opacity: i === currentIndex ? 1 : 0 }}
         />
       ))}
     </>
