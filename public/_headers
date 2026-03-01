@@ -2,5 +2,8 @@
 # KEEP FOREVER — always block /admin/* from search engines.
 # Do NOT remove this block even after going live.
 # ============================================================
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
 /admin/*
   X-Robots-Tag: noindex, nofollow, noarchive

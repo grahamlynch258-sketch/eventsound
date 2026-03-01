@@ -24,10 +24,9 @@ export function HeroSlideshow({ fallbackImage, singleImage, intervalMs = 5000 }:
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // While Supabase is loading, render nothing — Hero.tsx shows a dark overlay underneath.
-  // Once loaded, use Supabase images or fall back to the static import.
+  // Show fallback immediately so the hero is never blank, then swap to Supabase images.
   const images = isLoading
-    ? []
+    ? [{ url: singleImage || fallbackImage, alt: "Event production" }]
     : headlines && headlines.length > 0
       ? headlines.map((h) => ({ url: h.image_url, alt: h.alt_text || h.file_name }))
       : [{ url: singleImage || fallbackImage, alt: "Event production" }];
@@ -52,6 +51,8 @@ export function HeroSlideshow({ fallbackImage, singleImage, intervalMs = 5000 }:
           loading={i === 0 ? "eager" : "lazy"}
           decoding="async"
           fetchPriority={i === 0 ? "high" : undefined}
+          width={1920}
+          height={1080}
           className="absolute inset-0 h-full w-full object-cover"
           style={{ opacity: i === currentIndex ? 1 : 0 }}
         />
