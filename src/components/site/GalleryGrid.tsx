@@ -86,6 +86,8 @@ export function GalleryGrid({ selectedCategory, onCategoryChange }: GalleryGridP
                 className="w-full h-full object-cover"
                 loading="lazy"
                 decoding="async"
+                width={800}
+                height={600}
               />
             </div>
           ))}

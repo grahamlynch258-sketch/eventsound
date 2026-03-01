@@ -340,6 +340,31 @@ async function getCaseStudies() {
   }
 }
 
+// ── Fetch first hero image URL from Supabase at build time ───────────────────
+
+async function getHeroImage() {
+  try {
+    const SUPABASE_URL = process.env.VITE_SUPABASE_URL || '';
+    const SUPABASE_KEY = process.env.VITE_SUPABASE_PUBLISHABLE_KEY || '';
+    if (!SUPABASE_URL || !SUPABASE_KEY) return null;
+
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/library_images?select=image_url,alt_text,file_name&category=eq.portfolio&order=created_at.asc&limit=1`,
+      {
+        headers: {
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`,
+        },
+      }
+    );
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data?.[0] || null;
+  } catch {
+    return null;
+  }
+}
+
 // ── Static above-fold shell for the homepage ─────────────────────────────────
 // Injected into <div id="root"> so the browser paints text before JS loads.
 // React's createRoot().render() replaces this content synchronously on mount.
@@ -377,8 +402,11 @@ Get a Quote <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewB
 async function prerender() {
   console.log('Starting SEO pre-rendering (HTML injection)...');
 
-  // Get case study routes
-  const caseStudyRoutes = await getCaseStudies();
+  // Get case study routes and hero image in parallel
+  const [caseStudyRoutes, heroData] = await Promise.all([
+    getCaseStudies(),
+    getHeroImage(),
+  ]);
   const allRoutes = [...ROUTES, ...caseStudyRoutes];
 
   console.log(`Pre-rendering ${allRoutes.length} routes (${ROUTES.length} static + ${caseStudyRoutes.length} case studies)`);
@@ -393,6 +421,31 @@ async function prerender() {
       '</head>',
       `    <link rel="preconnect" href="${supabaseUrl}">\n  </head>`
     );
+  }
+
+  // Build hero image preload tag and <img> for the homepage shell.
+  // If Supabase returned a hero image, use that; otherwise fall back to the
+  // hashed local asset so the browser can start downloading at HTML parse time.
+  let heroPreloadTag = '';
+  let heroImgTag = '';
+
+  if (heroData?.image_url) {
+    const url = heroData.image_url;
+    const alt = (heroData.alt_text || heroData.file_name || 'Event production').replace(/"/g, '&quot;');
+    heroPreloadTag = `    <link rel="preload" as="image" fetchpriority="high" href="${url}">`;
+    heroImgTag = `<img src="${url}" alt="${alt}" width="1920" height="1080" loading="eager" fetchpriority="high" decoding="async" class="absolute inset-0 h-full w-full object-cover" style="opacity:1">`;
+    console.log(`  Hero image: ${url.slice(0, 80)}…`);
+  } else {
+    // Fallback: find the hashed local hero image in dist/assets
+    const assetsDir = path.join(DIST, 'assets');
+    const files = fs.readdirSync(assetsDir);
+    const fallback = files.find(f => f.startsWith('hero-av-production') && /\.(jpg|webp)$/.test(f));
+    if (fallback) {
+      const fallbackUrl = `/assets/${fallback}`;
+      heroPreloadTag = `    <link rel="preload" as="image" fetchpriority="high" href="${fallbackUrl}">`;
+      heroImgTag = `<img src="${fallbackUrl}" alt="Event production" width="1920" height="1080" loading="eager" fetchpriority="high" decoding="async" class="absolute inset-0 h-full w-full object-cover" style="opacity:1">`;
+      console.log(`  Hero image (fallback): ${fallbackUrl}`);
+    }
   }
 
   for (const route of allRoutes) {
@@ -445,7 +498,19 @@ async function prerender() {
     // Inject static above-fold shell for the homepage so the browser can
     // paint text before JS loads (improves FCP from ~3.4s to near-instant).
     if (route.path === '/') {
-      html = html.replace('<div id="root"></div>', `<div id="root">${HOMEPAGE_SHELL}</div>`);
+      // Preload hero image in <head> so browser starts downloading at parse time
+      if (heroPreloadTag) {
+        html = html.replace('</head>', `${heroPreloadTag}\n  </head>`);
+      }
+      let shell = HOMEPAGE_SHELL;
+      // Inject hero <img> into the shell's empty background div
+      if (heroImgTag) {
+        shell = shell.replace(
+          '<div class="absolute inset-0"><div class="absolute inset-0 bg-background/60"></div></div>',
+          `<div class="absolute inset-0">${heroImgTag}<div class="absolute inset-0 bg-background/60"></div></div>`
+        );
+      }
+      html = html.replace('<div id="root"></div>', `<div id="root">${shell}</div>`);
     }
 
     fs.writeFileSync(filePath, html);
