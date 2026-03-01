@@ -352,7 +352,16 @@ async function prerender() {
   console.log(`Pre-rendering ${allRoutes.length} routes (${ROUTES.length} static + ${caseStudyRoutes.length} case studies)`);
 
   // Read the base index.html template
-  const indexHtml = fs.readFileSync(path.join(DIST, 'index.html'), 'utf-8');
+  let indexHtml = fs.readFileSync(path.join(DIST, 'index.html'), 'utf-8');
+
+  // Inject Supabase preconnect so the browser starts the connection early
+  const supabaseUrl = process.env.VITE_SUPABASE_URL || '';
+  if (supabaseUrl) {
+    indexHtml = indexHtml.replace(
+      '</head>',
+      `    <link rel="preconnect" href="${supabaseUrl}">\n  </head>`
+    );
+  }
 
   for (const route of allRoutes) {
     const routePath = route.path === '/' ? '' : route.path;

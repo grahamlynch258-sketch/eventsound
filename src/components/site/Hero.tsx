@@ -14,10 +14,10 @@ export function Hero() {
       <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-b from-transparent to-background z-[1] pointer-events-none" />
       <div className="container relative z-10 py-24 md:py-32 text-center">
         <p className="section-kicker mb-4">Professional Event Production — Ireland</p>
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tight max-w-3xl leading-tight mx-auto transition-transform duration-300 hover:scale-[1.06] cursor-default">
+        <h1 className="text-4xl md:text-6xl font-bold tracking-tight max-w-3xl leading-tight mx-auto">
           AV Hire &amp; Event Production Across Ireland
         </h1>
-        <p className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed mx-auto transition-transform duration-300 hover:scale-[1.05] cursor-default">
+        <p className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed mx-auto">
           From corporate conferences and product launches to festivals and gala dinners, EventSound is your trusted event production partner across Ireland. Our services include LED video wall hire, professional sound system rental, intelligent stage lighting, custom staging, and live streaming — all installed and operated by our experienced technical crew. Based in Dublin and serving clients nationwide, we work alongside event managers, agencies, and venues as a reliable production partner, handling events of every scale with proven equipment and transparent pricing.
         </p>
         <div className="mt-8 flex flex-wrap gap-4 justify-center">
