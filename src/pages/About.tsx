@@ -111,11 +111,11 @@ function BehindTheScenes() {
 
 export default function About() {
   useSeo({
-    title: "About EventSound | Professional Event Production Ireland",
-    description: "Learn about EventSound, Ireland's trusted event production partner. Experienced team providing LED walls, sound systems, lighting, and staging for events nationwide.",
+    title: "About EventSound | 20+ Years of Event Production in Ireland",
+    description: "EventSound has been delivering professional event production across Ireland for over 20 years. Meet the team behind Ireland's trusted AV hire and event production company.",
     canonical: "https://eventsound.ie/about",
-    ogTitle: "About EventSound | Event Production Ireland",
-    ogDescription: "Learn about EventSound, Ireland's trusted event production partner. Experienced team providing LED walls, sound systems, lighting, and staging.",
+    ogTitle: "About EventSound | 20+ Years of Event Production in Ireland",
+    ogDescription: "EventSound has been delivering professional event production across Ireland for over 20 years. Meet the team behind Ireland's trusted AV hire and event production company.",
   });
 
   return (

@@ -15,7 +15,7 @@ export function Hero() {
       <div className="container relative z-10 py-24 md:py-32 text-center">
         <p className="section-kicker mb-4">Professional Event Production — Ireland</p>
         <h1 className="text-4xl md:text-6xl font-bold tracking-tight max-w-3xl leading-tight mx-auto">
-          AV Hire &amp; Event Production Across Ireland
+          Audio Visual Hire &amp; Event Production Ireland
         </h1>
         <p className="mt-6 text-lg text-white max-w-2xl leading-relaxed mx-auto">
           From corporate conferences and product launches to festivals and gala dinners, EventSound is your trusted event production partner across Ireland. Our services include LED video wall hire, professional sound system rental, intelligent stage lighting, custom staging, and live streaming — all installed and operated by our experienced technical crew. Based in Dublin and serving clients nationwide, we work alongside event managers, agencies, and venues as a reliable production partner, handling events of every scale with proven equipment and transparent pricing.

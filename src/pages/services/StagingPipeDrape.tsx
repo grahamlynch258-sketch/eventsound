@@ -19,8 +19,8 @@ export default function StagingPipeDrape() {
   ];
 
   useSeo({
-    title: "Stage Hire Dublin & Ireland | Setup & Breakdown Included | EventSound",
-    description: "Professional event staging, pipe and drape, star cloth, and scenic elements for corporate events, conferences, and live shows across Ireland. TUV-certified, safety-first.",
+    title: "Stage Hire Ireland | Portable Stage & Platform Rental | EventSound",
+    description: "Stage hire across Ireland. Premium GUIL stage platforms with steps, barriers, and wheelchair ramps. Indoor and outdoor stage solutions for conferences, concerts, and festivals.",
     canonical: "https://eventsound.ie/services/staging-pipe-drape",
   });
   const { hero, gallery } = useServiceImages("service-staging");
@@ -29,7 +29,7 @@ export default function StagingPipeDrape() {
   return (
     <PageShell>
       <PageHeader
-        title="Staging, Pipe & Drape in Ireland"
+        title="Stage Hire Ireland"
         subtitle="Safe, professional staging and scenic solutions for any venue"
         backgroundImage={hero}
         backgroundAlt="Professional staging and pipe and drape installation at an event in Ireland"

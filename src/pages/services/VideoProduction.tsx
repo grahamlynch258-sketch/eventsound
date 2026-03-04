@@ -19,8 +19,8 @@ export default function VideoProduction() {
   ];
 
   useSeo({
-    title: "Event Video Production & Streaming Dublin & Ireland | EventSound",
-    description: "Professional multi-camera video production and live streaming for events across Ireland. Capture, broadcast, and post-production for corporate events, conferences, and live shows.",
+    title: "Video Equipment Hire Ireland | Live Streaming & Production | EventSound",
+    description: "Video equipment hire in Ireland. Multi-camera production, live streaming, confidence monitors, and 4K recording for conferences, concerts, and corporate events.",
     canonical: "https://eventsound.ie/services/video-production",
   });
   const { hero, gallery } = useServiceImages("service-video");
@@ -28,7 +28,7 @@ export default function VideoProduction() {
 
   return (
     <PageShell>
-      <PageHeader title="Video Production & Streaming in Ireland" subtitle="Capture and broadcast your event to any audience" backgroundImage={hero} backgroundAlt="Multi-camera video production at a live event in Ireland" />
+      <PageHeader title="Video Equipment Hire & Live Streaming Ireland" subtitle="Capture and broadcast your event to any audience" backgroundImage={hero} backgroundAlt="Multi-camera video production at a live event in Ireland" />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6 text-center">
           <p className="text-lg text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">

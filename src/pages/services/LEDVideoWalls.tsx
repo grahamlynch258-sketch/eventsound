@@ -19,8 +19,8 @@ export default function LEDVideoWalls() {
   ];
 
   useSeo({
-    title: "LED Screen & Video Wall Hire Dublin & Ireland | EventSound",
-    description: "Professional LED video wall hire for corporate events, conferences, and live shows across Ireland. Custom sizes, content playback, and on-site operation included.",
+    title: "LED Screen Hire Ireland | LED Video Wall Rental Dublin | EventSound",
+    description: "LED screen hire across Ireland. High-resolution Unilumin LED video walls for conferences, concerts, corporate events, and exhibitions. Mobile LED screen hire available.",
     canonical: "https://eventsound.ie/services/led-video-walls",
   });
   const { hero, gallery } = useServiceImages("service-led-walls");
@@ -29,7 +29,7 @@ export default function LEDVideoWalls() {
   return (
     <PageShell>
       <PageHeader
-        title="LED Video Wall Hire in Ireland"
+        title="LED Screen Hire Ireland"
         subtitle="High-impact visual displays for events of every scale"
         backgroundImage={hero}
         backgroundAlt="Unilumin LED video wall installed at a corporate event in Ireland"

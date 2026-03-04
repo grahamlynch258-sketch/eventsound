@@ -5,11 +5,11 @@ import { useSeo } from "@/hooks/useSeo";
 
 const Contact = () => {
   useSeo({
-    title: "Contact EventSound | Event Production Quote Ireland",
-    description: "Get a quote for your event production needs. Professional AV equipment rental and technical support across Ireland. Contact us today for LED walls, sound, and lighting.",
+    title: "Contact EventSound | Get a Quote for AV Hire Ireland",
+    description: "Contact EventSound for a free consultation and quote. Professional AV hire, sound, lighting, LED screens, and staging across Ireland. Fast response guaranteed.",
     canonical: "https://eventsound.ie/contact",
-    ogTitle: "Contact EventSound | Get a Quote",
-    ogDescription: "Get a quote for your event production needs. Professional AV equipment rental and technical support across Ireland."
+    ogTitle: "Contact EventSound | Get a Quote for AV Hire Ireland",
+    ogDescription: "Contact EventSound for a free consultation and quote. Professional AV hire, sound, lighting, LED screens, and staging across Ireland."
   });
 
   return (

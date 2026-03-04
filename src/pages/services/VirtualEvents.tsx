@@ -19,8 +19,8 @@ export default function VirtualEvents() {
   ];
 
   useSeo({
-    title: "Hybrid & Virtual Events Dublin & Ireland | Live Streaming | EventSound",
-    description: "Professional virtual and hybrid event production across Ireland. Studio setups, live streaming, audience interaction tools, and full technical management for online events.",
+    title: "Hybrid Event Production Ireland | Live Streaming & Virtual Events | EventSound",
+    description: "Hybrid event production across Ireland. Combine in-person and virtual audiences with multi-camera streaming, remote speaker integration, and broadcast-quality AV.",
     canonical: "https://eventsound.ie/services/virtual-events",
   });
   const { hero, gallery } = useServiceImages("service-virtual");
@@ -29,7 +29,7 @@ export default function VirtualEvents() {
   return (
     <PageShell>
       <PageHeader
-        title="Virtual & Hybrid Events in Ireland"
+        title="Hybrid Event Production Ireland"
         subtitle="Professional production for online and hybrid audiences"
         backgroundImage={hero}
         backgroundAlt="Virtual event production studio setup in Ireland"

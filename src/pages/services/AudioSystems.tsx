@@ -10,14 +10,14 @@ export default function AudioSystems() {
   const { data: sections = [] } = useServiceSections("audio-systems");
 
   useSeo({
-    title: "AV & PA System Hire Dublin & Ireland | Conference Audio | EventSound",
-    description: "Professional sound system and PA hire for events across Ireland. L-Acoustics speakers, wireless microphones, audio mixing, and experienced sound engineers included.",
+    title: "Sound Hire Dublin | PA System Hire Ireland | EventSound",
+    description: "Professional sound hire and PA system hire in Dublin and across Ireland. Line array speakers, wireless microphones, digital mixing consoles, and sound engineers.",
     canonical: "https://eventsound.ie/services/audio-systems"
   });
 
   return (
     <PageShell>
-      <PageHeader title="Audio Systems & PA Hire" subtitle="Crystal-clear sound for events of every size" />
+      <PageHeader title="Sound Hire Dublin & PA System Hire" subtitle="Crystal-clear sound for events of every size" />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6">
           <p className="text-lg text-muted-foreground">

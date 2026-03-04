@@ -19,8 +19,8 @@ export default function LightingDesign() {
   ];
 
   useSeo({
-    title: "Event Lighting Hire Dublin & Ireland | Stage & Venue Lighting | EventSound",
-    description: "Professional stage lighting, architectural lighting, and custom lighting design for events across Ireland. Intelligent fixtures, moving heads, and experienced lighting designers.",
+    title: "Lighting Hire Dublin | Stage & Event Lighting Ireland | EventSound",
+    description: "Professional lighting hire in Dublin and across Ireland. Moving head lights, LED wash, uplighting, and intelligent lighting systems with ChamSys control. Full design and operation.",
     canonical: "https://eventsound.ie/services/lighting-design",
   });
   const { hero, gallery } = useServiceImages("service-lighting");
@@ -29,7 +29,7 @@ export default function LightingDesign() {
   return (
     <PageShell>
       <PageHeader
-        title="Lighting Design & Hire in Ireland"
+        title="Lighting Hire Dublin & Ireland"
         subtitle="Create atmosphere and impact with professional event lighting"
         backgroundImage={hero}
         backgroundAlt="Professional stage lighting design at a corporate event in Ireland"
