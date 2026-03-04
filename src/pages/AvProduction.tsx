@@ -52,7 +52,7 @@ export default function AvProduction() {
         {/* Hero */}
         <section className="relative">
           <div className="absolute inset-0">
-            <img src={heroImage} alt="Stage lighting and LED screens" className="h-full w-full object-cover" loading="lazy" />
+            <img src={heroImage} alt="Stage lighting and LED screens" className="h-full w-full object-cover" loading="eager" width={1920} height={600} />
             <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/60 to-background" />
           </div>
           <div className="container relative py-28 md:py-40">

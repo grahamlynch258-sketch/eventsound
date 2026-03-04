@@ -78,6 +78,9 @@ function BehindTheScenes() {
                   alt={img.alt_text || "Behind the scenes at EventSound"}
                   className="rounded-lg w-full aspect-video object-cover"
                   loading="lazy"
+                  decoding="async"
+                  width={800}
+                  height={450}
                 />
               </motion.div>
             ))
@@ -95,6 +98,9 @@ function BehindTheScenes() {
                   alt={img.alt}
                   className="w-full aspect-[4/3] object-cover"
                   loading="lazy"
+                  decoding="async"
+                  width={800}
+                  height={600}
                 />
               </motion.div>
             ))}

@@ -20,6 +20,8 @@ export function CategoryCard({ title, imageSrc, to, className }: CategoryCardPro
             alt={`${title} category`}
             loading="lazy"
             decoding="async"
+            width={800}
+            height={600}
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />

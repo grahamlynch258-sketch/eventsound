@@ -164,6 +164,8 @@ const CaseStudyDetail = () => {
               src={caseStudy.featured_image_url}
               alt={caseStudy.featured_image_alt || caseStudy.title}
               className="w-full h-full object-cover"
+              width={1920}
+              height={1080}
             />
           </div>
         )}
@@ -264,6 +266,9 @@ const CaseStudyDetail = () => {
                           src={related.featured_image_url}
                           alt={related.featured_image_alt || related.title}
                           loading="lazy"
+                          decoding="async"
+                          width={800}
+                          height={450}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />
                       </div>

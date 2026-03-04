@@ -69,6 +69,9 @@ export function BrandBanner({ serviceKey }: BrandBannerProps) {
                   alt={`${brand.name} logo`}
                   className="max-w-full max-h-full object-contain"
                   loading="lazy"
+                  decoding="async"
+                  width={96}
+                  height={96}
                 />
               </div>
             </a>

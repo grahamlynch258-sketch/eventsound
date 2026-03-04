@@ -146,6 +146,9 @@ const CaseStudies = () => {
                         src={caseStudy.featured_image_url}
                         alt={caseStudy.featured_image_alt || caseStudy.title}
                         loading="lazy"
+                        decoding="async"
+                        width={800}
+                        height={450}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                     </div>
