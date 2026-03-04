@@ -60,12 +60,13 @@ export default function HowWeWork() {
                   key={s.title}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
+                  whileHover={{ scale: 1.05 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1, duration: 0.5 }}
-                  className="relative text-center"
+                  className="group relative text-center rounded-xl p-4 -m-4 transition-colors duration-300 hover:bg-white/[0.03]"
                 >
                   <div className="flex justify-center mb-5">
-                    <div className="relative flex h-14 w-14 items-center justify-center rounded-full border border-accent/30 bg-accent/10 shadow-[0_0_15px_rgba(var(--accent-rgb,212,175,55),0.15)]">
+                    <div className="relative flex h-14 w-14 items-center justify-center rounded-full border border-accent/30 bg-accent/10 shadow-[0_0_15px_rgba(var(--accent-rgb,212,175,55),0.15)] transition-shadow duration-300 group-hover:shadow-[0_0_25px_rgba(var(--accent-rgb,212,175,55),0.3)] group-hover:border-accent/50">
                       <span className="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full bg-accent text-xs font-bold text-background">
                         {i + 1}
                       </span>
@@ -75,7 +76,7 @@ export default function HowWeWork() {
                   <h3 className="font-serif text-base font-semibold mb-2 leading-tight">
                     {s.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p className="text-sm text-muted-foreground leading-relaxed transition-colors duration-300 group-hover:text-foreground/80">
                     {s.description}
                   </p>
                 </motion.div>
