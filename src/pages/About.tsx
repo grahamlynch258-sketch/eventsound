@@ -123,10 +123,10 @@ export default function About() {
               {about.headline}
             </h1>
             <div className="mt-8 rounded-xl border border-accent/30 bg-card/40 backdrop-blur-sm p-6 md:p-8">
-              <div className="space-y-4 text-muted-foreground leading-relaxed">
-                <p className="text-base md:text-lg text-foreground/90">{about.intro}</p>
+              <div className="space-y-4 text-white leading-relaxed">
+                <p className="text-base md:text-lg text-white">{about.intro}</p>
                 {about.body.map((p, i) => (
-                  <p key={i} className="text-sm md:text-base">{p}</p>
+                  <p key={i} className="text-sm md:text-base text-white">{p}</p>
                 ))}
               </div>
             </div>

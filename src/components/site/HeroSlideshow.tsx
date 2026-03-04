@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -23,6 +23,8 @@ export function HeroSlideshow({ fallbackImage, singleImage, intervalMs = 5000 }:
   });
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const prevIndexRef = useRef(-1);
+  const hasTransitioned = useRef(false);
 
   // Show fallback immediately so the hero is never blank, then swap to Supabase images.
   const images = isLoading
@@ -34,7 +36,11 @@ export function HeroSlideshow({ fallbackImage, singleImage, intervalMs = 5000 }:
   useEffect(() => {
     if (images.length <= 1) return;
     const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % images.length);
+      setCurrentIndex((prev) => {
+        prevIndexRef.current = prev;
+        hasTransitioned.current = true;
+        return (prev + 1) % images.length;
+      });
     }, intervalMs);
     return () => clearInterval(timer);
   }, [images.length, intervalMs]);
@@ -43,24 +49,38 @@ export function HeroSlideshow({ fallbackImage, singleImage, intervalMs = 5000 }:
 
   return (
     <>
-      {images.map((img, i) => (
-        <img
-          key={img.url}
-          src={img.url}
-          alt={img.alt}
-          loading={i === 0 ? "eager" : "lazy"}
-          decoding={i === 0 ? "sync" : "async"}
-          fetchPriority={i === 0 ? "high" : undefined}
-          width={1920}
-          height={1080}
-          className="absolute inset-0 h-full w-full object-cover"
-          style={{
-            opacity: i === 0 || i === currentIndex ? 1 : 0,
-            zIndex: i === currentIndex ? 1 : 0,
-            transition: i === 0 ? "none" : undefined,
-          }}
-        />
-      ))}
+      {images.map((img, i) => {
+        const isActive = i === currentIndex;
+        const isPrev = i === prevIndexRef.current;
+        const shouldAnimate = hasTransitioned.current && (isActive || isPrev);
+
+        let transform: string;
+        if (isActive) {
+          transform = "translateX(0)";
+        } else if (isPrev) {
+          transform = "translateX(-100%)";
+        } else {
+          transform = "translateX(100%)";
+        }
+
+        return (
+          <img
+            key={img.url}
+            src={img.url}
+            alt={img.alt}
+            loading={i === 0 ? "eager" : "lazy"}
+            decoding={i === 0 ? "sync" : "async"}
+            fetchPriority={i === 0 ? "high" : undefined}
+            width={1920}
+            height={1080}
+            className="absolute inset-0 h-full w-full object-cover"
+            style={{
+              transform,
+              transition: shouldAnimate ? "transform 0.7s ease" : "none",
+            }}
+          />
+        );
+      })}
     </>
   );
 }
