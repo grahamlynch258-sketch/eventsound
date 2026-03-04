@@ -170,6 +170,56 @@ export default function About() {
         </section>
 
         <section className="container py-20 md:py-28">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-14">
+              <p className="section-kicker mb-3">Meet the Founder</p>
+              <div className="gold-rule mx-auto mb-5" />
+            </div>
+            <div className="grid md:grid-cols-2 gap-10 md:gap-14 items-center">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="overflow-hidden rounded-xl border border-border/50"
+              >
+                <img
+                  src="/images/Ronan.webp"
+                  alt="Ronan Lynch, Managing Director of EventSound, at a mixing desk"
+                  width={600}
+                  height={800}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full object-cover"
+                />
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.15, duration: 0.5 }}
+              >
+                <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-2">
+                  Ronan Lynch
+                </h2>
+                <p className="text-accent font-medium mb-6">Managing Director</p>
+                <div className="space-y-4 text-muted-foreground leading-relaxed">
+                  <p>
+                    With over 40 years in the Irish music and live events industry, Ronan has been behind the desk at everything from intimate theatre shows to large-scale outdoor concerts. Before founding EventSound, he spent decades on the technical frontline — mixing, rigging, and problem-solving across every type of venue Ireland has to offer.
+                  </p>
+                  <p>
+                    That experience shows in how EventSound operates today. Ronan's deep technical knowledge means every equipment spec is right for the room, every signal chain is clean, and every backup plan is already in place before the doors open. He's the person who notices the things most people don't — a slight hum in a monitor, a lighting angle that's not quite right, a stage plot that could work better with one small change.
+                  </p>
+                  <p>
+                    Four decades of live events means there's very little Ronan hasn't seen or solved. That's the foundation EventSound is built on.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        <section className="container py-20 md:py-28">
           <div className="max-w-3xl mx-auto text-center">
             <p className="section-kicker mb-3">Safety</p>
             <div className="gold-rule mb-5" />
