@@ -55,7 +55,8 @@ export function HeroSlideshow({ fallbackImage, singleImage, intervalMs = 5000 }:
           height={1080}
           className="absolute inset-0 h-full w-full object-cover"
           style={{
-            opacity: i === currentIndex ? 1 : 0,
+            opacity: i === 0 || i === currentIndex ? 1 : 0,
+            zIndex: i === currentIndex ? 1 : 0,
             transition: i === 0 ? "none" : undefined,
           }}
         />
