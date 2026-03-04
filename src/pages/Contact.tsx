@@ -1,5 +1,6 @@
 import { PageShell } from "@/components/site/PageShell";
 import { ContactForm } from "@/components/site/ContactForm";
+import HowWeWork from "@/components/site/HowWeWork";
 import { useSeo } from "@/hooks/useSeo";
 
 const Contact = () => {
@@ -13,6 +14,7 @@ const Contact = () => {
 
   return (
     <PageShell>
+      <HowWeWork />
       <div className="container mx-auto px-4 py-16 md:py-24">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-8">
