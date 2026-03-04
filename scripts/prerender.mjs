@@ -436,7 +436,7 @@ async function prerender() {
   if (supabaseUrl) {
     indexHtml = indexHtml.replace(
       '</head>',
-      `    <link rel="preconnect" href="${supabaseUrl}">\n  </head>`
+      `    <link rel="preconnect" href="${supabaseUrl}" crossorigin>\n  </head>`
     );
   }
 
@@ -450,7 +450,7 @@ async function prerender() {
     const url = heroData.image_url;
     const alt = (heroData.alt_text || heroData.file_name || 'Event production').replace(/"/g, '&quot;');
     heroPreloadTag = `    <link rel="preload" as="image" fetchpriority="high" href="${url}">`;
-    heroImgTag = `<img src="${url}" alt="${alt}" width="1920" height="1080" loading="eager" fetchpriority="high" decoding="async" class="absolute inset-0 h-full w-full object-cover" style="opacity:1">`;
+    heroImgTag = `<img src="${url}" alt="${alt}" width="1920" height="1080" loading="eager" fetchpriority="high" decoding="sync" class="absolute inset-0 h-full w-full object-cover" style="opacity:1;transition:none">`;
     console.log(`  Hero image: ${url.slice(0, 80)}…`);
   } else {
     // Fallback: find the hashed local hero image in dist/assets
@@ -460,7 +460,7 @@ async function prerender() {
     if (fallback) {
       const fallbackUrl = `/assets/${fallback}`;
       heroPreloadTag = `    <link rel="preload" as="image" fetchpriority="high" href="${fallbackUrl}">`;
-      heroImgTag = `<img src="${fallbackUrl}" alt="Event production" width="1920" height="1080" loading="eager" fetchpriority="high" decoding="async" class="absolute inset-0 h-full w-full object-cover" style="opacity:1">`;
+      heroImgTag = `<img src="${fallbackUrl}" alt="Event production" width="1920" height="1080" loading="eager" fetchpriority="high" decoding="sync" class="absolute inset-0 h-full w-full object-cover" style="opacity:1;transition:none">`;
       console.log(`  Hero image (fallback): ${fallbackUrl}`);
     }
   }

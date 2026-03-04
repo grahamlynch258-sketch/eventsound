@@ -49,12 +49,15 @@ export function HeroSlideshow({ fallbackImage, singleImage, intervalMs = 5000 }:
           src={img.url}
           alt={img.alt}
           loading={i === 0 ? "eager" : "lazy"}
-          decoding="async"
+          decoding={i === 0 ? "sync" : "async"}
           fetchPriority={i === 0 ? "high" : undefined}
           width={1920}
           height={1080}
           className="absolute inset-0 h-full w-full object-cover"
-          style={{ opacity: i === currentIndex ? 1 : 0 }}
+          style={{
+            opacity: i === currentIndex ? 1 : 0,
+            transition: i === 0 ? "none" : undefined,
+          }}
         />
       ))}
     </>
