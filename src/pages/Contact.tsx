@@ -2,6 +2,7 @@ import { PageShell } from "@/components/site/PageShell";
 import { ContactForm } from "@/components/site/ContactForm";
 import HowWeWork from "@/components/site/HowWeWork";
 import { useSeo } from "@/hooks/useSeo";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 const Contact = () => {
   useSeo({
@@ -29,9 +30,11 @@ const Contact = () => {
               </p>
             </div>
           </div>
+          <ScrollReveal delay={0.2}>
           <div className="rounded-xl border border-accent/30 bg-card/40 backdrop-blur-sm p-6 md:p-8">
             <ContactForm />
           </div>
+          </ScrollReveal>
         </div>
       </div>
     </PageShell>

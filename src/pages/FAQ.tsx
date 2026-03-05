@@ -4,6 +4,8 @@ import { useSeo } from "@/hooks/useSeo";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
+import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 const FAQ = () => {
   const { hero } = useServiceImages("hero-faq");
@@ -75,9 +77,10 @@ const FAQ = () => {
         backgroundAlt="EventSound professional event production setup"
       />
       <div className="container mx-auto px-4 py-12">
-        <div className="max-w-4xl mx-auto space-y-6">
+        <StaggerContainer className="max-w-4xl mx-auto space-y-6">
           {faqs.map((faq, index) => (
-            <div key={index} className="rounded-xl border border-accent/30 bg-card/40 backdrop-blur-sm p-6">
+            <StaggerItem key={index}>
+            <div className="rounded-xl border border-accent/30 bg-card/40 backdrop-blur-sm p-6">
               <div className="rounded-lg bg-accent/10 border border-accent/20 px-4 py-3 mb-4">
                 <h3 className="text-lg font-semibold text-accent">{faq.question}</h3>
               </div>
@@ -85,9 +88,11 @@ const FAQ = () => {
                 <p className="text-foreground/90 leading-relaxed">{faq.answer}</p>
               </div>
             </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
 
+        <ScrollReveal>
         <div className="max-w-4xl mx-auto mt-12">
           <div className="rounded-xl border border-accent/30 bg-card/40 backdrop-blur-sm p-8 text-center">
             <h3 className="text-2xl font-bold mb-4 text-foreground">Still Have Questions?</h3>
@@ -95,6 +100,7 @@ const FAQ = () => {
             <Link to="/contact"><Button size="lg">Get a Quote</Button></Link>
           </div>
         </div>
+        </ScrollReveal>
       </div>
     </PageShell>
   );

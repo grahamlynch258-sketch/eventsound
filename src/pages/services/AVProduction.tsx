@@ -7,6 +7,8 @@ import { useServiceImages } from "@/hooks/useServiceImages";
 import { useServiceSections } from "@/hooks/useServiceSections";
 import { ServiceSections } from "@/components/site/ServiceSections";
 import { BrandBanner } from "@/components/site/BrandSidebar";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
 
 export default function AVProduction() {
   const faqs = [
@@ -68,27 +70,32 @@ export default function AVProduction() {
           {gallery.length > 0 && (
             <div className="mt-8">
               <h2 className="text-2xl font-semibold mb-4">Our AV Production Work</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {gallery.map((img) => (
-                  <img key={img.id} src={img.image_url} alt={img.alt_text || "AV production setup at corporate event"} className="rounded-lg w-full aspect-video object-cover" loading="lazy" decoding="async" width={600} height={338} />
+                  <StaggerItem key={img.id}>
+                  <img src={img.image_url} alt={img.alt_text || "AV production setup at corporate event"} className="rounded-lg w-full aspect-video object-cover" loading="lazy" decoding="async" width={600} height={338} />
+                  </StaggerItem>
                 ))}
-              </div>
+              </StaggerContainer>
             </div>
           )}
 
           <BrandBanner serviceKey="av-production" />
 
+          <ScrollReveal>
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Frequently Combined With</h2>
           <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto">
             Our AV production packages often include <Link to="/services/led-video-walls" className="text-accent hover:underline">LED video wall hire</Link> and <Link to="/services/lighting-design" className="text-accent hover:underline">event lighting design</Link> for a unified production. For conference-specific setups, see our dedicated <Link to="/services/conference-av-hire" className="text-accent hover:underline">conference AV hire</Link> service. See our full AV setup for the <Link to="/case-studies/prism-immersive-technology-summit" className="text-accent hover:underline">PRISM Immersive Technology Summit</Link>.
           </p>
+          </ScrollReveal>
 
           {/* FAQ Section */}
           <div className="max-w-4xl mx-auto mt-16">
             <h2 className="text-3xl font-bold text-foreground mb-8 transition-transform duration-300 hover:scale-[1.05] cursor-default">Frequently Asked Questions</h2>
-            <div className="space-y-6">
+            <StaggerContainer className="space-y-6">
               {faqs.map((faq, i) => (
-                <div key={i} className="rounded-xl border border-accent/30 bg-card/40 backdrop-blur-sm p-6 transition-transform duration-300 hover:scale-[1.03] cursor-default">
+                <StaggerItem key={i}>
+                <div className="rounded-xl border border-accent/30 bg-card/40 backdrop-blur-sm p-6 transition-transform duration-300 hover:scale-[1.03] cursor-default">
                   <div className="rounded-lg bg-accent/10 border border-accent/20 px-4 py-3 mb-4">
                     <h3 className="text-lg font-semibold text-accent">{faq.question}</h3>
                   </div>
@@ -96,8 +103,9 @@ export default function AVProduction() {
                     <p className="text-foreground/90 leading-relaxed">{faq.answer}</p>
                   </div>
                 </div>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerContainer>
           </div>
 
           <div className="mt-12 text-center transition-transform duration-300 hover:scale-[1.04] cursor-default">
