@@ -32,6 +32,7 @@ const StagingPipeDrape = lazy(() => import("@/pages/services/StagingPipeDrape"))
 const EventProduction = lazy(() => import("@/pages/services/EventProduction"));
 const VideoProduction = lazy(() => import("@/pages/services/VideoProduction"));
 const VirtualEvents = lazy(() => import("@/pages/services/VirtualEvents"));
+const ConferenceAvHire = lazy(() => import("@/pages/services/ConferenceAvHire"));
 
 // Admin pages — lazy loaded so they are excluded from the public bundle
 const AdminLogin = lazy(() => import("./pages/admin/Login"));
@@ -73,6 +74,7 @@ function AppRoutes() {
       <Route path="/services/event-production" element={<Suspense fallback={null}><EventProduction /></Suspense>} />
       <Route path="/services/video-production" element={<Suspense fallback={null}><VideoProduction /></Suspense>} />
       <Route path="/services/virtual-events" element={<Suspense fallback={null}><VirtualEvents /></Suspense>} />
+      <Route path="/services/conference-av-hire" element={<Suspense fallback={null}><ConferenceAvHire /></Suspense>} />
 
       {/* Landing pages — Google Ads only, noindex */}
       <Route path="/landing/corporate-av-hire-dublin" element={<Suspense fallback={null}><CorporateAVHireDublin /></Suspense>} />

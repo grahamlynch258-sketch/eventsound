@@ -38,6 +38,7 @@ const categories = [
   { value: "service-event-production", label: "Event Production" },
   { value: "service-video", label: "Video Production" },
   { value: "service-virtual", label: "Virtual Events" },
+  { value: "service-conference-av", label: "Conference AV" },
 
   // Content Sections
   { value: "service-sections", label: "📝 Content Sections" },

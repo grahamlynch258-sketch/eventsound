@@ -5,7 +5,7 @@ import { useServiceImages } from "@/hooks/useServiceImages";
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Monitor, Volume2, Lightbulb, Theater, Clapperboard, Video, Wifi } from "lucide-react";
+import { Monitor, Volume2, Lightbulb, Theater, Clapperboard, Video, Wifi, Presentation } from "lucide-react";
 
 
 const services = [
@@ -16,6 +16,7 @@ const services = [
   { title: "Event Production", description: "End-to-end production management, technical direction, and crew coordination from planning to wrap.", href: "/services/event-production", icon: Clapperboard },
   { title: "Video Production", description: "Multi-camera capture, live streaming, and post-production for corporate events and live shows.", href: "/services/video-production", icon: Video },
   { title: "Virtual & Hybrid Events", description: "Professional production for online and hybrid audiences with studio setups and live streaming.", href: "/services/virtual-events", icon: Wifi },
+  { title: "Conference AV Hire", description: "Full-service conference AV across Ireland. Lectern mics, LED walls, confidence monitors, streaming, and interpretation.", href: "/services/conference-av-hire", icon: Presentation },
 ];
 
 export default function Services() {

@@ -242,6 +242,22 @@ const SERVICE_PAGE_SCHEMAS = {
       { name: "AV Production", url: "https://eventsound.ie/services/av-production" },
     ],
   },
+
+  '/services/conference-av-hire': {
+    faqs: [
+      { question: "How far in advance should I book conference AV?", answer: "For large conferences with 200 or more delegates, we recommend four to six weeks minimum. Smaller meetings can often be turned around in one to two weeks, but earlier is always better — especially during peak conference season from September to November." },
+      { question: "Do you provide technicians or just equipment?", answer: "Every booking includes on-site technicians. We don't do dry hire for conferences — your event is too important to leave to someone unfamiliar with the equipment." },
+      { question: "Can you work with our venue's in-house AV?", answer: "Yes. We regularly integrate with venue-installed systems. We'll do a site visit to assess what's already in place and fill the gaps." },
+      { question: "What conference AV equipment do you provide?", answer: "Our conference AV equipment includes lectern and wireless microphones, LED video walls, projection systems, confidence monitors, autocue, live streaming rigs, simultaneous interpretation systems, stage lighting, and full audio systems — all with experienced operators." },
+      { question: "How much does conference AV hire cost?", answer: "Every conference is different. A straightforward single-room setup with sound and screens might start from around €1,500. Multi-room conferences with live streaming, interpretation, and LED walls scale from there. Contact us for a free consultation and quote." },
+    ],
+    service: { name: "Conference AV Hire", description: "Professional conference AV hire across Ireland. Lectern microphones, LED video walls, confidence monitors, live streaming, and simultaneous interpretation for conferences, AGMs, and corporate events.", serviceType: "Conference AV Hire", url: "https://eventsound.ie/services/conference-av-hire" },
+    breadcrumb: [
+      { name: "Home", url: "https://eventsound.ie/" },
+      { name: "Services", url: "https://eventsound.ie/services" },
+      { name: "Conference AV Hire", url: "https://eventsound.ie/services/conference-av-hire" },
+    ],
+  },
 };
 
 const FAQ_PAGE_QUESTIONS = [
@@ -308,6 +324,7 @@ const ROUTES = [
   { path: '/services/video-production', title: 'Video Equipment Hire Ireland | Live Streaming & Production | EventSound', description: 'Video equipment hire in Ireland. Multi-camera production, live streaming, confidence monitors, and 4K recording for conferences, concerts, and corporate events.' },
   { path: '/services/virtual-events', title: 'Hybrid Event Production Ireland | Live Streaming & Virtual Events | EventSound', description: 'Hybrid event production across Ireland. Combine in-person and virtual audiences with multi-camera streaming, remote speaker integration, and broadcast-quality AV.' },
   { path: '/services/av-production', title: 'AV Hire Dublin | Audio Visual Equipment Hire Ireland | EventSound', description: 'AV hire and audio visual equipment hire in Dublin and across Ireland. Professional AV services for corporate events, conferences, concerts, and live productions.' },
+  { path: '/services/conference-av-hire', title: 'Conference AV Hire Ireland | Conference Room AV Equipment | EventSound', description: 'Conference AV hire across Ireland. Lectern mics, LED walls, confidence monitors, live streaming, and simultaneous interpretation. Full technical crew included.' },
   { path: '/contact', title: 'Contact EventSound | Get a Quote for AV Hire Ireland', description: 'Contact EventSound for a free consultation and quote. Professional AV hire, sound, lighting, LED screens, and staging across Ireland. Fast response guaranteed.' },
   { path: '/faq', title: 'FAQ | Event Production & AV Hire Questions | EventSound', description: 'Frequently asked questions about EventSound event production services, AV hire, pricing, and event planning in Ireland.' },
   { path: '/gallery', title: 'Event Gallery | Our Work | EventSound', description: 'Browse our portfolio of event production work across Ireland. LED video walls, lighting design, staging, and AV setups for conferences, concerts, and corporate events.' },

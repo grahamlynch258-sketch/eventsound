@@ -82,7 +82,7 @@ export default function AVProduction() {
           <div className="flex flex-wrap gap-3 justify-center transition-transform duration-300 hover:scale-[1.03] cursor-default">
             <Link to="/services/led-video-walls"><Button variant="outline">LED Video Walls</Button></Link>
             <Link to="/services/event-production"><Button variant="outline">Event Production</Button></Link>
-            <Link to="/services/virtual-events"><Button variant="outline">Virtual Events</Button></Link>
+            <Link to="/services/conference-av-hire"><Button variant="outline">Conference AV Hire</Button></Link>
           </div>
 
           {/* FAQ Section */}

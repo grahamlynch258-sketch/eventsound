@@ -25,6 +25,7 @@ const SERVICE_TABS = [
   { key: "video-production", label: "Video Prod." },
   { key: "virtual-events", label: "Virtual" },
   { key: "audio-systems", label: "Audio" },
+  { key: "conference-av-hire", label: "Conference AV" },
 ];
 
 function ServiceSectionList({ serviceKey }: { serviceKey: string }) {

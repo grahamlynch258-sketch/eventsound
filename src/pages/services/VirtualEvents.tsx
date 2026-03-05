@@ -77,7 +77,7 @@ export default function VirtualEvents() {
           <div className="flex flex-wrap gap-3 justify-center transition-transform duration-300 hover:scale-[1.03] cursor-default">
             <Link to="/services/video-production"><Button variant="outline">Video Production</Button></Link>
             <Link to="/services/led-video-walls"><Button variant="outline">LED Video Walls</Button></Link>
-            <Link to="/services/av-production"><Button variant="outline">AV Production</Button></Link>
+            <Link to="/services/conference-av-hire"><Button variant="outline">Conference AV Hire</Button></Link>
           </div>
 
           {/* FAQ Section */}
