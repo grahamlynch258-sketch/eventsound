@@ -29,11 +29,18 @@ export function HeroSlideshow({ intervalMs = 5000 }: Props) {
     ? headlines.map((h) => ({ url: h.image_url, alt: h.alt_text || h.file_name || "Event production" }))
     : [];
 
-  // Preload the first image before showing anything
+  // Preload the first image before showing anything.
+  // If a <link rel="preload"> already fetched it, skip the extra Image() load.
   useEffect(() => {
     if (images.length === 0) return;
+    const firstUrl = images[0].url;
+    const preload = document.querySelector<HTMLLinkElement>('link[rel="preload"][as="image"]');
+    if (preload && preload.href === firstUrl) {
+      setFirstImageLoaded(true);
+      return;
+    }
     const img = new Image();
-    img.src = images[0].url;
+    img.src = firstUrl;
     img.onload = () => setFirstImageLoaded(true);
   }, [images.length > 0 ? images[0].url : ""]);
 
