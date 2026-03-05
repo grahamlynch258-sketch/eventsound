@@ -112,7 +112,15 @@
     <meta name="google-site-verification" content="QTuqmoQd0JWQpE5jZv9qEmZyy0dAasVQK_I-CxCkOHc" />
   </head>
   <body>
-    <div id="root"></div>
+    <!--
+      Static hero pre-render: paints the first slideshow image before React loads.
+      HARDCODED URL — if the first portfolio slide changes in Supabase, update this URL too.
+    -->
+    <div id="root">
+      <div id="hero-prerender" style="position:relative;width:100%;height:50vh;min-height:400px;overflow:hidden;background:linear-gradient(135deg,#111827,#1f2937,#111827)">
+        <img src="https://blhxvtmhhvrorajkszhy.supabase.co/storage/v1/object/public/site-images/1771953149237-nocm4fdlfha-optimized.webp" alt="Outdoor concert stage with lighting rig and LED screens at EventSound production" loading="eager" fetchpriority="high" decoding="sync" width="1920" height="1080" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

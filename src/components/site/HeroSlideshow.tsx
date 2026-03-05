@@ -7,6 +7,11 @@ type Props = {
 };
 
 export function HeroSlideshow({ intervalMs = 5000 }: Props) {
+  // Remove the static pre-rendered hero from index.html once React takes over
+  useEffect(() => {
+    document.getElementById("hero-prerender")?.remove();
+  }, []);
+
   const { data: headlines } = useQuery({
     queryKey: ["library-images", "headlines"],
     queryFn: async () => {
