@@ -22,6 +22,7 @@ export function HeroSlideshow({ intervalMs = 5000 }: Props) {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const prevIndexRef = useRef(-1);
+  const [hasTransitioned, setHasTransitioned] = useState(false);
   const [firstImageLoaded, setFirstImageLoaded] = useState(false);
 
   const images = headlines && headlines.length > 0
@@ -50,42 +51,38 @@ export function HeroSlideshow({ intervalMs = 5000 }: Props) {
         prevIndexRef.current = prev;
         return (prev + 1) % images.length;
       });
+      setHasTransitioned(true);
     }, intervalMs);
     return () => clearInterval(timer);
   }, [images.length, intervalMs, firstImageLoaded]);
 
   if (images.length === 0 || !firstImageLoaded) return null;
 
-  // Initial render: no transition has occurred yet (prevIndexRef is still -1)
-  const isInitial = prevIndexRef.current === -1;
+  // Before first transition: render ONLY the active slide.
+  // This prevents off-screen slides from registering as LCP candidates.
+  if (!hasTransitioned) {
+    const first = images[0];
+    return (
+      <img
+        src={first.url}
+        alt={first.alt}
+        loading="eager"
+        decoding="sync"
+        fetchPriority="high"
+        width={1920}
+        height={1080}
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+    );
+  }
 
+  // After first transition: render all slides with animation
   return (
     <>
       {images.map((img, i) => {
         const isActive = i === currentIndex;
         const isPrev = i === prevIndexRef.current;
 
-        if (isInitial) {
-          // First paint: active slide visible immediately, others off-screen, no transitions
-          return (
-            <img
-              key={img.url}
-              src={img.url}
-              alt={img.alt}
-              loading={i === 0 ? "eager" : "lazy"}
-              decoding={i === 0 ? "sync" : "async"}
-              fetchPriority={i === 0 ? "high" : undefined}
-              width={1920}
-              height={1080}
-              className="absolute inset-0 h-full w-full object-cover"
-              style={{
-                transform: isActive ? "none" : "translateX(100%)",
-              }}
-            />
-          );
-        }
-
-        // After first transition: animate slides
         let transform: string;
         if (isActive) {
           transform = "translateX(0)";
