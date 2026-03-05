@@ -22,7 +22,6 @@ export function HeroSlideshow({ intervalMs = 5000 }: Props) {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const prevIndexRef = useRef(-1);
-  const isInitialRender = useRef(true);
   const [firstImageLoaded, setFirstImageLoaded] = useState(false);
 
   const images = headlines && headlines.length > 0
@@ -49,7 +48,6 @@ export function HeroSlideshow({ intervalMs = 5000 }: Props) {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => {
         prevIndexRef.current = prev;
-        isInitialRender.current = false;
         return (prev + 1) % images.length;
       });
     }, intervalMs);
@@ -58,27 +56,30 @@ export function HeroSlideshow({ intervalMs = 5000 }: Props) {
 
   if (images.length === 0 || !firstImageLoaded) return null;
 
+  // Initial render: no transition has occurred yet (prevIndexRef is still -1)
+  const isInitial = prevIndexRef.current === -1;
+
   return (
     <>
       {images.map((img, i) => {
         const isActive = i === currentIndex;
         const isPrev = i === prevIndexRef.current;
 
-        // On initial render: active slide is visible immediately, all others hidden off-screen, no transitions
-        if (isInitialRender.current) {
+        if (isInitial) {
+          // First paint: active slide visible immediately, others off-screen, no transitions
           return (
             <img
               key={img.url}
               src={img.url}
               alt={img.alt}
               loading={i === 0 ? "eager" : "lazy"}
-              decoding="async"
+              decoding={i === 0 ? "sync" : "async"}
               fetchPriority={i === 0 ? "high" : undefined}
               width={1920}
               height={1080}
               className="absolute inset-0 h-full w-full object-cover"
               style={{
-                transform: isActive ? "translateX(0)" : "translateX(100%)",
+                transform: isActive ? "none" : "translateX(100%)",
               }}
             />
           );
