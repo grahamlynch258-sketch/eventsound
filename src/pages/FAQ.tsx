@@ -3,9 +3,10 @@ import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import heroFallback from "@/assets/hero-av-production.jpg";
+import { useServiceImages } from "@/hooks/useServiceImages";
 
 const FAQ = () => {
+  const { hero } = useServiceImages("hero-faq");
   const faqs = [
     {
       question: "What areas do you serve?",
@@ -70,7 +71,7 @@ const FAQ = () => {
       <PageHeader
         title="Frequently Asked Questions"
         subtitle="Everything you need to know about our event production services"
-        backgroundImage={heroFallback}
+        backgroundImage={hero}
         backgroundAlt="EventSound professional event production setup"
       />
       <div className="container mx-auto px-4 py-12">

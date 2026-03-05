@@ -2,9 +2,10 @@ import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
 import { TestimonialsSection } from "@/components/site/TestimonialsSection";
 import { useSeo } from "@/hooks/useSeo";
-import heroFallback from "@/assets/hero-av-production.jpg";
+import { useServiceImages } from "@/hooks/useServiceImages";
 
 const Reviews = () => {
+  const { hero } = useServiceImages("hero-reviews");
   useSeo({
     title: "Client Reviews | EventSound Event Production Ireland",
     description: "Read what our clients say about EventSound's event production services. Testimonials from corporate events, conferences, and live shows across Ireland.",
@@ -18,7 +19,7 @@ const Reviews = () => {
       <PageHeader
         title="Client Reviews"
         subtitle="Real feedback from event managers, agencies, and corporate clients who trust EventSound as their production partner across Ireland."
-        backgroundImage={heroFallback}
+        backgroundImage={hero}
         backgroundAlt="Professional event production setup at a live event in Ireland"
       />
       <TestimonialsSection />

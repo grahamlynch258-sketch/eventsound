@@ -2,13 +2,12 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { HeroSlideshow } from "./HeroSlideshow";
-import heroFallback from "@/assets/hero-av-production.jpg";
 
 export function Hero() {
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+    <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
       <div className="absolute inset-0">
-        <HeroSlideshow fallbackImage={heroFallback} />
+        <HeroSlideshow />
         <div className="absolute inset-0 bg-background/60" />
       </div>
       <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-b from-transparent to-background z-[1] pointer-events-none" />

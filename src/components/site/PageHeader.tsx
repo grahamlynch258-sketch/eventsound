@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useState, useEffect } from "react";
 
 interface PageHeaderProps {
   title: string;
@@ -9,21 +9,33 @@ interface PageHeaderProps {
 }
 
 export function PageHeader({ title, subtitle, backgroundImage, backgroundAlt, children }: PageHeaderProps) {
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    if (!backgroundImage) {
+      setLoaded(false);
+      return;
+    }
+    const img = new Image();
+    img.src = backgroundImage;
+    img.onload = () => setLoaded(true);
+  }, [backgroundImage]);
 
   // backgroundImage is undefined → pages with no hero (gradient fallback)
   // backgroundImage is null → hero is loading from Supabase (dark bg placeholder)
   // backgroundImage is string → hero URL ready
   if (backgroundImage !== undefined) {
     return (
-      <section className="relative min-h-[55vh] flex items-center overflow-hidden bg-background">
+      <section className="relative min-h-[55vh] flex items-center overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
         <div className="absolute inset-0">
           {backgroundImage && (
             <img
               src={backgroundImage}
-              alt={backgroundAlt || ""}
-              className="w-full h-full object-cover"
+              alt={backgroundAlt || title}
+              className={`w-full h-full object-cover transition-opacity duration-500 ${loaded ? "opacity-100" : "opacity-0"}`}
               loading="eager"
               fetchPriority="high"
+              decoding="async"
               width={1920}
               height={600}
             />

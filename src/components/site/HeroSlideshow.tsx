@@ -3,13 +3,11 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 
 type Props = {
-  fallbackImage: string;
-  singleImage?: string | null;
   intervalMs?: number;
 };
 
-export function HeroSlideshow({ fallbackImage, singleImage, intervalMs = 5000 }: Props) {
-  const { data: headlines, isLoading } = useQuery({
+export function HeroSlideshow({ intervalMs = 5000 }: Props) {
+  const { data: headlines } = useQuery({
     queryKey: ["library-images", "headlines"],
     queryFn: async () => {
       const { data, error } = await supabase
@@ -25,16 +23,22 @@ export function HeroSlideshow({ fallbackImage, singleImage, intervalMs = 5000 }:
   const [currentIndex, setCurrentIndex] = useState(0);
   const prevIndexRef = useRef(-1);
   const hasTransitioned = useRef(false);
+  const [firstImageLoaded, setFirstImageLoaded] = useState(false);
 
-  // Show fallback immediately so the hero is never blank, then swap to Supabase images.
-  const images = isLoading
-    ? [{ url: singleImage || fallbackImage, alt: "Event production" }]
-    : headlines && headlines.length > 0
-      ? headlines.map((h) => ({ url: h.image_url, alt: h.alt_text || h.file_name }))
-      : [{ url: singleImage || fallbackImage, alt: "Event production" }];
+  const images = headlines && headlines.length > 0
+    ? headlines.map((h) => ({ url: h.image_url, alt: h.alt_text || h.file_name || "Event production" }))
+    : [];
+
+  // Preload the first image before showing anything
+  useEffect(() => {
+    if (images.length === 0) return;
+    const img = new Image();
+    img.src = images[0].url;
+    img.onload = () => setFirstImageLoaded(true);
+  }, [images.length > 0 ? images[0].url : ""]);
 
   useEffect(() => {
-    if (images.length <= 1) return;
+    if (images.length <= 1 || !firstImageLoaded) return;
     const timer = setInterval(() => {
       setCurrentIndex((prev) => {
         prevIndexRef.current = prev;
@@ -43,9 +47,9 @@ export function HeroSlideshow({ fallbackImage, singleImage, intervalMs = 5000 }:
       });
     }, intervalMs);
     return () => clearInterval(timer);
-  }, [images.length, intervalMs]);
+  }, [images.length, intervalMs, firstImageLoaded]);
 
-  if (images.length === 0) return null;
+  if (images.length === 0 || !firstImageLoaded) return null;
 
   return (
     <>
@@ -69,7 +73,7 @@ export function HeroSlideshow({ fallbackImage, singleImage, intervalMs = 5000 }:
             src={img.url}
             alt={img.alt}
             loading={i === 0 ? "eager" : "lazy"}
-            decoding={i === 0 ? "sync" : "async"}
+            decoding="async"
             fetchPriority={i === 0 ? "high" : undefined}
             width={1920}
             height={1080}

@@ -1,9 +1,10 @@
 import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
-import heroFallback from "@/assets/hero-av-production.jpg";
+import { useServiceImages } from "@/hooks/useServiceImages";
 
 const HealthAndSafety = () => {
+  const { hero } = useServiceImages("hero-health-safety");
   useSeo({
     title: "Health & Safety | EventSound Event Production Ireland",
     description: "EventSound's commitment to health and safety. TUV-certified staging, European-manufactured rigging, and trained personnel for safe event production.",
@@ -17,7 +18,7 @@ const HealthAndSafety = () => {
       <PageHeader
         title="Health & Safety"
         subtitle="Our commitment to safe event production"
-        backgroundImage={heroFallback}
+        backgroundImage={hero}
         backgroundAlt="EventSound crew setting up professional event production equipment"
       />
       <div className="container mx-auto px-4 py-12">
