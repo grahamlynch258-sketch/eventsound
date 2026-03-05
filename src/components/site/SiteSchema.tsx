@@ -5,7 +5,7 @@ export const SiteSchema = () => {
   useEffect(() => {
     // Generate LocalBusiness schema for the entire site
     const schema = generateLocalBusinessSchema({
-      name: "EventSound",
+      name: "EventSound AV Services",
       description: "Professional event production and AV equipment hire in Ireland. LED video walls, sound systems, lighting, and staging for corporate events, conferences, and live shows.",
       url: "https://eventsound.ie",
       telephone: "+353-XX-XXX-XXXX", // TODO: Replace with actual phone

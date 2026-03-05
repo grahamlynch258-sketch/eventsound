@@ -1,8 +1,8 @@
 export const siteConfig = {
-  brandName: "Event Sound Pro Audio & Entertainment",
-  shortName: "Event Sound",
+  brandName: "EventSound AV Services",
+  shortName: "EventSound",
  tagline: "Premium Event Production — Ireland",
-  legalName: "Event Sound Pro Audio & Entertainment",
+  legalName: "EventSound AV Services",
 
   email: "info@eventsound.ie",
   emailSecondary: "Graham@eventsound.ie",

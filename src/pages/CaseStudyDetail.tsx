@@ -93,11 +93,11 @@ const CaseStudyDetail = () => {
     datePublished: caseStudy.published_at,
     dateModified: caseStudy.updated_at,
     author: {
-      name: "EventSound",
+      name: "EventSound AV Services",
       url: "https://eventsound.ie"
     },
     publisher: {
-      name: "EventSound",
+      name: "EventSound AV Services",
       logo: "https://eventsound.ie/logo.png"
     },
     keywords: caseStudy.tags?.join(", "),

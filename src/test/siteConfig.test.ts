@@ -3,8 +3,8 @@ import { siteConfig } from "@/config/site";
 
 describe("siteConfig", () => {
   it("has correct brand name", () => {
-    expect(siteConfig.brandName).toBe("Event Sound Pro Audio & Entertainment");
-    expect(siteConfig.shortName).toBe("Event Sound");
+    expect(siteConfig.brandName).toBe("EventSound AV Services");
+    expect(siteConfig.shortName).toBe("EventSound");
   });
 
   it("has production canonical base", () => {

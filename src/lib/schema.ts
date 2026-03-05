@@ -150,7 +150,7 @@ export function generateServiceSchema(data: ServiceSchema): string {
     "url": data.url,
     "provider": {
       "@type": "LocalBusiness",
-      "name": "EventSound",
+      "name": "EventSound AV Services",
       "@id": "https://eventsound.ie/#organization",
       "telephone": "+353872888761",
       "address": {

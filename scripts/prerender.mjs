@@ -49,7 +49,7 @@ function buildServiceSchema({ name, description, serviceType, url }) {
     "url": url,
     "provider": {
       "@type": "LocalBusiness",
-      "name": "EventSound",
+      "name": "EventSound AV Services",
       "@id": "https://eventsound.ie/#organization",
       "telephone": "+353872888761",
       "address": {
@@ -300,8 +300,8 @@ function getSchemasForRoute(routePath, caseStudyData) {
       image: caseStudyData.og_image_url || caseStudyData.featured_image_url || '',
       datePublished: caseStudyData.published_at || '',
       dateModified: caseStudyData.updated_at || undefined,
-      author: { name: "EventSound", url: "https://eventsound.ie" },
-      publisher: { name: "EventSound", logo: "https://eventsound.ie/logo.png" },
+      author: { name: "EventSound AV Services", url: "https://eventsound.ie" },
+      publisher: { name: "EventSound AV Services", logo: "https://eventsound.ie/logo.png" },
       keywords: caseStudyData.tags ? caseStudyData.tags.join(', ') : undefined,
       articleSection: caseStudyData.category || undefined,
     })];
