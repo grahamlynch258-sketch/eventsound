@@ -13,13 +13,13 @@ export default function ConferenceAvHire() {
     { question: "How far in advance should I book conference AV?", answer: "For large conferences with 200 or more delegates, we recommend four to six weeks minimum. Smaller meetings can often be turned around in one to two weeks, but earlier is always better — especially during peak conference season from September to November." },
     { question: "Do you provide technicians or just equipment?", answer: "Every booking includes on-site technicians. We don't do dry hire for conferences — your event is too important to leave to someone unfamiliar with the equipment." },
     { question: "Can you work with our venue's in-house AV?", answer: "Yes. We regularly integrate with venue-installed systems. We'll do a site visit to assess what's already in place and fill the gaps." },
-    { question: "What conference AV equipment do you provide?", answer: "Our conference AV equipment includes lectern and wireless microphones, LED video walls, projection systems, confidence monitors, autocue, live streaming rigs, simultaneous interpretation systems, stage lighting, and full audio systems — all with experienced operators." },
-    { question: "How much does conference AV hire cost?", answer: "Every conference is different. A straightforward single-room setup with sound and screens might start from around €1,500. Multi-room conferences with live streaming, interpretation, and LED walls scale from there. Contact us for a free consultation and quote." },
+    { question: "What conference AV equipment do you provide?", answer: "Our conference AV equipment includes lectern and wireless microphones, LED video walls, projection systems, confidence monitors, autocue, live streaming rigs, breakout room AV systems, stage lighting, and full audio systems — all with experienced operators." },
+    { question: "How much does conference AV hire cost?", answer: "Every conference is different. A straightforward single-room setup with sound and screens might start from around €1,500. Multi-room conferences with live streaming and LED walls scale from there. Contact us for a free consultation and quote." },
   ];
 
   useSeo({
     title: "Conference AV Hire Ireland | Conference Room AV Equipment | EventSound",
-    description: "Conference AV hire across Ireland. Lectern mics, LED walls, confidence monitors, live streaming, and simultaneous interpretation. Full technical crew included.",
+    description: "Conference AV hire across Ireland. Lectern mics, LED walls, confidence monitors, live streaming, and breakout room AV. Full technical crew included.",
     canonical: "https://eventsound.ie/services/conference-av-hire",
   });
   const { hero, gallery } = useServiceImages("service-conference-av");
@@ -54,9 +54,9 @@ export default function ConferenceAvHire() {
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
             Not everyone can be in the room. We deliver broadcast-quality live streams with multi-camera switching, lower-third graphics, remote speaker integration via NDI, and audience Q&A management across Zoom, Teams, YouTube, and Vimeo. Our hybrid setups ensure remote attendees get the same experience as those on-site, with dedicated camera angles, clean audio feeds, and real-time interaction tools.
           </p>
-          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Simultaneous Interpretation & Breakout Rooms</h2>
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Breakout Room AV</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            For multilingual conferences, we provide wireless interpretation receiver systems compatible with ISO-standard interpreter booths, supporting as many language channels as your event requires. For multi-track conferences, we set up fully independent AV systems in breakout rooms — each with their own mic, screen, and speaker setup — all coordinated from a central production desk so transitions between plenary and breakout sessions run seamlessly.
+            For multi-track conferences, we set up fully independent AV systems in breakout rooms — each with their own mic, screen, and speaker setup — all coordinated from a central production desk so transitions between plenary and breakout sessions run seamlessly.
           </p>
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Conference Stage Lighting</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
