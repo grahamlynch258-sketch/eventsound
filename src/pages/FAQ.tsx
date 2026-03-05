@@ -7,7 +7,7 @@ import { useServiceImages } from "@/hooks/useServiceImages";
 
 const FAQ = () => {
   const { hero } = useServiceImages("hero-faq");
-  const faqs = [
+  const faqs: { question: string; answer: React.ReactNode }[] = [
     {
       question: "What areas do you serve?",
       answer: "We're based in Dublin, Ireland, and serve clients nationwide. We regularly work at venues throughout Ireland."
@@ -38,23 +38,23 @@ const FAQ = () => {
     },
     {
       question: "Do you provide technical operators?",
-      answer: "Yes, all our AV equipment can be hired with experienced technical operators who manage everything from setup to operation."
+      answer: <>Yes, all our <Link to="/services/av-production" className="text-accent hover:underline">AV equipment</Link> can be hired with experienced technical operators who manage everything from setup to operation.</>
     },
     {
       question: "What brands of equipment do you use?",
-      answer: "We use industry-leading brands including L-Acoustics sound systems, Unilumin LED walls, and Chamsys lighting control."
+      answer: <>We use industry-leading brands including L-Acoustics <Link to="/services/av-production" className="text-accent hover:underline">sound systems</Link>, Unilumin <Link to="/services/led-video-walls" className="text-accent hover:underline">LED walls</Link>, and Chamsys <Link to="/services/lighting-design" className="text-accent hover:underline">lighting control</Link>.</>
     },
     {
       question: "Do you offer wireless microphones?",
-      answer: "Yes, we provide professional wireless microphone systems including handheld, lapel, and headset options."
+      answer: <>Yes, we provide professional <Link to="/services/av-production" className="text-accent hover:underline">wireless microphone systems</Link> including handheld, lapel, and headset options.</>
     },
     {
       question: "Can you provide LED video walls?",
-      answer: "Yes, we offer high-resolution LED video walls in various sizes and configurations for corporate events, conferences, and live shows."
+      answer: <>Yes, we offer high-resolution <Link to="/services/led-video-walls" className="text-accent hover:underline">LED video walls</Link> in various sizes and configurations for corporate events, conferences, and live shows.</>
     },
     {
       question: "Do you have insurance and certifications?",
-      answer: "Yes, we maintain full public liability insurance and our staging is TUV-certified. Our team is trained in safe equipment operation and rigging."
+      answer: <>Yes, we maintain full public liability insurance and our <Link to="/services/staging-pipe-drape" className="text-accent hover:underline">staging</Link> is TUV-certified. Our team is trained in safe equipment operation and rigging.</>
     }
   ];
 

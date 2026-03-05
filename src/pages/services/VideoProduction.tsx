@@ -68,12 +68,10 @@ export default function VideoProduction() {
 
           <BrandBanner serviceKey="video-production" />
 
-          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Related Services</h2>
-          <div className="flex flex-wrap gap-3 justify-center transition-transform duration-300 hover:scale-[1.03] cursor-default">
-            <Link to="/services/led-video-walls"><Button variant="outline">LED Video Walls</Button></Link>
-            <Link to="/services/virtual-events"><Button variant="outline">Virtual Events</Button></Link>
-            <Link to="/services/event-production"><Button variant="outline">Event Production</Button></Link>
-          </div>
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Frequently Combined With</h2>
+          <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+            Video production works best alongside <Link to="/services/led-video-walls" className="text-accent hover:underline">LED video walls</Link> for live IMAG and playback. For events with a remote audience, combine with our <Link to="/services/virtual-events" className="text-accent hover:underline">live streaming and hybrid event</Link> services. Full technical coordination is available through our <Link to="/services/event-production" className="text-accent hover:underline">event production</Link> team.
+          </p>
 
           {/* FAQ Section */}
           <div className="max-w-4xl mx-auto mt-16">

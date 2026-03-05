@@ -73,12 +73,10 @@ export default function EventProduction() {
 
           <BrandBanner serviceKey="event-production" />
 
-          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Related Services</h2>
-          <div className="flex flex-wrap gap-3 justify-center transition-transform duration-300 hover:scale-[1.03] cursor-default">
-            <Link to="/services/av-production"><Button variant="outline">AV Production</Button></Link>
-            <Link to="/services/led-video-walls"><Button variant="outline">LED Video Walls</Button></Link>
-            <Link to="/services/lighting-design"><Button variant="outline">Lighting Design</Button></Link>
-          </div>
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Frequently Combined With</h2>
+          <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+            Our event production service coordinates <Link to="/services/av-production" className="text-accent hover:underline">AV hire</Link>, <Link to="/services/led-video-walls" className="text-accent hover:underline">LED video walls</Link>, and <Link to="/services/lighting-design" className="text-accent hover:underline">lighting design</Link> under a single production manager for seamless delivery. See how we managed production for the <Link to="/case-studies/swords-castle-summer-concerts" className="text-accent hover:underline">Swords Castle Summer Concerts</Link>.
+          </p>
 
           {/* FAQ Section */}
           <div className="max-w-4xl mx-auto mt-16">

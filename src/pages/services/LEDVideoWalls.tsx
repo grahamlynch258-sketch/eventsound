@@ -73,12 +73,10 @@ export default function LEDVideoWalls() {
 
           <BrandBanner serviceKey="led-video-walls" />
 
-          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Related Services</h2>
-          <div className="flex flex-wrap gap-3 justify-center transition-transform duration-300 hover:scale-[1.03] cursor-default">
-            <Link to="/services/lighting-design"><Button variant="outline">Lighting Design</Button></Link>
-            <Link to="/services/video-production"><Button variant="outline">Video Production</Button></Link>
-            <Link to="/services/event-production"><Button variant="outline">Event Production</Button></Link>
-          </div>
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Frequently Combined With</h2>
+          <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+            Many of our clients combine LED video walls with <Link to="/services/lighting-design" className="text-accent hover:underline">professional event lighting</Link> and <Link to="/services/av-production" className="text-accent hover:underline">full AV production</Link> for a complete visual experience. For events with a remote audience, add our <Link to="/services/virtual-events" className="text-accent hover:underline">live streaming and hybrid event</Link> services. See how we delivered LED walls for the <Link to="/case-studies/swords-castle-summer-concerts" className="text-accent hover:underline">Swords Castle Summer Concerts</Link>.
+          </p>
 
           {/* FAQ Section */}
           <div className="max-w-4xl mx-auto mt-16">

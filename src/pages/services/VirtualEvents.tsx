@@ -73,12 +73,10 @@ export default function VirtualEvents() {
 
           <BrandBanner serviceKey="virtual-events" />
 
-          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Related Services</h2>
-          <div className="flex flex-wrap gap-3 justify-center transition-transform duration-300 hover:scale-[1.03] cursor-default">
-            <Link to="/services/video-production"><Button variant="outline">Video Production</Button></Link>
-            <Link to="/services/led-video-walls"><Button variant="outline">LED Video Walls</Button></Link>
-            <Link to="/services/conference-av-hire"><Button variant="outline">Conference AV Hire</Button></Link>
-          </div>
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Frequently Combined With</h2>
+          <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+            Hybrid events benefit from <Link to="/services/video-production" className="text-accent hover:underline">professional video production</Link> for multi-camera streaming. Many clients add <Link to="/services/led-video-walls" className="text-accent hover:underline">LED video walls</Link> for in-room visuals and <Link to="/services/conference-av-hire" className="text-accent hover:underline">conference AV</Link> including lectern mics and confidence monitors.
+          </p>
 
           {/* FAQ Section */}
           <div className="max-w-4xl mx-auto mt-16">

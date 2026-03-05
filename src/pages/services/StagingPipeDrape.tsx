@@ -73,12 +73,10 @@ export default function StagingPipeDrape() {
 
           <BrandBanner serviceKey="staging-pipe-drape" />
 
-          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Related Services</h2>
-          <div className="flex flex-wrap gap-3 justify-center transition-transform duration-300 hover:scale-[1.03] cursor-default">
-            <Link to="/services/lighting-design"><Button variant="outline">Lighting Design</Button></Link>
-            <Link to="/services/event-production"><Button variant="outline">Event Production</Button></Link>
-            <Link to="/services/led-video-walls"><Button variant="outline">LED Video Walls</Button></Link>
-          </div>
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Frequently Combined With</h2>
+          <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+            Most stage setups include <Link to="/services/lighting-design" className="text-accent hover:underline">event lighting</Link> for presenters and performances, along with <Link to="/services/led-video-walls" className="text-accent hover:underline">LED video walls</Link> as a backdrop. For full technical production across all disciplines, explore our <Link to="/services/event-production" className="text-accent hover:underline">event production</Link> service. See our stage setup for the <Link to="/case-studies/school-summit-career-expos" className="text-accent hover:underline">School Summit Career Expos</Link>.
+          </p>
 
           {/* FAQ Section */}
           <div className="max-w-4xl mx-auto mt-16">

@@ -57,10 +57,16 @@
 /wp-admin/*          /            301
 /wp-login.php        /            301
 /wp-includes/*       /            301
-/index.php/*         /            301
+
+# --- Old Joomla/WordPress URLs still indexed in Google ---
+# Specific paths MUST come before the /index.php/* catch-all (first match wins)
+/index.php/stage-musical/*           /services/av-production    301
+/index.php/2-uncategorised           /services                  301
+/index.php/*                         /                          301
+/led-video-keynote-or-powerpoint/    /services/led-video-walls  301
+/led-video-keynote-or-powerpoint     /services/led-video-walls  301
 
 # --- Legacy Joomla URLs (from audit) ---
-/index.php/2-uncategorised         /            301
 /sound-hire-vision-hire-dublin-ireland/  /services  301
 /sound-hire-vision-hire-dublin-ireland   /services  301
 

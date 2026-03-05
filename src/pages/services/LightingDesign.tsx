@@ -73,12 +73,10 @@ export default function LightingDesign() {
 
           <BrandBanner serviceKey="lighting-design" />
 
-          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Related Services</h2>
-          <div className="flex flex-wrap gap-3 justify-center transition-transform duration-300 hover:scale-[1.03] cursor-default">
-            <Link to="/services/led-video-walls"><Button variant="outline">LED Video Walls</Button></Link>
-            <Link to="/services/staging-pipe-drape"><Button variant="outline">Staging & Drape</Button></Link>
-            <Link to="/services/event-production"><Button variant="outline">Event Production</Button></Link>
-          </div>
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Frequently Combined With</h2>
+          <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+            Event lighting pairs perfectly with <Link to="/services/led-video-walls" className="text-accent hover:underline">LED video walls</Link> for a unified visual design. Many productions also include <Link to="/services/staging-pipe-drape" className="text-accent hover:underline">stage hire and pipe & drape</Link> to complete the look, backed by our <Link to="/services/event-production" className="text-accent hover:underline">full event production</Link> management. See our lighting design for the <Link to="/case-studies/swords-castle-summer-concerts" className="text-accent hover:underline">Swords Castle Summer Concerts</Link>.
+          </p>
 
           {/* FAQ Section */}
           <div className="max-w-4xl mx-auto mt-16">
