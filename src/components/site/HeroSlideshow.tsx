@@ -22,7 +22,7 @@ export function HeroSlideshow({ intervalMs = 5000 }: Props) {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const prevIndexRef = useRef(-1);
-  const hasTransitioned = useRef(false);
+  const isInitialRender = useRef(true);
   const [firstImageLoaded, setFirstImageLoaded] = useState(false);
 
   const images = headlines && headlines.length > 0
@@ -49,7 +49,7 @@ export function HeroSlideshow({ intervalMs = 5000 }: Props) {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => {
         prevIndexRef.current = prev;
-        hasTransitioned.current = true;
+        isInitialRender.current = false;
         return (prev + 1) % images.length;
       });
     }, intervalMs);
@@ -63,8 +63,28 @@ export function HeroSlideshow({ intervalMs = 5000 }: Props) {
       {images.map((img, i) => {
         const isActive = i === currentIndex;
         const isPrev = i === prevIndexRef.current;
-        const shouldAnimate = hasTransitioned.current && (isActive || isPrev);
 
+        // On initial render: active slide is visible immediately, all others hidden off-screen, no transitions
+        if (isInitialRender.current) {
+          return (
+            <img
+              key={img.url}
+              src={img.url}
+              alt={img.alt}
+              loading={i === 0 ? "eager" : "lazy"}
+              decoding="async"
+              fetchPriority={i === 0 ? "high" : undefined}
+              width={1920}
+              height={1080}
+              className="absolute inset-0 h-full w-full object-cover"
+              style={{
+                transform: isActive ? "translateX(0)" : "translateX(100%)",
+              }}
+            />
+          );
+        }
+
+        // After first transition: animate slides
         let transform: string;
         if (isActive) {
           transform = "translateX(0)";
@@ -87,7 +107,7 @@ export function HeroSlideshow({ intervalMs = 5000 }: Props) {
             className="absolute inset-0 h-full w-full object-cover"
             style={{
               transform,
-              transition: shouldAnimate ? "transform 0.7s ease" : "none",
+              transition: (isActive || isPrev) ? "transform 0.7s ease" : "none",
             }}
           />
         );
