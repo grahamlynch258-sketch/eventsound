@@ -124,7 +124,7 @@ export default function ConferenceAvHire() {
           </div>
         </div>
       </div>
-      <IrelandMap />
+      <IrelandMap service="conference-av" />
     </PageShell>
   );
 }

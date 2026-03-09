@@ -1,6 +1,7 @@
 import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
+import { useServiceImages } from "@/hooks/useServiceImages";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
@@ -21,12 +22,15 @@ const CorkConferenceAV = () => {
     ogDescription: "Professional conference AV services in Cork. Radio mics, PA systems, front lighting & on-site technicians.",
     ogType: "website",
   });
+  const { hero } = useServiceImages("service-conference-av");
 
   return (
     <PageShell>
       <PageHeader
         title="Conference AV Services in Cork"
         subtitle="Professional conference AV for Cork's pharmaceutical and technology sector"
+        backgroundImage={hero}
+        backgroundAlt="Conference AV setup at corporate event in Cork"
       />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6 text-center">

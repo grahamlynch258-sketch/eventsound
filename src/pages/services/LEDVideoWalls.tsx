@@ -111,7 +111,7 @@ export default function LEDVideoWalls() {
           </div>
         </div>
       </div>
-      <IrelandMap />
+      <IrelandMap service="led-walls" />
     </PageShell>
   );
 }

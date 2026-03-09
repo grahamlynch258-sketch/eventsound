@@ -1,6 +1,7 @@
 import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
+import { useServiceImages } from "@/hooks/useServiceImages";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
@@ -21,12 +22,15 @@ const AthaloneLedWalls = () => {
     ogDescription: "LED wall hire in Athlone & the Midlands from €120/sqm. Absen & Unilumin panels for conferences.",
     ogType: "website",
   });
+  const { hero } = useServiceImages("service-led-walls");
 
   return (
     <PageShell>
       <PageHeader
         title="LED Wall Hire in Athlone & the Midlands"
         subtitle="Professional LED walls at Ireland's geographic centre"
+        backgroundImage={hero}
+        backgroundAlt="LED video wall at corporate event in Athlone"
       />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6 text-center">

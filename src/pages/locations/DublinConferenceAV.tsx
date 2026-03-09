@@ -1,6 +1,7 @@
 import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
+import { useServiceImages } from "@/hooks/useServiceImages";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
@@ -22,12 +23,15 @@ const DublinConferenceAV = () => {
     ogDescription: "Professional conference AV services in Dublin. Radio mics, PA systems, front lighting, livestreaming & on-site technicians.",
     ogType: "website",
   });
+  const { hero } = useServiceImages("service-conference-av");
 
   return (
     <PageShell>
       <PageHeader
         title="Conference AV Services in Dublin"
         subtitle="Complete conference audio visual solutions for Dublin's corporate events market"
+        backgroundImage={hero}
+        backgroundAlt="Conference AV setup at corporate event in Dublin"
       />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6 text-center">

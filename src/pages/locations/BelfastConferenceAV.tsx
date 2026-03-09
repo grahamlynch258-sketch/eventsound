@@ -1,6 +1,7 @@
 import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
+import { useServiceImages } from "@/hooks/useServiceImages";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
@@ -21,12 +22,15 @@ const BelfastConferenceAV = () => {
     ogDescription: "Professional conference AV in Belfast & Northern Ireland. Cross-border service from Ireland.",
     ogType: "website",
   });
+  const { hero } = useServiceImages("service-conference-av");
 
   return (
     <PageShell>
       <PageHeader
         title="Conference AV Services in Belfast"
         subtitle="Cross-border conference AV for Belfast's world-class venues"
+        backgroundImage={hero}
+        backgroundAlt="Conference AV setup at corporate event in Belfast"
       />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6 text-center">
