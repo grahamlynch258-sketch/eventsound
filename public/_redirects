@@ -1,6 +1,6 @@
 # ===========================================
 # EventSound 301 Redirect Map
-# Old WordPress URLs → New Vite/React URLs
+# Old WordPress/Joomla URLs → New Vite/React URLs
 # ===========================================
 
 # --- Service Pages (slug changes) ---
@@ -37,7 +37,7 @@
 /reviews/paul-barnes-events-manager-fingal-county-council/   /reviews    301
 /reviews/paul-barnes-events-manager-fingal-county-council    /reviews    301
 
-# --- Pages that exist on both (same slug, ensure trailing slash works) ---
+# --- Trailing slash normalization (pages that exist on both old & new site) ---
 /about/              /about       301
 /contact/            /contact     301
 /faq/                /faq         301
@@ -45,30 +45,51 @@
 /health-and-safety/  /health-and-safety  301
 /reviews/            /reviews     301
 /services/           /services    301
+/case-studies/       /case-studies  301
 
-# --- Privacy Policy (no page on new site — redirect to homepage) ---
-/privacy-policy/     /            301
-/privacy-policy      /            301
+# --- Trailing slash normalization (service & case study sub-paths) ---
+/services/led-video-walls/         /services/led-video-walls        301
+/services/av-production/           /services/av-production          301
+/services/lighting-design/         /services/lighting-design        301
+/services/staging-pipe-drape/      /services/staging-pipe-drape     301
+/services/event-production/        /services/event-production       301
+/services/video-production/        /services/video-production       301
+/services/virtual-events/          /services/virtual-events         301
+/services/conference-av-hire/      /services/conference-av-hire     301
+/services/audio-systems/           /services/audio-systems          301
+/case-studies/swords-castle-summer-concerts/           /case-studies/swords-castle-summer-concerts          301
+/case-studies/school-summit-career-expos/              /case-studies/school-summit-career-expos             301
+/case-studies/prism-immersive-technology-summit/       /case-studies/prism-immersive-technology-summit      301
 
-# --- WordPress artifacts (catch-all) ---
-/wp-content/*        /            301
-/wp-json/*           /            301
-/xmlrpc.php          /            301
-/wp-admin/*          /            301
-/wp-login.php        /            301
-/wp-includes/*       /            301
+# --- Old WordPress pages still indexed in Google ---
+/sound-hire-vision-hire-dublin-ireland/  /services/audio-systems    301
+/sound-hire-vision-hire-dublin-ireland   /services/audio-systems    301
+/lighting-effects/                       /services/lighting-design  301
+/lighting-effects                        /services/lighting-design  301
+/privacy-policy/                         /privacy-policy            301
+/author/eventsound/                      /                          301
+/author/*                                /                          301
+/feed/                                   /                          301
+/feed                                    /                          301
 
 # --- Old Joomla/WordPress URLs still indexed in Google ---
 # Specific paths MUST come before the /index.php/* catch-all (first match wins)
 /index.php/stage-musical/*           /services/av-production    301
 /index.php/2-uncategorised           /services                  301
+/index.php                           /                          301
 /index.php/*                         /                          301
 /led-video-keynote-or-powerpoint/    /services/led-video-walls  301
 /led-video-keynote-or-powerpoint     /services/led-video-walls  301
 
-# --- Legacy Joomla URLs (from audit) ---
-/sound-hire-vision-hire-dublin-ireland/  /services  301
-/sound-hire-vision-hire-dublin-ireland   /services  301
+# --- WordPress system paths — return 404, not homepage ---
+/wp-admin/*          /404.html  404
+/wp-content/*        /404.html  404
+/wp-includes/*       /404.html  404
+/wp-json/*           /404.html  404
+/xmlrpc.php          /404.html  404
+/wp-login.php        /404.html  404
+/wp-cron.php         /404.html  404
+/wp-*.php            /404.html  404
 
 # --- SPA fallback (must be LAST) ---
 /*                   /index.html  200

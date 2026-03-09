@@ -13,13 +13,13 @@ export const siteConfig = {
   phoneTertiary: "+353863520476",
   phoneTertiaryDisplay: "+353 86 352 0476",
 
-  addressLocality: "Dublin",
-  addressRegion: "Ireland",
+  addressLocality: "Drogheda",
+  addressRegion: "Leinster",
   addressStreet: "Townrath",
   postalCode: "",
   country: "IE",
-  primaryLocation: "Dublin, Ireland",
-  serviceAreas: ["Louth", "Dublin", "Meath", "Nationwide Ireland"],
+  primaryLocation: "Drogheda, Ireland",
+  serviceAreas: ["Dublin", "Leinster", "Nationwide Ireland"],
 
   quoteResponseSLA: "within 24 hours",
 

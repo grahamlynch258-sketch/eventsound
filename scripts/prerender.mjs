@@ -54,7 +54,8 @@ function buildServiceSchema({ name, description, serviceType, url }) {
       "telephone": "+353872888761",
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "Dublin",
+        "addressLocality": "Drogheda",
+        "addressRegion": "Leinster",
         "addressCountry": "IE"
       }
     },

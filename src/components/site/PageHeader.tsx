@@ -40,7 +40,7 @@ export function PageHeader({ title, subtitle, backgroundImage, backgroundAlt, ch
               height={600}
             />
           )}
-          <div className="absolute inset-0 bg-background/70" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
         </div>
         <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-b from-transparent to-background z-[1] pointer-events-none" />
         <div className="container mx-auto px-4 relative z-10 py-16 md:py-24 text-center">
