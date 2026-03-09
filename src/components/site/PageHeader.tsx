@@ -26,7 +26,7 @@ export function PageHeader({ title, subtitle, backgroundImage, backgroundAlt, ch
   // backgroundImage is string → hero URL ready
   if (backgroundImage !== undefined) {
     return (
-      <section className="relative min-h-[55vh] flex items-center overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+      <section className="relative min-h-[82vh] flex items-center overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
         <div className="absolute inset-0">
           {backgroundImage && (
             <img
