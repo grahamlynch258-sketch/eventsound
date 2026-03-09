@@ -60,6 +60,9 @@ export function SiteFooter({ className }: { className?: string }) {
             <a href={`tel:${siteConfig.phone}`} className="text-sm text-muted-foreground hover:text-accent transition-colors mt-1 block">
               {siteConfig.phoneDisplay}
             </a>
+            <a href="tel:+353863520476" className="text-sm text-muted-foreground hover:text-accent transition-colors mt-1 block">
+              +353 86 352 0476
+            </a>
             {siteConfig.social.linkedin && (
               <a href={siteConfig.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-accent transition-colors mt-1 block">
                 LinkedIn
