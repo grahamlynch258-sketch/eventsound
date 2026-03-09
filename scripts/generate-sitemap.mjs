@@ -29,6 +29,20 @@ const staticRoutes = [
   { path: '/services/video-production', priority: '0.8', changefreq: 'monthly' },
   { path: '/services/virtual-events', priority: '0.8', changefreq: 'monthly' },
   { path: '/services/audio-systems', priority: '0.8', changefreq: 'monthly' },
+  // Location pages — LED Walls
+  { path: '/services/led-walls/dublin', priority: '0.7', changefreq: 'monthly' },
+  { path: '/services/led-walls/cork', priority: '0.7', changefreq: 'monthly' },
+  { path: '/services/led-walls/galway', priority: '0.7', changefreq: 'monthly' },
+  { path: '/services/led-walls/belfast', priority: '0.7', changefreq: 'monthly' },
+  { path: '/services/led-walls/limerick', priority: '0.7', changefreq: 'monthly' },
+  { path: '/services/led-walls/athlone', priority: '0.7', changefreq: 'monthly' },
+  // Location pages — Conference AV
+  { path: '/services/conference-av/dublin', priority: '0.7', changefreq: 'monthly' },
+  { path: '/services/conference-av/cork', priority: '0.7', changefreq: 'monthly' },
+  { path: '/services/conference-av/galway', priority: '0.7', changefreq: 'monthly' },
+  { path: '/services/conference-av/belfast', priority: '0.7', changefreq: 'monthly' },
+  { path: '/services/conference-av/limerick', priority: '0.7', changefreq: 'monthly' },
+  { path: '/services/conference-av/athlone', priority: '0.7', changefreq: 'monthly' },
   ];
 
 async function generateSitemap() {

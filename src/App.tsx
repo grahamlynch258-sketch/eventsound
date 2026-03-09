@@ -34,6 +34,22 @@ const VideoProduction = lazy(() => import("@/pages/services/VideoProduction"));
 const VirtualEvents = lazy(() => import("@/pages/services/VirtualEvents"));
 const ConferenceAvHire = lazy(() => import("@/pages/services/ConferenceAvHire"));
 
+// Location pages — LED Walls
+const DublinLedWalls = lazy(() => import("@/pages/locations/DublinLedWalls"));
+const CorkLedWalls = lazy(() => import("@/pages/locations/CorkLedWalls"));
+const GalwayLedWalls = lazy(() => import("@/pages/locations/GalwayLedWalls"));
+const BelfastLedWalls = lazy(() => import("@/pages/locations/BelfastLedWalls"));
+const LimerickLedWalls = lazy(() => import("@/pages/locations/LimerickLedWalls"));
+const AthaloneLedWalls = lazy(() => import("@/pages/locations/AthaloneLedWalls"));
+
+// Location pages — Conference AV
+const DublinConferenceAV = lazy(() => import("@/pages/locations/DublinConferenceAV"));
+const CorkConferenceAV = lazy(() => import("@/pages/locations/CorkConferenceAV"));
+const GalwayConferenceAV = lazy(() => import("@/pages/locations/GalwayConferenceAV"));
+const BelfastConferenceAV = lazy(() => import("@/pages/locations/BelfastConferenceAV"));
+const LimerickConferenceAV = lazy(() => import("@/pages/locations/LimerickConferenceAV"));
+const AthaloneConferenceAV = lazy(() => import("@/pages/locations/AthaloneConferenceAV"));
+
 // Admin pages — lazy loaded so they are excluded from the public bundle
 const AdminLogin = lazy(() => import("./pages/admin/Login"));
 const Dashboard = lazy(() => import("./pages/admin/Dashboard"));
@@ -75,6 +91,22 @@ function AppRoutes() {
       <Route path="/services/video-production" element={<Suspense fallback={null}><VideoProduction /></Suspense>} />
       <Route path="/services/virtual-events" element={<Suspense fallback={null}><VirtualEvents /></Suspense>} />
       <Route path="/services/conference-av-hire" element={<Suspense fallback={null}><ConferenceAvHire /></Suspense>} />
+
+      {/* Location pages — LED Walls */}
+      <Route path="/services/led-walls/dublin" element={<Suspense fallback={null}><DublinLedWalls /></Suspense>} />
+      <Route path="/services/led-walls/cork" element={<Suspense fallback={null}><CorkLedWalls /></Suspense>} />
+      <Route path="/services/led-walls/galway" element={<Suspense fallback={null}><GalwayLedWalls /></Suspense>} />
+      <Route path="/services/led-walls/belfast" element={<Suspense fallback={null}><BelfastLedWalls /></Suspense>} />
+      <Route path="/services/led-walls/limerick" element={<Suspense fallback={null}><LimerickLedWalls /></Suspense>} />
+      <Route path="/services/led-walls/athlone" element={<Suspense fallback={null}><AthaloneLedWalls /></Suspense>} />
+
+      {/* Location pages — Conference AV */}
+      <Route path="/services/conference-av/dublin" element={<Suspense fallback={null}><DublinConferenceAV /></Suspense>} />
+      <Route path="/services/conference-av/cork" element={<Suspense fallback={null}><CorkConferenceAV /></Suspense>} />
+      <Route path="/services/conference-av/galway" element={<Suspense fallback={null}><GalwayConferenceAV /></Suspense>} />
+      <Route path="/services/conference-av/belfast" element={<Suspense fallback={null}><BelfastConferenceAV /></Suspense>} />
+      <Route path="/services/conference-av/limerick" element={<Suspense fallback={null}><LimerickConferenceAV /></Suspense>} />
+      <Route path="/services/conference-av/athlone" element={<Suspense fallback={null}><AthaloneConferenceAV /></Suspense>} />
 
       {/* Landing pages — Google Ads only, noindex */}
       <Route path="/landing/corporate-av-hire-dublin" element={<Suspense fallback={null}><CorporateAVHireDublin /></Suspense>} />

@@ -9,6 +9,7 @@ import { ServiceSections } from "@/components/site/ServiceSections";
 import { BrandBanner } from "@/components/site/BrandSidebar";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
+import { IrelandMap } from "@/components/site/IrelandMap";
 
 export default function LEDVideoWalls() {
   const faqs = [
@@ -110,6 +111,7 @@ export default function LEDVideoWalls() {
           </div>
         </div>
       </div>
+      <IrelandMap />
     </PageShell>
   );
 }
