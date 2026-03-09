@@ -8,7 +8,7 @@ export function SiteFooter({ className }: { className?: string }) {
       <div className="container py-12 md:py-16">
         <div className="mb-8">
           <p className="font-serif text-xl font-semibold tracking-tight">
-            Event<span className="text-accent"> Sound</span>
+            Event<span className="text-accent">Sound</span>
           </p>
           <p className="mt-3 text-sm text-muted-foreground max-w-xs leading-relaxed">
             {siteConfig.tagline}. Professional event production based in {siteConfig.primaryLocation}, serving clients nationwide.
