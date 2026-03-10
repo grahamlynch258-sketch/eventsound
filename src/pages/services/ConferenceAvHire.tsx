@@ -42,7 +42,7 @@ export default function ConferenceAvHire() {
             EventSound provides conference AV hire and technical production for corporate conferences, seminars, AGMs, awards ceremonies, and product launches across Ireland. Based in Drogheda, Co. Louth, we serve venues in Dublin, Cork, Galway, Belfast, and nationwide.
           </p>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            With over 20 years of experience in the event production industry, we work with corporate clients, agencies, venue managers, and event organisers to deliver professional conference AV from initial planning through to on-site execution and breakdown.
+            With over 20 years of experience in the event production industry, we have delivered conference AV at venues including Bellingham Castle, The Marcy Hotel Drogheda, DkIT An Macánna Theatre, and the Eikon Exhibition Centre Belfast. We work with corporate clients, agencies, venue managers, and event organisers to deliver professional conference AV from initial planning through to on-site execution and breakdown.
           </p>
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Conference AV Services</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
