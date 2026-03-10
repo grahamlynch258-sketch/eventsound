@@ -13,11 +13,11 @@ import { IrelandMap } from "@/components/site/IrelandMap";
 
 export default function ConferenceAvHire() {
   const faqs = [
+    { question: "What AV equipment do I need for a corporate conference?", answer: "A standard conference setup includes a PA system with wireless microphones, an LED screen or projector for presentations, confidence monitors for speakers, stage lighting, and a dedicated technician. For larger events, add IMAG cameras, breakout room audio, and hybrid streaming." },
+    { question: "Do you provide AV for multi-room conferences?", answer: "Yes. We regularly set up AV across multiple rooms for conferences with breakout sessions, plenary halls, and networking areas. Each room gets its own PA, display, and technician, with centralised content management." },
+    { question: "Can you live stream my conference?", answer: "Yes. We provide full hybrid event production including multi-camera switching, branded stream graphics, and audience interaction tools. We stream to platforms including Zoom, Teams, YouTube, Vimeo, and custom platforms." },
     { question: "How far in advance should I book conference AV?", answer: "For large conferences with 200 or more delegates, we recommend four to six weeks minimum. Smaller meetings can often be turned around in one to two weeks, but earlier is always better — especially during peak conference season from September to November." },
-    { question: "Do you provide technicians or just equipment?", answer: "Every booking includes on-site technicians. We don't do dry hire for conferences — your event is too important to leave to someone unfamiliar with the equipment." },
-    { question: "Can you work with our venue's in-house AV?", answer: "Yes. We regularly integrate with venue-installed systems. We'll do a site visit to assess what's already in place and fill the gaps." },
-    { question: "What conference AV equipment do you provide?", answer: "Our conference AV equipment includes lectern and wireless microphones, LED video walls, projection systems, confidence monitors, autocue, live streaming rigs, breakout room AV systems, stage lighting, and full audio systems — all with experienced operators." },
-    { question: "How much does conference AV hire cost?", answer: "Every conference is different. A straightforward single-room setup with sound and screens might start from around €1,500. Multi-room conferences with live streaming and LED walls scale from there. Contact us for a free consultation and quote." },
+    { question: "How much does conference AV hire cost?", answer: "Conference AV pricing depends on the number of rooms, event duration, equipment requirements, and venue location. A single-room conference with PA, projection, and a technician typically starts from €800 to €1,500 per day. Multi-room setups with LED walls, IMAG, and full lighting production scale from €2,500 upwards depending on complexity. Contact us for a detailed quote based on your event brief." },
   ];
 
   useSeo({
@@ -39,39 +39,60 @@ export default function ConferenceAvHire() {
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6 text-center">
           <p className="text-lg text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            Every conference has one job — make sure your message lands. Whether it's a 50-person AGM, a 500-seat medical symposium, or a hybrid tech summit streaming to a global audience, the AV setup is what separates a polished, professional event from one where delegates are squinting at slides and straining to hear. EventSound provides full-service conference AV hire across Ireland, with experienced technicians who stay on-site from soundcheck to wrap.
+            EventSound provides conference AV hire and technical production for corporate conferences, seminars, AGMs, awards ceremonies, and product launches across Ireland. Based in Drogheda, Co. Louth, we serve venues in Dublin, Cork, Galway, Belfast, and nationwide.
           </p>
-          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Presenter Audio & Lectern Systems</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            Your keynote speaker shouldn't have to think about the microphone. We supply and operate lectern microphones, wireless lapel and headset mics, handheld radio mics for Q&A, and full-room speaker systems tuned to your venue's acoustics. For panel discussions, we set up multi-mic configurations with individual mix control so every voice comes through clearly — no feedback, no dropouts.
+            With over 20 years of experience in the event production industry, we work with corporate clients, agencies, venue managers, and event organisers to deliver professional conference AV from initial planning through to on-site execution and breakdown.
           </p>
-          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">LED Walls & Conference Room AV Equipment</h2>
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Conference AV Services</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            When your message needs maximum visual impact, an LED wall changes the room. Our high-resolution Unilumin LED panels are available in custom configurations — from a 3m wide presentation backdrop to a full-width stage set spanning 10m or more. Perfect for branded content, live data dashboards, sponsor loops, and speaker slides at a scale that projectors can't match. We handle all content formatting, signal switching, and on-the-fly source changes.
+            Our conference AV packages cover every technical element of a corporate event. We provide PA systems and microphone setups for keynote speeches, panel discussions, and audience Q&A — including wireless handheld, lapel, and headset microphones. Our Martin Audio speaker systems deliver clear, even coverage in conference rooms, ballrooms, and theatre-style venues.
           </p>
-          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Confidence Monitors & Autocue</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            Presenters perform better when they can see their own slides without turning their back on the audience. We provide confidence monitors positioned at stage level showing the current slide, next slide, and timing cues. For scripted addresses, our autocue and teleprompter systems let speakers deliver naturally while staying word-perfect — essential for CEO addresses, ministerial speeches, and investor presentations.
+            For visual presentation, we supply LED video walls, projection systems, confidence monitors for speakers, and stage-front foldback screens. Our operators manage all slide advancement, video playback, and live camera switching so your presenters can focus on delivery.
           </p>
-          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Live Streaming & Hybrid Conference Production</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            Not everyone can be in the room. We deliver broadcast-quality live streams with multi-camera switching, lower-third graphics, remote speaker integration via NDI, and audience Q&A management across Zoom, Teams, YouTube, and Vimeo. Our hybrid setups ensure remote attendees get the same experience as those on-site, with dedicated camera angles, clean audio feeds, and real-time interaction tools.
+            Lighting for conferences includes front-of-house wash for speaker visibility and camera compatibility, branded uplighting, stage effects, and house light control managed through our Chamsys lighting systems.
           </p>
-          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Breakout Room AV</h2>
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">What a Typical Conference AV Setup Includes</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            For multi-track conferences, we set up fully independent AV systems in breakout rooms — each with their own mic, screen, and speaker setup — all coordinated from a central production desk so transitions between plenary and breakout sessions run seamlessly.
+            A typical EventSound conference AV package includes: PA system sized for the venue and audience (Martin Audio speakers, wireless microphones, mixing desk), LED video wall or projection for presentations and branding, confidence monitors for speakers showing slides and timers, stage lighting for presenter visibility and camera-ready colour temperature, recording of all sessions for post-event distribution, and a dedicated technical operator managing audio, visuals, and lighting throughout the event.
           </p>
-          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Conference Stage Lighting</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            Conference lighting does more than illuminate — it sets the tone. We design lighting rigs that put your speakers in the best light, wash your stage set in brand colours, and create distinct visual moods for different segments. All controlled by our ChamSys lighting desk with a dedicated operator.
+            For larger conferences, we also provide multi-room AV setups for breakout sessions, delegate microphone systems for panel discussions and audience Q&A, live polling and audience interaction displays, IMAG (image magnification) with multi-camera switching for large audiences, and hybrid event streaming for remote attendees.
           </p>
-          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">What's Included</h2>
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Conferences and Events We Have Supported</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            Every EventSound conference package includes a dedicated project manager who works with you from the first site visit through to load-out. We do the advance venue recce, produce a technical plan, handle all equipment delivery and rigging, and run the full show with our own crew. You get a single point of contact, not a box of rented equipment and a manual.
+            EventSound has provided conference AV and event production at venues across Ireland, including:
           </p>
-          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Trusted Across Every Sector</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            We've delivered conference AV for corporate AGMs, pharmaceutical product launches, technology summits, government briefings, charity galas, and academic symposiums in venues across Ireland — from the Convention Centre Dublin to regional hotels and purpose-built conference centres.
+            Local Enterprise Week 2026 — Multi-venue production across Bellingham Castle (Castlebellingham), The Gateway Hotel (Dundalk), and The Marcy Hotel (Drogheda). PA systems, staging, display screens, and lighting for a week of enterprise workshops and keynotes. Contracted by Whitelight Events (Davis Events) on behalf of Local Enterprise Office Louth and Louth County Council.
+          </p>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            Local Enterprise Awards 2026 — Sound, lighting, and display screens for the county business awards at The Marcy Hotel, Drogheda.
+          </p>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            PRISM Immersive Technology Summit — Curved Absen LED wall and mood lighting at DkIT An Macánna Theatre, Dundalk. Technical production for 250 attendees, supported by DkIT, Queen's University Belfast, and InterTradeIreland.
+          </p>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            School Summit Career Expos — Multi-year partnership providing all AV equipment for large-scale careers exhibitions at the Eikon Exhibition Centre, Belfast. Multiple events per year with full EventSound equipment.
+          </p>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            Beta Festival 2025 — Curved LED video wall installation for immersive digital art at The Digital Hub, Dublin.
+          </p>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            Swords Castle Summer Concerts — Full event production including stage, LED walls, PA system, and lighting for outdoor summer concerts.
+          </p>
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Hybrid and Virtual Conference Production</h2>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            For conferences with remote attendees, EventSound provides hybrid event production combining in-venue AV with professional live streaming. We set up multi-camera switching, branded stream graphics and lower thirds, screen sharing integration, and audience interaction tools for remote participants including live Q&A and polling.
+          </p>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            Our hybrid production ensures remote viewers receive the same quality experience as in-room attendees, with broadcast-quality video, clear audio, and real-time content delivery through your chosen streaming platform.
+          </p>
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Conference AV Pricing</h2>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            Conference AV pricing depends on the number of rooms, event duration, equipment requirements, and venue location. A single-room conference with PA, projection, and a technician typically starts from €800 to €1,500 per day. Multi-room setups with LED walls, IMAG, and full lighting production scale from €2,500 upwards depending on complexity. Contact us for a detailed quote based on your event brief.
           </p>
 
           {sections.length > 0 && <ServiceSections sections={sections} />}
