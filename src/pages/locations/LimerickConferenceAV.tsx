@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
+import { generateBreadcrumbSchema } from "@/lib/schema";
+import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 const LimerickConferenceAV = () => {
   const faqs = [
@@ -14,6 +16,13 @@ const LimerickConferenceAV = () => {
     { question: "Do you cover the wider Shannon region?", answer: "Yes. We serve events across Limerick city and the wider Shannon region, including Ennis, Shannon town, North Tipperary, and surrounding areas." },
   ];
 
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "https://eventsound.ie/" },
+    { name: "Services", url: "https://eventsound.ie/services" },
+    { name: "Conference AV Hire", url: "https://eventsound.ie/services/conference-av-hire" },
+    { name: "Conference AV Limerick", url: "https://eventsound.ie/services/conference-av/limerick" },
+  ]);
+
   useSeo({
     title: "Conference AV Services Limerick | Event Sound & AV Hire | EventSound",
     description: "Conference AV hire in Limerick. PA systems, projection, LED screens & staging for corporate conferences & seminars in the mid-west. Full setup & operator included.",
@@ -21,11 +30,22 @@ const LimerickConferenceAV = () => {
     ogTitle: "Conference AV Services Limerick | EventSound",
     ogDescription: "Professional conference AV in Limerick & the Shannon region. Radio mics, PA systems & on-site technicians.",
     ogType: "website",
+    additionalSchemas: [
+      { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
+    ],
   });
   const { hero } = useServiceImages("service-conference-av");
 
   return (
     <PageShell>
+      <Breadcrumb
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Services", href: "/services" },
+          { label: "Conference AV Hire", href: "/services/conference-av-hire" },
+          { label: "Limerick" },
+        ]}
+      />
       <PageHeader
         title="Conference AV Services in Limerick"
         subtitle="Professional conference AV for Limerick and the Shannon region"

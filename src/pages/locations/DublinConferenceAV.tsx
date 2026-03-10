@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
+import { generateBreadcrumbSchema } from "@/lib/schema";
+import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 const DublinConferenceAV = () => {
   const faqs = [
@@ -15,6 +17,13 @@ const DublinConferenceAV = () => {
     { question: "How far in advance should I book conference AV in Dublin?", answer: "We recommend booking at least 2 to 4 weeks before your event, though we can often accommodate shorter lead times depending on equipment availability. For large-scale conferences or events during peak periods (September to November, January to March), earlier booking is advisable. Contact us as soon as you have your event dates confirmed." },
   ];
 
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "https://eventsound.ie/" },
+    { name: "Services", url: "https://eventsound.ie/services" },
+    { name: "Conference AV Hire", url: "https://eventsound.ie/services/conference-av-hire" },
+    { name: "Conference AV Dublin", url: "https://eventsound.ie/services/conference-av/dublin" },
+  ]);
+
   useSeo({
     title: "Conference AV Services Dublin | Event Sound & AV Hire | EventSound",
     description: "Conference AV hire in Dublin. PA systems, LED screens, confidence monitors, lighting & live streaming for corporate conferences & seminars. Same-day quotes available.",
@@ -22,11 +31,22 @@ const DublinConferenceAV = () => {
     ogTitle: "Conference AV Services Dublin | EventSound",
     ogDescription: "Professional conference AV services in Dublin. Radio mics, PA systems, front lighting, livestreaming & on-site technicians.",
     ogType: "website",
+    additionalSchemas: [
+      { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
+    ],
   });
   const { hero } = useServiceImages("service-conference-av");
 
   return (
     <PageShell>
+      <Breadcrumb
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Services", href: "/services" },
+          { label: "Conference AV Hire", href: "/services/conference-av-hire" },
+          { label: "Dublin" },
+        ]}
+      />
       <PageHeader
         title="Conference AV Services in Dublin"
         subtitle="Complete conference audio visual solutions for Dublin's corporate events market"

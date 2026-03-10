@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
+import { generateBreadcrumbSchema } from "@/lib/schema";
+import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 const GalwayLedWalls = () => {
   const faqs = [
@@ -14,6 +16,13 @@ const GalwayLedWalls = () => {
     { question: "What LED wall size do I need for a Galway hotel ballroom?", answer: "For hotel ballrooms accommodating 200 to 500 delegates, 15 to 25 square metres is typical. For the larger ballrooms at Clayton Hotel Galway (capacity 800) or Galway Bay Hotel (combined 1,000), 25 to 40 square metres delivers maximum visual impact. Contact us with your specific venue for a tailored recommendation." },
   ];
 
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "https://eventsound.ie/" },
+    { name: "Services", url: "https://eventsound.ie/services" },
+    { name: "LED Video Walls", url: "https://eventsound.ie/services/led-video-walls" },
+    { name: "LED Walls Galway", url: "https://eventsound.ie/services/led-walls/galway" },
+  ]);
+
   useSeo({
     title: "LED Wall Hire Galway | LED Screen Rental for Events | EventSound",
     description: "LED video wall hire in Galway. High-resolution LED screens for conferences, corporate events & festivals across the west of Ireland. Full setup & operator included.",
@@ -21,11 +30,22 @@ const GalwayLedWalls = () => {
     ogTitle: "LED Wall Hire Galway | EventSound",
     ogDescription: "LED wall hire in Galway from €120/sqm. Absen & Unilumin panels for conferences and events.",
     ogType: "website",
+    additionalSchemas: [
+      { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
+    ],
   });
   const { hero } = useServiceImages("service-led-walls");
 
   return (
     <PageShell>
+      <Breadcrumb
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Services", href: "/services" },
+          { label: "LED Video Walls", href: "/services/led-video-walls" },
+          { label: "Galway" },
+        ]}
+      />
       <PageHeader
         title="LED Wall Hire in Galway"
         subtitle="Professional LED walls for Galway's conference and event venues"

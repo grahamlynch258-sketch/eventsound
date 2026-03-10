@@ -10,6 +10,8 @@ import { BrandBanner } from "@/components/site/BrandSidebar";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
 import { IrelandMap } from "@/components/site/IrelandMap";
+import { generateServiceSchema, generateBreadcrumbSchema } from "@/lib/schema";
+import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 export default function LEDVideoWalls() {
   const faqs = [
@@ -21,16 +23,42 @@ export default function LEDVideoWalls() {
     { question: "Do you provide operators with the LED screens?", answer: "Yes, all our LED wall hire packages include experienced technicians for setup, operation throughout your event, and breakdown. You never need to worry about the technical side." },
   ];
 
+  const serviceSchema = generateServiceSchema({
+    name: "LED Video Wall Hire",
+    description: "LED video wall hire across Ireland. Unilumin and Absen panels from 1.9mm to 3.9mm pixel pitch for conferences, exhibitions, concerts, and corporate events.",
+    url: "https://eventsound.ie/services/led-video-walls",
+    provider: { name: "EventSound", url: "https://eventsound.ie" },
+    areaServed: ["Dublin", "Cork", "Galway", "Belfast", "Limerick", "Ireland"],
+    serviceType: "LED Video Wall Hire"
+  });
+
+  const breadcrumbSchema = generateBreadcrumbSchema({
+    items: [
+      { name: "Home", url: "https://eventsound.ie" },
+      { name: "Services", url: "https://eventsound.ie/services" },
+      { name: "LED Video Walls", url: "https://eventsound.ie/services/led-video-walls" }
+    ]
+  });
+
   useSeo({
     title: "LED Screen Hire Ireland | LED Video Wall Rental Dublin | EventSound",
     description: "LED video wall hire across Ireland. Unilumin & Absen panels from 1.9mm to 3.9mm pixel pitch. Indoor, outdoor & curved configurations. Delivery, setup & operator included.",
     canonical: "https://eventsound.ie/services/led-video-walls",
+    additionalSchemas: [
+      { schema: serviceSchema, schemaId: "service-schema" },
+      { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
+    ]
   });
   const { hero, gallery } = useServiceImages("service-led-walls");
   const { data: sections = [] } = useServiceSections("led-video-walls");
 
   return (
     <PageShell>
+      <Breadcrumb items={[
+        { name: "Home", href: "/" },
+        { name: "Services", href: "/services" },
+        { name: "LED Video Walls" }
+      ]} />
       <PageHeader
         title="LED Screen Hire Ireland"
         subtitle="High-impact visual displays for events of every scale"

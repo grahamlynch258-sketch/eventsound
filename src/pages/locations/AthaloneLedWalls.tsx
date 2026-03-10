@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
+import { generateBreadcrumbSchema } from "@/lib/schema";
+import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 const AthaloneLedWalls = () => {
   const faqs = [
@@ -14,6 +16,13 @@ const AthaloneLedWalls = () => {
     { question: "Why choose Athlone for a national conference with LED walls?", answer: "Athlone is Ireland's geographic centre. Delegates from Dublin, Galway, Cork, and Limerick can all reach Athlone within 90 minutes to two hours. This makes it the most accessible location for national events. Combined with Hodson Bay Hotel's 30+ years of conference experience and the Sheraton's flagship facilities, Athlone offers convenience, quality venues, and professional LED wall installations." },
   ];
 
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "https://eventsound.ie/" },
+    { name: "Services", url: "https://eventsound.ie/services" },
+    { name: "LED Video Walls", url: "https://eventsound.ie/services/led-video-walls" },
+    { name: "LED Walls Athlone", url: "https://eventsound.ie/services/led-walls/athlone" },
+  ]);
+
   useSeo({
     title: "LED Wall Hire Athlone | LED Screen Rental Midlands Ireland | EventSound",
     description: "LED video wall hire in Athlone. LED screens for conferences, corporate events & exhibitions in the midlands. Central Ireland location. Delivery & setup included.",
@@ -21,11 +30,22 @@ const AthaloneLedWalls = () => {
     ogTitle: "LED Wall Hire Athlone | EventSound",
     ogDescription: "LED wall hire in Athlone & the Midlands from €120/sqm. Absen & Unilumin panels for conferences.",
     ogType: "website",
+    additionalSchemas: [
+      { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
+    ],
   });
   const { hero } = useServiceImages("service-led-walls");
 
   return (
     <PageShell>
+      <Breadcrumb
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Services", href: "/services" },
+          { label: "LED Video Walls", href: "/services/led-video-walls" },
+          { label: "Athlone" },
+        ]}
+      />
       <PageHeader
         title="LED Wall Hire in Athlone & the Midlands"
         subtitle="Professional LED walls at Ireland's geographic centre"

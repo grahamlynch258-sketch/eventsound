@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
+import { generateBreadcrumbSchema } from "@/lib/schema";
+import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 const AthaloneConferenceAV = () => {
   const faqs = [
@@ -15,6 +17,13 @@ const AthaloneConferenceAV = () => {
     { question: "Why choose Athlone for a national conference?", answer: "Athlone is Ireland's geographic centre. Delegates from every major city can reach Athlone within 90 minutes to two hours, making it the most accessible location for national events. Combined with Hodson Bay Hotel's 30+ years of conference experience and the Sheraton's flagship facilities, Athlone offers both convenience and quality for national gatherings." },
   ];
 
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "https://eventsound.ie/" },
+    { name: "Services", url: "https://eventsound.ie/services" },
+    { name: "Conference AV Hire", url: "https://eventsound.ie/services/conference-av-hire" },
+    { name: "Conference AV Athlone", url: "https://eventsound.ie/services/conference-av/athlone" },
+  ]);
+
   useSeo({
     title: "Conference AV Services Athlone | AV Hire Midlands Ireland | EventSound",
     description: "Conference AV hire in Athlone. Sound, screens & lighting for corporate conferences & events in the midlands. Central Ireland. Delivery & technician included.",
@@ -22,11 +31,22 @@ const AthaloneConferenceAV = () => {
     ogTitle: "Conference AV Services Athlone | EventSound",
     ogDescription: "Professional conference AV in Athlone & Ireland's Midlands. Hodson Bay, Sheraton & Midlands venues.",
     ogType: "website",
+    additionalSchemas: [
+      { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
+    ],
   });
   const { hero } = useServiceImages("service-conference-av");
 
   return (
     <PageShell>
+      <Breadcrumb
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Services", href: "/services" },
+          { label: "Conference AV Hire", href: "/services/conference-av-hire" },
+          { label: "Athlone" },
+        ]}
+      />
       <PageHeader
         title="Conference AV Services in Athlone & the Midlands"
         subtitle="Professional conference AV at Ireland's geographic centre"

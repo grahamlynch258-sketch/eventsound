@@ -136,54 +136,84 @@ export function generateFAQSchema(data: FAQSchema): string {
 export interface ServiceSchema {
   name: string;
   description: string;
-  serviceType: string;
   url: string;
+  provider: {
+    name: string;
+    url: string;
+  };
+  areaServed: string[];
+  serviceType: string;
 }
 
 export function generateServiceSchema(data: ServiceSchema): string {
-  return JSON.stringify({
+  const schema = {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": data.name,
     "description": data.description,
-    "serviceType": data.serviceType,
     "url": data.url,
     "provider": {
       "@type": "LocalBusiness",
-      "name": "EventSound AV Services",
-      "@id": "https://eventsound.ie/#organization",
-      "telephone": "+353872888761",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Drogheda",
-        "addressRegion": "Leinster",
-        "addressCountry": "IE"
-      }
+      "name": data.provider.name,
+      "url": data.provider.url
     },
-    "areaServed": {
-      "@type": "Country",
-      "name": "Ireland"
-    }
-  });
+    "areaServed": data.areaServed.map(area => ({
+      "@type": "Place",
+      "name": area
+    })),
+    "serviceType": data.serviceType
+  };
+
+  return JSON.stringify(schema);
 }
 
 // --- BreadcrumbList Schema ---
-export interface BreadcrumbItem {
-  name: string;
-  url: string;
+export interface BreadcrumbSchema {
+  items: Array<{
+    name: string;
+    url: string;
+  }>;
 }
 
-export function generateBreadcrumbSchema(items: BreadcrumbItem[]): string {
-  return JSON.stringify({
+export function generateBreadcrumbSchema(data: BreadcrumbSchema): string {
+  const schema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    "itemListElement": items.map((item, i) => ({
+    "itemListElement": data.items.map((item, index) => ({
       "@type": "ListItem",
-      "position": i + 1,
+      "position": index + 1,
       "name": item.name,
       "item": item.url
     }))
-  });
+  };
+
+  return JSON.stringify(schema);
+}
+
+// --- AggregateRating Schema ---
+export interface AggregateRatingSchema {
+  ratingValue: number;
+  reviewCount: number;
+  bestRating?: number;
+  worstRating?: number;
+}
+
+export function generateAggregateRatingSchema(data: AggregateRatingSchema): string {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "EventSound",
+    "url": "https://eventsound.ie",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": data.ratingValue,
+      "reviewCount": data.reviewCount,
+      "bestRating": data.bestRating || 5,
+      "worstRating": data.worstRating || 1
+    }
+  };
+
+  return JSON.stringify(schema);
 }
 
 export function injectSchema(schema: string, id: string) {

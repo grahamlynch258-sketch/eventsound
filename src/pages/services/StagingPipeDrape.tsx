@@ -9,6 +9,8 @@ import { ServiceSections } from "@/components/site/ServiceSections";
 import { BrandBanner } from "@/components/site/BrandSidebar";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
+import { generateServiceSchema, generateBreadcrumbSchema } from "@/lib/schema";
+import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 export default function StagingPipeDrape() {
   const faqs = [
@@ -20,16 +22,42 @@ export default function StagingPipeDrape() {
     { question: "Can pipe and drape match our event branding?", answer: "Yes — drape is available in a range of colours including black, white, and grey. We can also accommodate custom colours for branded events and add lighting to the drape for additional visual impact." }
   ];
 
+  const serviceSchema = generateServiceSchema({
+    name: "Stage Hire",
+    description: "Stage hire across Ireland. TUV-certified GUIL aluminium platforms, pipe and drape, steps, barriers and wheelchair ramps for indoor and outdoor events.",
+    url: "https://eventsound.ie/services/staging-pipe-drape",
+    provider: { name: "EventSound", url: "https://eventsound.ie" },
+    areaServed: ["Dublin", "Cork", "Galway", "Belfast", "Limerick", "Ireland"],
+    serviceType: "Stage Hire"
+  });
+
+  const breadcrumbSchema = generateBreadcrumbSchema({
+    items: [
+      { name: "Home", url: "https://eventsound.ie" },
+      { name: "Services", url: "https://eventsound.ie/services" },
+      { name: "Staging & Pipe & Drape", url: "https://eventsound.ie/services/staging-pipe-drape" }
+    ]
+  });
+
   useSeo({
     title: "Stage Hire Ireland | Portable Stage & Platform Rental | EventSound",
     description: "Stage hire across Ireland. TUV-certified GUIL aluminium platforms, pipe & drape, steps, barriers & wheelchair ramps. Indoor & outdoor. Delivery & setup included.",
     canonical: "https://eventsound.ie/services/staging-pipe-drape",
+    additionalSchemas: [
+      { schema: serviceSchema, schemaId: "service-schema" },
+      { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
+    ]
   });
   const { hero, gallery } = useServiceImages("service-staging");
   const { data: sections = [] } = useServiceSections("staging-pipe-drape");
 
   return (
     <PageShell>
+      <Breadcrumb items={[
+        { name: "Home", href: "/" },
+        { name: "Services", href: "/services" },
+        { name: "Staging & Pipe & Drape" }
+      ]} />
       <PageHeader
         title="Stage Hire Ireland"
         subtitle="Safe, professional staging and scenic solutions for any venue"

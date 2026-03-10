@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
+import { generateBreadcrumbSchema } from "@/lib/schema";
+import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 const BelfastLedWalls = () => {
   const faqs = [
@@ -14,6 +16,13 @@ const BelfastLedWalls = () => {
     { question: "Can you install LED walls at ICC Belfast?", answer: "Yes. We provide LED wall installations at ICC Belfast, including its main auditorium, exhibition hall, and breakout spaces. Our team is familiar with ICC Belfast's technical infrastructure, power distribution, and load-in procedures, ensuring efficient setup and reliable performance." },
   ];
 
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "https://eventsound.ie/" },
+    { name: "Services", url: "https://eventsound.ie/services" },
+    { name: "LED Video Walls", url: "https://eventsound.ie/services/led-video-walls" },
+    { name: "LED Walls Belfast", url: "https://eventsound.ie/services/led-walls/belfast" },
+  ]);
+
   useSeo({
     title: "LED Wall Hire Belfast | LED Screen Rental Northern Ireland | EventSound",
     description: "LED video wall hire in Belfast. Unilumin & Absen LED panels for conferences, exhibitions & corporate events across Northern Ireland. Delivery & setup included.",
@@ -21,11 +30,22 @@ const BelfastLedWalls = () => {
     ogTitle: "LED Wall Hire Belfast | EventSound",
     ogDescription: "LED wall hire in Belfast from £105/sqm. Cross-border service for conferences and events.",
     ogType: "website",
+    additionalSchemas: [
+      { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
+    ],
   });
   const { hero } = useServiceImages("service-led-walls");
 
   return (
     <PageShell>
+      <Breadcrumb
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Services", href: "/services" },
+          { label: "LED Video Walls", href: "/services/led-video-walls" },
+          { label: "Belfast" },
+        ]}
+      />
       <PageHeader
         title="LED Wall Hire in Belfast"
         subtitle="Cross-border LED wall hire for Belfast's world-class conference venues"

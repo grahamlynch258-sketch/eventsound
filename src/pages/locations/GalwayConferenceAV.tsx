@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
+import { generateBreadcrumbSchema } from "@/lib/schema";
+import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 const GalwayConferenceAV = () => {
   const faqs = [
@@ -14,6 +16,13 @@ const GalwayConferenceAV = () => {
     { question: "Do you support multi-room conference setups in Galway?", answer: "Yes. For conferences with plenary sessions and breakout rooms, we provide multi-room audio distribution, separate microphone systems for each room, and centralised technical management. Our technicians coordinate audio across all spaces to ensure a seamless delegate experience." },
   ];
 
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "https://eventsound.ie/" },
+    { name: "Services", url: "https://eventsound.ie/services" },
+    { name: "Conference AV Hire", url: "https://eventsound.ie/services/conference-av-hire" },
+    { name: "Conference AV Galway", url: "https://eventsound.ie/services/conference-av/galway" },
+  ]);
+
   useSeo({
     title: "Conference AV Services Galway | Event Sound & AV Hire | EventSound",
     description: "Conference AV hire in Galway. PA systems, LED screens & lighting for corporate conferences & events across the west of Ireland. Full technician support included.",
@@ -21,11 +30,22 @@ const GalwayConferenceAV = () => {
     ogTitle: "Conference AV Services Galway | EventSound",
     ogDescription: "Professional conference AV services in Galway. Radio mics, PA systems, front lighting & on-site technicians.",
     ogType: "website",
+    additionalSchemas: [
+      { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
+    ],
   });
   const { hero } = useServiceImages("service-conference-av");
 
   return (
     <PageShell>
+      <Breadcrumb
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Services", href: "/services" },
+          { label: "Conference AV Hire", href: "/services/conference-av-hire" },
+          { label: "Galway" },
+        ]}
+      />
       <PageHeader
         title="Conference AV Services in Galway"
         subtitle="Professional conference AV for Galway's growing events market"

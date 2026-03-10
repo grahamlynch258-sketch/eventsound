@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
+import { generateBreadcrumbSchema } from "@/lib/schema";
+import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 const CorkLedWalls = () => {
   const faqs = [
@@ -14,6 +16,15 @@ const CorkLedWalls = () => {
     { question: "What LED wall size is right for a Cork hotel conference?", answer: "For hotel conference suites with fewer than 100 delegates, a 7 square metre LED wall provides excellent visibility. For larger ballrooms accommodating 200 to 500 delegates, 15 to 25 square metres is typical. For major events at Rochestown Park (capacity 1,200), 30 to 40 square metres delivers maximum visual impact. Contact us with your venue and audience size for a specific recommendation." },
   ];
 
+  const breadcrumbSchema = generateBreadcrumbSchema({
+    items: [
+      { name: "Home", url: "https://eventsound.ie" },
+      { name: "Services", url: "https://eventsound.ie/services" },
+      { name: "LED Video Walls", url: "https://eventsound.ie/services/led-video-walls" },
+      { name: "LED Walls Cork", url: "https://eventsound.ie/services/led-walls/cork" }
+    ]
+  });
+
   useSeo({
     title: "LED Wall Hire Cork | LED Screen Rental for Events | EventSound",
     description: "LED video wall hire in Cork. Indoor & outdoor LED screens for conferences, exhibitions & events across Cork city & county. Delivery & setup included. Get a quote.",
@@ -21,11 +32,20 @@ const CorkLedWalls = () => {
     ogTitle: "LED Wall Hire Cork | EventSound",
     ogDescription: "LED wall hire in Cork from €120/sqm. Absen & Unilumin panels for conferences and events.",
     ogType: "website",
+    additionalSchemas: [
+      { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
+    ]
   });
   const { hero } = useServiceImages("service-led-walls");
 
   return (
     <PageShell>
+      <Breadcrumb items={[
+        { name: "Home", href: "/" },
+        { name: "Services", href: "/services" },
+        { name: "LED Video Walls", href: "/services/led-video-walls" },
+        { name: "Cork" }
+      ]} />
       <PageHeader
         title="LED Wall Hire in Cork"
         subtitle="Professional LED walls for Cork's conference and corporate event venues"

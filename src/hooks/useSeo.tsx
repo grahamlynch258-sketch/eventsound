@@ -12,7 +12,7 @@ interface SeoProps {
   noindex?: boolean;
   schema?: string; // JSON-LD schema string
   schemaId?: string; // Unique ID for this schema
-  additionalSchemas?: Array<{ schema: string; id: string }>;
+  additionalSchemas?: Array<{ schema: string; schemaId: string }>;
 }
 
 const DEFAULT_TITLE = "EventSound | Premium Event Production Services Ireland";
@@ -141,7 +141,7 @@ export const useSeo = ({
     // Clean up old additional schemas first
     document.querySelectorAll('script[data-additional-schema]').forEach(el => el.remove());
     if (additionalSchemas) {
-      additionalSchemas.forEach(({ schema: s, id }) => {
+      additionalSchemas.forEach(({ schema: s, schemaId: id }) => {
         if (s) {
           // Remove existing
           const existing = document.getElementById(id);

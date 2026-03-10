@@ -9,6 +9,8 @@ import { ServiceSections } from "@/components/site/ServiceSections";
 import { BrandBanner } from "@/components/site/BrandSidebar";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
+import { generateServiceSchema, generateBreadcrumbSchema } from "@/lib/schema";
+import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 export default function LightingDesign() {
   const faqs = [
@@ -20,16 +22,42 @@ export default function LightingDesign() {
     { question: "Can you match lighting to our brand colours?", answer: "Yes — LED fixtures can be programmed to any colour. We regularly match lighting to corporate brand guidelines, event themes, and sponsor requirements. Just share your brand colours, and we will programme them into the rig." }
   ];
 
+  const serviceSchema = generateServiceSchema({
+    name: "Event Lighting Hire",
+    description: "Event lighting hire in Ireland. Moving heads, uplighters, stage lighting and atmospheric effects with Chamsys control for conferences, gala dinners and concerts.",
+    url: "https://eventsound.ie/services/lighting-design",
+    provider: { name: "EventSound", url: "https://eventsound.ie" },
+    areaServed: ["Dublin", "Cork", "Galway", "Belfast", "Limerick", "Ireland"],
+    serviceType: "Event Lighting Hire"
+  });
+
+  const breadcrumbSchema = generateBreadcrumbSchema({
+    items: [
+      { name: "Home", url: "https://eventsound.ie" },
+      { name: "Services", url: "https://eventsound.ie/services" },
+      { name: "Lighting Design", url: "https://eventsound.ie/services/lighting-design" }
+    ]
+  });
+
   useSeo({
     title: "Lighting Hire Dublin | Stage & Event Lighting Ireland | EventSound",
     description: "Event lighting hire in Ireland. Moving heads, uplighters, stage lighting & atmospheric effects. Chamsys-controlled. Conferences, gala dinners, concerts & festivals.",
     canonical: "https://eventsound.ie/services/lighting-design",
+    additionalSchemas: [
+      { schema: serviceSchema, schemaId: "service-schema" },
+      { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
+    ]
   });
   const { hero, gallery } = useServiceImages("service-lighting");
   const { data: sections = [] } = useServiceSections("lighting-design");
 
   return (
     <PageShell>
+      <Breadcrumb items={[
+        { name: "Home", href: "/" },
+        { name: "Services", href: "/services" },
+        { name: "Lighting Design" }
+      ]} />
       <PageHeader
         title="Lighting Hire Dublin & Ireland"
         subtitle="Create atmosphere and impact with professional event lighting"

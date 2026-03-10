@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
+import { generateBreadcrumbSchema } from "@/lib/schema";
+import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 const BelfastConferenceAV = () => {
   const faqs = [
@@ -14,6 +16,13 @@ const BelfastConferenceAV = () => {
     { question: "Can you provide conference AV at ICC Belfast?", answer: "Yes. We provide conference AV at ICC Belfast, including its main auditorium, exhibition spaces, and meeting rooms. Our team is familiar with ICC Belfast's technical infrastructure, power distribution, and load-in procedures." },
   ];
 
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "https://eventsound.ie/" },
+    { name: "Services", url: "https://eventsound.ie/services" },
+    { name: "Conference AV Hire", url: "https://eventsound.ie/services/conference-av-hire" },
+    { name: "Conference AV Belfast", url: "https://eventsound.ie/services/conference-av/belfast" },
+  ]);
+
   useSeo({
     title: "Conference AV Services Belfast | Event Sound & AV Hire | EventSound",
     description: "Conference AV hire in Belfast. Sound, LED screens, confidence monitors & stage lighting for corporate conferences across Northern Ireland. Get a quote today.",
@@ -21,11 +30,22 @@ const BelfastConferenceAV = () => {
     ogTitle: "Conference AV Services Belfast | EventSound",
     ogDescription: "Professional conference AV in Belfast & Northern Ireland. Cross-border service from Ireland.",
     ogType: "website",
+    additionalSchemas: [
+      { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
+    ],
   });
   const { hero } = useServiceImages("service-conference-av");
 
   return (
     <PageShell>
+      <Breadcrumb
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Services", href: "/services" },
+          { label: "Conference AV Hire", href: "/services/conference-av-hire" },
+          { label: "Belfast" },
+        ]}
+      />
       <PageHeader
         title="Conference AV Services in Belfast"
         subtitle="Cross-border conference AV for Belfast's world-class venues"

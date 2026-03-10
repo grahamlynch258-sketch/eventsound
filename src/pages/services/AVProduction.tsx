@@ -9,6 +9,8 @@ import { ServiceSections } from "@/components/site/ServiceSections";
 import { BrandBanner } from "@/components/site/BrandSidebar";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
+import { generateServiceSchema, generateBreadcrumbSchema } from "@/lib/schema";
+import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 export default function AVProduction() {
   const faqs = [
@@ -18,16 +20,42 @@ export default function AVProduction() {
     { question: "Can I hire individual items or do I need a full package?", answer: "Both. We supply individual items like a single screen or microphone, as well as complete AV packages tailored to your event. We'll advise on the most cost-effective option for your requirements." },
   ];
 
+  const serviceSchema = generateServiceSchema({
+    name: "AV Equipment Hire",
+    description: "AV equipment hire across Ireland. LED screens, PA systems, projectors, lighting and staging for corporate events, exhibitions and conferences.",
+    url: "https://eventsound.ie/services/av-production",
+    provider: { name: "EventSound", url: "https://eventsound.ie" },
+    areaServed: ["Dublin", "Cork", "Galway", "Belfast", "Limerick", "Ireland"],
+    serviceType: "Audio Visual Equipment Hire"
+  });
+
+  const breadcrumbSchema = generateBreadcrumbSchema({
+    items: [
+      { name: "Home", url: "https://eventsound.ie" },
+      { name: "Services", url: "https://eventsound.ie/services" },
+      { name: "AV Hire", url: "https://eventsound.ie/services/av-production" }
+    ]
+  });
+
   useSeo({
     title: "AV Hire Dublin | Audio Visual Equipment Hire Ireland | EventSound",
     description: "AV equipment hire across Ireland. LED screens, PA systems, projectors, lighting & staging for corporate events, exhibitions & conferences. Full setup & technician included.",
     canonical: "https://eventsound.ie/services/av-production",
+    additionalSchemas: [
+      { schema: serviceSchema, schemaId: "service-schema" },
+      { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
+    ]
   });
   const { hero, gallery } = useServiceImages("service-av-production");
   const { data: sections = [] } = useServiceSections("av-production");
 
   return (
     <PageShell>
+      <Breadcrumb items={[
+        { name: "Home", href: "/" },
+        { name: "Services", href: "/services" },
+        { name: "AV Hire" }
+      ]} />
       <PageHeader
         title="AV Hire & Audio Visual Services"
         subtitle="Complete audiovisual solutions for corporate events and conferences"

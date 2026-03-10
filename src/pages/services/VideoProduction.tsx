@@ -9,6 +9,8 @@ import { ServiceSections } from "@/components/site/ServiceSections";
 import { BrandBanner } from "@/components/site/BrandSidebar";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
+import { generateServiceSchema, generateBreadcrumbSchema } from "@/lib/schema";
+import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 export default function VideoProduction() {
   const faqs = [
@@ -20,16 +22,42 @@ export default function VideoProduction() {
     { question: "What internet connection do I need for live streaming?", answer: "We recommend a minimum 10Mbps dedicated upload speed for HD streaming. We carry bonded cellular units as backup and can provide satellite uplink for venues with poor connectivity." }
   ];
 
+  const serviceSchema = generateServiceSchema({
+    name: "Event Video Production",
+    description: "Event video production and live streaming in Ireland. Multi-camera setups, IMAG, live switching, recording and highlight videos for conferences and corporate events.",
+    url: "https://eventsound.ie/services/video-production",
+    provider: { name: "EventSound", url: "https://eventsound.ie" },
+    areaServed: ["Dublin", "Cork", "Galway", "Belfast", "Limerick", "Ireland"],
+    serviceType: "Event Video Production"
+  });
+
+  const breadcrumbSchema = generateBreadcrumbSchema({
+    items: [
+      { name: "Home", url: "https://eventsound.ie" },
+      { name: "Services", url: "https://eventsound.ie/services" },
+      { name: "Video Production", url: "https://eventsound.ie/services/video-production" }
+    ]
+  });
+
   useSeo({
     title: "Video Equipment Hire Ireland | Live Streaming & Production | EventSound",
     description: "Event video production & live streaming in Ireland. Multi-camera setups, IMAG, live switching, recording & highlight videos for conferences, concerts & corporate events.",
     canonical: "https://eventsound.ie/services/video-production",
+    additionalSchemas: [
+      { schema: serviceSchema, schemaId: "service-schema" },
+      { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
+    ]
   });
   const { hero, gallery } = useServiceImages("service-video");
   const { data: sections = [] } = useServiceSections("video-production");
 
   return (
     <PageShell>
+      <Breadcrumb items={[
+        { name: "Home", href: "/" },
+        { name: "Services", href: "/services" },
+        { name: "Video Production" }
+      ]} />
       <PageHeader title="Video Equipment Hire & Live Streaming Ireland" subtitle="Capture and broadcast your event to any audience" backgroundImage={hero} backgroundAlt="Multi-camera video production at a live event in Ireland" />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6 text-center">

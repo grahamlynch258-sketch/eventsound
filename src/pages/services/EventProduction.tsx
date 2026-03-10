@@ -9,6 +9,8 @@ import { ServiceSections } from "@/components/site/ServiceSections";
 import { BrandBanner } from "@/components/site/BrandSidebar";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
+import { generateServiceSchema, generateBreadcrumbSchema } from "@/lib/schema";
+import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 export default function EventProduction() {
   const faqs = [
@@ -20,16 +22,42 @@ export default function EventProduction() {
     { question: "What happens if equipment fails during my event?", answer: "We carry backup equipment on-site for all critical systems and our technicians are trained to handle any technical issues immediately. In over two decades of event production, we have built redundancy into every setup to ensure your event runs smoothly." }
   ];
 
+  const serviceSchema = generateServiceSchema({
+    name: "Event Production",
+    description: "Full-service event production company in Ireland. Sound, lighting, LED walls, staging and crew for conferences, festivals, awards ceremonies and corporate events.",
+    url: "https://eventsound.ie/services/event-production",
+    provider: { name: "EventSound", url: "https://eventsound.ie" },
+    areaServed: ["Dublin", "Cork", "Galway", "Belfast", "Limerick", "Ireland"],
+    serviceType: "Event Production"
+  });
+
+  const breadcrumbSchema = generateBreadcrumbSchema({
+    items: [
+      { name: "Home", url: "https://eventsound.ie" },
+      { name: "Services", url: "https://eventsound.ie/services" },
+      { name: "Event Production", url: "https://eventsound.ie/services/event-production" }
+    ]
+  });
+
   useSeo({
     title: "Event Production Company Dublin & Ireland | Full-Service | EventSound",
     description: "Full-service event production company in Ireland. Sound, lighting, LED walls, staging & crew for conferences, festivals, awards ceremonies & corporate events.",
     canonical: "https://eventsound.ie/services/event-production",
+    additionalSchemas: [
+      { schema: serviceSchema, schemaId: "service-schema" },
+      { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
+    ]
   });
   const { hero, gallery } = useServiceImages("service-event-production");
   const { data: sections = [] } = useServiceSections("event-production");
 
   return (
     <PageShell>
+      <Breadcrumb items={[
+        { name: "Home", href: "/" },
+        { name: "Services", href: "/services" },
+        { name: "Event Production" }
+      ]} />
       <PageHeader
         title="Event Production Management in Ireland"
         subtitle="Your dedicated production partner from planning to wrap"

@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
+import { generateBreadcrumbSchema } from "@/lib/schema";
+import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 const DublinLedWalls = () => {
   const faqs = [
@@ -15,6 +17,15 @@ const DublinLedWalls = () => {
     { question: "Can you provide curved LED walls for stage designs?", answer: "Yes. We offer curved LED wall configurations using Prism panels. Curved installations are popular for stage backdrops, immersive brand experiences, and experiential events where a flat screen doesn't deliver the visual impact required. Contact us to discuss your design concept and we'll advise on what's achievable." },
   ];
 
+  const breadcrumbSchema = generateBreadcrumbSchema({
+    items: [
+      { name: "Home", url: "https://eventsound.ie" },
+      { name: "Services", url: "https://eventsound.ie/services" },
+      { name: "LED Video Walls", url: "https://eventsound.ie/services/led-video-walls" },
+      { name: "LED Walls Dublin", url: "https://eventsound.ie/services/led-walls/dublin" }
+    ]
+  });
+
   useSeo({
     title: "LED Wall Hire Dublin | LED Screen Rental for Events | EventSound",
     description: "LED video wall hire in Dublin. Unilumin & Absen panels for conferences, awards, exhibitions & corporate events. CCD, Croke Park & Dublin venues served. Get a quote.",
@@ -22,11 +33,20 @@ const DublinLedWalls = () => {
     ogTitle: "LED Wall Hire Dublin | EventSound",
     ogDescription: "LED wall hire in Dublin from €120/sqm. Absen & Unilumin panels for conferences and events.",
     ogType: "website",
+    additionalSchemas: [
+      { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
+    ]
   });
   const { hero } = useServiceImages("service-led-walls");
 
   return (
     <PageShell>
+      <Breadcrumb items={[
+        { name: "Home", href: "/" },
+        { name: "Services", href: "/services" },
+        { name: "LED Video Walls", href: "/services/led-video-walls" },
+        { name: "Dublin" }
+      ]} />
       <PageHeader
         title="LED Wall Hire in Dublin"
         subtitle="Professional LED walls for Dublin's leading conference and event venues"

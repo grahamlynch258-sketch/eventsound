@@ -10,6 +10,8 @@ import { BrandBanner } from "@/components/site/BrandSidebar";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
 import { IrelandMap } from "@/components/site/IrelandMap";
+import { generateServiceSchema, generateBreadcrumbSchema } from "@/lib/schema";
+import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 export default function ConferenceAvHire() {
   const faqs = [
@@ -20,16 +22,42 @@ export default function ConferenceAvHire() {
     { question: "How much does conference AV hire cost?", answer: "Conference AV pricing depends on the number of rooms, event duration, equipment requirements, and venue location. A single-room conference with PA, projection, and a technician typically starts from €800 to €1,500 per day. Multi-room setups with LED walls, IMAG, and full lighting production scale from €2,500 upwards depending on complexity. Contact us for a detailed quote based on your event brief." },
   ];
 
+  const serviceSchema = generateServiceSchema({
+    name: "Conference AV Hire",
+    description: "Conference AV hire across Ireland. PA systems, LED screens, confidence monitors, stage lighting and hybrid streaming for corporate conferences and seminars.",
+    url: "https://eventsound.ie/services/conference-av-hire",
+    provider: { name: "EventSound", url: "https://eventsound.ie" },
+    areaServed: ["Dublin", "Cork", "Galway", "Belfast", "Limerick", "Ireland"],
+    serviceType: "Conference Audio Visual Hire"
+  });
+
+  const breadcrumbSchema = generateBreadcrumbSchema({
+    items: [
+      { name: "Home", url: "https://eventsound.ie" },
+      { name: "Services", url: "https://eventsound.ie/services" },
+      { name: "Conference AV Hire", url: "https://eventsound.ie/services/conference-av-hire" }
+    ]
+  });
+
   useSeo({
     title: "Conference AV Hire Ireland | Conference Room AV Equipment | EventSound",
     description: "Conference AV hire across Ireland. PA systems, LED screens, confidence monitors, stage lighting & hybrid streaming for corporate conferences, seminars & AGMs.",
     canonical: "https://eventsound.ie/services/conference-av-hire",
+    additionalSchemas: [
+      { schema: serviceSchema, schemaId: "service-schema" },
+      { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
+    ]
   });
   const { hero, gallery } = useServiceImages("service-conference-av");
   const { data: sections = [] } = useServiceSections("conference-av-hire");
 
   return (
     <PageShell>
+      <Breadcrumb items={[
+        { name: "Home", href: "/" },
+        { name: "Services", href: "/services" },
+        { name: "Conference AV Hire" }
+      ]} />
       <PageHeader
         title="Conference AV Hire Ireland"
         subtitle="Professional audio visual solutions for conferences, AGMs, and corporate events across Ireland"

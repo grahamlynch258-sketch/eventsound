@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
+import { generateBreadcrumbSchema } from "@/lib/schema";
+import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 const LimerickLedWalls = () => {
   const faqs = [
@@ -14,6 +16,13 @@ const LimerickLedWalls = () => {
     { question: "Do you cover the wider Shannon region?", answer: "Yes. We serve events across Limerick city and the wider Shannon region, including Ennis, Shannon town, North Tipperary, and surrounding areas." },
   ];
 
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "https://eventsound.ie/" },
+    { name: "Services", url: "https://eventsound.ie/services" },
+    { name: "LED Video Walls", url: "https://eventsound.ie/services/led-video-walls" },
+    { name: "LED Walls Limerick", url: "https://eventsound.ie/services/led-walls/limerick" },
+  ]);
+
   useSeo({
     title: "LED Wall Hire Limerick | LED Screen Rental for Events | EventSound",
     description: "LED video wall hire in Limerick. LED screens for conferences, corporate events & exhibitions across the mid-west. Indoor & outdoor. Full delivery & setup included.",
@@ -21,11 +30,22 @@ const LimerickLedWalls = () => {
     ogTitle: "LED Wall Hire Limerick | EventSound",
     ogDescription: "LED wall hire in Limerick from €120/sqm. Absen & Unilumin panels for conferences and events.",
     ogType: "website",
+    additionalSchemas: [
+      { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
+    ],
   });
   const { hero } = useServiceImages("service-led-walls");
 
   return (
     <PageShell>
+      <Breadcrumb
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Services", href: "/services" },
+          { label: "LED Video Walls", href: "/services/led-video-walls" },
+          { label: "Limerick" },
+        ]}
+      />
       <PageHeader
         title="LED Wall Hire in Limerick"
         subtitle="Professional LED walls for Limerick and the Shannon region"

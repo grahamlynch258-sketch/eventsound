@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
+import { generateBreadcrumbSchema } from "@/lib/schema";
+import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 const CorkConferenceAV = () => {
   const faqs = [
@@ -14,6 +16,13 @@ const CorkConferenceAV = () => {
     { question: "Do you provide livestreaming for Cork conferences?", answer: "Yes. We provide livestreaming capability including camera feeds, encoding, and integration with Zoom, Microsoft Teams, and dedicated streaming platforms. This allows remote delegates to participate alongside your in-person audience in real time." },
   ];
 
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "https://eventsound.ie/" },
+    { name: "Services", url: "https://eventsound.ie/services" },
+    { name: "Conference AV Hire", url: "https://eventsound.ie/services/conference-av-hire" },
+    { name: "Conference AV Cork", url: "https://eventsound.ie/services/conference-av/cork" },
+  ]);
+
   useSeo({
     title: "Conference AV Services Cork | Event Sound & AV Hire | EventSound",
     description: "Conference AV hire in Cork. Sound, projection, LED screens & staging for corporate conferences, seminars & AGMs across Cork city & county. Get a free quote.",
@@ -21,11 +30,22 @@ const CorkConferenceAV = () => {
     ogTitle: "Conference AV Services Cork | EventSound",
     ogDescription: "Professional conference AV services in Cork. Radio mics, PA systems, front lighting & on-site technicians.",
     ogType: "website",
+    additionalSchemas: [
+      { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
+    ],
   });
   const { hero } = useServiceImages("service-conference-av");
 
   return (
     <PageShell>
+      <Breadcrumb
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Services", href: "/services" },
+          { label: "Conference AV Hire", href: "/services/conference-av-hire" },
+          { label: "Cork" },
+        ]}
+      />
       <PageHeader
         title="Conference AV Services in Cork"
         subtitle="Professional conference AV for Cork's pharmaceutical and technology sector"

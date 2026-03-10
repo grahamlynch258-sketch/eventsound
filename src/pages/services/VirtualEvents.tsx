@@ -9,6 +9,8 @@ import { ServiceSections } from "@/components/site/ServiceSections";
 import { BrandBanner } from "@/components/site/BrandSidebar";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
+import { generateServiceSchema, generateBreadcrumbSchema } from "@/lib/schema";
+import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 export default function VirtualEvents() {
   const faqs = [
@@ -20,16 +22,42 @@ export default function VirtualEvents() {
     { question: "Do you provide a studio for virtual events?", answer: "We can transform any suitable space into a professional virtual studio with branded backdrops, lighting, cameras, and teleprompters. We also work with dedicated studio venues in Dublin if you need a purpose-built environment." }
   ];
 
+  const serviceSchema = generateServiceSchema({
+    name: "Virtual & Hybrid Event Production",
+    description: "Virtual and hybrid event production in Ireland. Professional live streaming, multi-camera switching, branded graphics and remote audience engagement.",
+    url: "https://eventsound.ie/services/virtual-events",
+    provider: { name: "EventSound", url: "https://eventsound.ie" },
+    areaServed: ["Dublin", "Cork", "Galway", "Belfast", "Limerick", "Ireland"],
+    serviceType: "Virtual Event Production"
+  });
+
+  const breadcrumbSchema = generateBreadcrumbSchema({
+    items: [
+      { name: "Home", url: "https://eventsound.ie" },
+      { name: "Services", url: "https://eventsound.ie/services" },
+      { name: "Virtual & Hybrid Events", url: "https://eventsound.ie/services/virtual-events" }
+    ]
+  });
+
   useSeo({
     title: "Hybrid Event Production Ireland | Live Streaming & Virtual Events | EventSound",
     description: "Virtual & hybrid event production in Ireland. Professional live streaming, multi-camera switching, branded graphics & remote audience engagement. Full technical management.",
     canonical: "https://eventsound.ie/services/virtual-events",
+    additionalSchemas: [
+      { schema: serviceSchema, schemaId: "service-schema" },
+      { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
+    ]
   });
   const { hero, gallery } = useServiceImages("service-virtual");
   const { data: sections = [] } = useServiceSections("virtual-events");
 
   return (
     <PageShell>
+      <Breadcrumb items={[
+        { name: "Home", href: "/" },
+        { name: "Services", href: "/services" },
+        { name: "Virtual & Hybrid Events" }
+      ]} />
       <PageHeader
         title="Hybrid Event Production Ireland"
         subtitle="Professional production for online and hybrid audiences"
