@@ -13,12 +13,12 @@ import { IrelandMap } from "@/components/site/IrelandMap";
 
 export default function LEDVideoWalls() {
   const faqs = [
-    { question: "What size LED screen do I need for my event?", answer: "Screen size depends on your audience size and venue. For conferences of 100-300 people, a 3m x 2m screen works well. For outdoor concerts with 1,000+ attendees, you may need 5m x 3m or larger. We do a free site survey to recommend the perfect configuration for your space." },
-    { question: "Can LED walls be used outdoors in Ireland?", answer: "Yes — our LED panels are rated for outdoor use and can handle Irish weather conditions including rain and wind. We use weatherproof cabinets and provide covered rigging solutions for outdoor festivals, concerts, and council events." },
-    { question: "How far in advance should I book LED screen hire?", answer: "We recommend booking 4-6 weeks ahead for standard events and 2-3 months for large festivals or peak season (May-September). However, we can often accommodate shorter notice depending on availability." },
+    { question: "What pixel pitch LED wall do I need for a conference?", answer: "For conferences with viewing distances of 3 to 10 metres, we recommend 2.6mm or 3.9mm pixel pitch panels. For exhibitions where attendees stand 1 to 3 metres from the screen, 1.9mm provides the sharpest image. Our team will advise based on your venue layout and audience size." },
+    { question: "Can LED walls be used outdoors?", answer: "Yes. We provide weather-rated outdoor LED panels with high-brightness output for daylight visibility. Outdoor screens typically use 3.9mm to 4.8mm pixel pitch and are mounted on freestanding ground-support structures." },
+    { question: "How much does LED wall hire cost in Ireland?", answer: "LED wall hire starts from €125 per square metre per day for dry hire. Pricing varies depending on pixel pitch, screen size, and event requirements. We recommend speaking to our team to ensure you get the best setup and the most out of your budget." },
+    { question: "What is the largest LED wall you can provide?", answer: "We regularly install screens up to 50m² and can configure larger displays for outdoor festivals and concerts. Screen size is limited only by venue dimensions and structural capacity." },
     { question: "What content can be displayed on LED video walls?", answer: "Anything — live camera feeds, pre-recorded video, presentations, social media walls, sponsor logos, and live event graphics. We provide full content playback and can help with content formatting to ensure it looks perfect on screen." },
     { question: "Do you provide operators with the LED screens?", answer: "Yes, all our LED wall hire packages include experienced technicians for setup, operation throughout your event, and breakdown. You never need to worry about the technical side." },
-    { question: "What is the difference between LED walls and projection screens?", answer: "LED walls are significantly brighter, work in daylight conditions, and offer superior image quality. Projection screens are affected by ambient light and are generally only suitable for darker indoor venues. For most events in Ireland, LED walls deliver a far better audience experience." }
   ];
 
   useSeo({
@@ -40,24 +40,69 @@ export default function LEDVideoWalls() {
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6 text-center">
           <p className="text-lg text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            EventSound provides professional LED video wall hire for corporate events, conferences, product launches, awards ceremonies, and live shows across Ireland. Our Unilumin LED panels deliver stunning high-resolution visuals that transform any venue — from intimate boardrooms to large-scale arenas.
+            EventSound provides LED video wall hire across Ireland for conferences, corporate events, exhibitions, awards ceremonies, concerts, and outdoor festivals. Based in Drogheda, Co. Louth, we deliver and install LED walls at venues in Dublin, Cork, Galway, Belfast, and nationwide.
           </p>
-          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Custom Configurations for Every Venue</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            Every event space is different, which is why we offer fully customisable LED wall sizes and configurations. Whether you need a single screen behind a keynote speaker, a wide-format display for a gala dinner, or a multi-screen setup for a conference breakout area, we design the layout to suit your venue and content. Our team handles pixel mapping, content scaling, and signal management so your visuals look perfect from every seat in the house.
+            We stock Unilumin and Absen LED panels in pixel pitches from 1.9mm to 3.9mm, with screen sizes from 6m² for conference presentations to 50m²+ for large-scale outdoor stages. Every hire includes delivery, installation, content management, a dedicated on-site operator, and full breakdown after your event.
           </p>
-          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Full-Service LED Wall Solutions</h2>
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Indoor LED Wall Hire</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            When you hire LED walls from EventSound, you get more than just panels. Our service includes delivery, installation, content playback management, on-site technical operation, and breakdown. We work with your creative team or agency to ensure presentations, videos, and live feeds display exactly as intended. Our experienced operators are on hand throughout your event to manage transitions, troubleshoot, and keep everything running seamlessly.
+            Indoor LED walls are the standard for corporate conferences, awards nights, AGMs, product launches, and exhibitions across Ireland. Our indoor Unilumin panels deliver high resolution and accurate colour reproduction at close viewing distances — essential when your audience is seated 3 to 10 metres from the screen.
           </p>
-          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Why EventSound for LED Video Walls?</h2>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            For conferences and seminars, we recommend 2.6mm or 3.9mm pixel pitch panels depending on your venue size and viewing distance. For exhibitions and trade shows where attendees view the screen from 1 to 3 metres, our 1.9mm panels provide the sharpest detail for product imagery and video content.
+          </p>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            Indoor LED walls replace traditional projection in venues where ambient light, ceiling height, or room layout make projectors impractical. LED panels produce their own light, so they deliver consistent brightness and contrast regardless of room lighting conditions.
+          </p>
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Outdoor LED Wall Hire</h2>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            For outdoor events, festivals, concerts, and sports screenings, we provide weather-rated LED panels with high-brightness output visible in direct sunlight. Our outdoor screens are available in sizes from 8m² to 50m²+ and are built on freestanding ground-support structures or integrated with stage rigging.
+          </p>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            We have provided outdoor LED walls for events including the Swords Castle Summer Concerts (main stage LED wall, PA, and lighting) and multi-day festival productions. Outdoor LED panels use a higher pixel pitch (typically 3.9mm to 4.8mm) for viewing distances of 10 metres and above, balancing image quality with the brightness needed for daylight visibility.
+          </p>
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Curved and Custom LED Wall Configurations</h2>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            EventSound designs and installs curved, angled, and custom-shaped LED wall configurations for immersive event experiences. Our curved Absen LED wall installation at the PRISM Immersive Technology Summit at DkIT transformed the An Macánna Theatre into an engaging conference space with a wraparound visual backdrop for speakers and demonstrations.
+          </p>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            We also delivered a curved LED video wall installation for Beta Festival 2025 at The Digital Hub, Dublin, creating a fully immersive digital art experience for festival attendees. Custom configurations are available for product launches, experiential marketing, immersive exhibitions, and creative installations.
+          </p>
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">LED Wall Hire Use Cases</h2>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            Corporate conferences and seminars — Main stage backdrop for keynote presentations, IMAG (image magnification) for large audiences, and confidence monitors for speakers. LED walls replace projection in venues with high ambient light.
+          </p>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            Awards ceremonies and gala dinners — Full-width LED backdrops for branding, nominee graphics, winner announcements, and live camera relay so every table has a clear view of the stage.
+          </p>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            Exhibitions and trade shows — Stand-mounted LED panels for product demonstrations, promotional video loops, and branded content. High-resolution 1.9mm panels ensure sharp visuals at close viewing distances.
+          </p>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            Outdoor festivals and concerts — High-brightness LED screens for main stage visuals, live camera feeds, sponsor content, and audience engagement. Weather-rated panels with ground-support or rigged mounting.
+          </p>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            Product launches and brand activations — Custom-sized screens with branded content, countdown sequences, reveal moments, and social media feeds displayed in real time.
+          </p>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            Hybrid and virtual events — LED walls as studio backdrops for presenters, combined with camera relay for in-room and remote audiences simultaneously.
+          </p>
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">LED Wall Hire Pricing Guide</h2>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            LED wall hire starts from €125 per square metre per day for dry hire. Final pricing depends on pixel pitch (finer pitches like 1.9mm cost more than 3.9mm), total screen area, number of event days, venue access time for installation, and whether additional services such as media servers or camera switching are required. We recommend speaking to our team before booking — we'll help you choose the right specification for your venue and audience so you get the most out of your budget. Contact us for a detailed quote based on your specific event requirements.
+          </p>
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Why Hire LED Walls from EventSound?</h2>
           <div className="text-left inline-block">
           <ul className="space-y-2 text-muted-foreground list-disc list-inside transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            <li>Unilumin LED panels — industry-leading resolution and reliability</li>
-            <li>Custom sizing from 2m² to 50m² and beyond</li>
-            <li>Full content playback and signal management included</li>
-            <li>Experienced operators on-site for your entire event</li>
-            <li>Serving clients nationwide across Ireland</li>
+            <li>Unilumin and Absen LED panels — industry-leading resolution and colour accuracy</li>
+            <li>Over 20 years of event production experience across Ireland</li>
+            <li>Full-service: delivery, installation, operation, and breakdown included</li>
+            <li>Indoor and outdoor LED walls from 6m² to 50m²+</li>
+            <li>Curved and custom configurations for immersive installations</li>
+            <li>Works alongside your creative team or agency for content delivery</li>
+            <li>Transparent pricing — no hidden fees or surprise extras</li>
+            <li>Available nationwide: Dublin, Cork, Galway, Limerick, Belfast, and beyond</li>
           </ul>
           </div>
 

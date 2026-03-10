@@ -12,12 +12,11 @@ import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer"
 
 export default function AVProduction() {
   const faqs = [
-    { question: "What does AV production include?", answer: "AV production covers all audio and visual technical elements for your event — PA systems, microphones, mixing desks, projection, LED screens, playback systems, and technical crew. We provide everything needed to ensure your event sounds and looks professional." },
-    { question: "What size PA system do I need?", answer: "PA sizing depends on your venue and audience. A boardroom needs a small column speaker, a conference for 200 needs a medium line array, and an outdoor event for 2,000+ needs a large concert PA. We always recommend the right system based on a venue assessment." },
-    { question: "Do you provide sound engineers?", answer: "Yes — all our AV packages include experienced sound engineers who manage the audio throughout your event. For larger events, we provide separate FOH (front of house) and monitor engineers." },
-    { question: "Can you handle presentations and playback?", answer: "Yes — we manage all presentation playback including PowerPoint, Keynote, video playback, and confidence monitors for speakers. We test all presentations before the event starts to avoid any issues during your programme." },
+    { question: "What AV equipment do I need for a corporate conference?", answer: "A standard conference setup includes a PA system with wireless microphones, an LED screen or projector for presentations, confidence monitors for speakers, stage lighting, and a dedicated technician. For larger events, add IMAG cameras, breakout room audio, and hybrid streaming." },
+    { question: "Do you provide AV for multi-room conferences?", answer: "Yes. We regularly set up AV across multiple rooms for conferences with breakout sessions, plenary halls, and networking areas. Each room gets its own PA, display, and technician, with centralised content management." },
+    { question: "Can you live stream my conference?", answer: "Yes. We provide full hybrid event production including multi-camera switching, branded stream graphics, and audience interaction tools. We stream to platforms including Zoom, Teams, YouTube, Vimeo, and custom platforms." },
     { question: "What happens during a site visit?", answer: "We assess the venue layout, power availability, rigging points, load-in access, and acoustics. This ensures we specify the right equipment and plan the setup efficiently. Site visits are free for all confirmed bookings." },
-    { question: "Do you carry backup equipment?", answer: "Yes — we carry backup for all critical equipment including spare microphones, cables, laptops, and switching systems. Our technicians are trained to swap faulty equipment within minutes so your event is never disrupted." }
+    { question: "Do you carry backup equipment?", answer: "Yes — we carry backup for all critical equipment including spare microphones, cables, laptops, and switching systems. Our technicians are trained to swap faulty equipment within minutes so your event is never disrupted." },
   ];
 
   useSeo({
@@ -39,28 +38,70 @@ export default function AVProduction() {
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6 text-center">
           <p className="text-lg text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            EventSound is a trusted AV production partner for corporate clients, agencies, and venues across Ireland. We provide complete audiovisual solutions for conferences, seminars, AGMs, product launches, and corporate events — combining professional sound, LED video walls, lighting, and experienced technical crew into a single, reliable production package.
+            EventSound provides conference AV and event production services across Ireland, delivering sound, lighting, LED screens, staging, and full technical management for corporate conferences, seminars, AGMs, awards ceremonies, and product launches. Based in Drogheda, Co. Louth, we serve venues in Dublin, Cork, Galway, Belfast, and nationwide.
           </p>
-          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Conference AV Solutions</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            Conferences demand flawless AV. EventSound delivers integrated audiovisual setups tailored to your conference format — whether it's a single-room keynote, a multi-room breakout programme, or a large-scale plenary session. We provide PA systems with wireless microphones for speakers and panel discussions, LED screens or projection for presentations, stage lighting, and confidence monitors. Every system is tuned to your venue and tested before your delegates arrive.
+            With over 20 years of experience in the event production industry, we work with corporate clients, agencies, venue managers, and event organisers to deliver professional AV production from initial planning through to on-site execution and breakdown.
           </p>
-          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Full-Service AV Production</h2>
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Conference AV Services</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            As your AV production partner, EventSound manages every technical element so you can focus on your event content and guests. Our service covers site surveys, technical planning, equipment delivery, installation, on-site operation throughout your event, and complete breakdown. We assign a dedicated production manager to your event who coordinates all AV elements and acts as your single point of contact for everything technical.
+            Our conference AV packages cover every technical element of a corporate event. We provide PA systems and microphone setups for keynote speeches, panel discussions, and audience Q&A — including wireless handheld, lapel, and headset microphones. Our Martin Audio speaker systems deliver clear, even coverage in conference rooms, ballrooms, and theatre-style venues.
           </p>
-          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Industry-Leading Equipment</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            We use L-Acoustics speaker systems for crystal-clear audio, Unilumin LED panels for high-resolution visuals, and Chamsys MagicQ for intelligent lighting control. Our inventory covers events of every scale — from a 30-person boardroom to a 3,000-seat conference venue. All equipment is maintained, PAT-tested, and backed by spares on-site.
+            For visual presentation, we supply LED video walls, projection systems, confidence monitors for speakers, and stage-front foldback screens. Our operators manage all slide advancement, video playback, and live camera switching so your presenters can focus on delivery.
+          </p>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            Lighting for conferences includes front-of-house wash for speaker visibility and camera compatibility, branded uplighting, stage effects, and house light control managed through our Chamsys lighting systems.
+          </p>
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">What a Typical Conference AV Setup Includes</h2>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            A typical EventSound conference AV package includes: PA system sized for the venue and audience (Martin Audio speakers, wireless microphones, mixing desk), LED video wall or projection for presentations and branding, confidence monitors for speakers showing slides and timers, stage lighting for presenter visibility and camera-ready colour temperature, recording of all sessions for post-event distribution, and a dedicated technical operator managing audio, visuals, and lighting throughout the event.
+          </p>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            For larger conferences, we also provide multi-room AV setups for breakout sessions, delegate microphone systems for panel discussions and audience Q&A, live polling and audience interaction displays, IMAG (image magnification) with multi-camera switching for large audiences, and hybrid event streaming for remote attendees.
+          </p>
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Events We Have Supported</h2>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            EventSound has provided conference AV and event production at venues across Ireland, including:
+          </p>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            Local Enterprise Week 2026 — Multi-venue production across Bellingham Castle (Castlebellingham), The Gateway Hotel (Dundalk), and The Marcy Hotel (Drogheda). PA systems, staging, display screens, and lighting for a week of enterprise workshops and keynotes. Contracted by Whitelight Events (Davis Events) on behalf of Local Enterprise Office Louth and Louth County Council.
+          </p>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            Local Enterprise Awards 2026 — Sound, lighting, and display screens for the county business awards at The Marcy Hotel, Drogheda.
+          </p>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            PRISM Immersive Technology Summit — Curved Absen LED wall and mood lighting at DkIT An Macánna Theatre, Dundalk. Technical production for 250 attendees, supported by DkIT, Queen's University Belfast, and InterTradeIreland.
+          </p>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            School Summit Career Expos — Multi-year partnership providing all AV equipment for large-scale careers exhibitions at the Eikon Exhibition Centre, Belfast. Multiple events per year with full EventSound equipment.
+          </p>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            Beta Festival 2025 — Curved LED video wall installation for immersive digital art at The Digital Hub, Dublin.
+          </p>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            Swords Castle Summer Concerts — Full event production including stage, LED walls, PA system, and lighting for outdoor summer concerts.
+          </p>
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Hybrid and Virtual Conference Production</h2>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            For conferences with remote attendees, EventSound provides hybrid event production combining in-venue AV with professional live streaming. We set up multi-camera switching, branded stream graphics and lower thirds, screen sharing integration, and audience interaction tools for remote participants including live Q&A and polling.
+          </p>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            Our hybrid production ensures remote viewers receive the same quality experience as in-room attendees, with broadcast-quality video, clear audio, and real-time content delivery through your chosen streaming platform.
+          </p>
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Conference AV Pricing</h2>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            Conference AV pricing depends on the number of rooms, event duration, equipment requirements, and venue location. A single-room conference with PA, projection, and a technician typically starts from €800 to €1,500 per day. Multi-room setups with LED walls, IMAG, and full lighting production scale from €2,500 upwards depending on complexity. Contact us for a detailed quote based on your event brief.
           </p>
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Why EventSound for AV Production?</h2>
           <div className="text-left inline-block">
           <ul className="space-y-2 text-muted-foreground list-disc list-inside transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            <li>Over 30 years of AV production experience across Ireland</li>
-            <li>L-Acoustics, Unilumin, Chamsys — industry-leading brands</li>
+            <li>Over 20 years of AV production experience across Ireland</li>
+            <li>Martin Audio, Unilumin, Chamsys — industry-leading brands</li>
             <li>Dedicated production manager as your single point of contact</li>
             <li>Conference-specialist: multi-room, breakout, plenary formats</li>
             <li>Full crew: sound engineers, lighting operators, video technicians</li>
+            <li>Hybrid and virtual event production with live streaming</li>
             <li>Serving clients nationwide across Ireland</li>
           </ul>
           </div>
