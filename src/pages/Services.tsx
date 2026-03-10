@@ -23,7 +23,7 @@ export default function Services() {
   const { hero } = useServiceImages("hero-services");
   useSeo({
     title: "Event Production Services | AV Hire Ireland | EventSound",
-    description: "Complete event production services across Ireland. LED video walls, sound systems, lighting design, staging, video production, and virtual event solutions. Professional AV equipment hire with experienced crew.",
+    description: "AV hire & event production services across Ireland. LED video walls, PA systems, conference AV, lighting, staging & live streaming. Delivery, setup & operator included.",
     canonical: "https://eventsound.ie/services",
   });
 

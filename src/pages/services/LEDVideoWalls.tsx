@@ -23,7 +23,7 @@ export default function LEDVideoWalls() {
 
   useSeo({
     title: "LED Screen Hire Ireland | LED Video Wall Rental Dublin | EventSound",
-    description: "LED screen hire across Ireland. High-resolution Unilumin LED video walls for conferences, concerts, corporate events, and exhibitions. Mobile LED screen hire available.",
+    description: "LED video wall hire across Ireland. Unilumin & Absen panels from 1.9mm to 3.9mm pixel pitch. Indoor, outdoor & curved configurations. Delivery, setup & operator included.",
     canonical: "https://eventsound.ie/services/led-video-walls",
   });
   const { hero, gallery } = useServiceImages("service-led-walls");

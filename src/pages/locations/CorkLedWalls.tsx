@@ -16,7 +16,7 @@ const CorkLedWalls = () => {
 
   useSeo({
     title: "LED Wall Hire Cork | LED Screen Rental for Events | EventSound",
-    description: "LED wall hire in Cork from €120/sqm. Absen 2.6mm & Unilumin panels for conferences, exhibitions & events at Rochestown Park, Clayton & Cork venues.",
+    description: "LED video wall hire in Cork. Indoor & outdoor LED screens for conferences, exhibitions & events across Cork city & county. Delivery & setup included. Get a quote.",
     canonical: "https://eventsound.ie/services/led-walls/cork",
     ogTitle: "LED Wall Hire Cork | EventSound",
     ogDescription: "LED wall hire in Cork from €120/sqm. Absen & Unilumin panels for conferences and events.",

@@ -22,7 +22,7 @@ export default function StagingPipeDrape() {
 
   useSeo({
     title: "Stage Hire Ireland | Portable Stage & Platform Rental | EventSound",
-    description: "Stage hire across Ireland. Premium GUIL stage platforms with steps, barriers, and wheelchair ramps. Indoor and outdoor stage solutions for conferences, concerts, and festivals.",
+    description: "Stage hire across Ireland. TUV-certified GUIL aluminium platforms, pipe & drape, steps, barriers & wheelchair ramps. Indoor & outdoor. Delivery & setup included.",
     canonical: "https://eventsound.ie/services/staging-pipe-drape",
   });
   const { hero, gallery } = useServiceImages("service-staging");

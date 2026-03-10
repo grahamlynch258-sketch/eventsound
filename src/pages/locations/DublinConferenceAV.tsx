@@ -17,7 +17,7 @@ const DublinConferenceAV = () => {
 
   useSeo({
     title: "Conference AV Services Dublin | Event Sound & AV Hire | EventSound",
-    description: "Professional conference AV services in Dublin. Radio mics, PA systems, mixing desks, front lighting, livestreaming & on-site technicians. Shure, L-Acoustics, Sennheiser.",
+    description: "Conference AV hire in Dublin. PA systems, LED screens, confidence monitors, lighting & live streaming for corporate conferences & seminars. Same-day quotes available.",
     canonical: "https://eventsound.ie/services/conference-av/dublin",
     ogTitle: "Conference AV Services Dublin | EventSound",
     ogDescription: "Professional conference AV services in Dublin. Radio mics, PA systems, front lighting, livestreaming & on-site technicians.",

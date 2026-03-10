@@ -8,7 +8,7 @@ import { MapPin, Mail, Phone } from "lucide-react";
 const Contact = () => {
   useSeo({
     title: "Contact EventSound | Get a Quote for AV Hire Ireland",
-    description: "Contact EventSound for a free consultation and quote. Professional AV hire, sound, lighting, LED screens, and staging across Ireland. Fast response guaranteed.",
+    description: "Contact EventSound for AV hire & event production in Ireland. Request a free quote for LED walls, PA systems, conference AV, lighting & staging. Response within 24 hours.",
     canonical: "https://eventsound.ie/contact",
     ogTitle: "Contact EventSound | Get a Quote for AV Hire Ireland",
     ogDescription: "Contact EventSound for a free consultation and quote. Professional AV hire, sound, lighting, LED screens, and staging across Ireland."

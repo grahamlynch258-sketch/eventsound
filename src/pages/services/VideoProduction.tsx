@@ -22,7 +22,7 @@ export default function VideoProduction() {
 
   useSeo({
     title: "Video Equipment Hire Ireland | Live Streaming & Production | EventSound",
-    description: "Video equipment hire in Ireland. Multi-camera production, live streaming, confidence monitors, and 4K recording for conferences, concerts, and corporate events.",
+    description: "Event video production & live streaming in Ireland. Multi-camera setups, IMAG, live switching, recording & highlight videos for conferences, concerts & corporate events.",
     canonical: "https://eventsound.ie/services/video-production",
   });
   const { hero, gallery } = useServiceImages("service-video");

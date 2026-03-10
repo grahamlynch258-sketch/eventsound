@@ -112,7 +112,7 @@ function BehindTheScenes() {
 export default function About() {
   useSeo({
     title: "About EventSound | 20+ Years of Event Production in Ireland",
-    description: "EventSound has been delivering professional event production across Ireland for over 20 years. Meet the team behind Ireland's trusted AV hire and event production company.",
+    description: "EventSound — over 20 years of event production experience in Ireland. Meet the team behind your LED walls, sound, lighting & staging. Based in Drogheda, Co. Louth.",
     canonical: "https://eventsound.ie/about",
     ogTitle: "About EventSound | 20+ Years of Event Production in Ireland",
     ogDescription: "EventSound has been delivering professional event production across Ireland for over 20 years. Meet the team behind Ireland's trusted AV hire and event production company.",

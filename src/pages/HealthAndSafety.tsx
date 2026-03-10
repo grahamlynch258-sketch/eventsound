@@ -7,7 +7,7 @@ const HealthAndSafety = () => {
   const { hero } = useServiceImages("hero-health-safety");
   useSeo({
     title: "Health & Safety | EventSound Event Production Ireland",
-    description: "EventSound's commitment to health and safety. TUV-certified staging, European-manufactured rigging, and trained personnel for safe event production.",
+    description: "EventSound's commitment to health & safety. TUV-certified staging, European-manufactured equipment, full public liability insurance & trained technical crew.",
     canonical: "https://eventsound.ie/health-and-safety",
     ogTitle: "Health & Safety | EventSound Ireland",
     ogDescription: "Our commitment to health and safety in event production. TUV-certified staging and trained personnel."

@@ -22,7 +22,7 @@ export default function LightingDesign() {
 
   useSeo({
     title: "Lighting Hire Dublin | Stage & Event Lighting Ireland | EventSound",
-    description: "Professional lighting hire in Dublin and across Ireland. Moving head lights, LED wash, uplighting, and intelligent lighting systems with ChamSys control. Full design and operation.",
+    description: "Event lighting hire in Ireland. Moving heads, uplighters, stage lighting & atmospheric effects. Chamsys-controlled. Conferences, gala dinners, concerts & festivals.",
     canonical: "https://eventsound.ie/services/lighting-design",
   });
   const { hero, gallery } = useServiceImages("service-lighting");

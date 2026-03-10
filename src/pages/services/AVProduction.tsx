@@ -20,7 +20,7 @@ export default function AVProduction() {
 
   useSeo({
     title: "AV Hire Dublin | Audio Visual Equipment Hire Ireland | EventSound",
-    description: "AV hire and audio visual equipment hire in Dublin and across Ireland. Professional AV services for corporate events, conferences, concerts, and live productions.",
+    description: "AV equipment hire across Ireland. LED screens, PA systems, projectors, lighting & staging for corporate events, exhibitions & conferences. Full setup & technician included.",
     canonical: "https://eventsound.ie/services/av-production",
   });
   const { hero, gallery } = useServiceImages("service-av-production");

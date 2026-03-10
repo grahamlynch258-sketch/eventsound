@@ -16,7 +16,7 @@ const BelfastConferenceAV = () => {
 
   useSeo({
     title: "Conference AV Services Belfast | Event Sound & AV Hire | EventSound",
-    description: "Professional conference AV in Belfast & Northern Ireland. Radio mics, PA systems, front lighting, livestreaming. Cross-border service. ICC Belfast, Titanic Belfast.",
+    description: "Conference AV hire in Belfast. Sound, LED screens, confidence monitors & stage lighting for corporate conferences across Northern Ireland. Get a quote today.",
     canonical: "https://eventsound.ie/services/conference-av/belfast",
     ogTitle: "Conference AV Services Belfast | EventSound",
     ogDescription: "Professional conference AV in Belfast & Northern Ireland. Cross-border service from Ireland.",

@@ -16,7 +16,7 @@ const LimerickLedWalls = () => {
 
   useSeo({
     title: "LED Wall Hire Limerick | LED Screen Rental for Events | EventSound",
-    description: "LED wall hire in Limerick from €120/sqm. Absen 2.6mm & Unilumin panels for Limerick Strand Hotel, UL, Clayton & Limerick venues.",
+    description: "LED video wall hire in Limerick. LED screens for conferences, corporate events & exhibitions across the mid-west. Indoor & outdoor. Full delivery & setup included.",
     canonical: "https://eventsound.ie/services/led-walls/limerick",
     ogTitle: "LED Wall Hire Limerick | EventSound",
     ogDescription: "LED wall hire in Limerick from €120/sqm. Absen & Unilumin panels for conferences and events.",

@@ -16,7 +16,7 @@ const GalwayLedWalls = () => {
 
   useSeo({
     title: "LED Wall Hire Galway | LED Screen Rental for Events | EventSound",
-    description: "LED wall hire in Galway from €120/sqm. Absen 2.6mm & Unilumin panels for conferences & events at Clayton, Galway Bay Hotel, Ardilaun & Galway venues.",
+    description: "LED video wall hire in Galway. High-resolution LED screens for conferences, corporate events & festivals across the west of Ireland. Full setup & operator included.",
     canonical: "https://eventsound.ie/services/led-walls/galway",
     ogTitle: "LED Wall Hire Galway | EventSound",
     ogDescription: "LED wall hire in Galway from €120/sqm. Absen & Unilumin panels for conferences and events.",

@@ -16,7 +16,7 @@ const CorkConferenceAV = () => {
 
   useSeo({
     title: "Conference AV Services Cork | Event Sound & AV Hire | EventSound",
-    description: "Professional conference AV services in Cork. Radio mics, PA systems, front lighting, livestreaming & on-site technicians for Cork hotels and venues.",
+    description: "Conference AV hire in Cork. Sound, projection, LED screens & staging for corporate conferences, seminars & AGMs across Cork city & county. Get a free quote.",
     canonical: "https://eventsound.ie/services/conference-av/cork",
     ogTitle: "Conference AV Services Cork | EventSound",
     ogDescription: "Professional conference AV services in Cork. Radio mics, PA systems, front lighting & on-site technicians.",

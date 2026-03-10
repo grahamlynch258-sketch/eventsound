@@ -17,7 +17,7 @@ const AthaloneConferenceAV = () => {
 
   useSeo({
     title: "Conference AV Services Athlone | AV Hire Midlands Ireland | EventSound",
-    description: "Professional conference AV in Athlone & Ireland's Midlands. Radio mics, PA systems, front lighting, livestreaming. Hodson Bay Hotel, Sheraton Athlone & Midlands venues.",
+    description: "Conference AV hire in Athlone. Sound, screens & lighting for corporate conferences & events in the midlands. Central Ireland. Delivery & technician included.",
     canonical: "https://eventsound.ie/services/conference-av/athlone",
     ogTitle: "Conference AV Services Athlone | EventSound",
     ogDescription: "Professional conference AV in Athlone & Ireland's Midlands. Hodson Bay, Sheraton & Midlands venues.",

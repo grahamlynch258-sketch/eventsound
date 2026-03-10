@@ -16,7 +16,7 @@ const AthaloneLedWalls = () => {
 
   useSeo({
     title: "LED Wall Hire Athlone | LED Screen Rental Midlands Ireland | EventSound",
-    description: "LED wall hire in Athlone & Ireland's Midlands from €120/sqm. Absen 2.6mm & Unilumin panels for Hodson Bay Hotel, Sheraton Athlone & Midlands venues.",
+    description: "LED video wall hire in Athlone. LED screens for conferences, corporate events & exhibitions in the midlands. Central Ireland location. Delivery & setup included.",
     canonical: "https://eventsound.ie/services/led-walls/athlone",
     ogTitle: "LED Wall Hire Athlone | EventSound",
     ogDescription: "LED wall hire in Athlone & the Midlands from €120/sqm. Absen & Unilumin panels for conferences.",

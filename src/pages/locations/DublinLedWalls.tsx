@@ -17,7 +17,7 @@ const DublinLedWalls = () => {
 
   useSeo({
     title: "LED Wall Hire Dublin | LED Screen Rental for Events | EventSound",
-    description: "LED wall hire in Dublin from €120/sqm. Absen 2.6mm & Unilumin panels for conferences, product launches & events at CCD, Croke Park, RDS & Dublin hotels.",
+    description: "LED video wall hire in Dublin. Unilumin & Absen panels for conferences, awards, exhibitions & corporate events. CCD, Croke Park & Dublin venues served. Get a quote.",
     canonical: "https://eventsound.ie/services/led-walls/dublin",
     ogTitle: "LED Wall Hire Dublin | EventSound",
     ogDescription: "LED wall hire in Dublin from €120/sqm. Absen & Unilumin panels for conferences and events.",

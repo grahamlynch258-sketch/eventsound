@@ -62,7 +62,7 @@ const FAQ = () => {
 
   useSeo({
     title: "FAQ | EventSound Event Production Ireland",
-    description: "Frequently asked questions about EventSound's event production and AV hire services in Ireland. Learn about our services, coverage areas, and booking process.",
+    description: "Frequently asked questions about EventSound's AV hire & event production services. Pricing, equipment, coverage areas, booking process & more. Get answers.",
     canonical: "https://eventsound.ie/faq",
     ogTitle: "FAQ | EventSound Ireland",
     ogDescription: "Frequently asked questions about our event production and AV hire services in Ireland.",

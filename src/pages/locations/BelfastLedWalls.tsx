@@ -16,7 +16,7 @@ const BelfastLedWalls = () => {
 
   useSeo({
     title: "LED Wall Hire Belfast | LED Screen Rental Northern Ireland | EventSound",
-    description: "LED wall hire in Belfast from £105/sqm. Absen 2.6mm & Unilumin panels for ICC Belfast, Titanic Belfast & NI venues. Cross-border service from Ireland.",
+    description: "LED video wall hire in Belfast. Unilumin & Absen LED panels for conferences, exhibitions & corporate events across Northern Ireland. Delivery & setup included.",
     canonical: "https://eventsound.ie/services/led-walls/belfast",
     ogTitle: "LED Wall Hire Belfast | EventSound",
     ogDescription: "LED wall hire in Belfast from £105/sqm. Cross-border service for conferences and events.",

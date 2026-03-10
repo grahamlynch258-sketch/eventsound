@@ -8,7 +8,7 @@ import { useServiceImages } from "@/hooks/useServiceImages";
 const Gallery = () => {
   useSeo({
     title: "Event Production Portfolio | EventSound Ireland",
-    description: "View our portfolio of successful events across Ireland. LED wall installations, lighting designs, and audio setups for corporate conferences, galas, and live shows.",
+    description: "Photos from EventSound events across Ireland. LED video walls, stage lighting, PA systems & staging at conferences, concerts, festivals & corporate events.",
     canonical: "https://eventsound.ie/gallery",
     ogTitle: "Event Production Portfolio | EventSound Ireland",
     ogDescription: "View our portfolio of successful events across Ireland. LED wall installations, lighting designs, and audio setups."

@@ -16,7 +16,7 @@ const LimerickConferenceAV = () => {
 
   useSeo({
     title: "Conference AV Services Limerick | Event Sound & AV Hire | EventSound",
-    description: "Professional conference AV in Limerick & the Shannon region. Radio mics, PA systems, front lighting, livestreaming. Limerick Strand Hotel, UL & Limerick venues.",
+    description: "Conference AV hire in Limerick. PA systems, projection, LED screens & staging for corporate conferences & seminars in the mid-west. Full setup & operator included.",
     canonical: "https://eventsound.ie/services/conference-av/limerick",
     ogTitle: "Conference AV Services Limerick | EventSound",
     ogDescription: "Professional conference AV in Limerick & the Shannon region. Radio mics, PA systems & on-site technicians.",

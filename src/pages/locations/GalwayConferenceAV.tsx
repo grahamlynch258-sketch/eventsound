@@ -16,7 +16,7 @@ const GalwayConferenceAV = () => {
 
   useSeo({
     title: "Conference AV Services Galway | Event Sound & AV Hire | EventSound",
-    description: "Professional conference AV services in Galway. Radio mics, PA systems, front lighting, livestreaming & on-site technicians for Galway hotels and venues.",
+    description: "Conference AV hire in Galway. PA systems, LED screens & lighting for corporate conferences & events across the west of Ireland. Full technician support included.",
     canonical: "https://eventsound.ie/services/conference-av/galway",
     ogTitle: "Conference AV Services Galway | EventSound",
     ogDescription: "Professional conference AV services in Galway. Radio mics, PA systems, front lighting & on-site technicians.",

@@ -22,7 +22,7 @@ export default function ConferenceAvHire() {
 
   useSeo({
     title: "Conference AV Hire Ireland | Conference Room AV Equipment | EventSound",
-    description: "Conference AV hire across Ireland. Lectern mics, LED walls, confidence monitors, live streaming, and breakout room AV. Full technical crew included.",
+    description: "Conference AV hire across Ireland. PA systems, LED screens, confidence monitors, stage lighting & hybrid streaming for corporate conferences, seminars & AGMs.",
     canonical: "https://eventsound.ie/services/conference-av-hire",
   });
   const { hero, gallery } = useServiceImages("service-conference-av");

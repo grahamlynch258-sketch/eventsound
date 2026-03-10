@@ -31,7 +31,7 @@ const CaseStudies = () => {
 
   useSeo({
     title: "Case Studies | EventSound Event Production Ireland",
-    description: "Explore our case studies showcasing successful event production projects across Ireland. LED walls, sound systems, lighting, and staging for corporate events and live shows.",
+    description: "EventSound case studies — real events, real results. See our LED wall, conference AV, staging & lighting work at venues across Ireland. View our portfolio.",
     canonical: "https://eventsound.ie/case-studies",
     ogTitle: "Case Studies | EventSound Ireland",
     ogDescription: "Explore our event production case studies from corporate conferences, galas, and live shows across Ireland."

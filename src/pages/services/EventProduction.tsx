@@ -22,7 +22,7 @@ export default function EventProduction() {
 
   useSeo({
     title: "Event Production Company Dublin & Ireland | Full-Service | EventSound",
-    description: "End-to-end event production management across Ireland. Technical direction, crew coordination, show calling, and on-site production support for corporate events and live shows.",
+    description: "Full-service event production company in Ireland. Sound, lighting, LED walls, staging & crew for conferences, festivals, awards ceremonies & corporate events.",
     canonical: "https://eventsound.ie/services/event-production",
   });
   const { hero, gallery } = useServiceImages("service-event-production");

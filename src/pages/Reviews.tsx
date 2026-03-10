@@ -8,7 +8,7 @@ const Reviews = () => {
   const { hero } = useServiceImages("hero-reviews");
   useSeo({
     title: "Client Reviews | EventSound Event Production Ireland",
-    description: "Read what our clients say about EventSound's event production services. Testimonials from corporate events, conferences, and live shows across Ireland.",
+    description: "What our clients say about EventSound. Read reviews from corporate clients, agencies & event organisers across Ireland. Trusted AV hire & event production.",
     canonical: "https://eventsound.ie/reviews",
     ogTitle: "Client Reviews | EventSound Ireland",
     ogDescription: "Read what our clients say about EventSound's event production services across Ireland."

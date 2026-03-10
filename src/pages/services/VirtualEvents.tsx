@@ -22,7 +22,7 @@ export default function VirtualEvents() {
 
   useSeo({
     title: "Hybrid Event Production Ireland | Live Streaming & Virtual Events | EventSound",
-    description: "Hybrid event production across Ireland. Combine in-person and virtual audiences with multi-camera streaming, remote speaker integration, and broadcast-quality AV.",
+    description: "Virtual & hybrid event production in Ireland. Professional live streaming, multi-camera switching, branded graphics & remote audience engagement. Full technical management.",
     canonical: "https://eventsound.ie/services/virtual-events",
   });
   const { hero, gallery } = useServiceImages("service-virtual");
