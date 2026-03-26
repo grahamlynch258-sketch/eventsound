@@ -2,84 +2,118 @@
 # EventSound 301 Redirect Map
 # Old WordPress/Joomla URLs → New Vite/React URLs
 # ===========================================
+# Netlify processes top-to-bottom, first match wins.
+# Canonical pattern: TRAILING SLASH (e.g. /services/led-video-walls/)
 
-# --- Service Pages (slug changes) ---
-/services/live-event-production/    /services/event-production    301
-/services/live-event-production     /services/event-production    301
-/services/audio-equipment/          /services/av-production       301
-/services/audio-equipment           /services/av-production       301
-/services/hybrid-events/            /services/virtual-events      301
-/services/hybrid-events             /services/virtual-events      301
-/services/lighting-effects/         /services/lighting-design     301
-/services/lighting-effects          /services/lighting-design     301
-/services/stage-hire-pipe-drape/    /services/staging-pipe-drape  301
-/services/stage-hire-pipe-drape     /services/staging-pipe-drape  301
-/services/video-equipment/          /services/video-production    301
-/services/video-equipment           /services/video-production    301
-/services/led-video-display-screens/  /services/led-video-walls   301
-/services/led-video-display-screens   /services/led-video-walls   301
+# --- Old slug redirects (target trailing-slash canonical) ---
+/services/live-event-production/    /services/event-production/    301
+/services/live-event-production     /services/event-production/    301
+/services/audio-equipment/          /services/av-production/       301
+/services/audio-equipment           /services/av-production/       301
+/services/hybrid-events/            /services/virtual-events/      301
+/services/hybrid-events             /services/virtual-events/      301
+/services/lighting-effects/         /services/lighting-design/     301
+/services/lighting-effects          /services/lighting-design/     301
+/services/stage-hire-pipe-drape/    /services/staging-pipe-drape/  301
+/services/stage-hire-pipe-drape     /services/staging-pipe-drape/  301
+/services/video-equipment/          /services/video-production/    301
+/services/video-equipment           /services/video-production/    301
+/services/led-video-display-screens/  /services/led-video-walls/   301
+/services/led-video-display-screens   /services/led-video-walls/   301
+/services/audio-systems/            /services/av-production/       301
+/services/audio-systems             /services/av-production/       301
 
 # --- Individual Review Pages → Reviews listing ---
-/reviews/phil-nulty/                /reviews    301
-/reviews/phil-nulty                 /reviews    301
-/reviews/sarah-m/                   /reviews    301
-/reviews/sarah-m                    /reviews    301
-/reviews/john-k/                    /reviews    301
-/reviews/john-k                     /reviews    301
-/reviews/mairead-l/                 /reviews    301
-/reviews/mairead-l                  /reviews    301
-/reviews/emma-r/                    /reviews    301
-/reviews/emma-r                     /reviews    301
-/reviews/tom-f/                     /reviews    301
-/reviews/tom-f                      /reviews    301
-/reviews/kevin-rowe-events/         /reviews    301
-/reviews/kevin-rowe-events          /reviews    301
-/reviews/paul-barnes-events-manager-fingal-county-council/   /reviews    301
-/reviews/paul-barnes-events-manager-fingal-county-council    /reviews    301
+/reviews/phil-nulty/                /reviews/    301
+/reviews/phil-nulty                 /reviews/    301
+/reviews/sarah-m/                   /reviews/    301
+/reviews/sarah-m                    /reviews/    301
+/reviews/john-k/                    /reviews/    301
+/reviews/john-k                     /reviews/    301
+/reviews/mairead-l/                 /reviews/    301
+/reviews/mairead-l                  /reviews/    301
+/reviews/emma-r/                    /reviews/    301
+/reviews/emma-r                     /reviews/    301
+/reviews/tom-f/                     /reviews/    301
+/reviews/tom-f                      /reviews/    301
+/reviews/kevin-rowe-events/         /reviews/    301
+/reviews/kevin-rowe-events          /reviews/    301
+/reviews/paul-barnes-events-manager-fingal-county-council/   /reviews/    301
+/reviews/paul-barnes-events-manager-fingal-county-council    /reviews/    301
 
-# --- Trailing slash normalization (pages that exist on both old & new site) ---
-/about/              /about       301
-/contact/            /contact     301
-/faq/                /faq         301
-/gallery/            /gallery     301
-/health-and-safety/  /health-and-safety  301
-/reviews/            /reviews     301
-/services/           /services    301
-/case-studies/       /case-studies  301
+# --- Trailing slash normalization: non-slash → slash (static pages) ---
+/about              /about/              301
+/contact            /contact/            301
+/faq                /faq/                301
+/gallery            /gallery/            301
+/health-and-safety  /health-and-safety/  301
+/reviews            /reviews/            301
+/services           /services/           301
+/case-studies       /case-studies/       301
 
-# --- Trailing slash normalization (service & case study sub-paths) ---
-/services/led-video-walls/         /services/led-video-walls        301
-/services/av-production/           /services/av-production          301
-/services/lighting-design/         /services/lighting-design        301
-/services/staging-pipe-drape/      /services/staging-pipe-drape     301
-/services/event-production/        /services/event-production       301
-/services/video-production/        /services/video-production       301
-/services/virtual-events/          /services/virtual-events         301
-/services/conference-av-hire/      /services/conference-av-hire     301
-/services/audio-systems/           /services/audio-systems          301
-/case-studies/swords-castle-summer-concerts/           /case-studies/swords-castle-summer-concerts          301
-/case-studies/school-summit-career-expos/              /case-studies/school-summit-career-expos             301
-/case-studies/prism-immersive-technology-summit/       /case-studies/prism-immersive-technology-summit      301
+# --- Trailing slash normalization: non-slash → slash (service pages) ---
+/services/led-video-walls        /services/led-video-walls/        301
+/services/av-production          /services/av-production/          301
+/services/lighting-design        /services/lighting-design/        301
+/services/staging-pipe-drape     /services/staging-pipe-drape/     301
+/services/event-production       /services/event-production/       301
+/services/video-production       /services/video-production/       301
+/services/virtual-events         /services/virtual-events/         301
+/services/conference-av-hire     /services/conference-av-hire/     301
+
+# --- Trailing slash normalization: non-slash → slash (LED Walls city pages) ---
+/services/led-walls/dublin       /services/led-walls/dublin/      301
+/services/led-walls/cork         /services/led-walls/cork/        301
+/services/led-walls/galway       /services/led-walls/galway/      301
+/services/led-walls/belfast      /services/led-walls/belfast/     301
+/services/led-walls/limerick     /services/led-walls/limerick/    301
+/services/led-walls/athlone      /services/led-walls/athlone/     301
+
+# --- Trailing slash normalization: non-slash → slash (Conference AV city pages) ---
+/services/conference-av/dublin   /services/conference-av/dublin/   301
+/services/conference-av/cork     /services/conference-av/cork/     301
+/services/conference-av/galway   /services/conference-av/galway/   301
+/services/conference-av/belfast  /services/conference-av/belfast/  301
+/services/conference-av/limerick /services/conference-av/limerick/ 301
+/services/conference-av/athlone  /services/conference-av/athlone/  301
+
+# --- Trailing slash normalization: non-slash → slash (case studies) ---
+/case-studies/swords-castle-summer-concerts           /case-studies/swords-castle-summer-concerts/          301
+/case-studies/school-summit-career-expos              /case-studies/school-summit-career-expos/             301
+/case-studies/prism-immersive-technology-summit       /case-studies/prism-immersive-technology-summit/      301
 
 # --- Old WordPress pages still indexed in Google ---
-/sound-hire-vision-hire-dublin-ireland/  /services/audio-systems    301
-/sound-hire-vision-hire-dublin-ireland   /services/audio-systems    301
-/lighting-effects/                       /services/lighting-design  301
-/lighting-effects                        /services/lighting-design  301
-/privacy-policy/                         /privacy-policy            301
+/sound-hire-vision-hire-dublin-ireland/  /services/av-production/   301
+/sound-hire-vision-hire-dublin-ireland   /services/av-production/   301
+/lighting-effects/                       /services/lighting-design/ 301
+/lighting-effects                        /services/lighting-design/ 301
+/privacy-policy/                         /                          301
+/privacy-policy                          /                          301
 /author/eventsound/                      /                          301
 /author/*                                /                          301
 /feed/                                   /                          301
 /feed                                    /                          301
 
+# --- Common old URL patterns (404 cleanup) ---
+/av-hire/                   /services/av-production/    301
+/av-hire                    /services/av-production/    301
+/services/pa-hire/          /services/av-production/    301
+/services/pa-hire           /services/av-production/    301
+/led-walls/                 /services/led-video-walls/  301
+/led-walls                  /services/led-video-walls/  301
+/services/sound-hire/       /services/av-production/    301
+/services/sound-hire        /services/av-production/    301
+/av-production              /services/av-production/    301
+/av-production/             /services/av-production/    301
+
 # --- Old Joomla/WordPress URLs still indexed in Google ---
 # Specific paths MUST come before the /index.php/* catch-all (first match wins)
-/index.php/stage-musical/*           /services/av-production    301
-/index.php/2-uncategorised           /services                  301
+/index.php/stage-musical/*           /services/av-production/   301
+/index.php/2-uncategorised           /services/                 301
 /index.php                           /                          301
 /index.php/*                         /                          301
-/led-video-keynote-or-powerpoint/    /services/led-video-walls  301
-/led-video-keynote-or-powerpoint     /services/led-video-walls  301
+/led-video-keynote-or-powerpoint/    /services/led-video-walls/ 301
+/led-video-keynote-or-powerpoint     /services/led-video-walls/ 301
 
 # --- WordPress system paths — return 404, not homepage ---
 /wp-admin/*          /404.html  404
