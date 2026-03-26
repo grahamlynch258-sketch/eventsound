@@ -71,7 +71,7 @@ export default function LEDVideoWalls() {
             EventSound provides LED video wall hire across Ireland for conferences, corporate events, exhibitions, awards ceremonies, concerts, and outdoor festivals. Based in Drogheda, Co. Louth, we deliver and install LED walls at venues in Dublin, Cork, Galway, Belfast, and nationwide.
           </p>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            We stock Unilumin and Absen LED panels in pixel pitches from 1.9mm to 3.9mm, with screen sizes from 6m² for conference presentations to 50m²+ for large-scale outdoor stages. Every hire includes delivery, installation, content management, a dedicated on-site operator, and full breakdown after your event.
+            We stock Unilumin and Absen LED panels in pixel pitches from 1.9mm to 3.9mm, with screen sizes from 6m² for conference presentations to 50m²+ for large-scale outdoor stages. Every hire includes delivery, installation, content management, a dedicated on-site operator, and full breakdown after your event. For individual screen and TV monitor hire for conferences and exhibitions, see our <Link to="/services/led-screen-hire/" className="text-accent hover:underline">LED Screen Hire</Link> service.
           </p>
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Indoor LED Wall Hire</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">

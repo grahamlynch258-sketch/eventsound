@@ -29,6 +29,7 @@ const staticRoutes = [
   { path: '/services/video-production', priority: '0.8', changefreq: 'monthly' },
   { path: '/services/virtual-events', priority: '0.8', changefreq: 'monthly' },
   { path: '/services/conference-av-hire', priority: '0.8', changefreq: 'monthly' },
+  { path: '/services/led-screen-hire', priority: '0.8', changefreq: 'monthly' },
   // Location pages — LED Walls
   { path: '/services/led-walls/dublin', priority: '0.7', changefreq: 'monthly' },
   { path: '/services/led-walls/cork', priority: '0.7', changefreq: 'monthly' },

@@ -60,6 +60,7 @@
 /services/video-production       /services/video-production/       301
 /services/virtual-events         /services/virtual-events/         301
 /services/conference-av-hire     /services/conference-av-hire/     301
+/services/led-screen-hire       /services/led-screen-hire/       301
 
 # --- Trailing slash normalization: non-slash → slash (LED Walls city pages) ---
 /services/led-walls/dublin       /services/led-walls/dublin/      301

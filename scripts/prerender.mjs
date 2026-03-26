@@ -259,6 +259,23 @@ const SERVICE_PAGE_SCHEMAS = {
       { name: "Conference AV Hire", url: "https://eventsound.ie/services/conference-av-hire" },
     ],
   },
+
+  '/services/led-screen-hire': {
+    faqs: [
+      { question: "What size LED screen do I need for my event?", answer: "For a boardroom or small meeting of up to 20 people, a 55-inch to 65-inch screen works well. For conference rooms with 50 to 100 delegates, we recommend 75-inch to 86-inch displays. For audiences over 100, consider multiple screens or our LED video wall service for maximum visibility. The ideal size depends on viewing distance, venue lighting, and content type — contact us and we'll recommend the best setup for your space." },
+      { question: "Can I hire a single TV screen for a one-day event?", answer: "Yes. We offer screen hire for any duration from a single day to multi-week installations. Single-day corporate events, conferences, and product launches are our most common booking type. Every hire includes delivery, setup, and collection regardless of duration." },
+      { question: "Do you provide stands and mounts for hired screens?", answer: "Every screen hire comes with a professional freestanding floor stand as standard. We also offer table-top stands for smaller displays and wall-mount brackets where the venue allows. All stands are height-adjustable and designed for event use — they're stable, look professional, and can be repositioned during the event if needed." },
+      { question: "Can you set up video conferencing on a hired screen?", answer: "Yes. We regularly set up screens for hybrid events with Microsoft Teams, Zoom, and Google Meet. We can provide the screen, a conference camera, ceiling or table microphones, and a speaker system — everything needed for remote participants to see and hear the room clearly. This is popular for AGMs, board meetings, and corporate town halls with remote attendees." },
+      { question: "What is the difference between an LED screen and an LED video wall?", answer: "An LED screen is a single display unit — like a large TV or monitor — typically ranging from 43 to 98 inches. An LED video wall is built from multiple modular LED panels tiled together to create a seamless display that can be any size, commonly from 6 to 50 square metres. LED screens are ideal for conferences, exhibitions, and meeting rooms. LED video walls are used for main stage visuals, concert backdrops, large conference keynotes, and outdoor events. We offer both — see our LED Video Wall Hire page for modular panel installations." },
+      { question: "How much does LED screen hire cost in Ireland?", answer: "Every EventSound screen hire is quoted on an all-inclusive basis covering the screen, stand, cabling, delivery, setup, on-site support, and collection. Pricing depends on screen size, quantity, duration, and venue location. Contact us for a free, no-obligation quote — we'll recommend the best setup for your event and provide a clear breakdown with no hidden fees." },
+    ],
+    service: { name: "LED Screen & TV Hire", description: "Professional LED screen and TV hire for conferences, exhibitions, and corporate events across Ireland. Screens from 43 inches to 98 inches with delivery, setup, and on-site support included.", serviceType: "LED Screen Hire", url: "https://eventsound.ie/services/led-screen-hire" },
+    breadcrumb: [
+      { name: "Home", url: "https://eventsound.ie/" },
+      { name: "Services", url: "https://eventsound.ie/services" },
+      { name: "LED Screen Hire", url: "https://eventsound.ie/services/led-screen-hire" },
+    ],
+  },
 };
 
 const FAQ_PAGE_QUESTIONS = [
@@ -326,6 +343,7 @@ const ROUTES = [
   { path: '/services/virtual-events', title: 'Hybrid Event Production Ireland | Live Streaming & Virtual Events | EventSound', description: 'Hybrid event production across Ireland. Combine in-person and virtual audiences with multi-camera streaming, remote speaker integration, and broadcast-quality AV.' },
   { path: '/services/av-production', title: 'AV Hire Dublin | Audio Visual Equipment Hire Ireland | EventSound', description: 'AV hire and audio visual equipment hire in Dublin and across Ireland. Professional AV services for corporate events, conferences, concerts, and live productions.' },
   { path: '/services/conference-av-hire', title: 'Conference AV Hire Ireland | Conference Room AV Equipment | EventSound', description: 'Conference AV hire across Ireland. Lectern mics, LED walls, confidence monitors, live streaming, and breakout room AV. Full technical crew included.' },
+  { path: '/services/led-screen-hire', title: 'LED Screen Hire Ireland | TV Screen & Monitor Rental for Events | EventSound', description: 'Professional LED screen and TV hire for conferences, exhibitions, and corporate events across Ireland. Screens from 43" to 98". Delivery, setup, and on-site support included. Get a free quote.' },
   { path: '/contact', title: 'Contact EventSound | Get a Quote for AV Hire Ireland', description: 'Contact EventSound for a free consultation and quote. Professional AV hire, sound, lighting, LED screens, and staging across Ireland. Fast response guaranteed.' },
   { path: '/faq', title: 'FAQ | Event Production & AV Hire Questions | EventSound', description: 'Frequently asked questions about EventSound event production services, AV hire, pricing, and event planning in Ireland.' },
   { path: '/gallery', title: 'Event Gallery | Our Work | EventSound', description: 'Browse our portfolio of event production work across Ireland. LED video walls, lighting design, staging, and AV setups for conferences, concerts, and corporate events.' },
