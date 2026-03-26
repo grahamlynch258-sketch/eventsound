@@ -7,8 +7,10 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
 import { generateServiceSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
 import { Breadcrumb } from "@/components/site/Breadcrumb";
+import { useServiceImages } from "@/hooks/useServiceImages";
 
 export default function LEDScreenHire() {
+  const { hero } = useServiceImages("service-led-screen-hire");
   const faqs = [
     { question: "What size LED screen do I need for my event?", answer: "For a boardroom or small meeting of up to 20 people, a 55-inch to 65-inch screen works well. For conference rooms with 50 to 100 delegates, we recommend 75-inch to 86-inch displays. For audiences over 100, consider multiple screens or our LED video wall service for maximum visibility. The ideal size depends on viewing distance, venue lighting, and content type — contact us and we'll recommend the best setup for your space." },
     { question: "Can I hire a single TV screen for a one-day event?", answer: "Yes. We offer screen hire for any duration from a single day to multi-week installations. Single-day corporate events, conferences, and product launches are our most common booking type. Every hire includes delivery, setup, and collection regardless of duration." },
@@ -58,6 +60,8 @@ export default function LEDScreenHire() {
       <PageHeader
         title="LED Screen & TV Hire Ireland"
         subtitle="Professional screen and monitor hire for conferences, exhibitions, and corporate events"
+        backgroundImage={hero}
+        backgroundAlt="LED screen and TV monitor hire for corporate events in Ireland"
       />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6 text-center">
