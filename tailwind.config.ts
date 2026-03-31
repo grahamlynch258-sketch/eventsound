@@ -79,11 +79,22 @@ export default {
   				to: {
   					height: '0'
   				}
+  			},
+  			'fade-up': {
+  				from: {
+  					opacity: '0',
+  					transform: 'translateY(20px)'
+  				},
+  				to: {
+  					opacity: '1',
+  					transform: 'translateY(0)'
+  				}
   			}
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out'
+  			'accordion-up': 'accordion-up 0.2s ease-out',
+  			'fade-up': 'fade-up 0.6s ease-out both'
   		},
   		fontFamily: {
   		sans: [

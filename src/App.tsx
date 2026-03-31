@@ -35,6 +35,9 @@ const VirtualEvents = lazy(() => import("@/pages/services/VirtualEvents"));
 const ConferenceAvHire = lazy(() => import("@/pages/services/ConferenceAvHire"));
 const LEDScreenHire = lazy(() => import("@/pages/services/LEDScreenHire"));
 
+// V2 pages — conversion-optimised variants
+const LEDVideoWallsV2 = lazy(() => import("@/pages/v2/LEDVideoWallsV2"));
+
 // Location pages — LED Walls
 const DublinLedWalls = lazy(() => import("@/pages/locations/DublinLedWalls"));
 const CorkLedWalls = lazy(() => import("@/pages/locations/CorkLedWalls"));
@@ -109,6 +112,9 @@ function AppRoutes() {
       <Route path="/services/conference-av/belfast" element={<Suspense fallback={null}><BelfastConferenceAV /></Suspense>} />
       <Route path="/services/conference-av/limerick" element={<Suspense fallback={null}><LimerickConferenceAV /></Suspense>} />
       <Route path="/services/conference-av/athlone" element={<Suspense fallback={null}><AthaloneConferenceAV /></Suspense>} />
+
+      {/* V2 pages — conversion-optimised variants */}
+      <Route path="/v2/led-video-walls" element={<Suspense fallback={null}><LEDVideoWallsV2 /></Suspense>} />
 
       {/* Landing pages — Google Ads only, noindex */}
       <Route path="/landing/corporate-av-hire-dublin" element={<Suspense fallback={null}><CorporateAVHireDublin /></Suspense>} />
