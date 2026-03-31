@@ -21,6 +21,7 @@ interface CaseStudy {
   tags: string[];
   location: string;
   published_at: string;
+  event_date: string | null;
 }
 
 const CaseStudies = () => {
@@ -172,11 +173,11 @@ const CaseStudies = () => {
                           <span>{caseStudy.location}</span>
                         </div>
                       )}
-                      {caseStudy.published_at && (
+                      {(caseStudy.event_date || caseStudy.published_at) && (
                         <div className="flex items-center gap-1">
                           <Calendar className="w-4 h-4" />
                           <span>
-                            {new Date(caseStudy.published_at).toLocaleDateString('en-IE', {
+                            {new Date(caseStudy.event_date || caseStudy.published_at).toLocaleDateString('en-IE', {
                               year: 'numeric',
                               month: 'long'
                             })}
