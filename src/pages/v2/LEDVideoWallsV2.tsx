@@ -189,7 +189,7 @@ export default function LEDVideoWallsV2() {
   const faqSchema = generateFAQSchema({ questions: faqs });
 
   useSeo({
-    title: "LED Screen Hire Ireland | LED Video Wall Rental Dublin | EventSound",
+    title: "LED Video Wall Hire Ireland | LED Screen Rental Dublin | EventSound",
     description: "LED video wall hire across Ireland. Unilumin & Absen panels from 1.9mm to 3.9mm pixel pitch. Indoor, outdoor & curved configurations. Delivery, setup & operator included.",
     canonical: "https://eventsound.ie/services/led-video-walls",
     additionalSchemas: [
@@ -241,10 +241,10 @@ export default function LEDVideoWallsV2() {
               EventSound &middot; LED Video Walls
             </p>
             <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
-              LED Screen Hire Ireland
+              LED Video Wall Hire Ireland
             </h1>
             <p className="text-lg md:text-xl text-white/90 mb-4">
-              High-impact visual displays for events of every scale
+              High-impact LED video walls for events of every scale
             </p>
             <p className="text-sm md:text-base text-white/80 mb-8 leading-relaxed">
               EventSound provides LED video wall hire across Ireland for conferences, corporate events, exhibitions, awards ceremonies, concerts, and outdoor festivals. Based in Drogheda, Co. Louth, we deliver and install LED walls at venues in Dublin, Cork, Galway, Belfast, and nationwide.
