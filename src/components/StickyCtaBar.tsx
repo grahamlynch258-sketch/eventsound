@@ -41,7 +41,7 @@ export function StickyCtaBar({
 
   return (
     <div
-      className={`fixed bottom-0 left-0 right-0 z-50 lg:hidden transition-transform duration-300 ${
+      className={`fixed bottom-0 left-0 right-0 z-50 transition-transform duration-300 ${
         shouldShow ? "translate-y-0" : "translate-y-full"
       }`}
     >
