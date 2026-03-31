@@ -5,7 +5,9 @@ import { useSeo } from "@/hooks/useSeo";
 import { useServiceImages } from "@/hooks/useServiceImages";
 import { useServicePageImages } from "@/hooks/useServicePageImages";
 import { ContactForm } from "@/components/site/ContactForm";
-import { GoogleReviewsCarousel, GoogleReviewsBadge } from "@/components/GoogleReviews";
+import { GoogleReviewsBadge } from "@/components/GoogleReviews";
+import { ReactGoogleReviews } from "react-google-reviews";
+import "react-google-reviews/dist/index.css";
 import { BrandBanner } from "@/components/site/BrandSidebar";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { generateServiceSchema, generateBreadcrumbSchema } from "@/lib/schema";
@@ -151,6 +153,7 @@ export default function LEDVideoWallsV2() {
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [showAllReviews, setShowAllReviews] = useState(false);
 
   // Auto-advance slideshow
   useEffect(() => {
@@ -417,7 +420,7 @@ export default function LEDVideoWallsV2() {
         </div>
       </section>
 
-      {/* ── Section 8: Google Reviews ── */}
+      {/* ── Section 8: Google Reviews — static grid ── */}
       <section className="container mx-auto px-4 mb-16">
         <ScrollReveal>
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
@@ -435,7 +438,81 @@ export default function LEDVideoWallsV2() {
               </Button>
             </div>
           </div>
-          <GoogleReviewsCarousel maxItems={3} />
+          <ReactGoogleReviews
+            layout="custom"
+            featurableId="b2ee5fe1-ce0a-4af5-8324-4558bd7d337e"
+            structuredData={true}
+            brandName="EventSound AV Services"
+            renderer={(reviews) => {
+              const visibleReviews = showAllReviews ? reviews : reviews.slice(0, 3);
+              return (
+                <div>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    {visibleReviews.map((review) => (
+                      <div
+                        key={review.reviewId}
+                        className="bg-card border border-border rounded-xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                      >
+                        <div className="flex gap-1 mb-3">
+                          {Array.from({ length: review.starRating }).map((_, i) => (
+                            <svg key={i} viewBox="0 0 18 18" width="16" height="16">
+                              <polygon
+                                points="9,1 11.5,6.5 17,7 13,11 14,17 9,14 4,17 5,11 1,7 6.5,6.5"
+                                fill="#FBBC04"
+                              />
+                            </svg>
+                          ))}
+                        </div>
+                        <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-4">
+                          {review.comment}
+                        </p>
+                        <div className="flex items-center gap-3">
+                          {review.reviewer.profilePhotoUrl && (
+                            <img
+                              src={review.reviewer.profilePhotoUrl}
+                              alt=""
+                              className="w-8 h-8 rounded-full"
+                            />
+                          )}
+                          <div>
+                            <p className="text-sm font-semibold">{review.reviewer.displayName}</p>
+                            <p className="text-xs text-muted-foreground">
+                              {review.createTime
+                                ? new Date(review.createTime).toLocaleDateString("en-IE", {
+                                    year: "numeric",
+                                    month: "short",
+                                  })
+                                : ""}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  {!showAllReviews && reviews.length > 3 && (
+                    <div className="text-center mt-8">
+                      <button
+                        onClick={() => setShowAllReviews(true)}
+                        className="inline-flex items-center gap-2 px-6 py-2.5 border border-border rounded-lg text-sm font-semibold hover:bg-accent/10 transition-colors"
+                      >
+                        Show more reviews ({reviews.length - 3} more)
+                      </button>
+                    </div>
+                  )}
+                  {showAllReviews && reviews.length > 3 && (
+                    <div className="text-center mt-8">
+                      <button
+                        onClick={() => setShowAllReviews(false)}
+                        className="inline-flex items-center gap-2 px-6 py-2.5 border border-border rounded-lg text-sm font-semibold hover:bg-accent/10 transition-colors"
+                      >
+                        Show fewer reviews
+                      </button>
+                    </div>
+                  )}
+                </div>
+              );
+            }}
+          />
         </ScrollReveal>
       </section>
 
