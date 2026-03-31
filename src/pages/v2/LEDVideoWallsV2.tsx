@@ -195,7 +195,7 @@ export default function LEDVideoWallsV2() {
     <PageShell>
       {/* ── Section 1: Hero — crystal clear image, no overlays ── */}
       <section
-        className="relative min-h-[85vh] flex items-end overflow-hidden"
+        className="relative min-h-[85vh] flex items-center overflow-hidden"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
@@ -221,26 +221,26 @@ export default function LEDVideoWallsV2() {
           style={{ textShadow: "0 2px 8px rgba(0,0,0,0.5)" }}
         >
           {/* Breadcrumb */}
-          <nav className="mb-6 text-sm text-white/80 animate-fade-up" aria-label="Breadcrumb">
-            <ol className="flex items-center justify-center gap-1.5">
+          <nav className="mb-8 text-base text-white/80 animate-fade-up" aria-label="Breadcrumb">
+            <ol className="flex items-center justify-center gap-2">
               <li><Link to="/" className="hover:text-white transition-colors">Home</Link></li>
-              <li><ChevronRight className="h-3.5 w-3.5" /></li>
+              <li><ChevronRight className="h-4 w-4" /></li>
               <li><Link to="/services" className="hover:text-white transition-colors">Services</Link></li>
-              <li><ChevronRight className="h-3.5 w-3.5" /></li>
+              <li><ChevronRight className="h-4 w-4" /></li>
               <li className="text-white">LED Video Walls</li>
             </ol>
           </nav>
 
-          <p className="text-xs font-semibold tracking-[0.2em] text-accent uppercase mb-3 animate-fade-up [animation-delay:100ms]">
+          <p className="text-sm font-semibold tracking-[0.2em] text-accent uppercase mb-4 animate-fade-up [animation-delay:100ms]">
             EventSound &middot; LED Video Walls
           </p>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-accent mb-4 animate-fade-up [animation-delay:200ms]">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-accent mb-6 animate-fade-up [animation-delay:200ms]">
             LED Screen Hire Ireland
           </h1>
-          <p className="text-lg md:text-xl text-white max-w-2xl mb-4 animate-fade-up [animation-delay:300ms]">
+          <p className="text-xl md:text-2xl text-white max-w-3xl mb-6 animate-fade-up [animation-delay:300ms]">
             High-impact visual displays for events of every scale
           </p>
-          <p className="text-white/90 max-w-2xl mb-8 animate-fade-up [animation-delay:400ms]">
+          <p className="text-lg text-white/90 max-w-3xl mb-10 animate-fade-up [animation-delay:400ms]">
             EventSound provides LED video wall hire across Ireland for conferences, corporate events, exhibitions, awards ceremonies, concerts, and outdoor festivals. Based in Drogheda, Co. Louth, we deliver and install LED walls at venues in Dublin, Cork, Galway, Belfast, and nationwide.
           </p>
 
