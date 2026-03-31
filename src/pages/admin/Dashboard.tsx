@@ -145,7 +145,7 @@ const Dashboard = () => {
           </CardHeader>
           <CardContent>
             <p className="text-xs text-muted-foreground">
-              Manage site images
+              Manage site images and service page visuals
             </p>
           </CardContent>
         </Card>
