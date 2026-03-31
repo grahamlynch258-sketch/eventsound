@@ -41,22 +41,22 @@ export function StickyCtaBar({
 
   return (
     <div
-      className={`fixed bottom-0 left-0 right-0 z-50 transition-transform duration-300 ${
-        shouldShow ? "translate-y-0" : "translate-y-full"
+      className={`fixed bottom-6 right-6 z-50 transition-all duration-300 ${
+        shouldShow ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0 pointer-events-none"
       }`}
     >
-      <div className="bg-background/95 backdrop-blur-sm border-t border-border px-4 py-3 flex gap-3">
+      <div className="bg-background/95 backdrop-blur-sm border border-border rounded-xl shadow-lg px-3 py-2.5 flex gap-2">
         <button
           onClick={handleScrollToForm}
-          className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground py-3 rounded-lg font-semibold text-sm transition-colors"
+          className="bg-accent hover:bg-accent/90 text-accent-foreground px-4 py-2 rounded-lg font-semibold text-xs transition-colors"
         >
           {ctaText}
         </button>
         <a
           href={`tel:${phoneNumber}`}
-          className="flex items-center justify-center gap-2 px-5 py-3 border border-border rounded-lg font-semibold text-sm hover:bg-muted transition-colors"
+          className="flex items-center justify-center gap-1.5 px-3 py-2 border border-border rounded-lg text-xs font-semibold hover:bg-muted transition-colors"
         >
-          <Phone className="h-4 w-4" />
+          <Phone className="h-3.5 w-3.5" />
           Call
         </a>
       </div>

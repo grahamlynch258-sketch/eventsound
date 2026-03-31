@@ -693,7 +693,7 @@ export default function LEDVideoWallsV2() {
       </section>
 
       {/* ── Section 13: Location Links ── */}
-      <section className="container mx-auto px-4 mb-16 pb-20">
+      <section className="container mx-auto px-4 mb-16">
         <ScrollReveal>
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-4">Find LED Wall Hire Near You</h2>
