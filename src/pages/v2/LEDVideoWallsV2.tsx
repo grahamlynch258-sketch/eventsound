@@ -95,7 +95,7 @@ function SlotImage({ slots, slotId, aspect = "aspect-video", className = "", wid
 const faqs = [
   { question: "What pixel pitch LED wall do I need for a conference?", answer: "For conferences with viewing distances of 3 to 10 metres, we recommend 2.6mm or 3.9mm pixel pitch panels. For exhibitions where attendees stand 1 to 3 metres from the screen, 1.9mm provides the sharpest image. Our team will advise based on your venue layout and audience size." },
   { question: "Can LED walls be used outdoors?", answer: "Yes. We provide weather-rated outdoor LED panels with high-brightness output for daylight visibility. Outdoor screens typically use 3.9mm to 4.8mm pixel pitch and are mounted on freestanding ground-support structures." },
-  { question: "How much does LED wall hire cost in Ireland?", answer: "LED wall hire starts from €125 per square metre per day for dry hire. Pricing varies depending on pixel pitch, screen size, and event requirements. We recommend speaking to our team to ensure you get the best setup and the most out of your budget." },
+  { question: "How much does LED wall hire cost in Ireland?", answer: "LED wall hire and rental starts from €125 per square metre per day for dry hire. Pricing varies depending on pixel pitch, screen size, and event requirements. We recommend speaking to our team to ensure you get the best setup and the most out of your budget." },
   { question: "What is the largest LED wall you can provide?", answer: "We regularly install screens up to 50m² and can configure larger displays for outdoor festivals and concerts. Screen size is limited only by venue dimensions and structural capacity." },
   { question: "What content can be displayed on LED video walls?", answer: "Anything — live camera feeds, pre-recorded video, presentations, social media walls, sponsor logos, and live event graphics. We provide full content playback and can help with content formatting to ensure it looks perfect on screen." },
   { question: "Do you provide operators with the LED screens?", answer: "Yes, all our LED wall hire packages include experienced technicians for setup, operation throughout your event, and breakdown. You never need to worry about the technical side." },
@@ -190,7 +190,7 @@ export default function LEDVideoWallsV2() {
 
   useSeo({
     title: "LED Video Wall Hire Ireland | LED Screen Rental Dublin | EventSound",
-    description: "LED video wall hire across Ireland. Unilumin & Absen panels from 1.9mm to 3.9mm pixel pitch. Indoor, outdoor & curved configurations. Delivery, setup & operator included.",
+    description: "LED video wall hire and rental across Ireland. Unilumin & Absen panels from 1.9mm to 3.9mm pixel pitch. Indoor, outdoor & curved configurations. Delivery, setup & operator included.",
     canonical: "https://eventsound.ie/services/led-video-walls",
     additionalSchemas: [
       { schema: serviceSchema, schemaId: "service-schema" },
@@ -247,7 +247,7 @@ export default function LEDVideoWallsV2() {
               High-impact LED video walls for events of every scale
             </p>
             <p className="text-sm md:text-base text-white/80 mb-8 leading-relaxed">
-              EventSound provides LED video wall hire across Ireland for conferences, corporate events, exhibitions, awards ceremonies, concerts, and outdoor festivals. Based in Drogheda, Co. Louth, we deliver and install LED walls at venues in Dublin, Cork, Galway, Belfast, and nationwide.
+              EventSound provides LED video wall hire and rental across Ireland for conferences, corporate events, exhibitions, awards ceremonies, concerts, and outdoor festivals. Based in Drogheda, Co. Louth, we deliver and install LED walls at venues in Dublin, Cork, Galway, Belfast, and nationwide.
             </p>
 
             <div className="flex flex-wrap gap-3 mb-6">
@@ -698,7 +698,7 @@ export default function LEDVideoWallsV2() {
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-4">Find LED Wall Hire Near You</h2>
             <p className="text-muted-foreground mb-6">
-              EventSound provides LED wall hire across Ireland. Select a city below to learn more about LED wall services in your area.
+              EventSound provides LED wall hire and rental across Ireland. Select a city below to learn more about LED wall services in your area.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               {locationLinks.map((loc) => (
