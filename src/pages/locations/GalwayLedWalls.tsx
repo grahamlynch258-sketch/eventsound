@@ -16,12 +16,14 @@ const GalwayLedWalls = () => {
     { question: "What LED wall size do I need for a Galway hotel ballroom?", answer: "For hotel ballrooms accommodating 200 to 500 delegates, 15 to 25 square metres is typical. For the larger ballrooms at Clayton Hotel Galway (capacity 800) or Galway Bay Hotel (combined 1,000), 25 to 40 square metres delivers maximum visual impact. Contact us with your specific venue for a tailored recommendation." },
   ];
 
-  const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Home", url: "https://eventsound.ie/" },
-    { name: "Services", url: "https://eventsound.ie/services" },
-    { name: "LED Video Walls", url: "https://eventsound.ie/services/led-video-walls" },
-    { name: "LED Walls Galway", url: "https://eventsound.ie/services/led-walls/galway" },
-  ]);
+  const breadcrumbSchema = generateBreadcrumbSchema({
+    items: [
+      { name: "Home", url: "https://eventsound.ie" },
+      { name: "Services", url: "https://eventsound.ie/services" },
+      { name: "LED Video Walls", url: "https://eventsound.ie/services/led-video-walls" },
+      { name: "LED Walls Galway", url: "https://eventsound.ie/services/led-walls/galway" },
+    ],
+  });
 
   useSeo({
     title: "LED Wall Hire Galway | LED Screen Rental for Events | EventSound",
@@ -40,10 +42,10 @@ const GalwayLedWalls = () => {
     <PageShell>
       <Breadcrumb
         items={[
-          { label: "Home", href: "/" },
-          { label: "Services", href: "/services" },
-          { label: "LED Video Walls", href: "/services/led-video-walls" },
-          { label: "Galway" },
+          { name: "Home", href: "/" },
+          { name: "Services", href: "/services" },
+          { name: "LED Video Walls", href: "/services/led-video-walls" },
+          { name: "Galway" },
         ]}
       />
       <PageHeader

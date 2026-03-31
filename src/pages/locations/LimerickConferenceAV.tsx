@@ -16,12 +16,12 @@ const LimerickConferenceAV = () => {
     { question: "Do you cover the wider Shannon region?", answer: "Yes. We serve events across Limerick city and the wider Shannon region, including Ennis, Shannon town, North Tipperary, and surrounding areas." },
   ];
 
-  const breadcrumbSchema = generateBreadcrumbSchema([
+  const breadcrumbSchema = generateBreadcrumbSchema({ items: [
     { name: "Home", url: "https://eventsound.ie/" },
     { name: "Services", url: "https://eventsound.ie/services" },
     { name: "Conference AV Hire", url: "https://eventsound.ie/services/conference-av-hire" },
     { name: "Conference AV Limerick", url: "https://eventsound.ie/services/conference-av/limerick" },
-  ]);
+  ] });
 
   useSeo({
     title: "Conference AV Services Limerick | Event Sound & AV Hire | EventSound",
@@ -40,10 +40,10 @@ const LimerickConferenceAV = () => {
     <PageShell>
       <Breadcrumb
         items={[
-          { label: "Home", href: "/" },
-          { label: "Services", href: "/services" },
-          { label: "Conference AV Hire", href: "/services/conference-av-hire" },
-          { label: "Limerick" },
+          { name: "Home", href: "/" },
+          { name: "Services", href: "/services" },
+          { name: "Conference AV Hire", href: "/services/conference-av-hire" },
+          { name: "Limerick" },
         ]}
       />
       <PageHeader

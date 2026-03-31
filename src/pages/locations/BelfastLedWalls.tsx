@@ -16,12 +16,14 @@ const BelfastLedWalls = () => {
     { question: "Can you install LED walls at ICC Belfast?", answer: "Yes. We provide LED wall installations at ICC Belfast, including its main auditorium, exhibition hall, and breakout spaces. Our team is familiar with ICC Belfast's technical infrastructure, power distribution, and load-in procedures, ensuring efficient setup and reliable performance." },
   ];
 
-  const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Home", url: "https://eventsound.ie/" },
-    { name: "Services", url: "https://eventsound.ie/services" },
-    { name: "LED Video Walls", url: "https://eventsound.ie/services/led-video-walls" },
-    { name: "LED Walls Belfast", url: "https://eventsound.ie/services/led-walls/belfast" },
-  ]);
+  const breadcrumbSchema = generateBreadcrumbSchema({
+    items: [
+      { name: "Home", url: "https://eventsound.ie" },
+      { name: "Services", url: "https://eventsound.ie/services" },
+      { name: "LED Video Walls", url: "https://eventsound.ie/services/led-video-walls" },
+      { name: "LED Walls Belfast", url: "https://eventsound.ie/services/led-walls/belfast" },
+    ],
+  });
 
   useSeo({
     title: "LED Wall Hire Belfast | LED Screen Rental Northern Ireland | EventSound",
@@ -40,10 +42,10 @@ const BelfastLedWalls = () => {
     <PageShell>
       <Breadcrumb
         items={[
-          { label: "Home", href: "/" },
-          { label: "Services", href: "/services" },
-          { label: "LED Video Walls", href: "/services/led-video-walls" },
-          { label: "Belfast" },
+          { name: "Home", href: "/" },
+          { name: "Services", href: "/services" },
+          { name: "LED Video Walls", href: "/services/led-video-walls" },
+          { name: "Belfast" },
         ]}
       />
       <PageHeader

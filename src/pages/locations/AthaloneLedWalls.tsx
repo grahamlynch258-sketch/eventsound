@@ -16,12 +16,14 @@ const AthaloneLedWalls = () => {
     { question: "Why choose Athlone for a national conference with LED walls?", answer: "Athlone is Ireland's geographic centre. Delegates from Dublin, Galway, Cork, and Limerick can all reach Athlone within 90 minutes to two hours. This makes it the most accessible location for national events. Combined with Hodson Bay Hotel's 30+ years of conference experience and the Sheraton's flagship facilities, Athlone offers convenience, quality venues, and professional LED wall installations." },
   ];
 
-  const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Home", url: "https://eventsound.ie/" },
-    { name: "Services", url: "https://eventsound.ie/services" },
-    { name: "LED Video Walls", url: "https://eventsound.ie/services/led-video-walls" },
-    { name: "LED Walls Athlone", url: "https://eventsound.ie/services/led-walls/athlone" },
-  ]);
+  const breadcrumbSchema = generateBreadcrumbSchema({
+    items: [
+      { name: "Home", url: "https://eventsound.ie" },
+      { name: "Services", url: "https://eventsound.ie/services" },
+      { name: "LED Video Walls", url: "https://eventsound.ie/services/led-video-walls" },
+      { name: "LED Walls Athlone", url: "https://eventsound.ie/services/led-walls/athlone" },
+    ],
+  });
 
   useSeo({
     title: "LED Wall Hire Athlone | LED Screen Rental Midlands Ireland | EventSound",
@@ -40,10 +42,10 @@ const AthaloneLedWalls = () => {
     <PageShell>
       <Breadcrumb
         items={[
-          { label: "Home", href: "/" },
-          { label: "Services", href: "/services" },
-          { label: "LED Video Walls", href: "/services/led-video-walls" },
-          { label: "Athlone" },
+          { name: "Home", href: "/" },
+          { name: "Services", href: "/services" },
+          { name: "LED Video Walls", href: "/services/led-video-walls" },
+          { name: "Athlone" },
         ]}
       />
       <PageHeader

@@ -16,12 +16,14 @@ const LimerickLedWalls = () => {
     { question: "Do you cover the wider Shannon region?", answer: "Yes. We serve events across Limerick city and the wider Shannon region, including Ennis, Shannon town, North Tipperary, and surrounding areas." },
   ];
 
-  const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Home", url: "https://eventsound.ie/" },
-    { name: "Services", url: "https://eventsound.ie/services" },
-    { name: "LED Video Walls", url: "https://eventsound.ie/services/led-video-walls" },
-    { name: "LED Walls Limerick", url: "https://eventsound.ie/services/led-walls/limerick" },
-  ]);
+  const breadcrumbSchema = generateBreadcrumbSchema({
+    items: [
+      { name: "Home", url: "https://eventsound.ie" },
+      { name: "Services", url: "https://eventsound.ie/services" },
+      { name: "LED Video Walls", url: "https://eventsound.ie/services/led-video-walls" },
+      { name: "LED Walls Limerick", url: "https://eventsound.ie/services/led-walls/limerick" },
+    ],
+  });
 
   useSeo({
     title: "LED Wall Hire Limerick | LED Screen Rental for Events | EventSound",
@@ -40,10 +42,10 @@ const LimerickLedWalls = () => {
     <PageShell>
       <Breadcrumb
         items={[
-          { label: "Home", href: "/" },
-          { label: "Services", href: "/services" },
-          { label: "LED Video Walls", href: "/services/led-video-walls" },
-          { label: "Limerick" },
+          { name: "Home", href: "/" },
+          { name: "Services", href: "/services" },
+          { name: "LED Video Walls", href: "/services/led-video-walls" },
+          { name: "Limerick" },
         ]}
       />
       <PageHeader

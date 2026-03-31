@@ -16,12 +16,12 @@ const CorkConferenceAV = () => {
     { question: "Do you provide livestreaming for Cork conferences?", answer: "Yes. We provide livestreaming capability including camera feeds, encoding, and integration with Zoom, Microsoft Teams, and dedicated streaming platforms. This allows remote delegates to participate alongside your in-person audience in real time." },
   ];
 
-  const breadcrumbSchema = generateBreadcrumbSchema([
+  const breadcrumbSchema = generateBreadcrumbSchema({ items: [
     { name: "Home", url: "https://eventsound.ie/" },
     { name: "Services", url: "https://eventsound.ie/services" },
     { name: "Conference AV Hire", url: "https://eventsound.ie/services/conference-av-hire" },
     { name: "Conference AV Cork", url: "https://eventsound.ie/services/conference-av/cork" },
-  ]);
+  ] });
 
   useSeo({
     title: "Conference AV Services Cork | Event Sound & AV Hire | EventSound",
@@ -40,10 +40,10 @@ const CorkConferenceAV = () => {
     <PageShell>
       <Breadcrumb
         items={[
-          { label: "Home", href: "/" },
-          { label: "Services", href: "/services" },
-          { label: "Conference AV Hire", href: "/services/conference-av-hire" },
-          { label: "Cork" },
+          { name: "Home", href: "/" },
+          { name: "Services", href: "/services" },
+          { name: "Conference AV Hire", href: "/services/conference-av-hire" },
+          { name: "Cork" },
         ]}
       />
       <PageHeader

@@ -17,12 +17,12 @@ const DublinConferenceAV = () => {
     { question: "How far in advance should I book conference AV in Dublin?", answer: "We recommend booking at least 2 to 4 weeks before your event, though we can often accommodate shorter lead times depending on equipment availability. For large-scale conferences or events during peak periods (September to November, January to March), earlier booking is advisable. Contact us as soon as you have your event dates confirmed." },
   ];
 
-  const breadcrumbSchema = generateBreadcrumbSchema([
+  const breadcrumbSchema = generateBreadcrumbSchema({ items: [
     { name: "Home", url: "https://eventsound.ie/" },
     { name: "Services", url: "https://eventsound.ie/services" },
     { name: "Conference AV Hire", url: "https://eventsound.ie/services/conference-av-hire" },
     { name: "Conference AV Dublin", url: "https://eventsound.ie/services/conference-av/dublin" },
-  ]);
+  ] });
 
   useSeo({
     title: "Conference AV Services Dublin | Event Sound & AV Hire | EventSound",
@@ -41,10 +41,10 @@ const DublinConferenceAV = () => {
     <PageShell>
       <Breadcrumb
         items={[
-          { label: "Home", href: "/" },
-          { label: "Services", href: "/services" },
-          { label: "Conference AV Hire", href: "/services/conference-av-hire" },
-          { label: "Dublin" },
+          { name: "Home", href: "/" },
+          { name: "Services", href: "/services" },
+          { name: "Conference AV Hire", href: "/services/conference-av-hire" },
+          { name: "Dublin" },
         ]}
       />
       <PageHeader
