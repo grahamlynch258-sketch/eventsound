@@ -179,7 +179,7 @@ export function ContactForm() {
         </div>
         <div className="relative h-2 rounded-full bg-muted overflow-hidden">
           <div
-            className="absolute inset-y-0 left-0 bg-primary rounded-full transition-all duration-300"
+            className="absolute inset-y-0 left-0 bg-accent rounded-full transition-all duration-300"
             style={{ width: `${((step - 1) / (STEPS.length - 1)) * 100}%` }}
           />
         </div>

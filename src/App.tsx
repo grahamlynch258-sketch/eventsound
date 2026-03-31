@@ -25,7 +25,7 @@ const CorporateAVHireDublin = lazy(() => import("@/pages/landing/CorporateAVHire
 const LEDWallHireIreland = lazy(() => import("@/pages/landing/LEDWallHireIreland"));
 
 // Service sub-pages — lazy loaded for code splitting
-const LEDVideoWalls = lazy(() => import("@/pages/services/LEDVideoWalls"));
+const LEDVideoWalls = lazy(() => import("@/pages/v2/LEDVideoWallsV2"));
 const AVProduction = lazy(() => import("@/pages/services/AVProduction"));
 const LightingDesign = lazy(() => import("@/pages/services/LightingDesign"));
 const StagingPipeDrape = lazy(() => import("@/pages/services/StagingPipeDrape"));
@@ -34,9 +34,6 @@ const VideoProduction = lazy(() => import("@/pages/services/VideoProduction"));
 const VirtualEvents = lazy(() => import("@/pages/services/VirtualEvents"));
 const ConferenceAvHire = lazy(() => import("@/pages/services/ConferenceAvHire"));
 const LEDScreenHire = lazy(() => import("@/pages/services/LEDScreenHire"));
-
-// V2 pages — conversion-optimised variants
-const LEDVideoWallsV2 = lazy(() => import("@/pages/v2/LEDVideoWallsV2"));
 
 // Location pages — LED Walls
 const DublinLedWalls = lazy(() => import("@/pages/locations/DublinLedWalls"));
@@ -112,9 +109,6 @@ function AppRoutes() {
       <Route path="/services/conference-av/belfast" element={<Suspense fallback={null}><BelfastConferenceAV /></Suspense>} />
       <Route path="/services/conference-av/limerick" element={<Suspense fallback={null}><LimerickConferenceAV /></Suspense>} />
       <Route path="/services/conference-av/athlone" element={<Suspense fallback={null}><AthaloneConferenceAV /></Suspense>} />
-
-      {/* V2 pages — conversion-optimised variants */}
-      <Route path="/v2/led-video-walls" element={<Suspense fallback={null}><LEDVideoWallsV2 /></Suspense>} />
 
       {/* Landing pages — Google Ads only, noindex */}
       <Route path="/landing/corporate-av-hire-dublin" element={<Suspense fallback={null}><CorporateAVHireDublin /></Suspense>} />

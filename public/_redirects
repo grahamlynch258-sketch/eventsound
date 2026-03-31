@@ -5,6 +5,10 @@
 # Netlify processes top-to-bottom, first match wins.
 # Canonical pattern: TRAILING SLASH (e.g. /services/led-video-walls/)
 
+# --- V2 URL redirects (testing URL → canonical) ---
+/v2/led-video-walls   /services/led-video-walls/  301
+/v2/led-video-walls/  /services/led-video-walls/  301
+
 # --- Old slug redirects (target trailing-slash canonical) ---
 /services/live-event-production/    /services/event-production/    301
 /services/live-event-production     /services/event-production/    301
