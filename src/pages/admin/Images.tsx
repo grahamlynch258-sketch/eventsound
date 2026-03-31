@@ -32,52 +32,32 @@ const imageSlots = [
   { page: "home", section: "bottom_portraits", key: "portrait_3", label: "Homepage Portrait 3 (Right)" },
 ];
 
-// ── Service page wireframe layouts ──────────────────────────────────────────
+// ── Shared service page wireframe layout ────────────────────────────────────
+// Both LED Video Walls and LED Screen Hire use the same slot IDs and layout.
 
 type SlotGroup = {
   label: string;
   slots: string[];
   cols: number;
-  aspect: string; // Tailwind aspect ratio class
+  aspect: string;
 };
 
-const LED_WALLS_LAYOUT: SlotGroup[] = [
+const SERVICE_PAGE_LAYOUT: SlotGroup[] = [
   {
     label: "Service types",
-    slots: ["indoor-use-case", "outdoor-use-case", "curved-custom"],
+    slots: ["service-type-1", "service-type-2", "service-type-3"],
     cols: 3,
     aspect: "aspect-[16/10]",
   },
   {
     label: "Use cases",
-    slots: ["corporate-conference", "awards-ceremony", "exhibition", "festival-outdoor", "product-launch", "hybrid-event"],
+    slots: ["use-case-1", "use-case-2", "use-case-3", "use-case-4", "use-case-5", "use-case-6"],
     cols: 3,
     aspect: "aspect-[4/3]",
   },
   {
     label: "Gallery",
     slots: ["gallery-1", "gallery-2", "gallery-3", "gallery-4", "gallery-5", "gallery-6"],
-    cols: 3,
-    aspect: "aspect-[4/3]",
-  },
-];
-
-const LED_SCREEN_LAYOUT: SlotGroup[] = [
-  {
-    label: "Service types",
-    slots: ["conference-screen", "exhibition-screen", "digital-signage"],
-    cols: 3,
-    aspect: "aspect-[16/10]",
-  },
-  {
-    label: "Feature",
-    slots: ["tv-hire"],
-    cols: 1,
-    aspect: "aspect-video",
-  },
-  {
-    label: "Gallery",
-    slots: ["gallery-1", "gallery-2", "gallery-3", "gallery-4", "gallery-5"],
     cols: 3,
     aspect: "aspect-[4/3]",
   },
@@ -271,7 +251,6 @@ export default function AdminImages() {
             <ServicePageWireframe
               pageSlug="led-video-walls"
               heroCategory="LED Walls"
-              layout={LED_WALLS_LAYOUT}
               slots={ledWallSlots ?? []}
               onSetImage={(slotId, url) => updateSlotImage.mutate({ pageSlug: "led-video-walls", slotId, image_url: url })}
               onRemoveImage={(slotId) => updateSlotImage.mutate({ pageSlug: "led-video-walls", slotId, image_url: null })}
@@ -284,7 +263,6 @@ export default function AdminImages() {
             <ServicePageWireframe
               pageSlug="led-screen-hire"
               heroCategory="LED Screen Hire"
-              layout={LED_SCREEN_LAYOUT}
               slots={ledScreenSlots ?? []}
               onSetImage={(slotId, url) => updateSlotImage.mutate({ pageSlug: "led-screen-hire", slotId, image_url: url })}
               onRemoveImage={(slotId) => updateSlotImage.mutate({ pageSlug: "led-screen-hire", slotId, image_url: null })}
@@ -302,7 +280,6 @@ export default function AdminImages() {
 function ServicePageWireframe({
   pageSlug,
   heroCategory,
-  layout,
   slots,
   onSetImage,
   onRemoveImage,
@@ -310,7 +287,6 @@ function ServicePageWireframe({
 }: {
   pageSlug: string;
   heroCategory: string;
-  layout: SlotGroup[];
   slots: ServicePageImageSlot[];
   onSetImage: (slotId: string, url: string) => void;
   onRemoveImage: (slotId: string) => void;
@@ -332,7 +308,7 @@ function ServicePageWireframe({
         </p>
       </div>
 
-      {layout.map((group) => (
+      {SERVICE_PAGE_LAYOUT.map((group) => (
         <div key={group.label}>
           <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">
             {group.label}
