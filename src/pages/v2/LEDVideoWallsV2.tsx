@@ -141,18 +141,25 @@ const locationLinks = [
 // ── Main Component ───────────────────────────────────────────────────────────
 
 export default function LEDVideoWallsV2() {
-  const { hero } = useServiceImages("service-led-walls");
+  const { hero, gallery: libraryGallery } = useServiceImages("service-led-walls");
   const { data: slots = [] } = useServicePageImages("led-video-walls");
 
-  const [heroLoaded, setHeroLoaded] = useState(false);
+  // Build hero slideshow array from all Library images in this category
+  const heroImages: { image_url: string; alt_text: string | null }[] = [];
+  if (hero) heroImages.push({ image_url: hero, alt_text: "Unilumin LED video wall installed at a corporate event in Ireland" });
+  for (const img of libraryGallery) heroImages.push(img);
 
-  // Preload hero image
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Auto-advance slideshow
   useEffect(() => {
-    if (!hero) return;
-    const img = new Image();
-    img.src = hero;
-    img.onload = () => setHeroLoaded(true);
-  }, [hero]);
+    if (isPaused || heroImages.length <= 1) return;
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [isPaused, heroImages.length]);
 
   const serviceSchema = generateServiceSchema({
     name: "LED Video Wall Hire",
@@ -183,50 +190,58 @@ export default function LEDVideoWallsV2() {
 
   return (
     <PageShell>
-      {/* ── Section 1: Hero ── */}
-      <section className="relative min-h-[85vh] flex items-end overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+      {/* ── Section 1: Hero — crystal clear image, no overlays ── */}
+      <section
+        className="relative min-h-[85vh] flex items-end overflow-hidden"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        {/* Hero images — NO overlay, NO opacity reduction, NO gradient mask */}
         <div className="absolute inset-0">
-          {hero && (
+          {heroImages.map((img, i) => (
             <img
-              src={hero}
-              alt="Unilumin LED video wall installed at a corporate event in Ireland"
-              className={`w-full h-full object-cover transition-opacity duration-700 ${heroLoaded ? "opacity-100" : "opacity-0"}`}
-              loading="eager"
-              fetchPriority="high"
+              key={img.image_url}
+              src={img.image_url}
+              alt={img.alt_text || "LED video wall at event"}
+              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-[800ms]"
+              style={{ opacity: i === currentSlide ? 1 : 0 }}
+              loading={i === 0 ? "eager" : "lazy"}
+              fetchPriority={i === 0 ? "high" : undefined}
               decoding="async"
-              width={1920}
-              height={1080}
             />
-          )}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
+          ))}
         </div>
 
-        <div className="container mx-auto px-4 relative z-10 pb-16 md:pb-24 pt-32">
+        {/* Content overlaid at bottom — text-shadow for readability */}
+        <div
+          className="relative z-10 container mx-auto px-6 pb-14 pt-32"
+          style={{ textShadow: "0 2px 8px rgba(0,0,0,0.5)" }}
+        >
           {/* Breadcrumb */}
-          <nav className="mb-6 text-sm text-white/60 animate-fade-up" aria-label="Breadcrumb">
+          <nav className="mb-6 text-sm text-white/80 animate-fade-up" aria-label="Breadcrumb">
             <ol className="flex items-center gap-1.5">
               <li><Link to="/" className="hover:text-white transition-colors">Home</Link></li>
               <li><ChevronRight className="h-3.5 w-3.5" /></li>
               <li><Link to="/services" className="hover:text-white transition-colors">Services</Link></li>
               <li><ChevronRight className="h-3.5 w-3.5" /></li>
-              <li className="text-white/90">LED Video Walls</li>
+              <li className="text-white">LED Video Walls</li>
             </ol>
           </nav>
 
-          <p className="text-xs font-semibold tracking-[0.2em] text-accent/80 uppercase mb-3 animate-fade-up [animation-delay:100ms]">
+          <p className="text-xs font-semibold tracking-[0.2em] text-accent uppercase mb-3 animate-fade-up [animation-delay:100ms]">
             EventSound &middot; LED Video Walls
           </p>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-accent mb-4 animate-fade-up [animation-delay:200ms]">
             LED Screen Hire Ireland
           </h1>
-          <p className="text-lg md:text-xl text-white/90 max-w-2xl mb-4 animate-fade-up [animation-delay:300ms]">
+          <p className="text-lg md:text-xl text-white max-w-2xl mb-4 animate-fade-up [animation-delay:300ms]">
             High-impact visual displays for events of every scale
           </p>
-          <p className="text-white/70 max-w-2xl mb-8 animate-fade-up [animation-delay:400ms]">
+          <p className="text-white/90 max-w-2xl mb-8 animate-fade-up [animation-delay:400ms]">
             EventSound provides LED video wall hire across Ireland for conferences, corporate events, exhibitions, awards ceremonies, concerts, and outdoor festivals. Based in Drogheda, Co. Louth, we deliver and install LED walls at venues in Dublin, Cork, Galway, Belfast, and nationwide.
           </p>
 
-          <div className="flex flex-wrap gap-3 mb-8 animate-fade-up [animation-delay:500ms]">
+          <div className="flex flex-wrap gap-3 mb-8 animate-fade-up [animation-delay:500ms]" style={{ textShadow: "none" }}>
             <Button size="lg" onClick={() => document.getElementById("quote-form")?.scrollIntoView({ behavior: "smooth" })}>
               Get a Quote
             </Button>
@@ -238,12 +253,24 @@ export default function LEDVideoWallsV2() {
             </Button>
           </div>
 
-          <p className="text-xs text-white/50 animate-fade-up [animation-delay:600ms]">
+          <p className="text-xs text-white/70 animate-fade-up [animation-delay:600ms]">
             Trusted by Fingal County Council &middot; PRISM Summit &middot; Swords Castle Concerts &middot; Local Enterprise Office Louth
           </p>
-        </div>
 
-        <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-b from-transparent to-background z-[1] pointer-events-none" />
+          {/* Slideshow dots */}
+          {heroImages.length > 1 && (
+            <div className="flex items-center gap-2 mt-6 animate-fade-up [animation-delay:700ms]" style={{ textShadow: "none" }}>
+              {heroImages.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrentSlide(i)}
+                  className={`h-2 rounded-full transition-all duration-300 ${i === currentSlide ? "w-6 bg-white" : "w-2 bg-white/40 hover:bg-white/60"}`}
+                  aria-label={`Go to slide ${i + 1}`}
+                />
+              ))}
+            </div>
+          )}
+        </div>
       </section>
 
       {/* ── Section 2: Key Stats ── */}
