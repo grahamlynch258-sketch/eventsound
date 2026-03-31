@@ -342,29 +342,7 @@ export default function LEDVideoWallsV2() {
         </div>
       </section>
 
-      {/* ── Section 5: Use Cases ── */}
-      <section className="container mx-auto px-4 mb-16">
-        <ScrollReveal>
-          <h2 className="text-3xl font-bold text-center mb-8">LED Wall Hire Use Cases</h2>
-        </ScrollReveal>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {useCases.map((uc, i) => (
-            <ScrollReveal key={uc.slotId} delay={i * 0.08}>
-              <div className="group rounded-xl border border-border/50 bg-card overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-                <div className="aspect-[4/3] overflow-hidden">
-                  <SlotImage slots={slots} slotId={uc.slotId} aspect="aspect-[4/3]" className="transition-transform duration-500 group-hover:scale-105" />
-                </div>
-                <div className="p-5">
-                  <h3 className="font-semibold mb-2">{uc.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{uc.copy}</p>
-                </div>
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
-      </section>
-
-      {/* ── Section 6: Pricing Guide + Pixel Pitch Table ── */}
+      {/* ── Section 5: Pricing Guide + Pixel Pitch Table ── */}
       <section className="container mx-auto px-4 mb-16">
         <ScrollReveal>
           <div className="max-w-3xl mx-auto text-center mb-8">
@@ -397,6 +375,28 @@ export default function LEDVideoWallsV2() {
             </table>
           </div>
         </ScrollReveal>
+      </section>
+
+      {/* ── Section 6: Use Cases ── */}
+      <section className="container mx-auto px-4 mb-16">
+        <ScrollReveal>
+          <h2 className="text-3xl font-bold text-center mb-8">LED Wall Hire Use Cases</h2>
+        </ScrollReveal>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {useCases.map((uc, i) => (
+            <ScrollReveal key={uc.slotId} delay={i * 0.08}>
+              <div className="group rounded-xl border border-border/50 bg-card overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                <div className="aspect-[4/3] overflow-hidden">
+                  <SlotImage slots={slots} slotId={uc.slotId} aspect="aspect-[4/3]" className="transition-transform duration-500 group-hover:scale-105" />
+                </div>
+                <div className="p-5">
+                  <h3 className="font-semibold mb-2">{uc.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{uc.copy}</p>
+                </div>
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
       </section>
 
       {/* ── Section 7: Why Hire from EventSound ── */}
