@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/accordion";
 import { Check, Phone, Star, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { StickyCtaBar } from "@/components/StickyCtaBar";
 import type { ServicePageImageSlot } from "@/hooks/useServicePageImages";
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
@@ -60,11 +61,13 @@ function CountUp({ end, suffix = "", duration = 1500 }: { end: number; suffix?: 
   return <span ref={ref}>{count}{suffix}</span>;
 }
 
-function SlotImage({ slots, slotId, aspect = "aspect-video", className = "" }: {
+function SlotImage({ slots, slotId, aspect = "aspect-video", className = "", width = 600, height = 450 }: {
   slots: ServicePageImageSlot[];
   slotId: string;
   aspect?: string;
   className?: string;
+  width?: number;
+  height?: number;
 }) {
   const slot = slots.find((s) => s.slot_id === slotId);
   if (slot?.image_url) {
@@ -75,6 +78,8 @@ function SlotImage({ slots, slotId, aspect = "aspect-video", className = "" }: {
         className={`w-full h-full object-cover ${className}`}
         loading="lazy"
         decoding="async"
+        width={width}
+        height={height}
       />
     );
   }
@@ -702,7 +707,7 @@ export default function LEDScreenHireV2() {
       </section>
 
       {/* ── Section 16: Location Links ── */}
-      <section className="container mx-auto px-4 mb-16">
+      <section className="container mx-auto px-4 mb-16 pb-20 lg:pb-0">
         <ScrollReveal>
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-4">Find Screen Hire Near You</h2>
@@ -724,6 +729,8 @@ export default function LEDScreenHireV2() {
           </div>
         </ScrollReveal>
       </section>
+
+      <StickyCtaBar />
     </PageShell>
   );
 }
