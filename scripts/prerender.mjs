@@ -332,9 +332,9 @@ function getSchemasForRoute(routePath, caseStudyData) {
 // ── Static routes with their SEO metadata ───────────────────────────────────
 
 const ROUTES = [
-  { path: '/', title: 'Audio Visual Hire Ireland | Event Production & AV Equipment | EventSound', description: 'Professional audio visual hire and event production across Ireland. Sound systems, LED screens, stage lighting, and staging — with full technical crew. 20+ years experience.' },
+  { path: '/', title: 'AV Hire Ireland | Event Production & Equipment | EventSound', description: 'Professional audio visual hire and event production across Ireland. Sound systems, LED screens, stage lighting, and staging — with full technical crew. 20+ years experience.' },
   { path: '/about', title: 'About EventSound | 20+ Years of Event Production in Ireland', description: 'EventSound has been delivering professional event production across Ireland for over 20 years. Meet the team behind Ireland\u2019s trusted AV hire and event production company.' },
-  { path: '/services', title: 'Event Production Services Ireland | AV Hire & Equipment Rental | EventSound', description: 'Full-service event production in Ireland. LED video walls, sound systems, lighting design, staging, video production, and virtual event solutions.' },
+  { path: '/services', title: 'Event Production Services | AV Hire Ireland | EventSound', description: 'Full-service event production in Ireland. LED video walls, sound systems, lighting design, staging, video production, and virtual event solutions.' },
   { path: '/services/led-video-walls', title: 'LED Screen Hire Ireland | LED Video Wall Rental Dublin | EventSound', description: 'LED screen hire across Ireland. High-resolution Unilumin LED video walls for conferences, concerts, corporate events, and exhibitions. Mobile LED screen hire available.' },
   { path: '/services/lighting-design', title: 'Lighting Hire Dublin | Stage & Event Lighting Ireland | EventSound', description: 'Professional lighting hire in Dublin and across Ireland. Moving head lights, LED wash, uplighting, and intelligent lighting systems with ChamSys control. Full design and operation.' },
   { path: '/services/event-production', title: 'Event Production Services Ireland | Full Technical Production | EventSound', description: 'End-to-end event production management in Ireland. AV coordination, stage design, crew management, and on-site production for events of all sizes.' },
@@ -578,6 +578,14 @@ async function prerender() {
         );
       }
       html = html.replace('<div id="root"></div>', `<div id="root">${shell}</div>`);
+    } else {
+      // For non-homepage routes, inject a minimal <h1> so crawlers see the
+      // primary heading before React hydrates.
+      const h1Text = route.title.split(' | ')[0];
+      html = html.replace(
+        '<div id="root"></div>',
+        `<div id="root"><h1>${h1Text}</h1></div>`
+      );
     }
 
     fs.writeFileSync(filePath, html);

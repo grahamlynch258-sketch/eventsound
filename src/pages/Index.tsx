@@ -13,7 +13,7 @@ const Index = () => {
   });
 
   useSeo({
-    title: "Audio Visual Hire Ireland | Event Production & AV Equipment | EventSound",
+    title: "AV Hire Ireland | Event Production & Equipment | EventSound",
     description: "Professional AV hire & event production across Ireland. LED walls, PA systems, conference AV, staging & lighting. Based in Drogheda, serving nationwide. Get a free quote.",
     canonical: "https://eventsound.ie/",
     ogTitle: "Audio Visual Hire Ireland | Event Production | EventSound",

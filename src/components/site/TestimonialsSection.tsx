@@ -28,7 +28,7 @@ export function TestimonialsSection() {
         <p className="section-kicker mb-3">Client Feedback</p>
         <div className="gold-rule mx-auto mb-5" />
         <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
-          What our clients say
+          Featured Client Feedback
         </h2>
       </div>
 
