@@ -582,7 +582,7 @@ export default function LEDVideoWallsV2() {
       </section>
 
       {/* ── Section 12: Two-Column Quote Form ── */}
-      <section id="quote-form" className="bg-gray-900 py-16 md:py-20 scroll-mt-20">
+      <section id="quote-form" className="bg-primary py-16 md:py-20 scroll-mt-20">
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
             {/* Left column — logo + contact info */}
