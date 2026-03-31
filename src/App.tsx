@@ -33,7 +33,7 @@ const EventProduction = lazy(() => import("@/pages/services/EventProduction"));
 const VideoProduction = lazy(() => import("@/pages/services/VideoProduction"));
 const VirtualEvents = lazy(() => import("@/pages/services/VirtualEvents"));
 const ConferenceAvHire = lazy(() => import("@/pages/services/ConferenceAvHire"));
-const LEDScreenHire = lazy(() => import("@/pages/services/LEDScreenHire"));
+const LEDScreenHire = lazy(() => import("@/pages/v2/LEDScreenHireV2"));
 
 // Location pages — LED Walls
 const DublinLedWalls = lazy(() => import("@/pages/locations/DublinLedWalls"));
