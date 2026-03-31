@@ -193,9 +193,9 @@ export default function LEDVideoWallsV2() {
 
   return (
     <PageShell>
-      {/* ── Section 1: Hero — crystal clear image, no overlays ── */}
+      {/* ── Section 1: Hero — crystal clear image, dark panel for text ── */}
       <section
-        className="relative min-h-[85vh] flex items-center overflow-hidden"
+        className="relative min-h-[85vh] flex items-end overflow-hidden"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
@@ -215,61 +215,64 @@ export default function LEDVideoWallsV2() {
           ))}
         </div>
 
-        {/* Content overlaid centred — text-shadow for readability */}
-        <div
-          className="relative z-10 container mx-auto px-6 pb-14 pt-32 text-center flex flex-col items-center"
-          style={{ textShadow: "0 2px 8px rgba(0,0,0,0.5)" }}
-        >
-          {/* Breadcrumb */}
-          <nav className="mb-8 text-base text-white/80 animate-fade-up" aria-label="Breadcrumb">
-            <ol className="flex items-center justify-center gap-2">
-              <li><Link to="/" className="hover:text-white transition-colors">Home</Link></li>
-              <li><ChevronRight className="h-4 w-4" /></li>
-              <li><Link to="/services" className="hover:text-white transition-colors">Services</Link></li>
-              <li><ChevronRight className="h-4 w-4" /></li>
-              <li className="text-white">LED Video Walls</li>
-            </ol>
-          </nav>
+        {/* Dark panel with text content — bottom left */}
+        <div className="relative z-10 container mx-auto px-6 pb-8 pt-32">
+          <div className="bg-black/70 backdrop-blur-sm rounded-2xl p-8 md:p-10 max-w-2xl animate-fade-up">
+            {/* Breadcrumb */}
+            <nav className="mb-6 text-sm text-white/70" aria-label="Breadcrumb">
+              <ol className="flex items-center gap-2">
+                <li><Link to="/" className="hover:text-white transition-colors">Home</Link></li>
+                <li><ChevronRight className="h-3.5 w-3.5" /></li>
+                <li><Link to="/services" className="hover:text-white transition-colors">Services</Link></li>
+                <li><ChevronRight className="h-3.5 w-3.5" /></li>
+                <li className="text-white/90">LED Video Walls</li>
+              </ol>
+            </nav>
 
-          <p className="text-sm font-semibold tracking-[0.2em] text-accent uppercase mb-4 animate-fade-up [animation-delay:100ms]">
-            EventSound &middot; LED Video Walls
-          </p>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-accent mb-6 animate-fade-up [animation-delay:200ms]">
-            LED Screen Hire Ireland
-          </h1>
-          <p className="text-xl md:text-2xl text-white max-w-3xl mb-6 animate-fade-up [animation-delay:300ms]">
-            High-impact visual displays for events of every scale
-          </p>
-          <p className="text-lg text-white/90 max-w-3xl mb-10 animate-fade-up [animation-delay:400ms]">
-            EventSound provides LED video wall hire across Ireland for conferences, corporate events, exhibitions, awards ceremonies, concerts, and outdoor festivals. Based in Drogheda, Co. Louth, we deliver and install LED walls at venues in Dublin, Cork, Galway, Belfast, and nationwide.
-          </p>
+            <p className="text-xs font-semibold tracking-[0.2em] text-accent uppercase mb-3">
+              EventSound &middot; LED Video Walls
+            </p>
+            <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
+              LED Screen Hire Ireland
+            </h1>
+            <p className="text-lg md:text-xl text-white/90 mb-4">
+              High-impact visual displays for events of every scale
+            </p>
+            <p className="text-sm md:text-base text-white/80 mb-8 leading-relaxed">
+              EventSound provides LED video wall hire across Ireland for conferences, corporate events, exhibitions, awards ceremonies, concerts, and outdoor festivals. Based in Drogheda, Co. Louth, we deliver and install LED walls at venues in Dublin, Cork, Galway, Belfast, and nationwide.
+            </p>
 
-          <div className="flex flex-wrap justify-center gap-3 mb-8 animate-fade-up [animation-delay:500ms]" style={{ textShadow: "none" }}>
-            <Button size="lg" onClick={() => document.getElementById("quote-form")?.scrollIntoView({ behavior: "smooth" })}>
-              Get a Quote
-            </Button>
-            <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10" asChild>
-              <a href="tel:+353863520476">
-                <Phone className="mr-2 h-4 w-4" />
-                086 352 0476
-              </a>
-            </Button>
-          </div>
-
-          {/* Slideshow dots */}
-          {heroImages.length > 1 && (
-            <div className="flex items-center justify-center gap-2 mt-2 animate-fade-up [animation-delay:600ms]" style={{ textShadow: "none" }}>
-              {heroImages.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCurrentSlide(i)}
-                  className={`h-2 rounded-full transition-all duration-300 ${i === currentSlide ? "w-6 bg-white" : "w-2 bg-white/40 hover:bg-white/60"}`}
-                  aria-label={`Go to slide ${i + 1}`}
-                />
-              ))}
+            <div className="flex flex-wrap gap-3 mb-6">
+              <Button size="lg" onClick={() => document.getElementById("quote-form")?.scrollIntoView({ behavior: "smooth" })}>
+                Get a Quote
+              </Button>
+              <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10" asChild>
+                <a href="tel:+353863520476">
+                  <Phone className="mr-2 h-4 w-4" />
+                  086 352 0476
+                </a>
+              </Button>
             </div>
-          )}
+
+            <p className="text-xs text-white/50">
+              Trusted by corporates, agencies &amp; venues across Ireland
+            </p>
+          </div>
         </div>
+
+        {/* Slideshow dots — bottom right, outside panel */}
+        {heroImages.length > 1 && (
+          <div className="absolute bottom-4 right-6 z-10 flex items-center gap-2">
+            {heroImages.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentSlide(i)}
+                className={`h-2 rounded-full transition-all duration-300 ${i === currentSlide ? "w-6 bg-white" : "w-2 bg-white/40 hover:bg-white/60"}`}
+                aria-label={`Go to slide ${i + 1}`}
+              />
+            ))}
+          </div>
+        )}
       </section>
 
       {/* ── Section 2: Key Stats ── */}
