@@ -215,14 +215,14 @@ export default function LEDVideoWallsV2() {
           ))}
         </div>
 
-        {/* Content overlaid at bottom — text-shadow for readability */}
+        {/* Content overlaid centred — text-shadow for readability */}
         <div
-          className="relative z-10 container mx-auto px-6 pb-14 pt-32"
+          className="relative z-10 container mx-auto px-6 pb-14 pt-32 text-center flex flex-col items-center"
           style={{ textShadow: "0 2px 8px rgba(0,0,0,0.5)" }}
         >
           {/* Breadcrumb */}
           <nav className="mb-6 text-sm text-white/80 animate-fade-up" aria-label="Breadcrumb">
-            <ol className="flex items-center gap-1.5">
+            <ol className="flex items-center justify-center gap-1.5">
               <li><Link to="/" className="hover:text-white transition-colors">Home</Link></li>
               <li><ChevronRight className="h-3.5 w-3.5" /></li>
               <li><Link to="/services" className="hover:text-white transition-colors">Services</Link></li>
@@ -244,7 +244,7 @@ export default function LEDVideoWallsV2() {
             EventSound provides LED video wall hire across Ireland for conferences, corporate events, exhibitions, awards ceremonies, concerts, and outdoor festivals. Based in Drogheda, Co. Louth, we deliver and install LED walls at venues in Dublin, Cork, Galway, Belfast, and nationwide.
           </p>
 
-          <div className="flex flex-wrap gap-3 mb-8 animate-fade-up [animation-delay:500ms]" style={{ textShadow: "none" }}>
+          <div className="flex flex-wrap justify-center gap-3 mb-8 animate-fade-up [animation-delay:500ms]" style={{ textShadow: "none" }}>
             <Button size="lg" onClick={() => document.getElementById("quote-form")?.scrollIntoView({ behavior: "smooth" })}>
               Get a Quote
             </Button>
@@ -256,13 +256,9 @@ export default function LEDVideoWallsV2() {
             </Button>
           </div>
 
-          <p className="text-xs text-white/70 animate-fade-up [animation-delay:600ms]">
-            Trusted by Fingal County Council &middot; PRISM Summit &middot; Swords Castle Concerts &middot; Local Enterprise Office Louth
-          </p>
-
           {/* Slideshow dots */}
           {heroImages.length > 1 && (
-            <div className="flex items-center gap-2 mt-6 animate-fade-up [animation-delay:700ms]" style={{ textShadow: "none" }}>
+            <div className="flex items-center justify-center gap-2 mt-2 animate-fade-up [animation-delay:600ms]" style={{ textShadow: "none" }}>
               {heroImages.map((_, i) => (
                 <button
                   key={i}
