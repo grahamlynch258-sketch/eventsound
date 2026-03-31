@@ -581,27 +581,107 @@ export default function LEDVideoWallsV2() {
         </div>
       </section>
 
-      {/* ── Section 12: Inline Quote Form ── */}
-      <section id="quote-form" className="container mx-auto px-4 mb-16 scroll-mt-20">
-        <ScrollReveal>
-          <div className="max-w-2xl mx-auto">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold mb-2">Need LED Walls for Your Event?</h2>
-              <p className="text-muted-foreground">
-                Tell us your venue, date, and requirements — we'll respond with a tailored quote within 24 hours.
-              </p>
-            </div>
-            <div className="rounded-xl border border-border/50 bg-card p-6 md:p-8">
-              <ContactForm />
-            </div>
-            <p className="text-center text-sm text-muted-foreground mt-4">
-              or call{" "}
-              <a href="tel:+353863520476" className="text-accent hover:underline font-medium">
-                086 352 0476
-              </a>
-            </p>
+      {/* ── Section 12: Two-Column Quote Form ── */}
+      <section id="quote-form" className="bg-gray-900 py-16 md:py-20 scroll-mt-20">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
+            {/* Left column — logo + contact info */}
+            <ScrollReveal direction="left">
+              <div className="flex flex-col">
+                {/* Logo */}
+                <div className="mb-8">
+                  <img
+                    src="/Brand/logo_transparent.png"
+                    alt="EventSound AV Services"
+                    className="max-w-[280px] mx-auto md:mx-0"
+                  />
+                </div>
+
+                {/* Follow Us */}
+                <div className="mb-8">
+                  <h3 className="text-white font-bold text-lg mb-3">Follow us on</h3>
+                  <div className="flex gap-3">
+                    <a href="https://www.linkedin.com/company/eventsound-avservices/" target="_blank" rel="noopener noreferrer"
+                       className="w-10 h-10 rounded-full bg-white/10 hover:bg-accent flex items-center justify-center transition-colors">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                      </svg>
+                    </a>
+                    <a href="https://www.facebook.com/eventAVpro/" target="_blank" rel="noopener noreferrer"
+                       className="w-10 h-10 rounded-full bg-white/10 hover:bg-accent flex items-center justify-center transition-colors">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+
+                {/* Contact Details */}
+                <div>
+                  <h3 className="text-white font-bold text-lg mb-4">Reach us through</h3>
+
+                  {/* Email */}
+                  <div className="flex items-start gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="hsl(40 86% 72%)" strokeWidth="2">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-accent text-sm font-semibold mb-0.5">Email</p>
+                      <a href="mailto:graham@eventsound.ie" className="text-white/80 text-sm hover:text-accent transition-colors">
+                        graham@eventsound.ie
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Phone */}
+                  <div className="flex items-start gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="hsl(40 86% 72%)" strokeWidth="2">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-accent text-sm font-semibold mb-0.5">Phone</p>
+                      <a href="tel:+353863520476" className="text-white/80 text-sm hover:text-accent transition-colors">086 352 0476</a>
+                      <span className="text-white/40 mx-1.5">|</span>
+                      <a href="tel:+353872888761" className="text-white/80 text-sm hover:text-accent transition-colors">087 288 8761</a>
+                    </div>
+                  </div>
+
+                  {/* Location */}
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="hsl(40 86% 72%)" strokeWidth="2">
+                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-accent text-sm font-semibold mb-0.5">Location</p>
+                      <p className="text-white/80 text-sm">Drogheda, Co. Louth, Ireland</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* Right column — form */}
+            <ScrollReveal direction="right">
+              <div>
+                <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                  Need <span className="text-accent">LED Walls</span> for Your Event?
+                </h2>
+                <p className="text-white/60 text-sm mb-6">
+                  Fill out the form below &amp; receive a quote within 24 hours.
+                </p>
+                <ContactForm />
+              </div>
+            </ScrollReveal>
           </div>
-        </ScrollReveal>
+        </div>
       </section>
 
       {/* ── Section 13: Location Links ── */}
