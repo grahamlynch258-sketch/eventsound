@@ -9,6 +9,8 @@ declare global {
       reset: (widgetId?: string) => void;
       remove: (widgetId?: string) => void;
     };
+    dataLayer: any[];
+    gtag: (...args: any[]) => void;
   }
 }
 export {};

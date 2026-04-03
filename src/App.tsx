@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -16,6 +16,7 @@ import HealthAndSafety from "./pages/HealthAndSafety";
 import CaseStudies from "./pages/CaseStudies";
 import CaseStudyDetail from "./pages/CaseStudyDetail";
 import NotFound from "./pages/NotFound";
+import { trackConversion } from "@/utils/trackConversion";
 
 // Admin route guard — kept static (small, needed immediately for auth check)
 import AdminRoute from "./components/admin/AdminRoute";
@@ -67,6 +68,16 @@ const AdminCaseStudyEdit = lazy(() => import("./pages/admin/AdminCaseStudyEdit")
 const queryClient = new QueryClient();
 
 function AppRoutes() {
+  // Track phone call clicks site-wide
+  useEffect(() => {
+    const handleTelClick = (e: MouseEvent) => {
+      const target = (e.target as HTMLElement).closest('a[href^="tel:"]');
+      if (target) trackConversion('PHONE_CLICK');
+    };
+    document.addEventListener('click', handleTelClick);
+    return () => document.removeEventListener('click', handleTelClick);
+  }, []);
+
   return (
     <>
       <ScrollToTop />

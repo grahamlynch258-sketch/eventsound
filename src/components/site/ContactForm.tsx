@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, CheckCircle } from "lucide-react";
+import { trackConversion } from "@/utils/trackConversion";
 
 const TURNSTILE_SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY || "";
 
@@ -136,6 +137,7 @@ export function ContactForm() {
         }),
       });
       if (res.ok) {
+        trackConversion('QUOTE_FORM');
         setSubmitted(true);
         setForm(EMPTY);
         setServicesNeeded([]);
