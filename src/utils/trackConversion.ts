@@ -14,10 +14,10 @@
 
 const CONVERSIONS = {
   QUOTE_FORM: {
-    id: 'AW-XXXXXXXXXX/XXXXXXXXXXXXXXXXXXXXX', // Replace with actual Conversion ID/Label
+    id: 'AW-1014417298/u4o1CJXNg5UcEJKP2-MD',
   },
   PHONE_CLICK: {
-    id: 'AW-XXXXXXXXXX/XXXXXXXXXXXXXXXXXXXXX', // Replace with actual Conversion ID/Label
+    id: 'AW-1014417298/jzB-CL64kpUcEJKP2-MD',
   },
 } as const;
 
