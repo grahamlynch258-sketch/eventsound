@@ -152,6 +152,31 @@ export default function AdminImages() {
         .eq("page_slug", "musical-theatre")
         .order("display_order");
       if (error) throw error;
+      if (data && data.length === 0) {
+        const seedRows = MUSICAL_THEATRE_LAYOUT.flatMap((group) =>
+          group.slots.map((slotId, i) => ({
+            page_slug: "musical-theatre",
+            slot_id: slotId,
+            slot_label: group.label === "Gallery" ? `Gallery ${i + 1}` : slotId.split("-").map(w => w[0].toUpperCase() + w.slice(1)).join(" "),
+            display_order: 0,
+          }))
+        );
+        let order = 1;
+        for (const row of seedRows) {
+          row.display_order = order++;
+        }
+        const { error: insertError } = await supabase
+          .from("service_page_images")
+          .insert(seedRows);
+        if (insertError) throw insertError;
+        const { data: seeded, error: refetchError } = await supabase
+          .from("service_page_images")
+          .select("*")
+          .eq("page_slug", "musical-theatre")
+          .order("display_order");
+        if (refetchError) throw refetchError;
+        return seeded as ServicePageImageSlot[];
+      }
       return data as ServicePageImageSlot[];
     },
   });
