@@ -39,6 +39,7 @@ const SERVICE_BRANDS: Record<string, string[]> = {
   "virtual-events": ["blackmagic", "roland", "sony"],
   "conference-av-hire": ["l-acoustics", "shure", "sennheiser", "allen-heath", "unilumin", "chamsys"],
   "led-screen-hire": ["unilumin", "absen", "novastar", "samsung"],
+  "musical-theatre": ["shure", "sennheiser", "allen-heath", "chamsys", "robe", "chauvet"],
 };
 
 interface BrandBannerProps {

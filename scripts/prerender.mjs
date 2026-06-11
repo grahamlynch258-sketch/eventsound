@@ -276,6 +276,23 @@ const SERVICE_PAGE_SCHEMAS = {
       { name: "LED Screen Hire", url: "https://eventsound.ie/services/led-screen-hire" },
     ],
   },
+
+  '/services/musical-theatre': {
+    faqs: [
+      { question: "What sound equipment do you provide for musicals?", answer: "We provide complete sound systems including wireless microphone rigs (Shure and Sennheiser), body-worn transmitters, headset and lavalier microphones, monitor speakers, front-of-house PA systems, and mixing desks. We carry enough wireless channels to cover large cast productions." },
+      { question: "Can you provide lighting for a school or community musical?", answer: "Yes. We regularly supply lighting for school musicals, amateur dramatics, and community theatre productions across Ireland. We provide moving heads, wash lights, follow spots, and a lighting desk — or supplement your venue's existing rig." },
+      { question: "Do you provide operators or is it dry hire only?", answer: "Every hire includes experienced sound and lighting technicians as standard. Our operators attend your tech rehearsal, programme cues, and operate the desk for every performance. Dry hire is available for venues with their own crew." },
+      { question: "How many wireless microphones can you provide?", answer: "We carry large-scale wireless systems supporting 30+ simultaneous channels, covering even the largest cast productions. Each performer gets their own body-worn transmitter with a headset microphone, plus spare units for every show." },
+      { question: "Can you work with our existing venue equipment?", answer: "Absolutely. We regularly integrate with house rigs in theatres, community halls, and school auditoriums across Ireland. We do a site visit to assess what's installed, then bring additional equipment to fill any gaps." },
+      { question: "How far in advance should we book for a musical production?", answer: "We recommend booking 6 to 8 weeks before your production opens. For peak season (October to December, panto season) and large-scale productions, booking 3 months ahead is advisable." },
+    ],
+    service: { name: "Musical & Theatre Production Hire", description: "Professional sound, lighting, and staging hire for musical and theatre productions across Ireland. Wireless microphones, stage lighting, LED backdrops, and experienced operators.", serviceType: "Theatre Production Hire", url: "https://eventsound.ie/services/musical-theatre" },
+    breadcrumb: [
+      { name: "Home", url: "https://eventsound.ie/" },
+      { name: "Services", url: "https://eventsound.ie/services" },
+      { name: "Musical & Theatre", url: "https://eventsound.ie/services/musical-theatre" },
+    ],
+  },
 };
 
 const FAQ_PAGE_QUESTIONS = [
@@ -344,6 +361,7 @@ const ROUTES = [
   { path: '/services/av-production', title: 'AV Hire Dublin | Audio Visual Equipment Hire Ireland | EventSound', description: 'AV hire and audio visual equipment hire in Dublin and across Ireland. Professional AV services for corporate events, conferences, concerts, and live productions.' },
   { path: '/services/conference-av-hire', title: 'Conference AV Hire Ireland | Conference Room AV Equipment | EventSound', description: 'Conference AV hire across Ireland. Lectern mics, LED walls, confidence monitors, live streaming, and breakout room AV. Full technical crew included.' },
   { path: '/services/led-screen-hire', title: 'LED Screen Hire Ireland | TV Screen & Monitor Rental for Events | EventSound', description: 'Professional LED screen and TV hire for conferences, exhibitions, and corporate events across Ireland. Screen rental from 43" to 98". Delivery, setup, and on-site support included. Get a free quote.' },
+  { path: '/services/musical-theatre', title: 'Musical & Theatre Production Hire Ireland | Sound & Lighting | EventSound', description: 'Professional sound, lighting, and staging hire for musicals and theatre productions across Ireland. Wireless microphones, stage lighting rigs, LED backdrops, and experienced operators for every show.' },
   { path: '/contact', title: 'Contact EventSound | Get a Quote for AV Hire Ireland', description: 'Contact EventSound for a free consultation and quote. Professional AV hire, sound, lighting, LED screens, and staging across Ireland. Fast response guaranteed.' },
   { path: '/faq', title: 'FAQ | Event Production & AV Hire Questions | EventSound', description: 'Frequently asked questions about EventSound event production services, AV hire, pricing, and event planning in Ireland.' },
   { path: '/gallery', title: 'Event Gallery | Our Work | EventSound', description: 'Browse our portfolio of event production work across Ireland. LED video walls, lighting design, staging, and AV setups for conferences, concerts, and corporate events.' },

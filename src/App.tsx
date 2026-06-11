@@ -35,6 +35,7 @@ const VideoProduction = lazy(() => import("@/pages/services/VideoProduction"));
 const VirtualEvents = lazy(() => import("@/pages/services/VirtualEvents"));
 const ConferenceAvHire = lazy(() => import("@/pages/services/ConferenceAvHire"));
 const LEDScreenHire = lazy(() => import("@/pages/v2/LEDScreenHireV2"));
+const MusicalTheatre = lazy(() => import("@/pages/v2/MusicalTheatreV2"));
 
 // Location pages — LED Walls
 const DublinLedWalls = lazy(() => import("@/pages/locations/DublinLedWalls"));
@@ -104,6 +105,7 @@ function AppRoutes() {
       <Route path="/services/virtual-events" element={<Suspense fallback={null}><VirtualEvents /></Suspense>} />
       <Route path="/services/conference-av-hire" element={<Suspense fallback={null}><ConferenceAvHire /></Suspense>} />
       <Route path="/services/led-screen-hire" element={<Suspense fallback={null}><LEDScreenHire /></Suspense>} />
+      <Route path="/services/musical-theatre" element={<Suspense fallback={null}><MusicalTheatre /></Suspense>} />
 
       {/* Location pages — LED Walls */}
       <Route path="/services/led-walls/dublin" element={<Suspense fallback={null}><DublinLedWalls /></Suspense>} />
