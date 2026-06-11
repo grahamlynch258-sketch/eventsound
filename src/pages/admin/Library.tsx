@@ -40,6 +40,7 @@ const categories = [
   { value: "service-virtual", label: "Virtual Events" },
   { value: "service-conference-av", label: "Conference AV" },
   { value: "service-led-screen-hire", label: "LED Screen Hire" },
+  { value: "service-musical-theatre", label: "Musical & Theatre" },
 
   // Content Sections
   { value: "service-sections", label: "📝 Content Sections" },
