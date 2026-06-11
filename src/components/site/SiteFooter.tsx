@@ -38,6 +38,7 @@ export function SiteFooter({ className }: { className?: string }) {
               <Link to="/services/video-production" className="text-sm text-muted-foreground hover:text-accent transition-colors">Video Production</Link>
               <Link to="/services/virtual-events" className="text-sm text-muted-foreground hover:text-accent transition-colors">Virtual Events</Link>
               <Link to="/services/conference-av-hire" className="text-sm text-muted-foreground hover:text-accent transition-colors">Conference AV</Link>
+              <Link to="/services/musical-theatre" className="text-sm text-muted-foreground hover:text-accent transition-colors">Musical & Theatre</Link>
             </nav>
           </div>
 

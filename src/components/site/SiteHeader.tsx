@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
-import { Menu, X, ChevronDown, HelpCircle, Star, Mail, Images, BookOpen, Monitor, Volume2, Lightbulb, Theater, Clapperboard, Video, Wifi, LayoutGrid, Presentation } from "lucide-react";
+import { Menu, X, ChevronDown, HelpCircle, Star, Mail, Images, BookOpen, Monitor, Volume2, Lightbulb, Theater, Clapperboard, Video, Wifi, LayoutGrid, Presentation, Music } from "lucide-react";
 
 const mainLinks = [
   { to: "/", label: "Home", end: true },
@@ -19,6 +19,7 @@ const servicesLinks = [
   { to: "/services/video-production", label: "Video Production", icon: Video, description: "Multi-camera capture and streaming" },
   { to: "/services/virtual-events", label: "Virtual & Hybrid Events", icon: Wifi, description: "Online and hybrid event production" },
   { to: "/services/conference-av-hire", label: "Conference AV Hire", icon: Presentation, description: "AV for conferences and AGMs" },
+  { to: "/services/musical-theatre", label: "Musical & Theatre", icon: Music, description: "Sound and lighting for productions" },
 ];
 
 const portfolioLinks = [
