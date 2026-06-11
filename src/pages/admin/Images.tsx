@@ -77,9 +77,25 @@ const LED_SCREEN_HIRE_LAYOUT: SlotGroup[] = [
   },
 ];
 
+const MUSICAL_THEATRE_LAYOUT: SlotGroup[] = [
+  {
+    label: "Service sections",
+    slots: ["sound-production", "lighting-design", "led-backdrop", "staging-drape"],
+    cols: 2,
+    aspect: "aspect-[4/3]",
+  },
+  {
+    label: "Gallery",
+    slots: ["gallery-1", "gallery-2", "gallery-3", "gallery-4", "gallery-5", "gallery-6"],
+    cols: 3,
+    aspect: "aspect-[4/3]",
+  },
+];
+
 const PAGE_LAYOUTS: Record<string, SlotGroup[]> = {
   "led-video-walls": LED_VIDEO_WALLS_LAYOUT,
   "led-screen-hire": LED_SCREEN_HIRE_LAYOUT,
+  "musical-theatre": MUSICAL_THEATRE_LAYOUT,
 };
 
 // ── Main component ──────────────────────────────────────────────────────────
@@ -121,6 +137,19 @@ export default function AdminImages() {
         .from("service_page_images")
         .select("*")
         .eq("page_slug", "led-screen-hire")
+        .order("display_order");
+      if (error) throw error;
+      return data as ServicePageImageSlot[];
+    },
+  });
+
+  const { data: musicalTheatreSlots } = useQuery({
+    queryKey: ["service-page-images", "musical-theatre"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("service_page_images")
+        .select("*")
+        .eq("page_slug", "musical-theatre")
         .order("display_order");
       if (error) throw error;
       return data as ServicePageImageSlot[];
@@ -222,6 +251,7 @@ export default function AdminImages() {
             <TabsTrigger value="site-images">Site Images</TabsTrigger>
             <TabsTrigger value="led-video-walls">LED Video Walls</TabsTrigger>
             <TabsTrigger value="led-screen-hire">LED Screen Hire</TabsTrigger>
+            <TabsTrigger value="musical-theatre">Musical &amp; Theatre</TabsTrigger>
           </TabsList>
 
           {/* ── Tab 1: Site Images (existing functionality) ── */}
@@ -288,6 +318,19 @@ export default function AdminImages() {
               onSetImage={(slotId, url) => updateSlotImage.mutate({ pageSlug: "led-screen-hire", slotId, image_url: url })}
               onRemoveImage={(slotId) => updateSlotImage.mutate({ pageSlug: "led-screen-hire", slotId, image_url: null })}
               onUpdateAlt={(slotId, alt) => updateSlotAlt.mutate({ pageSlug: "led-screen-hire", slotId, alt_text: alt })}
+            />
+          </TabsContent>
+
+          {/* ── Tab 4: Musical & Theatre ── */}
+          <TabsContent value="musical-theatre">
+            <ServicePageWireframe
+              pageSlug="musical-theatre"
+              heroCategory="Musical & Theatre"
+              layout={PAGE_LAYOUTS["musical-theatre"]}
+              slots={musicalTheatreSlots ?? []}
+              onSetImage={(slotId, url) => updateSlotImage.mutate({ pageSlug: "musical-theatre", slotId, image_url: url })}
+              onRemoveImage={(slotId) => updateSlotImage.mutate({ pageSlug: "musical-theatre", slotId, image_url: null })}
+              onUpdateAlt={(slotId, alt) => updateSlotAlt.mutate({ pageSlug: "musical-theatre", slotId, alt_text: alt })}
             />
           </TabsContent>
         </Tabs>
