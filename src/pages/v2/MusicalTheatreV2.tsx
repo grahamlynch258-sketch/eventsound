@@ -526,7 +526,7 @@ export default function MusicalTheatreV2() {
           <h2 className="text-3xl font-bold text-center mb-8">Recent Productions</h2>
         </ScrollReveal>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {["gallery-1", "gallery-2", "gallery-3", "gallery-4", "gallery-5", "gallery-6"].map((slotId, i) => (
+          {["gallery-1", "gallery-2", "gallery-3"].map((slotId, i) => (
             <ScrollReveal key={slotId} delay={i * 0.08}>
               <div className="group aspect-[4/3] overflow-hidden rounded-xl border border-border/30 bg-muted">
                 <SlotImage

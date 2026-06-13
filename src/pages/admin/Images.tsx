@@ -86,7 +86,7 @@ const MUSICAL_THEATRE_LAYOUT: SlotGroup[] = [
   },
   {
     label: "Gallery",
-    slots: ["gallery-1", "gallery-2", "gallery-3", "gallery-4", "gallery-5", "gallery-6"],
+    slots: ["gallery-1", "gallery-2", "gallery-3"],
     cols: 3,
     aspect: "aspect-[4/3]",
   },
