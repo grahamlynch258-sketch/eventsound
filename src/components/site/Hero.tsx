@@ -19,7 +19,7 @@ export function Hero() {
           Audio Visual Hire &amp; Event Production Ireland
         </h1>
         <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white md:mt-5 md:text-lg">
-          One experienced team for sound, LED walls, lighting, staging and technical crew. Based in {siteConfig.primaryLocation} and delivering reliable events nationwide.
+          One experienced team. Every aspect of your event covered.
         </p>
         <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row md:mt-8">
           <Button asChild size="lg">
