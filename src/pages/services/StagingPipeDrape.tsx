@@ -9,7 +9,7 @@ import { ServiceSections } from "@/components/site/ServiceSections";
 import { BrandBanner } from "@/components/site/BrandSidebar";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
-import { generateServiceSchema, generateBreadcrumbSchema } from "@/lib/schema";
+import { generateServiceSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
 import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 export default function StagingPipeDrape() {
@@ -21,6 +21,7 @@ export default function StagingPipeDrape() {
     { question: "Do you provide safety barriers and crowd management equipment?", answer: "Yes — we supply front-of-stage barriers, crowd control barriers, cable ramps, and safety rails as part of our staging packages. All installations comply with Irish health and safety regulations." },
     { question: "Can pipe and drape match our event branding?", answer: "Yes — drape is available in a range of colours including black, white, and grey. We can also accommodate custom colours for branded events and add lighting to the drape for additional visual impact." }
   ];
+  const faqSchema = generateFAQSchema({ questions: faqs });
 
   const serviceSchema = generateServiceSchema({
     name: "Stage Hire",
@@ -44,6 +45,7 @@ export default function StagingPipeDrape() {
     description: "Stage hire across Ireland. TUV-certified GUIL aluminium platforms, pipe & drape, steps, barriers & wheelchair ramps. Indoor & outdoor. Delivery & setup included.",
     canonical: "https://eventsound.ie/services/staging-pipe-drape",
     additionalSchemas: [
+      { schema: faqSchema, schemaId: "faq-schema" },
       { schema: serviceSchema, schemaId: "service-schema" },
       { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
     ]

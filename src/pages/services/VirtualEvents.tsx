@@ -9,7 +9,7 @@ import { ServiceSections } from "@/components/site/ServiceSections";
 import { BrandBanner } from "@/components/site/BrandSidebar";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
-import { generateServiceSchema, generateBreadcrumbSchema } from "@/lib/schema";
+import { generateServiceSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
 import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 export default function VirtualEvents() {
@@ -18,9 +18,10 @@ export default function VirtualEvents() {
     { question: "Which virtual event platforms do you support?", answer: "We work with all major platforms including Zoom, Microsoft Teams, Hopin, Webex, YouTube Live, Vimeo, and custom RTMP solutions. We can also recommend the best platform for your specific event requirements and audience size." },
     { question: "Can virtual attendees interact with the live event?", answer: "Yes — we set up live Q&A, polling, chat moderation, and remote speaker integration so virtual attendees can participate fully. We have produced events where remote panellists appear on the main stage LED screens alongside in-person speakers." },
     { question: "What equipment is needed at the venue for a hybrid event?", answer: "At minimum: cameras, microphones, an encoding system, and a reliable internet connection. For a professional production, we add LED screens for remote speaker display, graphics overlays, and a dedicated streaming operator." },
-    { question: "How reliable is live streaming for important events?", answer: "Very reliable with proper planning. We use broadcast-grade encoders, redundant internet connections (wired + bonded cellular), and monitoring throughout. In three decades of production, we have built robust failover systems for mission-critical streams." },
+    { question: "How reliable is live streaming for important events?", answer: "Very reliable with proper planning. We use broadcast-grade encoders, redundant internet connections (wired + bonded cellular), and monitoring throughout. With more than 20 years of production experience, we have built robust failover systems for mission-critical streams." },
     { question: "Do you provide a studio for virtual events?", answer: "We can transform any suitable space into a professional virtual studio with branded backdrops, lighting, cameras, and teleprompters. We also work with dedicated studio venues in Dublin if you need a purpose-built environment." }
   ];
+  const faqSchema = generateFAQSchema({ questions: faqs });
 
   const serviceSchema = generateServiceSchema({
     name: "Virtual & Hybrid Event Production",
@@ -44,6 +45,7 @@ export default function VirtualEvents() {
     description: "Virtual & hybrid event production in Ireland. Professional live streaming, multi-camera switching, branded graphics & remote audience engagement. Full technical management.",
     canonical: "https://eventsound.ie/services/virtual-events",
     additionalSchemas: [
+      { schema: faqSchema, schemaId: "faq-schema" },
       { schema: serviceSchema, schemaId: "service-schema" },
       { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
     ]

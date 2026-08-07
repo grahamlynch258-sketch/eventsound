@@ -9,7 +9,7 @@ import { ServiceSections } from "@/components/site/ServiceSections";
 import { BrandBanner } from "@/components/site/BrandSidebar";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
-import { generateServiceSchema, generateBreadcrumbSchema } from "@/lib/schema";
+import { generateServiceSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
 import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 export default function LightingDesign() {
@@ -21,6 +21,7 @@ export default function LightingDesign() {
     { question: "How early do you need to set up stage lighting?", answer: "Typically 4-8 hours before the event for a standard corporate or conference setup. Festival stages and complex productions may require a full day. We always coordinate load-in schedules with your venue and other suppliers." },
     { question: "Can you match lighting to our brand colours?", answer: "Yes — LED fixtures can be programmed to any colour. We regularly match lighting to corporate brand guidelines, event themes, and sponsor requirements. Just share your brand colours, and we will programme them into the rig." }
   ];
+  const faqSchema = generateFAQSchema({ questions: faqs });
 
   const serviceSchema = generateServiceSchema({
     name: "Event Lighting Hire",
@@ -44,6 +45,7 @@ export default function LightingDesign() {
     description: "Event lighting hire in Ireland. Moving heads, uplighters, stage lighting & atmospheric effects. Chamsys-controlled. Conferences, gala dinners, concerts & festivals.",
     canonical: "https://eventsound.ie/services/lighting-design",
     additionalSchemas: [
+      { schema: faqSchema, schemaId: "faq-schema" },
       { schema: serviceSchema, schemaId: "service-schema" },
       { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
     ]

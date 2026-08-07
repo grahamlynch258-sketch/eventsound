@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { HeroSlideshow } from "./HeroSlideshow";
+import { siteConfig } from "@/config/site";
 
 export function Hero() {
   return (
@@ -17,7 +18,7 @@ export function Hero() {
           Audio Visual Hire &amp; Event Production Ireland
         </h1>
         <p className="mt-6 text-lg text-white max-w-2xl leading-relaxed mx-auto">
-          From corporate conferences and product launches to festivals and gala dinners, EventSound is your trusted event production partner across Ireland. Our services include LED video wall hire, professional sound system rental, intelligent stage lighting, custom staging, and live streaming — all installed and operated by our experienced technical crew. Based in Dublin and serving clients nationwide, we work alongside event managers, agencies, and venues as a reliable production partner, handling events of every scale with proven equipment and transparent pricing.
+          From corporate conferences and product launches to festivals and gala dinners, EventSound is your trusted event production partner across Ireland. Our services include LED video wall hire, professional sound system rental, intelligent stage lighting, custom staging, and live streaming — all installed and operated by our experienced technical crew. Based in {siteConfig.primaryLocation} and serving clients nationwide, we work alongside event managers, agencies, and venues as a reliable production partner, handling events of every scale with proven equipment and transparent pricing.
         </p>
         <div className="mt-8 flex flex-wrap gap-4 justify-center">
           <Button asChild size="lg">

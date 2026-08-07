@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { siteConfig } from "@/config/site";
 
 export function LandingShell({ children }: { children: React.ReactNode }) {
   return (
@@ -15,7 +16,7 @@ export function LandingShell({ children }: { children: React.ReactNode }) {
       <footer className="border-t border-border/50 py-6 mt-12">
         <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
           <p>© {new Date().getFullYear()} EventSound — Professional Event Production & AV Hire Ireland</p>
-          <p className="mt-1">Dublin, Ireland | Serving clients nationwide | <a href="mailto:info@eventsound.ie" className="underline">info@eventsound.ie</a></p>
+          <p className="mt-1">{siteConfig.primaryLocation} | Serving clients nationwide | <a href={`mailto:${siteConfig.email}`} className="underline">{siteConfig.email}</a></p>
         </div>
       </footer>
     </div>

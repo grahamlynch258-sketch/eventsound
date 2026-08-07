@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { siteConfig } from "@/config/site";
+import { canonicalUrlForPath } from "@/lib/seo";
 
 interface SeoProps {
   title?: string;
@@ -17,7 +19,7 @@ interface SeoProps {
 
 const DEFAULT_TITLE = "EventSound | Premium Event Production Services Ireland";
 const DEFAULT_DESCRIPTION = "Professional AV equipment rental and event production services across Ireland. LED walls, sound systems, lighting, and staging for corporate events, conferences, and live shows.";
-const DEFAULT_OG_IMAGE = "https://eventsound.ie/og-image.svg";
+const DEFAULT_OG_IMAGE = siteConfig.ogImage;
 
 function updateOrCreateMetaTag(property: string, content: string, isName = false) {
   const attribute = isName ? 'name' : 'property';
@@ -103,7 +105,7 @@ export const useSeo = ({
     updateOrCreateMetaTag("description", description || DEFAULT_DESCRIPTION, true);
 
     // Update canonical URL
-    const canonicalUrl = canonical || `https://eventsound.ie${location.pathname}`;
+    const canonicalUrl = canonicalUrlForPath(canonical || location.pathname);
     updateOrCreateLinkTag("canonical", canonicalUrl);
 
     // Update Open Graph tags

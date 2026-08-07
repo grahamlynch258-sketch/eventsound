@@ -48,7 +48,7 @@ export default function AvProduction() {
 
   return (
     <PageShell>
-      <main>
+      <div>
         {/* Hero */}
         <section className="relative">
           <div className="absolute inset-0">
@@ -142,7 +142,7 @@ export default function AvProduction() {
         </section>
 
         <CTASection />
-      </main>
+      </div>
     </PageShell>
   );
 }

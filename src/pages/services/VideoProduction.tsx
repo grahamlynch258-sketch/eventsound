@@ -9,7 +9,7 @@ import { ServiceSections } from "@/components/site/ServiceSections";
 import { BrandBanner } from "@/components/site/BrandSidebar";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
-import { generateServiceSchema, generateBreadcrumbSchema } from "@/lib/schema";
+import { generateServiceSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
 import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 export default function VideoProduction() {
@@ -21,6 +21,7 @@ export default function VideoProduction() {
     { question: "Do you provide post-event video editing?", answer: "Yes — we offer full post-production including multi-camera editing, colour grading, graphics, and delivery in any format. Highlight reels are typically delivered within 5-10 working days after your event." },
     { question: "What internet connection do I need for live streaming?", answer: "We recommend a minimum 10Mbps dedicated upload speed for HD streaming. We carry bonded cellular units as backup and can provide satellite uplink for venues with poor connectivity." }
   ];
+  const faqSchema = generateFAQSchema({ questions: faqs });
 
   const serviceSchema = generateServiceSchema({
     name: "Event Video Production",
@@ -44,6 +45,7 @@ export default function VideoProduction() {
     description: "Event video production & live streaming in Ireland. Multi-camera setups, IMAG, live switching, recording & highlight videos for conferences, concerts & corporate events.",
     canonical: "https://eventsound.ie/services/video-production",
     additionalSchemas: [
+      { schema: faqSchema, schemaId: "faq-schema" },
       { schema: serviceSchema, schemaId: "service-schema" },
       { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
     ]

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Phone } from "lucide-react";
+import { siteConfig } from "@/config/site";
 
 interface StickyCtaBarProps {
   quoteFormId?: string;
@@ -9,7 +10,7 @@ interface StickyCtaBarProps {
 
 export function StickyCtaBar({
   quoteFormId = "quote-form",
-  phoneNumber = "+353863520476",
+  phoneNumber = siteConfig.phone,
   ctaText = "Get a Quote",
 }: StickyCtaBarProps) {
   const [isVisible, setIsVisible] = useState(false);

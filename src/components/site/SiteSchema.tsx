@@ -1,29 +1,30 @@
 import { useEffect } from "react";
 import { generateLocalBusinessSchema } from "@/lib/schema";
+import { siteConfig } from "@/config/site";
 
 export const SiteSchema = () => {
   useEffect(() => {
     // Generate LocalBusiness schema for the entire site
     const schema = generateLocalBusinessSchema({
-      name: "EventSound AV Services",
+      name: siteConfig.brandName,
       description: "Professional event production and AV equipment hire in Ireland. LED video walls, sound systems, lighting, and staging for corporate events, conferences, and live shows.",
-      url: "https://eventsound.ie",
-      telephone: "+353-XX-XXX-XXXX", // TODO: Replace with actual phone
-      email: "info@eventsound.ie",
+      url: `${siteConfig.canonicalBase}/#organization`,
+      telephone: siteConfig.phone,
+      email: siteConfig.email,
       address: {
-        streetAddress: "", // TODO: Add street address if you want it public
-        addressLocality: "Dublin",
-        addressRegion: "Ireland",
-        postalCode: "", // TODO: Add if public
-        addressCountry: "IE"
+        streetAddress: siteConfig.addressStreet,
+        addressLocality: siteConfig.addressLocality,
+        addressRegion: siteConfig.addressRegion,
+        postalCode: siteConfig.postalCode,
+        addressCountry: siteConfig.country
       },
       geo: {
-        latitude: 53.7175, // Dublin coordinates
-        longitude: -6.3478
+        latitude: 53.7174,
+        longitude: -6.3567
       },
-      areaServed: ["Dublin", "Ireland"],
-      image: "https://eventsound.ie/logo.png", // TODO: Update with actual image
-      logo: "https://eventsound.ie/logo.png" // TODO: Update with actual logo
+      areaServed: [...siteConfig.serviceAreas],
+      image: siteConfig.ogImage,
+      logo: siteConfig.logo
     });
 
     // Inject site-wide schema (persists across route changes)

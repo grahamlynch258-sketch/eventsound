@@ -5,13 +5,14 @@ import { about } from "@/content/about";
 import { useSeo } from "@/hooks/useSeo";
 import { Shield, Users, Zap, Award } from "lucide-react";
 import { motion } from "framer-motion";
+import { siteConfig } from "@/config/site";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 
 const highlights = [
   { icon: Users, title: "Experienced Crew", text: "Seasoned technicians on every event, from load-in to wrap." },
   { icon: Zap, title: "Cutting-Edge Gear", text: "L-Acoustics, Unilumin, Chamsys — industry-leading equipment." },
-  { icon: Award, title: "Three Decades of Trust", text: "Delivering events across Ireland for over thirty years." },
+  { icon: Award, title: `${siteConfig.companyExperienceYears} Years of Trust`, text: `Delivering events across Ireland for ${siteConfig.companyExperienceYears} years.` },
   { icon: Shield, title: "Safety First", text: "TUV-certified staging, European-manufactured rigging, trained crew." },
 ];
 
@@ -120,7 +121,7 @@ export default function About() {
 
   return (
     <PageShell>
-      <main>
+      <div>
         <section className="container py-16 md:py-24">
           <div className="max-w-3xl mx-auto text-center">
             <p className="section-kicker mb-3">About Us</p>
@@ -205,7 +206,7 @@ export default function About() {
                 <p className="text-accent font-medium mb-6">Managing Director</p>
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
-                    With over 40 years in the Irish music and live events industry, Ronan has been behind the desk at everything from intimate theatre shows to large-scale outdoor concerts. Before founding EventSound, he spent decades on the technical frontline — mixing, rigging, and problem-solving across every type of venue Ireland has to offer.
+                    With {siteConfig.ronanExperienceYears} years in the Irish music and live events industry, Ronan has been behind the desk at everything from intimate theatre shows to large-scale outdoor concerts. Before founding EventSound, he spent decades on the technical frontline — mixing, rigging, and problem-solving across every type of venue Ireland has to offer.
                   </p>
                   <p>
                     That experience shows in how EventSound operates today. Ronan's deep technical knowledge means every equipment spec is right for the room, every signal chain is clean, and every backup plan is already in place before the doors open. He's the person who notices the things most people don't — a slight hum in a monitor, a lighting angle that's not quite right, a stage plot that could work better with one small change.
@@ -240,7 +241,7 @@ export default function About() {
         <BehindTheScenes />
 
         <CTASection />
-      </main>
+      </div>
     </PageShell>
   );
 }
