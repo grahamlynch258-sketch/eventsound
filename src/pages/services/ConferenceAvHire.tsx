@@ -12,6 +12,9 @@ import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer"
 import { IrelandMap } from "@/components/site/IrelandMap";
 import { generateServiceSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
 import { Breadcrumb } from "@/components/site/Breadcrumb";
+import { ServiceHeroActions } from "@/components/site/ServiceHeroActions";
+import { ServiceEnquirySection } from "@/components/site/ServiceEnquirySection";
+import { StickyCtaBar } from "@/components/StickyCtaBar";
 
 export default function ConferenceAvHire() {
   const faqs = [
@@ -65,7 +68,12 @@ export default function ConferenceAvHire() {
         subtitle="Professional audio visual solutions for conferences, AGMs, and corporate events across Ireland"
         backgroundImage={hero}
         backgroundAlt="Professional conference AV setup with LED screens and lectern microphones in Ireland"
-      />
+      >
+        <ServiceHeroActions
+          serviceName="Conference AV & Full Production"
+          benefits={["Rehearsal and presenter support", "Sound, screens and staging", "One accountable technical team"]}
+        />
+      </PageHeader>
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6 text-center">
           <p className="text-lg text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
@@ -176,6 +184,22 @@ export default function ConferenceAvHire() {
         </div>
       </div>
       <IrelandMap service="conference-av" />
+      <ServiceEnquirySection
+        serviceName="Conference AV & Full Production"
+        heading="Build a conference package presenters can trust"
+        description="Tell us the running order, presenter count, audience, room and rehearsal time. We’ll turn that into one joined-up sound, screen, lighting and crew plan."
+        included={[
+          "Microphone, presentation and confidence-monitor requirements checked",
+          "Rehearsal, setup and operator hours included in the production plan",
+          "Breakout rooms, recording and streaming added only where useful",
+        ]}
+        proof={{
+          title: "PRISM Immersive Technology Summit",
+          description: "A curved LED backdrop, conference sound and mood lighting coordinated for speakers, content and a 250-person audience.",
+          href: "/case-studies/prism-immersive-technology-summit",
+        }}
+      />
+      <StickyCtaBar />
     </PageShell>
   );
 }

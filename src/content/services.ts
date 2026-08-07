@@ -108,10 +108,11 @@ export const services = [
 
 /** Simplified list for homepage services grid */
 export const serviceGridItems = [
-  { icon: Mic, title: "Audio", description: "Crystal-clear PA, wireless mics, foldback — tuned for your venue.", slug: "audio-equipment" },
-  { icon: Monitor, title: "LED Visuals", description: "LED walls, projection, playback — show-ready and reliable.", slug: "led-video-display-screens" },
-  { icon: Lightbulb, title: "Lighting", description: "Architectural washes, stage lighting, intelligent fixtures.", slug: "lighting-effects" },
-  { icon: Frame, title: "Staging", description: "Custom staging, risers, set builds — safe and camera-ready.", slug: "stage-hire-pipe-drape" },
-  { icon: Clapperboard, title: "Video & Streaming", description: "Multi-cam capture, live streaming, post-production.", slug: "video-equipment" },
-  { icon: Wand2, title: "Draping & Décor", description: "Pipe and drape, star cloth, scenic elements for atmosphere.", slug: "stage-hire-pipe-drape" },
+  { icon: Mic, title: "AV & Sound", description: "PA, wireless microphones and complete technical operation.", slug: "audio-equipment", href: "/services/av-production/" },
+  { icon: Monitor, title: "LED Video Walls", description: "Indoor, outdoor and curved LED walls, installed and operated.", slug: "led-video-display-screens", href: "/services/led-video-walls/" },
+  { icon: Radio, title: "Conference AV", description: "Presentation, sound, visuals and crew for confident conferences.", slug: "conference-av", href: "/services/conference-av-hire/" },
+  { icon: Lightbulb, title: "Lighting Design", description: "Stage, architectural and camera-ready event lighting.", slug: "lighting-effects", href: "/services/lighting-design/" },
+  { icon: Frame, title: "Staging & Drape", description: "Safe staging, risers and pipe-and-drape transformations.", slug: "stage-hire-pipe-drape", href: "/services/staging-pipe-drape/" },
+  { icon: Clapperboard, title: "Video & Streaming", description: "Multi-camera capture, live streaming and playback.", slug: "video-equipment", href: "/services/video-production/" },
+  { icon: Wand2, title: "Full Event Production", description: "One accountable team from technical planning to load-out.", slug: "live-event-production", href: "/services/event-production/" },
 ];

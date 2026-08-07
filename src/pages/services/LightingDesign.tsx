@@ -11,6 +11,9 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
 import { generateServiceSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
 import { Breadcrumb } from "@/components/site/Breadcrumb";
+import { ServiceHeroActions } from "@/components/site/ServiceHeroActions";
+import { ServiceEnquirySection } from "@/components/site/ServiceEnquirySection";
+import { StickyCtaBar } from "@/components/StickyCtaBar";
 
 export default function LightingDesign() {
   const faqs = [
@@ -65,7 +68,12 @@ export default function LightingDesign() {
         subtitle="Create atmosphere and impact with professional event lighting"
         backgroundImage={hero}
         backgroundAlt="Professional stage lighting design at a corporate event in Ireland"
-      />
+      >
+        <ServiceHeroActions
+          serviceName="Lighting Design"
+          benefits={["Designed for your venue", "Camera-ready stage coverage", "Programming and operator included"]}
+        />
+      </PageHeader>
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6 text-center">
           <p className="text-lg text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
@@ -140,6 +148,22 @@ export default function LightingDesign() {
           </div>
         </div>
       </div>
+      <ServiceEnquirySection
+        serviceName="Lighting Design"
+        heading="Turn the venue and event mood into a lighting plan"
+        description="Send the venue, event format, stage size, timings and any brand colours. We’ll recommend the right level of lighting rather than simply pricing a list of fixtures."
+        included={[
+          "Stage, architectural and audience-lighting needs considered together",
+          "Safe power, access, setup time and control position checked",
+          "Lighting operator and programming included where the production needs them",
+        ]}
+        proof={{
+          title: "Swords Castle Summer Concerts",
+          description: "Outdoor stage lighting delivered alongside sound, staging and LED as part of one council event production.",
+          href: "/case-studies/swords-castle-summer-concerts",
+        }}
+      />
+      <StickyCtaBar />
     </PageShell>
   );
 }
