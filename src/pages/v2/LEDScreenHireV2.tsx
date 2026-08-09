@@ -658,8 +658,8 @@ export default function LEDScreenHireV2() {
                     </div>
                     <div>
                       <p className="text-accent text-sm font-semibold mb-0.5">Email</p>
-                      <a href="mailto:graham@eventsound.ie" className="text-white/80 text-sm hover:text-accent transition-colors">
-                        graham@eventsound.ie
+                      <a href="mailto:info@eventsound.ie" className="text-white/80 text-sm hover:text-accent transition-colors">
+                        info@eventsound.ie
                       </a>
                     </div>
                   </div>

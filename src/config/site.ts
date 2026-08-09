@@ -8,7 +8,6 @@ export const siteConfig = {
   ronanExperienceYears: "40+",
 
   email: "info@eventsound.ie",
-  emailSecondary: "Graham@eventsound.ie",
   phone: "+353863520476",
   phoneDisplay: "+353 86 352 0476",
   phoneSecondary: "+353872888761",

@@ -54,7 +54,7 @@ export function ServiceEnquirySection({
 
           <a href={`tel:${siteConfig.phone}`} className="mt-6 inline-flex items-center gap-2 font-semibold text-accent hover:underline">
             <Phone className="h-4 w-4" aria-hidden="true" />
-            Prefer to talk? Call Graham on {siteConfig.phoneDisplay}
+            Prefer to talk? Call us on {siteConfig.phoneDisplay}
           </a>
         </div>
 
