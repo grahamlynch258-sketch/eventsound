@@ -29,7 +29,7 @@ export function Hero() {
           </Button>
           <Button asChild variant="outline" size="lg">
             <a href={`tel:${siteConfig.phone}`} onClick={() => trackEvent("hero_cta_click", { cta_type: "phone" })}>
-              <Phone className="mr-2 h-4 w-4" /> Call Graham
+              <Phone className="mr-2 h-4 w-4" /> Call us
             </a>
           </Button>
         </div>
