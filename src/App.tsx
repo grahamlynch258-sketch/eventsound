@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { ScrollToTop } from "@/components/site/ScrollToTop";
 import Index from "./pages/Index";
 import About from "./pages/About";
@@ -17,6 +17,7 @@ import CaseStudies from "./pages/CaseStudies";
 import CaseStudyDetail from "./pages/CaseStudyDetail";
 import NotFound from "./pages/NotFound";
 import { trackConversion } from "@/utils/trackConversion";
+import { captureLeadAttribution } from "@/lib/leadAttribution";
 
 // Admin route guard — kept static (small, needed immediately for auth check)
 import AdminRoute from "./components/admin/AdminRoute";
@@ -69,6 +70,12 @@ const AdminCaseStudyEdit = lazy(() => import("./pages/admin/AdminCaseStudyEdit")
 const queryClient = new QueryClient();
 
 function AppRoutes() {
+  const location = useLocation();
+
+  useEffect(() => {
+    captureLeadAttribution();
+  }, [location.pathname, location.search]);
+
   // Track phone call clicks site-wide
   useEffect(() => {
     const handleTelClick = (e: MouseEvent) => {

@@ -11,6 +11,9 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
 import { generateServiceSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
 import { Breadcrumb } from "@/components/site/Breadcrumb";
+import { ServiceHeroActions } from "@/components/site/ServiceHeroActions";
+import { ServiceEnquirySection } from "@/components/site/ServiceEnquirySection";
+import { StickyCtaBar } from "@/components/StickyCtaBar";
 
 export default function AVProduction() {
   const faqs = [
@@ -63,7 +66,12 @@ export default function AVProduction() {
         subtitle="Complete audiovisual solutions for corporate events and conferences"
         backgroundImage={hero}
         backgroundAlt="Professional AV production setup at a conference in Ireland"
-      />
+      >
+        <ServiceHeroActions
+          serviceName="AV Equipment & Production"
+          benefits={["Equipment, crew and operation", "Venue-matched specification", "Clear, all-inclusive quote"]}
+        />
+      </PageHeader>
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6 text-center">
           <p className="text-lg text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
@@ -188,6 +196,22 @@ export default function AVProduction() {
           </div>
         </div>
       </div>
+      <ServiceEnquirySection
+        serviceName="AV Equipment & Production"
+        heading="Get an AV plan built around your event"
+        description="Share the venue, audience, running order and the result you need. We’ll recommend the right screens, sound, lighting and crew without expecting you to write a technical specification."
+        included={[
+          "A practical equipment and crew recommendation matched to the room",
+          "Delivery, installation, operation and collection shown clearly",
+          "A call or site visit where sightlines, power or access need checking",
+        ]}
+        proof={{
+          title: "PRISM Immersive Technology Summit",
+          description: "Curved LED, sound and mood lighting delivered as one coordinated production for a 250-person technology summit.",
+          href: "/case-studies/prism-immersive-technology-summit",
+        }}
+      />
+      <StickyCtaBar />
     </PageShell>
   );
 }

@@ -21,6 +21,16 @@ const CONVERSIONS = {
   },
 } as const;
 
+export function trackEvent(name: string, parameters: Record<string, string | number | boolean> = {}) {
+  try {
+    if (typeof window.gtag === "function") {
+      window.gtag("event", name, parameters);
+    }
+  } catch {
+    // Analytics must never interrupt the visitor journey.
+  }
+}
+
 /**
  * Fire a Google Ads conversion event.
  * Safe to call even if gtag hasn't loaded yet (fails silently).

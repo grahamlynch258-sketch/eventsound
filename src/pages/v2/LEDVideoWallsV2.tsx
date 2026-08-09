@@ -686,7 +686,7 @@ export default function LEDVideoWallsV2() {
                 <p className="text-white/60 text-sm mb-6">
                   Fill out the form below &amp; receive a quote within 24 hours.
                 </p>
-                <ContactForm />
+                <ContactForm defaultServices={["LED Video Walls"]} formContext="LED Video Walls" />
               </div>
             </ScrollReveal>
           </div>

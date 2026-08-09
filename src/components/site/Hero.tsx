@@ -1,35 +1,45 @@
 import { Link } from "react-router-dom";
+import { ArrowRight, Check, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 import { HeroSlideshow } from "./HeroSlideshow";
 import { siteConfig } from "@/config/site";
+import { trackEvent } from "@/utils/trackConversion";
 
 export function Hero() {
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+    <section className="relative flex min-h-[calc(100svh-4rem)] items-center overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 md:min-h-[82vh]">
       <div className="absolute inset-0">
         <HeroSlideshow />
         <div className="absolute inset-0 bg-background/60" />
       </div>
-      <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-b from-transparent to-background z-[1] pointer-events-none" />
-      <div className="container relative z-10 py-24 md:py-32 text-center">
-        <p className="section-kicker mb-4">Professional Event Production — Ireland</p>
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tight max-w-3xl leading-tight mx-auto">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-32 bg-gradient-to-b from-transparent to-background" />
+      <div className="container relative z-10 py-12 text-center sm:py-16 md:py-24">
+        <p className="section-kicker mb-3 md:mb-4">Professional Event Production — Ireland</p>
+        <h1 className="mx-auto max-w-3xl text-4xl font-bold leading-tight tracking-tight md:text-6xl">
           Audio Visual Hire &amp; Event Production Ireland
         </h1>
-        <p className="mt-6 text-lg text-white max-w-2xl leading-relaxed mx-auto">
-          From corporate conferences and product launches to festivals and gala dinners, EventSound is your trusted event production partner across Ireland. Our services include LED video wall hire, professional sound system rental, intelligent stage lighting, custom staging, and live streaming — all installed and operated by our experienced technical crew. Based in {siteConfig.primaryLocation} and serving clients nationwide, we work alongside event managers, agencies, and venues as a reliable production partner, handling events of every scale with proven equipment and transparent pricing.
+        <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white md:mt-5 md:text-lg">
+          One experienced team. Every aspect of your event covered.
         </p>
-        <div className="mt-8 flex flex-wrap gap-4 justify-center">
+        <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row md:mt-8">
           <Button asChild size="lg">
-            <Link to="/contact">
-              Get a Quote <ArrowRight className="ml-2 h-4 w-4" />
+            <Link to="/contact" onClick={() => trackEvent("hero_cta_click", { cta_type: "quote" })}>
+              Plan my event <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
           <Button asChild variant="outline" size="lg">
-            <Link to="/services">Our Services</Link>
+            <a href={`tel:${siteConfig.phone}`} onClick={() => trackEvent("hero_cta_click", { cta_type: "phone" })}>
+              <Phone className="mr-2 h-4 w-4" /> Call Graham
+            </a>
           </Button>
         </div>
+        <ul className="mx-auto mt-5 grid max-w-3xl grid-cols-2 gap-x-3 gap-y-2 text-left text-xs text-white/85 sm:flex sm:flex-wrap sm:justify-center sm:gap-x-6 md:mt-7 md:text-sm">
+          {["20+ years' experience", "Fully insured", "Nationwide delivery", "Reply within 24 hours"].map((item) => (
+            <li key={item} className="flex items-center gap-1.5">
+              <Check className="h-3.5 w-3.5 shrink-0 text-accent" aria-hidden="true" /> {item}
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

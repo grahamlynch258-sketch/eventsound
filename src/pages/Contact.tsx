@@ -1,12 +1,15 @@
+import { useSearchParams } from "react-router-dom";
+import { MapPin, Mail, Phone } from "lucide-react";
 import { PageShell } from "@/components/site/PageShell";
 import { ContactForm } from "@/components/site/ContactForm";
 import HowWeWork from "@/components/site/HowWeWork";
 import { useSeo } from "@/hooks/useSeo";
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { MapPin, Mail, Phone } from "lucide-react";
 import { siteConfig } from "@/config/site";
 
 const Contact = () => {
+  const [searchParams] = useSearchParams();
+  const requestedService = searchParams.get("service");
+
   useSeo({
     title: "Contact EventSound | Get a Quote for AV Hire Ireland",
     description: "Contact EventSound for AV hire & event production in Ireland. Request a free quote for LED walls, PA systems, conference AV, lighting & staging. Response within 24 hours.",
@@ -17,59 +20,43 @@ const Contact = () => {
 
   return (
     <PageShell>
-      <section className="container mx-auto px-4 pt-16 text-center">
+      <section className="container mx-auto px-4 pb-8 pt-12 text-center md:pt-16">
         <p className="section-kicker mb-3">Get In Touch</p>
         <div className="gold-rule mb-5" />
-        <h1 className="text-4xl md:text-5xl font-semibold tracking-tight">Contact EventSound</h1>
-        <p className="mt-5 text-muted-foreground max-w-2xl mx-auto">Tell us about your event and we’ll recommend a practical AV package for your venue, audience, and budget.</p>
+        <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">Tell us about your event</h1>
+        <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+          Give us the event basics. We’ll recommend a practical production package for your venue, audience and budget—usually within 24 hours.
+        </p>
       </section>
-      <HowWeWork />
-      {/* Contact Info Cards */}
-      <div className="container mx-auto px-4 pt-16 pb-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          <div className="rounded-xl border border-accent/30 bg-card/40 backdrop-blur-sm p-8 text-center transition-transform duration-300 hover:scale-[1.03] hover:border-accent/50">
-            <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-amber-50">
-              <MapPin className="h-7 w-7 text-teal-700" />
-            </div>
-            <h3 className="text-lg font-bold text-foreground mb-2">Location</h3>
-            <p className="text-sm text-muted-foreground">{siteConfig.primaryLocation}; nationwide service</p>
-          </div>
-          <div className="rounded-xl border border-accent/30 bg-card/40 backdrop-blur-sm p-8 text-center transition-transform duration-300 hover:scale-[1.03] hover:border-accent/50">
-            <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-amber-50">
-              <Mail className="h-7 w-7 text-teal-700" />
-            </div>
-            <h3 className="text-lg font-bold text-foreground mb-2">Email Us</h3>
-            <a href={`mailto:${siteConfig.email}`} className="text-sm text-muted-foreground hover:text-accent transition-colors">{siteConfig.email}</a>
-          </div>
-          <div className="rounded-xl border border-accent/30 bg-card/40 backdrop-blur-sm p-8 text-center transition-transform duration-300 hover:scale-[1.03] hover:border-accent/50">
-            <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-amber-50">
-              <Phone className="h-7 w-7 text-teal-700" />
-            </div>
-            <h3 className="text-lg font-bold text-foreground mb-2">Call Now</h3>
-            <p className="text-sm text-muted-foreground">Graham: <a href={`tel:${siteConfig.phone}`} className="hover:text-accent transition-colors">{siteConfig.phoneDisplay}</a></p>
-          </div>
-        </div>
-      </div>
 
-      <div className="container mx-auto px-4 py-16 md:py-24">
-        <div className="max-w-2xl mx-auto">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
-              Request a Quote
-            </h2>
-            <div className="mt-6 rounded-xl border border-accent/30 bg-card/40 backdrop-blur-sm p-6 md:p-8">
-              <p className="text-muted-foreground leading-relaxed">
-                Tell us about your event and we'll put together a tailored production package. Whether you need a full AV setup or a single LED wall, we're here to help.
-              </p>
+      <section className="container mx-auto px-4 pb-16 md:pb-20">
+        <div className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-[1fr_1.45fr]">
+          <aside className="order-2 rounded-xl border border-accent/25 bg-card/50 p-6 md:p-8 lg:order-1">
+            <h2 className="text-2xl font-semibold">What happens next?</h2>
+            <ol className="mt-5 space-y-4 text-sm text-muted-foreground">
+              <li><strong className="text-foreground">1. We review the brief.</strong> You don’t need to specify equipment.</li>
+              <li><strong className="text-foreground">2. Graham confirms the scope.</strong> A short call or site check may be recommended.</li>
+              <li><strong className="text-foreground">3. You receive a clear package.</strong> Equipment, crew, delivery and operation are set out together.</li>
+            </ol>
+            <div className="mt-7 space-y-3 border-t border-border/60 pt-6 text-sm">
+              <a href={`tel:${siteConfig.phone}`} className="flex items-center gap-3 hover:text-accent"><Phone className="h-4 w-4 text-accent" /> {siteConfig.phoneDisplay}</a>
+              <a href={`mailto:${siteConfig.email}`} className="flex items-center gap-3 hover:text-accent"><Mail className="h-4 w-4 text-accent" /> {siteConfig.email}</a>
+              <p className="flex items-center gap-3"><MapPin className="h-4 w-4 text-accent" /> {siteConfig.primaryLocation}; nationwide service</p>
             </div>
+          </aside>
+
+          <div className="order-1 rounded-xl border border-accent/30 bg-card/40 p-5 shadow-lg md:p-8 lg:order-2">
+            <h2 className="text-2xl font-semibold">Request a tailored quote</h2>
+            <p className="mb-6 mt-2 text-sm text-muted-foreground">Fields marked * are required. If your date is not confirmed yet, you can tell us that.</p>
+            <ContactForm
+              defaultServices={requestedService ? [requestedService] : []}
+              formContext={requestedService || "General enquiry"}
+            />
           </div>
-          <ScrollReveal delay={0.2}>
-          <div className="rounded-xl border border-accent/30 bg-card/40 backdrop-blur-sm p-6 md:p-8">
-            <ContactForm />
-          </div>
-          </ScrollReveal>
         </div>
-      </div>
+      </section>
+
+      <HowWeWork />
     </PageShell>
   );
 };
