@@ -9,7 +9,7 @@ import { ServiceSections } from "@/components/site/ServiceSections";
 import { BrandBanner } from "@/components/site/BrandSidebar";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
-import { generateServiceSchema, generateBreadcrumbSchema } from "@/lib/schema";
+import { generateServiceSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
 import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 export default function AVProduction() {
@@ -19,6 +19,7 @@ export default function AVProduction() {
     { question: "How far in advance should I book AV hire?", answer: "We recommend at least 2 to 4 weeks for standard corporate events. For large-scale productions, festivals, or peak season events (September to December), book 4 to 8 weeks ahead to ensure equipment availability." },
     { question: "Can I hire individual items or do I need a full package?", answer: "Both. We supply individual items like a single screen or microphone, as well as complete AV packages tailored to your event. We'll advise on the most cost-effective option for your requirements." },
   ];
+  const faqSchema = generateFAQSchema({ questions: faqs });
 
   const serviceSchema = generateServiceSchema({
     name: "AV Equipment Hire",
@@ -42,6 +43,7 @@ export default function AVProduction() {
     description: "AV equipment hire across Ireland. LED screens, PA systems, projectors, lighting & staging for corporate events, exhibitions & conferences. Full setup & technician included.",
     canonical: "https://eventsound.ie/services/av-production",
     additionalSchemas: [
+      { schema: faqSchema, schemaId: "faq-schema" },
       { schema: serviceSchema, schemaId: "service-schema" },
       { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
     ]

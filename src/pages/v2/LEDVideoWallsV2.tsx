@@ -21,6 +21,7 @@ import { Check, Phone, Star, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { StickyCtaBar } from "@/components/StickyCtaBar";
 import type { ServicePageImageSlot } from "@/hooks/useServicePageImages";
+import { siteConfig } from "@/config/site";
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -95,7 +96,7 @@ function SlotImage({ slots, slotId, aspect = "aspect-video", className = "", wid
 const faqs = [
   { question: "What pixel pitch LED wall do I need for a conference?", answer: "For conferences with viewing distances of 3 to 10 metres, we recommend 2.6mm or 3.9mm pixel pitch panels. For exhibitions where attendees stand 1 to 3 metres from the screen, 1.9mm provides the sharpest image. Our team will advise based on your venue layout and audience size." },
   { question: "Can LED walls be used outdoors?", answer: "Yes. We provide weather-rated outdoor LED panels with high-brightness output for daylight visibility. Outdoor screens typically use 3.9mm to 4.8mm pixel pitch and are mounted on freestanding ground-support structures." },
-  { question: "How much does LED wall hire cost in Ireland?", answer: "LED wall hire and rental starts from €125 per square metre per day for dry hire. Pricing varies depending on pixel pitch, screen size, and event requirements. We recommend speaking to our team to ensure you get the best setup and the most out of your budget." },
+  { question: "How much does LED wall hire cost in Ireland?", answer: `LED wall hire and rental starts from €${siteConfig.pricing.ledWallDryHirePerSquareMetrePerDay} per square metre per day for dry hire. Pricing varies depending on pixel pitch, screen size, and event requirements. We recommend speaking to our team to ensure you get the best setup and the most out of your budget.` },
   { question: "What is the largest LED wall you can provide?", answer: "We regularly install screens up to 50m² and can configure larger displays for outdoor festivals and concerts. Screen size is limited only by venue dimensions and structural capacity." },
   { question: "What content can be displayed on LED video walls?", answer: "Anything — live camera feeds, pre-recorded video, presentations, social media walls, sponsor logos, and live event graphics. We provide full content playback and can help with content formatting to ensure it looks perfect on screen." },
   { question: "Do you provide operators with the LED screens?", answer: "Yes, all our LED wall hire packages include experienced technicians for setup, operation throughout your event, and breakdown. You never need to worry about the technical side." },
@@ -125,7 +126,7 @@ const pixelPitchData = [
 
 const whyItems = [
   "Unilumin and Absen LED panels — industry-leading resolution and colour accuracy",
-  "Over 35 years of event production experience across Ireland",
+  `${siteConfig.companyExperienceYears} years of event production experience across Ireland`,
   "Full-service: delivery, installation, operation, and breakdown included",
   "Indoor and outdoor LED walls from 6m² to 100m²+",
   "Curved and custom configurations for immersive installations",
@@ -255,9 +256,9 @@ export default function LEDVideoWallsV2() {
                 Get a Quote
               </Button>
               <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10" asChild>
-                <a href="tel:+353863520476">
+                <a href={`tel:${siteConfig.phone}`}>
                   <Phone className="mr-2 h-4 w-4" />
-                  086 352 0476
+                  {siteConfig.phoneDisplay}
                 </a>
               </Button>
             </div>
@@ -287,9 +288,9 @@ export default function LEDVideoWallsV2() {
       <section className="container mx-auto px-4 -mt-12 relative z-10 mb-16">
         <ScrollReveal>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <StatCard label="per m² / day" sublabel="dry hire from" value={<>&euro;<CountUp end={125} /></>} />
+            <StatCard label="per m² / day" sublabel="dry hire from" value={<>&euro;<CountUp end={siteConfig.pricing.ledWallDryHirePerSquareMetrePerDay} /></>} />
             <StatCard label="custom sizes" sublabel="indoor &amp; outdoor" value="6–100m²+" />
-            <StatCard label="event production" sublabel="experience across Ireland" value={<><CountUp end={35} /> yrs</>} />
+            <StatCard label="event production" sublabel="experience across Ireland" value={`${siteConfig.companyExperienceYears} yrs`} />
             <div className="rounded-xl border border-border/50 bg-card p-5 text-center shadow-lg">
               <div className="flex items-center justify-center gap-0.5 mb-1">
                 {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />)}
@@ -359,7 +360,7 @@ export default function LEDVideoWallsV2() {
           <div className="max-w-3xl mx-auto text-center mb-8">
             <h2 className="text-3xl font-bold mb-4">LED Wall Hire Pricing Guide</h2>
             <p className="text-muted-foreground leading-relaxed">
-              LED wall hire starts from €125 per square metre per day for dry hire. Final pricing depends on pixel pitch (finer pitches like 1.9mm cost more than 3.9mm), total screen area, number of event days, venue access time for installation, and whether additional services such as media servers or camera switching are required. We recommend speaking to our team before booking — we'll help you choose the right specification for your venue and audience so you get the most out of your budget. Contact us for a detailed quote based on your specific event requirements.
+              LED wall hire starts from €{siteConfig.pricing.ledWallDryHirePerSquareMetrePerDay} per square metre per day for dry hire. Final pricing depends on pixel pitch (finer pitches like 1.9mm cost more than 3.9mm), total screen area, number of event days, venue access time for installation, and whether additional services such as media servers or camera switching are required. We recommend speaking to our team before booking — we'll help you choose the right specification for your venue and audience so you get the most out of your budget. Contact us for a detailed quote based on your specific event requirements.
             </p>
           </div>
         </ScrollReveal>
@@ -653,9 +654,9 @@ export default function LEDVideoWallsV2() {
                     </div>
                     <div>
                       <p className="text-accent text-sm font-semibold mb-0.5">Phone</p>
-                      <a href="tel:+353863520476" className="text-white/80 text-sm hover:text-accent transition-colors">086 352 0476</a>
+                      <a href={`tel:${siteConfig.phone}`} className="text-white/80 text-sm hover:text-accent transition-colors">{siteConfig.phoneDisplay}</a>
                       <span className="text-white/40 mx-1.5">|</span>
-                      <a href="tel:+353872888761" className="text-white/80 text-sm hover:text-accent transition-colors">087 288 8761</a>
+                      <a href={`tel:${siteConfig.phoneSecondary}`} className="text-white/80 text-sm hover:text-accent transition-colors">{siteConfig.phoneSecondaryDisplay}</a>
                     </div>
                   </div>
 

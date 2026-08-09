@@ -46,19 +46,8 @@ function buildServiceSchema({ name, description, serviceType, url }) {
     "name": name,
     "description": description,
     "serviceType": serviceType,
-    "url": url,
-    "provider": {
-      "@type": "LocalBusiness",
-      "name": "EventSound AV Services",
-      "@id": "https://eventsound.ie/#organization",
-      "telephone": "+353872888761",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Drogheda",
-        "addressRegion": "Leinster",
-        "addressCountry": "IE"
-      }
-    },
+    "url": canonicalUrl(url),
+    "provider": { "@id": "https://eventsound.ie/#organization" },
     "areaServed": {
       "@type": "Country",
       "name": "Ireland"
@@ -74,9 +63,19 @@ function buildBreadcrumbSchema(items) {
       "@type": "ListItem",
       "position": i + 1,
       "name": item.name,
-      "item": item.url
+      "item": canonicalUrl(item.url)
     }))
   };
+}
+
+function canonicalUrl(pathOrUrl) {
+  const url = new URL(pathOrUrl, 'https://eventsound.ie');
+  url.protocol = 'https:';
+  url.host = 'eventsound.ie';
+  url.search = '';
+  url.hash = '';
+  if (!url.pathname.endsWith('/')) url.pathname += '/';
+  return url.toString();
 }
 
 function buildArticleSchema({ headline, description, image, datePublished, dateModified, author, publisher, keywords, articleSection }) {
@@ -110,6 +109,7 @@ const SCHEMA_TYPE_TO_ID = {
   FAQPage: "faq-schema",
   Service: "service-schema",
   BreadcrumbList: "breadcrumb-schema",
+  Article: "case-study-schema",
 };
 
 function schemasToHtml(schemas) {
@@ -164,9 +164,9 @@ const SERVICE_PAGE_SCHEMAS = {
       { question: "What does event production management include?", answer: "We handle all technical aspects of your event — AV equipment sourcing, stage and set design, crew coordination, supplier management, technical rehearsals, and on-site production management. Think of us as your technical production partner from planning through to breakdown." },
       { question: "How far in advance should I engage a production company?", answer: "For large events like festivals or multi-day conferences, 3-6 months is ideal. Corporate events and awards nights typically need 6-8 weeks. We can work to tighter timelines but earlier engagement means better planning and availability." },
       { question: "Do you manage other suppliers on my behalf?", answer: "Yes — we coordinate with staging companies, power suppliers, venues, caterers, and any other technical suppliers involved in your event. Having one production company manage all technical elements ensures everything works together seamlessly." },
-      { question: "Can you produce events anywhere in Ireland?", answer: "Yes, we produce events nationwide. While we are based in Dublin, we regularly deliver events across all 32 counties and have strong relationships with venues throughout Ireland." },
+      { question: "Can you produce events anywhere in Ireland?", answer: "Yes, we produce events nationwide. While we are based in Drogheda, Co. Louth, we regularly deliver events across all 32 counties and have strong relationships with venues throughout Ireland." },
       { question: "What size events do you handle?", answer: "Everything from boardroom presentations for 20 people to outdoor festivals for 10,000+. We scale our crew and equipment to match your event. Recent projects include the Swords Castle Summer Concerts (8,000+ per night) and intimate corporate conferences." },
-      { question: "What happens if equipment fails during my event?", answer: "We carry backup equipment on-site for all critical systems and our technicians are trained to handle any technical issues immediately. In over three decades of event production, we have built redundancy into every setup to ensure your event runs smoothly." },
+      { question: "What happens if equipment fails during my event?", answer: "We carry backup equipment on-site for all critical systems and our technicians are trained to handle any technical issues immediately. With more than 20 years of event production experience, we have built redundancy into every setup to ensure your event runs smoothly." },
     ],
     service: { name: "Event Production Services", description: "End-to-end event production management in Ireland. AV coordination, stage design, crew management, and on-site production for conferences, concerts and corporate events.", serviceType: "Event Production Management", url: "https://eventsound.ie/services/event-production" },
     breadcrumb: [
@@ -216,7 +216,7 @@ const SERVICE_PAGE_SCHEMAS = {
       { question: "Which virtual event platforms do you support?", answer: "We work with all major platforms including Zoom, Microsoft Teams, Hopin, Webex, YouTube Live, Vimeo, and custom RTMP solutions. We can also recommend the best platform for your specific event requirements and audience size." },
       { question: "Can virtual attendees interact with the live event?", answer: "Yes — we set up live Q&A, polling, chat moderation, and remote speaker integration so virtual attendees can participate fully. We have produced events where remote panellists appear on the main stage LED screens alongside in-person speakers." },
       { question: "What equipment is needed at the venue for a hybrid event?", answer: "At minimum: cameras, microphones, an encoding system, and a reliable internet connection. For a professional production, we add LED screens for remote speaker display, graphics overlays, and a dedicated streaming operator." },
-      { question: "How reliable is live streaming for important events?", answer: "Very reliable with proper planning. We use broadcast-grade encoders, redundant internet connections (wired + bonded cellular), and monitoring throughout. In three decades of production, we have built robust failover systems for mission-critical streams." },
+      { question: "How reliable is live streaming for important events?", answer: "Very reliable with proper planning. We use broadcast-grade encoders, redundant internet connections (wired + bonded cellular), and monitoring throughout. With more than 20 years of production experience, we have built robust failover systems for mission-critical streams." },
       { question: "Do you provide a studio for virtual events?", answer: "We can transform any suitable space into a professional virtual studio with branded backdrops, lighting, cameras, and teleprompters. We also work with dedicated studio venues in Dublin if you need a purpose-built environment." },
     ],
     service: { name: "Virtual & Hybrid Event Production", description: "Professional virtual and hybrid event production in Ireland. Live streaming, remote speaker integration, and platform management for conferences and corporate events.", serviceType: "Virtual Event Production", url: "https://eventsound.ie/services/virtual-events" },
@@ -296,7 +296,7 @@ const SERVICE_PAGE_SCHEMAS = {
 };
 
 const FAQ_PAGE_QUESTIONS = [
-  { question: "What areas do you serve?", answer: "We're based in Dublin, Ireland, and serve clients nationwide. We regularly work at venues throughout Ireland." },
+  { question: "What areas do you serve?", answer: "We're based in Drogheda, Co. Louth, and serve clients nationwide. We regularly work at venues throughout Ireland." },
   { question: "How far in advance should I book?", answer: "We recommend booking as early as possible, especially for peak season (September-December). However, we can often accommodate last-minute requests depending on availability." },
   { question: "Do you provide setup and breakdown?", answer: "Yes, all our services include professional setup, operation during your event, and breakdown. Our experienced crew ensures everything runs smoothly." },
   { question: "What size events do you cater for?", answer: "We handle events of all sizes, from intimate corporate meetings to large-scale conferences and concerts with thousands of attendees." },
@@ -312,19 +312,18 @@ const FAQ_PAGE_QUESTIONS = [
 
 /** Build all JSON-LD schemas for a given route path. Returns array of schema objects. */
 function getSchemasForRoute(routePath, caseStudyData) {
-  // Service pages: FAQPage + Service + BreadcrumbList
+  // FAQ schema is generated by each React page from its visible FAQ array.
   const serviceData = SERVICE_PAGE_SCHEMAS[routePath];
   if (serviceData) {
     return [
-      buildFAQSchema(serviceData.faqs),
       buildServiceSchema(serviceData.service),
       buildBreadcrumbSchema(serviceData.breadcrumb),
     ];
   }
 
-  // FAQ page: FAQPage only
+  // FAQ schema is generated from the visible FAQ content by the React page.
   if (routePath === '/faq') {
-    return [buildFAQSchema(FAQ_PAGE_QUESTIONS)];
+    return [];
   }
 
   // Case study detail pages: Article
@@ -336,7 +335,7 @@ function getSchemasForRoute(routePath, caseStudyData) {
       datePublished: caseStudyData.published_at || '',
       dateModified: caseStudyData.updated_at || undefined,
       author: { name: "EventSound AV Services", url: "https://eventsound.ie" },
-      publisher: { name: "EventSound AV Services", logo: "https://eventsound.ie/logo.png" },
+      publisher: { name: "EventSound AV Services", logo: "https://eventsound.ie/Brand/logo_transparent.png" },
       keywords: caseStudyData.tags ? caseStudyData.tags.join(', ') : undefined,
       articleSection: caseStudyData.category || undefined,
     })];
@@ -463,6 +462,7 @@ const HOMEPAGE_SHELL = `<div class="min-h-screen bg-background text-foreground">
 </div>\
 </div>\
 </header>\
+<main id="main-content">\
 <section class="relative min-h-[90vh] flex items-center overflow-hidden">\
 <div class="absolute inset-0">\
 <div class="absolute inset-0 bg-background/60"></div>\
@@ -471,7 +471,7 @@ const HOMEPAGE_SHELL = `<div class="min-h-screen bg-background text-foreground">
 <div class="container relative z-10 py-24 md:py-32 text-center">\
 <p class="section-kicker mb-4">Professional Event Production — Ireland</p>\
 <h1 class="text-4xl md:text-6xl font-bold tracking-tight max-w-3xl leading-tight mx-auto">Audio Visual Hire &amp; Event Production Ireland</h1>\
-<p class="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed mx-auto">From corporate conferences and product launches to festivals and gala dinners, EventSound is your trusted event production partner across Ireland. Our services include LED video wall hire, professional sound system rental, intelligent stage lighting, custom staging, and live streaming — all installed and operated by our experienced technical crew. Based in Dublin and serving clients nationwide, we work alongside event managers, agencies, and venues as a reliable production partner, handling events of every scale with proven equipment and transparent pricing.</p>\
+<p class="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed mx-auto">From corporate conferences and product launches to festivals and gala dinners, EventSound is your trusted event production partner across Ireland. Our services include LED video wall hire, professional sound system rental, intelligent stage lighting, custom staging, and live streaming — all installed and operated by our experienced technical crew. Based in Drogheda, Co. Louth, and serving clients nationwide, we work alongside event managers, agencies, and venues as a reliable production partner, handling events of every scale with proven equipment and transparent pricing.</p>\
 <div class="mt-8 flex flex-wrap gap-4 justify-center">\
 <a href="/contact" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-8">\
 Get a Quote <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 h-4 w-4"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>\
@@ -480,6 +480,7 @@ Get a Quote <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewB
 </div>\
 </div>\
 </section>\
+</main>\
 </div>`;
 
 // ── Main prerender ──────────────────────────────────────────────────────────
@@ -561,7 +562,8 @@ async function prerender() {
     }
 
     // Replace canonical URL
-    const canonical = `https://eventsound.ie${route.path}`;
+    const canonicalPath = route.path === '/' ? '/' : `${route.path.replace(/\/$/, '')}/`;
+    const canonical = `https://eventsound.ie${canonicalPath}`;
     if (html.includes('rel="canonical"')) {
       html = html.replace(/(<link\s+rel="canonical"\s+href=")[^"]*"/, `$1${canonical}"`);
     } else {

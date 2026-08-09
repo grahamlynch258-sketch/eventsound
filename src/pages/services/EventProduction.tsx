@@ -9,7 +9,7 @@ import { ServiceSections } from "@/components/site/ServiceSections";
 import { BrandBanner } from "@/components/site/BrandSidebar";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
-import { generateServiceSchema, generateBreadcrumbSchema } from "@/lib/schema";
+import { generateServiceSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
 import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 export default function EventProduction() {
@@ -21,6 +21,7 @@ export default function EventProduction() {
     { question: "What size events do you handle?", answer: "Everything from boardroom presentations for 20 people to outdoor festivals for 10,000+. We scale our crew and equipment to match your event. Recent projects include the Swords Castle Summer Concerts and intimate corporate conferences." },
     { question: "What happens if equipment fails during my event?", answer: "We carry backup equipment on-site for all critical systems and our technicians are trained to handle any technical issues immediately. In over two decades of event production, we have built redundancy into every setup to ensure your event runs smoothly." }
   ];
+  const faqSchema = generateFAQSchema({ questions: faqs });
 
   const serviceSchema = generateServiceSchema({
     name: "Event Production",
@@ -44,6 +45,7 @@ export default function EventProduction() {
     description: "Full-service event production company in Ireland. Sound, lighting, LED walls, staging & crew for conferences, festivals, awards ceremonies & corporate events.",
     canonical: "https://eventsound.ie/services/event-production",
     additionalSchemas: [
+      { schema: faqSchema, schemaId: "faq-schema" },
       { schema: serviceSchema, schemaId: "service-schema" },
       { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
     ]

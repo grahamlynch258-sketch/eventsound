@@ -21,6 +21,7 @@ import { Check, Phone, Star, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { StickyCtaBar } from "@/components/StickyCtaBar";
 import type { ServicePageImageSlot } from "@/hooks/useServicePageImages";
+import { siteConfig } from "@/config/site";
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -148,7 +149,7 @@ const whyItems = [
   "ChamSys lighting control with scene-by-scene cue programming",
   "Tech rehearsal attendance included — we build cues with your director",
   "Flexible hire: full production packages or individual elements to supplement your venue's equipment",
-  "Over 35 years of event and live production experience across Ireland",
+  `${siteConfig.companyExperienceYears} years of event and live production experience across Ireland`,
   "Available nationwide — Dublin, Cork, Galway, Limerick, Belfast, and every county in between",
 ];
 
@@ -270,9 +271,9 @@ export default function MusicalTheatreV2() {
                 Get a Quote
               </Button>
               <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10" asChild>
-                <a href="tel:+353863520476">
+                <a href={`tel:${siteConfig.phone}`}>
                   <Phone className="mr-2 h-4 w-4" />
-                  086 352 0476
+                  {siteConfig.phoneDisplay}
                 </a>
               </Button>
             </div>
@@ -303,7 +304,7 @@ export default function MusicalTheatreV2() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <StatCard label="Wireless mic channels" value={<><CountUp end={30} />+</>} />
             <StatCard label="Delivery, setup & operators" value="All-inclusive" />
-            <StatCard label="Production experience" value={<><CountUp end={35} /> yrs</>} />
+            <StatCard label="Production experience" value={`${siteConfig.companyExperienceYears} yrs`} />
             <div className="rounded-xl border border-border/50 bg-card p-5 text-center shadow-lg">
               <div className="flex items-center justify-center gap-0.5 mb-1">
                 {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />)}
@@ -620,9 +621,9 @@ export default function MusicalTheatreV2() {
                     </div>
                     <div>
                       <p className="text-accent text-sm font-semibold mb-0.5">Phone</p>
-                      <a href="tel:+353863520476" className="text-white/80 text-sm hover:text-accent transition-colors">086 352 0476</a>
+                      <a href={`tel:${siteConfig.phone}`} className="text-white/80 text-sm hover:text-accent transition-colors">{siteConfig.phoneDisplay}</a>
                       <span className="text-white/40 mx-1.5">|</span>
-                      <a href="tel:+353872888761" className="text-white/80 text-sm hover:text-accent transition-colors">087 288 8761</a>
+                      <a href={`tel:${siteConfig.phoneSecondary}`} className="text-white/80 text-sm hover:text-accent transition-colors">{siteConfig.phoneSecondaryDisplay}</a>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">

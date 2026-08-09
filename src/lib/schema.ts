@@ -1,4 +1,5 @@
 // JSON-LD Schema builders for structured data
+import { canonicalUrlForPath } from "@/lib/seo";
 
 export interface LocalBusinessSchema {
   name: string;
@@ -151,12 +152,8 @@ export function generateServiceSchema(data: ServiceSchema): string {
     "@type": "Service",
     "name": data.name,
     "description": data.description,
-    "url": data.url,
-    "provider": {
-      "@type": "LocalBusiness",
-      "name": data.provider.name,
-      "url": data.provider.url
-    },
+    "url": canonicalUrlForPath(data.url),
+    "provider": { "@id": "https://eventsound.ie/#organization" },
     "areaServed": data.areaServed.map(area => ({
       "@type": "Place",
       "name": area
@@ -183,34 +180,8 @@ export function generateBreadcrumbSchema(data: BreadcrumbSchema): string {
       "@type": "ListItem",
       "position": index + 1,
       "name": item.name,
-      "item": item.url
+      "item": canonicalUrlForPath(item.url)
     }))
-  };
-
-  return JSON.stringify(schema);
-}
-
-// --- AggregateRating Schema ---
-export interface AggregateRatingSchema {
-  ratingValue: number;
-  reviewCount: number;
-  bestRating?: number;
-  worstRating?: number;
-}
-
-export function generateAggregateRatingSchema(data: AggregateRatingSchema): string {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "EventSound",
-    "url": "https://eventsound.ie",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": data.ratingValue,
-      "reviewCount": data.reviewCount,
-      "bestRating": data.bestRating || 5,
-      "worstRating": data.worstRating || 1
-    }
   };
 
   return JSON.stringify(schema);

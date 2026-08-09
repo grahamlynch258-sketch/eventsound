@@ -6,13 +6,14 @@ import { Button } from "@/components/ui/button";
 import { useServiceImages } from "@/hooks/useServiceImages";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { generateFAQSchema } from "@/lib/schema";
 
 const FAQ = () => {
   const { hero } = useServiceImages("hero-faq");
   const faqs: { question: string; answer: React.ReactNode }[] = [
     {
       question: "What areas do you serve?",
-      answer: "We're based in Dublin, Ireland, and serve clients nationwide. We regularly work at venues throughout Ireland."
+      answer: "We're based in Drogheda, Co. Louth, and serve clients nationwide. We regularly work at venues throughout Ireland."
     },
     {
       question: "How far in advance should I book?",
@@ -60,12 +61,19 @@ const FAQ = () => {
     }
   ];
 
+  const faqSchema = generateFAQSchema({
+    questions: faqs
+      .filter((faq): faq is { question: string; answer: string } => typeof faq.answer === "string")
+      .map(({ question, answer }) => ({ question, answer }))
+  });
+
   useSeo({
     title: "FAQ | EventSound Event Production Ireland",
     description: "Frequently asked questions about EventSound's AV hire & event production services. Pricing, equipment, coverage areas, booking process & more. Get answers.",
     canonical: "https://eventsound.ie/faq",
     ogTitle: "FAQ | EventSound Ireland",
     ogDescription: "Frequently asked questions about our event production and AV hire services in Ireland.",
+    additionalSchemas: [{ schema: faqSchema, schemaId: "faq-schema" }],
   });
 
   return (
