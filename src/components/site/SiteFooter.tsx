@@ -20,35 +20,35 @@ export function SiteFooter({ className }: { className?: string }) {
             <h3 className="section-kicker mb-4">Pages</h3>
             <nav className="flex flex-col gap-2.5">
               <Link to="/" className="text-sm text-muted-foreground hover:text-accent transition-colors">Home</Link>
-              <Link to="/about" className="text-sm text-muted-foreground hover:text-accent transition-colors">About</Link>
-              <Link to="/services" className="text-sm text-muted-foreground hover:text-accent transition-colors">Services</Link>
-              <Link to="/gallery" className="text-sm text-muted-foreground hover:text-accent transition-colors">Portfolio</Link>
-              <Link to="/case-studies" className="text-sm text-muted-foreground hover:text-accent transition-colors">Case Studies</Link>
+              <Link to="/about/" className="text-sm text-muted-foreground hover:text-accent transition-colors">About</Link>
+              <Link to="/services/" className="text-sm text-muted-foreground hover:text-accent transition-colors">Services</Link>
+              <Link to="/gallery/" className="text-sm text-muted-foreground hover:text-accent transition-colors">Portfolio</Link>
+              <Link to="/case-studies/" className="text-sm text-muted-foreground hover:text-accent transition-colors">Case Studies</Link>
             </nav>
           </div>
 
           <div>
             <h3 className="section-kicker mb-4">Services</h3>
             <nav className="flex flex-col gap-2.5">
-              <Link to="/services/led-video-walls" className="text-sm text-muted-foreground hover:text-accent transition-colors">LED Video Walls</Link>
-              <Link to="/services/av-production" className="text-sm text-muted-foreground hover:text-accent transition-colors">AV Production</Link>
-              <Link to="/services/lighting-design" className="text-sm text-muted-foreground hover:text-accent transition-colors">Lighting Design</Link>
-              <Link to="/services/staging-pipe-drape" className="text-sm text-muted-foreground hover:text-accent transition-colors">Staging, Pipe & Drape</Link>
-              <Link to="/services/event-production" className="text-sm text-muted-foreground hover:text-accent transition-colors">Event Production</Link>
-              <Link to="/services/video-production" className="text-sm text-muted-foreground hover:text-accent transition-colors">Video Production</Link>
-              <Link to="/services/virtual-events" className="text-sm text-muted-foreground hover:text-accent transition-colors">Virtual Events</Link>
-              <Link to="/services/conference-av-hire" className="text-sm text-muted-foreground hover:text-accent transition-colors">Conference AV</Link>
-              <Link to="/services/musical-theatre" className="text-sm text-muted-foreground hover:text-accent transition-colors">Musical & Theatre</Link>
+              <Link to="/services/led-video-walls/" className="text-sm text-muted-foreground hover:text-accent transition-colors">LED Video Walls</Link>
+              <Link to="/services/av-production/" className="text-sm text-muted-foreground hover:text-accent transition-colors">AV Production</Link>
+              <Link to="/services/lighting-design/" className="text-sm text-muted-foreground hover:text-accent transition-colors">Lighting Design</Link>
+              <Link to="/services/staging-pipe-drape/" className="text-sm text-muted-foreground hover:text-accent transition-colors">Staging, Pipe & Drape</Link>
+              <Link to="/services/event-production/" className="text-sm text-muted-foreground hover:text-accent transition-colors">Event Production</Link>
+              <Link to="/services/video-production/" className="text-sm text-muted-foreground hover:text-accent transition-colors">Video Production</Link>
+              <Link to="/services/virtual-events/" className="text-sm text-muted-foreground hover:text-accent transition-colors">Virtual Events</Link>
+              <Link to="/services/conference-av-hire/" className="text-sm text-muted-foreground hover:text-accent transition-colors">Conference AV</Link>
+              <Link to="/services/musical-theatre/" className="text-sm text-muted-foreground hover:text-accent transition-colors">Musical & Theatre</Link>
             </nav>
           </div>
 
           <div>
             <h3 className="section-kicker mb-4">Support</h3>
             <nav className="flex flex-col gap-2.5">
-              <Link to="/faq" className="text-sm text-muted-foreground hover:text-accent transition-colors">FAQ</Link>
-              <Link to="/reviews" className="text-sm text-muted-foreground hover:text-accent transition-colors">Reviews</Link>
-              <Link to="/health-and-safety" className="text-sm text-muted-foreground hover:text-accent transition-colors">Health & Safety</Link>
-              <Link to="/contact" className="text-sm text-muted-foreground hover:text-accent transition-colors">Get a Quote</Link>
+              <Link to="/faq/" className="text-sm text-muted-foreground hover:text-accent transition-colors">FAQ</Link>
+              <Link to="/reviews/" className="text-sm text-muted-foreground hover:text-accent transition-colors">Reviews</Link>
+              <Link to="/health-and-safety/" className="text-sm text-muted-foreground hover:text-accent transition-colors">Health & Safety</Link>
+              <Link to="/contact/" className="text-sm text-muted-foreground hover:text-accent transition-colors">Get a Quote</Link>
             </nav>
           </div>
 

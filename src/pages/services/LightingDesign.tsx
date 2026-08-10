@@ -44,8 +44,8 @@ export default function LightingDesign() {
   });
 
   useSeo({
-    title: "Lighting Hire Dublin | Stage & Event Lighting Ireland | EventSound",
-    description: "Event lighting hire in Ireland. Moving heads, uplighters, stage lighting & atmospheric effects. Chamsys-controlled. Conferences, gala dinners, concerts & festivals.",
+    title: "Event Lighting Hire Dublin | Corporate & Stage Lighting",
+    description: "Event lighting design and hire for corporate events, conferences, stages and concerts in Dublin and across Ireland. Programming and operator included.",
     canonical: "https://eventsound.ie/services/lighting-design",
     additionalSchemas: [
       { schema: faqSchema, schemaId: "faq-schema" },
@@ -60,7 +60,7 @@ export default function LightingDesign() {
     <PageShell>
       <Breadcrumb items={[
         { name: "Home", href: "/" },
-        { name: "Services", href: "/services" },
+        { name: "Services", href: "/services/" },
         { name: "Lighting Design" }
       ]} />
       <PageHeader
@@ -78,6 +78,10 @@ export default function LightingDesign() {
         <div className="max-w-3xl mx-auto space-y-6 text-center">
           <p className="text-lg text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
             Lighting sets the tone for every event. EventSound provides professional lighting design and hire for corporate events, gala dinners, conferences, concerts, and live shows across Ireland. From subtle architectural washes to dynamic stage lighting, our Chamsys-controlled systems create the perfect atmosphere for your event.
+          </p>
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Corporate Event, Stage & Conference Lighting</h2>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            For conferences and corporate events, we balance camera-ready speaker lighting, brand colours, screen visibility and venue atmosphere. For concerts and performances, the design adds dynamic show looks and audience impact while keeping performers clearly lit. The quotation sets out the design, fixtures, programming, control and on-site operator required for the event.
           </p>
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Custom Lighting Design</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
@@ -118,7 +122,7 @@ export default function LightingDesign() {
           <ScrollReveal>
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Frequently Combined With</h2>
           <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-            Event lighting pairs perfectly with <Link to="/services/led-video-walls" className="text-accent hover:underline">LED video walls</Link> for a unified visual design. Many productions also include <Link to="/services/staging-pipe-drape" className="text-accent hover:underline">stage hire and pipe & drape</Link> to complete the look, backed by our <Link to="/services/event-production" className="text-accent hover:underline">full event production</Link> management. See our lighting design for the <Link to="/case-studies/swords-castle-summer-concerts" className="text-accent hover:underline">Swords Castle Summer Concerts</Link>.
+            Event lighting pairs perfectly with <Link to="/services/led-video-walls/" className="text-accent hover:underline">LED video walls</Link> for a unified visual design. Many productions also include <Link to="/services/staging-pipe-drape/" className="text-accent hover:underline">stage hire and pipe & drape</Link> to complete the look, backed by our <Link to="/services/event-production/" className="text-accent hover:underline">full event production</Link> management. See our lighting design for the <Link to="/case-studies/swords-castle-summer-concerts/" className="text-accent hover:underline">Swords Castle Summer Concerts</Link>.
           </p>
           </ScrollReveal>
 
@@ -144,7 +148,7 @@ export default function LightingDesign() {
           <div className="mt-12 text-center transition-transform duration-300 hover:scale-[1.04] cursor-default">
             <h3 className="text-xl font-semibold mb-2">Need Lighting for Your Event?</h3>
             <p className="text-muted-foreground mb-4 transition-transform duration-300 hover:scale-[1.04] cursor-default">Share your event details and venue — our lighting designers will create a tailored plan and quote within 24 hours.</p>
-            <Link to="/contact"><Button size="lg">Get a Quote</Button></Link>
+            <Link to="/contact/"><Button size="lg">Get a Quote</Button></Link>
           </div>
         </div>
       </div>
@@ -160,7 +164,7 @@ export default function LightingDesign() {
         proof={{
           title: "Swords Castle Summer Concerts",
           description: "Outdoor stage lighting delivered alongside sound, staging and LED as part of one council event production.",
-          href: "/case-studies/swords-castle-summer-concerts",
+          href: "/case-studies/swords-castle-summer-concerts/",
         }}
       />
       <StickyCtaBar />

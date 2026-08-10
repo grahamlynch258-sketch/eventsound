@@ -11,6 +11,9 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
 import { generateServiceSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
 import { Breadcrumb } from "@/components/site/Breadcrumb";
+import { ServiceHeroActions } from "@/components/site/ServiceHeroActions";
+import { ServiceEnquirySection } from "@/components/site/ServiceEnquirySection";
+import { StickyCtaBar } from "@/components/StickyCtaBar";
 
 export default function StagingPipeDrape() {
   const faqs = [
@@ -25,7 +28,7 @@ export default function StagingPipeDrape() {
 
   const serviceSchema = generateServiceSchema({
     name: "Stage Hire",
-    description: "Stage hire across Ireland. TUV-certified GUIL aluminium platforms, pipe and drape, steps, barriers and wheelchair ramps for indoor and outdoor events.",
+    description: "Indoor, outdoor and mobile stage hire across Ireland and Dublin, with pipe and drape, steps, barriers, ramps, delivery, installation and safety planning.",
     url: "https://eventsound.ie/services/staging-pipe-drape",
     provider: { name: "EventSound", url: "https://eventsound.ie" },
     areaServed: ["Dublin", "Cork", "Galway", "Belfast", "Limerick", "Ireland"],
@@ -41,8 +44,8 @@ export default function StagingPipeDrape() {
   });
 
   useSeo({
-    title: "Stage Hire Ireland | Portable Stage & Platform Rental | EventSound",
-    description: "Stage hire across Ireland. TUV-certified GUIL aluminium platforms, pipe & drape, steps, barriers & wheelchair ramps. Indoor & outdoor. Delivery & setup included.",
+    title: "Stage Hire Ireland & Dublin | Indoor & Outdoor Stages",
+    description: "Indoor, outdoor and mobile stage hire across Ireland and Dublin. Modular stages, pipe and drape, delivery, installation and safety planning included.",
     canonical: "https://eventsound.ie/services/staging-pipe-drape",
     additionalSchemas: [
       { schema: faqSchema, schemaId: "faq-schema" },
@@ -57,19 +60,28 @@ export default function StagingPipeDrape() {
     <PageShell>
       <Breadcrumb items={[
         { name: "Home", href: "/" },
-        { name: "Services", href: "/services" },
+        { name: "Services", href: "/services/" },
         { name: "Staging & Pipe & Drape" }
       ]} />
       <PageHeader
-        title="Stage Hire Ireland"
-        subtitle="Safe, professional staging and scenic solutions for any venue"
+        title="Stage Hire Ireland & Dublin"
+        subtitle="Indoor, outdoor and mobile stages installed by an experienced crew"
         backgroundImage={hero}
         backgroundAlt="Professional staging and pipe and drape installation at an event in Ireland"
-      />
+      >
+        <ServiceHeroActions
+          serviceName="Staging & Pipe and Drape"
+          benefits={["Indoor and outdoor stages", "Delivery, installation and safety", "Built around your venue and audience"]}
+        />
+      </PageHeader>
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6 text-center">
           <p className="text-lg text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
             EventSound provides professional staging, pipe and drape, star cloth, and scenic elements for corporate events, conferences, awards ceremonies, and live shows across Ireland. All our staging is TUV-certified and European-manufactured, installed by trained crew with safety as the primary consideration.
+          </p>
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Indoor, Outdoor & Mobile Stage Hire</h2>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            We provide modular indoor stages for conferences, presentations, theatre and performance, plus outdoor platforms and small roofed mobile stages for concerts, festivals and town-centre events. Stage hire is available in Dublin and nationwide. Before quoting, we confirm the audience, performers, stage size, site access, ground conditions, weather plan, loading and power so the proposed system is safe and suitable for the event.
           </p>
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Modular Stage Solutions</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
@@ -110,7 +122,7 @@ export default function StagingPipeDrape() {
           <ScrollReveal>
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Frequently Combined With</h2>
           <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-            Most stage setups include <Link to="/services/lighting-design" className="text-accent hover:underline">event lighting</Link> for presenters and performances, along with <Link to="/services/led-video-walls" className="text-accent hover:underline">LED video walls</Link> as a backdrop. For full technical production across all disciplines, explore our <Link to="/services/event-production" className="text-accent hover:underline">event production</Link> service. See our stage setup for the <Link to="/case-studies/school-summit-career-expos" className="text-accent hover:underline">School Summit Career Expos</Link>.
+            Most stage setups include <Link to="/services/lighting-design/" className="text-accent hover:underline">event lighting</Link> for presenters and performances, along with <Link to="/services/led-video-walls/" className="text-accent hover:underline">LED video walls</Link> as a backdrop. For full technical production across all disciplines, explore our <Link to="/services/event-production/" className="text-accent hover:underline">event production</Link> service. See our stage setup for the <Link to="/case-studies/school-summit-career-expos/" className="text-accent hover:underline">School Summit Career Expos</Link>.
           </p>
           </ScrollReveal>
 
@@ -136,10 +148,26 @@ export default function StagingPipeDrape() {
           <div className="mt-12 text-center transition-transform duration-300 hover:scale-[1.04] cursor-default">
             <h3 className="text-xl font-semibold mb-2">Need Staging or Draping?</h3>
             <p className="text-muted-foreground mb-4 transition-transform duration-300 hover:scale-[1.04] cursor-default">Tell us your venue and event requirements — we'll design a staging solution and quote within 24 hours.</p>
-            <Link to="/contact"><Button size="lg">Get a Quote</Button></Link>
+            <Link to="/contact/"><Button size="lg">Get a Quote</Button></Link>
           </div>
         </div>
       </div>
+      <ServiceEnquirySection
+        serviceName="Staging & Pipe and Drape"
+        heading="Get a stage plan that fits the site and the show"
+        description="Send the venue or site, event format, audience size, performance requirements and timings. We’ll recommend the stage type, dimensions, access and safety package, then provide a clear quotation."
+        included={[
+          "Indoor modular, outdoor platform and mobile-stage options considered",
+          "Ground, access, weather, loading, power and performer needs checked",
+          "Delivery, installation, steps, rails and crew shown clearly in the scope",
+        ]}
+        proof={{
+          title: "School Summit Career Expos",
+          description: "Repeat exhibition staging and technical production delivered for a high-footfall public event format.",
+          href: "/case-studies/school-summit-career-expos/",
+        }}
+      />
+      <StickyCtaBar />
     </PageShell>
   );
 }

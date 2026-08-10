@@ -208,8 +208,8 @@ export default function MusicalTheatreV2() {
   const faqSchema = generateFAQSchema({ questions: faqs });
 
   useSeo({
-    title: "Musical & Theatre Production Hire Ireland | Sound & Lighting | EventSound",
-    description: "Professional sound, lighting, and staging hire for musicals and theatre productions across Ireland. Wireless microphones, stage lighting rigs, LED backdrops, and experienced operators for every show.",
+    title: "Theatre Production Hire Ireland | Sound, Lighting & LED",
+    description: "Sound, wireless microphones, lighting, staging and LED video wall hire for musicals, drama and theatre productions across Ireland, with experienced operators.",
     canonical: "https://eventsound.ie/services/musical-theatre",
     additionalSchemas: [
       { schema: serviceSchema, schemaId: "service-schema" },
@@ -247,7 +247,7 @@ export default function MusicalTheatreV2() {
               <ol className="flex items-center gap-2">
                 <li><Link to="/" className="hover:text-white transition-colors">Home</Link></li>
                 <li><ChevronRight className="h-3.5 w-3.5" /></li>
-                <li><Link to="/services" className="hover:text-white transition-colors">Services</Link></li>
+                <li><Link to="/services/" className="hover:text-white transition-colors">Services</Link></li>
                 <li><ChevronRight className="h-3.5 w-3.5" /></li>
                 <li className="text-white/90">Musical &amp; Theatre</li>
               </ol>

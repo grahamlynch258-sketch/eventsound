@@ -11,6 +11,9 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
 import { generateServiceSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
 import { Breadcrumb } from "@/components/site/Breadcrumb";
+import { ServiceHeroActions } from "@/components/site/ServiceHeroActions";
+import { ServiceEnquirySection } from "@/components/site/ServiceEnquirySection";
+import { StickyCtaBar } from "@/components/StickyCtaBar";
 
 export default function EventProduction() {
   const faqs = [
@@ -41,8 +44,8 @@ export default function EventProduction() {
   });
 
   useSeo({
-    title: "Event Production Company Dublin & Ireland | Full-Service | EventSound",
-    description: "Full-service event production company in Ireland. Sound, lighting, LED walls, staging & crew for conferences, festivals, awards ceremonies & corporate events.",
+    title: "Event Production Company Ireland | Corporate & Live Events",
+    description: "Technical event production for conferences, exhibitions, corporate events, festivals and live shows across Ireland. AV, LED, lighting, staging and crew.",
     canonical: "https://eventsound.ie/services/event-production",
     additionalSchemas: [
       { schema: faqSchema, schemaId: "faq-schema" },
@@ -57,15 +60,20 @@ export default function EventProduction() {
     <PageShell>
       <Breadcrumb items={[
         { name: "Home", href: "/" },
-        { name: "Services", href: "/services" },
+        { name: "Services", href: "/services/" },
         { name: "Event Production" }
       ]} />
       <PageHeader
-        title="Event Production Management in Ireland"
-        subtitle="Your dedicated production partner from planning to wrap"
+        title="Full-Service Event Production Company Ireland"
+        subtitle="One technical production partner from planning and site survey to show day and wrap"
         backgroundImage={hero}
         backgroundAlt="Event production crew managing a corporate event in Ireland"
-      />
+      >
+        <ServiceHeroActions
+          serviceName="Full Event Production"
+          benefits={["One technical production lead", "Equipment, crew and show operation", "Site survey and clear production plan"]}
+        />
+      </PageHeader>
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6 text-center">
           <p className="text-lg text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
@@ -152,7 +160,7 @@ export default function EventProduction() {
           <ScrollReveal>
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Frequently Combined With</h2>
           <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-            Our event production service coordinates <Link to="/services/av-production" className="text-accent hover:underline">AV hire</Link>, <Link to="/services/led-video-walls" className="text-accent hover:underline">LED video walls</Link>, and <Link to="/services/lighting-design" className="text-accent hover:underline">lighting design</Link> under a single production manager for seamless delivery. See how we managed production for the <Link to="/case-studies/swords-castle-summer-concerts" className="text-accent hover:underline">Swords Castle Summer Concerts</Link>.
+            Our event production service coordinates <Link to="/services/av-production/" className="text-accent hover:underline">AV hire</Link>, <Link to="/services/led-video-walls/" className="text-accent hover:underline">LED video walls</Link>, <Link to="/services/lighting-design/" className="text-accent hover:underline">lighting design</Link>, and <Link to="/services/staging-pipe-drape/" className="text-accent hover:underline">indoor or outdoor stage hire</Link> under a single production manager for seamless delivery. See how we managed production for the <Link to="/case-studies/swords-castle-summer-concerts/" className="text-accent hover:underline">Swords Castle Summer Concerts</Link>.
           </p>
           </ScrollReveal>
 
@@ -178,10 +186,26 @@ export default function EventProduction() {
           <div className="mt-12 text-center transition-transform duration-300 hover:scale-[1.04] cursor-default">
             <h3 className="text-xl font-semibold mb-2">Need a Production Partner?</h3>
             <p className="text-muted-foreground mb-4 transition-transform duration-300 hover:scale-[1.04] cursor-default">Tell us about your event — we'll come back with a production plan and transparent quote within 24 hours.</p>
-            <Link to="/contact"><Button size="lg">Get a Quote</Button></Link>
+            <Link to="/contact/"><Button size="lg">Get a Quote</Button></Link>
           </div>
         </div>
       </div>
+      <ServiceEnquirySection
+        serviceName="Full Event Production"
+        heading="Turn the brief into one coordinated production plan"
+        description="Send the venue, audience, programme, timings, technical requirements and budget guidance. We’ll identify the right production scope, crew and equipment, including any site-survey questions that need resolving before quotation."
+        included={[
+          "Sound, video, LED, lighting, staging and show operation coordinated together",
+          "Access, power, rigging, rehearsal and venue constraints checked early",
+          "A defined technical scope, responsibilities and next step in the quotation",
+        ]}
+        proof={{
+          title: "Swords Castle Summer Concerts",
+          description: "Outdoor sound, stage, lighting and LED delivery coordinated as one council event production.",
+          href: "/case-studies/swords-castle-summer-concerts/",
+        }}
+      />
+      <StickyCtaBar />
     </PageShell>
   );
 }

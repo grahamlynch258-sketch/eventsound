@@ -6,36 +6,37 @@ import { Menu, X, ChevronDown, HelpCircle, Star, Mail, Images, BookOpen, Monitor
 
 const mainLinks = [
   { to: "/", label: "Home", end: true },
-  { to: "/about", label: "About" },
+  { to: "/about/", label: "About" },
 ];
 
 const servicesLinks = [
-  { to: "/services", label: "All Services", icon: LayoutGrid, description: "Overview of all our services" },
-  { to: "/services/led-video-walls", label: "LED Video Walls", icon: Monitor, description: "High-resolution LED displays" },
-  { to: "/services/av-production", label: "AV Production", icon: Volume2, description: "Complete conference AV solutions" },
-  { to: "/services/lighting-design", label: "Lighting Design", icon: Lightbulb, description: "Stage and architectural lighting" },
-  { to: "/services/staging-pipe-drape", label: "Staging, Pipe & Drape", icon: Theater, description: "Safe, TUV-certified staging" },
-  { to: "/services/event-production", label: "Event Production", icon: Clapperboard, description: "End-to-end production management" },
-  { to: "/services/video-production", label: "Video Production", icon: Video, description: "Multi-camera capture and streaming" },
-  { to: "/services/virtual-events", label: "Virtual & Hybrid Events", icon: Wifi, description: "Online and hybrid event production" },
-  { to: "/services/conference-av-hire", label: "Conference AV Hire", icon: Presentation, description: "AV for conferences and AGMs" },
-  { to: "/services/musical-theatre", label: "Musical & Theatre", icon: Music, description: "Sound and lighting for productions" },
+  { to: "/services/", label: "All Services", icon: LayoutGrid, description: "Overview of all our services" },
+  { to: "/services/led-video-walls/", label: "LED Video Walls", icon: Monitor, description: "High-resolution LED displays" },
+  { to: "/services/av-production/", label: "AV Production", icon: Volume2, description: "Complete conference AV solutions" },
+  { to: "/services/lighting-design/", label: "Lighting Design", icon: Lightbulb, description: "Stage and architectural lighting" },
+  { to: "/services/staging-pipe-drape/", label: "Staging, Pipe & Drape", icon: Theater, description: "Safe, TUV-certified staging" },
+  { to: "/services/event-production/", label: "Event Production", icon: Clapperboard, description: "End-to-end production management" },
+  { to: "/services/video-production/", label: "Video Production", icon: Video, description: "Multi-camera capture and streaming" },
+  { to: "/services/virtual-events/", label: "Virtual & Hybrid Events", icon: Wifi, description: "Online and hybrid event production" },
+  { to: "/services/conference-av-hire/", label: "Conference AV Hire", icon: Presentation, description: "AV for conferences and AGMs" },
+  { to: "/services/musical-theatre/", label: "Musical & Theatre", icon: Music, description: "Sound and lighting for productions" },
 ];
 
 const portfolioLinks = [
-  { to: "/gallery", label: "Gallery", icon: Images, description: "Photos from our events" },
-  { to: "/case-studies", label: "Case Studies", icon: BookOpen, description: "In-depth project breakdowns" },
+  { to: "/gallery/", label: "Gallery", icon: Images, description: "Photos from our events" },
+  { to: "/case-studies/", label: "Case Studies", icon: BookOpen, description: "In-depth project breakdowns" },
 ];
 
 const connectLinks = [
-  { to: "/faq", label: "FAQ", icon: HelpCircle, description: "Common questions answered" },
-  { to: "/reviews", label: "Reviews", icon: Star, description: "What our clients say" },
-  { to: "/contact", label: "Contact", icon: Mail, description: "Get a quote or get in touch" },
+  { to: "/faq/", label: "FAQ", icon: HelpCircle, description: "Common questions answered" },
+  { to: "/reviews/", label: "Reviews", icon: Star, description: "What our clients say" },
+  { to: "/contact/", label: "Contact", icon: Mail, description: "Get a quote or get in touch" },
 ];
 
 const SERVICES_PATHS = servicesLinks.map((l) => l.to);
 const PORTFOLIO_PATHS = portfolioLinks.map((l) => l.to);
 const CONNECT_PATHS = connectLinks.map((l) => l.to);
+const normalisePath = (value: string) => value === "/" ? value : value.replace(/\/$/, "");
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
   cn(
@@ -57,9 +58,10 @@ export function SiteHeader({ className }: { className?: string }) {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
 
-  const servicesActive = SERVICES_PATHS.some((p) => location.pathname === p || location.pathname.startsWith(p + "/"));
-  const portfolioActive = PORTFOLIO_PATHS.some((p) => location.pathname.startsWith(p));
-  const connectActive = CONNECT_PATHS.some((p) => location.pathname.startsWith(p));
+  const currentPath = normalisePath(location.pathname);
+  const servicesActive = SERVICES_PATHS.some((p) => currentPath === normalisePath(p) || currentPath.startsWith(normalisePath(p) + "/"));
+  const portfolioActive = PORTFOLIO_PATHS.some((p) => currentPath.startsWith(normalisePath(p)));
+  const connectActive = CONNECT_PATHS.some((p) => currentPath.startsWith(normalisePath(p)));
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -160,14 +162,14 @@ export function SiteHeader({ className }: { className?: string }) {
                     to={to}
                     className={cn(
                       "flex items-start gap-3 px-4 py-3 transition-colors hover:bg-accent/10 group",
-                      location.pathname === to && "bg-accent/10",
+                      currentPath === normalisePath(to) && "bg-accent/10",
                     )}
                   >
                     <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-accent/10 group-hover:bg-accent/20 transition-colors">
                       <Icon className="h-3.5 w-3.5 text-accent" />
                     </div>
                     <div>
-                      <p className={cn("text-sm font-medium", location.pathname === to ? "text-accent" : "text-foreground")}>
+                      <p className={cn("text-sm font-medium", currentPath === normalisePath(to) ? "text-accent" : "text-foreground")}>
                         {label}
                       </p>
                       <p className="text-xs text-muted-foreground">{description}</p>
@@ -204,14 +206,14 @@ export function SiteHeader({ className }: { className?: string }) {
                     to={to}
                     className={cn(
                       "flex items-start gap-3 px-4 py-3 transition-colors hover:bg-accent/10 group",
-                      location.pathname === to && "bg-accent/10",
+                      currentPath === normalisePath(to) && "bg-accent/10",
                     )}
                   >
                     <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-accent/10 group-hover:bg-accent/20 transition-colors">
                       <Icon className="h-3.5 w-3.5 text-accent" />
                     </div>
                     <div>
-                      <p className={cn("text-sm font-medium", location.pathname === to ? "text-accent" : "text-foreground")}>
+                      <p className={cn("text-sm font-medium", currentPath === normalisePath(to) ? "text-accent" : "text-foreground")}>
                         {label}
                       </p>
                       <p className="text-xs text-muted-foreground">{description}</p>
@@ -248,14 +250,14 @@ export function SiteHeader({ className }: { className?: string }) {
                     to={to}
                     className={cn(
                       "flex items-start gap-3 px-4 py-3 transition-colors hover:bg-accent/10 group",
-                      location.pathname === to && "bg-accent/10",
+                      currentPath === normalisePath(to) && "bg-accent/10",
                     )}
                   >
                     <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-accent/10 group-hover:bg-accent/20 transition-colors">
                       <Icon className="h-3.5 w-3.5 text-accent" />
                     </div>
                     <div>
-                      <p className={cn("text-sm font-medium", location.pathname === to ? "text-accent" : "text-foreground")}>
+                      <p className={cn("text-sm font-medium", currentPath === normalisePath(to) ? "text-accent" : "text-foreground")}>
                         {label}
                       </p>
                       <p className="text-xs text-muted-foreground">{description}</p>
@@ -269,7 +271,7 @@ export function SiteHeader({ className }: { className?: string }) {
 
         <div className="flex items-center gap-3">
           <Button asChild size="sm" className="hidden lg:inline-flex font-semibold shadow-gold">
-            <Link to="/contact">Get a Quote</Link>
+            <Link to="/contact/">Get a Quote</Link>
           </Button>
           <button
             className="lg:hidden p-2 min-h-[44px] min-w-[44px] flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
@@ -392,7 +394,7 @@ export function SiteHeader({ className }: { className?: string }) {
 
           <div className="pt-4 px-4">
             <Button asChild className="w-full font-semibold" size="lg">
-              <Link to="/contact" onClick={() => setMobileOpen(false)}>Get a Quote</Link>
+              <Link to="/contact/" onClick={() => setMobileOpen(false)}>Get a Quote</Link>
             </Button>
           </div>
         </nav>
