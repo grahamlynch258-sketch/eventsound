@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { uploadImageToStorage } from "@/lib/uploadImage";
+import { deleteStorageObjectByUrl, uploadImageToStorage } from "@/lib/uploadImage";
 import { Upload, X, Loader2 } from "lucide-react";
 
 type PendingFile = {
@@ -98,7 +98,10 @@ export function ImageUploader({ category, categoryLabel, onUploaded }: Props) {
             ? { ...base, sort_order: order++, is_active: true, width: uploaded.width, height: uploaded.height }
             : base,
         );
-        if (error) throw error;
+        if (error) {
+          await deleteStorageObjectByUrl(uploaded.publicUrl);
+          throw error;
+        }
         ok++;
       } catch (err) {
         failed.push(`${item.file.name}: ${err instanceof Error ? err.message : "unknown error"}`);

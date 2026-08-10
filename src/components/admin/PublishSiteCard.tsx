@@ -2,8 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Rocket, Loader2, CheckCircle2 } from "lucide-react";
-
-const BUILD_HOOK = import.meta.env.VITE_NETLIFY_BUILD_HOOK as string | undefined;
+import { supabase } from "@/integrations/supabase/client";
 
 /**
  * Triggers a Netlify rebuild via build hook. Almost all content changes go
@@ -15,12 +14,21 @@ export function PublishSiteCard() {
   const [state, setState] = useState<"idle" | "publishing" | "done" | "error">("idle");
 
   async function publish() {
-    if (!BUILD_HOOK) return;
     setState("publishing");
     try {
-      // Build hooks are fire-and-forget; no-cors keeps the browser from
-      // blocking on the (unreadable) cross-origin response.
-      await fetch(BUILD_HOOK, { method: "POST", mode: "no-cors" });
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      if (!session) throw new Error("You must be signed in as an administrator.");
+
+      const response = await fetch("/.netlify/functions/publish-site", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${session.access_token}` },
+      });
+      if (!response.ok) {
+        const payload = (await response.json().catch(() => null)) as { error?: string } | null;
+        throw new Error(payload?.error || "The build could not be started.");
+      }
       setState("done");
       setTimeout(() => setState("idle"), 8000);
     } catch {
@@ -41,27 +49,21 @@ export function PublishSiteCard() {
             version of those pages (takes ~2–3 minutes).
           </p>
         </div>
-        {BUILD_HOOK ? (
-          <Button onClick={publish} disabled={state === "publishing"} className="shrink-0">
-            {state === "publishing" ? (
-              <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Starting…
-              </>
-            ) : state === "done" ? (
-              <>
-                <CheckCircle2 className="mr-2 h-4 w-4" /> Build started
-              </>
-            ) : state === "error" ? (
-              "Failed — try again"
-            ) : (
-              "Publish site"
-            )}
-          </Button>
-        ) : (
-          <p className="shrink-0 text-xs text-muted-foreground">
-            Not set up yet — see <code>docs/image-workflow-runbook.md</code> (Step 2)
-          </p>
-        )}
+        <Button onClick={publish} disabled={state === "publishing"} className="shrink-0">
+          {state === "publishing" ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Starting…
+            </>
+          ) : state === "done" ? (
+            <>
+              <CheckCircle2 className="mr-2 h-4 w-4" /> Build started
+            </>
+          ) : state === "error" ? (
+            "Failed — check setup"
+          ) : (
+            "Publish site"
+          )}
+        </Button>
       </CardContent>
     </Card>
   );

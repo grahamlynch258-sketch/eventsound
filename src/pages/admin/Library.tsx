@@ -168,9 +168,11 @@ export default function AdminLibrary() {
 
   const deleteImage = useMutation({
     mutationFn: async (img: LibraryImage) => {
-      await deleteStorageObjectByUrl(img.image_url);
       const { error } = await supabase.from("library_images").delete().eq("id", img.id);
       if (error) throw error;
+      // Remove the database reference first. If storage cleanup fails, the
+      // result is an orphaned object rather than a broken image on the site.
+      await deleteStorageObjectByUrl(img.image_url);
     },
     onSuccess: () => {
       invalidate();

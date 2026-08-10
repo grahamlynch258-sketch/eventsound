@@ -109,14 +109,15 @@ Expected result: "Success. No rows returned" (the UPDATE reports ~153 rows).
 1. Netlify → your site → **Site configuration → Build & deploy → Build hooks →
    Add build hook**. Name it `Admin publish button`, branch `main`. Copy the URL.
 2. Netlify → **Site configuration → Environment variables → Add a variable**:
-   - Key: `VITE_NETLIFY_BUILD_HOOK`
+   - Key: `NETLIFY_BUILD_HOOK`
    - Value: the URL you just copied
-3. (Optional, local dev) add the same line to `.env` in `eventsound-live`.
+3. Keep this server-only value in Netlify. Do not prefix it with `VITE_` or add
+   it to a client-side environment file, because Vite variables are public.
 
-Until this is set, the Publish button on the admin Dashboard shows setup
-instructions instead of a button. Note: anyone who extracts this URL from the
-admin JavaScript could trigger builds (not code changes — just rebuilds).
-Acceptable for a solo site; rotate the hook in Netlify if it ever leaks.
+The Dashboard button calls an authenticated Netlify function. The function
+verifies the signed-in Supabase user has the `admin` role before reading this
+server-only hook and triggering the build. Until the variable is set, the
+button reports that publishing is not configured.
 
 ---
 
