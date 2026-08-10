@@ -7,10 +7,10 @@ import { useSeo } from "@/hooks/useSeo";
 
 const Index = () => {
   useSeo({
-    title: "AV Hire Ireland | Event Production & Equipment | EventSound",
-    description: "Professional AV hire & event production across Ireland. LED walls, PA systems, conference AV, staging & lighting. Based in Drogheda, serving nationwide. Get a free quote.",
+    title: "EventSound | AV Hire & Event Production Ireland",
+    description: "Professional AV hire and event production across Ireland. Sound systems, LED video walls, conference AV, staging and lighting with an experienced technical crew.",
     canonical: "https://eventsound.ie/",
-    ogTitle: "Audio Visual Hire Ireland | Event Production | EventSound",
+    ogTitle: "EventSound | AV Hire & Event Production Ireland",
     ogDescription: "Professional audio visual hire and event production across Ireland. Sound systems, LED screens, stage lighting, and staging — with full technical crew.",
     ogType: "website"
   });

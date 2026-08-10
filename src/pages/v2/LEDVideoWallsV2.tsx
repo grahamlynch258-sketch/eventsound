@@ -138,12 +138,12 @@ const whyItems = [
 // ── Location Pages ───────────────────────────────────────────────────────────
 
 const locationLinks = [
-  { city: "Dublin", href: "/services/led-walls/dublin" },
-  { city: "Cork", href: "/services/led-walls/cork" },
-  { city: "Galway", href: "/services/led-walls/galway" },
-  { city: "Belfast", href: "/services/led-walls/belfast" },
-  { city: "Limerick", href: "/services/led-walls/limerick" },
-  { city: "Athlone", href: "/services/led-walls/athlone" },
+  { city: "Dublin", href: "/services/led-walls/dublin/" },
+  { city: "Cork", href: "/services/led-walls/cork/" },
+  { city: "Galway", href: "/services/led-walls/galway/" },
+  { city: "Belfast", href: "/services/led-walls/belfast/" },
+  { city: "Limerick", href: "/services/led-walls/limerick/" },
+  { city: "Athlone", href: "/services/led-walls/athlone/" },
 ];
 
 // ── Main Component ───────────────────────────────────────────────────────────
@@ -190,8 +190,8 @@ export default function LEDVideoWallsV2() {
   const faqSchema = generateFAQSchema({ questions: faqs });
 
   useSeo({
-    title: "LED Video Wall Hire Ireland | LED Screen Rental Dublin | EventSound",
-    description: "LED video wall hire and rental across Ireland. Unilumin & Absen panels from 1.9mm to 3.9mm pixel pitch. Indoor, outdoor & curved configurations. Delivery, setup & operator included.",
+    title: "LED Video Wall Hire Ireland | Indoor & Outdoor Screens",
+    description: "Indoor and outdoor LED video wall hire across Ireland and Dublin for conferences, corporate events, concerts and theatre. Installation and operator included.",
     canonical: "https://eventsound.ie/services/led-video-walls",
     additionalSchemas: [
       { schema: serviceSchema, schemaId: "service-schema" },
@@ -232,7 +232,7 @@ export default function LEDVideoWallsV2() {
               <ol className="flex items-center gap-2">
                 <li><Link to="/" className="hover:text-white transition-colors">Home</Link></li>
                 <li><ChevronRight className="h-3.5 w-3.5" /></li>
-                <li><Link to="/services" className="hover:text-white transition-colors">Services</Link></li>
+                <li><Link to="/services/" className="hover:text-white transition-colors">Services</Link></li>
                 <li><ChevronRight className="h-3.5 w-3.5" /></li>
                 <li className="text-white/90">LED Video Walls</li>
               </ol>
@@ -537,7 +537,7 @@ export default function LEDVideoWallsV2() {
               for a complete visual experience. For events with a remote audience, add our{" "}
               <Link to="/services/virtual-events/" className="text-accent hover:underline">live streaming and hybrid event</Link>{" "}
               services. See how we delivered LED walls for the{" "}
-              <Link to="/case-studies/swords-castle-summer-concerts" className="text-accent hover:underline">Swords Castle Summer Concerts</Link>.
+              <Link to="/case-studies/swords-castle-summer-concerts/" className="text-accent hover:underline">Swords Castle Summer Concerts</Link>.
             </p>
           </div>
         </ScrollReveal>

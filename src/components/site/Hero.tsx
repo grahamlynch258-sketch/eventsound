@@ -23,7 +23,7 @@ export function Hero() {
         </p>
         <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row md:mt-8">
           <Button asChild size="lg">
-            <Link to="/contact" onClick={() => trackEvent("hero_cta_click", { cta_type: "quote" })}>
+            <Link to="/contact/" onClick={() => trackEvent("hero_cta_click", { cta_type: "quote" })}>
               Plan my event <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>

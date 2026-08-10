@@ -42,8 +42,8 @@ export default function AVProduction() {
   });
 
   useSeo({
-    title: "AV Hire Dublin | Audio Visual Equipment Hire Ireland | EventSound",
-    description: "AV equipment hire across Ireland. LED screens, PA systems, projectors, lighting & staging for corporate events, exhibitions & conferences. Full setup & technician included.",
+    title: "AV Hire Dublin & Ireland | Sound, Screens & Crew",
+    description: "AV hire for conferences, corporate events and exhibitions in Dublin and across Ireland. Sound, screens, lighting, setup, operators and technical crew included.",
     canonical: "https://eventsound.ie/services/av-production",
     additionalSchemas: [
       { schema: faqSchema, schemaId: "faq-schema" },
@@ -58,11 +58,11 @@ export default function AVProduction() {
     <PageShell>
       <Breadcrumb items={[
         { name: "Home", href: "/" },
-        { name: "Services", href: "/services" },
+        { name: "Services", href: "/services/" },
         { name: "AV Hire" }
       ]} />
       <PageHeader
-        title="AV Hire & Audio Visual Services"
+        title="AV Hire Dublin & Ireland"
         subtitle="Complete audiovisual solutions for corporate events and conferences"
         backgroundImage={hero}
         backgroundAlt="Professional AV production setup at a conference in Ireland"
@@ -166,7 +166,7 @@ export default function AVProduction() {
           <ScrollReveal>
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Frequently Combined With</h2>
           <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-            Our AV production packages often include <Link to="/services/led-video-walls" className="text-accent hover:underline">LED video wall hire</Link> and <Link to="/services/lighting-design" className="text-accent hover:underline">event lighting design</Link> for a unified production. For conference-specific setups, see our dedicated <Link to="/services/conference-av-hire" className="text-accent hover:underline">conference AV hire</Link> service. See our full AV setup for the <Link to="/case-studies/prism-immersive-technology-summit" className="text-accent hover:underline">PRISM Immersive Technology Summit</Link>.
+            Our AV production packages often include <Link to="/services/led-video-walls/" className="text-accent hover:underline">LED video wall hire</Link> and <Link to="/services/lighting-design/" className="text-accent hover:underline">event lighting design</Link> for a unified production. For conference-specific setups, see our dedicated <Link to="/services/conference-av-hire/" className="text-accent hover:underline">conference AV hire</Link> service. See our full AV setup for the <Link to="/case-studies/prism-immersive-technology-summit/" className="text-accent hover:underline">PRISM Immersive Technology Summit</Link>.
           </p>
           </ScrollReveal>
 
@@ -192,7 +192,7 @@ export default function AVProduction() {
           <div className="mt-12 text-center transition-transform duration-300 hover:scale-[1.04] cursor-default">
             <h3 className="text-xl font-semibold mb-2">Need AV for Your Event?</h3>
             <p className="text-muted-foreground mb-4 transition-transform duration-300 hover:scale-[1.04] cursor-default">Tell us your venue, audience size, and event format — we'll design a complete AV solution and quote within 24 hours.</p>
-            <Link to="/contact"><Button size="lg">Get a Quote</Button></Link>
+            <Link to="/contact/"><Button size="lg">Get a Quote</Button></Link>
           </div>
         </div>
       </div>
@@ -208,7 +208,7 @@ export default function AVProduction() {
         proof={{
           title: "PRISM Immersive Technology Summit",
           description: "Curved LED, sound and mood lighting delivered as one coordinated production for a 250-person technology summit.",
-          href: "/case-studies/prism-immersive-technology-summit",
+          href: "/case-studies/prism-immersive-technology-summit/",
         }}
       />
       <StickyCtaBar />

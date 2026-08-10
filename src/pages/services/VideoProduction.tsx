@@ -11,6 +11,9 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
 import { generateServiceSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
 import { Breadcrumb } from "@/components/site/Breadcrumb";
+import { ServiceHeroActions } from "@/components/site/ServiceHeroActions";
+import { ServiceEnquirySection } from "@/components/site/ServiceEnquirySection";
+import { StickyCtaBar } from "@/components/StickyCtaBar";
 
 export default function VideoProduction() {
   const faqs = [
@@ -41,8 +44,8 @@ export default function VideoProduction() {
   });
 
   useSeo({
-    title: "Video Equipment Hire Ireland | Live Streaming & Production | EventSound",
-    description: "Event video production & live streaming in Ireland. Multi-camera setups, IMAG, live switching, recording & highlight videos for conferences, concerts & corporate events.",
+    title: "Event Video Production Ireland | Multi-Camera & Streaming",
+    description: "Multi-camera event video production, IMAG, recording and live streaming for conferences, concerts and corporate events across Ireland. Crew included.",
     canonical: "https://eventsound.ie/services/video-production",
     additionalSchemas: [
       { schema: faqSchema, schemaId: "faq-schema" },
@@ -57,10 +60,15 @@ export default function VideoProduction() {
     <PageShell>
       <Breadcrumb items={[
         { name: "Home", href: "/" },
-        { name: "Services", href: "/services" },
+        { name: "Services", href: "/services/" },
         { name: "Video Production" }
       ]} />
-      <PageHeader title="Video Equipment Hire & Live Streaming Ireland" subtitle="Capture and broadcast your event to any audience" backgroundImage={hero} backgroundAlt="Multi-camera video production at a live event in Ireland" />
+      <PageHeader title="Event Video Production & Live Streaming Ireland" subtitle="Multi-camera coverage, live vision mixing, recording and streaming with an experienced crew" backgroundImage={hero} backgroundAlt="Multi-camera video production at a live event in Ireland">
+        <ServiceHeroActions
+          serviceName="Event Video Production"
+          benefits={["Multi-camera capture and IMAG", "Live streaming and recording", "Operators, switching and delivery included"]}
+        />
+      </PageHeader>
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6 text-center">
           <p className="text-lg text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
@@ -105,7 +113,7 @@ export default function VideoProduction() {
           <ScrollReveal>
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Frequently Combined With</h2>
           <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-            Video production works best alongside <Link to="/services/led-video-walls" className="text-accent hover:underline">LED video walls</Link> for live IMAG and playback. For events with a remote audience, combine with our <Link to="/services/virtual-events" className="text-accent hover:underline">live streaming and hybrid event</Link> services. Full technical coordination is available through our <Link to="/services/event-production" className="text-accent hover:underline">event production</Link> team.
+            Video production works best alongside <Link to="/services/led-video-walls/" className="text-accent hover:underline">LED video walls</Link> for live IMAG and playback. For events with a remote audience, combine with our <Link to="/services/virtual-events/" className="text-accent hover:underline">live streaming and hybrid event</Link> services. Full technical coordination is available through our <Link to="/services/event-production/" className="text-accent hover:underline">event production</Link> team.
           </p>
           </ScrollReveal>
 
@@ -131,10 +139,26 @@ export default function VideoProduction() {
           <div className="mt-12 text-center transition-transform duration-300 hover:scale-[1.04] cursor-default">
             <h3 className="text-xl font-semibold mb-2">Need Video for Your Event?</h3>
             <p className="text-muted-foreground mb-4 transition-transform duration-300 hover:scale-[1.04] cursor-default">Tell us your event format and streaming requirements — we'll design a video solution and quote within 24 hours.</p>
-            <Link to="/contact"><Button size="lg">Get a Quote</Button></Link>
+            <Link to="/contact/"><Button size="lg">Get a Quote</Button></Link>
           </div>
         </div>
       </div>
+      <ServiceEnquirySection
+        serviceName="Event Video Production"
+        heading="Plan the cameras, screens, recording and stream as one system"
+        description="Send the venue, audience, running order, number of speakers or performers, screen requirements and streaming destination. We’ll recommend the camera plan, crew and delivery format."
+        included={[
+          "Camera positions, sightlines, IMAG and programme output planned together",
+          "Live switching, recording, graphics and streaming responsibilities defined",
+          "Internet, audio feeds, rehearsal and final-file delivery checked before show day",
+        ]}
+        proof={{
+          title: "PRISM Immersive Technology Summit",
+          description: "Presentation, screen and technical systems delivered for a content-led conference programme.",
+          href: "/case-studies/prism-immersive-technology-summit/",
+        }}
+      />
+      <StickyCtaBar />
     </PageShell>
   );
 }

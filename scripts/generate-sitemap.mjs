@@ -47,6 +47,11 @@ const staticRoutes = [
   { path: '/services/conference-av/athlone', priority: '0.7', changefreq: 'monthly' },
   ];
 
+function canonicalPath(routePath) {
+  if (routePath === '/') return '/';
+  return routePath.endsWith('/') ? routePath : `${routePath}/`;
+}
+
 async function generateSitemap() {
     console.log('Generating sitemap...');
 
@@ -81,7 +86,7 @@ async function generateSitemap() {
   // Add static routes
   staticRoutes.forEach(route => {
         xml += '  <url>\n';
-        xml += `    <loc>https://eventsound.ie${route.path}</loc>\n`;
+        xml += `    <loc>https://eventsound.ie${canonicalPath(route.path)}</loc>\n`;
         xml += `    <changefreq>${route.changefreq}</changefreq>\n`;
         xml += `    <priority>${route.priority}</priority>\n`;
         xml += '  </url>\n';
@@ -91,7 +96,7 @@ async function generateSitemap() {
   if (caseStudies.length > 0) {
         caseStudies.forEach(cs => {
                 xml += '  <url>\n';
-                xml += `    <loc>https://eventsound.ie/case-studies/${cs.slug}</loc>\n`;
+                xml += `    <loc>https://eventsound.ie/case-studies/${cs.slug}/</loc>\n`;
                 if (cs.updated_at) {
                           const lastmod = new Date(cs.updated_at).toISOString().split('T')[0];
                           xml += `    <lastmod>${lastmod}</lastmod>\n`;
