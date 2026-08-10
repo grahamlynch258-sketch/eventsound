@@ -35,7 +35,7 @@ const DublinConferenceAV = () => {
       { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
     ],
   });
-  const { hero } = useServiceImages("service-conference-av");
+  const { hero, heroAlt } = useServiceImages("service-conference-av");
 
   return (
     <PageShell>
@@ -51,7 +51,7 @@ const DublinConferenceAV = () => {
         title="Conference AV Services in Dublin"
         subtitle="Complete conference audio visual solutions for Dublin's corporate events market"
         backgroundImage={hero}
-        backgroundAlt="Conference AV setup at corporate event in Dublin"
+        backgroundAlt={heroAlt ?? "Conference AV setup at corporate event in Dublin"}
       />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6 text-center">

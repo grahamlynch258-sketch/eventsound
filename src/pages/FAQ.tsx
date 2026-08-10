@@ -9,7 +9,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { generateFAQSchema } from "@/lib/schema";
 
 const FAQ = () => {
-  const { hero } = useServiceImages("hero-faq");
+  const { hero, heroAlt } = useServiceImages("hero-faq");
   const faqs: { question: string; answer: React.ReactNode }[] = [
     {
       question: "What areas do you serve?",
@@ -82,7 +82,7 @@ const FAQ = () => {
         title="Frequently Asked Questions"
         subtitle="Everything you need to know about our event production services"
         backgroundImage={hero}
-        backgroundAlt="EventSound professional event production setup"
+        backgroundAlt={heroAlt ?? "EventSound professional event production setup"}
       />
       <div className="container mx-auto px-4 py-12">
         <StaggerContainer className="max-w-4xl mx-auto space-y-6">

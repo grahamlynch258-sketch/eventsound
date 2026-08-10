@@ -9,7 +9,7 @@ const GOOGLE_REVIEW_URL =
   "https://search.google.com/local/writereview?placeid=ChIJy0JQslYLZ0gRQOACHmQptmI";
 
 const Reviews = () => {
-  const { hero } = useServiceImages("hero-reviews");
+  const { hero, heroAlt } = useServiceImages("hero-reviews");
   useSeo({
     title: "Client Reviews | EventSound Event Production Ireland",
     description: "What our clients say about EventSound. Read reviews from corporate clients, agencies & event organisers across Ireland. Trusted AV hire & event production.",
@@ -24,7 +24,7 @@ const Reviews = () => {
         title="Client Reviews"
         subtitle="Real feedback from event managers, agencies, and corporate clients who trust EventSound as their production partner across Ireland."
         backgroundImage={hero}
-        backgroundAlt="Professional event production setup at a live event in Ireland"
+        backgroundAlt={heroAlt ?? "Professional event production setup at a live event in Ireland"}
       />
 
       {/* Google Reviews Section */}

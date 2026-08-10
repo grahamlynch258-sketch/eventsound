@@ -36,7 +36,7 @@ const AthaloneLedWalls = () => {
       { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
     ],
   });
-  const { hero } = useServiceImages("service-led-walls");
+  const { hero, heroAlt } = useServiceImages("service-led-walls");
 
   return (
     <PageShell>
@@ -52,7 +52,7 @@ const AthaloneLedWalls = () => {
         title="LED Wall Hire in Athlone & the Midlands"
         subtitle="Professional LED walls at Ireland's geographic centre"
         backgroundImage={hero}
-        backgroundAlt="LED video wall at corporate event in Athlone"
+        backgroundAlt={heroAlt ?? "LED video wall at corporate event in Athlone"}
       />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6 text-center">

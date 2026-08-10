@@ -53,7 +53,7 @@ export default function LightingDesign() {
       { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
     ]
   });
-  const { hero, gallery } = useServiceImages("service-lighting");
+  const { hero, heroAlt, gallery } = useServiceImages("service-lighting");
   const { data: sections = [] } = useServiceSections("lighting-design");
 
   return (
@@ -67,7 +67,7 @@ export default function LightingDesign() {
         title="Lighting Hire Dublin & Ireland"
         subtitle="Create atmosphere and impact with professional event lighting"
         backgroundImage={hero}
-        backgroundAlt="Professional stage lighting design at a corporate event in Ireland"
+        backgroundAlt={heroAlt ?? "Professional stage lighting design at a corporate event in Ireland"}
       >
         <ServiceHeroActions
           serviceName="Lighting Design"

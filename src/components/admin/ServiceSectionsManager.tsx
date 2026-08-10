@@ -53,7 +53,7 @@ function ServiceSectionList({ serviceKey }: { serviceKey: string }) {
     const file = e.target.files?.[0];
     if (!file) return;
     try {
-      const url = await uploadImage.mutateAsync(file);
+      const url = await uploadImage.mutateAsync({ file, category: "service-sections" });
       setForm((f) => ({ ...f, image_url: url, file_name: file.name }));
       toast({ title: "Image uploaded" });
     } catch (err) {

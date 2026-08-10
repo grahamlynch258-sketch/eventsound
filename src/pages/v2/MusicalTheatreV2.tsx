@@ -169,11 +169,11 @@ const allInclusiveItems = [
 // ── Main Component ───────────────────────────────────────────────────────────
 
 export default function MusicalTheatreV2() {
-  const { hero, gallery: libraryGallery } = useServiceImages("service-musical-theatre");
+  const { hero, heroAlt, gallery: libraryGallery } = useServiceImages("service-musical-theatre");
   const { data: slots = [] } = useServicePageImages("musical-theatre");
 
   const heroImages: { image_url: string; alt_text: string | null }[] = [];
-  if (hero) heroImages.push({ image_url: hero, alt_text: "Musical theatre production with professional sound and lighting by EventSound" });
+  if (hero) heroImages.push({ image_url: hero, alt_text: heroAlt ?? "Musical theatre production with professional sound and lighting by EventSound" });
   for (const img of libraryGallery) heroImages.push(img);
 
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -235,7 +235,7 @@ export default function MusicalTheatreV2() {
               className="absolute inset-0 w-full h-full object-cover transition-opacity duration-[800ms]"
               style={{ opacity: i === currentSlide ? 1 : 0 }}
               loading={i === 0 ? "eager" : "lazy"}
-              fetchPriority={i === 0 ? "high" : undefined}
+              {...(i === 0 ? ({ fetchpriority: "high" } as Record<string, string>) : {})}
               decoding="async"
             />
           ))}

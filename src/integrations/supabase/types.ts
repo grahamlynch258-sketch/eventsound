@@ -71,6 +71,81 @@ export type Database = {
         }
         Relationships: []
       }
+      case_studies: {
+        Row: {
+          body_content: string
+          canonical_url: string | null
+          category: string | null
+          client_name: string | null
+          created_at: string
+          event_date: string | null
+          excerpt: string
+          featured_image_alt: string | null
+          featured_image_url: string | null
+          id: string
+          is_published: boolean
+          location: string | null
+          meta_description: string | null
+          meta_title: string | null
+          noindex: boolean
+          og_image_url: string | null
+          published_at: string | null
+          services_used: string[]
+          slug: string
+          tags: string[]
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          body_content?: string
+          canonical_url?: string | null
+          category?: string | null
+          client_name?: string | null
+          created_at?: string
+          event_date?: string | null
+          excerpt?: string
+          featured_image_alt?: string | null
+          featured_image_url?: string | null
+          id?: string
+          is_published?: boolean
+          location?: string | null
+          meta_description?: string | null
+          meta_title?: string | null
+          noindex?: boolean
+          og_image_url?: string | null
+          published_at?: string | null
+          services_used?: string[]
+          slug: string
+          tags?: string[]
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          body_content?: string
+          canonical_url?: string | null
+          category?: string | null
+          client_name?: string | null
+          created_at?: string
+          event_date?: string | null
+          excerpt?: string
+          featured_image_alt?: string | null
+          featured_image_url?: string | null
+          id?: string
+          is_published?: boolean
+          location?: string | null
+          meta_description?: string | null
+          meta_title?: string | null
+          noindex?: boolean
+          og_image_url?: string | null
+          published_at?: string | null
+          services_used?: string[]
+          slug?: string
+          tags?: string[]
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       gallery_items: {
         Row: {
           alt_text: string | null
@@ -110,24 +185,39 @@ export type Database = {
           category: string
           created_at: string
           file_name: string
+          height: number | null
           id: string
           image_url: string
+          is_active: boolean
+          sort_order: number
+          updated_at: string
+          width: number | null
         }
         Insert: {
           alt_text?: string | null
           category: string
           created_at?: string
           file_name: string
+          height?: number | null
           id?: string
           image_url: string
+          is_active?: boolean
+          sort_order?: number
+          updated_at?: string
+          width?: number | null
         }
         Update: {
           alt_text?: string | null
           category?: string
           created_at?: string
           file_name?: string
+          height?: number | null
           id?: string
           image_url?: string
+          is_active?: boolean
+          sort_order?: number
+          updated_at?: string
+          width?: number | null
         }
         Relationships: []
       }

@@ -189,12 +189,12 @@ const locationLinks = [
 // ── Main Component ───────────────────────────────────────────────────────────
 
 export default function LEDScreenHireV2() {
-  const { hero, gallery: libraryGallery } = useServiceImages("service-led-screen-hire");
+  const { hero, heroAlt, gallery: libraryGallery } = useServiceImages("service-led-screen-hire");
   const { data: slots = [] } = useServicePageImages("led-screen-hire");
 
   // Build hero slideshow array
   const heroImages: { image_url: string; alt_text: string | null }[] = [];
-  if (hero) heroImages.push({ image_url: hero, alt_text: "LED screen and TV monitor hire for corporate events in Ireland" });
+  if (hero) heroImages.push({ image_url: hero, alt_text: heroAlt ?? "LED screen and TV monitor hire for corporate events in Ireland" });
   for (const img of libraryGallery) heroImages.push(img);
 
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -257,7 +257,7 @@ export default function LEDScreenHireV2() {
               className="absolute inset-0 w-full h-full object-cover transition-opacity duration-[800ms]"
               style={{ opacity: i === currentSlide ? 1 : 0 }}
               loading={i === 0 ? "eager" : "lazy"}
-              fetchPriority={i === 0 ? "high" : undefined}
+              {...(i === 0 ? ({ fetchpriority: "high" } as Record<string, string>) : {})}
               decoding="async"
             />
           ))}

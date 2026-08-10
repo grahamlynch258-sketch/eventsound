@@ -41,7 +41,9 @@ export function OptimizedImage({
       height={height}
       loading={priority ? "eager" : "lazy"}
       decoding="async"
-      fetchPriority={priority ? "high" : undefined}
+      // React 18 drops the camelCase fetchPriority prop (and warns); the
+      // browser only honours the lowercase DOM attribute.
+      {...(priority ? ({ fetchpriority: "high" } as Record<string, string>) : {})}
       sizes={sizes}
       className={cn("object-cover", className)}
       style={style}

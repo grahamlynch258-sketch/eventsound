@@ -50,7 +50,7 @@ export default function VirtualEvents() {
       { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
     ]
   });
-  const { hero, gallery } = useServiceImages("service-virtual");
+  const { hero, heroAlt, gallery } = useServiceImages("service-virtual");
   const { data: sections = [] } = useServiceSections("virtual-events");
 
   return (
@@ -64,7 +64,7 @@ export default function VirtualEvents() {
         title="Hybrid Event Production Ireland"
         subtitle="Professional production for online and hybrid audiences"
         backgroundImage={hero}
-        backgroundAlt="Virtual event production studio setup in Ireland"
+        backgroundAlt={heroAlt ?? "Virtual event production studio setup in Ireland"}
       />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6 text-center">

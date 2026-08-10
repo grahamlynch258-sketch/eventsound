@@ -51,7 +51,7 @@ export default function AVProduction() {
       { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
     ]
   });
-  const { hero, gallery } = useServiceImages("service-av-production");
+  const { hero, heroAlt, gallery } = useServiceImages("service-av-production");
   const { data: sections = [] } = useServiceSections("av-production");
 
   return (
@@ -65,7 +65,7 @@ export default function AVProduction() {
         title="AV Hire Dublin & Ireland"
         subtitle="Complete audiovisual solutions for corporate events and conferences"
         backgroundImage={hero}
-        backgroundAlt="Professional AV production setup at a conference in Ireland"
+        backgroundAlt={heroAlt ?? "Professional AV production setup at a conference in Ireland"}
       >
         <ServiceHeroActions
           serviceName="AV Equipment & Production"

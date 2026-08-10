@@ -432,15 +432,23 @@ async function getHeroImage() {
     const SUPABASE_KEY = process.env.VITE_SUPABASE_PUBLISHABLE_KEY || '';
     if (!SUPABASE_URL || !SUPABASE_KEY) return null;
 
-    const res = await fetch(
-      `${SUPABASE_URL}/rest/v1/library_images?select=image_url,alt_text,file_name&category=eq.portfolio&order=created_at.asc&limit=1`,
-      {
-        headers: {
-          apikey: SUPABASE_KEY,
-          Authorization: `Bearer ${SUPABASE_KEY}`,
-        },
-      }
+    const headers = {
+      apikey: SUPABASE_KEY,
+      Authorization: `Bearer ${SUPABASE_KEY}`,
+    };
+    // Must match HeroSlideshow.tsx: first ACTIVE slide by sort_order — this is
+    // the image the browser preloads, so build-time and runtime must agree.
+    let res = await fetch(
+      `${SUPABASE_URL}/rest/v1/library_images?select=image_url,alt_text,file_name&category=eq.portfolio&is_active=eq.true&order=sort_order.asc,created_at.asc&limit=1`,
+      { headers }
     );
+    if (!res.ok) {
+      // Legacy ordering, for builds that run before the 2026-08-10 migration.
+      res = await fetch(
+        `${SUPABASE_URL}/rest/v1/library_images?select=image_url,alt_text,file_name&category=eq.portfolio&order=created_at.asc&limit=1`,
+        { headers }
+      );
+    }
     if (!res.ok) return null;
     const data = await res.json();
     return data?.[0] || null;

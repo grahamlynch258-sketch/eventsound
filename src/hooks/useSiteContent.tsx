@@ -1,5 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { uploadImageToStorage } from "@/lib/uploadImage";
 
 export type SiteContent = {
   id: string;
@@ -203,22 +204,13 @@ export function useDeleteCategory() {
   });
 }
 
+type UploadImageInput = File | { file: File; category?: string };
+
 export function useUploadImage() {
   return useMutation({
-    mutationFn: async (file: File) => {
-      const fileExt = file.name.split(".").pop();
-      const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
-
-      const { error: uploadError } = await supabase.storage
-        .from("site-images")
-        .upload(fileName, file);
-
-      if (uploadError) throw uploadError;
-
-      const {
-        data: { publicUrl },
-      } = supabase.storage.from("site-images").getPublicUrl(fileName);
-
+    mutationFn: async (input: UploadImageInput) => {
+      const { file, category } = input instanceof File ? { file: input, category: undefined } : input;
+      const { publicUrl } = await uploadImageToStorage(file, category);
       return publicUrl;
     },
   });

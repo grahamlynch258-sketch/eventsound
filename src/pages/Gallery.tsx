@@ -14,7 +14,7 @@ const Gallery = () => {
     ogDescription: "View our portfolio of successful events across Ireland. LED wall installations, lighting designs, and audio setups."
   });
 
-  const { hero } = useServiceImages("hero-gallery");
+  const { hero, heroAlt } = useServiceImages("hero-gallery");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   return (
@@ -23,7 +23,7 @@ const Gallery = () => {
         title="Portfolio"
         subtitle="See our work across corporate events, conferences, and live productions"
         backgroundImage={hero}
-        backgroundAlt="Professional event production setup — EventSound portfolio"
+        backgroundAlt={heroAlt ?? "Professional event production setup — EventSound portfolio"}
       />
       <GalleryGrid 
         selectedCategory={selectedCategory}

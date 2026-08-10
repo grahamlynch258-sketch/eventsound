@@ -25,7 +25,7 @@ interface CaseStudy {
 }
 
 const CaseStudies = () => {
-  const { hero } = useServiceImages("hero-case-studies");
+  const { hero, heroAlt } = useServiceImages("hero-case-studies");
   const [caseStudies, setCaseStudies] = useState<CaseStudy[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -77,7 +77,7 @@ const CaseStudies = () => {
           title="Case Studies"
           subtitle="Real-world event production success stories"
           backgroundImage={hero}
-          backgroundAlt="EventSound event production success stories"
+          backgroundAlt={heroAlt ?? "EventSound event production success stories"}
         />
         <div className="container mx-auto px-4 py-12">
           <div className="text-center">Loading case studies...</div>
@@ -92,7 +92,7 @@ const CaseStudies = () => {
         title="Case Studies"
         subtitle="Real-world event production success stories from across Ireland"
         backgroundImage={hero}
-        backgroundAlt="EventSound event production success stories"
+        backgroundAlt={heroAlt ?? "EventSound event production success stories"}
       />
       
       <div className="container mx-auto px-4 py-12">

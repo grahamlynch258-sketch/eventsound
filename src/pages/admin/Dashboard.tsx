@@ -10,6 +10,7 @@ import {
   Images,
   Briefcase
 } from "lucide-react";
+import { PublishSiteCard } from "@/components/admin/PublishSiteCard";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -20,6 +21,8 @@ const Dashboard = () => {
         <h1 className="text-3xl font-bold">Admin Dashboard</h1>
         <p className="text-gray-600 mt-2">Manage your EventSound website content</p>
       </div>
+
+      <PublishSiteCard />
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* Gallery Card */}

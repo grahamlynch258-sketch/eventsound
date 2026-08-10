@@ -4,7 +4,7 @@ import { useSeo } from "@/hooks/useSeo";
 import { useServiceImages } from "@/hooks/useServiceImages";
 
 const HealthAndSafety = () => {
-  const { hero } = useServiceImages("hero-health-safety");
+  const { hero, heroAlt } = useServiceImages("hero-health-safety");
   useSeo({
     title: "Health & Safety | EventSound Event Production Ireland",
     description: "EventSound's commitment to health & safety. TUV-certified staging, European-manufactured equipment, full public liability insurance & trained technical crew.",
@@ -19,7 +19,7 @@ const HealthAndSafety = () => {
         title="Health & Safety"
         subtitle="Our commitment to safe event production"
         backgroundImage={hero}
-        backgroundAlt="EventSound crew setting up professional event production equipment"
+        backgroundAlt={heroAlt ?? "EventSound crew setting up professional event production equipment"}
       />
       <div className="container mx-auto px-4 py-12">
         <div className="prose prose-invert max-w-3xl mx-auto space-y-6 text-center">

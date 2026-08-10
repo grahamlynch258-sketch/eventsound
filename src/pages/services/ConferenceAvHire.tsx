@@ -53,7 +53,7 @@ export default function ConferenceAvHire() {
       { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
     ]
   });
-  const { hero, gallery } = useServiceImages("service-conference-av");
+  const { hero, heroAlt, gallery } = useServiceImages("service-conference-av");
   const { data: sections = [] } = useServiceSections("conference-av-hire");
 
   return (
@@ -67,7 +67,7 @@ export default function ConferenceAvHire() {
         title="Conference AV Hire Ireland"
         subtitle="Professional audio visual solutions for conferences, AGMs, and corporate events across Ireland"
         backgroundImage={hero}
-        backgroundAlt="Professional conference AV setup with LED screens and lectern microphones in Ireland"
+        backgroundAlt={heroAlt ?? "Professional conference AV setup with LED screens and lectern microphones in Ireland"}
       >
         <ServiceHeroActions
           serviceName="Conference AV & Full Production"

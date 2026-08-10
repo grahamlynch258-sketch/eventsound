@@ -53,7 +53,7 @@ export default function VideoProduction() {
       { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
     ]
   });
-  const { hero, gallery } = useServiceImages("service-video");
+  const { hero, heroAlt, gallery } = useServiceImages("service-video");
   const { data: sections = [] } = useServiceSections("video-production");
 
   return (
@@ -63,7 +63,7 @@ export default function VideoProduction() {
         { name: "Services", href: "/services/" },
         { name: "Video Production" }
       ]} />
-      <PageHeader title="Event Video Production & Live Streaming Ireland" subtitle="Multi-camera coverage, live vision mixing, recording and streaming with an experienced crew" backgroundImage={hero} backgroundAlt="Multi-camera video production at a live event in Ireland">
+      <PageHeader title="Event Video Production & Live Streaming Ireland" subtitle="Multi-camera coverage, live vision mixing, recording and streaming with an experienced crew" backgroundImage={hero} backgroundAlt={heroAlt ?? "Multi-camera video production at a live event in Ireland"}>
         <ServiceHeroActions
           serviceName="Event Video Production"
           benefits={["Multi-camera capture and IMAG", "Live streaming and recording", "Operators, switching and delivery included"]}

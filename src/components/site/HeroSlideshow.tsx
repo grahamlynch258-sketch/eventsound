@@ -6,17 +6,37 @@ type Props = {
   intervalMs?: number;
 };
 
+type Slide = { id: string; image_url: string; alt_text: string | null; file_name: string };
+
+// Every mounted slide is downloaded by the browser (they sit in the viewport,
+// so loading="lazy" never defers them). Cap the rotation and only mount the
+// slides taking part in the current transition.
+const MAX_SLIDES = 12;
+
 export function HeroSlideshow({ intervalMs = 5000 }: Props) {
   const { data: headlines } = useQuery({
-    queryKey: ["library-images", "headlines"],
-    queryFn: async () => {
-      const { data, error } = await supabase
+    queryKey: ["library-images", "portfolio"],
+    queryFn: async (): Promise<Slide[]> => {
+      const ordered = await supabase
         .from("library_images")
         .select("id, image_url, alt_text, file_name")
         .eq("category", "portfolio")
-        .order("created_at", { ascending: true });
-      if (error) throw error;
-      return data;
+        .eq("is_active", true)
+        .order("sort_order", { ascending: true })
+        .order("created_at", { ascending: true })
+        .limit(MAX_SLIDES);
+      if (!ordered.error) return ordered.data;
+
+      // Before the sort_order/is_active migration has run, fall back to the
+      // legacy ordering so the slideshow keeps working.
+      const legacy = await supabase
+        .from("library_images")
+        .select("id, image_url, alt_text, file_name")
+        .eq("category", "portfolio")
+        .order("created_at", { ascending: true })
+        .limit(MAX_SLIDES);
+      if (legacy.error) throw legacy.error;
+      return legacy.data;
     },
   });
 
@@ -68,7 +88,9 @@ export function HeroSlideshow({ intervalMs = 5000 }: Props) {
         alt={first.alt}
         loading="eager"
         decoding="sync"
-        fetchPriority="high"
+        // React 18 drops the camelCase fetchPriority prop (and warns); the
+        // browser only honours the lowercase DOM attribute.
+        {...({ fetchpriority: "high" } as Record<string, string>)}
         width={1920}
         height={1080}
         className="absolute inset-0 h-full w-full object-cover"
@@ -76,12 +98,18 @@ export function HeroSlideshow({ intervalMs = 5000 }: Props) {
     );
   }
 
-  // After first transition: render all slides with animation
+  // After the first transition, mount only the slides involved in the
+  // animation: previous (sliding out), current (sliding in), and next
+  // (pre-loading off-screen for the upcoming transition).
+  const nextIndex = (currentIndex + 1) % images.length;
+
   return (
     <>
       {images.map((img, i) => {
         const isActive = i === currentIndex;
         const isPrev = i === prevIndexRef.current;
+        const isNext = i === nextIndex;
+        if (!isActive && !isPrev && !isNext) return null;
 
         let transform: string;
         if (isActive) {
@@ -99,7 +127,7 @@ export function HeroSlideshow({ intervalMs = 5000 }: Props) {
             alt={img.alt}
             loading={i === 0 ? "eager" : "lazy"}
             decoding="async"
-            fetchPriority={i === 0 ? "high" : undefined}
+            {...(i === 0 ? ({ fetchpriority: "high" } as Record<string, string>) : {})}
             width={1920}
             height={1080}
             className="absolute inset-0 h-full w-full object-cover"

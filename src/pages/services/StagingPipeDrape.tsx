@@ -53,7 +53,7 @@ export default function StagingPipeDrape() {
       { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
     ]
   });
-  const { hero, gallery } = useServiceImages("service-staging");
+  const { hero, heroAlt, gallery } = useServiceImages("service-staging");
   const { data: sections = [] } = useServiceSections("staging-pipe-drape");
 
   return (
@@ -67,7 +67,7 @@ export default function StagingPipeDrape() {
         title="Stage Hire Ireland & Dublin"
         subtitle="Indoor, outdoor and mobile stages installed by an experienced crew"
         backgroundImage={hero}
-        backgroundAlt="Professional staging and pipe and drape installation at an event in Ireland"
+        backgroundAlt={heroAlt ?? "Professional staging and pipe and drape installation at an event in Ireland"}
       >
         <ServiceHeroActions
           serviceName="Staging & Pipe and Drape"

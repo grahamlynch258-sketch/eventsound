@@ -53,7 +53,7 @@ export default function EventProduction() {
       { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
     ]
   });
-  const { hero, gallery } = useServiceImages("service-event-production");
+  const { hero, heroAlt, gallery } = useServiceImages("service-event-production");
   const { data: sections = [] } = useServiceSections("event-production");
 
   return (
@@ -67,7 +67,7 @@ export default function EventProduction() {
         title="Full-Service Event Production Company Ireland"
         subtitle="One technical production partner from planning and site survey to show day and wrap"
         backgroundImage={hero}
-        backgroundAlt="Event production crew managing a corporate event in Ireland"
+        backgroundAlt={heroAlt ?? "Event production crew managing a corporate event in Ireland"}
       >
         <ServiceHeroActions
           serviceName="Full Event Production"

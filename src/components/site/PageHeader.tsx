@@ -34,7 +34,7 @@ export function PageHeader({ title, subtitle, backgroundImage, backgroundAlt, ch
               alt={backgroundAlt || title}
               className={`w-full h-full object-cover transition-opacity duration-500 ${loaded ? "opacity-100" : "opacity-0"}`}
               loading="eager"
-              fetchPriority="high"
+              {...({ fetchpriority: "high" } as Record<string, string>)}
               decoding="async"
               width={1920}
               height={600}

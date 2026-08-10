@@ -21,7 +21,7 @@ const services = [
 ];
 
 export default function Services() {
-  const { hero } = useServiceImages("hero-services");
+  const { hero, heroAlt } = useServiceImages("hero-services");
   useSeo({
     title: "Event Production Services | AV Hire Ireland | EventSound",
     description: "AV hire & event production services across Ireland. LED video walls, PA systems, conference AV, lighting, staging & live streaming. Delivery, setup & operator included.",
@@ -30,7 +30,7 @@ export default function Services() {
 
   return (
     <PageShell>
-      <PageHeader title="Our Services" subtitle="" backgroundImage={hero} backgroundAlt="Professional AV production setup at a corporate event in Ireland" />
+      <PageHeader title="Our Services" subtitle="" backgroundImage={hero} backgroundAlt={heroAlt ?? "Professional AV production setup at a corporate event in Ireland"} />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <div className="rounded-xl border border-accent/30 bg-card/40 backdrop-blur-sm p-6 md:p-8">
