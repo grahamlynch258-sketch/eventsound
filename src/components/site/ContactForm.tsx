@@ -200,7 +200,7 @@ export function ContactForm({ defaultServices = [], formContext = "General enqui
         trackEvent("quote_form_submit_error", { form_context: formContext, status: response.status });
         toast({
           title: "Error sending enquiry",
-          description: data.error || "Please try again or call Graham directly.",
+          description: data.error || "Please try again or call us directly.",
           variant: "destructive",
         });
       }
@@ -208,7 +208,7 @@ export function ContactForm({ defaultServices = [], formContext = "General enqui
       trackEvent("quote_form_submit_error", { form_context: formContext, status: "network" });
       toast({
         title: "Network error",
-        description: "Please try again or call Graham directly.",
+        description: "Please try again or call us directly.",
         variant: "destructive",
       });
     } finally {
@@ -221,7 +221,7 @@ export function ContactForm({ defaultServices = [], formContext = "General enqui
       <div className="rounded-xl border border-border/50 bg-card p-8 text-center" role="status">
         <CheckCircle className="mx-auto mb-4 h-12 w-12 text-green-500" />
         <h3 className="mb-2 text-xl font-semibold">Enquiry received</h3>
-        <p className="text-muted-foreground">Graham will review the brief and normally reply within 24 hours with the next practical step.</p>
+        <p className="text-muted-foreground">Our team will review the brief and normally reply within 24 hours with the next practical step.</p>
         <a href={`tel:${siteConfig.phone}`} className="mt-5 inline-flex items-center gap-2 font-semibold text-accent hover:underline">
           <Phone className="h-4 w-4" /> Need to speak sooner? Call {siteConfig.phoneDisplay}
         </a>

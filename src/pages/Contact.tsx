@@ -35,7 +35,7 @@ const Contact = () => {
             <h2 className="text-2xl font-semibold">What happens next?</h2>
             <ol className="mt-5 space-y-4 text-sm text-muted-foreground">
               <li><strong className="text-foreground">1. We review the brief.</strong> You don’t need to specify equipment.</li>
-              <li><strong className="text-foreground">2. Graham confirms the scope.</strong> A short call or site check may be recommended.</li>
+              <li><strong className="text-foreground">2. Our team confirms the scope.</strong> A short call or site check may be recommended.</li>
               <li><strong className="text-foreground">3. You receive a clear package.</strong> Equipment, crew, delivery and operation are set out together.</li>
             </ol>
             <div className="mt-7 space-y-3 border-t border-border/60 pt-6 text-sm">

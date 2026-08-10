@@ -34,7 +34,7 @@ export function ServiceHeroActions({ serviceName, benefits }: ServiceHeroActions
             onClick={() => trackEvent("service_cta_click", { service_name: serviceName, cta_type: "phone" })}
           >
             <Phone className="mr-2 h-4 w-4" aria-hidden="true" />
-            Call Graham
+            Call us
           </a>
         </Button>
       </div>
