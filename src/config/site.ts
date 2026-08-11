@@ -31,9 +31,9 @@ export const siteConfig = {
   },
 
   social: {
-    facebook: "",
+    facebook: "https://facebook.com/eventAVpro/",
     instagram: "",
-    linkedin: "https://ie.linkedin.com/company/event-sound-pro-audio",
+    linkedin: "https://www.linkedin.com/company/eventsound-avservices/",
   },
 
   ogImage: "https://eventsound.ie/Brand/logo_1920x1080.png",
