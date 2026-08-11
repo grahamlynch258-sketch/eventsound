@@ -295,6 +295,169 @@ const SERVICE_PAGE_SCHEMAS = {
   },
 };
 
+// ── Static intro copy per service route (crawlable body content) ─────────────
+// Adapted from llms.txt / on-page copy. Rendered into the static shell so
+// non-JS crawlers (Googlebot first pass, GPTBot, ClaudeBot, PerplexityBot)
+// see real body content. React replaces this on hydration.
+const SERVICE_PAGE_INTROS = {
+  '/services/led-video-walls': [
+    "EventSound provides modular LED video wall hire for conferences, concerts, festivals, corporate events, and outdoor screenings across Ireland. We stock Absen and Unilumin LED panels with screen sizes from 6m² for conference presentations to 50m²+ for large-scale outdoor stages.",
+    "Indoor LED walls are the standard for corporate conferences, awards nights, AGMs, product launches, and exhibitions where ambient light or room layout make projection impractical. Outdoor LED walls are weather-rated with high-brightness output visible in direct sunlight. Every LED wall hire includes delivery, installation, content management, a dedicated on-site operator, and full breakdown.",
+  ],
+  '/services/led-screen-hire': [
+    "Individual LED screen and TV monitor hire for corporate events, conferences, exhibitions, and trade shows across Ireland. Screens from 43 inches to 98 inches on freestanding floor stands, table mounts, or wall-mount brackets — ideal for boardroom presentations, breakout rooms, registration areas, sponsor branding, and digital signage.",
+    "Every screen hire includes delivery, setup, and collection, and we regularly configure screens for hybrid meetings with Microsoft Teams, Zoom, and Google Meet. For larger modular LED panel installations, see our LED Video Wall Hire service.",
+  ],
+  '/services/staging-pipe-drape': [
+    "Professional staging, pipe and drape, star cloth, and scenic elements for events across Ireland. Indoor and outdoor modular stages for conferences, award ceremonies, corporate events, school events, concerts, and festivals — from small presentation platforms to large outdoor performance stages.",
+    "All staging includes safe installation by experienced crew, with skirting, steps, and handrails where required. Pipe and drape systems create room divisions, backdrops, and scenic masking, while star cloth and LED curtain backdrops add impact to award ceremonies and gala dinners.",
+  ],
+  '/services/event-production': [
+    "Full technical event production management for conferences, award ceremonies, product launches, gala dinners, corporate events, and live shows across Ireland. EventSound manages all AV elements — sound, lighting, video, staging, and live streaming — as a single coordinated production.",
+    "Services include pre-production planning, venue technical surveys, equipment specification, show calling, and on-site technical direction. We work alongside event managers, agencies, and in-house teams, with clients including Fingal County Council and Local Enterprise Office Louth, and events including PRISM, Local Enterprise Week, and the Swords Castle Summer Concerts.",
+  ],
+  '/services/av-production': [
+    "Professional audio visual equipment hire for conferences, meetings, seminars, and corporate events in Dublin and across Ireland. Complete AV packages include PA systems, microphones, mixing desks, screens, stage monitors, and experienced technical crew.",
+    "All equipment is professional-grade and maintained to broadcast standards. Every AV hire includes delivery, setup, testing, operation, and breakdown — available as individual equipment hire or full-service AV production with a dedicated crew.",
+  ],
+  '/services/lighting-design': [
+    "Event lighting hire and design for conferences, award ceremonies, gala dinners, concerts, festivals, and corporate events across Ireland. Our inventory includes intelligent moving-head fixtures, LED uplighting, architectural lighting, gobo projection, pin spots, and stage wash lighting.",
+    "Lighting design is tailored to each event — from subtle corporate ambience to full concert-grade show lighting — and every hire includes programming, setup, and operation by experienced lighting technicians.",
+  ],
+  '/services/video-production': [
+    "Event video production, multi-camera filming, and live streaming for conferences, concerts, and corporate events across Ireland. We provide IMAG (image magnification) for large audiences, speaker recording, live vision mixing, and post-event highlight videos.",
+    "Streaming packages cover YouTube, Vimeo, Teams, Zoom, and custom platforms, with professional encoding and redundant connectivity for reliable broadcasts. Post-production includes multi-camera editing, colour grading, and graphics.",
+  ],
+  '/services/virtual-events': [
+    "End-to-end hybrid and virtual event production combining in-person AV with professional live streaming. Designed for conferences, AGMs, town halls, and corporate events where part of the audience attends remotely.",
+    "We handle multi-camera streaming, remote speaker integration, audience Q&A and polling, and multi-platform delivery — so both in-room and online audiences get a polished, engaging experience.",
+  ],
+  '/services/conference-av-hire': [
+    "Specialist conference AV hire for hotels, convention centres, and corporate venues across Ireland. Packages include lectern and wireless microphones, LED video walls, confidence monitors, autocue, live streaming rigs, breakout room AV, stage lighting, and full audio systems.",
+    "Every conference booking includes experienced on-site technicians — from single-room seminars to multi-room, multi-day conferences. Available in Dublin, Cork, Galway, Belfast, Limerick, and nationwide.",
+  ],
+  '/services/musical-theatre': [
+    "Professional sound, lighting, staging, and LED video wall hire for musicals, drama, and theatre productions across Ireland. We supply wireless microphone rigs supporting 30+ simultaneous channels, front-of-house PA, monitors, stage lighting, and experienced operators.",
+    "Our technicians attend your tech rehearsal, programme cues, and operate every performance. We regularly work with schools, musical societies, and community theatre groups, and integrate with existing house rigs in venues nationwide.",
+  ],
+};
+
+// ── Location pages: schema data + FAQ extraction from the page source ────────
+// FAQs are extracted from each page component's `const faqs = [...]` array at
+// build time, so the static shell always matches the visible React content.
+
+const LOCATION_PAGES = {
+  '/services/led-walls/dublin':    { file: 'src/pages/locations/DublinLedWalls.tsx',      city: 'Dublin',   type: 'led' },
+  '/services/led-walls/cork':      { file: 'src/pages/locations/CorkLedWalls.tsx',        city: 'Cork',     type: 'led' },
+  '/services/led-walls/galway':    { file: 'src/pages/locations/GalwayLedWalls.tsx',      city: 'Galway',   type: 'led' },
+  '/services/led-walls/belfast':   { file: 'src/pages/locations/BelfastLedWalls.tsx',     city: 'Belfast',  type: 'led' },
+  '/services/led-walls/limerick':  { file: 'src/pages/locations/LimerickLedWalls.tsx',    city: 'Limerick', type: 'led' },
+  '/services/led-walls/athlone':   { file: 'src/pages/locations/AthaloneLedWalls.tsx',    city: 'Athlone',  type: 'led' },
+  '/services/conference-av/dublin':   { file: 'src/pages/locations/DublinConferenceAV.tsx',   city: 'Dublin',   type: 'conf' },
+  '/services/conference-av/cork':     { file: 'src/pages/locations/CorkConferenceAV.tsx',     city: 'Cork',     type: 'conf' },
+  '/services/conference-av/galway':   { file: 'src/pages/locations/GalwayConferenceAV.tsx',   city: 'Galway',   type: 'conf' },
+  '/services/conference-av/belfast':  { file: 'src/pages/locations/BelfastConferenceAV.tsx',  city: 'Belfast',  type: 'conf' },
+  '/services/conference-av/limerick': { file: 'src/pages/locations/LimerickConferenceAV.tsx', city: 'Limerick', type: 'conf' },
+  '/services/conference-av/athlone':  { file: 'src/pages/locations/AthaloneConferenceAV.tsx', city: 'Athlone',  type: 'conf' },
+};
+
+function locationServiceSchema(routePath, { city, type }) {
+  const isLed = type === 'led';
+  return buildServiceSchema({
+    name: isLed ? `LED Video Wall Hire ${city}` : `Conference AV Hire ${city}`,
+    description: isLed
+      ? `LED video wall and screen hire in ${city} for conferences, exhibitions, and corporate events. Delivery, installation, and on-site operator included.`
+      : `Conference AV hire in ${city} — PA systems, LED screens, microphones, lighting, and live streaming with full technical crew.`,
+    serviceType: isLed ? 'LED Screen Rental' : 'Conference AV Hire',
+    url: `https://eventsound.ie${routePath}`,
+  });
+}
+
+function locationBreadcrumb(routePath, { city, type }) {
+  const isLed = type === 'led';
+  return buildBreadcrumbSchema([
+    { name: 'Home', url: 'https://eventsound.ie/' },
+    { name: 'Services', url: 'https://eventsound.ie/services' },
+    isLed
+      ? { name: 'LED Video Walls', url: 'https://eventsound.ie/services/led-video-walls' }
+      : { name: 'Conference AV Hire', url: 'https://eventsound.ie/services/conference-av-hire' },
+    { name: isLed ? `LED Walls ${city}` : `Conference AV ${city}`, url: `https://eventsound.ie${routePath}` },
+  ]);
+}
+
+/** Extract the `const faqs = [...]` array from a page component's source. */
+function extractFaqsFromFile(relPath) {
+  try {
+    const src = fs.readFileSync(path.join(__dirname, '..', relPath), 'utf-8');
+    const match = src.match(/const faqs(?:\s*:[^=]+)?\s*=\s*(\[[\s\S]*?\]);/);
+    if (!match) return [];
+    const arr = new Function(`return ${match[1]};`)();
+    if (!Array.isArray(arr)) return [];
+    return arr.filter(f => f && typeof f.question === 'string' && typeof f.answer === 'string');
+  } catch {
+    return [];
+  }
+}
+
+// ── Static body shell for non-homepage routes ────────────────────────────────
+
+function escapeHtml(s) {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+const SHELL_HEADER = `<header class="sticky top-0 z-[100] border-b transition-all duration-300 border-transparent bg-background/60 backdrop-blur-sm">\
+<div class="container flex h-16 items-center justify-between gap-6">\
+<a href="/" class="font-serif text-xl font-semibold tracking-tight text-foreground">Event<span class="text-accent"> Sound</span></a>\
+<nav class="hidden items-center gap-6 lg:flex" aria-label="Primary"></nav>\
+<div class="flex items-center gap-3">\
+<a href="/contact" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-3 hidden lg:inline-flex font-semibold shadow-gold">Get a Quote</a>\
+</div>\
+</div>\
+</header>`;
+
+const SHELL_NAP = `<p class="mt-12 text-sm text-muted-foreground">EventSound AV Services — Townrath, Drogheda, Co. Louth, Ireland. Phone <a href="tel:+353863520476">086 352 0476</a> · <a href="mailto:info@eventsound.ie">info@eventsound.ie</a>. Serving Dublin, Leinster, and nationwide.</p>`;
+
+/**
+ * Build the crawlable static body shell for a route.
+ * React's createRoot().render() replaces this synchronously on mount.
+ */
+function buildBodyShell({ h1, breadcrumb, intros, faqs, ctaHref = '/contact' }) {
+  const crumbHtml = breadcrumb && breadcrumb.length
+    ? `<nav aria-label="Breadcrumb" class="text-sm text-muted-foreground mb-6">${breadcrumb
+        .map((c, i) => (i === breadcrumb.length - 1
+          ? `<span>${escapeHtml(c.name)}</span>`
+          : `<a href="${new URL(c.url, 'https://eventsound.ie').pathname}" class="hover:text-foreground">${escapeHtml(c.name)}</a> <span aria-hidden="true">/</span> `))
+        .join('')}</nav>`
+    : '';
+
+  const introHtml = (intros || [])
+    .map(p => `<p class="mt-6 text-lg text-muted-foreground max-w-3xl leading-relaxed">${escapeHtml(p)}</p>`)
+    .join('');
+
+  const faqHtml = faqs && faqs.length
+    ? `<section class="mt-16" aria-labelledby="faq-heading">\
+<h2 id="faq-heading" class="text-2xl md:text-3xl font-bold tracking-tight">Frequently Asked Questions</h2>\
+${faqs.map(f => `<h3 class="mt-8 text-lg font-semibold">${escapeHtml(f.question)}</h3><p class="mt-2 text-muted-foreground leading-relaxed">${escapeHtml(f.answer)}</p>`).join('')}\
+</section>`
+    : '';
+
+  return `<div class="min-h-screen bg-background text-foreground">\
+${SHELL_HEADER}\
+<main id="main-content"><div class="container py-16 md:py-24">\
+${crumbHtml}\
+<h1 class="text-3xl md:text-5xl font-bold tracking-tight max-w-3xl leading-tight">${escapeHtml(h1)}</h1>\
+${introHtml}\
+<div class="mt-8"><a href="${ctaHref}" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-8">Get a Quote</a></div>\
+${faqHtml}\
+${SHELL_NAP}\
+</div></main>\
+</div>`;
+}
+
 const FAQ_PAGE_QUESTIONS = [
   { question: "What areas do you serve?", answer: "We're based in Drogheda, Co. Louth, and serve clients nationwide. We regularly work at venues throughout Ireland." },
   { question: "How far in advance should I book?", answer: "We recommend booking as early as possible, especially for peak season (September-December). However, we can often accommodate last-minute requests depending on availability." },
@@ -312,18 +475,33 @@ const FAQ_PAGE_QUESTIONS = [
 
 /** Build all JSON-LD schemas for a given route path. Returns array of schema objects. */
 function getSchemasForRoute(routePath, caseStudyData) {
-  // FAQ schema is generated by each React page from its visible FAQ array.
+  // Service pages: Service + Breadcrumb + FAQPage, all injected at build time
+  // so non-JS crawlers see them. React re-injects the same schema IDs on
+  // hydration (useSeo removes by id first), so there is never duplication.
   const serviceData = SERVICE_PAGE_SCHEMAS[routePath];
   if (serviceData) {
     return [
       buildServiceSchema(serviceData.service),
       buildBreadcrumbSchema(serviceData.breadcrumb),
+      ...(serviceData.faqs?.length ? [buildFAQSchema(serviceData.faqs)] : []),
     ];
   }
 
-  // FAQ schema is generated from the visible FAQ content by the React page.
+  // Location pages: Service + Breadcrumb + FAQPage (FAQs extracted from the
+  // page component source so static and hydrated content always match).
+  const locationData = LOCATION_PAGES[routePath];
+  if (locationData) {
+    const faqs = extractFaqsFromFile(locationData.file);
+    return [
+      locationServiceSchema(routePath, locationData),
+      locationBreadcrumb(routePath, locationData),
+      ...(faqs.length ? [buildFAQSchema(faqs)] : []),
+    ];
+  }
+
+  // FAQ page: FAQPage schema at build time from the same question set.
   if (routePath === '/faq') {
-    return [];
+    return [buildFAQSchema(FAQ_PAGE_QUESTIONS)];
   }
 
   // Case study detail pages: Article
@@ -607,13 +785,40 @@ async function prerender() {
       }
       html = html.replace('<div id="root"></div>', `<div id="root">${shell}</div>`);
     } else {
-      // For non-homepage routes, inject a minimal <h1> so crawlers see the
-      // primary heading before React hydrates.
+      // For non-homepage routes, inject a full static body shell — H1, intro
+      // copy, visible FAQs, breadcrumb, and NAP — so crawlers that don't
+      // execute JavaScript (most AI crawlers, Googlebot's first pass) see
+      // real page content. React replaces this synchronously on mount.
       const h1Text = route.title.split(' | ')[0];
-      html = html.replace(
-        '<div id="root"></div>',
-        `<div id="root"><h1>${h1Text}</h1></div>`
-      );
+      const serviceData = SERVICE_PAGE_SCHEMAS[route.path];
+      const locationData = LOCATION_PAGES[route.path];
+
+      let shellFaqs = [];
+      let shellIntros = [route.description];
+      let shellBreadcrumb = null;
+
+      if (serviceData) {
+        shellFaqs = serviceData.faqs || [];
+        shellIntros = SERVICE_PAGE_INTROS[route.path] || [route.description];
+        shellBreadcrumb = serviceData.breadcrumb;
+      } else if (locationData) {
+        shellFaqs = extractFaqsFromFile(locationData.file);
+        shellBreadcrumb = [
+          { name: 'Home', url: '/' },
+          { name: 'Services', url: '/services/' },
+          { name: h1Text, url: route.path },
+        ];
+      } else if (route.path === '/faq') {
+        shellFaqs = FAQ_PAGE_QUESTIONS;
+      }
+
+      const shell = buildBodyShell({
+        h1: h1Text,
+        breadcrumb: shellBreadcrumb,
+        intros: shellIntros,
+        faqs: shellFaqs,
+      });
+      html = html.replace('<div id="root"></div>', `<div id="root">${shell}</div>`);
     }
 
     fs.writeFileSync(filePath, html);
