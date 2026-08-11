@@ -544,8 +544,6 @@ const ROUTES = [
   { path: '/gallery', title: 'Event Gallery | Our Work | EventSound', description: 'Browse our portfolio of event production work across Ireland. LED video walls, lighting design, staging, and AV setups for conferences, concerts, and corporate events.' },
   { path: '/reviews', title: 'Client Reviews | EventSound Event Production Ireland', description: 'Read what our clients say about EventSound event production services. Trusted by organisations across Ireland for AV hire and event production.' },
   { path: '/health-and-safety', title: 'Health & Safety | EventSound Event Production', description: 'EventSound health and safety policies for event production. Fully insured, risk assessed, and compliant with Irish regulations.' },
-  { path: '/privacy-policy', title: 'Privacy Policy | EventSound AV Services', description: 'How EventSound AV Services collects, uses and protects personal information submitted through eventsound.ie.' },
-  { path: '/cookie-policy', title: 'Cookie Policy | EventSound AV Services', description: 'Details of essential storage, Microsoft Clarity analytics and Google Ads measurement used on eventsound.ie.' },
   { path: '/case-studies', title: 'Case Studies | Event Production Projects | EventSound', description: 'Explore our event production case studies. Real projects showcasing LED video walls, sound systems, lighting, and staging across Ireland.' },
   // Location pages — LED Walls
   { path: '/services/led-walls/dublin', title: 'LED Wall Hire Dublin | LED Screen Rental for Events | EventSound', description: 'LED video wall hire in Dublin. Unilumin & Absen panels for conferences, awards, exhibitions & corporate events. CCD, Croke Park & Dublin venues served. Get a quote.' },

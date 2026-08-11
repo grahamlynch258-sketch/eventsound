@@ -1,7 +1,6 @@
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
 import { siteConfig } from "@/config/site";
-import { openConsentSettings } from "@/lib/consent";
 
 export function SiteFooter({ className }: { className?: string }) {
   return (
@@ -50,9 +49,6 @@ export function SiteFooter({ className }: { className?: string }) {
               <Link to="/reviews/" className="text-sm text-muted-foreground hover:text-accent transition-colors">Reviews</Link>
               <Link to="/health-and-safety/" className="text-sm text-muted-foreground hover:text-accent transition-colors">Health & Safety</Link>
               <Link to="/contact/" className="text-sm text-muted-foreground hover:text-accent transition-colors">Get a Quote</Link>
-              <Link to="/privacy-policy/" className="text-sm text-muted-foreground hover:text-accent transition-colors">Privacy Policy</Link>
-              <Link to="/cookie-policy/" className="text-sm text-muted-foreground hover:text-accent transition-colors">Cookie Policy</Link>
-              <button type="button" onClick={openConsentSettings} className="text-left text-sm text-muted-foreground transition-colors hover:text-accent">Cookie settings</button>
             </nav>
           </div>
 

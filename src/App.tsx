@@ -5,7 +5,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { ScrollToTop } from "@/components/site/ScrollToTop";
-import { ConsentBanner } from "@/components/site/ConsentBanner";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Services from "./pages/Services";
@@ -17,8 +16,6 @@ import HealthAndSafety from "./pages/HealthAndSafety";
 import CaseStudies from "./pages/CaseStudies";
 import CaseStudyDetail from "./pages/CaseStudyDetail";
 import NotFound from "./pages/NotFound";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import CookiePolicy from "./pages/CookiePolicy";
 import { trackConversion, trackEvent } from "@/utils/trackConversion";
 import { captureLeadAttribution } from "@/lib/leadAttribution";
 
@@ -142,8 +139,6 @@ function AppRoutes() {
       <Route path="/reviews" element={<Reviews />} />
       <Route path="/faq" element={<FAQ />} />
       <Route path="/health-and-safety" element={<HealthAndSafety />} />
-      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-      <Route path="/cookie-policy" element={<CookiePolicy />} />
       <Route path="/case-studies" element={<CaseStudies />} />
       <Route path="/case-studies/:slug" element={<CaseStudyDetail />} />
 
@@ -208,7 +203,6 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <ConsentBanner />
         <AppRoutes />
       </BrowserRouter>
     </TooltipProvider>

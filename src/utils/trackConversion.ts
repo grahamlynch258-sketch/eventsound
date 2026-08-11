@@ -12,7 +12,7 @@
  * The combined format for send_to is: AW-XXXXXXXXXX/XXXXXXXXXXXXXXXXXXXXX
  */
 
-import { shouldTrackAdvertising, shouldTrackAnalytics } from "@/lib/consent";
+import { shouldTrackAnalytics } from "@/lib/analytics";
 
 const CONVERSIONS = {
   QUOTE_FORM: {
@@ -55,7 +55,7 @@ export function trackConversion(
   }
 ) {
   try {
-    if (!shouldTrackAdvertising()) {
+    if (!shouldTrackAnalytics()) {
       options?.callback?.();
       return;
     }

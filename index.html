@@ -116,12 +116,10 @@
       }
     </script>
 
-    <!-- Privacy-first analytics bootstrap.
-         Consent defaults to denied before either vendor is initialised.
-         External analytics only load on the production hostname and never on /admin. -->
+    <!-- Analytics bootstrap. External analytics load only on the production
+         hostname and never for admin pages or staff-marked browsers. -->
     <script>
       (function () {
-        var CONSENT_KEY = "eventsound_cookie_consent_v1";
         var INTERNAL_KEY = "eventsound_internal_traffic";
         var params = new URLSearchParams(window.location.search);
         var internalFlag = params.get("eventsound_internal");
@@ -135,45 +133,22 @@
             window.history.replaceState({}, "", window.location.pathname + (cleanQuery ? "?" + cleanQuery : "") + window.location.hash);
           }
         } catch (_) {
-          // Storage may be unavailable. Analytics remains denied by default.
+          // Storage may be unavailable. Continue without a persistent staff marker.
         }
 
-        var savedConsent = null;
         var isInternal = false;
         try {
-          savedConsent = JSON.parse(window.localStorage.getItem(CONSENT_KEY) || "null");
           isInternal = window.localStorage.getItem(INTERNAL_KEY) === "true";
-        } catch (_) {
-          savedConsent = null;
-        }
+        } catch (_) {}
 
-        var analyticsState = savedConsent && savedConsent.analytics === true ? "granted" : "denied";
-        var advertisingState = savedConsent && savedConsent.advertising === true ? "granted" : "denied";
         var isProduction = window.location.hostname === "eventsound.ie" || window.location.hostname === "www.eventsound.ie";
         var isAdmin = window.location.pathname === "/admin" || window.location.pathname.indexOf("/admin/") === 0;
         window.eventsoundAnalyticsEligible = isProduction && !isAdmin && !isInternal;
 
-        window.dataLayer = window.dataLayer || [];
-        window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
-        window.gtag("consent", "default", {
-          ad_storage: "denied",
-          analytics_storage: "denied",
-          ad_user_data: "denied",
-          ad_personalization: "denied",
-          wait_for_update: 500
-        });
-
-        if (savedConsent) {
-          window.gtag("consent", "update", {
-            ad_storage: advertisingState,
-            analytics_storage: analyticsState,
-            ad_user_data: advertisingState,
-            ad_personalization: advertisingState
-          });
-        }
-
         if (!window.eventsoundAnalyticsEligible) return;
 
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
         var googleScript = document.createElement("script");
         googleScript.async = true;
         googleScript.src = "https://www.googletagmanager.com/gtag/js?id=AW-1014417298";
@@ -183,10 +158,6 @@
 
         (function (c, l, a, r, i, t, y) {
           c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
-          c[a]("consentv2", {
-            ad_Storage: advertisingState,
-            analytics_Storage: analyticsState
-          });
           t = l.createElement(r);
           t.async = 1;
           t.src = "https://www.clarity.ms/tag/" + i;

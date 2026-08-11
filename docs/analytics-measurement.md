@@ -1,15 +1,8 @@
-# EventSound analytics and consent
+# EventSound analytics measurement
 
-## Consent behaviour
+Google Ads and Microsoft Clarity load only on `eventsound.ie` and `www.eventsound.ie`. They do not load for `/admin`, localhost or Netlify deploy previews. Contact-form fields are explicitly masked from Clarity.
 
-- Optional analytics and advertising storage default to denied.
-- Google Consent Mode v2 and Microsoft Clarity Consent API v2 receive the saved visitor choice.
-- Vendor scripts load only on `eventsound.ie` and `www.eventsound.ie`.
-- Vendor scripts do not load for `/admin`, localhost or Netlify deploy previews.
-- Contact-form fields are explicitly masked from Clarity.
-- Campaign attribution is stored and attached to an enquiry only after analytics or advertising consent.
-
-Visitors can reopen the controls through **Cookie settings** in the website footer.
+Visitor consent controls are not included in this deployment and can be added separately later.
 
 ## Excluding EventSound staff traffic
 

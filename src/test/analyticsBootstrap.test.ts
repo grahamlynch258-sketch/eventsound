@@ -5,16 +5,11 @@ import { describe, expect, it } from "vitest";
 describe("analytics bootstrap", () => {
   const html = fs.readFileSync(path.join(process.cwd(), "index.html"), "utf8");
 
-  it("sets denied consent before loading vendor scripts", () => {
-    const consentIndex = html.indexOf('window.gtag("consent", "default"');
-    const googleIndex = html.indexOf("www.googletagmanager.com/gtag/js");
-    const clarityIndex = html.indexOf("www.clarity.ms/tag/");
-
-    expect(consentIndex).toBeGreaterThan(-1);
-    expect(consentIndex).toBeLessThan(googleIndex);
-    expect(consentIndex).toBeLessThan(clarityIndex);
-    expect(html).toContain('analytics_storage: "denied"');
-    expect(html).toContain('ad_storage: "denied"');
+  it("loads Google and Clarity for eligible production traffic", () => {
+    expect(html).toContain("www.googletagmanager.com/gtag/js");
+    expect(html).toContain("www.clarity.ms/tag/");
+    expect(html).toContain('window.gtag("config", "AW-1014417298")');
+    expect(html).not.toContain('window.gtag("consent"');
   });
 
   it("limits external analytics to production public traffic", () => {
