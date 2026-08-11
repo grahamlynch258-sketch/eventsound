@@ -51,6 +51,8 @@
 /faq                /faq/                301
 /gallery            /gallery/            301
 /health-and-safety  /health-and-safety/  301
+/privacy-policy     /privacy-policy/     301
+/cookie-policy      /cookie-policy/      301
 /reviews            /reviews/            301
 /services           /services/           301
 /case-studies       /case-studies/       301
@@ -93,8 +95,6 @@
 /sound-hire-vision-hire-dublin-ireland   /services/av-production/   301
 /lighting-effects/                       /services/lighting-design/ 301
 /lighting-effects                        /services/lighting-design/ 301
-/privacy-policy/                         /                          301
-/privacy-policy                          /                          301
 /author/eventsound/                      /                          301
 /author/*                                /                          301
 /feed/                                   /                          301

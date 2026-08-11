@@ -1,3 +1,5 @@
+import { readConsentPreferences } from "@/lib/consent";
+
 export interface LeadAttribution {
   landing_page: string;
   referrer: string;
@@ -12,6 +14,7 @@ export interface LeadAttribution {
   first_referrer: string;
   first_touch_at: string;
 }
+
 type Touchpoint = Omit<LeadAttribution, "first_landing_page" | "first_referrer" | "first_touch_at"> & {
   captured_at: string;
 };
@@ -61,6 +64,9 @@ function readStoredTouchpoint(): Touchpoint | null {
 
 export function captureLeadAttribution(): LeadAttribution {
   if (typeof window === "undefined") return emptyAttribution;
+
+  const consent = readConsentPreferences();
+  if (!consent?.analytics && !consent?.advertising) return emptyAttribution;
 
   const current = readCurrentTouchpoint();
   let first = readStoredTouchpoint();

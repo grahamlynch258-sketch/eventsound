@@ -1,7 +1,6 @@
 import { Check, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
-import { trackEvent } from "@/utils/trackConversion";
 
 interface ServiceHeroActionsProps {
   serviceName: string;
@@ -10,7 +9,7 @@ interface ServiceHeroActionsProps {
 
 export function ServiceHeroActions({ serviceName, benefits }: ServiceHeroActionsProps) {
   return (
-    <div className="mt-7">
+    <div className="mt-7" data-cta-location="service_hero">
       <ul className="mx-auto mb-6 flex max-w-3xl flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-white/90">
         {benefits.map((benefit) => (
           <li key={benefit} className="flex items-center gap-2">
@@ -23,7 +22,7 @@ export function ServiceHeroActions({ serviceName, benefits }: ServiceHeroActions
         <Button asChild size="lg" className="font-semibold shadow-gold">
           <a
             href="#quote-form"
-            onClick={() => trackEvent("service_cta_click", { service_name: serviceName, cta_type: "quote" })}
+            data-service-name={serviceName}
           >
             Get a tailored quote
           </a>
@@ -31,7 +30,7 @@ export function ServiceHeroActions({ serviceName, benefits }: ServiceHeroActions
         <Button asChild size="lg" variant="outline" className="border-white/40 bg-black/20 text-white hover:bg-white/10">
           <a
             href={`tel:${siteConfig.phone}`}
-            onClick={() => trackEvent("service_cta_click", { service_name: serviceName, cta_type: "phone" })}
+            data-service-name={serviceName}
           >
             <Phone className="mr-2 h-4 w-4" aria-hidden="true" />
             Call us

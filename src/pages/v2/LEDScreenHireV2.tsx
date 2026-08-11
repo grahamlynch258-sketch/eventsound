@@ -288,12 +288,12 @@ export default function LEDScreenHireV2() {
               EventSound provides LED screen and TV monitor hire for corporate events, conferences, exhibitions, and trade shows across Dublin, Cork, Galway, Belfast, and nationwide Ireland. Whether you need a single large-format display for a boardroom presentation or a multi-screen rental across an exhibition floor, we supply the screens, stands, cabling, and on-site technical support as part of every booking.
             </p>
 
-            <div className="flex flex-wrap gap-3 mb-6">
-              <Button size="lg" onClick={() => document.getElementById("quote-form")?.scrollIntoView({ behavior: "smooth" })}>
+            <div className="flex flex-wrap gap-3 mb-6" data-cta-location="service_hero">
+              <Button size="lg" data-analytics-cta="quote" data-service-name="LED Screen Hire" onClick={() => document.getElementById("quote-form")?.scrollIntoView({ behavior: "smooth" })}>
                 Get a Quote
               </Button>
               <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10" asChild>
-                <a href={`tel:${siteConfig.phone}`}>
+                <a href={`tel:${siteConfig.phone}`} data-service-name="LED Screen Hire">
                   <Phone className="mr-2 h-4 w-4" />
                   {siteConfig.phoneDisplay}
                 </a>

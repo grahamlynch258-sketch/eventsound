@@ -36,6 +36,12 @@ describe("redirect and sitemap consistency", () => {
     expect(rules.slice(0, -1).every(({ status }) => status === "301" || status === "404")).toBe(true);
   });
 
+  it("serves policy pages instead of redirecting the old privacy URL to the homepage", () => {
+    expect(rules).toContainEqual({ source: "/privacy-policy", target: "/privacy-policy/", status: "301" });
+    expect(rules).toContainEqual({ source: "/cookie-policy", target: "/cookie-policy/", status: "301" });
+    expect(rules).not.toContainEqual({ source: "/privacy-policy/", target: "/", status: "301" });
+  });
+
   it("lists only canonical trailing-slash URLs in the generated sitemap", () => {
     const sitemap = fs.readFileSync(publicPath("sitemap.xml"), "utf8");
     const urls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1]);

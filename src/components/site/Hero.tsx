@@ -3,11 +3,10 @@ import { ArrowRight, Check, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { HeroSlideshow } from "./HeroSlideshow";
 import { siteConfig } from "@/config/site";
-import { trackEvent } from "@/utils/trackConversion";
 
 export function Hero() {
   return (
-    <section className="relative flex min-h-[calc(100svh-4rem)] items-center overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 md:min-h-[82vh]">
+    <section data-cta-location="homepage_hero" className="relative flex min-h-[calc(100svh-4rem)] items-center overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 md:min-h-[82vh]">
       <div className="absolute inset-0">
         <HeroSlideshow />
         <div className="absolute inset-0 bg-background/60" />
@@ -23,12 +22,12 @@ export function Hero() {
         </p>
         <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row md:mt-8">
           <Button asChild size="lg">
-            <Link to="/contact/" onClick={() => trackEvent("hero_cta_click", { cta_type: "quote" })}>
+            <Link to="/contact/">
               Plan my event <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
           <Button asChild variant="outline" size="lg">
-            <a href={`tel:${siteConfig.phone}`} onClick={() => trackEvent("hero_cta_click", { cta_type: "phone" })}>
+            <a href={`tel:${siteConfig.phone}`}>
               <Phone className="mr-2 h-4 w-4" /> Call us
             </a>
           </Button>

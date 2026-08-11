@@ -75,6 +75,9 @@ export function ContactForm({ defaultServices = [], formContext = "General enqui
   const [step, setStep] = useState(1);
   const turnstileRef = useRef<HTMLDivElement>(null);
   const startedRef = useRef(false);
+  const submittedRef = useRef(false);
+  const abandonedRef = useRef(false);
+  const stepRef = useRef(step);
 
   const availableServices = useMemo(
     () => Array.from(new Set([...SERVICES_OPTIONS, ...defaultServices.filter(Boolean)])),
@@ -84,6 +87,29 @@ export function ContactForm({ defaultServices = [], formContext = "General enqui
   useEffect(() => {
     setServicesNeeded((current) => Array.from(new Set([...current, ...defaultServices.filter(Boolean)])));
   }, [defaultServices]);
+
+  useEffect(() => {
+    trackEvent("quote_form_view", { form_context: formContext });
+  }, [formContext]);
+
+  useEffect(() => {
+    stepRef.current = step;
+    trackEvent("quote_form_step_view", { form_context: formContext, step });
+  }, [formContext, step]);
+
+  useEffect(() => {
+    const reportAbandonment = () => {
+      if (!startedRef.current || submittedRef.current || abandonedRef.current) return;
+      abandonedRef.current = true;
+      trackEvent("quote_form_abandon", { form_context: formContext, step: stepRef.current });
+    };
+
+    window.addEventListener("pagehide", reportAbandonment);
+    return () => {
+      window.removeEventListener("pagehide", reportAbandonment);
+      reportAbandonment();
+    };
+  }, [formContext]);
 
   useEffect(() => {
     if (!TURNSTILE_SITE_KEY) return;
@@ -192,6 +218,7 @@ export function ContactForm({ defaultServices = [], formContext = "General enqui
       if (response.ok) {
         trackEvent("quote_form_submit", { form_context: formContext, services_count: servicesNeeded.length });
         trackConversion("QUOTE_FORM");
+        submittedRef.current = true;
         setSubmitted(true);
         setForm(EMPTY);
         setServicesNeeded([]);
@@ -230,7 +257,7 @@ export function ContactForm({ defaultServices = [], formContext = "General enqui
   }
 
   return (
-    <form onSubmit={handleSubmit} onFocusCapture={markStarted} className="space-y-6" noValidate>
+    <form onSubmit={handleSubmit} onFocusCapture={markStarted} className="space-y-6" noValidate data-clarity-mask="true">
       <input type="text" name="honeypot" value={form.honeypot} onChange={set("honeypot")} tabIndex={-1} aria-hidden="true" className="hidden" />
 
       {defaultServices.filter(Boolean).length > 0 && (
@@ -332,7 +359,18 @@ export function ContactForm({ defaultServices = [], formContext = "General enqui
       )}
 
       <div className="flex items-center justify-between pt-2">
-        {step > 1 ? <Button type="button" variant="outline" onClick={() => setStep((current) => current - 1)}>Back</Button> : <div />}
+        {step > 1 ? (
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => {
+              trackEvent("quote_form_back", { form_context: formContext, step });
+              setStep((current) => current - 1);
+            }}
+          >
+            Back
+          </Button>
+        ) : <div />}
         {step < STEPS.length ? (
           <Button type="button" onClick={nextStep}>Continue</Button>
         ) : (

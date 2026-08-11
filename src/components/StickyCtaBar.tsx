@@ -46,9 +46,10 @@ export function StickyCtaBar({
         shouldShow ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0 pointer-events-none"
       }`}
     >
-      <div className="bg-background/95 backdrop-blur-sm border border-border rounded-xl shadow-lg px-3 py-2.5 flex gap-2">
+      <div data-cta-location="sticky_cta" className="bg-background/95 backdrop-blur-sm border border-border rounded-xl shadow-lg px-3 py-2.5 flex gap-2">
         <button
           onClick={handleScrollToForm}
+          data-analytics-cta="quote"
           className="bg-accent hover:bg-accent/90 text-accent-foreground px-4 py-2 rounded-lg font-semibold text-xs transition-colors"
         >
           {ctaText}

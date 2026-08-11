@@ -21,6 +21,8 @@ const staticRoutes = [
   { path: '/faq', priority: '0.5', changefreq: 'monthly' },
   { path: '/contact', priority: '0.7', changefreq: 'monthly' },
   { path: '/health-and-safety', priority: '0.5', changefreq: 'monthly' },
+  { path: '/privacy-policy', priority: '0.2', changefreq: 'yearly' },
+  { path: '/cookie-policy', priority: '0.2', changefreq: 'yearly' },
   { path: '/services/led-video-walls', priority: '0.8', changefreq: 'monthly' },
   { path: '/services/av-production', priority: '0.8', changefreq: 'monthly' },
   { path: '/services/lighting-design', priority: '0.8', changefreq: 'monthly' },

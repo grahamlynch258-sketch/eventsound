@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { ScrollToTop } from "@/components/site/ScrollToTop";
+import { ConsentBanner } from "@/components/site/ConsentBanner";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Services from "./pages/Services";
@@ -16,7 +17,9 @@ import HealthAndSafety from "./pages/HealthAndSafety";
 import CaseStudies from "./pages/CaseStudies";
 import CaseStudyDetail from "./pages/CaseStudyDetail";
 import NotFound from "./pages/NotFound";
-import { trackConversion } from "@/utils/trackConversion";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import CookiePolicy from "./pages/CookiePolicy";
+import { trackConversion, trackEvent } from "@/utils/trackConversion";
 import { captureLeadAttribution } from "@/lib/leadAttribution";
 
 // Admin route guard — kept static (small, needed immediately for auth check)
@@ -72,18 +75,58 @@ const queryClient = new QueryClient();
 function AppRoutes() {
   const location = useLocation();
 
+  const pageType = location.pathname.startsWith("/services/")
+    ? "service"
+    : location.pathname.startsWith("/case-studies/")
+      ? "case_study"
+      : location.pathname.startsWith("/landing/")
+        ? "paid_landing"
+        : location.pathname.startsWith("/admin")
+          ? "admin"
+          : location.pathname === "/"
+            ? "homepage"
+            : "general";
+
   useEffect(() => {
     captureLeadAttribution();
-  }, [location.pathname, location.search]);
+    trackEvent("route_view", {
+      page_path: location.pathname,
+      page_type: pageType,
+    });
+  }, [location.pathname, location.search, pageType]);
 
-  // Track phone call clicks site-wide
+  // Track sales CTAs consistently, including links added through CMS content.
   useEffect(() => {
-    const handleTelClick = (e: MouseEvent) => {
-      const target = (e.target as HTMLElement).closest('a[href^="tel:"]');
-      if (target) trackConversion('PHONE_CLICK');
+    const handleCtaClick = (event: MouseEvent) => {
+      const clicked = event.target as HTMLElement;
+      const element = clicked.closest<HTMLElement>("[data-analytics-cta], a[href]");
+      if (!element) return;
+
+      const anchor = element instanceof HTMLAnchorElement ? element : element.closest<HTMLAnchorElement>("a[href]");
+      const href = anchor?.getAttribute("href") || "";
+      const declaredType = element.dataset.analyticsCta;
+      const ctaType = declaredType
+        || (href.startsWith("tel:") ? "phone" : "")
+        || (href === "#quote-form" || href.startsWith("/contact") ? "quote" : "");
+
+      if (!ctaType) return;
+
+      const area = element.closest<HTMLElement>("[data-cta-location]")?.dataset.ctaLocation
+        || (element.closest("header") ? "site_header" : element.closest("footer") ? "site_footer" : "page_content");
+      const serviceName = element.dataset.serviceName || element.closest<HTMLElement>("[data-service-name]")?.dataset.serviceName || "";
+
+      trackEvent("cta_click", {
+        cta_type: ctaType,
+        cta_location: area,
+        page_path: window.location.pathname,
+        ...(serviceName ? { service_name: serviceName } : {}),
+      });
+
+      if (ctaType === "phone") trackConversion("PHONE_CLICK");
     };
-    document.addEventListener('click', handleTelClick);
-    return () => document.removeEventListener('click', handleTelClick);
+
+    document.addEventListener("click", handleCtaClick);
+    return () => document.removeEventListener("click", handleCtaClick);
   }, []);
 
   return (
@@ -99,6 +142,8 @@ function AppRoutes() {
       <Route path="/reviews" element={<Reviews />} />
       <Route path="/faq" element={<FAQ />} />
       <Route path="/health-and-safety" element={<HealthAndSafety />} />
+      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+      <Route path="/cookie-policy" element={<CookiePolicy />} />
       <Route path="/case-studies" element={<CaseStudies />} />
       <Route path="/case-studies/:slug" element={<CaseStudyDetail />} />
 
@@ -163,6 +208,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ConsentBanner />
         <AppRoutes />
       </BrowserRouter>
     </TooltipProvider>
