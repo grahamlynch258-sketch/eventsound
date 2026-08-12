@@ -12,6 +12,8 @@
  * The combined format for send_to is: AW-XXXXXXXXXX/XXXXXXXXXXXXXXXXXXXXX
  */
 
+import { shouldTrackAnalytics } from "@/lib/analytics";
+
 const CONVERSIONS = {
   QUOTE_FORM: {
     id: 'AW-1014417298/u4o1CJXNg5UcEJKP2-MD',
@@ -23,8 +25,17 @@ const CONVERSIONS = {
 
 export function trackEvent(name: string, parameters: Record<string, string | number | boolean> = {}) {
   try {
+    if (!shouldTrackAnalytics()) return;
+
     if (typeof window.gtag === "function") {
       window.gtag("event", name, parameters);
+    }
+
+    if (typeof window.clarity === "function") {
+      Object.entries(parameters).forEach(([key, value]) => {
+        window.clarity?.("set", key, String(value).slice(0, 255));
+      });
+      window.clarity("event", name);
     }
   } catch {
     // Analytics must never interrupt the visitor journey.
@@ -44,6 +55,11 @@ export function trackConversion(
   }
 ) {
   try {
+    if (!shouldTrackAnalytics()) {
+      options?.callback?.();
+      return;
+    }
+
     if (typeof window.gtag !== 'function') {
       options?.callback?.();
       return;

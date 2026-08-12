@@ -116,22 +116,55 @@
       }
     </script>
 
-    <!-- Google Ads Global Site Tag -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-1014417298"></script>
+    <!-- Analytics bootstrap. External analytics load only on the production
+         hostname and never for admin pages or staff-marked browsers. -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'AW-1014417298');
-    </script>
+      (function () {
+        var INTERNAL_KEY = "eventsound_internal_traffic";
+        var params = new URLSearchParams(window.location.search);
+        var internalFlag = params.get("eventsound_internal");
 
-    <!-- Microsoft Clarity -->
-    <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        try {
+          if (internalFlag === "1") window.localStorage.setItem(INTERNAL_KEY, "true");
+          if (internalFlag === "0") window.localStorage.removeItem(INTERNAL_KEY);
+          if (internalFlag !== null) {
+            params.delete("eventsound_internal");
+            var cleanQuery = params.toString();
+            window.history.replaceState({}, "", window.location.pathname + (cleanQuery ? "?" + cleanQuery : "") + window.location.hash);
+          }
+        } catch (_) {
+          // Storage may be unavailable. Continue without a persistent staff marker.
+        }
+
+        var isInternal = false;
+        try {
+          isInternal = window.localStorage.getItem(INTERNAL_KEY) === "true";
+        } catch (_) {}
+
+        var isProduction = window.location.hostname === "eventsound.ie" || window.location.hostname === "www.eventsound.ie";
+        var isAdmin = window.location.pathname === "/admin" || window.location.pathname.indexOf("/admin/") === 0;
+        window.eventsoundAnalyticsEligible = isProduction && !isAdmin && !isInternal;
+
+        if (!window.eventsoundAnalyticsEligible) return;
+
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+        var googleScript = document.createElement("script");
+        googleScript.async = true;
+        googleScript.src = "https://www.googletagmanager.com/gtag/js?id=AW-1014417298";
+        document.head.appendChild(googleScript);
+        window.gtag("js", new Date());
+        window.gtag("config", "AW-1014417298");
+
+        (function (c, l, a, r, i, t, y) {
+          c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+          t = l.createElement(r);
+          t.async = 1;
+          t.src = "https://www.clarity.ms/tag/" + i;
+          y = l.getElementsByTagName(r)[0];
+          y.parentNode.insertBefore(t, y);
         })(window, document, "clarity", "script", "w8hac3nrqi");
+      })();
     </script>
 
     <!-- Google Search Console -->

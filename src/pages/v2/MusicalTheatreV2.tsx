@@ -266,12 +266,12 @@ export default function MusicalTheatreV2() {
               EventSound provides complete technical production hire for musicals, plays, pantomimes, and theatrical performances across Ireland. From wireless microphones and stage lighting to LED backdrops and modular staging, we supply the equipment and experienced operators to bring your production to life — in theatres, school halls, community centres, and outdoor venues nationwide.
             </p>
 
-            <div className="flex flex-wrap gap-3 mb-6">
-              <Button size="lg" onClick={() => document.getElementById("quote-form")?.scrollIntoView({ behavior: "smooth" })}>
+            <div className="flex flex-wrap gap-3 mb-6" data-cta-location="service_hero">
+              <Button size="lg" data-analytics-cta="quote" data-service-name="Musical & Theatre" onClick={() => document.getElementById("quote-form")?.scrollIntoView({ behavior: "smooth" })}>
                 Get a Quote
               </Button>
               <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10" asChild>
-                <a href={`tel:${siteConfig.phone}`}>
+                <a href={`tel:${siteConfig.phone}`} data-service-name="Musical & Theatre">
                   <Phone className="mr-2 h-4 w-4" />
                   {siteConfig.phoneDisplay}
                 </a>

@@ -4,7 +4,7 @@ import { siteConfig } from "@/config/site";
 
 export function SiteFooter({ className }: { className?: string }) {
   return (
-    <footer className={cn("border-t border-border/50 bg-card", className)}>
+    <footer className={cn("border-t border-border/50 bg-card", className)} data-cta-location="site_footer">
       <div className="container py-12 md:py-16">
         <div className="mb-8">
           <p className="font-serif text-xl font-semibold tracking-tight">

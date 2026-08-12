@@ -251,12 +251,12 @@ export default function LEDVideoWallsV2() {
               EventSound provides LED video wall hire and rental across Ireland for conferences, corporate events, exhibitions, awards ceremonies, concerts, and outdoor festivals. Based in Drogheda, Co. Louth, we deliver and install LED walls at venues in Dublin, Cork, Galway, Belfast, and nationwide.
             </p>
 
-            <div className="flex flex-wrap gap-3 mb-6">
-              <Button size="lg" onClick={() => document.getElementById("quote-form")?.scrollIntoView({ behavior: "smooth" })}>
+            <div className="flex flex-wrap gap-3 mb-6" data-cta-location="service_hero">
+              <Button size="lg" data-analytics-cta="quote" data-service-name="LED Video Walls" onClick={() => document.getElementById("quote-form")?.scrollIntoView({ behavior: "smooth" })}>
                 Get a Quote
               </Button>
               <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10" asChild>
-                <a href={`tel:${siteConfig.phone}`}>
+                <a href={`tel:${siteConfig.phone}`} data-service-name="LED Video Walls">
                   <Phone className="mr-2 h-4 w-4" />
                   {siteConfig.phoneDisplay}
                 </a>

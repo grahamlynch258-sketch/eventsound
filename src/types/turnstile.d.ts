@@ -9,8 +9,10 @@ declare global {
       reset: (widgetId?: string) => void;
       remove: (widgetId?: string) => void;
     };
-    dataLayer: any[];
-    gtag: (...args: any[]) => void;
+    dataLayer: unknown[];
+    gtag?: (...args: unknown[]) => void;
+    clarity?: (...args: unknown[]) => void;
+    eventsoundAnalyticsEligible?: boolean;
   }
 }
 export {};

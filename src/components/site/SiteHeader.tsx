@@ -115,6 +115,7 @@ export function SiteHeader({ className }: { className?: string }) {
   return (
     <>
     <header
+      data-cta-location="site_header"
       className={cn(
         "sticky top-0 z-[100] border-b transition-all duration-300",
         scrolled
