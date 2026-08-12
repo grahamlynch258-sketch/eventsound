@@ -139,19 +139,20 @@
   .hero-spotlight {
     --spot-x: 50%;
     --spot-y: 50%;
-    --spot-r: 240px;
+    --spot-rx: 180px;
+    --spot-ry: 125px;
   }
 
   /* Punch a feathered hole in the dark overlay around the cursor */
   .hero-spotlight[data-spotlight] .hero-spotlight-mask {
     -webkit-mask-image: radial-gradient(
-      circle var(--spot-r) at var(--spot-x) var(--spot-y),
+      ellipse var(--spot-rx) var(--spot-ry) at var(--spot-x) var(--spot-y),
       transparent 0%,
       transparent 40%,
       black 92%
     );
     mask-image: radial-gradient(
-      circle var(--spot-r) at var(--spot-x) var(--spot-y),
+      ellipse var(--spot-rx) var(--spot-ry) at var(--spot-x) var(--spot-y),
       transparent 0%,
       transparent 40%,
       black 92%
@@ -179,13 +180,13 @@
     opacity: 1;
     transform: scale(1.08);
     -webkit-mask-image: radial-gradient(
-      circle var(--spot-r) at var(--spot-x) var(--spot-y),
+      ellipse var(--spot-rx) var(--spot-ry) at var(--spot-x) var(--spot-y),
       black 0%,
       black 48%,
       transparent 82%
     );
     mask-image: radial-gradient(
-      circle var(--spot-r) at var(--spot-x) var(--spot-y),
+      ellipse var(--spot-rx) var(--spot-ry) at var(--spot-x) var(--spot-y),
       black 0%,
       black 48%,
       transparent 82%
