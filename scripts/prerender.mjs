@@ -301,8 +301,8 @@ const SERVICE_PAGE_SCHEMAS = {
 // see real body content. React replaces this on hydration.
 const SERVICE_PAGE_INTROS = {
   '/services/led-video-walls': [
-    "EventSound provides modular LED video wall hire for conferences, concerts, festivals, corporate events, and outdoor screenings across Ireland. We stock Absen and Unilumin LED panels with screen sizes from 6m² for conference presentations to 50m²+ for large-scale outdoor stages.",
-    "Indoor LED walls are the standard for corporate conferences, awards nights, AGMs, product launches, and exhibitions where ambient light or room layout make projection impractical. Outdoor LED walls are weather-rated with high-brightness output visible in direct sunlight. Every LED wall hire includes delivery, installation, content management, a dedicated on-site operator, and full breakdown.",
+    "EventSound provides modular LED video wall hire for conferences, concerts, festivals, corporate events, and outdoor screenings across Ireland. Whether you search for video wall hire, video wall rental or LED screen hire, it's the same modular panel system — we stock Absen and Unilumin LED panels with screen sizes from 6m² for conference presentations to 50m²+ for large-scale outdoor stages.",
+    "Indoor LED walls are the standard for corporate conferences, awards nights, AGMs, product launches, and exhibitions where ambient light or room layout make projection impractical. Outdoor LED walls are weather-rated with high-brightness output visible in direct sunlight. Every video wall hire includes delivery, installation, content management, a dedicated on-site operator, and full breakdown.",
   ],
   '/services/led-screen-hire': [
     "Individual LED screen and TV monitor hire for corporate events, conferences, exhibitions, and trade shows across Ireland. Screens from 43 inches to 98 inches on freestanding floor stands, table mounts, or wall-mount brackets — ideal for boardroom presentations, breakout rooms, registration areas, sponsor branding, and digital signage.",

@@ -248,7 +248,7 @@ export default function LEDVideoWallsV2() {
               High-impact LED video walls for events of every scale
             </p>
             <p className="text-sm md:text-base text-white/80 mb-8 leading-relaxed">
-              EventSound provides LED video wall hire and rental across Ireland for conferences, corporate events, exhibitions, awards ceremonies, concerts, and outdoor festivals. Based in Drogheda, Co. Louth, we deliver and install LED walls at venues in Dublin, Cork, Galway, Belfast, and nationwide.
+              EventSound provides LED video wall hire and rental across Ireland for conferences, corporate events, exhibitions, awards ceremonies, concerts, and outdoor festivals. Whether you call it video wall hire, a video wall rental or an LED screen, it's the same modular panel system — and we deliver, install and operate it at venues in Dublin, Cork, Galway, Belfast, and nationwide from our base in Drogheda, Co. Louth.
             </p>
 
             <div className="flex flex-wrap gap-3 mb-6" data-cta-location="service_hero">
