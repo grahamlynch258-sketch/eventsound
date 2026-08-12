@@ -44,6 +44,10 @@ export function HeroSlideshow({ intervalMs = 5000 }: Props) {
   const prevIndexRef = useRef(-1);
   const [hasTransitioned, setHasTransitioned] = useState(false);
   const [firstImageLoaded, setFirstImageLoaded] = useState(false);
+  // While a slide animation is running, the hover-spotlight lens is hidden so
+  // its static magnified content never fights the sliding background.
+  const [isSliding, setIsSliding] = useState(false);
+  const slideTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const images = headlines && headlines.length > 0
     ? headlines.map((h) => ({ url: h.image_url, alt: h.alt_text || h.file_name || "Event production" }))
@@ -72,29 +76,54 @@ export function HeroSlideshow({ intervalMs = 5000 }: Props) {
         return (prev + 1) % images.length;
       });
       setHasTransitioned(true);
+      setIsSliding(true);
+      if (slideTimerRef.current) clearTimeout(slideTimerRef.current);
+      slideTimerRef.current = setTimeout(() => setIsSliding(false), 750);
     }, intervalMs);
-    return () => clearInterval(timer);
+    return () => {
+      clearInterval(timer);
+      if (slideTimerRef.current) clearTimeout(slideTimerRef.current);
+    };
   }, [images.length, intervalMs, firstImageLoaded]);
 
   if (images.length === 0 || !firstImageLoaded) return null;
+
+  // Duplicate of the active slide shown only inside the hover-spotlight lens
+  // (see .hero-spotlight-zoom in index.css). Same URL as the visible slide, so
+  // it costs no extra download; opacity 0 keeps it out of LCP candidates.
+  const spotlightZoom = (url: string) => (
+    <img
+      src={url}
+      alt=""
+      aria-hidden="true"
+      loading="lazy"
+      decoding="async"
+      width={1920}
+      height={1080}
+      className={`hero-spotlight-zoom${isSliding ? " is-sliding" : ""}`}
+    />
+  );
 
   // Before first transition: render ONLY the active slide.
   // This prevents off-screen slides from registering as LCP candidates.
   if (!hasTransitioned) {
     const first = images[0];
     return (
-      <img
-        src={first.url}
-        alt={first.alt}
-        loading="eager"
-        decoding="sync"
-        // React 18 drops the camelCase fetchPriority prop (and warns); the
-        // browser only honours the lowercase DOM attribute.
-        {...({ fetchpriority: "high" } as Record<string, string>)}
-        width={1920}
-        height={1080}
-        className="absolute inset-0 h-full w-full object-cover"
-      />
+      <>
+        <img
+          src={first.url}
+          alt={first.alt}
+          loading="eager"
+          decoding="sync"
+          // React 18 drops the camelCase fetchPriority prop (and warns); the
+          // browser only honours the lowercase DOM attribute.
+          {...({ fetchpriority: "high" } as Record<string, string>)}
+          width={1920}
+          height={1080}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        {spotlightZoom(first.url)}
+      </>
     );
   }
 
@@ -138,6 +167,7 @@ export function HeroSlideshow({ intervalMs = 5000 }: Props) {
           />
         );
       })}
+      {spotlightZoom(images[currentIndex].url)}
     </>
   );
 }

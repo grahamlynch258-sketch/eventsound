@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Check, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -5,11 +6,50 @@ import { HeroSlideshow } from "./HeroSlideshow";
 import { siteConfig } from "@/config/site";
 
 export function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // Desktop-only hover spotlight: track the cursor as CSS variables on the
+  // section; index.css uses them to open a soft lens in the overlay and show
+  // a slightly magnified copy of the slide under the cursor.
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let raf = 0;
+    const onMove = (e: MouseEvent) => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const rect = el.getBoundingClientRect();
+        el.style.setProperty("--spot-x", `${e.clientX - rect.left}px`);
+        el.style.setProperty("--spot-y", `${e.clientY - rect.top}px`);
+      });
+    };
+    const onEnter = () => el.setAttribute("data-spotlight", "on");
+    const onLeave = () => el.removeAttribute("data-spotlight");
+
+    el.addEventListener("mousemove", onMove, { passive: true });
+    el.addEventListener("mouseenter", onEnter);
+    el.addEventListener("mouseleave", onLeave);
+    return () => {
+      el.removeEventListener("mousemove", onMove);
+      el.removeEventListener("mouseenter", onEnter);
+      el.removeEventListener("mouseleave", onLeave);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
+
   return (
-    <section data-cta-location="homepage_hero" className="relative flex min-h-[calc(100svh-4rem)] items-center overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 md:min-h-[82vh]">
+    <section
+      ref={sectionRef}
+      data-cta-location="homepage_hero"
+      className="hero-spotlight relative flex min-h-[calc(100svh-4rem)] items-center overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 md:min-h-[82vh]"
+    >
       <div className="absolute inset-0">
         <HeroSlideshow />
-        <div className="absolute inset-0 bg-background/60" />
+        <div className="hero-spotlight-mask absolute inset-0 bg-background/60" />
       </div>
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-32 bg-gradient-to-b from-transparent to-background" />
       <div className="container relative z-10 py-12 text-center sm:py-16 md:py-24">
