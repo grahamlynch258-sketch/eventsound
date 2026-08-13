@@ -1,5 +1,32 @@
 # Blog launch plan — 20 posts, mapped to real Search Console data
 
+> **v3 revision (13 Aug, after external review): keyword ownership.** Every
+> transactional phrase ("video wall hire", "stage hire ireland", "event
+> lighting hire", "led screen hire") is OWNED by its service page — the SERPs
+> for those terms are commercial, and a blog post competing for them risks
+> cannibalising the page that should win. Each blog post owns exactly ONE
+> narrower informational query instead. Six posts are being retargeted
+> accordingly (H1, intro, headings and anchors — not just meta titles):
+>
+> | Post | Old target (now service-page-owned) | New blog target |
+> |---|---|---|
+> | video-wall-hire-guide | video wall hire | how does video wall hire work / video wall sizes for events |
+> | stage-hire-ireland-guide | stage hire ireland | what size stage do I need for an event |
+> | event-lighting-hire-ireland | event lighting hire ireland | what lighting does my event venue need |
+> | led-screen-or-led-wall | led screen hire | led screen vs led wall |
+> | event-lighting-design-guide | event lighting design (page already ~pos 8) | conference & awards-night lighting design |
+> | outdoor-stage-hire-ireland | outdoor stage hire | outdoor stage planning checklist ireland |
+>
+> **Publication schedule (replaces the three waves): two posts per week,
+> strongest first, measured as we go.** Weeks 1–4: Swords Castle case study +
+> LED wall cost → video walls for theatre + school musical sound → LED wall vs
+> projector + conference technical brief → AGM streaming + conference AV
+> costs. The six retargeted guides and the rest publish only after Search
+> Console shows the first eight indexing cleanly and service-page rankings
+> holding. `published_at` now acts as a scheduler (future-dated posts stay
+> hidden on the site, in the prerender and in the sitemap), so everything
+> tailored can be imported in one go with staggered dates.
+
 Companion to [blog-style-guide.md](blog-style-guide.md). **v2 — rebuilt around
 the GSC export of 12 Aug 2026** (3-month: 711 queries, 14.5k impressions, avg
 pos 21.8 · 16-month: 1,000 queries, 46.5k impressions). Verified separately:

@@ -25,6 +25,8 @@ export default function BlogPost() {
       .select("*, blog_images(*)")
       .eq("slug", slug)
       .eq("status", "published")
+      // published_at doubles as a scheduler: future-dated posts stay hidden
+      .lte("published_at", new Date().toISOString())
       .order("position", { referencedTable: "blog_images", ascending: true })
       .maybeSingle()
       .then(({ data, error }) => {

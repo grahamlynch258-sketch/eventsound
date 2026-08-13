@@ -78,7 +78,8 @@ async function generateSitemap() {
                   .from('blog_posts')
                   .select('slug, updated_at')
                   .eq('status', 'published')
-                  .eq('noindex', false);
+                  .eq('noindex', false)
+                  .lte('published_at', new Date().toISOString());
 
           if (blogError) {
                     // A missing table just means the blog hasn't been set up yet.

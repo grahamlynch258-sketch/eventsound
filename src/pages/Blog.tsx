@@ -25,6 +25,8 @@ export default function Blog() {
       .from("blog_posts")
       .select("*")
       .eq("status", "published")
+      // published_at doubles as a scheduler: future-dated posts stay hidden
+      .lte("published_at", new Date().toISOString())
       .order("published_at", { ascending: false })
       .then(({ data, error }) => {
         if (!mounted) return;

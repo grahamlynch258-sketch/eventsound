@@ -647,7 +647,7 @@ async function getBlogPosts() {
     if (!SUPABASE_URL || !SUPABASE_KEY) return [];
 
     const res = await fetch(
-      `${SUPABASE_URL}/rest/v1/blog_posts?select=slug,meta_title,meta_description,title,excerpt,content,featured_image_url,og_image_url,published_at,updated_at,tags,category,author&status=eq.published&noindex=eq.false`,
+      `${SUPABASE_URL}/rest/v1/blog_posts?select=slug,meta_title,meta_description,title,excerpt,content,featured_image_url,og_image_url,published_at,updated_at,tags,category,author&status=eq.published&noindex=eq.false&published_at=lte.${encodeURIComponent(new Date().toISOString())}`,
       { headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` } }
     );
     if (!res.ok) {

@@ -92,6 +92,26 @@ Use these only when supported by evidence or a concrete example:
 - next-level;
 - wow factor.
 
+## Sounding human (hard rules — these override everything else)
+
+AI-written text has fingerprints. Under a named byline they destroy
+credibility. These are mechanical limits, checked before publication:
+
+- **Em dashes ( — ): maximum one per post, ideally zero.** Replace with a
+  full stop, a comma, or brackets. This is the single biggest tell.
+- **Semicolons: zero.** A real production engineer writes two sentences.
+- **Rule-of-three lists ("fast, reliable and affordable"): break them.**
+  Use two items, or four, or one. Constant triplets read as generated.
+- **No "isn't just X — it's Y" constructions.** Say the thing directly.
+- **Vary the rhythm.** Real writing has a five-word sentence next to a
+  twenty-five-word one, an aside in brackets, an occasional sentence
+  starting with And or But. Uniformly polished medium-length sentences are
+  a tell in themselves.
+- **Let it be slightly rough.** A plain flat sentence ("Wind is the thing
+  that catches people out.") beats a balanced elegant one. Contractions
+  everywhere. The test: read a paragraph aloud — would Graham say it on the
+  phone to a client?
+
 ## Sentence and paragraph length
 
 Target an average sentence length of **14–20 words**.
