@@ -21,7 +21,7 @@ export default function AudioSystems() {
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6">
           <p className="text-lg text-muted-foreground">
-            EventSound started as a sound rental company more than 20 years ago, and professional audio remains at the heart of what we do. We provide PA systems, wireless microphones, foldback monitors, and complete audio solutions for corporate events, conferences, concerts, and live shows across Ireland.
+            EventSound started as a sound rental company more than 35 years ago, and professional audio remains at the heart of what we do. We provide PA systems, wireless microphones, foldback monitors, and complete audio solutions for corporate events, conferences, concerts, and live shows across Ireland.
           </p>
           <h2 className="text-2xl font-semibold">Industry-Leading Equipment</h2>
           <p className="text-muted-foreground">

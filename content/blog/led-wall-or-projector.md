@@ -92,4 +92,4 @@ LED, comfortably. The wall holds exposure alongside lit presenters, while projec
 
 ## Not sure which your room needs?
 
-Send us the venue, a few room photos, the audience size and what the screen has to carry, and we'll give you a straight recommendation. That includes the times the answer is "use the projector you already have". EventSound is owner-led, with 20+ years of event production across Ireland. [Ask us about your venue](/contact/).
+Send us the venue, a few room photos, the audience size and what the screen has to carry, and we'll give you a straight recommendation. That includes the times the answer is "use the projector you already have". EventSound is owner-led, with 35+ years of event production across Ireland. [Ask us about your venue](/contact/).

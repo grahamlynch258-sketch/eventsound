@@ -195,4 +195,4 @@ The template takes under an hour for a 60-person event, and small events lose mo
 
 ## Put the brief to work
 
-Fill in the template, blanks and all, and send it to us. We'll sense-check it, flag what only your venue can answer, and turn it into a single all-inclusive figure. Owner-led, 20+ years of production across Ireland, and happy to be measured against any quote your brief brings back. [Send us your brief](/contact/).
+Fill in the template, blanks and all, and send it to us. We'll sense-check it, flag what only your venue can answer, and turn it into a single all-inclusive figure. Owner-led, 35+ years of production across Ireland, and happy to be measured against any quote your brief brings back. [Send us your brief](/contact/).

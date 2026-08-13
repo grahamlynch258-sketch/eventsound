@@ -1,8 +1,7 @@
-# EventSound blog — 20 drafts, v3 (voice-edited, retargeted, Drogheda-free)
+# EventSound blog — 20 drafts (voice-edited, retargeted, 35+ years)
 
-Publication runs two per week from 17 Aug; the toggle in Admin → Blog
-controls go-live per post once tailored. `[TAILOR: …]` blockquotes mark
-where your real venues, numbers and photos go.
+Two posts per week from 17 Aug. `[TAILOR: …]` blockquotes mark where your
+real venues, numbers and photos go. Go-live is the toggle in Admin → Blog.
 
 ## Publication order
 
@@ -232,7 +231,7 @@ Once dates and venue are firm. Autumn conference season and December concentrate
 
 ## Get an all-in figure for your event
 
-Send the venue, room dimensions, audience size and dates, and we'll come back with a recommended wall size and one all-inclusive figure: equipment, delivery, installation, operation and breakdown, with nothing left to appear later. EventSound is owner-led, with 20+ years of event production across Ireland. [Request a quote for your event](/contact/).
+Send the venue, room dimensions, audience size and dates, and we'll come back with a recommended wall size and one all-inclusive figure: equipment, delivery, installation, operation and breakdown, with nothing left to appear later. EventSound is owner-led, with 35+ years of event production across Ireland. [Request a quote for your event](/contact/).
 
 
 ---
@@ -525,7 +524,7 @@ LED, comfortably. The wall holds exposure alongside lit presenters, while projec
 
 ## Not sure which your room needs?
 
-Send us the venue, a few room photos, the audience size and what the screen has to carry, and we'll give you a straight recommendation. That includes the times the answer is "use the projector you already have". EventSound is owner-led, with 20+ years of event production across Ireland. [Ask us about your venue](/contact/).
+Send us the venue, a few room photos, the audience size and what the screen has to carry, and we'll give you a straight recommendation. That includes the times the answer is "use the projector you already have". EventSound is owner-led, with 35+ years of event production across Ireland. [Ask us about your venue](/contact/).
 
 
 ---
@@ -719,7 +718,7 @@ The template takes under an hour for a 60-person event, and small events lose mo
 
 ## Put the brief to work
 
-Fill in the template, blanks and all, and send it to us. We'll sense-check it, flag what only your venue can answer, and turn it into a single all-inclusive figure. Owner-led, 20+ years of production across Ireland, and happy to be measured against any quote your brief brings back. [Send us your brief](/contact/).
+Fill in the template, blanks and all, and send it to us. We'll sense-check it, flag what only your venue can answer, and turn it into a single all-inclusive figure. Owner-led, 35+ years of production across Ireland, and happy to be measured against any quote your brief brings back. [Send us your brief](/contact/).
 
 
 ---
@@ -945,7 +944,7 @@ On paper, always. In practice, only when you genuinely have the people to instal
 
 ## Getting a number you can trust
 
-Send us the venue, delegate numbers, format and running order (rough is fine) and we'll quote the whole job: equipment, delivery, installation, operation and breakdown in one figure. If two quotes you already hold refuse to line up, we're happy to help translate. EventSound is owner-led, with 20+ years of event production across Ireland. [Request a conference AV quote](/contact/).
+Send us the venue, delegate numbers, format and running order (rough is fine) and we'll quote the whole job: equipment, delivery, installation, operation and breakdown in one figure. If two quotes you already hold refuse to line up, we're happy to help translate. EventSound is owner-led, with 35+ years of event production across Ireland. [Request a conference AV quote](/contact/).
 
 
 ---
@@ -1044,7 +1043,7 @@ Vague answers usually mean contingency was priced out of the quote. That's a pat
 
 ## Before your next conference
 
-If the event matters enough to need a checklist, it matters enough to share early. Send us your venue, format and running order and we'll review it for AV dependencies: the microphone counts, changeovers, streams and single points of failure hiding inside it. EventSound is owner-led, with 20+ years of event production across Ireland. [Talk to us about your conference](/contact/).
+If the event matters enough to need a checklist, it matters enough to share early. Send us your venue, format and running order and we'll review it for AV dependencies: the microphone counts, changeovers, streams and single points of failure hiding inside it. EventSound is owner-led, with 35+ years of event production across Ireland. [Talk to us about your conference](/contact/).
 
 
 ---
@@ -1759,7 +1758,7 @@ They run the desk: stepping through programmed cues against the running order, a
 
 ## Planning the lighting for your next event
 
-If you're at the briefing stage, send us the venue, audience size and event format and we'll help you sense-check the lighting brief, including what the room genuinely needs and what it doesn't. EventSound is owner-led, with 20+ years of event production across Ireland. [Tell us about your event](/contact/).
+If you're at the briefing stage, send us the venue, audience size and event format and we'll help you sense-check the lighting brief, including what the room genuinely needs and what it doesn't. EventSound is owner-led, with 35+ years of event production across Ireland. [Tell us about your event](/contact/).
 
 
 ---
@@ -1966,7 +1965,7 @@ Anywhere in Ireland. Dublin, Cork, Galway, Belfast, Limerick and everywhere betw
 
 ## Get a size and a price for your room
 
-Send us the room dimensions, audience size and dates, and we'll come back with a recommended wall size, pixel pitch and placement, plus one all-inclusive figure with nothing hidden in it. EventSound is owner-led, with 20+ years of event production across Ireland. [Tell us about your event](/contact/).
+Send us the room dimensions, audience size and dates, and we'll come back with a recommended wall size, pixel pitch and placement, plus one all-inclusive figure with nothing hidden in it. EventSound is owner-led, with 35+ years of event production across Ireland. [Tell us about your event](/contact/).
 
 
 ---
@@ -2275,7 +2274,7 @@ Our conference walls start around 6m². If the space or budget won't carry that,
 
 ## Planning the screens for your next event
 
-Send us the floor plan (even phone photos of the room work) with your audience size and format, and we'll recommend screen size, viewing distance and placement, including the cheaper option where it genuinely serves the event better. EventSound is owner-led, with 20+ years of event production across Ireland. [Tell us about your event](/contact/).
+Send us the floor plan (even phone photos of the room work) with your audience size and format, and we'll recommend screen size, viewing distance and placement, including the cheaper option where it genuinely serves the event better. EventSound is owner-led, with 35+ years of event production across Ireland. [Tell us about your event](/contact/).
 
 
 ---

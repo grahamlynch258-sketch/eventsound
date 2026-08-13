@@ -120,4 +120,4 @@ They run the desk: stepping through programmed cues against the running order, a
 
 ## Planning the lighting for your next event
 
-If you're at the briefing stage, send us the venue, audience size and event format and we'll help you sense-check the lighting brief, including what the room genuinely needs and what it doesn't. EventSound is owner-led, with 20+ years of event production across Ireland. [Tell us about your event](/contact/).
+If you're at the briefing stage, send us the venue, audience size and event format and we'll help you sense-check the lighting brief, including what the room genuinely needs and what it doesn't. EventSound is owner-led, with 35+ years of event production across Ireland. [Tell us about your event](/contact/).

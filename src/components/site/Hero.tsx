@@ -33,7 +33,7 @@ export function Hero() {
           </Button>
         </div>
         <ul className="mx-auto mt-5 grid max-w-3xl grid-cols-2 gap-x-3 gap-y-2 text-left text-xs text-white/85 sm:flex sm:flex-wrap sm:justify-center sm:gap-x-6 md:mt-7 md:text-sm">
-          {["20+ years' experience", "Fully insured", "Nationwide delivery", "Reply within 24 hours"].map((item) => (
+          {["35+ years' experience", "Fully insured", "Nationwide delivery", "Reply within 24 hours"].map((item) => (
             <li key={item} className="flex items-center gap-1.5">
               <Check className="h-3.5 w-3.5 shrink-0 text-accent" aria-hidden="true" /> {item}
             </li>

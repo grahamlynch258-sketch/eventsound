@@ -119,7 +119,7 @@ export default function LEDScreenHire() {
             <li>HDMI, USB-C, and wireless connectivity for laptops and conferencing systems</li>
             <li>Content loading and management included — send us your files, we handle the rest</li>
             <li>Full-service hire: delivery, installation, testing, on-site support, and collection</li>
-            <li>Over 20 years of event production experience across Ireland</li>
+            <li>Over 35 years of event production experience across Ireland</li>
             <li>Available nationwide: Dublin, Cork, Galway, Limerick, Belfast, and beyond</li>
           </ul>
           </div>

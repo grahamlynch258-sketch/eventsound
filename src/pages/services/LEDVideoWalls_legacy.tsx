@@ -124,7 +124,7 @@ export default function LEDVideoWalls() {
           <div className="text-left inline-block">
           <ul className="space-y-2 text-muted-foreground list-disc list-inside transition-transform duration-300 hover:scale-[1.04] cursor-default">
             <li>Unilumin and Absen LED panels — industry-leading resolution and colour accuracy</li>
-            <li>Over 20 years of event production experience across Ireland</li>
+            <li>Over 35 years of event production experience across Ireland</li>
             <li>Full-service: delivery, installation, operation, and breakdown included</li>
             <li>Indoor and outdoor LED walls from 6m² to 50m²+</li>
             <li>Curved and custom configurations for immersive installations</li>

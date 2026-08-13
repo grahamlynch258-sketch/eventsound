@@ -22,7 +22,7 @@ export default function EventProduction() {
     { question: "Do you provide production for outdoor events?", answer: "Yes. We provide full outdoor event production including weatherproof staging, high-brightness LED screens, outdoor-rated PA systems, and power distribution. We have produced outdoor concerts at Swords Castle and festival events nationwide." },
     { question: "Can you produce events anywhere in Ireland?", answer: "Yes, we produce events nationwide. While we are based in Drogheda, Co. Louth, we regularly deliver events across all 32 counties and have strong relationships with venues throughout Ireland." },
     { question: "What size events do you handle?", answer: "Everything from boardroom presentations for 20 people to outdoor festivals for 10,000+. We scale our crew and equipment to match your event. Recent projects include the Swords Castle Summer Concerts and intimate corporate conferences." },
-    { question: "What happens if equipment fails during my event?", answer: "We carry backup equipment on-site for all critical systems and our technicians are trained to handle any technical issues immediately. In over two decades of event production, we have built redundancy into every setup to ensure your event runs smoothly." }
+    { question: "What happens if equipment fails during my event?", answer: "We carry backup equipment on-site for all critical systems and our technicians are trained to handle any technical issues immediately. In more than 35 years of event production, we have built redundancy into every setup to ensure your event runs smoothly." }
   ];
   const faqSchema = generateFAQSchema({ questions: faqs });
 
@@ -80,7 +80,7 @@ export default function EventProduction() {
             EventSound is a full-service event production company based in Drogheda, Co. Louth, delivering sound, lighting, LED video walls, staging, and technical management for events across Dublin, Leinster, and nationwide Ireland. From corporate conferences and awards ceremonies to outdoor festivals and multi-day exhibitions, we manage the entire technical production from initial planning to on-site delivery and breakdown.
           </p>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            With over 20 years in the Irish event production industry, we work directly with corporate clients, agencies, local authorities, and venue managers. We provide our own equipment alongside experienced technical crew, and coordinate sub-hire and additional resources for larger productions.
+            With over 35 years in the Irish event production industry, we work directly with corporate clients, agencies, local authorities, and venue managers. We provide our own equipment alongside experienced technical crew, and coordinate sub-hire and additional resources for larger productions.
           </p>
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">What Full-Service Event Production Includes</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
@@ -131,7 +131,7 @@ export default function EventProduction() {
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Why EventSound for Production?</h2>
           <div className="text-left inline-block">
           <ul className="space-y-2 text-muted-foreground list-disc list-inside transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            <li>Over 20 years of event production experience across Ireland</li>
+            <li>Over 35 years of event production experience across Ireland</li>
             <li>Single point of contact for all technical elements</li>
             <li>Own equipment: Martin Audio, L-Acoustics, Unilumin, Chamsys, GUIL</li>
             <li>Works alongside event managers, agencies, and venues</li>

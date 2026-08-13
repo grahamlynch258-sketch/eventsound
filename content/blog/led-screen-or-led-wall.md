@@ -104,4 +104,4 @@ Our conference walls start around 6m². If the space or budget won't carry that,
 
 ## Planning the screens for your next event
 
-Send us the floor plan (even phone photos of the room work) with your audience size and format, and we'll recommend screen size, viewing distance and placement, including the cheaper option where it genuinely serves the event better. EventSound is owner-led, with 20+ years of event production across Ireland. [Tell us about your event](/contact/).
+Send us the floor plan (even phone photos of the room work) with your audience size and format, and we'll recommend screen size, viewing distance and placement, including the cheaper option where it genuinely serves the event better. EventSound is owner-led, with 35+ years of event production across Ireland. [Tell us about your event](/contact/).

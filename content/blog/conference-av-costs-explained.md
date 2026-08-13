@@ -110,4 +110,4 @@ On paper, always. In practice, only when you genuinely have the people to instal
 
 ## Getting a number you can trust
 
-Send us the venue, delegate numbers, format and running order (rough is fine) and we'll quote the whole job: equipment, delivery, installation, operation and breakdown in one figure. If two quotes you already hold refuse to line up, we're happy to help translate. EventSound is owner-led, with 20+ years of event production across Ireland. [Request a conference AV quote](/contact/).
+Send us the venue, delegate numbers, format and running order (rough is fine) and we'll quote the whole job: equipment, delivery, installation, operation and breakdown in one figure. If two quotes you already hold refuse to line up, we're happy to help translate. EventSound is owner-led, with 35+ years of event production across Ireland. [Request a conference AV quote](/contact/).

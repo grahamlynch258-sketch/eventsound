@@ -14,7 +14,7 @@ stories in. Never invent a venue, client, number or piece of kit.
 
 - EventSound AV Services — Townrath, Drogheda, Co. Louth, Ireland
 - Phone 086 352 0476 · info@eventsound.ie · eventsound.ie
-- Owner-led; 20+ years of event production experience; crew includes Ronan and
+- Owner-led; 35+ years of event production experience; crew includes Ronan and
   Mark for larger multi-crew events
 - Byline for all posts: **Graham Lynch — EventSound**
 - Serves all of Ireland: Dublin, Drogheda, Cork, Galway, Belfast, Limerick,

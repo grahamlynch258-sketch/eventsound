@@ -78,7 +78,7 @@ export default function AVProduction() {
             EventSound provides AV equipment hire across Ireland for corporate events, conferences, product launches, exhibitions, gala dinners, and live shows. Based in Drogheda, Co. Louth, we supply and operate professional audio visual equipment at venues in Dublin, Cork, Galway, Belfast, and nationwide.
           </p>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            With over 20 years in the event production industry, we supply everything from a single display screen for a boardroom presentation to full multi-source AV production for large-scale corporate events. Every hire includes delivery, setup, on-site technical support, and collection — so you can focus on your event while we handle the technology.
+            With over 35 years in the event production industry, we supply everything from a single display screen for a boardroom presentation to full multi-source AV production for large-scale corporate events. Every hire includes delivery, setup, on-site technical support, and collection — so you can focus on your event while we handle the technology.
           </p>
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">AV Equipment Available for Hire</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
@@ -136,7 +136,7 @@ export default function AVProduction() {
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Why EventSound for AV Hire?</h2>
           <div className="text-left inline-block">
           <ul className="space-y-2 text-muted-foreground list-disc list-inside transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            <li>Over 20 years of AV production experience across Ireland</li>
+            <li>Over 35 years of AV production experience across Ireland</li>
             <li>Martin Audio, L-Acoustics, Unilumin, Chamsys — industry-leading brands</li>
             <li>Full-service: delivery, setup, operation, and collection included</li>
             <li>Individual item hire or complete AV packages</li>

@@ -115,4 +115,4 @@ Once dates and venue are firm. Autumn conference season and December concentrate
 
 ## Get an all-in figure for your event
 
-Send the venue, room dimensions, audience size and dates, and we'll come back with a recommended wall size and one all-inclusive figure: equipment, delivery, installation, operation and breakdown, with nothing left to appear later. EventSound is owner-led, with 20+ years of event production across Ireland. [Request a quote for your event](/contact/).
+Send the venue, room dimensions, audience size and dates, and we'll come back with a recommended wall size and one all-inclusive figure: equipment, delivery, installation, operation and breakdown, with nothing left to appear later. EventSound is owner-led, with 35+ years of event production across Ireland. [Request a quote for your event](/contact/).

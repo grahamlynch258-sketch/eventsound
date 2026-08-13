@@ -100,4 +100,4 @@ Vague answers usually mean contingency was priced out of the quote. That's a pat
 
 ## Before your next conference
 
-If the event matters enough to need a checklist, it matters enough to share early. Send us your venue, format and running order and we'll review it for AV dependencies: the microphone counts, changeovers, streams and single points of failure hiding inside it. EventSound is owner-led, with 20+ years of event production across Ireland. [Talk to us about your conference](/contact/).
+If the event matters enough to need a checklist, it matters enough to share early. Send us your venue, format and running order and we'll review it for AV dependencies: the microphone counts, changeovers, streams and single points of failure hiding inside it. EventSound is owner-led, with 35+ years of event production across Ireland. [Talk to us about your conference](/contact/).

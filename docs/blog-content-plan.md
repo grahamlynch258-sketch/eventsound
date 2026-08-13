@@ -126,7 +126,7 @@ Per post Graham supplies ~10 minutes of raw material (voice note or bullets):
 the real story (venue, numbers, what went wrong/right), 2–4 photos from the
 library, price/spec facts. Drafting per the style guide (Claude or Codex);
 **Graham fact-checks and takes the byline** (named expertise is a
-differentiator per the audit). Byline: Graham Lynch — EventSound, 20+ years of
+differentiator per the audit). Byline: Graham Lynch — EventSound, 35+ years of
 event production.
 
 ## Import format (for the bulk-upload script)

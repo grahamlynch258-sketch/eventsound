@@ -107,4 +107,4 @@ Anywhere in Ireland. Dublin, Cork, Galway, Belfast, Limerick and everywhere betw
 
 ## Get a size and a price for your room
 
-Send us the room dimensions, audience size and dates, and we'll come back with a recommended wall size, pixel pitch and placement, plus one all-inclusive figure with nothing hidden in it. EventSound is owner-led, with 20+ years of event production across Ireland. [Tell us about your event](/contact/).
+Send us the room dimensions, audience size and dates, and we'll come back with a recommended wall size, pixel pitch and placement, plus one all-inclusive figure with nothing hidden in it. EventSound is owner-led, with 35+ years of event production across Ireland. [Tell us about your event](/contact/).
