@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft, Save, SearchCode } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import type { TablesInsert, TablesUpdate } from "@/integrations/supabase/types";
-import { countTailorMarkers, insertBlogContent, isValidBlogSlug, toBlogSlug } from "@/lib/blog";
+import { countTailorMarkers, isValidBlogSlug, toBlogSlug } from "@/lib/blog";
 import { BlogImageManager } from "@/components/admin/BlogImageManager";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -32,21 +32,6 @@ export default function AdminBlogEdit() {
   const contentRef = useRef<HTMLTextAreaElement>(null);
 
   const tailorCount = countTailorMarkers(form.content, form.featured_image_alt);
-
-  /** Insert text at the caret in the markdown editor (or append). */
-  function insertAtCursor(text: string) {
-    const el = contentRef.current;
-    const position = el ? el.selectionStart : form.content.length;
-    setForm((current) => {
-      const inserted = insertBlogContent(current.content, text, position);
-      requestAnimationFrame(() => {
-        if (!el) return;
-        el.focus();
-        el.setSelectionRange(inserted.caret, inserted.caret);
-      });
-      return { ...current, content: inserted.content };
-    });
-  }
 
   /** Scroll the editor to the next [TAILOR marker and select it. */
   function findNextTailor() {
@@ -134,7 +119,6 @@ export default function AdminBlogEdit() {
         {!isNew && id && (
           <BlogImageManager
             postId={id}
-            onInsertMarker={(imageId) => insertAtCursor(`{{image:${imageId}}}`)}
             onSetFeatured={(url, alt) => {
               setForm((current) => ({ ...current, featured_image_url: url, featured_image_alt: alt }));
               toast({ title: "Featured image set", description: "Save the article to keep it." });

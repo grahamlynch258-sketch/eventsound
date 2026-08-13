@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { deleteStorageObjectByUrl, uploadImageToStorage } from "@/lib/uploadImage";
-import { ImagePlus, Loader2, Star, Trash2, ArrowDownToLine, X } from "lucide-react";
+import { Check, Copy, ImagePlus, Loader2, Star, Trash2, X } from "lucide-react";
 
 const BUCKET = "blog-images";
 
@@ -22,8 +22,6 @@ type PendingFile = { key: string; file: File; preview: string; alt: string };
 
 type Props = {
   postId: string;
-  /** Insert a {{image:id}} marker at the caret in the article editor. */
-  onInsertMarker: (id: string) => void;
   /** Use this image as the post's featured image. */
   onSetFeatured: (url: string, alt: string) => void;
 };
@@ -34,7 +32,7 @@ type Props = {
  * anywhere in the article body via {{image:id}} markers, which the public
  * page renders as full-width figures with alt text and captions.
  */
-export function BlogImageManager({ postId, onInsertMarker, onSetFeatured }: Props) {
+export function BlogImageManager({ postId, onSetFeatured }: Props) {
   const { toast } = useToast();
   const inputRef = useRef<HTMLInputElement>(null);
   const pendingRef = useRef<PendingFile[]>([]);
@@ -42,6 +40,7 @@ export function BlogImageManager({ postId, onInsertMarker, onSetFeatured }: Prop
   const [pending, setPending] = useState<PendingFile[]>([]);
   const [dragActive, setDragActive] = useState(false);
   const [uploadingKey, setUploadingKey] = useState<string | null>(null);
+  const [copiedImageId, setCopiedImageId] = useState<string | null>(null);
   const isUploading = uploadingKey !== null;
 
   const load = useCallback(async () => {
@@ -129,14 +128,26 @@ export function BlogImageManager({ postId, onInsertMarker, onSetFeatured }: Prop
     }
   }
 
+  async function copyImageMarker(id: string) {
+    const marker = `{{image:${id}}}`;
+    try {
+      await navigator.clipboard.writeText(marker);
+      setCopiedImageId(id);
+      toast({ title: "Image code copied", description: "Paste it exactly where you want the photo in the article." });
+      window.setTimeout(() => setCopiedImageId((current) => (current === id ? null : current)), 1800);
+    } catch {
+      toast({ title: "Couldn't copy image code", description: `Copy this manually: ${marker}`, variant: "destructive" });
+    }
+  }
+
   const missingAlt = pending.filter((p) => !p.alt.trim()).length;
 
   return (
     <section className="rounded-xl border p-6">
       <h2 className="text-lg font-semibold">Photos for this article</h2>
       <p className="mt-1 mb-4 text-sm text-muted-foreground">
-        Drop photos here, describe each one, then use <strong>Insert into article</strong> to place it exactly
-        where your cursor sits in the text. Photos are compressed automatically.
+        Drop photos here, describe each one, then use <strong>Copy image code</strong> and paste it exactly
+        where you want the photo in the article. Photos are compressed automatically.
       </p>
 
       <div
@@ -213,8 +224,12 @@ export function BlogImageManager({ postId, onInsertMarker, onSetFeatured }: Prop
                   className="text-xs"
                 />
                 <div className="flex flex-wrap gap-1.5">
-                  <Button type="button" size="sm" onClick={() => onInsertMarker(image.id)}>
-                    <ArrowDownToLine className="mr-1 h-3 w-3" /> Insert into article
+                  <Button type="button" size="sm" onClick={() => void copyImageMarker(image.id)}>
+                    {copiedImageId === image.id ? (
+                      <><Check className="mr-1 h-3 w-3" /> Copied</>
+                    ) : (
+                      <><Copy className="mr-1 h-3 w-3" /> Copy image code</>
+                    )}
                   </Button>
                   <Button type="button" size="sm" variant="outline" onClick={() => onSetFeatured(image.storage_url, image.alt_text)}>
                     <Star className="mr-1 h-3 w-3" /> Featured
