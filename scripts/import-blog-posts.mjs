@@ -47,7 +47,8 @@ function parseFrontmatter(raw) {
   const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
   if (!match) return null;
   const meta = {};
-  for (const line of match[1].split('\n')) {
+  for (const rawLine of match[1].split('\n')) {
+    const line = rawLine.replace(/\r$/, '');
     const kv = line.match(/^([a-z_]+):\s*(.*)$/);
     if (!kv) continue;
     let value = kv[2].trim();

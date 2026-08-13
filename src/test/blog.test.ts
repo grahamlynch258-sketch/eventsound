@@ -91,3 +91,16 @@ describe("blog migration safeguards", () => {
     expect(supabaseConfig).toContain('project_id = "blhxvtmhhvrorajkszhy"');
   });
 });
+
+describe("blog draft importer safeguards", () => {
+  const importer = readFileSync(resolve(process.cwd(), "scripts/import-blog-posts.mjs"), "utf8");
+
+  it("normalises Windows CRLF frontmatter before parsing fields", () => {
+    expect(importer).toContain("rawLine.replace(/\\r$/, '')");
+  });
+
+  it("imports only held drafts and never auto-approves them", () => {
+    expect(importer).toContain("status: 'awaiting_approval'");
+    expect(importer).not.toContain("supabase.rpc('approve_blog_post'");
+  });
+});
