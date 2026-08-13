@@ -29,9 +29,9 @@ const portfolioLinks = [
 ];
 
 const connectLinks = [
+  { to: "/contact/", label: "Contact", icon: Mail, description: "Get a quote or get in touch" },
   { to: "/faq/", label: "FAQ", icon: HelpCircle, description: "Common questions answered" },
   { to: "/reviews/", label: "Reviews", icon: Star, description: "What our clients say" },
-  { to: "/contact/", label: "Contact", icon: Mail, description: "Get a quote or get in touch" },
 ];
 
 const SERVICES_PATHS = servicesLinks.map((l) => l.to);
