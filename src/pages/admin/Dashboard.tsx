@@ -1,14 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { 
-  Image, 
-  Search, 
-  FileText, 
-  MessageSquare, 
-  Library, 
-  Tag, 
+import {
+  Image,
+  Search,
+  FileText,
+  MessageSquare,
+  Library,
+  Tag,
   Images,
-  Briefcase
+  Briefcase,
+  Newspaper
 } from "lucide-react";
 import { PublishSiteCard } from "@/components/admin/PublishSiteCard";
 
@@ -57,8 +58,24 @@ const Dashboard = () => {
           </CardContent>
         </Card>
 
+        {/* Blog Card */}
+        <Card
+          className="cursor-pointer hover:shadow-lg transition-shadow bg-gradient-to-br from-amber-50 to-amber-100"
+          onClick={() => navigate("/admin/blog")}
+        >
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium text-gray-800">Blog</CardTitle>
+            <Newspaper className="h-4 w-4 text-amber-700" />
+          </CardHeader>
+          <CardContent>
+            <p className="text-xs text-muted-foreground">
+              Review, edit and publish blog articles
+            </p>
+          </CardContent>
+        </Card>
+
         {/* SEO Card */}
-        <Card 
+        <Card
           className="cursor-pointer hover:shadow-lg transition-shadow bg-gradient-to-br from-green-50 to-green-100"
           onClick={() => navigate("/admin/seo")}
         >

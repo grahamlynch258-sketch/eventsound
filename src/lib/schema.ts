@@ -33,6 +33,10 @@ export interface ArticleSchema {
   author: {
     name: string;
     url?: string;
+    /** Explicit schema.org type. Without it, a URL implies Organization —
+     *  named human authors must pass "Person" so a profile URL doesn't
+     *  reclassify them as a company. */
+    type?: "Person" | "Organization";
   };
   publisher: {
     name: string;
@@ -94,7 +98,7 @@ export function generateArticleSchema(data: ArticleSchema): string {
     "datePublished": data.datePublished,
     ...(data.dateModified && { "dateModified": data.dateModified }),
     "author": {
-      "@type": data.author.url ? "Organization" : "Person",
+      "@type": data.author.type ?? (data.author.url ? "Organization" : "Person"),
       "name": data.author.name,
       ...(data.author.url && { "url": data.author.url })
     },

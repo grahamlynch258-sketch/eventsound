@@ -88,7 +88,7 @@ function buildArticleSchema({ headline, description, image, datePublished, dateM
     "datePublished": datePublished,
     ...(dateModified && { "dateModified": dateModified }),
     "author": {
-      "@type": author.url ? "Organization" : "Person",
+      "@type": author.type ?? (author.url ? "Organization" : "Person"),
       "name": author.name,
       ...(author.url && { "url": author.url })
     },
@@ -112,10 +112,18 @@ const SCHEMA_TYPE_TO_ID = {
   Article: "case-study-schema",
 };
 
-function schemasToHtml(schemas) {
+// Blog pages hydrate with BlogPost.tsx, which replaces schemas by these IDs —
+// they must match or hydration leaves duplicates behind.
+const BLOG_SCHEMA_TYPE_TO_ID = {
+  Article: "blog-article-schema",
+  BreadcrumbList: "blog-breadcrumb-schema",
+};
+
+function schemasToHtml(schemas, routePath = "") {
+  const idMap = routePath.startsWith("/blog/") ? BLOG_SCHEMA_TYPE_TO_ID : SCHEMA_TYPE_TO_ID;
   return schemas
     .map(s => {
-      const id = SCHEMA_TYPE_TO_ID[s["@type"]] || "";
+      const id = idMap[s["@type"]] || "";
       const idAttr = id ? ` id="${id}"` : "";
       return `    <script type="application/ld+json"${idAttr}>${JSON.stringify(s)}</script>`;
     })
@@ -425,7 +433,7 @@ const SHELL_NAP = `<p class="mt-12 text-sm text-muted-foreground">EventSound AV 
  * Build the crawlable static body shell for a route.
  * React's createRoot().render() replaces this synchronously on mount.
  */
-function buildBodyShell({ h1, breadcrumb, intros, faqs, ctaHref = '/contact' }) {
+function buildBodyShell({ h1, breadcrumb, intros, faqs, bodyHtml = '', ctaHref = '/contact' }) {
   const crumbHtml = breadcrumb && breadcrumb.length
     ? `<nav aria-label="Breadcrumb" class="text-sm text-muted-foreground mb-6">${breadcrumb
         .map((c, i) => (i === breadcrumb.length - 1
@@ -451,6 +459,7 @@ ${SHELL_HEADER}\
 ${crumbHtml}\
 <h1 class="text-3xl md:text-5xl font-bold tracking-tight max-w-3xl leading-tight">${escapeHtml(h1)}</h1>\
 ${introHtml}\
+${bodyHtml ? `<div class="mt-8 max-w-3xl leading-relaxed">${bodyHtml}</div>` : ''}\
 <div class="mt-8"><a href="${ctaHref}" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-8">Get a Quote</a></div>\
 ${faqHtml}\
 ${SHELL_NAP}\
@@ -519,6 +528,36 @@ function getSchemasForRoute(routePath, caseStudyData) {
     })];
   }
 
+  // Blog posts: Article + Breadcrumb, matching the IDs BlogPost.tsx re-injects
+  // on hydration so there is never duplication.
+  if (routePath.startsWith('/blog/') && routePath !== '/blog' && caseStudyData) {
+    const post = caseStudyData;
+    return [
+      buildArticleSchema({
+        headline: post.title,
+        description: post.excerpt || post.meta_description || '',
+        image: post.og_image_url || post.featured_image_url || 'https://eventsound.ie/Brand/logo_1920x1080.png',
+        datePublished: post.published_at || '',
+        dateModified: post.updated_at || undefined,
+        author: {
+          name: post.author || 'EventSound',
+          url: 'https://eventsound.ie',
+          type: ['eventsound', 'eventsound av services'].includes((post.author || 'EventSound').trim().toLowerCase())
+            ? 'Organization'
+            : 'Person',
+        },
+        publisher: { name: 'EventSound AV Services', logo: 'https://eventsound.ie/Brand/logo_transparent.png' },
+        keywords: post.tags ? post.tags.join(', ') : undefined,
+        articleSection: post.category || undefined,
+      }),
+      buildBreadcrumbSchema([
+        { name: 'Home', url: 'https://eventsound.ie/' },
+        { name: 'Blog', url: 'https://eventsound.ie/blog/' },
+        { name: post.title, url: `https://eventsound.ie/blog/${post.slug}/` },
+      ]),
+    ];
+  }
+
   // No page-specific schemas for other routes
   return [];
 }
@@ -559,6 +598,7 @@ const ROUTES = [
   { path: '/services/conference-av/belfast', title: 'Conference AV Services Belfast | Event Sound & AV Hire | EventSound', description: 'Conference AV hire in Belfast. Sound, LED screens, confidence monitors & stage lighting for corporate conferences across Northern Ireland. Get a quote today.' },
   { path: '/services/conference-av/limerick', title: 'Conference AV Services Limerick | Event Sound & AV Hire | EventSound', description: 'Conference AV hire in Limerick. PA systems, projection, LED screens & staging for corporate conferences & seminars in the mid-west. Full setup & operator included.' },
   { path: '/services/conference-av/athlone', title: 'Conference AV Services Athlone | AV Hire Midlands Ireland | EventSound', description: 'Conference AV hire in Athlone. Sound, screens & lighting for corporate conferences & events in the midlands. Central Ireland. Delivery & technician included.' },
+  { path: '/blog', title: 'Event Production Blog | EventSound Ireland', description: 'Practical advice on AV production, LED video walls, lighting, staging and live events from EventSound.' },
 ];
 
 // ── Fetch case studies from Supabase (expanded for Article schema) ───────────
@@ -600,6 +640,94 @@ async function getCaseStudies() {
     console.log('Error fetching case studies:', err.message);
     return [];
   }
+}
+
+// ── Fetch published blog posts from Supabase ─────────────────────────────────
+// content is included so the full article body ships in the static shell —
+// non-JS crawlers read the whole post, not just a title.
+
+async function getBlogPosts() {
+  try {
+    const SUPABASE_URL = process.env.VITE_SUPABASE_URL || '';
+    const SUPABASE_KEY = process.env.VITE_SUPABASE_PUBLISHABLE_KEY || '';
+    if (!SUPABASE_URL || !SUPABASE_KEY) return [];
+
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/blog_posts?select=slug,meta_title,meta_description,title,excerpt,content,featured_image_url,og_image_url,published_at,updated_at,tags,category,author&status=eq.published&noindex=eq.false&published_at=lte.${encodeURIComponent(new Date().toISOString())}`,
+      { headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` } }
+    );
+    if (!res.ok) {
+      // 404 simply means the blog_posts table hasn't been created yet.
+      if (res.status !== 404) console.log('Failed to fetch blog posts:', res.status);
+      return [];
+    }
+    const data = await res.json();
+    return data.map(post => ({
+      path: `/blog/${post.slug}`,
+      title: post.meta_title || `${post.title} | EventSound Blog`,
+      description: post.meta_description || post.excerpt || 'EventSound event production article',
+      _raw: post,
+    }));
+  } catch (err) {
+    console.log('Error fetching blog posts:', err.message);
+    return [];
+  }
+}
+
+// ── Minimal markdown → HTML for blog static shells ───────────────────────────
+// Mirrors the block types BlogContent.tsx renders: H2–H4, lists, quotes,
+// tables, bold, links, images, paragraphs. Not a general markdown parser.
+
+function mdInline(text) {
+  let out = escapeHtml(text);
+  out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  out = out.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (m, label, href) =>
+    /^(https?:\/\/|\/)/.test(href) ? `<a href="${href}">${label}</a>` : label);
+  return out;
+}
+
+function mdToHtml(markdown) {
+  const lines = String(markdown || '').replace(/\r\n/g, '\n').split('\n');
+  const out = [];
+  for (let i = 0; i < lines.length; i += 1) {
+    const line = lines[i].trim();
+    if (!line) continue;
+    if (/^\{\{image:[0-9a-f-]+\}\}$/i.test(line)) continue; // managed images resolve at runtime
+
+    const img = line.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
+    if (img) { out.push(`<figure><img src="${img[2]}" alt="${escapeHtml(img[1])}" loading="lazy"></figure>`); continue; }
+
+    const heading = line.match(/^(#{2,4})\s+(.+)$/);
+    if (heading) { const l = heading[1].length; out.push(`<h${l}>${mdInline(heading[2])}</h${l}>`); continue; }
+
+    if (line.includes('|') && i + 1 < lines.length && /^\|?[\s:|-]+\|[\s:|-]*$/.test(lines[i + 1].trim())) {
+      const parseRow = r => r.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').map(c => mdInline(c.trim()));
+      const header = parseRow(line);
+      let cursor = i + 2; const rows = [];
+      while (cursor < lines.length && lines[cursor].includes('|') && lines[cursor].trim()) { rows.push(parseRow(lines[cursor])); cursor += 1; }
+      i = cursor - 1;
+      out.push(`<table><thead><tr>${header.map(c => `<th>${c}</th>`).join('')}</tr></thead><tbody>${rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody></table>`);
+      continue;
+    }
+
+    if (/^[-*]\s+/.test(line)) {
+      const items = [];
+      while (i < lines.length && /^\s*[-*]\s+/.test(lines[i])) { items.push(lines[i].replace(/^\s*[-*]\s+/, '').trim()); i += 1; }
+      i -= 1;
+      out.push(`<ul>${items.map(it => `<li>${mdInline(it)}</li>`).join('')}</ul>`);
+      continue;
+    }
+    if (/^\d+\.\s+/.test(line)) {
+      const items = [];
+      while (i < lines.length && /^\s*\d+\.\s+/.test(lines[i])) { items.push(lines[i].replace(/^\s*\d+\.\s+/, '').trim()); i += 1; }
+      i -= 1;
+      out.push(`<ol>${items.map(it => `<li>${mdInline(it)}</li>`).join('')}</ol>`);
+      continue;
+    }
+    if (line.startsWith('> ')) { out.push(`<blockquote>${mdInline(line.slice(2))}</blockquote>`); continue; }
+    out.push(`<p>${mdInline(line)}</p>`);
+  }
+  return out.join('');
 }
 
 // ── Fetch first hero image URL from Supabase at build time ───────────────────
@@ -674,14 +802,15 @@ Get a Quote <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewB
 async function prerender() {
   console.log('Starting SEO pre-rendering (HTML injection)...');
 
-  // Get case study routes and hero image in parallel
-  const [caseStudyRoutes, heroData] = await Promise.all([
+  // Get case study routes, blog posts and hero image in parallel
+  const [caseStudyRoutes, blogRoutes, heroData] = await Promise.all([
     getCaseStudies(),
+    getBlogPosts(),
     getHeroImage(),
   ]);
-  const allRoutes = [...ROUTES, ...caseStudyRoutes];
+  const allRoutes = [...ROUTES, ...caseStudyRoutes, ...blogRoutes];
 
-  console.log(`Pre-rendering ${allRoutes.length} routes (${ROUTES.length} static + ${caseStudyRoutes.length} case studies)`);
+  console.log(`Pre-rendering ${allRoutes.length} routes (${ROUTES.length} static + ${caseStudyRoutes.length} case studies + ${blogRoutes.length} blog posts)`);
 
   // Read the base index.html template
   let indexHtml = fs.readFileSync(path.join(DIST, 'index.html'), 'utf-8');
@@ -764,7 +893,7 @@ async function prerender() {
     // Inject page-specific JSON-LD schemas before </head>
     const schemas = getSchemasForRoute(route.path, route._raw);
     if (schemas.length > 0) {
-      const schemaHtml = schemasToHtml(schemas);
+      const schemaHtml = schemasToHtml(schemas, route.path);
       html = html.replace('</head>', `\n${schemaHtml}\n  </head>`);
     }
 
@@ -796,6 +925,7 @@ async function prerender() {
       let shellFaqs = [];
       let shellIntros = [route.description];
       let shellBreadcrumb = null;
+      let shellBodyHtml = '';
 
       if (serviceData) {
         shellFaqs = serviceData.faqs || [];
@@ -810,13 +940,25 @@ async function prerender() {
         ];
       } else if (route.path === '/faq') {
         shellFaqs = FAQ_PAGE_QUESTIONS;
+      } else if (route.path.startsWith('/blog/') && route._raw) {
+        // Blog post: full article body in the static shell so crawlers read
+        // the whole post. React replaces it on mount.
+        const post = route._raw;
+        shellIntros = [post.excerpt || route.description];
+        shellBreadcrumb = [
+          { name: 'Home', url: '/' },
+          { name: 'Blog', url: '/blog/' },
+          { name: post.title, url: route.path },
+        ];
+        shellBodyHtml = mdToHtml(post.content);
       }
 
       const shell = buildBodyShell({
-        h1: h1Text,
+        h1: route.path.startsWith('/blog/') && route._raw ? route._raw.title : h1Text,
         breadcrumb: shellBreadcrumb,
         intros: shellIntros,
         faqs: shellFaqs,
+        bodyHtml: shellBodyHtml,
       });
       html = html.replace('<div id="root"></div>', `<div id="root">${shell}</div>`);
     }

@@ -24,6 +24,7 @@ export function SiteFooter({ className }: { className?: string }) {
               <Link to="/services/" className="text-sm text-muted-foreground hover:text-accent transition-colors">Services</Link>
               <Link to="/gallery/" className="text-sm text-muted-foreground hover:text-accent transition-colors">Portfolio</Link>
               <Link to="/case-studies/" className="text-sm text-muted-foreground hover:text-accent transition-colors">Case Studies</Link>
+              <Link to="/blog/" className="text-sm text-muted-foreground hover:text-accent transition-colors">Blog</Link>
             </nav>
           </div>
 

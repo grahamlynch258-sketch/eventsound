@@ -56,8 +56,9 @@ async function generateSitemap() {
     console.log('Generating sitemap...');
 
   let caseStudies = [];
+  let blogPosts = [];
 
-  // Only fetch case studies if Supabase env vars are available
+  // Only fetch dynamic routes if Supabase env vars are available
   if (supabaseUrl && supabaseAnonKey) {
         try {
                 const supabase = createClient(supabaseUrl, supabaseAnonKey);
@@ -71,6 +72,22 @@ async function generateSitemap() {
                     console.warn('Warning: Could not fetch case studies:', error.message);
           } else {
                     caseStudies = data || [];
+          }
+
+                const { data: posts, error: blogError } = await supabase
+                  .from('blog_posts')
+                  .select('slug, updated_at')
+                  .eq('status', 'published')
+                  .eq('noindex', false)
+                  .lte('published_at', new Date().toISOString());
+
+          if (blogError) {
+                    // A missing table just means the blog hasn't been set up yet.
+                    if (!/find the table/i.test(blogError.message)) {
+                              console.warn('Warning: Could not fetch blog posts:', blogError.message);
+                    }
+          } else {
+                    blogPosts = posts || [];
           }
         } catch (err) {
                 console.warn('Warning: Supabase fetch failed, continuing with static routes only');
@@ -110,6 +127,27 @@ async function generateSitemap() {
         console.log('No published case studies found (or Supabase not available)');
   }
 
+  // Add blog routes — the /blog listing page only once posts exist
+  if (blogPosts.length > 0) {
+        xml += '  <url>\n';
+        xml += '    <loc>https://eventsound.ie/blog/</loc>\n';
+        xml += '    <changefreq>weekly</changefreq>\n';
+        xml += '    <priority>0.7</priority>\n';
+        xml += '  </url>\n';
+        blogPosts.forEach(post => {
+                xml += '  <url>\n';
+                xml += `    <loc>https://eventsound.ie/blog/${post.slug}/</loc>\n`;
+                if (post.updated_at) {
+                          const lastmod = new Date(post.updated_at).toISOString().split('T')[0];
+                          xml += `    <lastmod>${lastmod}</lastmod>\n`;
+                }
+                xml += '    <changefreq>monthly</changefreq>\n';
+                xml += '    <priority>0.6</priority>\n';
+                xml += '  </url>\n';
+        });
+        console.log(`Added ${blogPosts.length} blog URLs to sitemap`);
+  }
+
   xml += '</urlset>';
 
   // Write sitemap to public folder
@@ -122,7 +160,7 @@ async function generateSitemap() {
 
   fs.writeFileSync(sitemapPath, xml);
     console.log(`Sitemap generated at ${sitemapPath}`);
-    console.log(`Total URLs: ${staticRoutes.length + caseStudies.length}`);
+    console.log(`Total URLs: ${staticRoutes.length + caseStudies.length + (blogPosts.length ? blogPosts.length + 1 : 0)}`);
 }
 
 generateSitemap();

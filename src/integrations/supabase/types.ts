@@ -38,6 +38,173 @@ export type Database = {
         }
         Relationships: []
       }
+      blog_images: {
+        Row: {
+          ai_description: string | null
+          alt_text: string
+          article_relevance: number | null
+          blog_post_id: string
+          caption: string | null
+          created_at: string
+          drive_file_id: string | null
+          equipment_visible: string[]
+          event_type: string | null
+          hero_suitability: number | null
+          id: string
+          image_subject: string | null
+          is_featured: boolean
+          original_filename: string
+          position: number
+          possible_use: string | null
+          storage_url: string
+        }
+        Insert: {
+          ai_description?: string | null
+          alt_text?: string
+          article_relevance?: number | null
+          blog_post_id: string
+          caption?: string | null
+          created_at?: string
+          drive_file_id?: string | null
+          equipment_visible?: string[]
+          event_type?: string | null
+          hero_suitability?: number | null
+          id?: string
+          image_subject?: string | null
+          is_featured?: boolean
+          original_filename: string
+          position?: number
+          possible_use?: string | null
+          storage_url: string
+        }
+        Update: {
+          ai_description?: string | null
+          alt_text?: string
+          article_relevance?: number | null
+          blog_post_id?: string
+          caption?: string | null
+          created_at?: string
+          drive_file_id?: string | null
+          equipment_visible?: string[]
+          event_type?: string | null
+          hero_suitability?: number | null
+          id?: string
+          image_subject?: string | null
+          is_featured?: boolean
+          original_filename?: string
+          position?: number
+          possible_use?: string | null
+          storage_url?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "blog_images_blog_post_id_fkey"
+            columns: ["blog_post_id"]
+            isOneToOne: false
+            referencedRelation: "blog_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      blog_posts: {
+        Row: {
+          approved_at: string | null
+          approved_by: string | null
+          author: string
+          canonical_url: string | null
+          category: string | null
+          content: string
+          created_at: string
+          excerpt: string
+          featured_image_alt: string | null
+          featured_image_url: string | null
+          id: string
+          image_folder_id: string | null
+          image_request_text: string | null
+          internal_link_targets: Json
+          meta_description: string | null
+          meta_title: string | null
+          noindex: boolean
+          og_image_url: string | null
+          primary_keyword: string | null
+          published_at: string | null
+          rejection_reason: string | null
+          schema_json: Json | null
+          seo_brief: Json
+          slug: string
+          sort_order: number
+          status: Database["public"]["Enums"]["blog_post_status"]
+          tags: string[]
+          title: string
+          topic: string
+          updated_at: string
+        }
+        Insert: {
+          approved_at?: string | null
+          approved_by?: string | null
+          author?: string
+          canonical_url?: string | null
+          category?: string | null
+          content?: string
+          created_at?: string
+          excerpt?: string
+          featured_image_alt?: string | null
+          featured_image_url?: string | null
+          id?: string
+          image_folder_id?: string | null
+          image_request_text?: string | null
+          internal_link_targets?: Json
+          meta_description?: string | null
+          meta_title?: string | null
+          noindex?: boolean
+          og_image_url?: string | null
+          primary_keyword?: string | null
+          published_at?: string | null
+          rejection_reason?: string | null
+          schema_json?: Json | null
+          seo_brief?: Json
+          slug: string
+          sort_order?: number
+          status?: Database["public"]["Enums"]["blog_post_status"]
+          tags?: string[]
+          title: string
+          topic: string
+          updated_at?: string
+        }
+        Update: {
+          approved_at?: string | null
+          approved_by?: string | null
+          author?: string
+          canonical_url?: string | null
+          category?: string | null
+          content?: string
+          created_at?: string
+          excerpt?: string
+          featured_image_alt?: string | null
+          featured_image_url?: string | null
+          id?: string
+          image_folder_id?: string | null
+          image_request_text?: string | null
+          internal_link_targets?: Json
+          meta_description?: string | null
+          meta_title?: string | null
+          noindex?: boolean
+          og_image_url?: string | null
+          primary_keyword?: string | null
+          published_at?: string | null
+          rejection_reason?: string | null
+          schema_json?: Json | null
+          seo_brief?: Json
+          slug?: string
+          sort_order?: number
+          status?: Database["public"]["Enums"]["blog_post_status"]
+          tags?: string[]
+          title?: string
+          topic?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       categories: {
         Row: {
           created_at: string
@@ -547,6 +714,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      approve_blog_post: {
+        Args: { _approved_by?: string; _post_id: string }
+        Returns: Database["public"]["Tables"]["blog_posts"]["Row"]
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
@@ -554,9 +725,21 @@ export type Database = {
         }
         Returns: boolean
       }
+      reject_blog_post: {
+        Args: { _post_id: string; _reason?: string }
+        Returns: Database["public"]["Tables"]["blog_posts"]["Row"]
+      }
     }
     Enums: {
       app_role: "admin" | "user"
+      blog_post_status:
+        | "idea"
+        | "researching"
+        | "awaiting_images"
+        | "building"
+        | "awaiting_approval"
+        | "published"
+        | "rejected"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -685,6 +868,15 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "user"],
+      blog_post_status: [
+        "idea",
+        "researching",
+        "awaiting_images",
+        "building",
+        "awaiting_approval",
+        "published",
+        "rejected",
+      ],
     },
   },
 } as const

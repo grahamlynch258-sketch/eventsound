@@ -26,6 +26,10 @@ import AdminRoute from "./components/admin/AdminRoute";
 const CorporateAVHireDublin = lazy(() => import("@/pages/landing/CorporateAVHireDublin"));
 const LEDWallHireIreland = lazy(() => import("@/pages/landing/LEDWallHireIreland"));
 
+// Blog — lazy loaded
+const Blog = lazy(() => import("@/pages/Blog"));
+const BlogPost = lazy(() => import("@/pages/BlogPost"));
+
 // Service sub-pages — lazy loaded for code splitting
 const LEDVideoWalls = lazy(() => import("@/pages/v2/LEDVideoWallsV2"));
 const AVProduction = lazy(() => import("@/pages/services/AVProduction"));
@@ -66,6 +70,8 @@ const AdminCategories = lazy(() => import("./pages/admin/Categories"));
 const AdminImages = lazy(() => import("./pages/admin/Images"));
 const AdminCaseStudies = lazy(() => import("./pages/admin/AdminCaseStudies"));
 const AdminCaseStudyEdit = lazy(() => import("./pages/admin/AdminCaseStudyEdit"));
+const AdminBlogs = lazy(() => import("./pages/admin/AdminBlogs"));
+const AdminBlogEdit = lazy(() => import("./pages/admin/AdminBlogEdit"));
 
 const queryClient = new QueryClient();
 
@@ -76,13 +82,15 @@ function AppRoutes() {
     ? "service"
     : location.pathname.startsWith("/case-studies/")
       ? "case_study"
-      : location.pathname.startsWith("/landing/")
-        ? "paid_landing"
-        : location.pathname.startsWith("/admin")
-          ? "admin"
-          : location.pathname === "/"
-            ? "homepage"
-            : "general";
+      : location.pathname.startsWith("/blog")
+        ? "blog"
+        : location.pathname.startsWith("/landing/")
+          ? "paid_landing"
+          : location.pathname.startsWith("/admin")
+            ? "admin"
+            : location.pathname === "/"
+              ? "homepage"
+              : "general";
 
   useEffect(() => {
     captureLeadAttribution();
@@ -141,6 +149,8 @@ function AppRoutes() {
       <Route path="/health-and-safety" element={<HealthAndSafety />} />
       <Route path="/case-studies" element={<CaseStudies />} />
       <Route path="/case-studies/:slug" element={<CaseStudyDetail />} />
+      <Route path="/blog" element={<Suspense fallback={null}><Blog /></Suspense>} />
+      <Route path="/blog/:slug" element={<Suspense fallback={null}><BlogPost /></Suspense>} />
 
       {/* Service sub-pages */}
       <Route path="/services/led-video-walls" element={<Suspense fallback={null}><LEDVideoWalls /></Suspense>} />
@@ -189,6 +199,8 @@ function AppRoutes() {
       <Route path="/admin/images" element={<AdminRoute><Suspense fallback={null}><AdminImages /></Suspense></AdminRoute>} />
       <Route path="/admin/case-studies" element={<AdminRoute><Suspense fallback={null}><AdminCaseStudies /></Suspense></AdminRoute>} />
       <Route path="/admin/case-studies/:id" element={<AdminRoute><Suspense fallback={null}><AdminCaseStudyEdit /></Suspense></AdminRoute>} />
+      <Route path="/admin/blog" element={<AdminRoute><Suspense fallback={null}><AdminBlogs /></Suspense></AdminRoute>} />
+      <Route path="/admin/blog/:id" element={<AdminRoute><Suspense fallback={null}><AdminBlogEdit /></Suspense></AdminRoute>} />
 
       {/* 404 */}
       <Route path="*" element={<NotFound />} />

@@ -25,6 +25,7 @@ const servicesLinks = [
 const portfolioLinks = [
   { to: "/gallery/", label: "Gallery", icon: Images, description: "Photos from our events" },
   { to: "/case-studies/", label: "Case Studies", icon: BookOpen, description: "In-depth project breakdowns" },
+  { to: "/blog/", label: "Blog", icon: BookOpen, description: "Practical event production guides" },
 ];
 
 const connectLinks = [
