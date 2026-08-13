@@ -85,4 +85,9 @@ describe("blog migration safeguards", () => {
   it("preserves the scheduled date when an article is taken offline", () => {
     expect(migration).not.toContain("NEW.published_at := NULL");
   });
+
+  it("targets the same Supabase project used by the live website", () => {
+    const supabaseConfig = readFileSync(resolve(process.cwd(), "supabase/config.toml"), "utf8");
+    expect(supabaseConfig).toContain('project_id = "blhxvtmhhvrorajkszhy"');
+  });
 });
