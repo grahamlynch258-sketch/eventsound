@@ -152,8 +152,9 @@ published_at: 2026-08-20
 Post body in markdown…
 ```
 
-`scripts/import-blog-posts.mjs` (ships with the blog port) reads the folder and
-inserts rows as `published` via the service key.
+`scripts/import-blog-posts.mjs` reads the folder and imports every article as
+`awaiting_approval` via the service key. Existing rows are skipped unless the
+explicit `--force` flag is used, and the importer never makes a post public.
 
 ## Success measures (30/60/90 days)
 

@@ -58,7 +58,7 @@ Most indoor walls stand on freestanding ground support, which needs floor space 
 
 ### Transport and location
 
-We're based in Drogheda and work anywhere in Ireland: Dublin, Cork, Galway, Belfast, Limerick and everywhere between. Distance affects trucking and crew time, and it's built into the all-inclusive figure rather than arriving later as a surcharge.
+We deliver and install LED walls throughout Ireland: Dublin, Cork, Galway, Belfast, Limerick and everywhere between. Distance affects trucking and crew time, and it's built into the all-inclusive figure rather than arriving later as a surcharge.
 
 ### Show duration and schedule
 

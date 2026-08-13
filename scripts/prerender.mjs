@@ -88,7 +88,7 @@ function buildArticleSchema({ headline, description, image, datePublished, dateM
     "datePublished": datePublished,
     ...(dateModified && { "dateModified": dateModified }),
     "author": {
-      "@type": author.url ? "Organization" : "Person",
+      "@type": author.type ?? (author.url ? "Organization" : "Person"),
       "name": author.name,
       ...(author.url && { "url": author.url })
     },
@@ -539,7 +539,13 @@ function getSchemasForRoute(routePath, caseStudyData) {
         image: post.og_image_url || post.featured_image_url || 'https://eventsound.ie/Brand/logo_1920x1080.png',
         datePublished: post.published_at || '',
         dateModified: post.updated_at || undefined,
-        author: { name: post.author || 'EventSound', url: 'https://eventsound.ie' },
+        author: {
+          name: post.author || 'EventSound',
+          url: 'https://eventsound.ie',
+          type: ['eventsound', 'eventsound av services'].includes((post.author || 'EventSound').trim().toLowerCase())
+            ? 'Organization'
+            : 'Person',
+        },
         publisher: { name: 'EventSound AV Services', logo: 'https://eventsound.ie/Brand/logo_transparent.png' },
         keywords: post.tags ? post.tags.join(', ') : undefined,
         articleSection: post.category || undefined,

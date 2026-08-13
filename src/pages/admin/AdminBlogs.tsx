@@ -9,8 +9,9 @@ import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { useToast } from "@/hooks/use-toast";
+import { countTailorMarkers, isScheduledBlogPost } from "@/lib/blog";
 
-type Decision = { post: BlogPost; action: "approve" | "reject" } | null;
+type Decision = { post: BlogPost; action: "approve" | "reject" | "unpublish" } | null;
 
 export default function AdminBlogs() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
@@ -43,17 +44,32 @@ export default function AdminBlogs() {
 
   async function submitDecision() {
     if (!decision) return;
-    const { error } = decision.action === "approve"
-      ? await supabase.rpc("approve_blog_post", { _post_id: decision.post.id, _approved_by: "EventSound admin" })
-      : await supabase.rpc("reject_blog_post", { _post_id: decision.post.id, _reason: "Rejected in EventSound admin" });
+    let error;
+    if (decision.action === "approve") {
+      ({ error } = await supabase.rpc("approve_blog_post", { _post_id: decision.post.id, _approved_by: "EventSound admin" }));
+    } else if (decision.action === "reject") {
+      ({ error } = await supabase.rpc("reject_blog_post", { _post_id: decision.post.id, _reason: "Rejected in EventSound admin" }));
+    } else {
+      // The database preserves published_at so the original schedule is
+      // retained if the article goes live again.
+      ({ error } = await supabase.from("blog_posts").update({ status: "awaiting_approval" }).eq("id", decision.post.id));
+    }
 
     if (error) {
       toast({ title: "Decision failed", description: error.message, variant: "destructive" });
     } else {
-      toast({ title: decision.action === "approve" ? "Article published" : "Article rejected" });
+      toast({ title: decision.action === "approve" ? "Article is live" : decision.action === "reject" ? "Article rejected" : "Article taken offline (kept as draft)" });
       await loadPosts();
     }
     setDecision(null);
+  }
+
+  function tailorCount(post: BlogPost) {
+    return countTailorMarkers(post.content, post.featured_image_alt);
+  }
+
+  function isScheduled(post: BlogPost) {
+    return isScheduledBlogPost(post);
   }
 
   return (
@@ -78,10 +94,16 @@ export default function AdminBlogs() {
             {!loading && visiblePosts.map((post) => (
               <TableRow key={post.id}>
                 <TableCell><p className="font-medium">{post.title}</p><p className="text-xs text-muted-foreground">/blog/{post.slug}</p></TableCell>
-                <TableCell><Badge variant={post.status === "published" ? "default" : "secondary"}>{post.status.replace(/_/g, " ")}</Badge></TableCell>
+                <TableCell><div className="flex flex-wrap gap-1.5">
+                  <Badge variant={post.status === "published" ? "default" : "secondary"}>
+                    {isScheduled(post) ? `live from ${new Date(post.published_at!).toLocaleDateString("en-IE", { day: "numeric", month: "short" })}` : post.status.replace(/_/g, " ")}
+                  </Badge>
+                  {tailorCount(post) > 0 && <Badge className="bg-amber-100 text-amber-800 hover:bg-amber-100">{tailorCount(post)} to tailor</Badge>}
+                </div></TableCell>
                 <TableCell>{new Date(post.updated_at).toLocaleDateString("en-IE")}</TableCell>
                 <TableCell><div className="flex justify-end gap-2">
-                  {post.status === "awaiting_approval" && <><Button size="sm" onClick={() => setDecision({ post, action: "approve" })}><CheckCircle2 className="mr-1 h-4 w-4" />Approve</Button><Button size="sm" variant="outline" onClick={() => setDecision({ post, action: "reject" })}><XCircle className="mr-1 h-4 w-4" />Reject</Button></>}
+                  {post.status === "awaiting_approval" && <><Button size="sm" onClick={() => setDecision({ post, action: "approve" })} disabled={tailorCount(post) > 0} title={tailorCount(post) > 0 ? "Finish tailoring before going live" : undefined}><CheckCircle2 className="mr-1 h-4 w-4" />Go live</Button><Button size="sm" variant="outline" onClick={() => setDecision({ post, action: "reject" })}><XCircle className="mr-1 h-4 w-4" />Reject</Button></>}
+                  {post.status === "published" && <Button size="sm" variant="outline" onClick={() => setDecision({ post, action: "unpublish" })}><XCircle className="mr-1 h-4 w-4" />Take offline</Button>}
                   <Button asChild size="sm" variant="ghost"><Link to={`/admin/blog/${post.id}`}><Edit className="h-4 w-4" /><span className="sr-only">Edit {post.title}</span></Link></Button>
                 </div></TableCell>
               </TableRow>
@@ -93,7 +115,7 @@ export default function AdminBlogs() {
       </div>
 
       <AlertDialog open={Boolean(decision)} onOpenChange={(open) => !open && setDecision(null)}>
-        <AlertDialogContent><AlertDialogHeader><AlertDialogTitle>{decision?.action === "approve" ? "Publish this article?" : "Reject this article?"}</AlertDialogTitle><AlertDialogDescription>{decision?.action === "approve" ? "This explicit approval makes the article publicly visible immediately." : "The draft and images will be retained. It can be revised later."}</AlertDialogDescription></AlertDialogHeader><AlertDialogFooter><AlertDialogCancel>Cancel</AlertDialogCancel><AlertDialogAction onClick={() => void submitDecision()}>{decision?.action === "approve" ? "Approve and publish" : "Reject without deleting"}</AlertDialogAction></AlertDialogFooter></AlertDialogContent>
+        <AlertDialogContent><AlertDialogHeader><AlertDialogTitle>{decision?.action === "approve" ? "Make this article live?" : decision?.action === "unpublish" ? "Take this article offline?" : "Reject this article?"}</AlertDialogTitle><AlertDialogDescription>{decision?.action === "approve" ? "It becomes publicly visible from its publish date (immediately if the date has passed)." : decision?.action === "unpublish" ? "It comes off the site immediately and goes back to draft. Nothing is deleted and it can go live again any time." : "The draft and images will be retained. It can be revised later."}</AlertDialogDescription></AlertDialogHeader><AlertDialogFooter><AlertDialogCancel>Cancel</AlertDialogCancel><AlertDialogAction onClick={() => void submitDecision()}>{decision?.action === "approve" ? "Go live" : decision?.action === "unpublish" ? "Take offline" : "Reject without deleting"}</AlertDialogAction></AlertDialogFooter></AlertDialogContent>
       </AlertDialog>
     </main>
   );

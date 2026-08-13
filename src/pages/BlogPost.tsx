@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useSeo } from "@/hooks/useSeo";
 import { supabase } from "@/integrations/supabase/client";
-import { getBlogSeo } from "@/lib/blog";
+import { getBlogAuthorType, getBlogSeo } from "@/lib/blog";
 import { generateArticleSchema, generateBreadcrumbSchema } from "@/lib/schema";
 import type { BlogPostWithImages } from "@/types/blog";
 
@@ -51,7 +51,7 @@ export default function BlogPost() {
         image: post.og_image_url || post.featured_image_url || "https://eventsound.ie/Brand/logo_1920x1080.png",
         datePublished: post.published_at,
         dateModified: post.updated_at,
-        author: { name: post.author || "EventSound", url: "https://eventsound.ie" },
+        author: { name: post.author || "EventSound", url: "https://eventsound.ie", type: getBlogAuthorType(post.author) },
         publisher: { name: "EventSound", logo: "https://eventsound.ie/Brand/logo_transparent.png" },
         keywords: post.tags.join(", "),
         articleSection: post.category || undefined,
@@ -119,4 +119,3 @@ export default function BlogPost() {
     </PageShell>
   );
 }
-

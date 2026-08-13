@@ -95,7 +95,7 @@ With us, yes. Quotes are all-inclusive (equipment, delivery, installation, on-si
 Yes. LED fixtures mix colour precisely, so supply the exact colour reference and we'll match it, then check it against the actual wall surface at setup.
 
 **Do you only cover Dublin?**
-No. We're based in Drogheda and work nationwide: Dublin, Cork, Galway, Belfast, Limerick, Waterford and everywhere between.
+No. We provide event lighting nationwide, across Dublin, Cork, Galway, Belfast, Limerick, Waterford and everywhere between.
 
 **Our venue already has some lighting. Is that money wasted?**
 No. Where a house rig exists we integrate with it and add only what the event needs, which is usually cheaper than bringing a full rig.

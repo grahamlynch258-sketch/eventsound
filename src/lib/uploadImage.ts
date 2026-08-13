@@ -116,12 +116,16 @@ export async function prepareImage(file: File): Promise<PreparedImage> {
   return { blob, contentType, extension, width, height };
 }
 
-export async function uploadImageToStorage(file: File, category?: string): Promise<UploadedImage> {
+export async function uploadImageToStorage(
+  file: File,
+  category?: string,
+  bucket: string = BUCKET,
+): Promise<UploadedImage> {
   const prepared = await prepareImage(file);
   const folder = category ? slugifyFileName(category) : "uploads";
   const path = `${folder}/${Date.now()}-${slugifyFileName(file.name)}.${prepared.extension}`;
 
-  const { error } = await supabase.storage.from(BUCKET).upload(path, prepared.blob, {
+  const { error } = await supabase.storage.from(bucket).upload(path, prepared.blob, {
     cacheControl: ONE_YEAR_SECONDS,
     contentType: prepared.contentType,
     upsert: false,
@@ -130,25 +134,25 @@ export async function uploadImageToStorage(file: File, category?: string): Promi
 
   const {
     data: { publicUrl },
-  } = supabase.storage.from(BUCKET).getPublicUrl(path);
+  } = supabase.storage.from(bucket).getPublicUrl(path);
 
   return { publicUrl, path, width: prepared.width, height: prepared.height };
 }
 
 /**
- * Best-effort delete of the storage object behind a public URL.
- * Never throws: rows referencing externally-hosted or already-deleted
- * objects should still be removable from the database.
+ * Best-effort delete of the storage object behind a public URL, whichever
+ * public bucket it lives in. Never throws: rows referencing externally-hosted
+ * or already-deleted objects should still be removable from the database.
  */
 export async function deleteStorageObjectByUrl(publicUrl: string): Promise<void> {
-  const marker = `/object/public/${BUCKET}/`;
-  const idx = publicUrl.indexOf(marker);
-  if (idx === -1) return;
-  const path = decodeURIComponent(publicUrl.slice(idx + marker.length).split("?")[0]);
+  const match = publicUrl.match(/\/object\/public\/([^/]+)\/(.+?)(?:\?|$)/);
+  if (!match) return;
+  const [, bucket, rawPath] = match;
+  const path = decodeURIComponent(rawPath);
   if (!path) return;
   try {
-    await supabase.storage.from(BUCKET).remove([path]);
+    await supabase.storage.from(bucket).remove([path]);
   } catch {
-    // Ignore — orphan cleanup is handled by scripts/refresh-storage-cache.mjs listing.
+    // Ignore — orphan cleanup is handled by scripts/find-orphan-images.mjs.
   }
 }

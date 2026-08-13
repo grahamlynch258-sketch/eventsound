@@ -103,7 +103,7 @@ Only on dry hire. Operated packages include delivery, installation, an operator 
 As soon as your dates firm up. Autumn conference season and the pre-Christmas run concentrate demand, and the best build slots go first.
 
 **Where do you deliver?**
-Anywhere in Ireland. We're based in Drogheda and work nationwide. Dublin, Cork, Galway, Belfast, Limerick and everywhere between.
+Anywhere in Ireland. Dublin, Cork, Galway, Belfast, Limerick and everywhere between. Delivery and installation are part of every hire.
 
 ## Get a size and a price for your room
 

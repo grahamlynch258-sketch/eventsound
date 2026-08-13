@@ -108,7 +108,7 @@ Yes. Adjustable legs exist for exactly that. Each leg sets to the ground beneath
 Not always. It depends on the height, who's on the platform and what they're doing up there. We specify rails on open edges wherever the drop or the activity warrants them. And many venues and insurers expect them regardless, so check before ruling them out.
 
 **Do you supply stages outside Dublin?**
-Yes. We're based in Drogheda and work nationwide. Dublin, Cork, Galway, Belfast, Limerick, Waterford, Kilkenny, Athlone and everywhere between.
+Yes. We provide staging nationwide, across Dublin, Cork, Galway, Belfast, Limerick, Waterford, Kilkenny, Athlone and elsewhere.
 
 **Is hired staging certified?**
 Ours is TUV-certified modular staging, for indoor and outdoor use. Whoever you hire, ask the question and expect documentary evidence rather than reassurance.

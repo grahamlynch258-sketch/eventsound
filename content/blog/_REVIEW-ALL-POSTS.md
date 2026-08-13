@@ -1,12 +1,8 @@
-# EventSound blog — 20 drafts, v2 (voice-edited + retargeted)
+# EventSound blog — 20 drafts, v3 (voice-edited, retargeted, Drogheda-free)
 
-All posts pass the machine-voice gate (zero em dashes, zero semicolons),
-six are retargeted to question keywords so nothing competes with your
-service pages, links only ever point at already-published posts, and the
-schedule runs two per week from 17 Aug. **Your job while reading: the
-`[TAILOR: …]` blockquotes** — real venues, numbers and photos go there.
-The first two to tailor are the first two to publish: the Swords Castle
-case study and the LED wall cost guide.
+Publication runs two per week from 17 Aug; the toggle in Admin → Blog
+controls go-live per post once tailored. `[TAILOR: …]` blockquotes mark
+where your real venues, numbers and photos go.
 
 ## Publication order
 
@@ -179,7 +175,7 @@ Most indoor walls stand on freestanding ground support, which needs floor space 
 
 ### Transport and location
 
-We're based in Drogheda and work anywhere in Ireland: Dublin, Cork, Galway, Belfast, Limerick and everywhere between. Distance affects trucking and crew time, and it's built into the all-inclusive figure rather than arriving later as a surcharge.
+We deliver and install LED walls throughout Ireland: Dublin, Cork, Galway, Belfast, Limerick and everywhere between. Distance affects trucking and crew time, and it's built into the all-inclusive figure rather than arriving later as a surcharge.
 
 ### Show duration and schedule
 
@@ -1857,7 +1853,7 @@ With us, yes. Quotes are all-inclusive (equipment, delivery, installation, on-si
 Yes. LED fixtures mix colour precisely, so supply the exact colour reference and we'll match it, then check it against the actual wall surface at setup.
 
 **Do you only cover Dublin?**
-No. We're based in Drogheda and work nationwide: Dublin, Cork, Galway, Belfast, Limerick, Waterford and everywhere between.
+No. We provide event lighting nationwide, across Dublin, Cork, Galway, Belfast, Limerick, Waterford and everywhere between.
 
 **Our venue already has some lighting. Is that money wasted?**
 No. Where a house rig exists we integrate with it and add only what the event needs, which is usually cheaper than bringing a full rig.
@@ -1966,7 +1962,7 @@ Only on dry hire. Operated packages include delivery, installation, an operator 
 As soon as your dates firm up. Autumn conference season and the pre-Christmas run concentrate demand, and the best build slots go first.
 
 **Where do you deliver?**
-Anywhere in Ireland. We're based in Drogheda and work nationwide. Dublin, Cork, Galway, Belfast, Limerick and everywhere between.
+Anywhere in Ireland. Dublin, Cork, Galway, Belfast, Limerick and everywhere between. Delivery and installation are part of every hire.
 
 ## Get a size and a price for your room
 
@@ -2077,7 +2073,7 @@ Yes. Adjustable legs exist for exactly that. Each leg sets to the ground beneath
 Not always. It depends on the height, who's on the platform and what they're doing up there. We specify rails on open edges wherever the drop or the activity warrants them. And many venues and insurers expect them regardless, so check before ruling them out.
 
 **Do you supply stages outside Dublin?**
-Yes. We're based in Drogheda and work nationwide. Dublin, Cork, Galway, Belfast, Limerick, Waterford, Kilkenny, Athlone and everywhere between.
+Yes. We provide staging nationwide, across Dublin, Cork, Galway, Belfast, Limerick, Waterford, Kilkenny, Athlone and elsewhere.
 
 **Is hired staging certified?**
 Ours is TUV-certified modular staging, for indoor and outdoor use. Whoever you hire, ask the question and expect documentary evidence rather than reassurance.

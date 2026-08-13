@@ -1,5 +1,6 @@
 -- EventSound blog automation V1
--- Structured content is stored in Supabase. Only published rows are publicly readable.
+-- Structured content is stored in Supabase. Only published rows whose
+-- publication date has arrived are publicly readable.
 
 CREATE TYPE public.blog_post_status AS ENUM (
   'idea',
@@ -79,7 +80,7 @@ ALTER TABLE public.blog_images ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY "Published blog posts are public"
 ON public.blog_posts FOR SELECT
-USING (status = 'published');
+USING (status = 'published' AND published_at <= now());
 
 CREATE POLICY "Admins can read all blog posts"
 ON public.blog_posts FOR SELECT TO authenticated
@@ -105,6 +106,7 @@ USING (
     SELECT 1 FROM public.blog_posts
     WHERE blog_posts.id = blog_images.blog_post_id
       AND blog_posts.status = 'published'
+      AND blog_posts.published_at <= now()
   )
 );
 
@@ -145,10 +147,6 @@ BEGIN
     END IF;
     NEW.published_at := COALESCE(NEW.published_at, now());
     NEW.approved_at := COALESCE(NEW.approved_at, now());
-  END IF;
-
-  IF TG_OP = 'UPDATE' AND OLD.status = 'published' AND NEW.status <> 'published' THEN
-    NEW.published_at := NULL;
   END IF;
 
   RETURN NEW;
@@ -241,4 +239,3 @@ USING (bucket_id = 'blog-images' AND public.has_role(auth.uid(), 'admin'));
 CREATE POLICY "Admins can delete blog assets"
 ON storage.objects FOR DELETE TO authenticated
 USING (bucket_id = 'blog-images' AND public.has_role(auth.uid(), 'admin'));
-

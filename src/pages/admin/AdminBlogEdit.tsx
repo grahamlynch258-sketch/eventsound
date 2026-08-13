@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { ArrowLeft, Save } from "lucide-react";
+import { ArrowLeft, Save, SearchCode } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import type { TablesInsert, TablesUpdate } from "@/integrations/supabase/types";
-import { isValidBlogSlug, toBlogSlug } from "@/lib/blog";
+import { countTailorMarkers, insertBlogContent, isValidBlogSlug, toBlogSlug } from "@/lib/blog";
+import { BlogImageManager } from "@/components/admin/BlogImageManager";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -15,10 +16,10 @@ type EditablePost = {
   title: string; slug: string; topic: string; primary_keyword: string; excerpt: string; content: string;
   meta_title: string; meta_description: string; canonical_url: string; og_image_url: string;
   featured_image_url: string; featured_image_alt: string; image_request_text: string;
-  author: string; category: string; tags: string; noindex: boolean;
+  author: string; category: string; tags: string; noindex: boolean; published_at: string;
 };
 
-const emptyPost: EditablePost = { title: "", slug: "", topic: "", primary_keyword: "", excerpt: "", content: "", meta_title: "", meta_description: "", canonical_url: "", og_image_url: "", featured_image_url: "", featured_image_alt: "", image_request_text: "", author: "EventSound", category: "", tags: "", noindex: false };
+const emptyPost: EditablePost = { title: "", slug: "", topic: "", primary_keyword: "", excerpt: "", content: "", meta_title: "", meta_description: "", canonical_url: "", og_image_url: "", featured_image_url: "", featured_image_alt: "", image_request_text: "", author: "Graham Lynch", category: "", tags: "", noindex: false, published_at: "" };
 
 export default function AdminBlogEdit() {
   const { id } = useParams<{ id: string }>();
@@ -28,13 +29,49 @@ export default function AdminBlogEdit() {
   const [form, setForm] = useState(emptyPost);
   const [status, setStatus] = useState("idea");
   const [saving, setSaving] = useState(false);
+  const contentRef = useRef<HTMLTextAreaElement>(null);
+
+  const tailorCount = countTailorMarkers(form.content, form.featured_image_alt);
+
+  /** Insert text at the caret in the markdown editor (or append). */
+  function insertAtCursor(text: string) {
+    const el = contentRef.current;
+    const position = el ? el.selectionStart : form.content.length;
+    setForm((current) => {
+      const inserted = insertBlogContent(current.content, text, position);
+      requestAnimationFrame(() => {
+        if (!el) return;
+        el.focus();
+        el.setSelectionRange(inserted.caret, inserted.caret);
+      });
+      return { ...current, content: inserted.content };
+    });
+  }
+
+  /** Scroll the editor to the next [TAILOR marker and select it. */
+  function findNextTailor() {
+    const el = contentRef.current;
+    if (!el) return;
+    const from = el.selectionEnd || 0;
+    let idx = form.content.indexOf("[TAILOR", from);
+    if (idx === -1) idx = form.content.indexOf("[TAILOR");
+    if (idx === -1) {
+      toast({ title: "No tailoring markers left in the article text" });
+      return;
+    }
+    const end = form.content.indexOf("]", idx);
+    el.focus();
+    el.setSelectionRange(idx, end === -1 ? idx + 7 : end + 1);
+    const lineTop = form.content.slice(0, idx).split("\n").length;
+    el.scrollTop = Math.max(0, (lineTop - 4) * 20);
+  }
 
   useEffect(() => {
     if (isNew || !id) return;
     supabase.from("blog_posts").select("*").eq("id", id).single().then(({ data, error }) => {
       if (error || !data) { toast({ title: "Article not found", description: error?.message, variant: "destructive" }); navigate("/admin/blog"); return; }
       setStatus(data.status);
-      setForm({ title: data.title, slug: data.slug, topic: data.topic, primary_keyword: data.primary_keyword || "", excerpt: data.excerpt, content: data.content, meta_title: data.meta_title || "", meta_description: data.meta_description || "", canonical_url: data.canonical_url || "", og_image_url: data.og_image_url || "", featured_image_url: data.featured_image_url || "", featured_image_alt: data.featured_image_alt || "", image_request_text: data.image_request_text || "", author: data.author, category: data.category || "", tags: data.tags.join(", "), noindex: data.noindex });
+      setForm({ title: data.title, slug: data.slug, topic: data.topic, primary_keyword: data.primary_keyword || "", excerpt: data.excerpt, content: data.content, meta_title: data.meta_title || "", meta_description: data.meta_description || "", canonical_url: data.canonical_url || "", og_image_url: data.og_image_url || "", featured_image_url: data.featured_image_url || "", featured_image_alt: data.featured_image_alt || "", image_request_text: data.image_request_text || "", author: data.author, category: data.category || "", tags: data.tags.join(", "), noindex: data.noindex, published_at: data.published_at ? data.published_at.slice(0, 10) : "" });
     });
   }, [id, isNew, navigate, toast]);
 
@@ -45,16 +82,21 @@ export default function AdminBlogEdit() {
     const slug = form.slug || toBlogSlug(form.title);
     if (!form.title.trim() || !form.topic.trim() || !isValidBlogSlug(slug)) { toast({ title: "Check required fields", description: "Title, topic and a lowercase hyphenated slug are required.", variant: "destructive" }); return; }
     setSaving(true);
-    const shared = { ...form, slug, tags: form.tags.split(",").map((tag) => tag.trim()).filter(Boolean), primary_keyword: form.primary_keyword || null, meta_title: form.meta_title || null, meta_description: form.meta_description || null, canonical_url: form.canonical_url || null, og_image_url: form.og_image_url || null, featured_image_url: form.featured_image_url || null, featured_image_alt: form.featured_image_alt || null, image_request_text: form.image_request_text || null };
+    const shared = { ...form, slug, tags: form.tags.split(",").map((tag) => tag.trim()).filter(Boolean), primary_keyword: form.primary_keyword || null, meta_title: form.meta_title || null, meta_description: form.meta_description || null, canonical_url: form.canonical_url || null, og_image_url: form.og_image_url || null, featured_image_url: form.featured_image_url || null, featured_image_alt: form.featured_image_alt || null, image_request_text: form.image_request_text || null, published_at: form.published_at ? new Date(`${form.published_at}T00:00:00.000Z`).toISOString() : null };
     const { tags: _tagsText, ...withoutTagsText } = shared;
     const payload = { ...withoutTagsText, tags: shared.tags };
-    const result = isNew
-      ? await supabase.from("blog_posts").insert({ ...payload, status: "idea" } as TablesInsert<"blog_posts">).select("id").single()
-      : await supabase.from("blog_posts").update(payload as TablesUpdate<"blog_posts">).eq("id", id!);
+    if (isNew) {
+      const result = await supabase.from("blog_posts").insert({ ...payload, status: "idea" } as TablesInsert<"blog_posts">).select("id").single();
+      setSaving(false);
+      if (result.error) { toast({ title: "Save failed", description: result.error.message, variant: "destructive" }); return; }
+      toast({ title: "Article created", description: "You can add photos to it now." });
+      navigate(`/admin/blog/${result.data.id}`, { replace: true });
+      return;
+    }
+    const result = await supabase.from("blog_posts").update(payload as TablesUpdate<"blog_posts">).eq("id", id!);
     setSaving(false);
     if (result.error) { toast({ title: "Save failed", description: result.error.message, variant: "destructive" }); return; }
     toast({ title: "Article saved" });
-    navigate("/admin/blog");
   }
 
   return (
@@ -71,10 +113,37 @@ export default function AdminBlogEdit() {
           <Field label="Category"><Input value={form.category} onChange={(event) => update("category", event.target.value)} /></Field>
           <Field label="Tags (comma separated)" className="md:col-span-2"><Input value={form.tags} onChange={(event) => update("tags", event.target.value)} /></Field>
           <Field label="Excerpt" className="md:col-span-2"><Textarea value={form.excerpt} onChange={(event) => update("excerpt", event.target.value)} rows={4} /></Field>
-          <Field label="Markdown content" className="md:col-span-2"><Textarea value={form.content} onChange={(event) => update("content", event.target.value)} rows={22} className="font-mono text-sm" /></Field>
+          <div className="md:col-span-2">
+            <div className="mb-2 flex items-center justify-between">
+              <Label>Markdown content</Label>
+              <div className="flex items-center gap-2">
+                {tailorCount > 0 && (
+                  <span className="rounded bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-800">
+                    {tailorCount} tailoring {tailorCount === 1 ? "spot" : "spots"} left
+                  </span>
+                )}
+                <Button type="button" size="sm" variant="outline" onClick={findNextTailor}>
+                  <SearchCode className="mr-1 h-3 w-3" /> Find next [TAILOR]
+                </Button>
+              </div>
+            </div>
+            <Textarea ref={contentRef} value={form.content} onChange={(event) => update("content", event.target.value)} rows={22} className="font-mono text-sm" />
+          </div>
         </section>
+
+        {!isNew && id && (
+          <BlogImageManager
+            postId={id}
+            onInsertMarker={(imageId) => insertAtCursor(`{{image:${imageId}}}`)}
+            onSetFeatured={(url, alt) => {
+              setForm((current) => ({ ...current, featured_image_url: url, featured_image_alt: alt }));
+              toast({ title: "Featured image set", description: "Save the article to keep it." });
+            }}
+          />
+        )}
         <section className="grid gap-5 rounded-xl border p-6 md:grid-cols-2">
           <Field label="Meta title"><Input value={form.meta_title} onChange={(event) => update("meta_title", event.target.value)} /></Field>
+          <Field label="Publish date (post stays hidden until this date)"><Input type="date" value={form.published_at} onChange={(event) => update("published_at", event.target.value)} /></Field>
           <Field label="Canonical URL"><Input type="url" value={form.canonical_url} onChange={(event) => update("canonical_url", event.target.value)} /></Field>
           <Field label="Meta description" className="md:col-span-2"><Textarea value={form.meta_description} onChange={(event) => update("meta_description", event.target.value)} /></Field>
           <Field label="Featured image URL"><Input type="url" value={form.featured_image_url} onChange={(event) => update("featured_image_url", event.target.value)} /></Field>
