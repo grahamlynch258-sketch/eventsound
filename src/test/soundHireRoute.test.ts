@@ -40,6 +40,6 @@ describe("sound hire commercial landing page", () => {
     expect(redirects).toContain("/services/audio-systems/            /services/sound-hire/          301");
     expect(redirects).toContain("/sound-hire-vision-hire-dublin-ireland/  /services/sound-hire/      301");
     expect(redirects).not.toMatch(/\/services\/sound-hire\/?\s+\/services\/av-production/);
-    expect(redirects.trimEnd()).toMatch(/\/\*\s+\/index\.html\s+200$/);
+    expect(redirects.trimEnd()).toMatch(/\/\*\s+\/404\.html\s+404$/);
   });
 });

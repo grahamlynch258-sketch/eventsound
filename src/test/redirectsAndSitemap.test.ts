@@ -31,9 +31,15 @@ describe("redirect and sitemap consistency", () => {
     }
   });
 
-  it("places the SPA fallback after every permanent redirect", () => {
-    expect(rules.at(-1)).toEqual({ source: "/*", target: "/index.html", status: "200" });
-    expect(rules.slice(0, -1).every(({ status }) => status === "301" || status === "404")).toBe(true);
+  it("ends with noindex SPA rewrites and then a real 404 for everything else", () => {
+    expect(rules.at(-1)).toEqual({ source: "/*", target: "/404.html", status: "404" });
+    const firstFallback = rules.findIndex(({ status }) => status === "200");
+    expect(firstFallback).toBeGreaterThan(0);
+    // Every permanent redirect comes before the first SPA rewrite.
+    expect(rules.slice(0, firstFallback).every(({ status }) => status === "301" || status === "404")).toBe(true);
+    // SPA rewrites only ever point at the noindex shell, never the homepage.
+    expect(rules.filter(({ status }) => status === "200").every(({ target }) => target === "/spa.html")).toBe(true);
+    expect(rules.some(({ target }) => target === "/index.html")).toBe(false);
   });
 
   it("lists only canonical trailing-slash URLs in the generated sitemap", () => {

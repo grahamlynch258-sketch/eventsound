@@ -4,7 +4,7 @@ export const siteConfig = {
   tagline: "Premium Event Production — Ireland",
   legalName: "EventSound AV Services",
 
-  companyExperienceYears: "20+",
+  companyExperienceYears: "35+",
   ronanExperienceYears: "40+",
 
   email: "info@eventsound.ie",
@@ -24,6 +24,11 @@ export const siteConfig = {
   serviceAreas: ["Dublin", "Leinster", "Nationwide Ireland"],
 
   quoteResponseSLA: "within 24 hours",
+
+  // Google Business Profile "write a review" link. The reviews widget (Featurable)
+  // is connected to a DIFFERENT place ID (ChIJM1xuFXgwZ0gRNkUR4exw_5U). Pending
+  // Graham's decision on which listing is canonical — change it here only.
+  googleReviewUrl: "https://search.google.com/local/writereview?placeid=ChIJy0JQslYLZ0gRQOACHmQptmI",
 
   pricing: {
     ledWallDryHirePerSquareMetrePerDay: 125,

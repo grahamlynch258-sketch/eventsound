@@ -461,6 +461,78 @@ const SHELL_HEADER = `<header class="sticky top-0 z-[100] border-b transition-al
 
 const SHELL_NAP = `<p class="mt-12 text-sm text-muted-foreground">EventSound AV Services — Townrath, Drogheda, Co. Louth, Ireland. Phone <a href="tel:+353863520476">086 352 0476</a> · <a href="mailto:info@eventsound.ie">info@eventsound.ie</a>. Serving Dublin, Leinster, and nationwide.</p>`;
 
+// Clean CMS tag arrays: some entries are one hyphen-joined string such as
+// "LEDWALL-Audio-Lighting-Concert". Split, trim and de-duplicate them.
+function cleanKeywords(tags) {
+  if (!Array.isArray(tags) || !tags.length) return undefined;
+  const words = tags.flatMap(t => String(t).split(/[-,|]/)).map(t => t.trim()).filter(Boolean);
+  const unique = [...new Set(words.map(w => w.toLowerCase()))].map(l => words.find(w => w.toLowerCase() === l));
+  return unique.length ? unique.join(', ') : undefined;
+}
+
+// Map a case study's "services used" labels to their service pages.
+// Keep in sync with src/lib/serviceLinks.ts (used by the React page).
+const SERVICE_LINK_RULES = [
+  [/led\s*(video\s*)?wall|video wall/i, '/services/led-video-walls/', 'LED video wall hire'],
+  [/led screen|tv screen|monitor/i, '/services/led-screen-hire/', 'LED screen hire'],
+  [/light/i, '/services/lighting-design/', 'Event lighting'],
+  [/stag|drape/i, '/services/staging-pipe-drape/', 'Stage hire'],
+  [/sound|audio|\bpa\b/i, '/services/sound-hire/', 'Sound and PA hire'],
+  [/conference/i, '/services/conference-av-hire/', 'Conference AV hire'],
+  [/stream|hybrid|virtual/i, '/services/virtual-events/', 'Hybrid events and streaming'],
+  [/video|camera|film/i, '/services/video-production/', 'Event video production'],
+  [/theatre|musical/i, '/services/musical-theatre/', 'Theatre production hire'],
+  [/production/i, '/services/event-production/', 'Event production'],
+  [/\bav\b|audio.?visual/i, '/services/av-production/', 'AV hire'],
+];
+function serviceLinksFor(labels) {
+  const seen = new Set();
+  const out = [];
+  for (const label of labels || []) {
+    const rule = SERVICE_LINK_RULES.find(([re]) => re.test(label));
+    if (rule && !seen.has(rule[1])) { seen.add(rule[1]); out.push({ href: rule[1], label: rule[2] }); }
+  }
+  return out;
+}
+
+function paragraphsToHtml(text) {
+  return String(text || '')
+    .split(/\n\s*\n/)
+    .map(p => p.trim())
+    .filter(Boolean)
+    .map(p => `<p class="mt-4">${escapeHtml(p).replace(/\n/g, '<br>')}</p>`)
+    .join('');
+}
+
+// Crawlable site-wide link block. Non-JS crawlers (most AI crawlers) otherwise
+// see only the logo and the "Get a Quote" link in the static shell.
+const SHELL_FOOTER_LINKS = [
+  ['Services', [
+    ['/services/', 'All services'], ['/services/event-production/', 'Event production'],
+    ['/services/av-production/', 'AV hire'], ['/services/sound-hire/', 'Sound and PA hire'],
+    ['/services/led-video-walls/', 'LED video wall hire'], ['/services/led-screen-hire/', 'LED screen hire'],
+    ['/services/conference-av-hire/', 'Conference AV hire'], ['/services/lighting-design/', 'Event lighting hire'],
+    ['/services/staging-pipe-drape/', 'Stage hire'], ['/services/video-production/', 'Event video production'],
+    ['/services/virtual-events/', 'Hybrid events and streaming'], ['/services/musical-theatre/', 'Theatre production hire'],
+  ]],
+  ['LED walls by city', [
+    ['/services/led-walls/dublin/', 'Dublin'], ['/services/led-walls/cork/', 'Cork'], ['/services/led-walls/galway/', 'Galway'],
+    ['/services/led-walls/belfast/', 'Belfast'], ['/services/led-walls/limerick/', 'Limerick'], ['/services/led-walls/athlone/', 'Athlone'],
+  ]],
+  ['Conference AV by city', [
+    ['/services/conference-av/dublin/', 'Dublin'], ['/services/conference-av/cork/', 'Cork'], ['/services/conference-av/galway/', 'Galway'],
+    ['/services/conference-av/belfast/', 'Belfast'], ['/services/conference-av/limerick/', 'Limerick'], ['/services/conference-av/athlone/', 'Athlone'],
+  ]],
+  ['Company', [
+    ['/about/', 'About'], ['/case-studies/', 'Case studies'], ['/gallery/', 'Gallery'], ['/reviews/', 'Reviews'],
+    ['/blog/', 'Blog'], ['/faq/', 'FAQ'], ['/health-and-safety/', 'Health and safety'], ['/contact/', 'Contact and quotes'],
+  ]],
+];
+const SHELL_FOOTER = `<footer class="border-t border-border/50 mt-16"><div class="container py-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">${SHELL_FOOTER_LINKS
+  .map(([heading, links]) => `<nav aria-label="${heading}"><p class="font-semibold mb-3">${heading}</p><ul class="space-y-2 text-sm text-muted-foreground">${links
+    .map(([href, label]) => `<li><a href="${href}">${label}</a></li>`).join('')}</ul></nav>`)
+  .join('')}</div></footer>`;
+
 /**
  * Build the crawlable static body shell for a route.
  * React's createRoot().render() replaces this synchronously on mount.
@@ -496,6 +568,7 @@ ${bodyHtml ? `<div class="mt-8 max-w-3xl leading-relaxed">${bodyHtml}</div>` : '
 ${faqHtml}\
 ${SHELL_NAP}\
 </div></main>\
+${SHELL_FOOTER}\
 </div>`;
 }
 
@@ -555,7 +628,7 @@ function getSchemasForRoute(routePath, caseStudyData) {
       dateModified: caseStudyData.updated_at || undefined,
       author: { name: "EventSound AV Services", url: "https://eventsound.ie" },
       publisher: { name: "EventSound AV Services", logo: "https://eventsound.ie/Brand/logo_transparent.png" },
-      keywords: caseStudyData.tags ? caseStudyData.tags.join(', ') : undefined,
+      keywords: cleanKeywords(caseStudyData.tags),
       articleSection: caseStudyData.category || undefined,
     })];
   }
@@ -647,7 +720,7 @@ async function getCaseStudies() {
     }
 
     const res = await fetch(
-      `${SUPABASE_URL}/rest/v1/case_studies?select=slug,meta_title,meta_description,title,excerpt,featured_image_url,og_image_url,published_at,updated_at,tags,category&is_published=eq.true&noindex=eq.false`,
+      `${SUPABASE_URL}/rest/v1/case_studies?select=slug,meta_title,meta_description,title,excerpt,body_content,featured_image_url,featured_image_alt,og_image_url,published_at,updated_at,tags,category,services_used,location,client_name,event_date&is_published=eq.true&noindex=eq.false`,
       {
         headers: {
           apikey: SUPABASE_KEY,
@@ -945,6 +1018,7 @@ async function prerender() {
           `<div class="absolute inset-0">${heroImgTag}<div class="absolute inset-0 bg-background/60"></div></div>`
         );
       }
+      shell = shell.replace(/<\/div>$/, `${SHELL_FOOTER}</div>`);
       html = html.replace('<div id="root"></div>', `<div id="root">${shell}</div>`);
     } else {
       // For non-homepage routes, inject a full static body shell — H1, intro
@@ -972,8 +1046,34 @@ async function prerender() {
           { name: 'Services', url: '/services/' },
           { name: h1Text, url: route.path },
         ];
+      } else if (route.path === '/blog' || route.path === '/case-studies') {
+        const items = route.path === '/blog' ? blogRoutes : caseStudyRoutes;
+        shellBodyHtml = items.length
+          ? `<ul class="space-y-6">${items.map(item => {
+              const raw = item._raw || {};
+              const summary = raw.excerpt || item.description || '';
+              return `<li><h2 class="text-xl font-semibold"><a href="${item.path}/">${escapeHtml(raw.title || item.title)}</a></h2>${summary ? `<p class="mt-2 text-muted-foreground">${escapeHtml(summary)}</p>` : ''}</li>`;
+            }).join('')}</ul>`
+          : '';
       } else if (route.path === '/faq') {
         shellFaqs = FAQ_PAGE_QUESTIONS;
+      } else if (route.path.startsWith('/case-studies/') && route._raw) {
+        const cs = route._raw;
+        shellIntros = [cs.excerpt || route.description];
+        shellBreadcrumb = [
+          { name: 'Home', url: '/' },
+          { name: 'Case Studies', url: '/case-studies/' },
+          { name: cs.title, url: `${route.path}/` },
+        ];
+        const facts = [
+          cs.client_name && `<li><strong>Client:</strong> ${escapeHtml(cs.client_name)}</li>`,
+          cs.location && `<li><strong>Venue:</strong> ${escapeHtml(cs.location)}</li>`,
+          cs.event_date && `<li><strong>Date:</strong> ${escapeHtml(new Date(cs.event_date).toLocaleDateString('en-IE', { year: 'numeric', month: 'long', day: 'numeric' }))}</li>`,
+        ].filter(Boolean).join('');
+        const links = serviceLinksFor(cs.services_used);
+        shellBodyHtml = (facts ? `<ul class="space-y-1">${facts}</ul>` : '')
+          + `<h2 class="mt-10 text-2xl font-bold">The project</h2>${paragraphsToHtml(cs.body_content)}`
+          + (links.length ? `<h2 class="mt-10 text-2xl font-bold">Services used</h2><ul class="mt-4 space-y-1">${links.map(l => `<li><a href="${l.href}">${l.label}</a></li>`).join('')}</ul>` : '');
       } else if (route.path.startsWith('/blog/') && route._raw) {
         // Blog post: full article body in the static shell so crawlers read
         // the whole post. React replaces it on mount.
@@ -1000,6 +1100,52 @@ async function prerender() {
     fs.writeFileSync(filePath, html);
     const schemaCount = schemas.length;
     console.log(`  ✓ ${route.path}${schemaCount > 0 ? ` (${schemaCount} schema${schemaCount > 1 ? 's' : ''})` : ''}`);
+  }
+
+  // ── 404 page and SPA fallback ─────────────────────────────────────────────
+  // public/_redirects sends unknown URLs to /404.html with a real 404 status,
+  // and client-only routes (admin, landing pages, posts published since the
+  // last build) to /spa.html: the same app, but noindex and no canonical, so
+  // an unbuilt page can never be indexed as a copy of the homepage.
+  const stripSeo = (tpl) => tpl
+    .replace(/\s*<link\s+rel="canonical"[^>]*>/, '')
+    .replace(/<meta name="robots" content="[^"]*"\s*\/?>/, '<meta name="robots" content="noindex, follow" />');
+  const withTitle = (tpl, title) => (/<title>[^<]*<\/title>/.test(tpl)
+    ? tpl.replace(/<title>[^<]*<\/title>/, `<title>${title}</title>`)
+    : tpl.replace('<meta charset="UTF-8" />', `<meta charset="UTF-8" />\n    <title>${title}</title>`));
+  fs.writeFileSync(path.join(DIST, 'spa.html'), withTitle(stripSeo(indexHtml), 'EventSound AV Services'));
+  let notFoundHtml = stripSeo(indexHtml);
+  if (/<title>[^<]*<\/title>/.test(notFoundHtml)) {
+    notFoundHtml = notFoundHtml.replace(/<title>[^<]*<\/title>/, '<title>Page not found | EventSound</title>');
+  } else {
+    notFoundHtml = notFoundHtml.replace('<meta charset="UTF-8" />', '<meta charset="UTF-8" />\n    <title>Page not found | EventSound</title>');
+  }
+  notFoundHtml = notFoundHtml.replace('<div id="root"></div>', `<div id="root">${buildBodyShell({
+    h1: 'Page not found',
+    intros: ['The page you were looking for has moved or no longer exists. Use the links below to find LED wall, sound, lighting, staging and conference AV hire across Ireland.'],
+    faqs: [],
+  })}</div>`);
+  fs.writeFileSync(path.join(DIST, '404.html'), notFoundHtml);
+  console.log('  ✓ /404.html and /spa.html');
+
+  // Every prerendered page lives at /path/index.html. Add an explicit
+  // /path -> /path/ 301 for each one (blog posts and case studies included)
+  // so the no-slash form never falls through to the 404 rule.
+  const redirectsPath = path.join(DIST, '_redirects');
+  if (fs.existsSync(redirectsPath)) {
+    const current = fs.readFileSync(redirectsPath, 'utf-8');
+    const existingSources = new Set(current.split(/\r?\n/).map(l => l.trim().split(/\s+/)[0]).filter(Boolean));
+    const generated = allRoutes
+      .map(r => r.path.replace(/\/$/, ''))
+      .filter(p => p && !existingSources.has(p))
+      .map(p => `${p}  ${p}/  301`);
+    if (generated.length) {
+      const block = `# --- Generated at build: no-slash prerendered routes -> canonical ---\n${generated.join('\n')}\n\n`;
+      const marker = '# --- Client-only routes';
+      const next = current.includes(marker) ? current.replace(marker, `${block}${marker}`) : `${block}${current}`;
+      fs.writeFileSync(redirectsPath, next);
+      console.log(`  ✓ _redirects: ${generated.length} generated trailing-slash redirects`);
+    }
   }
 
   console.log(`\nPre-rendered ${allRoutes.length} routes successfully!`);

@@ -137,7 +137,7 @@ const CaseStudies = () => {
             {caseStudies.map((caseStudy) => (
               <Link
                 key={caseStudy.id}
-                to={`/case-studies/${caseStudy.slug}`}
+                to={`/case-studies/${caseStudy.slug}/`}
                 className="group"
               >
                 <Card className="h-full overflow-hidden hover:shadow-lg transition-shadow">

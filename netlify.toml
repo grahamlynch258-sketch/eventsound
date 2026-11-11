@@ -2,10 +2,7 @@
   command = "npm run build"
   publish = "dist"
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# Redirects and the 404/SPA fallbacks live in public/_redirects.
 
 [build.environment]
   NODE_VERSION = "18"
