@@ -70,6 +70,14 @@ describe("full-page prerender wiring", () => {
     expect(accordion).toContain("data-[state=closed]:hidden");
   });
 
+  it("holds app code back until first-screen images arrive, with interaction and time limits", () => {
+    const prerender = read("scripts/prerender.mjs");
+    expect(prerender).toContain("function deferredBootScript(entry, chunks)");
+    expect(prerender).toContain('["pointerdown", "keydown", "touchstart", "scroll"]');
+    expect(prerender).toContain("window.setTimeout(boot, 3000)");
+    expect(prerender).toContain('rel="preload" as="image" fetchpriority="high"');
+  });
+
   it("falls back to static shells if the snapshot step fails", () => {
     const prerender = read("scripts/prerender.mjs");
     expect(prerender).toContain("Full-page snapshots skipped, static shells kept");

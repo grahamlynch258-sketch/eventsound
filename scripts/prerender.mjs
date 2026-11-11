@@ -952,6 +952,45 @@ function routeChunkPreloads(routePath, info, html) {
     .join('\n');
 }
 
+// Inline loader for pages that ship a full snapshot. The page is already
+// complete without JavaScript, so the app's code waits until the first-screen
+// images have arrived (or 3 s, or the visitor's first interaction). On slow
+// connections that gives the main image the bandwidth and the main thread.
+function deferredBootScript(entry, chunks) {
+  return `<script type="module">
+      const entry = ${JSON.stringify(entry)};
+      const chunks = ${JSON.stringify(chunks)};
+      let started = false;
+      const boot = () => {
+        if (started) return;
+        started = true;
+        for (const href of chunks) {
+          const link = document.createElement("link");
+          link.rel = "modulepreload";
+          link.crossOrigin = "";
+          link.href = href;
+          document.head.appendChild(link);
+        }
+        import(entry);
+      };
+      const pending = Array.from(document.querySelectorAll("#root img")).filter((img) => {
+        const rect = img.getBoundingClientRect();
+        return !img.complete && rect.width > 0 && rect.top < window.innerHeight && rect.bottom > 0;
+      });
+      let left = pending.length;
+      if (left === 0) boot();
+      for (const img of pending) {
+        const done = () => { left -= 1; if (left <= 0) boot(); };
+        img.addEventListener("load", done, { once: true });
+        img.addEventListener("error", done, { once: true });
+      }
+      for (const name of ["pointerdown", "keydown", "touchstart", "scroll"]) {
+        window.addEventListener(name, boot, { once: true, passive: true });
+      }
+      window.setTimeout(boot, 3000);
+    </script>`;
+}
+
 // ── Main prerender ──────────────────────────────────────────────────────────
 
 async function prerender() {
@@ -1240,11 +1279,19 @@ async function prerender() {
           } catch { /* keep the build-time schema */ }
         }
         // The snapshot already shows the whole page, so the app's code is not
-        // needed for first paint. Fetch it at low priority so it doesn't
-        // compete with the stylesheet, fonts and first-screen images.
-        next = next
-          .replace(/<link rel="modulepreload"(?! fetchpriority)/g, '<link rel="modulepreload" fetchpriority="low"')
-          .replace(/<script type="module"(?! fetchpriority)/g, '<script type="module" fetchpriority="low"');
+        // needed for first paint. Swap the entry script and its preloads for
+        // a small loader that waits for the first-screen images.
+        const entryTag = next.match(/<script type="module" crossorigin src="(\/assets\/[^"]+\.js)"><\/script>/);
+        if (entryTag) {
+          const preloadTag = /[ \t]*<link rel="modulepreload" crossorigin href="(\/assets\/[^"]+\.js)">\r?\n?/g;
+          const chunks = [...next.matchAll(preloadTag)].map(m => m[1]);
+          next = next.replace(preloadTag, '').replace(entryTag[0], () => deferredBootScript(entryTag[1], chunks));
+        }
+        // Preload the page's main first-screen image unless one is already preloaded.
+        if (snapshot.heroImage && !/rel="preload" as="image"/.test(next)) {
+          const href = snapshot.heroImage.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+          next = next.replace('</head>', () => `    <link rel="preload" as="image" fetchpriority="high" href="${href}">\n  </head>`);
+        }
         fs.writeFileSync(filePath, next);
         applied += 1;
       }
