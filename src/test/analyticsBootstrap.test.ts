@@ -12,6 +12,18 @@ describe("analytics bootstrap", () => {
     expect(html).not.toContain('window.gtag("consent"');
   });
 
+  it("queues calls at once but loads the scripts after the page or on first interaction", () => {
+    const queueAt = html.indexOf('window.gtag("config", "AW-1014417298")');
+    const loaderAt = html.indexOf("function loadAnalytics()");
+    expect(queueAt).toBeGreaterThan(-1);
+    expect(loaderAt).toBeGreaterThan(queueAt);
+    // The script tags are only created inside loadAnalytics().
+    expect(html.indexOf("www.googletagmanager.com/gtag/js")).toBeGreaterThan(loaderAt);
+    expect(html.indexOf("www.clarity.ms/tag/")).toBeGreaterThan(loaderAt);
+    expect(html).toContain('window.addEventListener("load", afterPageLoad');
+    expect(html).toContain('["pointerdown", "keydown", "touchstart", "scroll"]');
+  });
+
   it("limits external analytics to production public traffic", () => {
     expect(html).toContain('window.location.hostname === "eventsound.ie"');
     expect(html).toContain('window.location.pathname.indexOf("/admin/") === 0');

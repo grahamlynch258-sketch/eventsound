@@ -5,22 +5,26 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { ScrollToTop } from "@/components/site/ScrollToTop";
-import Index from "./pages/Index";
-import About from "./pages/About";
-import Services from "./pages/Services";
-import Contact from "./pages/Contact";
-import Gallery from "./pages/Gallery";
-import Reviews from "./pages/Reviews";
-import FAQ from "./pages/FAQ";
-import HealthAndSafety from "./pages/HealthAndSafety";
-import CaseStudies from "./pages/CaseStudies";
-import CaseStudyDetail from "./pages/CaseStudyDetail";
-import NotFound from "./pages/NotFound";
 import { trackConversion, trackEvent } from "@/utils/trackConversion";
 import { captureLeadAttribution } from "@/lib/leadAttribution";
 
 // Admin route guard — kept static (small, needed immediately for auth check)
 import AdminRoute from "./components/admin/AdminRoute";
+
+// Core pages — lazy loaded. Every public page ships as a full static snapshot
+// (see scripts/capture-rendered.mjs), so nothing is blank while a chunk loads,
+// and each page only downloads its own code.
+const Index = lazy(() => import("./pages/Index"));
+const About = lazy(() => import("./pages/About"));
+const Services = lazy(() => import("./pages/Services"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Gallery = lazy(() => import("./pages/Gallery"));
+const Reviews = lazy(() => import("./pages/Reviews"));
+const FAQ = lazy(() => import("./pages/FAQ"));
+const HealthAndSafety = lazy(() => import("./pages/HealthAndSafety"));
+const CaseStudies = lazy(() => import("./pages/CaseStudies"));
+const CaseStudyDetail = lazy(() => import("./pages/CaseStudyDetail"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 // Landing pages — Google Ads only, noindex
 const CorporateAVHireDublin = lazy(() => import("@/pages/landing/CorporateAVHireDublin"));
@@ -140,16 +144,16 @@ function AppRoutes() {
       <ScrollToTop />
       <Routes>
       {/* Public routes */}
-      <Route path="/" element={<Index />} />
-      <Route path="/services" element={<Services />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/contact" element={<Contact />} />
-      <Route path="/gallery" element={<Gallery />} />
-      <Route path="/reviews" element={<Reviews />} />
-      <Route path="/faq" element={<FAQ />} />
-      <Route path="/health-and-safety" element={<HealthAndSafety />} />
-      <Route path="/case-studies" element={<CaseStudies />} />
-      <Route path="/case-studies/:slug" element={<CaseStudyDetail />} />
+      <Route path="/" element={<Suspense fallback={null}><Index /></Suspense>} />
+      <Route path="/services" element={<Suspense fallback={null}><Services /></Suspense>} />
+      <Route path="/about" element={<Suspense fallback={null}><About /></Suspense>} />
+      <Route path="/contact" element={<Suspense fallback={null}><Contact /></Suspense>} />
+      <Route path="/gallery" element={<Suspense fallback={null}><Gallery /></Suspense>} />
+      <Route path="/reviews" element={<Suspense fallback={null}><Reviews /></Suspense>} />
+      <Route path="/faq" element={<Suspense fallback={null}><FAQ /></Suspense>} />
+      <Route path="/health-and-safety" element={<Suspense fallback={null}><HealthAndSafety /></Suspense>} />
+      <Route path="/case-studies" element={<Suspense fallback={null}><CaseStudies /></Suspense>} />
+      <Route path="/case-studies/:slug" element={<Suspense fallback={null}><CaseStudyDetail /></Suspense>} />
       <Route path="/blog" element={<Suspense fallback={null}><Blog /></Suspense>} />
       <Route path="/blog/:slug" element={<Suspense fallback={null}><BlogPost /></Suspense>} />
 
@@ -187,7 +191,7 @@ function AppRoutes() {
       <Route path="/landing/led-wall-hire-ireland" element={<Suspense fallback={null}><LEDWallHireIreland /></Suspense>} />
 
       {/* Legacy route redirect */}
-      <Route path="/av-production" element={<Services />} />
+      <Route path="/av-production" element={<Suspense fallback={null}><Services /></Suspense>} />
 
       {/* Admin routes — wrapped in Suspense so the lazy chunks load on demand */}
       <Route path="/admin/login" element={<Suspense fallback={null}><AdminLogin /></Suspense>} />
@@ -205,7 +209,7 @@ function AppRoutes() {
       <Route path="/admin/blog/:id" element={<AdminRoute><Suspense fallback={null}><AdminBlogEdit /></Suspense></AdminRoute>} />
 
       {/* 404 */}
-      <Route path="*" element={<NotFound />} />
+      <Route path="*" element={<Suspense fallback={null}><NotFound /></Suspense>} />
     </Routes>
     </>
   );
