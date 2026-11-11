@@ -10,4 +10,4 @@
 # Netlify Image CDN may fetch and resize images from the site's Supabase
 # storage (used as /.netlify/images?url=<storage url>&w=<width>).
 [images]
-  remote_images = ["https://blhxvtmhhvrorajkszhy\.supabase\.co/storage/v1/object/public/.*"]
+  remote_images = ['https://blhxvtmhhvrorajkszhy\.supabase\.co/storage/v1/object/public/.*']
