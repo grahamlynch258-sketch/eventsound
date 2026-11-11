@@ -20,9 +20,13 @@ URL: https://eventsound.ie/services/staging-pipe-drape/
 Full technical event production management for conferences, award ceremonies, product launches, gala dinners, corporate events, and live shows across Ireland. EventSound manages all AV elements — sound, lighting, video, staging, and live streaming — as a single coordinated production. Services include pre-production planning, venue technical surveys, equipment specification, show calling, and on-site technical direction. We work alongside event managers, agencies, and in-house teams. Notable clients include Fingal County Council, Louth County Council, and Local Enterprise Office Louth. Events produced include PRISM conferences, Local Enterprise Week events, School Summit, Beta Festival, and corporate award ceremonies.
 URL: https://eventsound.ie/services/event-production/
 
-### AV Hire, PA & Sound System Hire
+### AV Hire (complete AV packages)
 Professional audio visual equipment hire for conferences, meetings, seminars, and corporate events. Complete AV packages including sound systems, PA hire, wireless microphones, mixing desks, stage monitors, screens, and technical crew. PA systems are scaled to venue size and audience — from compact column speakers for conference presentations to line array systems for outdoor festivals and concerts. All equipment is professional-grade and maintained to broadcast standards. Every AV hire includes delivery, setup, testing, operation by experienced engineers, and breakdown.
 URL: https://eventsound.ie/services/av-production/
+
+### Sound Hire & PA System Hire
+Operated sound and PA system hire for conferences, corporate events, live bands and outdoor events in Dublin and across Ireland. Packages include speakers, digital mixing, wireless microphones (handheld, lapel and headset), stage monitors and an experienced sound engineer. Systems are specified for the venue, audience size and programme: clear speech for conferences; inputs, monitoring, coverage and power planning for live music and outdoor events.
+URL: https://eventsound.ie/services/sound-hire/
 
 ### Lighting Design & Hire
 Event lighting hire and design for conferences, award ceremonies, gala dinners, concerts, festivals, and corporate events. Intelligent moving-head fixtures, LED uplighting, architectural lighting, gobo projection, pin spots, and stage wash lighting. Lighting design tailored to each event — from subtle corporate ambience to full concert-grade show lighting — including consultation and full lighting plots for conferences, theatre, and concerts. All lighting includes programming, setup, and operation by experienced lighting technicians.
@@ -72,10 +76,23 @@ EventSound is based in Drogheda, Co. Louth and serves all of Ireland. Primary se
 ## Key Facts
 - Owner-led team with over 35 years of event production experience
 - All-inclusive quoting model: equipment, delivery, setup, on-site operation, and breakdown included in every hire — no hidden fees or line-item pricing
-- Technical crew includes Ronan and Mark for larger multi-crew events
+- Experienced multi-person technical crews for larger events
 - Equipment includes Absen P2.6 LED panels, Unilumin LED panels, professional-grade audio (line array and point source systems), intelligent lighting fixtures, and broadcast-quality video equipment
 - Notable clients: Fingal County Council, Louth County Council, Local Enterprise Office Louth, Škoda Ireland
 - Notable events: PRISM conferences, Local Enterprise Week, School Summit, Beta Festival, Swords Castle Summer Concerts
+
+## Guides
+- How video wall hire works (sizes, setup, show day, costs): https://eventsound.ie/blog/video-wall-hire-guide/
+- LED screen vs LED wall, what the terms mean: https://eventsound.ie/blog/led-screen-or-led-wall/
+- Conference AV technical brief to prepare before requesting quotes: https://eventsound.ie/blog/conference-av-technical-brief/
+- All guides: https://eventsound.ie/blog/
+
+## Case Studies
+- Swords Castle Summer Concerts (Fingal County Council): https://eventsound.ie/case-studies/swords-castle-summer-concerts/
+- PRISM Immersive Technology Summit (DkIT, Dundalk): https://eventsound.ie/case-studies/prism-immersive-technology-summit/
+- School Summit career expos: https://eventsound.ie/case-studies/school-summit-career-expos/
+- Beta Festival 2025 (The Digital Hub, Dublin): https://eventsound.ie/case-studies/beta-festival-2025-curved-led-video-wall-sound-for-art-technology-exhibition/
+- Explore Fingal brand launch (Grand Hotel, Malahide): https://eventsound.ie/case-studies/explore-fingal-destination-tourism-brand-launch-full-event-production-at-the-grand-hotel-malahide/
 
 ## Reviews
 Client testimonials and case studies available at https://eventsound.ie/reviews/ and https://eventsound.ie/case-studies/

@@ -20,14 +20,14 @@ const AthaloneConferenceAV = () => {
   const breadcrumbSchema = generateBreadcrumbSchema({ items: [
     { name: "Home", url: "https://eventsound.ie/" },
     { name: "Services", url: "https://eventsound.ie/services" },
-    { name: "Conference AV Hire", url: "https://eventsound.ie/services/conference-av-hire" },
-    { name: "Conference AV Athlone", url: "https://eventsound.ie/services/conference-av/athlone" },
+    { name: "Conference AV Hire", url: "https://eventsound.ie/services/conference-av-hire/" },
+    { name: "Conference AV Athlone", url: "https://eventsound.ie/services/conference-av/athlone/" },
   ] });
 
   useSeo({
     title: "Conference AV Services Athlone | AV Hire Midlands Ireland | EventSound",
     description: "Conference AV hire in Athlone. Sound, screens & lighting for corporate conferences & events in the midlands. Central Ireland. Delivery & technician included.",
-    canonical: "https://eventsound.ie/services/conference-av/athlone",
+    canonical: "https://eventsound.ie/services/conference-av/athlone/",
     ogTitle: "Conference AV Services Athlone | EventSound",
     ogDescription: "Professional conference AV in Athlone & Ireland's Midlands. Hodson Bay, Sheraton & Midlands venues.",
     ogType: "website",
@@ -43,7 +43,7 @@ const AthaloneConferenceAV = () => {
         items={[
           { name: "Home", href: "/" },
           { name: "Services", href: "/services" },
-          { name: "Conference AV Hire", href: "/services/conference-av-hire" },
+          { name: "Conference AV Hire", href: "/services/conference-av-hire/" },
           { name: "Athlone" },
         ]}
       />
@@ -86,7 +86,7 @@ const AthaloneConferenceAV = () => {
 
           <ScrollReveal>
             <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-              Looking for LED wall hire in the Midlands? See our dedicated <Link to="/services/led-walls/athlone" className="text-accent hover:underline">Athlone LED Wall Hire</Link> page. You can also explore our full <Link to="/services/conference-av-hire" className="text-accent hover:underline">Conference AV Hire</Link> service for Ireland-wide coverage.
+              Looking for LED wall hire in the Midlands? See our dedicated <Link to="/services/led-walls/athlone/" className="text-accent hover:underline">Athlone LED Wall Hire</Link> page. You can also explore our full <Link to="/services/conference-av-hire/" className="text-accent hover:underline">Conference AV Hire</Link> service for Ireland-wide coverage.
             </p>
           </ScrollReveal>
 

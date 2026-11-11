@@ -437,7 +437,7 @@ export default function LEDVideoWallsV2() {
               <GoogleReviewsBadge />
               <Button variant="outline" size="sm" asChild>
                 <a
-                  href="https://search.google.com/local/writereview?placeid=ChIJy0JQslYLZ0gRQOACHmQptmI"
+                  href={siteConfig.googleReviewUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -449,7 +449,7 @@ export default function LEDVideoWallsV2() {
           <ReactGoogleReviews
             layout="custom"
             featurableId="b2ee5fe1-ce0a-4af5-8324-4558bd7d337e"
-            structuredData={true}
+            structuredData={false}
             brandName="EventSound AV Services"
             renderer={(reviews) => {
               const visibleReviews = showAllReviews ? reviews : reviews.slice(0, 3);
@@ -538,6 +538,13 @@ export default function LEDVideoWallsV2() {
               <Link to="/services/virtual-events/" className="text-accent hover:underline">live streaming and hybrid event</Link>{" "}
               services. See how we delivered LED walls for the{" "}
               <Link to="/case-studies/swords-castle-summer-concerts/" className="text-accent hover:underline">Swords Castle Summer Concerts</Link>.
+            </p>
+            <p className="mt-4 text-muted-foreground leading-relaxed">
+              Not sure which display format suits the room? Our{" "}
+              <Link to="/blog/led-screen-or-led-wall/" className="text-accent hover:underline">
+                LED screen versus LED wall guide
+              </Link>{" "}
+              explains when a single commercial display is enough and when a modular video wall is the better fit.
             </p>
           </div>
         </ScrollReveal>

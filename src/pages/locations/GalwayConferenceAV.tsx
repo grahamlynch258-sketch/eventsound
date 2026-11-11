@@ -19,14 +19,14 @@ const GalwayConferenceAV = () => {
   const breadcrumbSchema = generateBreadcrumbSchema({ items: [
     { name: "Home", url: "https://eventsound.ie/" },
     { name: "Services", url: "https://eventsound.ie/services" },
-    { name: "Conference AV Hire", url: "https://eventsound.ie/services/conference-av-hire" },
-    { name: "Conference AV Galway", url: "https://eventsound.ie/services/conference-av/galway" },
+    { name: "Conference AV Hire", url: "https://eventsound.ie/services/conference-av-hire/" },
+    { name: "Conference AV Galway", url: "https://eventsound.ie/services/conference-av/galway/" },
   ] });
 
   useSeo({
     title: "Conference AV Services Galway | Event Sound & AV Hire | EventSound",
     description: "Conference AV hire in Galway. PA systems, LED screens & lighting for corporate conferences & events across the west of Ireland. Full technician support included.",
-    canonical: "https://eventsound.ie/services/conference-av/galway",
+    canonical: "https://eventsound.ie/services/conference-av/galway/",
     ogTitle: "Conference AV Services Galway | EventSound",
     ogDescription: "Professional conference AV services in Galway. Radio mics, PA systems, front lighting & on-site technicians.",
     ogType: "website",
@@ -42,7 +42,7 @@ const GalwayConferenceAV = () => {
         items={[
           { name: "Home", href: "/" },
           { name: "Services", href: "/services" },
-          { name: "Conference AV Hire", href: "/services/conference-av-hire" },
+          { name: "Conference AV Hire", href: "/services/conference-av-hire/" },
           { name: "Galway" },
         ]}
       />
@@ -89,7 +89,7 @@ const GalwayConferenceAV = () => {
 
           <ScrollReveal>
             <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-              Looking for LED wall hire in Galway? See our dedicated <Link to="/services/led-walls/galway" className="text-accent hover:underline">Galway LED Wall Hire</Link> page. You can also explore our full <Link to="/services/conference-av-hire" className="text-accent hover:underline">Conference AV Hire</Link> service for Ireland-wide coverage.
+              Looking for LED wall hire in Galway? See our dedicated <Link to="/services/led-walls/galway/" className="text-accent hover:underline">Galway LED Wall Hire</Link> page. You can also explore our full <Link to="/services/conference-av-hire/" className="text-accent hover:underline">Conference AV Hire</Link> service for Ireland-wide coverage.
             </p>
           </ScrollReveal>
 

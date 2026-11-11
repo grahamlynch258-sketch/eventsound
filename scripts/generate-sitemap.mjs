@@ -23,6 +23,7 @@ const staticRoutes = [
   { path: '/health-and-safety', priority: '0.5', changefreq: 'monthly' },
   { path: '/services/led-video-walls', priority: '0.8', changefreq: 'monthly' },
   { path: '/services/av-production', priority: '0.8', changefreq: 'monthly' },
+  { path: '/services/sound-hire', priority: '0.8', changefreq: 'monthly' },
   { path: '/services/lighting-design', priority: '0.8', changefreq: 'monthly' },
   { path: '/services/staging-pipe-drape', priority: '0.8', changefreq: 'monthly' },
   { path: '/services/event-production', priority: '0.8', changefreq: 'monthly' },

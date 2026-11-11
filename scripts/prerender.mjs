@@ -252,19 +252,38 @@ const SERVICE_PAGE_SCHEMAS = {
     ],
   },
 
+  '/services/sound-hire': {
+    faqs: [
+      { question: "What size PA system do I need for my event?", answer: "The right PA depends on the room, audience size and programme. Speech-only conferences need even coverage and clear vocal reproduction. Bands and outdoor events need more headroom, low-frequency coverage and stage monitoring. We size the system from your venue and running order rather than quoting a generic speaker package." },
+      { question: "Do you provide a sound engineer with the equipment?", answer: "Yes. Operated sound hire includes setup, system tuning, soundcheck and an experienced engineer for the event. Larger live shows can also include a separate monitor engineer. The quotation states the equipment, crew and working hours clearly." },
+      { question: "Can you provide wireless microphones for conferences?", answer: "Yes. We supply handheld, lapel and headset wireless microphones for keynote speakers, panels and audience questions. We coordinate frequencies, prepare spare units and manage microphone changes throughout the programme." },
+      { question: "Can you provide sound and monitors for a live band?", answer: "Yes. We provide front-of-house PA, digital mixing, microphones, DI boxes and stage monitors for bands and live performers. Send the technical rider where available. If there is no rider, tell us the lineup and instruments and we will build the input and monitor plan." },
+      { question: "Do you provide sound hire for outdoor events?", answer: "Yes. Outdoor sound requires coverage planning, suitable power, weather protection and enough capacity for the audience area. We provide systems for council events, concerts, festivals and public gatherings, including delay speakers where the site needs them." },
+      { question: "What information do you need to quote sound hire?", answer: "Send the venue, audience size, event timings, room or site layout, performer or presenter details and any technical riders. For live music, include the band lineup and monitor requirements. This lets us recommend a complete package without pricing equipment you do not need." },
+    ],
+    service: { name: "Sound Hire and PA System Hire", description: "Operated sound and PA system hire for conferences, corporate events, live bands and outdoor events in Dublin and across Ireland.", serviceType: "Sound and PA System Hire", url: "https://eventsound.ie/services/sound-hire/" },
+    breadcrumb: [
+      { name: "Home", url: "https://eventsound.ie/" },
+      { name: "Services", url: "https://eventsound.ie/services/" },
+      { name: "Sound Hire", url: "https://eventsound.ie/services/sound-hire/" },
+    ],
+  },
+
   '/services/conference-av-hire': {
     faqs: [
+      { question: "What AV equipment do I need for a corporate conference?", answer: "A standard conference setup includes a PA system with wireless microphones, an LED screen or projector for presentations, confidence monitors for speakers, stage lighting, and a dedicated technician. Larger events may also need cameras, breakout room AV and hybrid streaming." },
+      { question: "Can you provide conference sound and lighting as one package?", answer: "Yes. We plan conference sound, stage and camera lighting, presentation screens and technical crew as one system. This keeps the equipment, setup schedule and show operation under one production plan." },
       { question: "How far in advance should I book conference AV?", answer: "For large conferences with 200 or more delegates, we recommend four to six weeks minimum. Smaller meetings can often be turned around in one to two weeks, but earlier is always better — especially during peak conference season from September to November." },
       { question: "Do you provide technicians or just equipment?", answer: "Every booking includes on-site technicians. We don't do dry hire for conferences — your event is too important to leave to someone unfamiliar with the equipment." },
       { question: "Can you work with our venue's in-house AV?", answer: "Yes. We regularly integrate with venue-installed systems. We'll do a site visit to assess what's already in place and fill the gaps." },
       { question: "What conference AV equipment do you provide?", answer: "Our conference AV equipment includes lectern and wireless microphones, LED video walls, projection systems, confidence monitors, autocue, live streaming rigs, breakout room AV systems, stage lighting, and full audio systems — all with experienced operators." },
-      { question: "How much does conference AV hire cost?", answer: "Every conference is different. A straightforward single-room setup with sound and screens might start from around €1,500. Multi-room conferences with live streaming and LED walls scale from there. Contact us for a free consultation and quote." },
+      { question: "How much does conference AV hire cost?", answer: "Conference AV pricing depends on the number of rooms, event duration, equipment, rehearsal time and crew. Send the venue, delegate numbers and running order and we will return an itemised recommendation rather than a generic equipment list." },
     ],
-    service: { name: "Conference AV Hire", description: "Professional conference AV hire across Ireland. Lectern microphones, LED video walls, confidence monitors, live streaming, and breakout room AV for conferences, AGMs, and corporate events.", serviceType: "Conference AV Hire", url: "https://eventsound.ie/services/conference-av-hire" },
+    service: { name: "Conference AV Hire and Production", description: "Conference AV hire and production across Ireland. Conference sound and lighting, LED screens, wireless microphones, streaming and technical crew for corporate events.", serviceType: "Conference AV Hire", url: "https://eventsound.ie/services/conference-av-hire/" },
     breadcrumb: [
       { name: "Home", url: "https://eventsound.ie/" },
-      { name: "Services", url: "https://eventsound.ie/services" },
-      { name: "Conference AV Hire", url: "https://eventsound.ie/services/conference-av-hire" },
+      { name: "Services", url: "https://eventsound.ie/services/" },
+      { name: "Conference AV Hire", url: "https://eventsound.ie/services/conference-av-hire/" },
     ],
   },
 
@@ -328,6 +347,10 @@ const SERVICE_PAGE_INTROS = {
     "Professional audio visual equipment hire for conferences, meetings, seminars, and corporate events in Dublin and across Ireland. Complete AV packages include PA systems, microphones, mixing desks, screens, stage monitors, and experienced technical crew.",
     "All equipment is professional-grade and maintained to broadcast standards. Every AV hire includes delivery, setup, testing, operation, and breakdown — available as individual equipment hire or full-service AV production with a dedicated crew.",
   ],
+  '/services/sound-hire': [
+    "Professional sound hire and PA system hire for conferences, corporate events, concerts, festivals and public events in Dublin and across Ireland. Packages include speakers, digital mixing, wireless microphones, stage monitors and an experienced sound engineer.",
+    "Every system is specified for the venue, audience and programme. Conference sound focuses on clear speech and microphone management, while live band and outdoor packages include the inputs, monitoring, audience coverage, power planning and soundcheck the event requires.",
+  ],
   '/services/lighting-design': [
     "Event lighting hire and design for conferences, award ceremonies, gala dinners, concerts, festivals, and corporate events across Ireland. Our inventory includes intelligent moving-head fixtures, LED uplighting, architectural lighting, gobo projection, pin spots, and stage wash lighting.",
     "Lighting design is tailored to each event — from subtle corporate ambience to full concert-grade show lighting — and every hire includes programming, setup, and operation by experienced lighting technicians.",
@@ -341,13 +364,22 @@ const SERVICE_PAGE_INTROS = {
     "We handle multi-camera streaming, remote speaker integration, audience Q&A and polling, and multi-platform delivery — so both in-room and online audiences get a polished, engaging experience.",
   ],
   '/services/conference-av-hire': [
-    "Specialist conference AV hire for hotels, convention centres, and corporate venues across Ireland. Packages include lectern and wireless microphones, LED video walls, confidence monitors, autocue, live streaming rigs, breakout room AV, stage lighting, and full audio systems.",
-    "Every conference booking includes experienced on-site technicians — from single-room seminars to multi-room, multi-day conferences. Available in Dublin, Cork, Galway, Belfast, Limerick, and nationwide.",
+    "Conference AV hire and technical production for corporate conferences, seminars, AGMs and awards across Ireland. One experienced team plans the sound, screens, presentation systems, stage lighting and crew around the venue and running order.",
+    "Choose a single-room package, multi-room conference equipment hire or full conference production with LED, sound, lighting, cameras, recording and streaming. Every package includes experienced on-site technicians.",
   ],
   '/services/musical-theatre': [
     "Professional sound, lighting, staging, and LED video wall hire for musicals, drama, and theatre productions across Ireland. We supply wireless microphone rigs supporting 30+ simultaneous channels, front-of-house PA, monitors, stage lighting, and experienced operators.",
     "Our technicians attend your tech rehearsal, programme cues, and operate every performance. We regularly work with schools, musical societies, and community theatre groups, and integrate with existing house rigs in venues nationwide.",
   ],
+};
+
+// Internal links to supporting articles that are already published. Keep this
+// deliberately explicit so the first-pass static HTML never links to a draft
+// or future-scheduled article.
+const SERVICE_PAGE_GUIDES = {
+  '/services/led-video-walls': '<section aria-labelledby="guide-heading"><h2 id="guide-heading">LED screen or LED wall?</h2><p>Our <a href="/blog/led-screen-or-led-wall/">LED screen versus LED wall guide</a> explains when a single commercial display is enough and when a modular video wall is the better fit.</p></section>',
+  '/services/av-production': '<section aria-labelledby="guide-heading"><h2 id="guide-heading">Prepare a clearer AV brief</h2><p>Use our <a href="/blog/conference-av-technical-brief/">conference AV technical brief</a> to gather the room, presenter, content and rehearsal details needed for an accurate quote.</p></section>',
+  '/services/conference-av-hire': '<section aria-labelledby="guide-heading"><h2 id="guide-heading">Plan the technical brief first</h2><p>Use our <a href="/blog/conference-av-technical-brief/">conference AV planning brief</a> before requesting prices.</p></section>',
 };
 
 // ── Location pages: schema data + FAQ extraction from the page source ────────
@@ -377,7 +409,7 @@ function locationServiceSchema(routePath, { city, type }) {
       ? `LED video wall and screen hire in ${city} for conferences, exhibitions, and corporate events. Delivery, installation, and on-site operator included.`
       : `Conference AV hire in ${city} — PA systems, LED screens, microphones, lighting, and live streaming with full technical crew.`,
     serviceType: isLed ? 'LED Screen Rental' : 'Conference AV Hire',
-    url: `https://eventsound.ie${routePath}`,
+    url: `https://eventsound.ie${routePath}/`,
   });
 }
 
@@ -385,11 +417,11 @@ function locationBreadcrumb(routePath, { city, type }) {
   const isLed = type === 'led';
   return buildBreadcrumbSchema([
     { name: 'Home', url: 'https://eventsound.ie/' },
-    { name: 'Services', url: 'https://eventsound.ie/services' },
+    { name: 'Services', url: 'https://eventsound.ie/services/' },
     isLed
-      ? { name: 'LED Video Walls', url: 'https://eventsound.ie/services/led-video-walls' }
-      : { name: 'Conference AV Hire', url: 'https://eventsound.ie/services/conference-av-hire' },
-    { name: isLed ? `LED Walls ${city}` : `Conference AV ${city}`, url: `https://eventsound.ie${routePath}` },
+      ? { name: 'LED Video Walls', url: 'https://eventsound.ie/services/led-video-walls/' }
+      : { name: 'Conference AV Hire', url: 'https://eventsound.ie/services/conference-av-hire/' },
+    { name: isLed ? `LED Walls ${city}` : `Conference AV ${city}`, url: `https://eventsound.ie${routePath}/` },
   ]);
 }
 
@@ -429,6 +461,78 @@ const SHELL_HEADER = `<header class="sticky top-0 z-[100] border-b transition-al
 
 const SHELL_NAP = `<p class="mt-12 text-sm text-muted-foreground">EventSound AV Services — Townrath, Drogheda, Co. Louth, Ireland. Phone <a href="tel:+353863520476">086 352 0476</a> · <a href="mailto:info@eventsound.ie">info@eventsound.ie</a>. Serving Dublin, Leinster, and nationwide.</p>`;
 
+// Clean CMS tag arrays: some entries are one hyphen-joined string such as
+// "LEDWALL-Audio-Lighting-Concert". Split, trim and de-duplicate them.
+function cleanKeywords(tags) {
+  if (!Array.isArray(tags) || !tags.length) return undefined;
+  const words = tags.flatMap(t => String(t).split(/[-,|]/)).map(t => t.trim()).filter(Boolean);
+  const unique = [...new Set(words.map(w => w.toLowerCase()))].map(l => words.find(w => w.toLowerCase() === l));
+  return unique.length ? unique.join(', ') : undefined;
+}
+
+// Map a case study's "services used" labels to their service pages.
+// Keep in sync with src/lib/serviceLinks.ts (used by the React page).
+const SERVICE_LINK_RULES = [
+  [/led\s*(video\s*)?wall|video wall/i, '/services/led-video-walls/', 'LED video wall hire'],
+  [/led screen|tv screen|monitor/i, '/services/led-screen-hire/', 'LED screen hire'],
+  [/light/i, '/services/lighting-design/', 'Event lighting'],
+  [/stag|drape/i, '/services/staging-pipe-drape/', 'Stage hire'],
+  [/sound|audio|\bpa\b/i, '/services/sound-hire/', 'Sound and PA hire'],
+  [/conference/i, '/services/conference-av-hire/', 'Conference AV hire'],
+  [/stream|hybrid|virtual/i, '/services/virtual-events/', 'Hybrid events and streaming'],
+  [/video|camera|film/i, '/services/video-production/', 'Event video production'],
+  [/theatre|musical/i, '/services/musical-theatre/', 'Theatre production hire'],
+  [/production/i, '/services/event-production/', 'Event production'],
+  [/\bav\b|audio.?visual/i, '/services/av-production/', 'AV hire'],
+];
+function serviceLinksFor(labels) {
+  const seen = new Set();
+  const out = [];
+  for (const label of labels || []) {
+    const rule = SERVICE_LINK_RULES.find(([re]) => re.test(label));
+    if (rule && !seen.has(rule[1])) { seen.add(rule[1]); out.push({ href: rule[1], label: rule[2] }); }
+  }
+  return out;
+}
+
+function paragraphsToHtml(text) {
+  return String(text || '')
+    .split(/\n\s*\n/)
+    .map(p => p.trim())
+    .filter(Boolean)
+    .map(p => `<p class="mt-4">${escapeHtml(p).replace(/\n/g, '<br>')}</p>`)
+    .join('');
+}
+
+// Crawlable site-wide link block. Non-JS crawlers (most AI crawlers) otherwise
+// see only the logo and the "Get a Quote" link in the static shell.
+const SHELL_FOOTER_LINKS = [
+  ['Services', [
+    ['/services/', 'All services'], ['/services/event-production/', 'Event production'],
+    ['/services/av-production/', 'AV hire'], ['/services/sound-hire/', 'Sound and PA hire'],
+    ['/services/led-video-walls/', 'LED video wall hire'], ['/services/led-screen-hire/', 'LED screen hire'],
+    ['/services/conference-av-hire/', 'Conference AV hire'], ['/services/lighting-design/', 'Event lighting hire'],
+    ['/services/staging-pipe-drape/', 'Stage hire'], ['/services/video-production/', 'Event video production'],
+    ['/services/virtual-events/', 'Hybrid events and streaming'], ['/services/musical-theatre/', 'Theatre production hire'],
+  ]],
+  ['LED walls by city', [
+    ['/services/led-walls/dublin/', 'Dublin'], ['/services/led-walls/cork/', 'Cork'], ['/services/led-walls/galway/', 'Galway'],
+    ['/services/led-walls/belfast/', 'Belfast'], ['/services/led-walls/limerick/', 'Limerick'], ['/services/led-walls/athlone/', 'Athlone'],
+  ]],
+  ['Conference AV by city', [
+    ['/services/conference-av/dublin/', 'Dublin'], ['/services/conference-av/cork/', 'Cork'], ['/services/conference-av/galway/', 'Galway'],
+    ['/services/conference-av/belfast/', 'Belfast'], ['/services/conference-av/limerick/', 'Limerick'], ['/services/conference-av/athlone/', 'Athlone'],
+  ]],
+  ['Company', [
+    ['/about/', 'About'], ['/case-studies/', 'Case studies'], ['/gallery/', 'Gallery'], ['/reviews/', 'Reviews'],
+    ['/blog/', 'Blog'], ['/faq/', 'FAQ'], ['/health-and-safety/', 'Health and safety'], ['/contact/', 'Contact and quotes'],
+  ]],
+];
+const SHELL_FOOTER = `<footer class="border-t border-border/50 mt-16"><div class="container py-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">${SHELL_FOOTER_LINKS
+  .map(([heading, links]) => `<nav aria-label="${heading}"><p class="font-semibold mb-3">${heading}</p><ul class="space-y-2 text-sm text-muted-foreground">${links
+    .map(([href, label]) => `<li><a href="${href}">${label}</a></li>`).join('')}</ul></nav>`)
+  .join('')}</div></footer>`;
+
 /**
  * Build the crawlable static body shell for a route.
  * React's createRoot().render() replaces this synchronously on mount.
@@ -464,6 +568,7 @@ ${bodyHtml ? `<div class="mt-8 max-w-3xl leading-relaxed">${bodyHtml}</div>` : '
 ${faqHtml}\
 ${SHELL_NAP}\
 </div></main>\
+${SHELL_FOOTER}\
 </div>`;
 }
 
@@ -523,7 +628,7 @@ function getSchemasForRoute(routePath, caseStudyData) {
       dateModified: caseStudyData.updated_at || undefined,
       author: { name: "EventSound AV Services", url: "https://eventsound.ie" },
       publisher: { name: "EventSound AV Services", logo: "https://eventsound.ie/Brand/logo_transparent.png" },
-      keywords: caseStudyData.tags ? caseStudyData.tags.join(', ') : undefined,
+      keywords: cleanKeywords(caseStudyData.tags),
       articleSection: caseStudyData.category || undefined,
     })];
   }
@@ -575,7 +680,8 @@ const ROUTES = [
   { path: '/services/video-production', title: 'Event Video Production Ireland | Multi-Camera & Streaming', description: 'Multi-camera event video production, IMAG, recording and live streaming for conferences, concerts and corporate events across Ireland. Crew included.' },
   { path: '/services/virtual-events', title: 'Hybrid Event Production Ireland | Live Streaming & Virtual Events | EventSound', description: 'Hybrid event production across Ireland. Combine in-person and virtual audiences with multi-camera streaming, remote speaker integration, and broadcast-quality AV.' },
   { path: '/services/av-production', title: 'AV Hire Dublin & Ireland | Sound, Screens & Crew', description: 'AV hire for conferences, corporate events and exhibitions in Dublin and across Ireland. Sound, screens, lighting, setup, operators and technical crew included.' },
-  { path: '/services/conference-av-hire', title: 'Conference AV Hire Ireland | Conference Room AV Equipment | EventSound', description: 'Conference AV hire across Ireland. Lectern mics, LED walls, confidence monitors, live streaming, and breakout room AV. Full technical crew included.' },
+  { path: '/services/sound-hire', title: 'Sound Hire Dublin | PA System Hire Ireland', description: 'Sound and PA system hire for conferences, corporate events, bands and outdoor events in Dublin and across Ireland. Equipment, setup and engineer included.' },
+  { path: '/services/conference-av-hire', h1: 'Conference AV Hire and Production in Ireland', title: 'Conference AV Hire Ireland | Sound, Screens, Lighting & Crew', description: 'Conference AV hire and production across Ireland. Sound, wireless microphones, LED screens, lighting, streaming and experienced technical crew.' },
   { path: '/services/led-screen-hire', title: 'LED Screen Hire Ireland | TV Screen & Monitor Rental for Events | EventSound', description: 'Professional LED screen and TV hire for conferences, exhibitions, and corporate events across Ireland. Screen rental from 43" to 98". Delivery, setup, and on-site support included. Get a free quote.' },
   { path: '/services/musical-theatre', title: 'Theatre Production Hire Ireland | Sound, Lighting & LED', description: 'Sound, wireless microphones, lighting, staging and LED video wall hire for musicals, drama and theatre productions across Ireland, with experienced operators.' },
   { path: '/contact', title: 'Contact EventSound | Get a Quote for AV Hire Ireland', description: 'Contact EventSound for a free consultation and quote. Professional AV hire, sound, lighting, LED screens, and staging across Ireland. Fast response guaranteed.' },
@@ -614,7 +720,7 @@ async function getCaseStudies() {
     }
 
     const res = await fetch(
-      `${SUPABASE_URL}/rest/v1/case_studies?select=slug,meta_title,meta_description,title,excerpt,featured_image_url,og_image_url,published_at,updated_at,tags,category&is_published=eq.true&noindex=eq.false`,
+      `${SUPABASE_URL}/rest/v1/case_studies?select=slug,meta_title,meta_description,title,excerpt,body_content,featured_image_url,featured_image_alt,og_image_url,published_at,updated_at,tags,category,services_used,location,client_name,event_date&is_published=eq.true&noindex=eq.false`,
       {
         headers: {
           apikey: SUPABASE_KEY,
@@ -912,13 +1018,14 @@ async function prerender() {
           `<div class="absolute inset-0">${heroImgTag}<div class="absolute inset-0 bg-background/60"></div></div>`
         );
       }
+      shell = shell.replace(/<\/div>$/, `${SHELL_FOOTER}</div>`);
       html = html.replace('<div id="root"></div>', `<div id="root">${shell}</div>`);
     } else {
       // For non-homepage routes, inject a full static body shell — H1, intro
       // copy, visible FAQs, breadcrumb, and NAP — so crawlers that don't
       // execute JavaScript (most AI crawlers, Googlebot's first pass) see
       // real page content. React replaces this synchronously on mount.
-      const h1Text = route.title.split(' | ')[0];
+      const h1Text = route.h1 || route.title.split(' | ')[0];
       const serviceData = SERVICE_PAGE_SCHEMAS[route.path];
       const locationData = LOCATION_PAGES[route.path];
 
@@ -931,6 +1038,7 @@ async function prerender() {
         shellFaqs = serviceData.faqs || [];
         shellIntros = SERVICE_PAGE_INTROS[route.path] || [route.description];
         shellBreadcrumb = serviceData.breadcrumb;
+        shellBodyHtml = SERVICE_PAGE_GUIDES[route.path] || '';
       } else if (locationData) {
         shellFaqs = extractFaqsFromFile(locationData.file);
         shellBreadcrumb = [
@@ -938,8 +1046,34 @@ async function prerender() {
           { name: 'Services', url: '/services/' },
           { name: h1Text, url: route.path },
         ];
+      } else if (route.path === '/blog' || route.path === '/case-studies') {
+        const items = route.path === '/blog' ? blogRoutes : caseStudyRoutes;
+        shellBodyHtml = items.length
+          ? `<ul class="space-y-6">${items.map(item => {
+              const raw = item._raw || {};
+              const summary = raw.excerpt || item.description || '';
+              return `<li><h2 class="text-xl font-semibold"><a href="${item.path}/">${escapeHtml(raw.title || item.title)}</a></h2>${summary ? `<p class="mt-2 text-muted-foreground">${escapeHtml(summary)}</p>` : ''}</li>`;
+            }).join('')}</ul>`
+          : '';
       } else if (route.path === '/faq') {
         shellFaqs = FAQ_PAGE_QUESTIONS;
+      } else if (route.path.startsWith('/case-studies/') && route._raw) {
+        const cs = route._raw;
+        shellIntros = [cs.excerpt || route.description];
+        shellBreadcrumb = [
+          { name: 'Home', url: '/' },
+          { name: 'Case Studies', url: '/case-studies/' },
+          { name: cs.title, url: `${route.path}/` },
+        ];
+        const facts = [
+          cs.client_name && `<li><strong>Client:</strong> ${escapeHtml(cs.client_name)}</li>`,
+          cs.location && `<li><strong>Venue:</strong> ${escapeHtml(cs.location)}</li>`,
+          cs.event_date && `<li><strong>Date:</strong> ${escapeHtml(new Date(cs.event_date).toLocaleDateString('en-IE', { year: 'numeric', month: 'long', day: 'numeric' }))}</li>`,
+        ].filter(Boolean).join('');
+        const links = serviceLinksFor(cs.services_used);
+        shellBodyHtml = (facts ? `<ul class="space-y-1">${facts}</ul>` : '')
+          + `<h2 class="mt-10 text-2xl font-bold">The project</h2>${paragraphsToHtml(cs.body_content)}`
+          + (links.length ? `<h2 class="mt-10 text-2xl font-bold">Services used</h2><ul class="mt-4 space-y-1">${links.map(l => `<li><a href="${l.href}">${l.label}</a></li>`).join('')}</ul>` : '');
       } else if (route.path.startsWith('/blog/') && route._raw) {
         // Blog post: full article body in the static shell so crawlers read
         // the whole post. React replaces it on mount.
@@ -966,6 +1100,52 @@ async function prerender() {
     fs.writeFileSync(filePath, html);
     const schemaCount = schemas.length;
     console.log(`  ✓ ${route.path}${schemaCount > 0 ? ` (${schemaCount} schema${schemaCount > 1 ? 's' : ''})` : ''}`);
+  }
+
+  // ── 404 page and SPA fallback ─────────────────────────────────────────────
+  // public/_redirects sends unknown URLs to /404.html with a real 404 status,
+  // and client-only routes (admin, landing pages, posts published since the
+  // last build) to /spa.html: the same app, but noindex and no canonical, so
+  // an unbuilt page can never be indexed as a copy of the homepage.
+  const stripSeo = (tpl) => tpl
+    .replace(/\s*<link\s+rel="canonical"[^>]*>/, '')
+    .replace(/<meta name="robots" content="[^"]*"\s*\/?>/, '<meta name="robots" content="noindex, follow" />');
+  const withTitle = (tpl, title) => (/<title>[^<]*<\/title>/.test(tpl)
+    ? tpl.replace(/<title>[^<]*<\/title>/, `<title>${title}</title>`)
+    : tpl.replace('<meta charset="UTF-8" />', `<meta charset="UTF-8" />\n    <title>${title}</title>`));
+  fs.writeFileSync(path.join(DIST, 'spa.html'), withTitle(stripSeo(indexHtml), 'EventSound AV Services'));
+  let notFoundHtml = stripSeo(indexHtml);
+  if (/<title>[^<]*<\/title>/.test(notFoundHtml)) {
+    notFoundHtml = notFoundHtml.replace(/<title>[^<]*<\/title>/, '<title>Page not found | EventSound</title>');
+  } else {
+    notFoundHtml = notFoundHtml.replace('<meta charset="UTF-8" />', '<meta charset="UTF-8" />\n    <title>Page not found | EventSound</title>');
+  }
+  notFoundHtml = notFoundHtml.replace('<div id="root"></div>', `<div id="root">${buildBodyShell({
+    h1: 'Page not found',
+    intros: ['The page you were looking for has moved or no longer exists. Use the links below to find LED wall, sound, lighting, staging and conference AV hire across Ireland.'],
+    faqs: [],
+  })}</div>`);
+  fs.writeFileSync(path.join(DIST, '404.html'), notFoundHtml);
+  console.log('  ✓ /404.html and /spa.html');
+
+  // Every prerendered page lives at /path/index.html. Add an explicit
+  // /path -> /path/ 301 for each one (blog posts and case studies included)
+  // so the no-slash form never falls through to the 404 rule.
+  const redirectsPath = path.join(DIST, '_redirects');
+  if (fs.existsSync(redirectsPath)) {
+    const current = fs.readFileSync(redirectsPath, 'utf-8');
+    const existingSources = new Set(current.split(/\r?\n/).map(l => l.trim().split(/\s+/)[0]).filter(Boolean));
+    const generated = allRoutes
+      .map(r => r.path.replace(/\/$/, ''))
+      .filter(p => p && !existingSources.has(p))
+      .map(p => `${p}  ${p}/  301`);
+    if (generated.length) {
+      const block = `# --- Generated at build: no-slash prerendered routes -> canonical ---\n${generated.join('\n')}\n\n`;
+      const marker = '# --- Client-only routes';
+      const next = current.includes(marker) ? current.replace(marker, `${block}${marker}`) : `${block}${current}`;
+      fs.writeFileSync(redirectsPath, next);
+      console.log(`  ✓ _redirects: ${generated.length} generated trailing-slash redirects`);
+    }
   }
 
   console.log(`\nPre-rendered ${allRoutes.length} routes successfully!`);

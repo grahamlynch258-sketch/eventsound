@@ -48,7 +48,7 @@ export default function Blog() {
         ) : (
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {posts.map((post) => (
-              <Link key={post.id} to={`/blog/${post.slug}`} className="group">
+              <Link key={post.id} to={`/blog/${post.slug}/`} className="group">
                 <Card className="h-full overflow-hidden border-border/60 transition-shadow hover:shadow-lg">
                   {post.featured_image_url && (
                     <div className="aspect-video overflow-hidden">

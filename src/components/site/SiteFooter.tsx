@@ -32,6 +32,7 @@ export function SiteFooter({ className }: { className?: string }) {
             <h3 className="section-kicker mb-4">Services</h3>
             <nav className="flex flex-col gap-2.5">
               <Link to="/services/led-video-walls/" className="text-sm text-muted-foreground hover:text-accent transition-colors">LED Video Walls</Link>
+              <Link to="/services/sound-hire/" className="text-sm text-muted-foreground hover:text-accent transition-colors">Sound & PA System Hire</Link>
               <Link to="/services/av-production/" className="text-sm text-muted-foreground hover:text-accent transition-colors">AV Production</Link>
               <Link to="/services/lighting-design/" className="text-sm text-muted-foreground hover:text-accent transition-colors">Lighting Design</Link>
               <Link to="/services/staging-pipe-drape/" className="text-sm text-muted-foreground hover:text-accent transition-colors">Staging, Pipe & Drape</Link>

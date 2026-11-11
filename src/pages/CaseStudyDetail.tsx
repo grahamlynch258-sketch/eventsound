@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, MapPin, ArrowLeft, Briefcase } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { serviceLinksFor, cleanKeywords } from "@/lib/serviceLinks";
 
 interface CaseStudyData {
   id: string;
@@ -98,9 +99,9 @@ const CaseStudyDetail = () => {
     },
     publisher: {
       name: "EventSound AV Services",
-      logo: "https://eventsound.ie/logo.png"
+      logo: "https://eventsound.ie/Brand/logo_transparent.png"
     },
-    keywords: caseStudy.tags?.join(", "),
+    keywords: cleanKeywords(caseStudy.tags),
     articleSection: caseStudy.category,
     articleBody: caseStudy.body_content
   }) : undefined;
@@ -109,7 +110,7 @@ const CaseStudyDetail = () => {
   useSeo({
     title: caseStudy?.meta_title || (caseStudy?.title ? `${caseStudy.title} | EventSound Case Studies` : "Case Study | EventSound"),
     description: caseStudy?.meta_description || caseStudy?.excerpt || "EventSound event production case study",
-    canonical: caseStudy?.canonical_url || (caseStudy?.slug ? `https://eventsound.ie/case-studies/${caseStudy.slug}` : undefined),
+    canonical: caseStudy?.canonical_url || (caseStudy?.slug ? `https://eventsound.ie/case-studies/${caseStudy.slug}/` : undefined),
     ogTitle: caseStudy?.meta_title || caseStudy?.title,
     ogDescription: caseStudy?.meta_description || caseStudy?.excerpt || "",
     ogImage: caseStudy?.og_image_url || caseStudy?.featured_image_url,
@@ -141,7 +142,7 @@ const CaseStudyDetail = () => {
           <nav className="flex items-center gap-2 text-sm text-muted-foreground">
             <Link to="/" className="hover:text-accent transition-colors">Home</Link>
             <span>/</span>
-            <Link to="/case-studies" className="hover:text-accent transition-colors">Case Studies</Link>
+            <Link to="/case-studies/" className="hover:text-accent transition-colors">Case Studies</Link>
             <span>/</span>
             <span className="text-foreground">{caseStudy.title}</span>
           </nav>
@@ -208,16 +209,8 @@ const CaseStudyDetail = () => {
           )}
         </div>
 
-        {/* Tags */}
-        {caseStudy.tags && caseStudy.tags.length > 0 && (
-          <div className="max-w-4xl mx-auto mb-8 flex flex-wrap gap-2">
-            {caseStudy.tags.map((tag, index) => (
-              <Badge key={index} variant="outline">
-                {tag}
-              </Badge>
-            ))}
-          </div>
-        )}
+        {/* CMS tags are kept for schema keywords only; they are not shown,
+            because some are stored as raw hyphen-joined keyword strings. */}
 
         {/* Excerpt */}
         {caseStudy.excerpt && (
@@ -236,6 +229,25 @@ const CaseStudyDetail = () => {
             </div>
           </div>
         </div>
+
+        {/* Services used, linked to their service pages */}
+        {serviceLinksFor(caseStudy.services_used).length > 0 && (
+          <div className="max-w-4xl mx-auto mb-12">
+            <h2 className="text-2xl font-bold mb-4 text-foreground">Services used on this project</h2>
+            <ul className="flex flex-wrap gap-3">
+              {serviceLinksFor(caseStudy.services_used).map((service) => (
+                <li key={service.href}>
+                  <Link
+                    to={service.href}
+                    className="inline-flex items-center rounded-full border border-accent/40 px-4 py-2 text-sm text-foreground hover:bg-accent/10 transition-colors"
+                  >
+                    {service.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         {/* Call to Action */}
         <div className="max-w-4xl mx-auto mb-12">
@@ -256,7 +268,7 @@ const CaseStudyDetail = () => {
               {relatedCaseStudies.map((related) => (
                 <Link
                   key={related.id}
-                  to={`/case-studies/${related.slug}`}
+                  to={`/case-studies/${related.slug}/`}
                   className="group"
                 >
                   <Card className="h-full overflow-hidden hover:shadow-lg transition-shadow">

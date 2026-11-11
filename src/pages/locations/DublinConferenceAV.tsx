@@ -20,14 +20,14 @@ const DublinConferenceAV = () => {
   const breadcrumbSchema = generateBreadcrumbSchema({ items: [
     { name: "Home", url: "https://eventsound.ie/" },
     { name: "Services", url: "https://eventsound.ie/services" },
-    { name: "Conference AV Hire", url: "https://eventsound.ie/services/conference-av-hire" },
-    { name: "Conference AV Dublin", url: "https://eventsound.ie/services/conference-av/dublin" },
+    { name: "Conference AV Hire", url: "https://eventsound.ie/services/conference-av-hire/" },
+    { name: "Conference AV Dublin", url: "https://eventsound.ie/services/conference-av/dublin/" },
   ] });
 
   useSeo({
     title: "Conference AV Services Dublin | Event Sound & AV Hire | EventSound",
     description: "Conference AV hire in Dublin. PA systems, LED screens, confidence monitors, lighting & live streaming for corporate conferences & seminars. Same-day quotes available.",
-    canonical: "https://eventsound.ie/services/conference-av/dublin",
+    canonical: "https://eventsound.ie/services/conference-av/dublin/",
     ogTitle: "Conference AV Services Dublin | EventSound",
     ogDescription: "Professional conference AV services in Dublin. Radio mics, PA systems, front lighting, livestreaming & on-site technicians.",
     ogType: "website",
@@ -43,7 +43,7 @@ const DublinConferenceAV = () => {
         items={[
           { name: "Home", href: "/" },
           { name: "Services", href: "/services" },
-          { name: "Conference AV Hire", href: "/services/conference-av-hire" },
+          { name: "Conference AV Hire", href: "/services/conference-av-hire/" },
           { name: "Dublin" },
         ]}
       />
@@ -106,7 +106,7 @@ const DublinConferenceAV = () => {
 
           <ScrollReveal>
             <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-              Looking for LED wall hire in Dublin? See our dedicated <Link to="/services/led-walls/dublin" className="text-accent hover:underline">Dublin LED Wall Hire</Link> page. You can also explore our full <Link to="/services/conference-av-hire" className="text-accent hover:underline">Conference AV Hire</Link> service for Ireland-wide coverage.
+              Looking for LED wall hire in Dublin? See our dedicated <Link to="/services/led-walls/dublin/" className="text-accent hover:underline">Dublin LED Wall Hire</Link> page. You can also explore our full <Link to="/services/conference-av-hire/" className="text-accent hover:underline">Conference AV Hire</Link> service for Ireland-wide coverage.
             </p>
           </ScrollReveal>
 

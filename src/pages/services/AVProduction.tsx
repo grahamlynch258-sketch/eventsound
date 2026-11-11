@@ -166,7 +166,14 @@ export default function AVProduction() {
           <ScrollReveal>
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Frequently Combined With</h2>
           <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-            Our AV production packages often include <Link to="/services/led-video-walls/" className="text-accent hover:underline">LED video wall hire</Link> and <Link to="/services/lighting-design/" className="text-accent hover:underline">event lighting design</Link> for a unified production. For conference-specific setups, see our dedicated <Link to="/services/conference-av-hire/" className="text-accent hover:underline">conference AV hire</Link> service. See our full AV setup for the <Link to="/case-studies/prism-immersive-technology-summit/" className="text-accent hover:underline">PRISM Immersive Technology Summit</Link>.
+            Our AV production packages often include <Link to="/services/led-video-walls/" className="text-accent hover:underline">LED video wall hire</Link> and <Link to="/services/lighting-design/" className="text-accent hover:underline">event lighting design</Link> for a unified production. If audio is the main requirement, see our dedicated <Link to="/services/sound-hire/" className="text-accent hover:underline">sound and PA system hire</Link> service. For single-room or multi-room conferences, see our dedicated <Link to="/services/conference-av-hire/" className="text-accent hover:underline">conference equipment hire and production</Link> service. See our full AV setup for the <Link to="/case-studies/prism-immersive-technology-summit/" className="text-accent hover:underline">PRISM Immersive Technology Summit</Link>.
+          </p>
+          <p className="mt-4 text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+            Preparing a conference enquiry? Use our{" "}
+            <Link to="/blog/conference-av-technical-brief/" className="text-accent hover:underline">
+              conference AV technical brief
+            </Link>{" "}
+            to gather the room, presenter, content and rehearsal details needed for an accurate quote.
           </p>
           </ScrollReveal>
 

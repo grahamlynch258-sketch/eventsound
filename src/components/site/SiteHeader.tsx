@@ -12,6 +12,7 @@ const mainLinks = [
 const servicesLinks = [
   { to: "/services/", label: "All Services", icon: LayoutGrid, description: "Overview of all our services" },
   { to: "/services/led-video-walls/", label: "LED Video Walls", icon: Monitor, description: "High-resolution LED displays" },
+  { to: "/services/sound-hire/", label: "Sound & PA Systems", icon: Volume2, description: "Sound hire with experienced engineers" },
   { to: "/services/av-production/", label: "AV Production", icon: Volume2, description: "Complete conference AV solutions" },
   { to: "/services/lighting-design/", label: "Lighting Design", icon: Lightbulb, description: "Stage and architectural lighting" },
   { to: "/services/staging-pipe-drape/", label: "Staging, Pipe & Drape", icon: Theater, description: "Safe, TUV-certified staging" },

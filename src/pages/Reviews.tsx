@@ -4,9 +4,9 @@ import { TestimonialsSection } from "@/components/site/TestimonialsSection";
 import { GoogleReviewsCarousel, GoogleReviewsBadge } from "@/components/GoogleReviews";
 import { useSeo } from "@/hooks/useSeo";
 import { useServiceImages } from "@/hooks/useServiceImages";
+import { siteConfig } from "@/config/site";
 
-const GOOGLE_REVIEW_URL =
-  "https://search.google.com/local/writereview?placeid=ChIJy0JQslYLZ0gRQOACHmQptmI";
+const GOOGLE_REVIEW_URL = siteConfig.googleReviewUrl;
 
 const Reviews = () => {
   const { hero, heroAlt } = useServiceImages("hero-reviews");

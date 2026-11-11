@@ -13,7 +13,7 @@ describe("siteConfig", () => {
 
   it("uses the agreed business facts", () => {
     expect(siteConfig.primaryLocation).toBe("Drogheda, Co. Louth");
-    expect(siteConfig.companyExperienceYears).toBe("20+");
+    expect(siteConfig.companyExperienceYears).toBe("35+");
     expect(siteConfig.ronanExperienceYears).toBe("40+");
     expect(siteConfig.phone).toBe("+353863520476");
     expect(siteConfig.pricing.ledWallDryHirePerSquareMetrePerDay).toBe(125);

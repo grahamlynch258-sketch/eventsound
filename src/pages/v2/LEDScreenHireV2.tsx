@@ -463,7 +463,7 @@ export default function LEDScreenHireV2() {
               <GoogleReviewsBadge />
               <Button variant="outline" size="sm" asChild>
                 <a
-                  href="https://search.google.com/local/writereview?placeid=ChIJy0JQslYLZ0gRQOACHmQptmI"
+                  href={siteConfig.googleReviewUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -475,7 +475,7 @@ export default function LEDScreenHireV2() {
           <ReactGoogleReviews
             layout="custom"
             featurableId="b2ee5fe1-ce0a-4af5-8324-4558bd7d337e"
-            structuredData={true}
+            structuredData={false}
             brandName="EventSound AV Services"
             renderer={(reviews) => {
               const visibleReviews = showAllReviews ? reviews : reviews.slice(0, 3);

@@ -19,14 +19,14 @@ const LimerickConferenceAV = () => {
   const breadcrumbSchema = generateBreadcrumbSchema({ items: [
     { name: "Home", url: "https://eventsound.ie/" },
     { name: "Services", url: "https://eventsound.ie/services" },
-    { name: "Conference AV Hire", url: "https://eventsound.ie/services/conference-av-hire" },
-    { name: "Conference AV Limerick", url: "https://eventsound.ie/services/conference-av/limerick" },
+    { name: "Conference AV Hire", url: "https://eventsound.ie/services/conference-av-hire/" },
+    { name: "Conference AV Limerick", url: "https://eventsound.ie/services/conference-av/limerick/" },
   ] });
 
   useSeo({
     title: "Conference AV Services Limerick | Event Sound & AV Hire | EventSound",
     description: "Conference AV hire in Limerick. PA systems, projection, LED screens & staging for corporate conferences & seminars in the mid-west. Full setup & operator included.",
-    canonical: "https://eventsound.ie/services/conference-av/limerick",
+    canonical: "https://eventsound.ie/services/conference-av/limerick/",
     ogTitle: "Conference AV Services Limerick | EventSound",
     ogDescription: "Professional conference AV in Limerick & the Shannon region. Radio mics, PA systems & on-site technicians.",
     ogType: "website",
@@ -42,7 +42,7 @@ const LimerickConferenceAV = () => {
         items={[
           { name: "Home", href: "/" },
           { name: "Services", href: "/services" },
-          { name: "Conference AV Hire", href: "/services/conference-av-hire" },
+          { name: "Conference AV Hire", href: "/services/conference-av-hire/" },
           { name: "Limerick" },
         ]}
       />
@@ -89,7 +89,7 @@ const LimerickConferenceAV = () => {
 
           <ScrollReveal>
             <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-              Looking for LED wall hire in Limerick? See our dedicated <Link to="/services/led-walls/limerick" className="text-accent hover:underline">Limerick LED Wall Hire</Link> page. You can also explore our full <Link to="/services/conference-av-hire" className="text-accent hover:underline">Conference AV Hire</Link> service for Ireland-wide coverage.
+              Looking for LED wall hire in Limerick? See our dedicated <Link to="/services/led-walls/limerick/" className="text-accent hover:underline">Limerick LED Wall Hire</Link> page. You can also explore our full <Link to="/services/conference-av-hire/" className="text-accent hover:underline">Conference AV Hire</Link> service for Ireland-wide coverage.
             </p>
           </ScrollReveal>
 
