@@ -903,6 +903,55 @@ Get a Quote <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewB
 </main>\
 </div>`;
 
+// ── Per-route code preloads ─────────────────────────────────────────────────
+// Every page is a lazy route, so its code lives in its own chunk. Reading
+// Vite's manifest lets each prerendered page preload that chunk (and the
+// chunks it imports) alongside the entry, instead of discovering it only
+// after the entry script has run.
+function loadRouteChunkInfo() {
+  try {
+    const manifestPath = path.join(DIST, '.vite', 'manifest.json');
+    const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
+    fs.rmSync(path.join(DIST, '.vite'), { recursive: true, force: true }); // build metadata, not for publishing
+    const app = fs.readFileSync(path.join(__dirname, '..', 'src', 'App.tsx'), 'utf-8');
+    const componentToSource = {};
+    for (const m of app.matchAll(/const (\w+) = lazy\(\(\) => import\("([^"]+)"\)\)/g)) {
+      componentToSource[m[1]] = m[2].replace(/^@\//, 'src/').replace(/^\.\//, 'src/');
+    }
+    const routeToComponent = {};
+    for (const m of app.matchAll(/<Route path="([^"]+)" element=\{<Suspense fallback=\{null\}><(\w+) \/>/g)) {
+      routeToComponent[m[1]] = m[2];
+    }
+    return { manifest, componentToSource, routeToComponent };
+  } catch (err) {
+    console.log(`  (no per-route preloads: ${err.message.split('\n')[0]})`);
+    return null;
+  }
+}
+
+function routeChunkPreloads(routePath, info, html) {
+  if (!info) return '';
+  const pattern = routePath.startsWith('/blog/') ? '/blog/:slug'
+    : routePath.startsWith('/case-studies/') ? '/case-studies/:slug'
+    : routePath;
+  const source = info.componentToSource[info.routeToComponent[pattern]];
+  if (!source) return '';
+  const entryKey = ['.tsx', '.ts', '/index.tsx'].map(ext => source + ext).find(key => info.manifest[key]);
+  if (!entryKey) return '';
+  const files = new Set();
+  const visit = (key) => {
+    const chunk = info.manifest[key];
+    if (!chunk || files.has(chunk.file)) return;
+    files.add(chunk.file);
+    (chunk.imports || []).forEach(visit);
+  };
+  visit(entryKey);
+  return [...files]
+    .filter(file => file.endsWith('.js') && !html.includes(`/${file}"`))
+    .map(file => `    <link rel="modulepreload" crossorigin href="/${file}">`)
+    .join('\n');
+}
+
 // ── Main prerender ──────────────────────────────────────────────────────────
 
 async function prerender() {
@@ -956,6 +1005,7 @@ async function prerender() {
   }
 
   const rootShells = new Map();
+  const routeChunkInfo = loadRouteChunkInfo();
 
   for (const route of allRoutes) {
     const routePath = route.path === '/' ? '' : route.path;
@@ -997,6 +1047,10 @@ async function prerender() {
     html = html.replace(/(property="og:title"\s+content=")[^"]*"/, `$1${route.title}"`);
     html = html.replace(/(property="og:description"[\s\S]*?content=")[^"]*"/, `$1${route.description}"`);
     html = html.replace(/(property="og:url"\s+content=")[^"]*"/, `$1${canonical}"`);
+
+    // Preload this page's own code chunk
+    const chunkPreloads = routeChunkPreloads(route.path, routeChunkInfo, html);
+    if (chunkPreloads) html = html.replace('</head>', () => `${chunkPreloads}\n  </head>`);
 
     // Inject page-specific JSON-LD schemas before </head>
     const schemas = getSchemasForRoute(route.path, route._raw);
