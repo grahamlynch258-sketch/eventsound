@@ -955,6 +955,8 @@ async function prerender() {
     }
   }
 
+  const rootShells = new Map();
+
   for (const route of allRoutes) {
     const routePath = route.path === '/' ? '' : route.path;
     const dir = path.join(DIST, routePath);
@@ -1019,7 +1021,8 @@ async function prerender() {
         );
       }
       shell = shell.replace(/<\/div>$/, `${SHELL_FOOTER}</div>`);
-      html = html.replace('<div id="root"></div>', `<div id="root">${shell}</div>`);
+      html = html.replace('<div id="root"></div>', () => `<div id="root">${shell}</div>`);
+      rootShells.set(route.path, { filePath, shell });
     } else {
       // For non-homepage routes, inject a full static body shell — H1, intro
       // copy, visible FAQs, breadcrumb, and NAP — so crawlers that don't
@@ -1094,7 +1097,8 @@ async function prerender() {
         faqs: shellFaqs,
         bodyHtml: shellBodyHtml,
       });
-      html = html.replace('<div id="root"></div>', `<div id="root">${shell}</div>`);
+      html = html.replace('<div id="root"></div>', () => `<div id="root">${shell}</div>`);
+      rootShells.set(route.path, { filePath, shell });
     }
 
     fs.writeFileSync(filePath, html);
@@ -1145,6 +1149,48 @@ async function prerender() {
       const next = current.includes(marker) ? current.replace(marker, `${block}${marker}`) : `${block}${current}`;
       fs.writeFileSync(redirectsPath, next);
       console.log(`  ✓ _redirects: ${generated.length} generated trailing-slash redirects`);
+    }
+  }
+
+  // ── Full-page snapshots ───────────────────────────────────────────────────
+  // Replace each hand-built shell with the page as a browser renders it, so
+  // non-JS crawlers read everything a visitor sees. Best-effort: on any
+  // failure the shell written above stays in place. src/main.tsx keeps the
+  // snapshot on screen until the live app is ready (data-prerender="full").
+  if (process.env.PRERENDER_SNAPSHOT === 'off') {
+    console.log('\nFull-page snapshots: skipped (PRERENDER_SNAPSHOT=off)');
+  } else {
+    console.log('\nCapturing full-page snapshots…');
+    try {
+      const { captureRenderedRoutes } = await import('./capture-rendered.mjs');
+      const snapshots = await captureRenderedRoutes({ distDir: DIST, routes: [...rootShells.keys()] });
+      let applied = 0;
+      for (const [routePath, snapshot] of snapshots) {
+        const { filePath, shell } = rootShells.get(routePath);
+        const marker = `<div id="root">${shell}</div>`;
+        const current = fs.readFileSync(filePath, 'utf-8');
+        if (!current.includes(marker)) continue;
+        let next = current.replace(marker, () => `<div id="root" data-prerender="full">${snapshot.html}</div>`);
+        // FAQ schema must describe the FAQs visible in the snapshot. Use the
+        // one the page itself generated when it is valid FAQPage JSON-LD.
+        if (snapshot.faqSchema) {
+          try {
+            const parsed = JSON.parse(snapshot.faqSchema);
+            if (parsed['@type'] === 'FAQPage' && parsed.mainEntity?.length) {
+              const tag = `<script type="application/ld+json" id="faq-schema">${JSON.stringify(parsed)}</script>`;
+              next = /<script type="application\/ld\+json" id="faq-schema">[\s\S]*?<\/script>/.test(next)
+                ? next.replace(/<script type="application\/ld\+json" id="faq-schema">[\s\S]*?<\/script>/, () => tag)
+                : next.replace('</head>', () => `    ${tag}
+  </head>`);
+            }
+          } catch { /* keep the build-time schema */ }
+        }
+        fs.writeFileSync(filePath, next);
+        applied += 1;
+      }
+      console.log(`Full-page snapshots applied to ${applied} of ${rootShells.size} routes`);
+    } catch (err) {
+      console.warn(`Full-page snapshots skipped, static shells kept: ${err.message.split('\n')[0]}`);
     }
   }
 
