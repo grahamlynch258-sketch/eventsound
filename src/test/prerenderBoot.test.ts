@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
-import { carryFormState, mountBehindSnapshot } from "@/lib/prerenderBoot";
+import { carryFormState, findLiveButton, mountBehindSnapshot } from "@/lib/prerenderBoot";
 
 const read = (rel: string) => fs.readFileSync(path.join(process.cwd(), rel), "utf8");
 
@@ -56,6 +56,23 @@ describe("snapshot to live-app swap", () => {
   });
 });
 
+describe("taps made before the app has loaded", () => {
+  it("maps a tapped snapshot button to the same live button, never a submit button", () => {
+    document.body.innerHTML =
+      '<div id="s"><button aria-label="Open menu"></button><form><button type="button">Next</button><button type="submit">Send</button></form></div>' +
+      '<div id="l"><button aria-label="Open menu"></button><form><button type="button">Next</button><button type="submit">Send</button></form></div>';
+    const snapshot = document.getElementById("s")!;
+    const live = document.getElementById("l")!;
+    const [menu, , send] = Array.from(snapshot.querySelectorAll("button"));
+    expect(findLiveButton(snapshot, live, menu)).toBe(live.querySelectorAll("button")[0]);
+    expect(findLiveButton(snapshot, live, send)).toBeNull();
+    expect(findLiveButton(snapshot, live, undefined)).toBeNull();
+    // A button whose live counterpart reads differently is not clicked.
+    live.querySelectorAll("button")[1].textContent = "Back";
+    expect(findLiveButton(snapshot, live, snapshot.querySelectorAll("button")[1])).toBeNull();
+  });
+});
+
 describe("full-page prerender wiring", () => {
   it("imports the boot helper before the app so fetch is wrapped first", () => {
     const main = read("src/main.tsx");
@@ -68,6 +85,14 @@ describe("full-page prerender wiring", () => {
     const accordion = read("src/components/ui/accordion.tsx");
     expect(accordion).toContain("forceMount");
     expect(accordion).toContain("data-[state=closed]:hidden");
+  });
+
+  it("holds app code back until first-screen images arrive, with interaction and time limits", () => {
+    const prerender = read("scripts/prerender.mjs");
+    expect(prerender).toContain("function deferredBootScript(entry, chunks)");
+    expect(prerender).toContain('["pointerdown", "keydown", "touchstart", "scroll"]');
+    expect(prerender).toContain("window.setTimeout(boot, 3000)");
+    expect(prerender).toContain('rel="preload" as="image" fetchpriority="high"');
   });
 
   it("falls back to static shells if the snapshot step fails", () => {

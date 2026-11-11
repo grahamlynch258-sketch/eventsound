@@ -22,6 +22,7 @@ import { Button } from "@/components/ui/button";
 import { StickyCtaBar } from "@/components/StickyCtaBar";
 import type { ServicePageImageSlot } from "@/hooks/useServicePageImages";
 import { siteConfig } from "@/config/site";
+import { useAfterPageLoad } from "@/hooks/useAfterPageLoad";
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -158,17 +159,20 @@ export default function LEDVideoWallsV2() {
   for (const img of libraryGallery) heroImages.push(img);
 
   const [currentSlide, setCurrentSlide] = useState(0);
+  // Hidden slides are full-size images inside the viewport; mount them only
+  // after the page has loaded so they do not compete with the first slide.
+  const extraSlidesReady = useAfterPageLoad();
   const [isPaused, setIsPaused] = useState(false);
   const [showAllReviews, setShowAllReviews] = useState(false);
 
   // Auto-advance slideshow
   useEffect(() => {
-    if (isPaused || heroImages.length <= 1) return;
+    if (isPaused || heroImages.length <= 1 || !extraSlidesReady) return;
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroImages.length);
     }, 6000);
     return () => clearInterval(timer);
-  }, [isPaused, heroImages.length]);
+  }, [isPaused, heroImages.length, extraSlidesReady]);
 
   const serviceSchema = generateServiceSchema({
     name: "LED Video Wall Hire",
@@ -210,7 +214,7 @@ export default function LEDVideoWallsV2() {
       >
         {/* Hero images — NO overlay, NO opacity reduction, NO gradient mask */}
         <div className="absolute inset-0">
-          {heroImages.map((img, i) => (
+          {heroImages.map((img, i) => (i > 0 && !extraSlidesReady) ? null : (
             <img
               key={img.image_url}
               src={img.image_url}

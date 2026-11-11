@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Preload the body and heading fonts: without this they arrive after
+         first paint on slow connections and the text visibly reflows. -->
+    <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin />
+
     <!-- Self-hosted fonts — eliminates render-blocking Google Fonts requests -->
     <style>
       @font-face {

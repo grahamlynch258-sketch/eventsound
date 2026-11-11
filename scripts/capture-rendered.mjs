@@ -68,6 +68,9 @@ function extractSnapshot() {
 
   // Things that must not be frozen into static HTML.
   clone.querySelectorAll('[data-prerender-skip], iframe, script').forEach(node => node.remove());
+  // A static form would submit natively (a page reload with the fields in the
+  // URL) if used before the app has loaded. The live form takes over instead.
+  clone.querySelectorAll('form').forEach(form => form.setAttribute('onsubmit', 'return false'));
 
   // Any scroll-reveal element still mid-animation gets its end state.
   let unfinished = 0;
@@ -92,9 +95,25 @@ function extractSnapshot() {
   // questions and answers visible in this snapshot.
   const faqSchema = document.getElementById('faq-schema')?.textContent?.trim() || '';
 
+  // The largest image in the first screen is the page's likely LCP element;
+  // the build preloads it so it starts downloading with the stylesheet.
+  let heroImage = '';
+  let heroArea = 0;
+  for (const img of root.querySelectorAll('img')) {
+    const rect = img.getBoundingClientRect();
+    const visible = rect.top < window.innerHeight && rect.bottom > 0 && rect.width >= window.innerWidth * 0.4
+      && getComputedStyle(img).opacity !== '0' && getComputedStyle(img).visibility !== 'hidden';
+    const area = rect.width * Math.min(rect.height, window.innerHeight);
+    if (visible && area > heroArea && /^https?:|^\//.test(img.currentSrc || img.src)) {
+      heroArea = area;
+      heroImage = img.currentSrc || img.src;
+    }
+  }
+
   const text = root.innerText || '';
   return {
     faqSchema,
+    heroImage,
     html: (runtimeCss ? `<style data-prerender-styles>${runtimeCss}</style>` : '') + clone.innerHTML,
     words: text.split(/\s+/).filter(Boolean).length,
     h1: (root.querySelector('h1')?.innerText || '').trim(),
