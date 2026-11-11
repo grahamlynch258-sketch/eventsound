@@ -988,6 +988,12 @@ function deferredBootScript(entry, chunks) {
         window.addEventListener(name, boot, { once: true, passive: true });
       }
       window.setTimeout(boot, 3000);
+      // Remember a button tapped before the app is running; the app repeats
+      // the tap on its own copy of that button once it takes over.
+      document.addEventListener("click", (event) => {
+        const button = event.target instanceof Element ? event.target.closest("[data-prerender] button") : null;
+        if (button) window.__snapshotClick = button;
+      }, true);
     </script>`;
 }
 

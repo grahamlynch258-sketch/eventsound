@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
-import { carryFormState, mountBehindSnapshot } from "@/lib/prerenderBoot";
+import { carryFormState, findLiveButton, mountBehindSnapshot } from "@/lib/prerenderBoot";
 
 const read = (rel: string) => fs.readFileSync(path.join(process.cwd(), rel), "utf8");
 
@@ -53,6 +53,23 @@ describe("snapshot to live-app swap", () => {
     const target = document.getElementById("b")!;
     expect(target.querySelector<HTMLInputElement>("[name=honeypot]")!.value).toBe("");
     expect(target.querySelector<HTMLInputElement>("[name=token]")!.value).toBe("live");
+  });
+});
+
+describe("taps made before the app has loaded", () => {
+  it("maps a tapped snapshot button to the same live button, never a submit button", () => {
+    document.body.innerHTML =
+      '<div id="s"><button aria-label="Open menu"></button><form><button type="button">Next</button><button type="submit">Send</button></form></div>' +
+      '<div id="l"><button aria-label="Open menu"></button><form><button type="button">Next</button><button type="submit">Send</button></form></div>';
+    const snapshot = document.getElementById("s")!;
+    const live = document.getElementById("l")!;
+    const [menu, , send] = Array.from(snapshot.querySelectorAll("button"));
+    expect(findLiveButton(snapshot, live, menu)).toBe(live.querySelectorAll("button")[0]);
+    expect(findLiveButton(snapshot, live, send)).toBeNull();
+    expect(findLiveButton(snapshot, live, undefined)).toBeNull();
+    // A button whose live counterpart reads differently is not clicked.
+    live.querySelectorAll("button")[1].textContent = "Back";
+    expect(findLiveButton(snapshot, live, snapshot.querySelectorAll("button")[1])).toBeNull();
   });
 });
 

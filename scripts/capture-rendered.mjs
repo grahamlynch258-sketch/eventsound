@@ -68,6 +68,9 @@ function extractSnapshot() {
 
   // Things that must not be frozen into static HTML.
   clone.querySelectorAll('[data-prerender-skip], iframe, script').forEach(node => node.remove());
+  // A static form would submit natively (a page reload with the fields in the
+  // URL) if used before the app has loaded. The live form takes over instead.
+  clone.querySelectorAll('form').forEach(form => form.setAttribute('onsubmit', 'return false'));
 
   // Any scroll-reveal element still mid-animation gets its end state.
   let unfinished = 0;

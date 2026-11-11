@@ -14,6 +14,8 @@ declare global {
     __PRERENDER_CAPTURE__?: boolean;
     /** Set by the app when the first screen has rendered and data has loaded. */
     __APP_READY__?: boolean;
+    /** Snapshot button the visitor tapped before the app was running. */
+    __snapshotClick?: Element;
   }
 }
 
@@ -105,6 +107,22 @@ export function carryFormState(from: HTMLElement, to: HTMLElement) {
 }
 
 /**
+ * If the visitor tapped a button in the snapshot (for example the mobile menu)
+ * before the app was running, find the same button in the live app.
+ * Submit buttons are never repeated.
+ */
+export function findLiveButton(snapshot: HTMLElement, live: HTMLElement, tapped: Element | undefined): HTMLButtonElement | null {
+  // A button's default type is "submit", so only one inside a form counts.
+  const submitsForm = (button: HTMLButtonElement) => button.type === "submit" && button.form !== null;
+  if (!(tapped instanceof HTMLButtonElement) || !snapshot.contains(tapped) || submitsForm(tapped)) return null;
+  const index = Array.from(snapshot.querySelectorAll("button")).indexOf(tapped);
+  const candidate = live.querySelectorAll("button")[index];
+  if (!candidate || submitsForm(candidate)) return null;
+  const label = (element: Element) => (element.getAttribute("aria-label") || element.textContent || "").trim();
+  return label(candidate) === label(tapped) ? candidate : null;
+}
+
+/**
  * Keeps the prerendered snapshot on screen, mounts the live app invisibly on
  * top of it, and swaps the two in one frame once the live app has settled.
  */
@@ -130,9 +148,12 @@ export function mountBehindSnapshot(snapshot: HTMLElement, mount: (container: HT
     .then(() => firstScreenImagesDecoded(live))
     .then(() => {
       carryFormState(snapshot, live);
+      const tappedButton = findLiveButton(snapshot, live, window.__snapshotClick);
+      delete window.__snapshotClick;
       snapshot.remove();
       live.removeAttribute("style");
       live.removeAttribute("aria-hidden");
       window.__APP_READY__ = true;
+      if (tappedButton) window.setTimeout(() => tappedButton.click(), 0);
     });
 }
