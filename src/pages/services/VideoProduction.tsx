@@ -113,7 +113,7 @@ export default function VideoProduction() {
           <ScrollReveal>
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Frequently Combined With</h2>
           <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-            Video production works best alongside <Link to="/services/led-video-walls/" className="text-accent hover:underline">LED video walls</Link> for live IMAG and playback. For events with a remote audience, combine with our <Link to="/services/virtual-events/" className="text-accent hover:underline">live streaming and hybrid event</Link> services. Full technical coordination is available through our <Link to="/services/event-production/" className="text-accent hover:underline">event production</Link> team.
+            Video production works best alongside <Link to="/services/led-video-walls/" className="text-accent hover:underline">LED video walls</Link> for live IMAG and playback. For a conference that also needs sound, presentations, stage lighting and room technicians, use our <Link to="/services/conference-av-hire/" className="text-accent hover:underline">conference AV production</Link> service. Remote audience delivery is covered by our <Link to="/services/virtual-events/" className="text-accent hover:underline">live streaming and hybrid event</Link> service.
           </p>
           </ScrollReveal>
 

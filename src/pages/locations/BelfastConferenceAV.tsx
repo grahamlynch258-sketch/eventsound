@@ -19,14 +19,14 @@ const BelfastConferenceAV = () => {
   const breadcrumbSchema = generateBreadcrumbSchema({ items: [
     { name: "Home", url: "https://eventsound.ie/" },
     { name: "Services", url: "https://eventsound.ie/services" },
-    { name: "Conference AV Hire", url: "https://eventsound.ie/services/conference-av-hire" },
-    { name: "Conference AV Belfast", url: "https://eventsound.ie/services/conference-av/belfast" },
+    { name: "Conference AV Hire", url: "https://eventsound.ie/services/conference-av-hire/" },
+    { name: "Conference AV Belfast", url: "https://eventsound.ie/services/conference-av/belfast/" },
   ] });
 
   useSeo({
     title: "Conference AV Services Belfast | Event Sound & AV Hire | EventSound",
     description: "Conference AV hire in Belfast. Sound, LED screens, confidence monitors & stage lighting for corporate conferences across Northern Ireland. Get a quote today.",
-    canonical: "https://eventsound.ie/services/conference-av/belfast",
+    canonical: "https://eventsound.ie/services/conference-av/belfast/",
     ogTitle: "Conference AV Services Belfast | EventSound",
     ogDescription: "Professional conference AV in Belfast & Northern Ireland. Cross-border service from Ireland.",
     ogType: "website",
@@ -42,7 +42,7 @@ const BelfastConferenceAV = () => {
         items={[
           { name: "Home", href: "/" },
           { name: "Services", href: "/services" },
-          { name: "Conference AV Hire", href: "/services/conference-av-hire" },
+          { name: "Conference AV Hire", href: "/services/conference-av-hire/" },
           { name: "Belfast" },
         ]}
       />
@@ -89,7 +89,7 @@ const BelfastConferenceAV = () => {
 
           <ScrollReveal>
             <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-              Looking for LED wall hire in Belfast? See our dedicated <Link to="/services/led-walls/belfast" className="text-accent hover:underline">Belfast LED Wall Hire</Link> page. You can also explore our full <Link to="/services/conference-av-hire" className="text-accent hover:underline">Conference AV Hire</Link> service for Ireland-wide coverage.
+              Looking for LED wall hire in Belfast? See our dedicated <Link to="/services/led-walls/belfast/" className="text-accent hover:underline">Belfast LED Wall Hire</Link> page. You can also explore our full <Link to="/services/conference-av-hire/" className="text-accent hover:underline">Conference AV Hire</Link> service for Ireland-wide coverage.
             </p>
           </ScrollReveal>
 

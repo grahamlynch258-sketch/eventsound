@@ -45,11 +45,11 @@ const FAQ = () => {
     },
     {
       question: "What brands of equipment do you use?",
-      answer: <>We use industry-leading brands including L-Acoustics <Link to="/services/av-production" className="text-accent hover:underline">sound systems</Link>, Unilumin <Link to="/services/led-video-walls" className="text-accent hover:underline">LED walls</Link>, and Chamsys <Link to="/services/lighting-design" className="text-accent hover:underline">lighting control</Link>.</>
+      answer: <>We use industry-leading brands including L-Acoustics <Link to="/services/sound-hire/" className="text-accent hover:underline">sound systems</Link>, Unilumin <Link to="/services/led-video-walls" className="text-accent hover:underline">LED walls</Link>, and Chamsys <Link to="/services/lighting-design" className="text-accent hover:underline">lighting control</Link>.</>
     },
     {
       question: "Do you offer wireless microphones?",
-      answer: <>Yes, we provide professional <Link to="/services/av-production" className="text-accent hover:underline">wireless microphone systems</Link> including handheld, lapel, and headset options.</>
+      answer: <>Yes, we provide professional <Link to="/services/sound-hire/" className="text-accent hover:underline">wireless microphone systems</Link> including handheld, lapel, and headset options.</>
     },
     {
       question: "Can you provide LED video walls?",

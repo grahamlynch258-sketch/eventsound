@@ -252,19 +252,38 @@ const SERVICE_PAGE_SCHEMAS = {
     ],
   },
 
+  '/services/sound-hire': {
+    faqs: [
+      { question: "What size PA system do I need for my event?", answer: "The right PA depends on the room, audience size and programme. Speech-only conferences need even coverage and clear vocal reproduction. Bands and outdoor events need more headroom, low-frequency coverage and stage monitoring. We size the system from your venue and running order rather than quoting a generic speaker package." },
+      { question: "Do you provide a sound engineer with the equipment?", answer: "Yes. Operated sound hire includes setup, system tuning, soundcheck and an experienced engineer for the event. Larger live shows can also include a separate monitor engineer. The quotation states the equipment, crew and working hours clearly." },
+      { question: "Can you provide wireless microphones for conferences?", answer: "Yes. We supply handheld, lapel and headset wireless microphones for keynote speakers, panels and audience questions. We coordinate frequencies, prepare spare units and manage microphone changes throughout the programme." },
+      { question: "Can you provide sound and monitors for a live band?", answer: "Yes. We provide front-of-house PA, digital mixing, microphones, DI boxes and stage monitors for bands and live performers. Send the technical rider where available. If there is no rider, tell us the lineup and instruments and we will build the input and monitor plan." },
+      { question: "Do you provide sound hire for outdoor events?", answer: "Yes. Outdoor sound requires coverage planning, suitable power, weather protection and enough capacity for the audience area. We provide systems for council events, concerts, festivals and public gatherings, including delay speakers where the site needs them." },
+      { question: "What information do you need to quote sound hire?", answer: "Send the venue, audience size, event timings, room or site layout, performer or presenter details and any technical riders. For live music, include the band lineup and monitor requirements. This lets us recommend a complete package without pricing equipment you do not need." },
+    ],
+    service: { name: "Sound Hire and PA System Hire", description: "Operated sound and PA system hire for conferences, corporate events, live bands and outdoor events in Dublin and across Ireland.", serviceType: "Sound and PA System Hire", url: "https://eventsound.ie/services/sound-hire/" },
+    breadcrumb: [
+      { name: "Home", url: "https://eventsound.ie/" },
+      { name: "Services", url: "https://eventsound.ie/services/" },
+      { name: "Sound Hire", url: "https://eventsound.ie/services/sound-hire/" },
+    ],
+  },
+
   '/services/conference-av-hire': {
     faqs: [
+      { question: "What AV equipment do I need for a corporate conference?", answer: "A standard conference setup includes a PA system with wireless microphones, an LED screen or projector for presentations, confidence monitors for speakers, stage lighting, and a dedicated technician. Larger events may also need cameras, breakout room AV and hybrid streaming." },
+      { question: "Can you provide conference sound and lighting as one package?", answer: "Yes. We plan conference sound, stage and camera lighting, presentation screens and technical crew as one system. This keeps the equipment, setup schedule and show operation under one production plan." },
       { question: "How far in advance should I book conference AV?", answer: "For large conferences with 200 or more delegates, we recommend four to six weeks minimum. Smaller meetings can often be turned around in one to two weeks, but earlier is always better — especially during peak conference season from September to November." },
       { question: "Do you provide technicians or just equipment?", answer: "Every booking includes on-site technicians. We don't do dry hire for conferences — your event is too important to leave to someone unfamiliar with the equipment." },
       { question: "Can you work with our venue's in-house AV?", answer: "Yes. We regularly integrate with venue-installed systems. We'll do a site visit to assess what's already in place and fill the gaps." },
       { question: "What conference AV equipment do you provide?", answer: "Our conference AV equipment includes lectern and wireless microphones, LED video walls, projection systems, confidence monitors, autocue, live streaming rigs, breakout room AV systems, stage lighting, and full audio systems — all with experienced operators." },
-      { question: "How much does conference AV hire cost?", answer: "Every conference is different. A straightforward single-room setup with sound and screens might start from around €1,500. Multi-room conferences with live streaming and LED walls scale from there. Contact us for a free consultation and quote." },
+      { question: "How much does conference AV hire cost?", answer: "Conference AV pricing depends on the number of rooms, event duration, equipment, rehearsal time and crew. Send the venue, delegate numbers and running order and we will return an itemised recommendation rather than a generic equipment list." },
     ],
-    service: { name: "Conference AV Hire", description: "Professional conference AV hire across Ireland. Lectern microphones, LED video walls, confidence monitors, live streaming, and breakout room AV for conferences, AGMs, and corporate events.", serviceType: "Conference AV Hire", url: "https://eventsound.ie/services/conference-av-hire" },
+    service: { name: "Conference AV Hire and Production", description: "Conference AV hire and production across Ireland. Conference sound and lighting, LED screens, wireless microphones, streaming and technical crew for corporate events.", serviceType: "Conference AV Hire", url: "https://eventsound.ie/services/conference-av-hire/" },
     breadcrumb: [
       { name: "Home", url: "https://eventsound.ie/" },
-      { name: "Services", url: "https://eventsound.ie/services" },
-      { name: "Conference AV Hire", url: "https://eventsound.ie/services/conference-av-hire" },
+      { name: "Services", url: "https://eventsound.ie/services/" },
+      { name: "Conference AV Hire", url: "https://eventsound.ie/services/conference-av-hire/" },
     ],
   },
 
@@ -328,6 +347,10 @@ const SERVICE_PAGE_INTROS = {
     "Professional audio visual equipment hire for conferences, meetings, seminars, and corporate events in Dublin and across Ireland. Complete AV packages include PA systems, microphones, mixing desks, screens, stage monitors, and experienced technical crew.",
     "All equipment is professional-grade and maintained to broadcast standards. Every AV hire includes delivery, setup, testing, operation, and breakdown — available as individual equipment hire or full-service AV production with a dedicated crew.",
   ],
+  '/services/sound-hire': [
+    "Professional sound hire and PA system hire for conferences, corporate events, concerts, festivals and public events in Dublin and across Ireland. Packages include speakers, digital mixing, wireless microphones, stage monitors and an experienced sound engineer.",
+    "Every system is specified for the venue, audience and programme. Conference sound focuses on clear speech and microphone management, while live band and outdoor packages include the inputs, monitoring, audience coverage, power planning and soundcheck the event requires.",
+  ],
   '/services/lighting-design': [
     "Event lighting hire and design for conferences, award ceremonies, gala dinners, concerts, festivals, and corporate events across Ireland. Our inventory includes intelligent moving-head fixtures, LED uplighting, architectural lighting, gobo projection, pin spots, and stage wash lighting.",
     "Lighting design is tailored to each event — from subtle corporate ambience to full concert-grade show lighting — and every hire includes programming, setup, and operation by experienced lighting technicians.",
@@ -341,13 +364,22 @@ const SERVICE_PAGE_INTROS = {
     "We handle multi-camera streaming, remote speaker integration, audience Q&A and polling, and multi-platform delivery — so both in-room and online audiences get a polished, engaging experience.",
   ],
   '/services/conference-av-hire': [
-    "Specialist conference AV hire for hotels, convention centres, and corporate venues across Ireland. Packages include lectern and wireless microphones, LED video walls, confidence monitors, autocue, live streaming rigs, breakout room AV, stage lighting, and full audio systems.",
-    "Every conference booking includes experienced on-site technicians — from single-room seminars to multi-room, multi-day conferences. Available in Dublin, Cork, Galway, Belfast, Limerick, and nationwide.",
+    "Conference AV hire and technical production for corporate conferences, seminars, AGMs and awards across Ireland. One experienced team plans the sound, screens, presentation systems, stage lighting and crew around the venue and running order.",
+    "Choose a single-room package, multi-room conference equipment hire or full conference production with LED, sound, lighting, cameras, recording and streaming. Every package includes experienced on-site technicians.",
   ],
   '/services/musical-theatre': [
     "Professional sound, lighting, staging, and LED video wall hire for musicals, drama, and theatre productions across Ireland. We supply wireless microphone rigs supporting 30+ simultaneous channels, front-of-house PA, monitors, stage lighting, and experienced operators.",
     "Our technicians attend your tech rehearsal, programme cues, and operate every performance. We regularly work with schools, musical societies, and community theatre groups, and integrate with existing house rigs in venues nationwide.",
   ],
+};
+
+// Internal links to supporting articles that are already published. Keep this
+// deliberately explicit so the first-pass static HTML never links to a draft
+// or future-scheduled article.
+const SERVICE_PAGE_GUIDES = {
+  '/services/led-video-walls': '<section aria-labelledby="guide-heading"><h2 id="guide-heading">LED screen or LED wall?</h2><p>Our <a href="/blog/led-screen-or-led-wall/">LED screen versus LED wall guide</a> explains when a single commercial display is enough and when a modular video wall is the better fit.</p></section>',
+  '/services/av-production': '<section aria-labelledby="guide-heading"><h2 id="guide-heading">Prepare a clearer AV brief</h2><p>Use our <a href="/blog/conference-av-technical-brief/">conference AV technical brief</a> to gather the room, presenter, content and rehearsal details needed for an accurate quote.</p></section>',
+  '/services/conference-av-hire': '<section aria-labelledby="guide-heading"><h2 id="guide-heading">Plan the technical brief first</h2><p>Use our <a href="/blog/conference-av-technical-brief/">conference AV planning brief</a> before requesting prices.</p></section>',
 };
 
 // ── Location pages: schema data + FAQ extraction from the page source ────────
@@ -377,7 +409,7 @@ function locationServiceSchema(routePath, { city, type }) {
       ? `LED video wall and screen hire in ${city} for conferences, exhibitions, and corporate events. Delivery, installation, and on-site operator included.`
       : `Conference AV hire in ${city} — PA systems, LED screens, microphones, lighting, and live streaming with full technical crew.`,
     serviceType: isLed ? 'LED Screen Rental' : 'Conference AV Hire',
-    url: `https://eventsound.ie${routePath}`,
+    url: `https://eventsound.ie${routePath}/`,
   });
 }
 
@@ -385,11 +417,11 @@ function locationBreadcrumb(routePath, { city, type }) {
   const isLed = type === 'led';
   return buildBreadcrumbSchema([
     { name: 'Home', url: 'https://eventsound.ie/' },
-    { name: 'Services', url: 'https://eventsound.ie/services' },
+    { name: 'Services', url: 'https://eventsound.ie/services/' },
     isLed
-      ? { name: 'LED Video Walls', url: 'https://eventsound.ie/services/led-video-walls' }
-      : { name: 'Conference AV Hire', url: 'https://eventsound.ie/services/conference-av-hire' },
-    { name: isLed ? `LED Walls ${city}` : `Conference AV ${city}`, url: `https://eventsound.ie${routePath}` },
+      ? { name: 'LED Video Walls', url: 'https://eventsound.ie/services/led-video-walls/' }
+      : { name: 'Conference AV Hire', url: 'https://eventsound.ie/services/conference-av-hire/' },
+    { name: isLed ? `LED Walls ${city}` : `Conference AV ${city}`, url: `https://eventsound.ie${routePath}/` },
   ]);
 }
 
@@ -575,7 +607,8 @@ const ROUTES = [
   { path: '/services/video-production', title: 'Event Video Production Ireland | Multi-Camera & Streaming', description: 'Multi-camera event video production, IMAG, recording and live streaming for conferences, concerts and corporate events across Ireland. Crew included.' },
   { path: '/services/virtual-events', title: 'Hybrid Event Production Ireland | Live Streaming & Virtual Events | EventSound', description: 'Hybrid event production across Ireland. Combine in-person and virtual audiences with multi-camera streaming, remote speaker integration, and broadcast-quality AV.' },
   { path: '/services/av-production', title: 'AV Hire Dublin & Ireland | Sound, Screens & Crew', description: 'AV hire for conferences, corporate events and exhibitions in Dublin and across Ireland. Sound, screens, lighting, setup, operators and technical crew included.' },
-  { path: '/services/conference-av-hire', title: 'Conference AV Hire Ireland | Conference Room AV Equipment | EventSound', description: 'Conference AV hire across Ireland. Lectern mics, LED walls, confidence monitors, live streaming, and breakout room AV. Full technical crew included.' },
+  { path: '/services/sound-hire', title: 'Sound Hire Dublin | PA System Hire Ireland', description: 'Sound and PA system hire for conferences, corporate events, bands and outdoor events in Dublin and across Ireland. Equipment, setup and engineer included.' },
+  { path: '/services/conference-av-hire', h1: 'Conference AV Hire and Production in Ireland', title: 'Conference AV Hire Ireland | Sound, Screens, Lighting & Crew', description: 'Conference AV hire and production across Ireland. Sound, wireless microphones, LED screens, lighting, streaming and experienced technical crew.' },
   { path: '/services/led-screen-hire', title: 'LED Screen Hire Ireland | TV Screen & Monitor Rental for Events | EventSound', description: 'Professional LED screen and TV hire for conferences, exhibitions, and corporate events across Ireland. Screen rental from 43" to 98". Delivery, setup, and on-site support included. Get a free quote.' },
   { path: '/services/musical-theatre', title: 'Theatre Production Hire Ireland | Sound, Lighting & LED', description: 'Sound, wireless microphones, lighting, staging and LED video wall hire for musicals, drama and theatre productions across Ireland, with experienced operators.' },
   { path: '/contact', title: 'Contact EventSound | Get a Quote for AV Hire Ireland', description: 'Contact EventSound for a free consultation and quote. Professional AV hire, sound, lighting, LED screens, and staging across Ireland. Fast response guaranteed.' },
@@ -918,7 +951,7 @@ async function prerender() {
       // copy, visible FAQs, breadcrumb, and NAP — so crawlers that don't
       // execute JavaScript (most AI crawlers, Googlebot's first pass) see
       // real page content. React replaces this synchronously on mount.
-      const h1Text = route.title.split(' | ')[0];
+      const h1Text = route.h1 || route.title.split(' | ')[0];
       const serviceData = SERVICE_PAGE_SCHEMAS[route.path];
       const locationData = LOCATION_PAGES[route.path];
 
@@ -931,6 +964,7 @@ async function prerender() {
         shellFaqs = serviceData.faqs || [];
         shellIntros = SERVICE_PAGE_INTROS[route.path] || [route.description];
         shellBreadcrumb = serviceData.breadcrumb;
+        shellBodyHtml = SERVICE_PAGE_GUIDES[route.path] || '';
       } else if (locationData) {
         shellFaqs = extractFaqsFromFile(locationData.file);
         shellBreadcrumb = [

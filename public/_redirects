@@ -12,8 +12,8 @@
 # --- Old slug redirects (target trailing-slash canonical) ---
 /services/live-event-production/    /services/event-production/    301
 /services/live-event-production     /services/event-production/    301
-/services/audio-equipment/          /services/av-production/       301
-/services/audio-equipment           /services/av-production/       301
+/services/audio-equipment/          /services/sound-hire/          301
+/services/audio-equipment           /services/sound-hire/          301
 /services/hybrid-events/            /services/virtual-events/      301
 /services/hybrid-events             /services/virtual-events/      301
 /services/lighting-effects/         /services/lighting-design/     301
@@ -24,8 +24,8 @@
 /services/video-equipment           /services/video-production/    301
 /services/led-video-display-screens/  /services/led-video-walls/   301
 /services/led-video-display-screens   /services/led-video-walls/   301
-/services/audio-systems/            /services/av-production/       301
-/services/audio-systems             /services/av-production/       301
+/services/audio-systems/            /services/sound-hire/          301
+/services/audio-systems             /services/sound-hire/          301
 
 # --- Individual Review Pages → Reviews listing ---
 /reviews/phil-nulty/                /reviews/    301
@@ -89,8 +89,8 @@
 /case-studies/prism-immersive-technology-summit       /case-studies/prism-immersive-technology-summit/      301
 
 # --- Old WordPress pages still indexed in Google ---
-/sound-hire-vision-hire-dublin-ireland/  /services/av-production/   301
-/sound-hire-vision-hire-dublin-ireland   /services/av-production/   301
+/sound-hire-vision-hire-dublin-ireland/  /services/sound-hire/      301
+/sound-hire-vision-hire-dublin-ireland   /services/sound-hire/      301
 /lighting-effects/                       /services/lighting-design/ 301
 /lighting-effects                        /services/lighting-design/ 301
 /privacy-policy/                         /                          301
@@ -103,12 +103,10 @@
 # --- Common old URL patterns (404 cleanup) ---
 /av-hire/                   /services/av-production/    301
 /av-hire                    /services/av-production/    301
-/services/pa-hire/          /services/av-production/    301
-/services/pa-hire           /services/av-production/    301
+/services/pa-hire/          /services/sound-hire/       301
+/services/pa-hire           /services/sound-hire/       301
 /led-walls/                 /services/led-video-walls/  301
 /led-walls                  /services/led-video-walls/  301
-/services/sound-hire/       /services/av-production/    301
-/services/sound-hire        /services/av-production/    301
 /av-production              /services/av-production/    301
 /av-production/             /services/av-production/    301
 

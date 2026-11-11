@@ -56,6 +56,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://eventsound.ie/services/sound-hire/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://eventsound.ie/services/lighting-design/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

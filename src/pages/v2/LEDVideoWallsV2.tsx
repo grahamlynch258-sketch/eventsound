@@ -539,6 +539,13 @@ export default function LEDVideoWallsV2() {
               services. See how we delivered LED walls for the{" "}
               <Link to="/case-studies/swords-castle-summer-concerts/" className="text-accent hover:underline">Swords Castle Summer Concerts</Link>.
             </p>
+            <p className="mt-4 text-muted-foreground leading-relaxed">
+              Not sure which display format suits the room? Our{" "}
+              <Link to="/blog/led-screen-or-led-wall/" className="text-accent hover:underline">
+                LED screen versus LED wall guide
+              </Link>{" "}
+              explains when a single commercial display is enough and when a modular video wall is the better fit.
+            </p>
           </div>
         </ScrollReveal>
       </section>

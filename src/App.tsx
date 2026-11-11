@@ -33,6 +33,7 @@ const BlogPost = lazy(() => import("@/pages/BlogPost"));
 // Service sub-pages — lazy loaded for code splitting
 const LEDVideoWalls = lazy(() => import("@/pages/v2/LEDVideoWallsV2"));
 const AVProduction = lazy(() => import("@/pages/services/AVProduction"));
+const AudioSystems = lazy(() => import("@/pages/services/AudioSystems"));
 const LightingDesign = lazy(() => import("@/pages/services/LightingDesign"));
 const StagingPipeDrape = lazy(() => import("@/pages/services/StagingPipeDrape"));
 const EventProduction = lazy(() => import("@/pages/services/EventProduction"));
@@ -155,6 +156,7 @@ function AppRoutes() {
       {/* Service sub-pages */}
       <Route path="/services/led-video-walls" element={<Suspense fallback={null}><LEDVideoWalls /></Suspense>} />
       <Route path="/services/av-production" element={<Suspense fallback={null}><AVProduction /></Suspense>} />
+      <Route path="/services/sound-hire" element={<Suspense fallback={null}><AudioSystems /></Suspense>} />
       <Route path="/services/lighting-design" element={<Suspense fallback={null}><LightingDesign /></Suspense>} />
       <Route path="/services/staging-pipe-drape" element={<Suspense fallback={null}><StagingPipeDrape /></Suspense>} />
       <Route path="/services/event-production" element={<Suspense fallback={null}><EventProduction /></Suspense>} />

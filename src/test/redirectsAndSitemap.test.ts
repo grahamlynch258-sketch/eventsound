@@ -22,7 +22,7 @@ describe("redirect and sitemap consistency", () => {
       ["/services/led-video-display-screens", "/services/led-video-walls/"],
       ["/services/live-event-production", "/services/event-production/"],
       ["/services/video-equipment", "/services/video-production/"],
-      ["/services/audio-equipment", "/services/av-production/"],
+      ["/services/audio-equipment", "/services/sound-hire/"],
     ];
 
     for (const [source, target] of requiredRedirects) {

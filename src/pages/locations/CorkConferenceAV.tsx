@@ -19,14 +19,14 @@ const CorkConferenceAV = () => {
   const breadcrumbSchema = generateBreadcrumbSchema({ items: [
     { name: "Home", url: "https://eventsound.ie/" },
     { name: "Services", url: "https://eventsound.ie/services" },
-    { name: "Conference AV Hire", url: "https://eventsound.ie/services/conference-av-hire" },
-    { name: "Conference AV Cork", url: "https://eventsound.ie/services/conference-av/cork" },
+    { name: "Conference AV Hire", url: "https://eventsound.ie/services/conference-av-hire/" },
+    { name: "Conference AV Cork", url: "https://eventsound.ie/services/conference-av/cork/" },
   ] });
 
   useSeo({
     title: "Conference AV Services Cork | Event Sound & AV Hire | EventSound",
     description: "Conference AV hire in Cork. Sound, projection, LED screens & staging for corporate conferences, seminars & AGMs across Cork city & county. Get a free quote.",
-    canonical: "https://eventsound.ie/services/conference-av/cork",
+    canonical: "https://eventsound.ie/services/conference-av/cork/",
     ogTitle: "Conference AV Services Cork | EventSound",
     ogDescription: "Professional conference AV services in Cork. Radio mics, PA systems, front lighting & on-site technicians.",
     ogType: "website",
@@ -42,7 +42,7 @@ const CorkConferenceAV = () => {
         items={[
           { name: "Home", href: "/" },
           { name: "Services", href: "/services" },
-          { name: "Conference AV Hire", href: "/services/conference-av-hire" },
+          { name: "Conference AV Hire", href: "/services/conference-av-hire/" },
           { name: "Cork" },
         ]}
       />
@@ -94,7 +94,7 @@ const CorkConferenceAV = () => {
 
           <ScrollReveal>
             <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-              Looking for LED wall hire in Cork? See our dedicated <Link to="/services/led-walls/cork" className="text-accent hover:underline">Cork LED Wall Hire</Link> page. You can also explore our full <Link to="/services/conference-av-hire" className="text-accent hover:underline">Conference AV Hire</Link> service for Ireland-wide coverage.
+              Looking for LED wall hire in Cork? See our dedicated <Link to="/services/led-walls/cork/" className="text-accent hover:underline">Cork LED Wall Hire</Link> page. You can also explore our full <Link to="/services/conference-av-hire/" className="text-accent hover:underline">Conference AV Hire</Link> service for Ireland-wide coverage.
             </p>
           </ScrollReveal>
 
