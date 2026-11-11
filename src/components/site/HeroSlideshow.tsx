@@ -66,6 +66,9 @@ export function HeroSlideshow({ intervalMs = 5000 }: Props) {
 
   useEffect(() => {
     if (images.length <= 1 || !firstImageLoaded) return;
+    // The build's page capture must record the first slide (it is the one the
+    // page preloads), so the rotation stays still while it runs.
+    if (window.__PRERENDER_CAPTURE__) return;
     const timer = setInterval(() => {
       setCurrentIndex((prev) => {
         prevIndexRef.current = prev;

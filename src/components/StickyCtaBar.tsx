@@ -42,6 +42,7 @@ export function StickyCtaBar({
 
   return (
     <div
+      data-prerender-skip
       className={`fixed bottom-6 right-6 z-50 transition-all duration-300 ${
         shouldShow ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0 pointer-events-none"
       }`}
