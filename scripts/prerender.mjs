@@ -1239,6 +1239,12 @@ async function prerender() {
             }
           } catch { /* keep the build-time schema */ }
         }
+        // The snapshot already shows the whole page, so the app's code is not
+        // needed for first paint. Fetch it at low priority so it doesn't
+        // compete with the stylesheet, fonts and first-screen images.
+        next = next
+          .replace(/<link rel="modulepreload"(?! fetchpriority)/g, '<link rel="modulepreload" fetchpriority="low"')
+          .replace(/<script type="module"(?! fetchpriority)/g, '<script type="module" fetchpriority="low"');
         fs.writeFileSync(filePath, next);
         applied += 1;
       }
