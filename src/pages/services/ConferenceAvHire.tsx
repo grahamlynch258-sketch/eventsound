@@ -1,5 +1,7 @@
 import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
+import { QuickAnswer } from "@/components/site/QuickAnswer";
+import { quickAnswers } from "@/content/quickAnswers";
 import { useSeo } from "@/hooks/useSeo";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -95,6 +97,7 @@ export default function ConferenceAvHire() {
       </PageHeader>
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6 text-center">
+          <QuickAnswer content={quickAnswers.conferenceAv} />
           <p className="text-lg text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
             EventSound provides conference equipment hire and full technical production for corporate conferences, seminars, AGMs and awards across Ireland. One experienced team plans the sound, screens, presentation systems, stage lighting and crew around your venue and running order.
           </p>

@@ -23,6 +23,8 @@ import { StickyCtaBar } from "@/components/StickyCtaBar";
 import type { ServicePageImageSlot } from "@/hooks/useServicePageImages";
 import { siteConfig } from "@/config/site";
 import { useAfterPageLoad } from "@/hooks/useAfterPageLoad";
+import { QuickAnswer } from "@/components/site/QuickAnswer";
+import { quickAnswers } from "@/content/quickAnswers";
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -308,6 +310,11 @@ export default function LEDVideoWallsV2() {
             </div>
           </div>
         </ScrollReveal>
+      </section>
+
+      {/* ── Answer-first summary ── */}
+      <section className="container mx-auto px-4 mb-12">
+        <QuickAnswer content={quickAnswers.ledVideoWalls} />
       </section>
 
       {/* ── Section 3: Intro + Cross-link ── */}
