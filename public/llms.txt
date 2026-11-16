@@ -69,7 +69,7 @@ EventSound is based in Drogheda, Co. Louth and serves all of Ireland. Primary se
 - Website: https://eventsound.ie
 - Email: info@eventsound.ie
 - Phone: 086 352 0476
-- Address: Townrath, Drogheda, Co. Louth, Ireland
+- Address: Townrath, Drogheda, Co. Louth, A92 A365, Ireland
 - LinkedIn: https://www.linkedin.com/company/eventsound-avservices/
 - Facebook: https://facebook.com/eventAVpro/
 
@@ -77,6 +77,7 @@ EventSound is based in Drogheda, Co. Louth and serves all of Ireland. Primary se
 - Owner-led team with over 35 years of event production experience
 - All-inclusive quoting model: equipment, delivery, setup, on-site operation, and breakdown included in every hire — no hidden fees or line-item pricing
 - Experienced multi-person technical crews for larger events
+- LED video wall dry hire starts from €125 per square metre per day; operated hire with delivery, installation and crew is quoted per event
 - Equipment includes Absen P2.6 LED panels, Unilumin LED panels, professional-grade audio (line array and point source systems), intelligent lighting fixtures, and broadcast-quality video equipment
 - Notable clients: Fingal County Council, Louth County Council, Local Enterprise Office Louth, Škoda Ireland
 - Notable events: PRISM conferences, Local Enterprise Week, School Summit, Beta Festival, Swords Castle Summer Concerts
@@ -106,6 +107,9 @@ A: Yes. Every hire includes a dedicated technical operator as standard. For larg
 
 Q: What is included in an EventSound quote?
 A: Every quote is all-inclusive — equipment, delivery, installation, on-site operation, and breakdown are included. There are no hidden fees or surprise extras.
+
+Q: How much does LED wall hire cost in Ireland?
+A: LED wall hire starts from €125 per square metre per day for dry hire. Pricing varies with pixel pitch, screen size and event requirements, and operated hire is quoted per event.
 
 Q: What size LED video wall do I need?
 A: For conference presentations with audiences of 50-200, we typically recommend 3m x 2m to 4m x 2.5m configurations. For large stages and outdoor events, 6m x 3m and above. We recommend the right size based on your venue, audience, and content.

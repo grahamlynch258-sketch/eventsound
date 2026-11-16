@@ -11,7 +11,7 @@ import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 const LimerickLedWalls = () => {
   const faqs = [
-    { question: "How much does LED wall hire cost in Limerick?", answer: "LED wall hire in Limerick starts from €120 per square metre for dry hire. Pricing depends on pixel pitch, screen area, installation requirements, and technical support. Contact us for a detailed, no-obligation quote." },
+    { question: "How much does LED wall hire cost in Limerick?", answer: "LED wall hire in Limerick starts from €125 per square metre for dry hire. Pricing depends on pixel pitch, screen area, installation requirements, and technical support. Contact us for a detailed, no-obligation quote." },
     { question: "Can you provide LED walls for the Limerick Strand Hotel's Shannon Suite?", answer: "Yes. The Shannon Suite accommodates up to 600 delegates and is one of Limerick's premier conference spaces. We provide LED wall installations of 20 to 40 square metres for events in this venue, with the ability to scale up for larger configurations. We are familiar with the venue's load-in access and power distribution." },
     { question: "Do you cover the wider Shannon region?", answer: "Yes. We serve events across Limerick city and the wider Shannon region, including Ennis, Shannon town, North Tipperary, and surrounding areas." },
   ];
@@ -30,7 +30,7 @@ const LimerickLedWalls = () => {
     description: "LED video wall hire in Limerick. LED screens for conferences, corporate events & exhibitions across the mid-west. Indoor & outdoor. Full delivery & setup included.",
     canonical: "https://eventsound.ie/services/led-walls/limerick",
     ogTitle: "LED Wall Hire Limerick | EventSound",
-    ogDescription: "LED wall hire in Limerick from €120/sqm. Absen & Unilumin panels for conferences and events.",
+    ogDescription: "LED wall hire in Limerick from €125/sqm. Absen & Unilumin panels for conferences and events.",
     ogType: "website",
     additionalSchemas: [
       { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
@@ -78,7 +78,7 @@ const LimerickLedWalls = () => {
 
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">LED Wall Pricing in Limerick</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            LED wall hire in Limerick starts from €120 per square metre for dry hire. Contact us with your event details for an accurate quote based on pixel pitch, screen area, and installation requirements.
+            LED wall hire in Limerick starts from €125 per square metre for dry hire. Contact us with your event details for an accurate quote based on pixel pitch, screen area, and installation requirements.
           </p>
 
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Limerick Venues We Provide LED Walls For</h2>

@@ -11,7 +11,7 @@ import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 const CorkLedWalls = () => {
   const faqs = [
-    { question: "How much does LED wall hire cost in Cork?", answer: "LED wall hire in Cork starts from €120 per square metre for dry hire. The final price depends on pixel pitch (2.6mm fine pitch for indoor presentations, 4.9mm for outdoor or high-brightness applications), total screen area, installation complexity, and whether on-site technical support is required. Contact us for a no-obligation quote." },
+    { question: "How much does LED wall hire cost in Cork?", answer: "LED wall hire in Cork starts from €125 per square metre for dry hire. The final price depends on pixel pitch (2.6mm fine pitch for indoor presentations, 4.9mm for outdoor or high-brightness applications), total screen area, installation complexity, and whether on-site technical support is required. Contact us for a no-obligation quote." },
     { question: "Can you set up LED walls at Cork City Hall?", answer: "Yes. We have experience installing LED walls at large civic and exhibition venues. Cork City Hall's events space accommodates up to 1,000 people and is regularly used for conferences, exhibitions, and corporate events. We work with the venue's technical team to manage load-in, power distribution, and rigging requirements." },
     { question: "What LED wall size is right for a Cork hotel conference?", answer: "For hotel conference suites with fewer than 100 delegates, a 7 square metre LED wall provides excellent visibility. For larger ballrooms accommodating 200 to 500 delegates, 15 to 25 square metres is typical. For major events at Rochestown Park (capacity 1,200), 30 to 40 square metres delivers maximum visual impact. Contact us with your venue and audience size for a specific recommendation." },
   ];
@@ -30,7 +30,7 @@ const CorkLedWalls = () => {
     description: "LED video wall hire in Cork. Indoor & outdoor LED screens for conferences, exhibitions & events across Cork city & county. Delivery & setup included. Get a quote.",
     canonical: "https://eventsound.ie/services/led-walls/cork",
     ogTitle: "LED Wall Hire Cork | EventSound",
-    ogDescription: "LED wall hire in Cork from €120/sqm. Absen & Unilumin panels for conferences and events.",
+    ogDescription: "LED wall hire in Cork from €125/sqm. Absen & Unilumin panels for conferences and events.",
     ogType: "website",
     additionalSchemas: [
       { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
@@ -76,7 +76,7 @@ const CorkLedWalls = () => {
 
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">LED Wall Pricing in Cork</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            LED wall hire in Cork starts from €120 per square metre for dry hire. Pricing depends on pixel pitch, screen area, venue access requirements, and technical support. Contact us with your event specification for an accurate quote.
+            LED wall hire in Cork starts from €125 per square metre for dry hire. Pricing depends on pixel pitch, screen area, venue access requirements, and technical support. Contact us with your event specification for an accurate quote.
           </p>
 
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Cork Venues We Provide LED Walls For</h2>
