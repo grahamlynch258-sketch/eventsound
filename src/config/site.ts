@@ -18,17 +18,16 @@ export const siteConfig = {
   addressLocality: "Drogheda",
   addressRegion: "County Louth",
   addressStreet: "Townrath",
-  postalCode: "",
+  postalCode: "A92 A365",
   country: "IE",
   primaryLocation: "Drogheda, Co. Louth",
   serviceAreas: ["Dublin", "Leinster", "Nationwide Ireland"],
 
   quoteResponseSLA: "within 24 hours",
 
-  // Google Business Profile "write a review" link. The reviews widget (Featurable)
-  // is connected to a DIFFERENT place ID (ChIJM1xuFXgwZ0gRNkUR4exw_5U). Pending
-  // Graham's decision on which listing is canonical — change it here only.
-  googleReviewUrl: "https://search.google.com/local/writereview?placeid=ChIJy0JQslYLZ0gRQOACHmQptmI",
+  // Google Business Profile "write a review" link. This is the live listing
+  // ("EventSound AV Services", Townrath) that the reviews widget also uses.
+  googleReviewUrl: "https://search.google.com/local/writereview?placeid=ChIJM1xuFXgwZ0gRNkUR4exw_5U",
 
   pricing: {
     ledWallDryHirePerSquareMetrePerDay: 125,

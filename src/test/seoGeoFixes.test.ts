@@ -79,6 +79,24 @@ describe("site-wide SEO hygiene", () => {
     expect(read("index.html")).toContain('"alternateName": ["EventSound", "Event Sound"]');
   });
 
+  it("quotes one LED dry-hire rate on every page", () => {
+    const rate = read("src/config/site.ts").match(/ledWallDryHirePerSquareMetrePerDay: (\d+)/)?.[1];
+    expect(rate).toBe("125");
+    const cityPages = fs.readdirSync(path.join(process.cwd(), "src/pages/locations")).filter((file) => file.endsWith("LedWalls.tsx"));
+    expect(cityPages.length).toBe(6);
+    for (const file of cityPages) {
+      const source = read(`src/pages/locations/${file}`);
+      const quoted = [...source.matchAll(/\u20ac(\d+)(?:\/sqm| per square metre)/g)].map((match) => match[1]);
+      expect(quoted.length).toBeGreaterThan(0);
+      expect(new Set(quoted)).toEqual(new Set([rate]));
+    }
+    expect(read("public/llms.txt")).toContain(`\u20ac${rate} per square metre per day`);
+  });
+
+  it("points review links at the live Google listing", () => {
+    expect(read("src/config/site.ts")).toContain("writereview?placeid=ChIJM1xuFXgwZ0gRNkUR4exw_5U");
+  });
+
   it("uses one configured Google review link", () => {
     const hardCoded = ["src/pages/Reviews.tsx", "src/pages/v2/LEDScreenHireV2.tsx", "src/pages/v2/LEDVideoWallsV2.tsx", "src/pages/v2/MusicalTheatreV2.tsx"]
       .filter((file) => read(file).includes("writereview?placeid="));

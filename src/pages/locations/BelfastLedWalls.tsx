@@ -11,7 +11,7 @@ import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 const BelfastLedWalls = () => {
   const faqs = [
-    { question: "How much does LED wall hire cost in Belfast?", answer: "LED wall hire in Belfast starts from approximately £105 per square metre for dry hire (about €120). Final pricing depends on pixel pitch, screen area, installation requirements, and technical support. We can quote in either GBP or EUR. Contact us for a detailed quote." },
+    { question: "How much does LED wall hire cost in Belfast?", answer: "LED wall hire in Belfast starts from €125 per square metre for dry hire, and we can quote in sterling on request. Final pricing depends on pixel pitch, screen area, installation requirements, and technical support. We can quote in either GBP or EUR. Contact us for a detailed quote." },
     { question: "Do you operate cross-border from the Republic of Ireland?", answer: "Yes. EventSound operates across the island of Ireland. Belfast is readily accessible from our base and we regularly provide LED walls at venues in Belfast and across Northern Ireland. Equipment transport across the border is routine and there are no customs complications for temporary event equipment." },
     { question: "Can you install LED walls at ICC Belfast?", answer: "Yes. We provide LED wall installations at ICC Belfast, including its main auditorium, exhibition hall, and breakout spaces. Our team is familiar with ICC Belfast's technical infrastructure, power distribution, and load-in procedures, ensuring efficient setup and reliable performance." },
   ];
@@ -30,7 +30,7 @@ const BelfastLedWalls = () => {
     description: "LED video wall hire in Belfast. Unilumin & Absen LED panels for conferences, exhibitions & corporate events across Northern Ireland. Delivery & setup included.",
     canonical: "https://eventsound.ie/services/led-walls/belfast",
     ogTitle: "LED Wall Hire Belfast | EventSound",
-    ogDescription: "LED wall hire in Belfast from £105/sqm. Cross-border service for conferences and events.",
+    ogDescription: "LED wall hire in Belfast from €125/sqm. Cross-border service for conferences and events.",
     ogType: "website",
     additionalSchemas: [
       { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
@@ -78,7 +78,7 @@ const BelfastLedWalls = () => {
 
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">LED Wall Pricing in Belfast</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            LED wall hire in Belfast starts from £105 per square metre for dry hire (approximately €120). Contact us with your event specification and we'll provide a detailed quote in either GBP or EUR.
+            LED wall hire in Belfast starts from €125 per square metre for dry hire. Contact us with your event specification and we'll provide a detailed quote in either GBP or EUR.
           </p>
 
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Cross-Border LED Wall Service</h2>

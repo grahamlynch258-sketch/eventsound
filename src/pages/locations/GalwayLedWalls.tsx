@@ -11,7 +11,7 @@ import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 const GalwayLedWalls = () => {
   const faqs = [
-    { question: "How much does LED wall hire cost in Galway?", answer: "LED wall hire in Galway starts from €120 per square metre for dry hire. Total pricing depends on pixel pitch, screen area, venue logistics, and technical support requirements. Contact us with your event details for a no-obligation quote." },
+    { question: "How much does LED wall hire cost in Galway?", answer: "LED wall hire in Galway starts from €125 per square metre for dry hire. Total pricing depends on pixel pitch, screen area, venue logistics, and technical support requirements. Contact us with your event details for a no-obligation quote." },
     { question: "Can you provide LED walls for events along the Wild Atlantic Way?", answer: "Yes. We serve venues across the west of Ireland, from Galway city to Connemara, the Aran Islands, and County Clare. Whether your event is at a hotel in Galway city or a unique venue along the Wild Atlantic Way, we deliver the same standard of LED wall installation." },
     { question: "What LED wall size do I need for a Galway hotel ballroom?", answer: "For hotel ballrooms accommodating 200 to 500 delegates, 15 to 25 square metres is typical. For the larger ballrooms at Clayton Hotel Galway (capacity 800) or Galway Bay Hotel (combined 1,000), 25 to 40 square metres delivers maximum visual impact. Contact us with your specific venue for a tailored recommendation." },
   ];
@@ -30,7 +30,7 @@ const GalwayLedWalls = () => {
     description: "LED video wall hire in Galway. High-resolution LED screens for conferences, corporate events & festivals across the west of Ireland. Full setup & operator included.",
     canonical: "https://eventsound.ie/services/led-walls/galway",
     ogTitle: "LED Wall Hire Galway | EventSound",
-    ogDescription: "LED wall hire in Galway from €120/sqm. Absen & Unilumin panels for conferences and events.",
+    ogDescription: "LED wall hire in Galway from €125/sqm. Absen & Unilumin panels for conferences and events.",
     ogType: "website",
     additionalSchemas: [
       { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
@@ -78,7 +78,7 @@ const GalwayLedWalls = () => {
 
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">LED Wall Pricing in Galway</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            LED wall hire in Galway starts from €120 per square metre for dry hire. Contact us to discuss your event and receive a tailored quote based on pixel pitch, screen area, and installation requirements.
+            LED wall hire in Galway starts from €125 per square metre for dry hire. Contact us to discuss your event and receive a tailored quote based on pixel pitch, screen area, and installation requirements.
           </p>
 
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Galway Venues We Provide LED Walls For</h2>

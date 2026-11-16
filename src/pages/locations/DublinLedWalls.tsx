@@ -11,7 +11,7 @@ import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 const DublinLedWalls = () => {
   const faqs = [
-    { question: "How much does LED wall hire cost in Dublin?", answer: "LED wall hire in Dublin starts from €120 per square metre for dry hire. The total cost depends on the pixel pitch (2.6mm for fine indoor detail, up to 4.9mm for outdoor brightness), total screen area, installation requirements, and whether you need on-site technical support or content creation. Contact us with your event details for an accurate quote." },
+    { question: "How much does LED wall hire cost in Dublin?", answer: "LED wall hire in Dublin starts from €125 per square metre for dry hire. The total cost depends on the pixel pitch (2.6mm for fine indoor detail, up to 4.9mm for outdoor brightness), total screen area, installation requirements, and whether you need on-site technical support or content creation. Contact us with your event details for an accurate quote." },
     { question: "What size LED wall do I need for my Dublin event?", answer: "For events with fewer than 100 attendees, we recommend a 7 square metre LED wall. This delivers sharp, readable text and high-impact visuals from every seat. For plenary sessions of 200 to 500 delegates, 15 to 25 square metres is typical. For large-scale events, product launches, or gala dinners in venues like the CCD or Croke Park, we regularly install 30 to 70 square metres of LED wall with custom aspect ratios and multi-source switching." },
     { question: "What is the difference between 2.6mm and 4.9mm pixel pitch?", answer: "Pixel pitch is the distance between each LED pixel. A smaller number means higher resolution at close viewing distances. Our Absen 2.6mm panels are ideal for indoor conferences where delegates sit within a few metres of the screen — text is razor-sharp and images are highly detailed. The Unilumin 4.9mm panels are designed for outdoor events and large venues where brightness matters more than ultra-fine detail. We'll recommend the right option based on your venue and viewing distances." },
     { question: "Can you provide curved LED walls for stage designs?", answer: "Yes. We offer curved LED wall configurations using Prism panels. Curved installations are popular for stage backdrops, immersive brand experiences, and experiential events where a flat screen doesn't deliver the visual impact required. Contact us to discuss your design concept and we'll advise on what's achievable." },
@@ -31,7 +31,7 @@ const DublinLedWalls = () => {
     description: "LED video wall hire in Dublin. Unilumin & Absen panels for conferences, awards, exhibitions & corporate events. CCD, Croke Park & Dublin venues served. Get a quote.",
     canonical: "https://eventsound.ie/services/led-walls/dublin",
     ogTitle: "LED Wall Hire Dublin | EventSound",
-    ogDescription: "LED wall hire in Dublin from €120/sqm. Absen & Unilumin panels for conferences and events.",
+    ogDescription: "LED wall hire in Dublin from €125/sqm. Absen & Unilumin panels for conferences and events.",
     ogType: "website",
     additionalSchemas: [
       { schema: breadcrumbSchema, schemaId: "breadcrumb-schema" }
@@ -77,7 +77,7 @@ const DublinLedWalls = () => {
 
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">LED Wall Pricing</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            LED wall hire in Dublin starts from €120 per square metre for dry hire. Final pricing depends on the pixel pitch selected (2.6mm for fine indoor detail, up to 4.9mm for outdoor brightness), total screen area, installation complexity, and whether you require content creation or on-site technical support. Curved configurations and custom aspect ratios may affect pricing.
+            LED wall hire in Dublin starts from €125 per square metre for dry hire. Final pricing depends on the pixel pitch selected (2.6mm for fine indoor detail, up to 4.9mm for outdoor brightness), total screen area, installation complexity, and whether you require content creation or on-site technical support. Curved configurations and custom aspect ratios may affect pricing.
           </p>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
             We strongly recommend contacting us to discuss your event specification. Every venue and event is different, and we'll configure the right LED wall solution for your space, audience size, and budget.
