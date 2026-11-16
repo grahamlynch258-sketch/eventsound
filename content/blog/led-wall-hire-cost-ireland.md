@@ -2,33 +2,28 @@
 slug: led-wall-hire-cost-ireland
 title: "What Does LED Wall Hire Cost in Ireland? Price Per m², Crew and What the Quote Includes"
 meta_title: "LED Wall Hire Cost in Ireland: Price Per m² Explained"
-meta_description: "What LED wall hire costs in Ireland as of August 2026: the price per m², what moves a real quote (crew, power, rigging) and a worked example."
-excerpt: "The published dry hire rate is €125 per m² per day as of August 2026, but panels are only one line of a real quote. What crew, power, rigging and transport add, with a worked example."
+meta_description: "What LED wall hire costs in Ireland as of November 2026: the price per m², and what moves a real quote: crew, power, rigging, transport and show length."
+excerpt: "The published dry hire rate is €125 per m² per day, but panels are only one line of a real quote. What crew, power, rigging, transport and schedule add, and what an all-inclusive quote should contain."
 category: LED Walls
 tags: [led-walls, av-costs, conference-av]
 primary_keyword: led wall hire cost ireland
 featured_image: ""
-featured_image_alt: "[TAILOR: real photo, a conference-sized LED wall build, ideally the 4m × 2.5m class, with venue named in the alt text]"
+featured_image_alt: ""
 author: Graham Lynch
-published_at: 2026-08-20
+published_at: 2026-11-19
 ---
 
-Here's the straight answer on LED wall hire cost in Ireland, as of August 2026: our published dry hire rate is €125 per square metre per day, so the panels for a typical 4m × 2.5m conference wall (10m²) come to €1,250 a day. For wider calibration, a straightforward single-room conference setup with sound and screens starts around €1,500. Those figures answer the first question but not the real one, because panels are only one line of a working quote. Crew, processing, power, rigging, transport and show duration decide the final number. This guide walks through each of them and prices a worked example properly. It also sets out what an all-inclusive [LED video wall](/services/led-video-walls/) quote should contain.
+Here's the straight answer on LED wall hire cost in Ireland, as of November 2026: our published dry hire rate is €125 per square metre per day. That figure answers the first question but not the real one, because panels are only one line of a working quote. Crew, processing, power, rigging, transport and show duration decide the final number. This guide walks through each of them, then shows what an all-inclusive [LED video wall](/services/led-video-walls/) quote should contain, line by line.
 
 ## The headline number: €125 per m² per day
 
 LED walls are modular, so pricing by area is the honest unit. A wall twice the size uses twice the panels, and the structure and signal path scale with it. Per-square-metre pricing also makes quotes comparable. You can hold any supplier's figure against the same square metreage.
 
-The multiplication is simple enough to do in your head:
+The sum is simple: the wall's width times its height gives the area, and the area times the rate gives the dry hire cost of the panels for a day. A 4m × 2.5m conference backdrop is 10m². A 6m × 4m stage wall is 24m².
 
-| Wall size | Area | Dry hire panels, per day (as of August 2026) |
-|---|---|---|
-| 3m × 2m | 6m² | €750 |
-| 4m × 2.5m | 10m² | €1,250 |
-| 5m × 3m | 15m² | €1,875 |
-| 6m × 4m | 24m² | €3,000 |
+Be clear about what that rate is: a dry hire figure for the equipment itself. It's the right number for production companies and venues with their own LED crew, and the wrong number to budget against if you need the wall delivered, built, operated and removed.
 
-Be clear about what that rate is: a dry hire figure for the equipment itself. It's the right number for production companies and venues with their own LED crew, and the wrong number to budget against if you need the wall delivered, built, operated and removed. If you're still working out sizes in the first place, it helps to see one at scale: our [Swords Castle concerts case study](/blog/swords-castle-summer-concerts-production/) covers an outdoor build for 8,000 people a night.
+If you're still working out sizes in the first place, our [guide to how video wall hire works](/blog/video-wall-hire-guide/) covers the sizes events actually use. To see one at scale, the [Swords Castle Summer Concerts case study](/case-studies/swords-castle-summer-concerts/) covers an outdoor build for 8,000 people a night.
 
 ## Dry hire or operated: two different purchases
 
@@ -40,9 +35,7 @@ Be clear about what that rate is: a dry hire figure for the equipment itself. It
 
 ### Crew and build time
 
-A wall has to be assembled, commissioned, operated and taken down, and the labour scales with size and access. A 10m² backdrop with a loading bay beside the room is a light build. A bigger wall up a staircase is not. Larger shows run multi-crew (Ronan and Mark join for those), and late-night de-rigs add hours, so share the venue schedule early.
-
-> [TAILOR: a real build contrast, one easy get-in and one awkward one (stairs, no lift, tight overnight turnaround), venues named if possible, and what each meant for crew hours.]
+A wall has to be assembled, commissioned, operated and taken down, and the labour scales with size and access. A 10m² backdrop with a loading bay beside the room is a light build. A bigger wall up a staircase is not. Larger shows need a multi-person crew, and late-night de-rigs add hours, so share the venue schedule early.
 
 ### Processing and playback
 
@@ -64,37 +57,33 @@ We deliver and install LED walls throughout Ireland: Dublin, Cork, Galway, Belfa
 
 A one-day conference and a three-day exhibition use the same build, but not the same equipment days or crew hours. Multi-day events, rehearsal days and overnight holds all move the number, though usually by less than organisers fear, because the build and de-rig only happen once.
 
-> [TAILOR: a real multi-day example: event, wall size, days on site, and roughly how the multi-day figure compared with the one-day rate.]
-
-## Worked example: a 4m × 2.5m conference wall
+## Worked example: what a 4m × 2.5m conference wall quote contains
 
 Here is how those lines assemble for the most common request we see: a 10m² backdrop wall in a hotel or conference venue, operated for a one-day event.
 
-| Line in the quote | What it covers | This example |
-|---|---|---|
-| LED panels | 10m² of panels at the published rate | €1,250 per day dry hire value (as of August 2026) |
-| Processing and playback | Processor, signal path, playback and spares | Included in the operated figure |
-| Structure | Freestanding ground support behind the stage | Included |
-| Crew (build and de-rig) | Delivery, installation, commissioning, breakdown | Included |
-| Crew (show day) | An operator running content through the day | Included |
-| Power and distribution | Distro and cabling from the venue supply | Included, confirmed at the site visit |
-| Transport | Truck and crew travel, anywhere in Ireland | Included |
+| Line in the quote | What it covers |
+|---|---|
+| LED panels | 10m² of panels, the part the per-m² rate describes |
+| Processing and playback | Processor, signal path, playback and spares |
+| Structure | Freestanding ground support behind the stage |
+| Crew (build and de-rig) | Delivery, installation, commissioning, breakdown |
+| Crew (show day) | An operator running content through the day |
+| Power and distribution | Distro and cabling from the venue supply, confirmed at the site visit |
+| Transport | Truck and crew travel, anywhere in Ireland |
 
-The point of the table is its shape as much as its numbers: an operated quote wraps every line into one figure, so the €1,250 of panels is the anchor of the price, not the total. For calibration, remember the conference benchmark. A straightforward single-room setup with sound and screens starts around €1,500, quoted the same all-inclusive way.
-
-> [TAILOR: a real, anonymised all-in figure for a recent operated conference wall around this size, so the example lands on an actual number, e.g. "a recent one-day conference wall in [county] came in at €X all-in".]
+The point of the table is its shape: an operated quote wraps every line into one figure, so the panels are the anchor of the price, not the total. When you compare quotes, check that each one covers all seven lines before you compare the numbers at the bottom.
 
 ## Where to save money (and where not to)
 
 **Save on area, carefully.** Size is the biggest lever at €125 per m². Size the wall from your furthest viewer, then stop: square metres nobody needs are the most expensive kind.
 
-**Save on pitch.** If the front row sits three metres back, 2.6mm panels do the job, and paying for a finer pitch buys detail nobody can see. Size moves hire cost far more than pitch does.
+**Save on pitch.** Pixel pitch is chosen from how close your nearest viewers sit. If the front row is well back from the screen, a coarser pitch does the job, and paying for a finer one buys detail nobody can see. Size moves hire cost far more than pitch does.
 
 **Save on schedule.** Flexible build windows and daytime de-rigs need fewer unsocial crew hours than midnight turnarounds. If the venue allows an easy get-in, say so. It helps the figure.
 
 **Don't save on the operator.** An unwatched wall at a live event is a risk no saving justifies. A frozen slide in front of 300 delegates is a very public way to prove it.
 
-**And check the alternative honestly.** If your room is genuinely dark, the audience small and the content slides, a projector may serve you fine. Tell us that's the room you have and we'll say so, rather than sell you a wall.
+**And check the alternative honestly.** If your room is genuinely dark, the audience small and the content slides, a projector or a large flat-panel display may serve you fine. Our [LED screen versus LED wall guide](/blog/led-screen-or-led-wall/) explains where each one fits. Tell us that's the room you have and we'll say so, rather than sell you a wall.
 
 ## Frequently asked questions
 
@@ -111,7 +100,7 @@ Far less than size does. Specify the coarsest pitch your nearest viewer allows a
 Fix the size and pitch, then compare inclusions: build and show crew, operator hours, processing and spares, transport, power distribution, and who carries the de-rig. The lowest headline figure with the shortest inclusions list is rarely the cheapest event.
 
 **When should I book to get the best value?**
-Once dates and venue are firm. Autumn conference season and December concentrate demand, and build slots are easier to schedule (and price) with notice.
+Once dates and venue are firm. Autumn conference season and December concentrate demand, and build slots are easier to schedule with notice.
 
 ## Get an all-in figure for your event
 
