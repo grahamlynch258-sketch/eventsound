@@ -1,5 +1,7 @@
 import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
+import { QuickAnswer } from "@/components/site/QuickAnswer";
+import { quickAnswers } from "@/content/quickAnswers";
 import { useSeo } from "@/hooks/useSeo";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -74,6 +76,7 @@ export default function AVProduction() {
       </PageHeader>
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6 text-center">
+          <QuickAnswer content={quickAnswers.avHire} />
           <p className="text-lg text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
             EventSound provides AV equipment hire across Ireland for corporate events, conferences, product launches, exhibitions, gala dinners, and live shows. Based in Drogheda, Co. Louth, we supply and operate professional audio visual equipment at venues in Dublin, Cork, Galway, Belfast, and nationwide.
           </p>
@@ -131,7 +134,7 @@ export default function AVProduction() {
           </p>
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">AV Hire Pricing</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            AV hire pricing depends on the equipment required, event duration, and venue location. A simple display screen and PA setup for a presentation starts from a few hundred euro. Full AV production packages with LED walls, lighting, and multi-source audio are quoted based on your specific requirements. We provide transparent, all-inclusive pricing — the quote you receive covers delivery, setup, operation, and collection with no surprise extras. Contact us with your event details for a free quote.
+            AV hire pricing depends on the equipment required, event duration, and venue location. Every package, from a single screen and PA for a presentation to full AV production with LED walls, lighting and multi-source audio, is quoted for your specific requirements. We provide transparent, all-inclusive pricing — the quote you receive covers delivery, setup, operation, and collection with no surprise extras. Contact us with your event details for a free quote.
           </p>
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Why EventSound for AV Hire?</h2>
           <div className="text-left inline-block">

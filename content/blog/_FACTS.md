@@ -12,7 +12,7 @@ stories in. Never invent a venue, client, number or piece of kit.
 
 ## Company
 
-- EventSound AV Services — Townrath, Drogheda, Co. Louth, Ireland
+- EventSound AV Services — Townrath, Drogheda, Co. Louth, A92 A365, Ireland
 - Phone 086 352 0476 · info@eventsound.ie · eventsound.ie
 - Owner-led; 35+ years of event production experience; crew includes Ronan and
   Mark for larger multi-crew events
@@ -46,8 +46,10 @@ stories in. Never invent a venue, client, number or piece of kit.
 
 - LED wall dry hire: €125 per m² per day (dry hire rate; operated packages
   quoted all-inclusive)
-- Indicative conference AV: straightforward single-room setup with sound and
-  screens from around €1,500 (from the site's FAQ)
+- No other prices, ranges or "from" figures may be published (owner decision,
+  16 November 2026). Cost content explains what drives the price, what is
+  included and how to get a quote. The earlier "from around €1,500" conference
+  figure is withdrawn.
 
 ## Real events & clients (only these; anything else = TAILOR marker)
 
