@@ -108,6 +108,12 @@ describe("homepage copy", () => {
     for (const faq of homeFaqs) expect(screen.getByText(faq.question)).toBeInTheDocument();
   });
 
+  it("the closing call to action links straight to the canonical URLs (no redirect hop)", () => {
+    const cta = read("src/components/site/CTASection.tsx");
+    expect(cta).toContain('primaryHref = "/contact/"');
+    expect(cta).toContain('secondaryHref = "/services/"');
+  });
+
   it("the homepage publishes its FAQ as schema", () => {
     const page = read("src/pages/Index.tsx");
     expect(page).toContain('generateFAQSchema({ questions: homeFaqs })');

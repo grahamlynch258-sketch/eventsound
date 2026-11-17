@@ -18,8 +18,8 @@ export function CTASection({
   description,
   primaryCtaLabel = "Get a Quote",
   secondaryCtaLabel = "View Our Services",
-  primaryHref = "/contact",
-  secondaryHref = "/services",
+  primaryHref = "/contact/",
+  secondaryHref = "/services/",
 }: CTASectionProps) {
   const finalDescription =
     description ||
