@@ -1,3 +1,4 @@
+import { cdnImage } from "@/lib/imageCdn";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { PageShell } from "@/components/site/PageShell";
@@ -144,7 +145,7 @@ const CaseStudies = () => {
                   {caseStudy.featured_image_url && (
                     <div className="aspect-video overflow-hidden">
                       <img
-                        src={caseStudy.featured_image_url}
+                        {...cdnImage(caseStudy.featured_image_url, "third")}
                         alt={caseStudy.featured_image_alt || caseStudy.title}
                         loading="lazy"
                         decoding="async"

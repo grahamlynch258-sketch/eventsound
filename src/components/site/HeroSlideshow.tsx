@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { cdnImage, preloadCdnImage } from "@/lib/imageCdn";
 
 type Props = {
   intervalMs?: number;
@@ -54,14 +55,16 @@ export function HeroSlideshow({ intervalMs = 5000 }: Props) {
   useEffect(() => {
     if (images.length === 0) return;
     const firstUrl = images[0].url;
+    const firstProps = cdnImage(firstUrl, "hero");
     const preload = document.querySelector<HTMLLinkElement>('link[rel="preload"][as="image"]');
-    if (preload && preload.href === firstUrl) {
+    const alreadyPreloaded = preload && (firstProps.srcSet
+      ? preload.imageSrcset === firstProps.srcSet
+      : preload.href === firstUrl);
+    if (alreadyPreloaded) {
       setFirstImageLoaded(true);
       return;
     }
-    const img = new Image();
-    img.src = firstUrl;
-    img.onload = () => setFirstImageLoaded(true);
+    preloadCdnImage(firstProps, () => setFirstImageLoaded(true));
   }, [images.length > 0 ? images[0].url : ""]);
 
   useEffect(() => {
@@ -87,7 +90,7 @@ export function HeroSlideshow({ intervalMs = 5000 }: Props) {
     const first = images[0];
     return (
       <img
-        src={first.url}
+        {...cdnImage(first.url, "hero")}
         alt={first.alt}
         loading="eager"
         decoding="sync"
@@ -126,7 +129,7 @@ export function HeroSlideshow({ intervalMs = 5000 }: Props) {
         return (
           <img
             key={img.url}
-            src={img.url}
+            {...cdnImage(img.url, "hero")}
             alt={img.alt}
             loading={i === 0 ? "eager" : "lazy"}
             decoding="async"

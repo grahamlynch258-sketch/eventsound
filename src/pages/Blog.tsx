@@ -1,3 +1,4 @@
+import { cdnImage } from "@/lib/imageCdn";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Calendar } from "lucide-react";
@@ -52,7 +53,7 @@ export default function Blog() {
                 <Card className="h-full overflow-hidden border-border/60 transition-shadow hover:shadow-lg">
                   {post.featured_image_url && (
                     <div className="aspect-video overflow-hidden">
-                      <img src={post.featured_image_url} alt={post.featured_image_alt || post.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                      <img {...cdnImage(post.featured_image_url, "third")} alt={post.featured_image_alt || post.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
                     </div>
                   )}
                   <CardHeader>

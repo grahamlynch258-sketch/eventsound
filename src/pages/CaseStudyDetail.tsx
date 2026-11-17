@@ -1,3 +1,4 @@
+import { cdnImage } from "@/lib/imageCdn";
 import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { PageShell } from "@/components/site/PageShell";
@@ -162,7 +163,7 @@ const CaseStudyDetail = () => {
         {caseStudy.featured_image_url && (
           <div className="aspect-video w-full max-w-4xl mx-auto mb-8 rounded-lg overflow-hidden">
             <img
-              src={caseStudy.featured_image_url}
+              {...cdnImage(caseStudy.featured_image_url, "wide")}
               alt={caseStudy.featured_image_alt || caseStudy.title}
               className="w-full h-full object-cover"
               width={1920}
@@ -275,7 +276,7 @@ const CaseStudyDetail = () => {
                     {related.featured_image_url && (
                       <div className="aspect-video overflow-hidden">
                         <img
-                          src={related.featured_image_url}
+                          {...cdnImage(related.featured_image_url, "third")}
                           alt={related.featured_image_alt || related.title}
                           loading="lazy"
                           decoding="async"

@@ -1,3 +1,4 @@
+import { cdnImage } from "@/lib/imageCdn";
 import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
@@ -101,7 +102,7 @@ export default function VideoProduction() {
               <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {gallery.map((img) => (
                   <StaggerItem key={img.id}>
-                  <img src={img.image_url} alt={img.alt_text || "Video production at live event"} className="rounded-lg w-full aspect-video object-cover" loading="lazy" decoding="async" width={600} height={338} />
+                  <img {...cdnImage(img.image_url, "third")} alt={img.alt_text || "Video production at live event"} className="rounded-lg w-full aspect-video object-cover" loading="lazy" decoding="async" width={600} height={338} />
                   </StaggerItem>
                 ))}
               </StaggerContainer>

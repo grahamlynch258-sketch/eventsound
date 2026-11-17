@@ -18,7 +18,15 @@ const send = (res, status, file) => { res.writeHead(status, { 'Content-Type': MI
 const isFile = f => fs.existsSync(f) && fs.statSync(f).isFile();
 
 http.createServer((req, res) => {
-  const pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
+  const requestUrl = new URL(req.url, 'http://localhost');
+  const pathname = decodeURIComponent(requestUrl.pathname);
+  // No image resizer locally: redirect to the original photo.
+  if (pathname === '/.netlify/images') {
+    const source = requestUrl.searchParams.get('url') || '';
+    if (!/^(https:\/\/|\/[^/])/.test(source)) { res.writeHead(404).end(); return; }
+    res.writeHead(302, { Location: source }).end();
+    return;
+  }
   const target = path.normalize(path.join(DIST, pathname));
   if (!target.startsWith(DIST)) { res.writeHead(403).end(); return; }
   if (isFile(target)) return send(res, 200, target);

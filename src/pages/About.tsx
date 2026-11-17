@@ -1,3 +1,4 @@
+import { cdnImage } from "@/lib/imageCdn";
 import { useState, useEffect } from "react";
 import { PageShell } from "@/components/site/PageShell";
 import { CTASection } from "@/components/site/CTASection";
@@ -75,7 +76,7 @@ function BehindTheScenes() {
                 className="overflow-hidden rounded-xl border border-border/50"
               >
                 <img
-                  src={img.image_url}
+                  {...cdnImage(img.image_url, "half")}
                   alt={img.alt_text || "Behind the scenes at EventSound"}
                   className="rounded-lg w-full aspect-video object-cover"
                   loading="lazy"
@@ -95,7 +96,7 @@ function BehindTheScenes() {
                 className="overflow-hidden rounded-xl border border-border/50"
               >
                 <img
-                  src={img.image_url}
+                  {...cdnImage(img.image_url, "half")}
                   alt={img.alt}
                   className="w-full aspect-[4/3] object-cover"
                   loading="lazy"

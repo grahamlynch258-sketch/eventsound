@@ -1,4 +1,5 @@
 import { ReactNode, useState, useEffect } from "react";
+import { cdnImage, preloadCdnImage } from "@/lib/imageCdn";
 
 interface PageHeaderProps {
   title: string;
@@ -16,9 +17,7 @@ export function PageHeader({ title, subtitle, backgroundImage, backgroundAlt, ch
       setLoaded(false);
       return;
     }
-    const img = new Image();
-    img.src = backgroundImage;
-    img.onload = () => setLoaded(true);
+    preloadCdnImage(cdnImage(backgroundImage, "hero"), () => setLoaded(true));
   }, [backgroundImage]);
 
   // backgroundImage is undefined → pages with no hero (gradient fallback)
@@ -30,7 +29,7 @@ export function PageHeader({ title, subtitle, backgroundImage, backgroundAlt, ch
         <div className="absolute inset-0">
           {backgroundImage && (
             <img
-              src={backgroundImage}
+              {...cdnImage(backgroundImage, "hero")}
               alt={backgroundAlt || title}
               className={`w-full h-full object-cover transition-opacity duration-500 ${loaded ? "opacity-100" : "opacity-0"}`}
               loading="eager"

@@ -162,7 +162,9 @@ const AdminCaseStudyEdit = () => {
 
       const { error: uploadError } = await supabase.storage
         .from("case-study-images")
-        .upload(filePath, file);
+        // One year: file names are unique per upload, and the image resizer
+        // only keeps its copies when the stored photo is cacheable.
+        .upload(filePath, file, { cacheControl: "31536000" });
 
       if (uploadError) throw uploadError;
 

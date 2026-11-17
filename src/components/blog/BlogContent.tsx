@@ -1,3 +1,4 @@
+import { cdnImage } from "@/lib/imageCdn";
 import { Fragment, type ReactNode } from "react";
 import type { BlogImage } from "@/types/blog";
 import { safeContentUrl } from "@/lib/blog";
@@ -50,7 +51,7 @@ export function BlogContent({ content, images = [] }: BlogContentProps) {
         blocks.push(
           <figure key={`image-${index}`} className="my-10">
             <img
-              src={image.storage_url}
+              {...cdnImage(image.storage_url, "wide")}
               alt={image.alt_text}
               loading="lazy"
               className="w-full rounded-xl border border-border/60"
@@ -68,7 +69,7 @@ export function BlogContent({ content, images = [] }: BlogContentProps) {
       if (src) {
         blocks.push(
           <figure key={`markdown-image-${index}`} className="my-10">
-            <img src={src} alt={markdownImage[1]} loading="lazy" className="w-full rounded-xl border border-border/60" />
+            <img {...cdnImage(src, "wide")} alt={markdownImage[1]} loading="lazy" className="w-full rounded-xl border border-border/60" />
           </figure>,
         );
       }
