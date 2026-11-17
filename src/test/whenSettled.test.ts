@@ -3,8 +3,9 @@ import { whenSettled } from "@/lib/prerenderBoot";
 
 describe("whenSettled", () => {
   beforeEach(() => {
+    // Fake timers start at the real clock, which is after the module's own
+    // "last network activity" timestamp. Do not set the clock backwards.
     vi.useFakeTimers();
-    vi.setSystemTime(new Date("2026-11-17T12:00:00Z"));
   });
   afterEach(() => {
     vi.useRealTimers();
