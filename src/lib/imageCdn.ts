@@ -6,17 +6,25 @@
 // ([images] remote_images) allows exactly the storage host below.
 //
 // cdnImage() returns the props for an <img>: spread it instead of `src`.
-// Anything that is not a storage photo (local files, SVG, GIF, other hosts)
-// is passed through untouched, as is everything on the Vite dev server,
-// which has no /.netlify/images endpoint.
+// Anything else (other local files, SVG, GIF, other hosts) is passed through
+// untouched, as is everything on the Vite dev server, which has no
+// /.netlify/images endpoint. The one local exception is public/Brand/: the
+// footer logo there is a 365 KB PNG drawn 280 px wide.
 
 export const STORAGE_PUBLIC_PREFIX =
   "https://blhxvtmhhvrorajkszhy.supabase.co/storage/v1/object/public/";
 
+/** Site files (public/) that are also worth resizing. */
+export const LOCAL_RESIZABLE_PREFIX = "/Brand/";
+
 export const IMAGE_CDN_PATH = "/.netlify/images";
 
 type Preset = {
-  /** Candidate widths in px, ascending. Never above 1920: the CDN upscales. */
+  /**
+   * Candidate widths in px, ascending, at most 1920 (the largest original).
+   * Asking for more than a photo has returns it at its own size (measured
+   * 17 Nov 2026: an 800 px photo gave identical bytes at w=800 and w=1200).
+   */
   widths: number[];
   /** How wide the image is drawn, for the browser to pick a candidate. */
   sizes: string;
@@ -39,6 +47,8 @@ export const IMAGE_PRESETS = {
     sizes: "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw",
     fallback: 800,
   },
+  // The brand logo, drawn at most 280 px wide (twice that for sharp screens).
+  logo: { widths: [280, 560], sizes: "280px", fallback: 560 },
 } satisfies Record<string, Preset>;
 
 export type ImagePreset = keyof typeof IMAGE_PRESETS;
@@ -48,7 +58,8 @@ export type CdnImageProps = { sizes?: string; srcSet?: string; src: string | und
 const UNSIZABLE = /\.(svg|gif)(\?|#|$)/i;
 
 export function isResizable(url: string | null | undefined): url is string {
-  return typeof url === "string" && url.startsWith(STORAGE_PUBLIC_PREFIX) && !UNSIZABLE.test(url);
+  if (typeof url !== "string" || UNSIZABLE.test(url)) return false;
+  return url.startsWith(STORAGE_PUBLIC_PREFIX) || url.startsWith(LOCAL_RESIZABLE_PREFIX);
 }
 
 export function cdnUrl(url: string, width: number): string {

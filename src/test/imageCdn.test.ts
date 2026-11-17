@@ -31,6 +31,17 @@ describe("image resizer URLs", () => {
     expect(cdnImage(undefined, "hero", true)).toEqual({ src: undefined });
   });
 
+  it("resizes the local brand logo, which is a 365 KB file drawn 280 px wide", () => {
+    const props = cdnImage("/Brand/logo_transparent.png", "logo", true);
+    expect(props.sizes).toBe("280px");
+    expect(props.srcSet).toBe(
+      "/.netlify/images?url=%2FBrand%2Flogo_transparent.png&w=280 280w, /.netlify/images?url=%2FBrand%2Flogo_transparent.png&w=560 560w",
+    );
+    for (const page of ["LEDVideoWallsV2", "LEDScreenHireV2", "MusicalTheatreV2"]) {
+      expect(read(`src/pages/v2/${page}.tsx`), page).not.toContain('src="/Brand/logo_transparent.png"');
+    }
+  });
+
   it("passes the original URL through when the resizer is off (Vite dev server)", () => {
     expect(cdnImage(PHOTO, "hero", false)).toEqual({ src: PHOTO });
   });

@@ -27,7 +27,7 @@ function startStaticServer(distDir) {
     // the original photo instead (see src/lib/imageCdn.ts).
     if (pathname === '/.netlify/images') {
       const source = requestUrl.searchParams.get('url') || '';
-      if (!/^https:\/\//.test(source)) { res.writeHead(404).end(); return; }
+      if (!/^(https:\/\/|\/[^/])/.test(source)) { res.writeHead(404).end(); return; }
       res.writeHead(302, { Location: source }).end();
       return;
     }

@@ -23,7 +23,7 @@ http.createServer((req, res) => {
   // No image resizer locally: redirect to the original photo.
   if (pathname === '/.netlify/images') {
     const source = requestUrl.searchParams.get('url') || '';
-    if (!/^https:\/\//.test(source)) { res.writeHead(404).end(); return; }
+    if (!/^(https:\/\/|\/[^/])/.test(source)) { res.writeHead(404).end(); return; }
     res.writeHead(302, { Location: source }).end();
     return;
   }

@@ -619,7 +619,7 @@ export default function LEDVideoWallsV2() {
                 {/* Logo */}
                 <div className="mb-8">
                   <img
-                    src="/Brand/logo_transparent.png"
+                    {...cdnImage("/Brand/logo_transparent.png", "logo")}
                     alt="EventSound AV Services"
                     className="max-w-[280px] mx-auto md:mx-0"
                   />
