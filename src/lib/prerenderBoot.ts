@@ -38,6 +38,7 @@ if (typeof window !== "undefined" && typeof window.fetch === "function") {
 }
 
 const QUIET_MS = 250;
+const HEADING_GRACE_MS = 400;
 const SOFT_LIMIT_MS = 5000;
 const HARD_LIMIT_MS = 12000;
 
@@ -45,16 +46,24 @@ const HARD_LIMIT_MS = 12000;
  * Resolves when `container` shows a page heading and no fetch has been in
  * flight for a short quiet period. After SOFT_LIMIT_MS a heading alone is
  * enough; after HARD_LIMIT_MS it resolves regardless.
+ *
+ * A page's data requests start a moment after its first render (the Supabase
+ * client resolves its session before each call), so "nothing in flight" only
+ * counts once the heading has been there for HEADING_GRACE_MS. Without that,
+ * the gallery sometimes swapped in while its grid still said "Loading".
  */
 export function whenSettled(container: HTMLElement): Promise<void> {
   const started = Date.now();
+  let headingSeenAt = 0;
   return new Promise((resolve) => {
     // setTimeout, not requestAnimationFrame: background tabs pause rAF.
     const check = () => {
       const now = Date.now();
       const elapsed = now - started;
       const hasHeading = container.querySelector("h1") !== null;
-      const quiet = pendingFetches === 0 && now - lastFetchChange >= QUIET_MS;
+      if (hasHeading && !headingSeenAt) headingSeenAt = now;
+      const quiet = pendingFetches === 0 && now - lastFetchChange >= QUIET_MS
+        && hasHeading && now - headingSeenAt >= HEADING_GRACE_MS;
       if ((hasHeading && quiet) || (hasHeading && elapsed >= SOFT_LIMIT_MS) || elapsed >= HARD_LIMIT_MS) {
         resolve();
         return;
