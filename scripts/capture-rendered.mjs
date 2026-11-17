@@ -21,7 +21,16 @@ const MIME = {
 
 function startStaticServer(distDir) {
   const server = http.createServer((req, res) => {
-    const pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
+    const requestUrl = new URL(req.url, 'http://localhost');
+    const pathname = decodeURIComponent(requestUrl.pathname);
+    // Netlify's image resizer does not exist locally: send the browser to
+    // the original photo instead (see src/lib/imageCdn.ts).
+    if (pathname === '/.netlify/images') {
+      const source = requestUrl.searchParams.get('url') || '';
+      if (!/^https:\/\//.test(source)) { res.writeHead(404).end(); return; }
+      res.writeHead(302, { Location: source }).end();
+      return;
+    }
     const resolved = path.normalize(path.join(distDir, pathname));
     if (!resolved.startsWith(distDir)) { res.writeHead(403).end(); return; }
     const candidates = [resolved, path.join(resolved, 'index.html'), path.join(distDir, 'spa.html')];
@@ -97,7 +106,12 @@ function extractSnapshot() {
 
   // The largest image in the first screen is the page's likely LCP element;
   // the build preloads it so it starts downloading with the stylesheet.
+  // A resized photo has srcset/sizes; the preload must carry the same ones
+  // (and the relative fallback URL, never this build server's address) so
+  // every screen preloads the size it will actually draw.
   let heroImage = '';
+  let heroSrcset = '';
+  let heroSizes = '';
   let heroArea = 0;
   for (const img of root.querySelectorAll('img')) {
     const rect = img.getBoundingClientRect();
@@ -106,7 +120,9 @@ function extractSnapshot() {
     const area = rect.width * Math.min(rect.height, window.innerHeight);
     if (visible && area > heroArea && /^https?:|^\//.test(img.currentSrc || img.src)) {
       heroArea = area;
-      heroImage = img.currentSrc || img.src;
+      heroSrcset = img.getAttribute('srcset') || '';
+      heroSizes = heroSrcset ? (img.getAttribute('sizes') || '') : '';
+      heroImage = heroSrcset ? img.getAttribute('src') : (img.currentSrc || img.src);
     }
   }
 
@@ -114,6 +130,8 @@ function extractSnapshot() {
   return {
     faqSchema,
     heroImage,
+    heroSrcset,
+    heroSizes,
     html: (runtimeCss ? `<style data-prerender-styles>${runtimeCss}</style>` : '') + clone.innerHTML,
     words: text.split(/\s+/).filter(Boolean).length,
     h1: (root.querySelector('h1')?.innerText || '').trim(),

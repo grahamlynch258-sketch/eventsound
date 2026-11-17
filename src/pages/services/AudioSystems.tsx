@@ -1,3 +1,4 @@
+import { cdnImage } from "@/lib/imageCdn";
 import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
@@ -134,7 +135,7 @@ export default function AudioSystems() {
                 {gallery.slice(0, 4).map((img) => (
                   <StaggerItem key={img.id}>
                     <img
-                      src={img.image_url}
+                      {...cdnImage(img.image_url, "third")}
                       alt={img.alt_text || "Professional sound system at an event in Ireland"}
                       className="rounded-lg w-full aspect-video object-cover"
                       loading="lazy"

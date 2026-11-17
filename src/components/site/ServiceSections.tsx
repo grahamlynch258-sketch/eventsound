@@ -1,3 +1,4 @@
+import { cdnImage } from "@/lib/imageCdn";
 import type { ServiceSection } from "@/hooks/useServiceSections";
 
 interface ServiceSectionsProps {
@@ -20,7 +21,7 @@ export function ServiceSections({ sections }: ServiceSectionsProps) {
             <div className="w-full md:w-1/2">
               <figure>
                 <img
-                  src={section.image_url}
+                  {...cdnImage(section.image_url, "half")}
                   alt={section.alt_text}
                   title={section.title_attr || undefined}
                   className="w-full rounded-lg object-cover aspect-video"

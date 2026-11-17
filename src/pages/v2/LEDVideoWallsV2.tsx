@@ -1,3 +1,4 @@
+import { cdnImage } from "@/lib/imageCdn";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { PageShell } from "@/components/site/PageShell";
@@ -77,7 +78,7 @@ function SlotImage({ slots, slotId, aspect = "aspect-video", className = "", wid
   if (slot?.image_url) {
     return (
       <img
-        src={slot.image_url}
+        {...cdnImage(slot.image_url, "half")}
         alt={slot.alt_text || slot.slot_label}
         className={`w-full h-full object-cover ${className}`}
         loading="lazy"
@@ -219,7 +220,7 @@ export default function LEDVideoWallsV2() {
           {heroImages.map((img, i) => (i > 0 && !extraSlidesReady) ? null : (
             <img
               key={img.image_url}
-              src={img.image_url}
+              {...cdnImage(img.image_url, "hero")}
               alt={img.alt_text || "LED video wall at event"}
               className="absolute inset-0 w-full h-full object-cover transition-opacity duration-[800ms]"
               style={{ opacity: i === currentSlide ? 1 : 0 }}

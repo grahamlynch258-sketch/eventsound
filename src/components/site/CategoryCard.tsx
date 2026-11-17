@@ -1,3 +1,4 @@
+import { cdnImage } from "@/lib/imageCdn";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
@@ -16,7 +17,7 @@ export function CategoryCard({ title, imageSrc, to, className }: CategoryCardPro
       <Card className="overflow-hidden rounded-xl border-border/50">
         <div className="relative aspect-[4/3]">
          <img
-            src={imageSrc}
+            {...cdnImage(imageSrc, "third")}
             alt={`${title} category`}
             loading="lazy"
             decoding="async"

@@ -1,3 +1,4 @@
+import { cdnImage } from "@/lib/imageCdn";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -81,7 +82,7 @@ export function GalleryGrid({ selectedCategory, onCategoryChange }: GalleryGridP
           {filtered.map((item) => (
             <div key={item.id} className="aspect-[4/3] rounded-xl overflow-hidden bg-muted">
               <img
-                src={item.image_url}
+                {...cdnImage(item.image_url, "third")}
                 alt={item.alt_text || item.title}
                 className="w-full h-full object-cover"
                 loading="lazy"

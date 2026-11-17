@@ -1293,10 +1293,19 @@ async function prerender() {
           const chunks = [...next.matchAll(preloadTag)].map(m => m[1]);
           next = next.replace(preloadTag, '').replace(entryTag[0], () => deferredBootScript(entryTag[1], chunks));
         }
-        // Preload the page's main first-screen image unless one is already preloaded.
-        if (snapshot.heroImage && !/rel="preload" as="image"/.test(next)) {
-          const href = snapshot.heroImage.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
-          next = next.replace('</head>', () => `    <link rel="preload" as="image" fetchpriority="high" href="${href}">\n  </head>`);
+        // Preload the page's main first-screen image. A resized photo
+        // (srcset) replaces any build-time preload of the full-size file, or
+        // phones would download both.
+        const hasImagePreload = /rel="preload" as="image"/.test(next);
+        if (snapshot.heroImage && (snapshot.heroSrcset || !hasImagePreload)) {
+          const attr = value => value.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+          const responsive = snapshot.heroSrcset
+            ? ` imagesrcset="${attr(snapshot.heroSrcset)}" imagesizes="${attr(snapshot.heroSizes || '100vw')}"`
+            : '';
+          next = next
+            .replace(/[ \t]*<link rel="preload" as="image"[^>]*>\r?\n?/g, '')
+            .replace('</head>', () =>
+              `    <link rel="preload" as="image" fetchpriority="high" href="${attr(snapshot.heroImage)}"${responsive}>\n  </head>`);
         }
         fs.writeFileSync(filePath, next);
         applied += 1;

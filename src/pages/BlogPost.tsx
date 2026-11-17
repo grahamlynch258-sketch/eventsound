@@ -1,3 +1,4 @@
+import { cdnImage } from "@/lib/imageCdn";
 import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft, Calendar } from "lucide-react";
@@ -102,7 +103,7 @@ export default function BlogPost() {
 
           {post.featured_image_url && (
             <div className="container mx-auto max-w-5xl px-4 pt-10">
-              <img src={post.featured_image_url} alt={post.featured_image_alt || post.title} className="aspect-video w-full rounded-xl border border-border/60 object-cover" {...({ fetchpriority: "high" } as Record<string, string>)} />
+              <img {...cdnImage(post.featured_image_url, "wide")} alt={post.featured_image_alt || post.title} className="aspect-video w-full rounded-xl border border-border/60 object-cover" {...({ fetchpriority: "high" } as Record<string, string>)} />
             </div>
           )}
 
