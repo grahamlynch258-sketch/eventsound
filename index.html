@@ -11,6 +11,29 @@
 
     <!-- Self-hosted fonts — eliminates render-blocking Google Fonts requests -->
     <style>
+      /* Stand-in fonts shown until Inter and Playfair Display arrive. Each is
+         a font already on the device (Arial/Georgia on Windows, Mac and
+         iPhone; Roboto/Noto Serif on Android), resized so its text takes up
+         the same room as the real font. Without this the text re-wraps when
+         the real font loads and the page jumps. The numbers come from
+         evidence/fontmetrics.mjs in the handoff folder; re-run it if either
+         web font file changes. They sit second in the font stacks in
+         src/index.css and tailwind.config.ts. */
+      @font-face { font-family: 'Inter Fallback Arial'; font-weight: 400; src: local('Arial'), local('ArialMT'); size-adjust: 106.38%; ascent-override: 91.18%; descent-override: 22.56%; line-gap-override: 0%; }
+      @font-face { font-family: 'Inter Fallback Arial'; font-weight: 500; src: local('Arial'), local('ArialMT'); size-adjust: 107.29%; ascent-override: 90.41%; descent-override: 22.37%; line-gap-override: 0%; }
+      @font-face { font-family: 'Inter Fallback Arial'; font-weight: 600; src: local('Arial Bold'), local('Arial-BoldMT'); size-adjust: 101.04%; ascent-override: 96%; descent-override: 23.75%; line-gap-override: 0%; }
+      @font-face { font-family: 'Inter Fallback Arial'; font-weight: 700; src: local('Arial Bold'), local('Arial-BoldMT'); size-adjust: 101.88%; ascent-override: 95.21%; descent-override: 23.56%; line-gap-override: 0%; }
+      @font-face { font-family: 'Inter Fallback Roboto'; font-weight: 400; src: local('Roboto'), local('Roboto-Regular'); size-adjust: 107.59%; ascent-override: 90.16%; descent-override: 22.31%; line-gap-override: 0%; }
+      @font-face { font-family: 'Inter Fallback Roboto'; font-weight: 500; src: local('Roboto'), local('Roboto-Regular'); size-adjust: 108.51%; ascent-override: 89.4%; descent-override: 22.12%; line-gap-override: 0%; }
+      @font-face { font-family: 'Inter Fallback Roboto'; font-weight: 600; src: local('Roboto Bold'), local('Roboto-Bold'); size-adjust: 107.81%; ascent-override: 89.97%; descent-override: 22.26%; line-gap-override: 0%; }
+      @font-face { font-family: 'Inter Fallback Roboto'; font-weight: 700; src: local('Roboto Bold'), local('Roboto-Bold'); size-adjust: 108.7%; ascent-override: 89.24%; descent-override: 22.08%; line-gap-override: 0%; }
+      @font-face { font-family: 'Playfair Fallback Georgia'; font-weight: 400 500; src: local('Georgia'); size-adjust: 100.68%; ascent-override: 107.27%; descent-override: 24.83%; line-gap-override: 0%; }
+      @font-face { font-family: 'Playfair Fallback Georgia'; font-weight: 600; src: local('Georgia Bold'), local('Georgia-Bold'); size-adjust: 87.97%; ascent-override: 122.77%; descent-override: 28.42%; line-gap-override: 0%; }
+      @font-face { font-family: 'Playfair Fallback Georgia'; font-weight: 700; src: local('Georgia Bold'), local('Georgia-Bold'); size-adjust: 88.7%; ascent-override: 121.76%; descent-override: 28.19%; line-gap-override: 0%; }
+      @font-face { font-family: 'Playfair Fallback Noto'; font-weight: 400 500; src: local('Noto Serif'), local('NotoSerif'), local('NotoSerif-Regular'); size-adjust: 93.45%; ascent-override: 115.57%; descent-override: 26.75%; line-gap-override: 0%; }
+      @font-face { font-family: 'Playfair Fallback Noto'; font-weight: 600; src: local('Noto Serif Bold'), local('NotoSerif-Bold'); size-adjust: 89.47%; ascent-override: 120.71%; descent-override: 27.94%; line-gap-override: 0%; }
+      @font-face { font-family: 'Playfair Fallback Noto'; font-weight: 700; src: local('Noto Serif Bold'), local('NotoSerif-Bold'); size-adjust: 90.21%; ascent-override: 119.73%; descent-override: 27.71%; line-gap-override: 0%; }
+
       @font-face {
         font-family: 'Inter';
         font-style: normal;

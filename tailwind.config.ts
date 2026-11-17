@@ -99,6 +99,8 @@ export default {
   		fontFamily: {
   		sans: [
   				'Inter',
+  				'Inter Fallback Arial',
+  				'Inter Fallback Roboto',
   				'ui-sans-serif',
   				'system-ui',
   				'-apple-system',
@@ -112,6 +114,8 @@ export default {
   			],
   			serif: [
   				'Playfair Display',
+  				'Playfair Fallback Georgia',
+  				'Playfair Fallback Noto',
   				'ui-serif',
   				'Georgia',
   				'Cambria',
