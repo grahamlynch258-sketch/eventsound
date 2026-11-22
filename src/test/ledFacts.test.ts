@@ -15,7 +15,8 @@ const walk = (dir: string): string[] =>
 // - The largest walls are 100 m2 and more.
 // - 3.9 mm is the coarsest panel held (no 4.8 mm or 4.9 mm).
 const publicPages = walk("src/pages").filter((f) => f.endsWith(".tsx") && !f.includes("/admin/"));
-const sources = [...publicPages, "src/content/quickAnswers.ts", "src/content/home.ts", "public/llms.txt"];
+// scripts/prerender.mjs writes the static descriptions and schema crawlers read.
+const sources = [...publicPages, "src/content/quickAnswers.ts", "src/content/home.ts", "public/llms.txt", "scripts/prerender.mjs", "index.html"];
 
 describe("LED facts agree everywhere", () => {
   it("the rate is a starting price for a named panel", () => {
