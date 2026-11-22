@@ -30,7 +30,9 @@ export const siteConfig = {
   googleReviewUrl: "https://search.google.com/local/writereview?placeid=ChIJM1xuFXgwZ0gRNkUR4exw_5U",
 
   pricing: {
+    // A starting price: dry hire of P3 panels. Finer pitches cost more.
     ledWallDryHirePerSquareMetrePerDay: 125,
+    ledWallDryHirePanel: "P3",
     currency: "EUR",
   },
 

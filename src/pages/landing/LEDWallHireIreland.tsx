@@ -29,7 +29,7 @@ export default function LEDWallHireIreland() {
           <h2 className="text-2xl font-semibold text-center mb-10">Our LED Wall Service Includes</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {[
-              { title: "Custom Sizing", desc: "From 2m² to 50m² and beyond — configured to fit your venue and sightlines" },
+              { title: "Custom Sizing", desc: "From 2m² to 100m² and beyond — configured to fit your venue and sightlines" },
               { title: "Content Playback", desc: "Presentations, video, live camera feeds, branding — all managed on-site" },
               { title: "Signal Management", desc: "Pixel mapping, scaling, and multi-source switching handled by our team" },
               { title: "Delivery & Installation", desc: "Full delivery, rigging, installation, and breakdown by experienced crew" },

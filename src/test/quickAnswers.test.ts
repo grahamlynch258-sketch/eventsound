@@ -10,13 +10,16 @@ const allText = (entry: (typeof entries)[number]) =>
   [entry.question, entry.answer, ...entry.facts.flatMap((fact) => [fact.label, fact.value])].join(" ");
 
 describe("answer-first blocks on the main service pages", () => {
-  it("covers the five money pages, each rendered once", () => {
+  it("covers the eight service pages, each rendered once", () => {
     const pages: Record<string, string> = {
       ledVideoWalls: "src/pages/v2/LEDVideoWallsV2.tsx",
       avHire: "src/pages/services/AVProduction.tsx",
       conferenceAv: "src/pages/services/ConferenceAvHire.tsx",
       lighting: "src/pages/services/LightingDesign.tsx",
       staging: "src/pages/services/StagingPipeDrape.tsx",
+      soundHire: "src/pages/services/AudioSystems.tsx",
+      eventProduction: "src/pages/services/EventProduction.tsx",
+      ledScreenHire: "src/pages/v2/LEDScreenHireV2.tsx",
     };
     expect(Object.keys(quickAnswers).sort()).toEqual(Object.keys(pages).sort());
     for (const [key, file] of Object.entries(pages)) {

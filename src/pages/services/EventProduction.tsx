@@ -1,5 +1,7 @@
 import { cdnImage } from "@/lib/imageCdn";
 import { PageShell } from "@/components/site/PageShell";
+import { QuickAnswer } from "@/components/site/QuickAnswer";
+import { quickAnswers } from "@/content/quickAnswers";
 import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
 import { Link } from "react-router-dom";
@@ -77,6 +79,7 @@ export default function EventProduction() {
       </PageHeader>
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6 text-center">
+          <QuickAnswer content={quickAnswers.eventProduction} />
           <p className="text-lg text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
             EventSound is a full-service event production company based in Drogheda, Co. Louth, delivering sound, lighting, LED video walls, staging, and technical management for events across Dublin, Leinster, and nationwide Ireland. From corporate conferences and awards ceremonies to outdoor festivals and multi-day exhibitions, we manage the entire technical production from initial planning to on-site delivery and breakdown.
           </p>
@@ -91,7 +94,7 @@ export default function EventProduction() {
             On-site, our crew handles the full load-in, installation, and technical rehearsal. During the event, our operators manage sound levels, lighting cues, video playback, camera switching, and stage management. After the event, we handle complete breakdown and load-out.
           </p>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            Our production equipment includes Martin Audio PA systems and L-Acoustics speaker systems for sound, Chamsys-controlled lighting rigs with moving heads, wash lights, and atmospheric effects, Unilumin and Absen LED video walls in sizes from 6m² to 50m²+, GUIL aluminium staging platforms with modular configurations, and multi-camera video production with live switching and recording.
+            Our production equipment includes Martin Audio PA systems and L-Acoustics speaker systems for sound, Chamsys-controlled lighting rigs with moving heads, wash lights, and atmospheric effects, Unilumin and Absen LED video walls in sizes from 6m² to 100m²+, GUIL aluminium staging platforms with modular configurations, and multi-camera video production with live switching and recording.
           </p>
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Event Types We Produce</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">

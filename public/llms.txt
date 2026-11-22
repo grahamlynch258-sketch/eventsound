@@ -5,7 +5,7 @@
 ## Services
 
 ### LED Video Wall Hire
-EventSound provides modular LED video wall hire for conferences, concerts, festivals, corporate events, and outdoor screenings across Ireland. We stock Unilumin and Absen LED panels in pixel pitches from 1.9mm to 3.9mm, with screen sizes from 6m² for conference presentations to 50m²+ for large-scale outdoor stages. Indoor LED walls are the standard for corporate conferences, awards nights, AGMs, product launches, and exhibitions where ambient light, ceiling height, or room layout make projectors impractical. Outdoor LED walls are weather-rated with high-brightness output visible in direct sunlight, available on freestanding ground-support structures or integrated with stage rigging. We also design curved, angled, and custom-shaped LED wall configurations. Every LED wall hire includes delivery, installation, content management, a dedicated on-site operator, and full breakdown after the event. Notable events include Swords Castle Summer Concerts, Beta Festival, and multi-day festival productions.
+EventSound provides modular LED video wall hire for conferences, concerts, festivals, corporate events, and outdoor screenings across Ireland. We stock Unilumin and Absen LED panels in pixel pitches from 1.9mm to 3.9mm, with screen sizes from 6m² for conference presentations to 100m²+ for large-scale outdoor stages. Indoor LED walls are the standard for corporate conferences, awards nights, AGMs, product launches, and exhibitions where ambient light, ceiling height, or room layout make projectors impractical. Outdoor LED walls are weather-rated with high-brightness output visible in direct sunlight, available on freestanding ground-support structures or integrated with stage rigging. We also design curved, angled, and custom-shaped LED wall configurations. Every LED wall hire includes delivery, installation, content management, a dedicated on-site operator, and full breakdown after the event. Notable events include Swords Castle Summer Concerts, Beta Festival, and multi-day festival productions.
 URL: https://eventsound.ie/services/led-video-walls/
 
 ### LED Screen & TV Hire
@@ -77,7 +77,7 @@ EventSound is based in Drogheda, Co. Louth and serves all of Ireland. Primary se
 - Owner-led team with over 35 years of event production experience
 - All-inclusive quoting model: equipment, delivery, setup, on-site operation, and breakdown included in every hire — no hidden fees or line-item pricing
 - Experienced multi-person technical crews for larger events
-- LED video wall dry hire starts from €125 per square metre per day; operated hire with delivery, installation and crew is quoted per event
+- LED video wall dry hire starts from €125 per square metre per day for P3 panels; operated hire with delivery, installation and crew is quoted per event
 - Equipment includes Absen P2.6 LED panels, Unilumin LED panels, professional-grade audio (line array and point source systems), intelligent lighting fixtures, and broadcast-quality video equipment
 - Notable clients: Fingal County Council, Louth County Council, Local Enterprise Office Louth, Škoda Ireland
 - Notable events: PRISM conferences, Local Enterprise Week, School Summit, Beta Festival, Swords Castle Summer Concerts
@@ -86,6 +86,8 @@ EventSound is based in Drogheda, Co. Louth and serves all of Ireland. Primary se
 - How video wall hire works (sizes, setup, show day, costs): https://eventsound.ie/blog/video-wall-hire-guide/
 - LED screen vs LED wall, what the terms mean: https://eventsound.ie/blog/led-screen-or-led-wall/
 - Conference AV technical brief to prepare before requesting quotes: https://eventsound.ie/blog/conference-av-technical-brief/
+- What LED wall hire costs in Ireland (from €125 per m² per day for P3 dry hire, and what a full quote adds): https://eventsound.ie/blog/led-wall-hire-cost-ireland/
+- What drives conference AV costs (equipment, crew, rehearsals, venue): https://eventsound.ie/blog/conference-av-costs-explained/
 - All guides: https://eventsound.ie/blog/
 
 ## Case Studies
@@ -109,7 +111,7 @@ Q: What is included in an EventSound quote?
 A: Every quote is all-inclusive — equipment, delivery, installation, on-site operation, and breakdown are included. There are no hidden fees or surprise extras.
 
 Q: How much does LED wall hire cost in Ireland?
-A: LED wall hire starts from €125 per square metre per day for dry hire. Pricing varies with pixel pitch, screen size and event requirements, and operated hire is quoted per event.
+A: LED wall hire starts from €125 per square metre per day for dry hire of P3 panels. Pricing varies with pixel pitch, screen size and event requirements, and operated hire is quoted per event.
 
 Q: What size LED video wall do I need?
 A: For conference presentations with audiences of 50-200, we typically recommend 3m x 2m to 4m x 2.5m configurations. For large stages and outdoor events, 6m x 3m and above. We recommend the right size based on your venue, audience, and content.

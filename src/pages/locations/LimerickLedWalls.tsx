@@ -11,7 +11,7 @@ import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 const LimerickLedWalls = () => {
   const faqs = [
-    { question: "How much does LED wall hire cost in Limerick?", answer: "LED wall hire in Limerick starts from €125 per square metre for dry hire. Pricing depends on pixel pitch, screen area, installation requirements, and technical support. Contact us for a detailed, no-obligation quote." },
+    { question: "How much does LED wall hire cost in Limerick?", answer: "LED wall hire in Limerick starts from €125 per square metre per day for dry hire of P3 panels. Pricing depends on pixel pitch, screen area, installation requirements, and technical support. Contact us for a detailed, no-obligation quote." },
     { question: "Can you provide LED walls for the Limerick Strand Hotel's Shannon Suite?", answer: "Yes. The Shannon Suite accommodates up to 600 delegates and is one of Limerick's premier conference spaces. We provide LED wall installations of 20 to 40 square metres for events in this venue, with the ability to scale up for larger configurations. We are familiar with the venue's load-in access and power distribution." },
     { question: "Do you cover the wider Shannon region?", answer: "Yes. We serve events across Limerick city and the wider Shannon region, including Ennis, Shannon town, North Tipperary, and surrounding areas." },
   ];
@@ -62,7 +62,7 @@ const LimerickLedWalls = () => {
 
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Our LED Wall Range for Limerick Events</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            Our LED wall systems meet the requirements of Limerick's conference and events market. The Absen 2.6mm fine pixel pitch panel provides sharp, detailed visuals for indoor conferences at venues like the Limerick Strand Hotel and University of Limerick. The Unilumin 4.9mm panel is available for outdoor events and high-brightness environments.
+            Our LED wall systems meet the requirements of Limerick's conference and events market. The Absen 2.6mm fine pixel pitch panel provides sharp, detailed visuals for indoor conferences at venues like the Limerick Strand Hotel and University of Limerick. The Unilumin 3.9mm panel is available for outdoor events and high-brightness environments.
           </p>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
             Curved LED configurations using Prism panels are available for stage designs and immersive presentations. All systems run on Novastar processing for reliable colour accuracy and multi-source content management.
@@ -78,7 +78,7 @@ const LimerickLedWalls = () => {
 
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">LED Wall Pricing in Limerick</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            LED wall hire in Limerick starts from €125 per square metre for dry hire. Contact us with your event details for an accurate quote based on pixel pitch, screen area, and installation requirements.
+            LED wall hire in Limerick starts from €125 per square metre per day for dry hire of P3 panels. Contact us with your event details for an accurate quote based on pixel pitch, screen area, and installation requirements.
           </p>
 
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Limerick Venues We Provide LED Walls For</h2>

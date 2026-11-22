@@ -1,5 +1,7 @@
 import { cdnImage } from "@/lib/imageCdn";
 import { PageShell } from "@/components/site/PageShell";
+import { QuickAnswer } from "@/components/site/QuickAnswer";
+import { quickAnswers } from "@/content/quickAnswers";
 import { PageHeader } from "@/components/site/PageHeader";
 import { useSeo } from "@/hooks/useSeo";
 import { Link } from "react-router-dom";
@@ -95,6 +97,7 @@ export default function AudioSystems() {
 
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto space-y-6 text-center">
+          <QuickAnswer content={quickAnswers.soundHire} />
           <p className="text-lg text-muted-foreground">
             EventSound provides professional sound hire and PA system hire for conferences, corporate events, concerts, festivals and public events across Ireland. We supply the speakers, digital mixing, wireless microphones, stage monitors and experienced crew needed to deliver clear coverage from the first soundcheck to the final cue.
           </p>

@@ -26,7 +26,8 @@ stories in. Never invent a venue, client, number or piece of kit.
 ## Equipment (only claim what's listed)
 
 - LED: Absen P2.6 panels and Unilumin LED panels; pixel pitches 1.9mm–3.9mm;
-  screens from 6m² (conferences) to 50m²+ (outdoor stages); indoor and
+  screens from 6m² (conferences) to 100m²+ (outdoor stages); 3.9mm is the
+  coarsest panel held (owner, 22 November 2026: no 4.8mm or 4.9mm); indoor and
   weather-rated outdoor panels; freestanding ground-support or stage rigging;
   curved, angled and custom-shaped configurations possible
 - LED screens/TVs: individual screens 43"–98" on floor stands, table mounts or
@@ -44,9 +45,12 @@ stories in. Never invent a venue, client, number or piece of kit.
 
 ## Published pricing (fair game — it's on the site)
 
-- LED wall dry hire: €125 per m² per day (dry hire rate; operated packages
-  quoted all-inclusive)
-- No other prices, ranges or "from" figures may be published (owner decision,
+- LED wall dry hire: FROM €125 per m² per day. This is a starting price, for
+  dry hire of P3 panels (owner, 22 November 2026). Always write it as "from
+  €125" and name P3; never as a flat rate. Finer pitches cost more. Operated
+  packages are quoted all-inclusive
+- No other prices, ranges or "from" figures may be published (the LED rate
+  above is the single exception) (owner decision,
   16 November 2026). Cost content explains what drives the price, what is
   included and how to get a quote. The earlier "from around €1,500" conference
   figure is withdrawn.

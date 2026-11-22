@@ -2,6 +2,8 @@ import { cdnImage } from "@/lib/imageCdn";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { PageShell } from "@/components/site/PageShell";
+import { QuickAnswer } from "@/components/site/QuickAnswer";
+import { quickAnswers } from "@/content/quickAnswers";
 import { useSeo } from "@/hooks/useSeo";
 import { useServiceImages } from "@/hooks/useServiceImages";
 import { useServicePageImages } from "@/hooks/useServicePageImages";
@@ -100,7 +102,7 @@ const faqs = [
   { question: "Can I hire a single TV screen for a one-day event?", answer: "Yes. We offer screen hire for any duration from a single day to multi-week installations. Single-day corporate events, conferences, and product launches are our most common booking type. Every hire includes delivery, setup, and collection regardless of duration." },
   { question: "Do you provide stands and mounts for hired screens?", answer: "Every screen hire comes with a professional freestanding floor stand as standard. We also offer table-top stands for smaller displays and wall-mount brackets where the venue allows. All stands are height-adjustable and designed for event use — they're stable, look professional, and can be repositioned during the event if needed." },
   { question: "Can you set up video conferencing on a hired screen?", answer: "Yes. We regularly set up screens for hybrid events with Microsoft Teams, Zoom, and Google Meet. We can provide the screen, a conference camera, ceiling or table microphones, and a speaker system — everything needed for remote participants to see and hear the room clearly. This is popular for AGMs, board meetings, and corporate town halls with remote attendees." },
-  { question: "What is the difference between an LED screen and an LED video wall?", answer: "An LED screen is a single display unit — like a large TV or monitor — typically ranging from 43 to 98 inches. An LED video wall is built from multiple modular LED panels tiled together to create a seamless display that can be any size, commonly from 6 to 50 square metres. LED screens are ideal for conferences, exhibitions, and meeting rooms. LED video walls are used for main stage visuals, concert backdrops, large conference keynotes, and outdoor events. We offer both — see our LED Video Wall Hire page for modular panel installations." },
+  { question: "What is the difference between an LED screen and an LED video wall?", answer: "An LED screen is a single display unit — like a large TV or monitor — typically ranging from 43 to 98 inches. An LED video wall is built from multiple modular LED panels tiled together to create a seamless display that can be any size, commonly from 6 to 100 square metres. LED screens are ideal for conferences, exhibitions, and meeting rooms. LED video walls are used for main stage visuals, concert backdrops, large conference keynotes, and outdoor events. We offer both — see our LED Video Wall Hire page for modular panel installations." },
   { question: "How much does LED screen hire cost in Ireland?", answer: "Every EventSound screen hire and rental is quoted on an all-inclusive basis covering the screen, stand, cabling, delivery, setup, on-site support, and collection. Pricing depends on screen size, quantity, duration, and venue location. Contact us for a free, no-obligation quote — we'll recommend the best setup for your event and provide a clear breakdown with no hidden fees." },
 ];
 
@@ -112,7 +114,7 @@ const serviceSections = [
     title: "Conference & Meeting Screen Hire",
     copy: [
       "Large-format LED screens and TV monitors are the standard for corporate conferences, seminars, AGMs, and company meetings across Ireland. We provide high-resolution displays that connect to laptops, tablets, and video conferencing platforms including Microsoft Teams, Zoom, and Google Meet.",
-      "We can provide anything from 55-inch TV screens for boardroom presentations to huge 50m²+ LED video walls for main stage conference backdrops. Every screen hire includes a freestanding floor stand, HDMI and USB-C connectivity, and setup by our technical crew.",
+      "We can provide anything from 55-inch TV screens for boardroom presentations to huge 100m²+ LED video walls for main stage conference backdrops. Every screen hire includes a freestanding floor stand, HDMI and USB-C connectivity, and setup by our technical crew.",
       "We regularly provide conference screen hire for events hosted by organisations including Fingal County Council, Louth Local Enterprise Office, and corporate clients across Dublin and the wider Leinster region. For multi-room conferences, we can deploy screens in the main hall, breakout rooms, registration areas, and speaker preparation rooms simultaneously.",
     ],
   },
@@ -120,8 +122,8 @@ const serviceSections = [
     slotId: "outdoor-led",
     title: "Outdoor LED Screen Hire",
     copy: [
-      "For outdoor events, festivals, concerts, and sports screenings, we provide weather-rated LED panels with high-brightness output visible in direct sunlight. Our outdoor screens are available in sizes from 8m² to 50m²+ and are built on freestanding ground-support structures or integrated with stage rigging.",
-      "We have provided outdoor LED walls for events including the Swords Castle Summer Concerts (main stage LED wall, PA, and lighting) and multi-day festival productions. Outdoor LED panels use a higher pixel pitch (typically 3.9mm to 4.8mm) for viewing distances of 10 metres and above, balancing image quality with the brightness needed for daylight visibility.",
+      "For outdoor events, festivals, concerts, and sports screenings, we provide weather-rated LED panels with high-brightness output visible in direct sunlight. Our outdoor screens are available in sizes from 8m² to 100m²+ and are built on freestanding ground-support structures or integrated with stage rigging.",
+      "We have provided outdoor LED walls for events including the Swords Castle Summer Concerts (main stage LED wall, PA, and lighting) and multi-day festival productions. Outdoor LED panels use a higher pixel pitch (typically 3.9mm) for viewing distances of 10 metres and above, balancing image quality with the brightness needed for daylight visibility.",
     ],
   },
   {
@@ -154,7 +156,7 @@ const sizeGuide = [
 
 const whyItems = [
   "Professional-grade LED screens, TV monitors, and LED video walls — not consumer-grade equipment",
-  "From 55-inch TV screens for boardrooms to huge 50m²+ LED video walls for main stage productions",
+  "From 55-inch TV screens for boardrooms to huge 100m²+ LED video walls for main stage productions",
   "Indoor and outdoor LED walls with Unilumin and Absen panels — industry-leading resolution and colour accuracy",
   "Curved and custom LED wall configurations for immersive event experiences",
   "Freestanding floor stands, table mounts, and wall-mount options for all screen sizes",
@@ -329,7 +331,7 @@ export default function LEDScreenHireV2() {
       <section className="container mx-auto px-4 -mt-12 relative z-10 mb-16">
         <ScrollReveal>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <StatCard label="Screens & video walls" value={<>55" – 50m²+</>} />
+            <StatCard label="Screens & video walls" value={<>55" – 100m²+</>} />
             <StatCard label="Delivery, setup & collection" value="All-inclusive" />
             <StatCard label="Event production experience" value={`${siteConfig.companyExperienceYears} yrs`} />
             <div className="rounded-xl border border-border/50 bg-card p-5 text-center shadow-lg">
@@ -345,6 +347,11 @@ export default function LEDScreenHireV2() {
             </div>
           </div>
         </ScrollReveal>
+      </section>
+
+      {/* ── Answer-first summary ── */}
+      <section className="container mx-auto px-4 mb-12">
+        <QuickAnswer content={quickAnswers.ledScreenHire} />
       </section>
 
       {/* ── Section 3: Intro + Cross-link ── */}

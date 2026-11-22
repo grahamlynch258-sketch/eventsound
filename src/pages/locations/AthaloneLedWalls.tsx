@@ -11,7 +11,7 @@ import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 const AthaloneLedWalls = () => {
   const faqs = [
-    { question: "How much does LED wall hire cost in Athlone?", answer: "LED wall hire in Athlone and the Midlands starts from €125 per square metre for dry hire. Final pricing depends on pixel pitch, screen area, installation requirements, and technical support. Contact us for a detailed quote." },
+    { question: "How much does LED wall hire cost in Athlone?", answer: "LED wall hire in Athlone and the Midlands starts from €125 per square metre per day for dry hire of P3 panels. Final pricing depends on pixel pitch, screen area, installation requirements, and technical support. Contact us for a detailed quote." },
     { question: "Can you provide LED walls at Hodson Bay Hotel?", answer: "Yes. Hodson Bay Hotel is one of Ireland's premier conference venues with 10 purpose-built conference suites accommodating over 1,000 delegates across combined spaces. We provide LED wall installations for events at Hodson Bay, from boardroom presentations to large-scale national conferences." },
     { question: "Why choose Athlone for a national conference with LED walls?", answer: "Athlone is Ireland's geographic centre. Delegates from Dublin, Galway, Cork, and Limerick can all reach Athlone within 90 minutes to two hours. This makes it the most accessible location for national events. Combined with Hodson Bay Hotel's 30+ years of conference experience and the Sheraton's flagship facilities, Athlone offers convenience, quality venues, and professional LED wall installations." },
   ];
@@ -62,7 +62,7 @@ const AthaloneLedWalls = () => {
 
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Our LED Wall Range for Midlands Events</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            Our LED wall inventory serves the Midlands conference market with the same specifications we deliver nationwide. The Absen 2.6mm fine pixel pitch panel provides sharp, detailed visuals for indoor conferences and corporate events. The Unilumin 4.9mm panel is available for outdoor installations and high-brightness applications.
+            Our LED wall inventory serves the Midlands conference market with the same specifications we deliver nationwide. The Absen 2.6mm fine pixel pitch panel provides sharp, detailed visuals for indoor conferences and corporate events. The Unilumin 3.9mm panel is available for outdoor installations and high-brightness applications.
           </p>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
             Curved LED configurations using Prism panels and Novastar processing ensure seamless content delivery across all setups.
@@ -78,7 +78,7 @@ const AthaloneLedWalls = () => {
 
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">LED Wall Pricing in the Midlands</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            LED wall hire in Athlone and the Midlands starts from €125 per square metre for dry hire. Contact us to discuss your event requirements and receive a tailored quote.
+            LED wall hire in Athlone and the Midlands starts from €125 per square metre per day for dry hire of P3 panels. Contact us to discuss your event requirements and receive a tailored quote.
           </p>
 
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Athlone & Midlands Venues We Provide LED Walls For</h2>

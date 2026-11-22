@@ -11,7 +11,7 @@ import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 const BelfastLedWalls = () => {
   const faqs = [
-    { question: "How much does LED wall hire cost in Belfast?", answer: "LED wall hire in Belfast starts from €125 per square metre for dry hire, and we can quote in sterling on request. Final pricing depends on pixel pitch, screen area, installation requirements, and technical support. We can quote in either GBP or EUR. Contact us for a detailed quote." },
+    { question: "How much does LED wall hire cost in Belfast?", answer: "LED wall hire in Belfast starts from €125 per square metre per day for dry hire of P3 panels, and we can quote in sterling on request. Final pricing depends on pixel pitch, screen area, installation requirements, and technical support. We can quote in either GBP or EUR. Contact us for a detailed quote." },
     { question: "Do you operate cross-border from the Republic of Ireland?", answer: "Yes. EventSound operates across the island of Ireland. Belfast is readily accessible from our base and we regularly provide LED walls at venues in Belfast and across Northern Ireland. Equipment transport across the border is routine and there are no customs complications for temporary event equipment." },
     { question: "Can you install LED walls at ICC Belfast?", answer: "Yes. We provide LED wall installations at ICC Belfast, including its main auditorium, exhibition hall, and breakout spaces. Our team is familiar with ICC Belfast's technical infrastructure, power distribution, and load-in procedures, ensuring efficient setup and reliable performance." },
   ];
@@ -62,7 +62,7 @@ const BelfastLedWalls = () => {
 
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Our LED Wall Range for Belfast Events</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            Our LED wall systems are regularly deployed at Belfast's conference and exhibition venues. The Absen 2.6mm fine pixel pitch panel delivers sharp indoor visuals for conferences and corporate presentations at ICC Belfast and the city's hotel venues. The Unilumin 4.9mm panel provides high-brightness output for exhibition halls and outdoor events.
+            Our LED wall systems are regularly deployed at Belfast's conference and exhibition venues. The Absen 2.6mm fine pixel pitch panel delivers sharp indoor visuals for conferences and corporate presentations at ICC Belfast and the city's hotel venues. The Unilumin 3.9mm panel provides high-brightness output for exhibition halls and outdoor events.
           </p>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
             Curved LED wall configurations are available for stage designs and immersive installations at venues like Titanic Belfast. All systems run on Novastar processing for accurate colour reproduction and reliable multi-source content switching.
@@ -78,7 +78,7 @@ const BelfastLedWalls = () => {
 
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">LED Wall Pricing in Belfast</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            LED wall hire in Belfast starts from €125 per square metre for dry hire. Contact us with your event specification and we'll provide a detailed quote in either GBP or EUR.
+            LED wall hire in Belfast starts from €125 per square metre per day for dry hire of P3 panels. Contact us with your event specification and we'll provide a detailed quote in either GBP or EUR.
           </p>
 
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Cross-Border LED Wall Service</h2>

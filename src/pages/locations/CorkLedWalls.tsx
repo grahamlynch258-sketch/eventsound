@@ -11,7 +11,7 @@ import { Breadcrumb } from "@/components/site/Breadcrumb";
 
 const CorkLedWalls = () => {
   const faqs = [
-    { question: "How much does LED wall hire cost in Cork?", answer: "LED wall hire in Cork starts from €125 per square metre for dry hire. The final price depends on pixel pitch (2.6mm fine pitch for indoor presentations, 4.9mm for outdoor or high-brightness applications), total screen area, installation complexity, and whether on-site technical support is required. Contact us for a no-obligation quote." },
+    { question: "How much does LED wall hire cost in Cork?", answer: "LED wall hire in Cork starts from €125 per square metre per day for dry hire of P3 panels. The final price depends on pixel pitch (2.6mm fine pitch for indoor presentations, 3.9mm for outdoor or high-brightness applications), total screen area, installation complexity, and whether on-site technical support is required. Contact us for a no-obligation quote." },
     { question: "Can you set up LED walls at Cork City Hall?", answer: "Yes. We have experience installing LED walls at large civic and exhibition venues. Cork City Hall's events space accommodates up to 1,000 people and is regularly used for conferences, exhibitions, and corporate events. We work with the venue's technical team to manage load-in, power distribution, and rigging requirements." },
     { question: "What LED wall size is right for a Cork hotel conference?", answer: "For hotel conference suites with fewer than 100 delegates, a 7 square metre LED wall provides excellent visibility. For larger ballrooms accommodating 200 to 500 delegates, 15 to 25 square metres is typical. For major events at Rochestown Park (capacity 1,200), 30 to 40 square metres delivers maximum visual impact. Contact us with your venue and audience size for a specific recommendation." },
   ];
@@ -60,7 +60,7 @@ const CorkLedWalls = () => {
 
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Our LED Wall Range for Cork Events</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            Our LED wall systems are purpose-built for the demands of Cork's conference and corporate events market. The Absen 2.6mm fine pixel pitch panel delivers razor-sharp images for indoor presentations, product launches, and award ceremonies where visual clarity is essential. For outdoor events or high-ambient-light environments, the Unilumin 4.9mm panel provides ultra-bright output that remains vivid in daylight conditions.
+            Our LED wall systems are purpose-built for the demands of Cork's conference and corporate events market. The Absen 2.6mm fine pixel pitch panel delivers razor-sharp images for indoor presentations, product launches, and award ceremonies where visual clarity is essential. For outdoor events or high-ambient-light environments, the Unilumin 3.9mm panel provides ultra-bright output that remains vivid in daylight conditions.
           </p>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
             All systems run on Novastar processing for accurate colour reproduction and reliable content switching. Curved LED wall configurations using Prism panels are available for stage designs and immersive installations.
@@ -76,7 +76,7 @@ const CorkLedWalls = () => {
 
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">LED Wall Pricing in Cork</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            LED wall hire in Cork starts from €125 per square metre for dry hire. Pricing depends on pixel pitch, screen area, venue access requirements, and technical support. Contact us with your event specification for an accurate quote.
+            LED wall hire in Cork starts from €125 per square metre per day for dry hire of P3 panels. Pricing depends on pixel pitch, screen area, venue access requirements, and technical support. Contact us with your event specification for an accurate quote.
           </p>
 
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Cork Venues We Provide LED Walls For</h2>
