@@ -8,9 +8,9 @@ category: Video & Streaming
 tags: [hybrid-events, remote-speakers, conference-av]
 primary_keyword: remote speakers conference
 featured_image: ""
-featured_image_alt: "[TAILOR: real photo + specific alt text]"
+featured_image_alt: ""
 author: Graham Lynch
-published_at: 2026-09-24
+published_at: 2026-12-22
 ---
 
 Everyone has watched it happen. The remote keynote appears on the big screen, asks "can you hear me?", hears their own voice come back a second late, and stumbles. Remote speakers at a conference fail for predictable reasons, and every one of them is preventable. Not by luck. By running a production workflow instead of balancing a laptop on the lectern.
@@ -27,8 +27,6 @@ The classic failures are worth naming, because the whole workflow exists to remo
 - **Talking over people.** They can't hear the room clearly, miss the chair's cues and interrupt.
 - **The frozen face.** A connection drops with no fallback, and the audience watches a pixelated still frame while someone fiddles with a laptop.
 - **Presenting into the void.** With no view of the audience, the speaker's energy dies inside two minutes.
-
-> [TAILOR: a real hybrid session EventSound produced — the event, number of remote contributors, platform used, and the one thing that nearly went wrong.]
 
 ## The workflow, step by step
 
@@ -48,8 +46,6 @@ In-room presenters get a confidence monitor. Remote presenters need the equivale
 
 With return video, the speaker sees the MC welcome them, knows when their slides are live, reads the room's reaction and can pause for a laugh instead of ploughing through it. Without it, they're performing into a black hole, and it shows.
 
-> [TAILOR: photo — a remote presenter's return-video view, or the hybrid operator position at a real event, with specific alt text.]
-
 ### 4. Mix-minus audio, in plain English
 
 The awkward echo has one specific cause. If you send the presenter the full room mix, that mix includes their own voice, delayed by the round trip. Hearing yourself half a second late is genuinely disorientating. Nobody can speak fluently through it.
@@ -62,8 +58,6 @@ Broadband rarely fails, but "rarely" isn't a plan. A workable backup chain looks
 
 The important part isn't the kit. It's that the backup was tested during rehearsal, and that everyone agreed in advance who decides to switch, and when.
 
-> [TAILOR: a real save — a session where the backup device or dial-in was actually used, and how long the switch took.]
-
 ## What the operator does during the session
 
 A hybrid session needs a named operator whose only job is the remote link. During the session they:
@@ -74,7 +68,7 @@ A hybrid session needs a named operator whose only job is the remote link. Durin
 - manage the return feed and stay on talkback with whoever is calling the show
 - watch the platform chat, which is where a presenter quietly flags a problem
 
-"Set it and forget it" is how you get the frozen face. At EventSound we run hybrid links on Teams, Zoom, YouTube, Vimeo or a custom RTMP destination through broadcast-grade encoders, with redundant internet (a wired line backed by bonded cellular), so the remote link never hangs off venue wifi.
+"Set it and forget it" is how you get the frozen face. We bring remote speakers into the room on Teams, Zoom or Google Meet, and stream out to YouTube, Vimeo or a custom RTMP destination through broadcast-grade encoders. The venue end runs on redundant internet (a wired line backed by bonded cellular), so the link does not depend on venue wifi.
 
 ## What this means for your run of show
 
@@ -85,7 +79,7 @@ Remote segments need margin. Don't sandwich a remote keynote between two tight i
 - brief the chair or MC with a holding script in case a reconnection takes a minute
 - decide in advance whether a dropped speaker rejoins immediately, at the next break, or not at all
 
-This is the same discipline that protects the rest of the day. See [the conference AV failure checklist](/blog/conference-av-failure-checklist/) for what a production team eliminates before doors open.
+Remote segments are one part of the wider technical plan. Our [conference AV technical brief guide](/blog/conference-av-technical-brief/) shows how to write a brief that puts remote speakers, rehearsal time and backups on paper before anyone prices the job.
 
 ## A hybrid speaker checklist
 
@@ -106,7 +100,7 @@ This is the same discipline that protects the rest of the day. See [the conferen
 Yes, provided every question reaches a microphone, either a roving mic or a chair who repeats the question. The mix-minus feed carries the question to the presenter, and return video lets them see who's asking.
 
 **What internet speed does the presenter need?**
-Stability matters more than headline speed. A modest wired connection outperforms fast wifi that fluctuates. The venue side of the link is the bigger question. Our guide to [live streaming an AGM or town hall](/blog/agm-town-hall-live-streaming/) covers venue connectivity in detail.
+Stability matters more than headline speed. A modest wired connection outperforms fast wifi that fluctuates. The venue side of the link is the bigger question: we recommend a minimum of 10Mbps dedicated upload there (as of December 2026). Our guide to [live streaming an AGM or town hall](/blog/agm-town-hall-live-streaming/) covers venue connectivity in detail.
 
 **Should the presenter share slides through the platform?**
 Preferably not. Screen-sharing compresses the content and makes it hostage to their connection. Run the slides from playback in the room and have the presenter call the cues. Cleaner picture, one less thing to fail.
@@ -116,4 +110,4 @@ With this workflow: the operator switches to the backup device or dial-in, the c
 
 ## Rehearse it before you risk it
 
-If a hybrid session matters to your event, don't let it be the only part of the day nobody rehearsed. Send us your run of show and speaker list and we'll map the handovers, rehearsal slots and backups. Or [talk to our production team](/contact/) about your next hybrid event.
+If a hybrid session matters to your event, don't let it be the only part of the day nobody rehearsed. Send us your run of show and speaker list and we'll talk through the handovers, rehearsal slots and backups with you. Or [talk to our production team](/contact/) about your next hybrid event.
