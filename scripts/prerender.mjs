@@ -110,6 +110,7 @@ const SCHEMA_TYPE_TO_ID = {
   Service: "service-schema",
   BreadcrumbList: "breadcrumb-schema",
   Article: "case-study-schema",
+  ImageGallery: "gallery-schema",
 };
 
 // Blog pages hydrate with BlogPost.tsx, which replaces schemas by these IDs —
@@ -588,7 +589,38 @@ const FAQ_PAGE_QUESTIONS = [
 ];
 
 /** Build all JSON-LD schemas for a given route path. Returns array of schema objects. */
+// Published gallery photos, fetched once per build (see getGalleryPhotos).
+let GALLERY_PHOTOS = [];
+
+// schema.org ImageGallery for /gallery/. Mirrors galleryJsonLd() in
+// src/lib/galleryBulk.ts; keep the two in step.
+function buildGallerySchema(photos) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ImageGallery",
+    name: "EventSound AV Services event photo gallery",
+    url: "https://eventsound.ie/gallery/",
+    image: photos.map(photo => ({
+      "@type": "ImageObject",
+      contentUrl: photo.image_url,
+      name: photo.title,
+      ...(photo.alt_text ? { description: photo.alt_text } : {}),
+      ...(photo.caption ? { caption: photo.caption } : {}),
+      ...(photo.width && photo.height ? { width: photo.width, height: photo.height } : {}),
+      ...(photo.taken_on ? { dateCreated: photo.taken_on } : {}),
+      ...(photo.location ? { contentLocation: { "@type": "Place", name: photo.location } } : {}),
+      creator: { "@type": "Organization", name: "EventSound AV Services" },
+      creditText: "EventSound AV Services",
+      copyrightNotice: "EventSound AV Services",
+    })),
+  };
+}
+
 function getSchemasForRoute(routePath, caseStudyData) {
+  if (routePath === '/gallery' && GALLERY_PHOTOS.length) {
+    return [buildGallerySchema(GALLERY_PHOTOS)];
+  }
+
   // Service pages: Service + Breadcrumb + FAQPage, all injected at build time
   // so non-JS crawlers see them. React re-injects the same schema IDs on
   // hydration (useSeo removes by id first), so there is never duplication.
@@ -836,6 +868,27 @@ function mdToHtml(markdown) {
   return out.join('');
 }
 
+// ── Fetch published gallery photos for the ImageGallery schema ──────────────
+
+async function getGalleryPhotos() {
+  try {
+    const SUPABASE_URL = process.env.VITE_SUPABASE_URL || '';
+    const SUPABASE_KEY = process.env.VITE_SUPABASE_PUBLISHABLE_KEY || '';
+    if (!SUPABASE_URL || !SUPABASE_KEY) return [];
+    const headers = { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` };
+    const base = `${SUPABASE_URL}/rest/v1/gallery_items?is_published=eq.true&order=sort_order.asc&limit=500&select=`;
+    // The event columns arrive with the 2026-11-22 migration; fall back without them.
+    let res = await fetch(`${base}title,image_url,alt_text,caption,location,taken_on,width,height`, { headers });
+    if (!res.ok) res = await fetch(`${base}title,image_url,alt_text`, { headers });
+    if (!res.ok) return [];
+    const photos = await res.json();
+    console.log(`  Gallery photos for schema: ${photos.length}`);
+    return photos;
+  } catch {
+    return [];
+  }
+}
+
 // ── Fetch first hero image URL from Supabase at build time ───────────────────
 
 async function getHeroImage() {
@@ -1003,11 +1056,13 @@ async function prerender() {
   console.log('Starting SEO pre-rendering (HTML injection)...');
 
   // Get case study routes, blog posts and hero image in parallel
-  const [caseStudyRoutes, blogRoutes, heroData] = await Promise.all([
+  const [caseStudyRoutes, blogRoutes, heroData, galleryPhotos] = await Promise.all([
     getCaseStudies(),
     getBlogPosts(),
     getHeroImage(),
+    getGalleryPhotos(),
   ]);
+  GALLERY_PHOTOS = galleryPhotos;
   const allRoutes = [...ROUTES, ...caseStudyRoutes, ...blogRoutes];
 
   console.log(`Pre-rendering ${allRoutes.length} routes (${ROUTES.length} static + ${caseStudyRoutes.length} case studies + ${blogRoutes.length} blog posts)`);

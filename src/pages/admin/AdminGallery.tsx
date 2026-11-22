@@ -5,7 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
-import { Trash2, Edit, Plus, Save, X } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Trash2, Edit, Plus, Save, Upload, X } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 
 interface GalleryItem {
@@ -186,10 +187,15 @@ export default function AdminGallery() {
     <div className="container mx-auto p-6 space-y-6">
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-bold">Gallery Management</h1>
-        <Button onClick={handleCreate} disabled={isCreating || editingId !== null}>
-          <Plus className="mr-2 h-4 w-4" />
-          Add New Item
-        </Button>
+        <div className="flex gap-2">
+          <Button asChild variant="outline">
+            <Link to="/admin/gallery/bulk"><Upload className="mr-2 h-4 w-4" />Bulk upload an event</Link>
+          </Button>
+          <Button onClick={handleCreate} disabled={isCreating || editingId !== null}>
+            <Plus className="mr-2 h-4 w-4" />
+            Add New Item
+          </Button>
+        </div>
       </div>
 
       {(isCreating || editingId) && (
