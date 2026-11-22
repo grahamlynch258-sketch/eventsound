@@ -3,7 +3,7 @@ slug: led-wall-hire-cost-ireland
 title: "What Does LED Wall Hire Cost in Ireland? Price Per m², Crew and What the Quote Includes"
 meta_title: "LED Wall Hire Cost in Ireland: Price Per m² Explained"
 meta_description: "What LED wall hire costs in Ireland as of November 2026: the price per m², and what moves a real quote: crew, power, rigging, transport and show length."
-excerpt: "The published dry hire rate is €125 per m² per day, but panels are only one line of a real quote. What crew, power, rigging, transport and schedule add, and what an all-inclusive quote should contain."
+excerpt: "Dry hire starts from €125 per m² per day for P3 panels, but panels are only one line of a real quote. What crew, power, rigging, transport and schedule add, and what an all-inclusive quote should contain."
 category: LED Walls
 tags: [led-walls, av-costs, conference-av]
 primary_keyword: led wall hire cost ireland
@@ -13,15 +13,15 @@ author: Graham Lynch
 published_at: 2026-11-19
 ---
 
-Here's the straight answer on LED wall hire cost in Ireland, as of November 2026: our published dry hire rate is €125 per square metre per day. That figure answers the first question but not the real one, because panels are only one line of a working quote. Crew, processing, power, rigging, transport and show duration decide the final number. This guide walks through each of them, then shows what an all-inclusive [LED video wall](/services/led-video-walls/) quote should contain, line by line.
+Here's the straight answer on LED wall hire cost in Ireland, as of November 2026: dry hire starts from €125 per square metre per day. That is our starting price, for P3 panels; finer pixel pitches cost more. The figure answers the first question but not the real one, because panels are only one line of a working quote. Crew, processing, power, rigging, transport and show duration decide the final number. This guide walks through each of them, then shows what an all-inclusive [LED video wall](/services/led-video-walls/) quote should contain, line by line.
 
-## The headline number: €125 per m² per day
+## The headline number: from €125 per m² per day
 
 LED walls are modular, so pricing by area is the honest unit. A wall twice the size uses twice the panels, and the structure and signal path scale with it. Per-square-metre pricing also makes quotes comparable. You can hold any supplier's figure against the same square metreage.
 
 The sum is simple: the wall's width times its height gives the area, and the area times the rate gives the dry hire cost of the panels for a day. A 4m × 2.5m conference backdrop is 10m². A 6m × 4m stage wall is 24m².
 
-Be clear about what that rate is: a dry hire figure for the equipment itself. It's the right number for production companies and venues with their own LED crew, and the wrong number to budget against if you need the wall delivered, built, operated and removed.
+Be clear about what that rate is: a starting price for dry hire of P3 panels, the equipment itself. A finer pitch raises the rate per square metre. It's the right number for production companies and venues with their own LED crew, and the wrong number to budget against if you need the wall delivered, built, operated and removed.
 
 If you're still working out sizes in the first place, our [guide to how video wall hire works](/blog/video-wall-hire-guide/) covers the sizes events actually use. To see one at scale, the [Swords Castle Summer Concerts case study](/case-studies/swords-castle-summer-concerts/) covers an outdoor build for 8,000 people a night.
 
@@ -75,7 +75,7 @@ The point of the table is its shape: an operated quote wraps every line into one
 
 ## Where to save money (and where not to)
 
-**Save on area, carefully.** Size is the biggest lever at €125 per m². Size the wall from your furthest viewer, then stop: square metres nobody needs are the most expensive kind.
+**Save on area, carefully.** Size is the biggest lever when the rate starts from €125 per m². Size the wall from your furthest viewer, then stop: square metres nobody needs are the most expensive kind.
 
 **Save on pitch.** Pixel pitch is chosen from how close your nearest viewers sit. If the front row is well back from the screen, a coarser pitch does the job, and paying for a finer one buys detail nobody can see. Size moves hire cost far more than pitch does.
 
@@ -88,13 +88,13 @@ The point of the table is its shape: an operated quote wraps every line into one
 ## Frequently asked questions
 
 **Is the €125 per m² rate the whole price?**
-No. It's the dry hire rate for the equipment alone. An operated event adds crew, transport, structure, power distribution and show-day operation, quoted as one all-inclusive figure with no hidden fees.
+No. It's the starting dry hire rate, for P3 panels, and it covers the equipment alone. An operated event adds crew, transport, structure, power distribution and show-day operation, quoted as one all-inclusive figure with no hidden fees.
 
 **Why price per square metre rather than per panel?**
 Panel sizes vary between manufacturers, so per-panel prices are hard to compare. Area is area: a per-m² rate can be held against any competing quote once you fix the size and pitch.
 
 **Does pixel pitch change the hire price?**
-Far less than size does. Specify the coarsest pitch your nearest viewer allows and spend the difference on the square metres the back row will actually notice.
+Yes, though far less than size does. The €125 starting rate is for P3 panels, and finer pitches cost more per square metre. Specify the coarsest pitch your nearest viewer allows and spend the difference on the square metres the back row will actually notice.
 
 **How do I compare two LED wall quotes fairly?**
 Fix the size and pitch, then compare inclusions: build and show crew, operator hours, processing and spares, transport, power distribution, and who carries the de-rig. The lowest headline figure with the shortest inclusions list is rarely the cheapest event.

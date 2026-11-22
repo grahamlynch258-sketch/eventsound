@@ -99,9 +99,9 @@ function SlotImage({ slots, slotId, aspect = "aspect-video", className = "", wid
 
 const faqs = [
   { question: "What pixel pitch LED wall do I need for a conference?", answer: "For conferences with viewing distances of 3 to 10 metres, we recommend 2.6mm or 3.9mm pixel pitch panels. For exhibitions where attendees stand 1 to 3 metres from the screen, 1.9mm provides the sharpest image. Our team will advise based on your venue layout and audience size." },
-  { question: "Can LED walls be used outdoors?", answer: "Yes. We provide weather-rated outdoor LED panels with high-brightness output for daylight visibility. Outdoor screens typically use 3.9mm to 4.8mm pixel pitch and are mounted on freestanding ground-support structures." },
-  { question: "How much does LED wall hire cost in Ireland?", answer: `LED wall hire and rental starts from €${siteConfig.pricing.ledWallDryHirePerSquareMetrePerDay} per square metre per day for dry hire. Pricing varies depending on pixel pitch, screen size, and event requirements. We recommend speaking to our team to ensure you get the best setup and the most out of your budget.` },
-  { question: "What is the largest LED wall you can provide?", answer: "We regularly install screens up to 50m² and can configure larger displays for outdoor festivals and concerts. Screen size is limited only by venue dimensions and structural capacity." },
+  { question: "Can LED walls be used outdoors?", answer: "Yes. We provide weather-rated outdoor LED panels with high-brightness output for daylight visibility. Outdoor screens typically use 3.9mm pixel pitch and are mounted on freestanding ground-support structures." },
+  { question: "How much does LED wall hire cost in Ireland?", answer: `LED wall hire and rental starts from €${siteConfig.pricing.ledWallDryHirePerSquareMetrePerDay} per square metre per day for dry hire of P3 panels. Pricing varies depending on pixel pitch, screen size, and event requirements. We recommend speaking to our team to ensure you get the best setup and the most out of your budget.` },
+  { question: "What is the largest LED wall you can provide?", answer: "We install LED walls from 6m² up to 100m² and larger for outdoor festivals and concerts. Screen size is limited only by venue dimensions and structural capacity." },
   { question: "What content can be displayed on LED video walls?", answer: "Anything — live camera feeds, pre-recorded video, presentations, social media walls, sponsor logos, and live event graphics. We provide full content playback and can help with content formatting to ensure it looks perfect on screen." },
   { question: "Do you provide operators with the LED screens?", answer: "Yes, all our LED wall hire packages include experienced technicians for setup, operation throughout your event, and breakdown. You never need to worry about the technical side." },
 ];
@@ -122,8 +122,7 @@ const useCases = [
 const pixelPitchData = [
   { pitch: "1.9mm", bestFor: "Exhibitions, close-up product visuals", minDistance: "3m" },
   { pitch: "2.6mm", bestFor: "Conferences, keynote backdrops", minDistance: "4.5m" },
-  { pitch: "3.9mm", bestFor: "Large conferences, stage backdrops", minDistance: "6.5m" },
-  { pitch: "4.8mm", bestFor: "Outdoor festivals, concerts", minDistance: "8.5m" },
+  { pitch: "3.9mm", bestFor: "Large conferences, stage backdrops, outdoor festivals and concerts", minDistance: "6.5m" },
 ];
 
 // ── Why Hire List ────────────────────────────────────────────────────────────
@@ -295,7 +294,7 @@ export default function LEDVideoWallsV2() {
       <section className="container mx-auto px-4 -mt-12 relative z-10 mb-16">
         <ScrollReveal>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <StatCard label="per m² / day" sublabel="dry hire from" value={<>&euro;<CountUp end={siteConfig.pricing.ledWallDryHirePerSquareMetrePerDay} /></>} />
+            <StatCard label="per m² / day" sublabel="P3 dry hire from" value={<>&euro;<CountUp end={siteConfig.pricing.ledWallDryHirePerSquareMetrePerDay} /></>} />
             <StatCard label="custom sizes" sublabel="indoor &amp; outdoor" value="6–100m²+" />
             <StatCard label="event production" sublabel="experience across Ireland" value={`${siteConfig.companyExperienceYears} yrs`} />
             <div className="rounded-xl border border-border/50 bg-card p-5 text-center shadow-lg">
@@ -323,7 +322,7 @@ export default function LEDVideoWallsV2() {
         <ScrollReveal>
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-lg text-muted-foreground leading-relaxed">
-              We stock Unilumin and Absen LED panels in pixel pitches from 1.9mm to 3.9mm, with screen sizes from 6m² for conference presentations to 50m²+ for large-scale outdoor stages. Every hire includes delivery, installation, content management, a dedicated on-site operator, and full breakdown after your event. For individual screen and TV monitor hire for conferences and exhibitions, see our{" "}
+              We stock Unilumin and Absen LED panels in pixel pitches from 1.9mm to 3.9mm, with screen sizes from 6m² for conference presentations to 100m²+ for large-scale outdoor stages. Every hire includes delivery, installation, content management, a dedicated on-site operator, and full breakdown after your event. For individual screen and TV monitor hire for conferences and exhibitions, see our{" "}
               <Link to="/services/led-screen-hire/" className="text-accent hover:underline">LED Screen Hire</Link> service.
             </p>
           </div>
@@ -350,8 +349,8 @@ export default function LEDVideoWallsV2() {
             title="Outdoor LED Wall Hire"
             delay={0.1}
           >
-            <p>For outdoor events, festivals, concerts, and sports screenings, we provide weather-rated LED panels with high-brightness output visible in direct sunlight. Our outdoor screens are available in sizes from 8m² to 50m²+ and are built on freestanding ground-support structures or integrated with stage rigging.</p>
-            <p>We have provided outdoor LED walls for events including the Swords Castle Summer Concerts (main stage LED wall, PA, and lighting) and multi-day festival productions. Outdoor LED panels use a higher pixel pitch (typically 3.9mm to 4.8mm) for viewing distances of 10 metres and above, balancing image quality with the brightness needed for daylight visibility.</p>
+            <p>For outdoor events, festivals, concerts, and sports screenings, we provide weather-rated LED panels with high-brightness output visible in direct sunlight. Our outdoor screens are available in sizes from 8m² to 100m²+ and are built on freestanding ground-support structures or integrated with stage rigging.</p>
+            <p>We have provided outdoor LED walls for events including the Swords Castle Summer Concerts (main stage LED wall, PA, and lighting) and multi-day festival productions. Outdoor LED panels use a higher pixel pitch (typically 3.9mm) for viewing distances of 10 metres and above, balancing image quality with the brightness needed for daylight visibility.</p>
           </ServiceTypeCard>
 
           <ServiceTypeCard
@@ -372,7 +371,7 @@ export default function LEDVideoWallsV2() {
           <div className="max-w-3xl mx-auto text-center mb-8">
             <h2 className="text-3xl font-bold mb-4">LED Wall Hire Pricing Guide</h2>
             <p className="text-muted-foreground leading-relaxed">
-              LED wall hire starts from €{siteConfig.pricing.ledWallDryHirePerSquareMetrePerDay} per square metre per day for dry hire. Final pricing depends on pixel pitch (finer pitches like 1.9mm cost more than 3.9mm), total screen area, number of event days, venue access time for installation, and whether additional services such as media servers or camera switching are required. We recommend speaking to our team before booking — we'll help you choose the right specification for your venue and audience so you get the most out of your budget. Contact us for a detailed quote based on your specific event requirements.
+              LED wall hire starts from €{siteConfig.pricing.ledWallDryHirePerSquareMetrePerDay} per square metre per day for dry hire of P3 panels. Final pricing depends on pixel pitch (finer pitches like 1.9mm cost more than 3.9mm), total screen area, number of event days, venue access time for installation, and whether additional services such as media servers or camera switching are required. We recommend speaking to our team before booking — we'll help you choose the right specification for your venue and audience so you get the most out of your budget. Contact us for a detailed quote based on your specific event requirements.
             </p>
           </div>
         </ScrollReveal>

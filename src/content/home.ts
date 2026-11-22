@@ -11,7 +11,8 @@
 
 import { siteConfig } from "@/config/site";
 
-const LED_RATE = `€${siteConfig.pricing.ledWallDryHirePerSquareMetrePerDay} per m² per day`;
+// A starting price for one panel type, so always "from ... for P3 panels".
+const LED_RATE = `from €${siteConfig.pricing.ledWallDryHirePerSquareMetrePerDay} per m² per day for ${siteConfig.pricing.ledWallDryHirePanel} panels`;
 const YEARS = siteConfig.companyExperienceYears;
 
 /** Cities named in the facts file as served. */
@@ -84,7 +85,7 @@ export const homeEventTypes: { kicker: string; heading: string; intro: string; i
     {
       key: "hire",
       title: "Screens and LED on hire",
-      text: `Display screens from 43 to 98 inches on stands, and LED walls on dry hire at ${LED_RATE}.`,
+      text: `Display screens from 43 to 98 inches on stands, and LED walls on dry hire ${LED_RATE}.`,
       href: "/services/led-screen-hire/",
       linkLabel: "LED screen hire",
     },
@@ -192,6 +193,6 @@ export const homeFaqs = [
   },
   {
     question: "How much does AV hire cost?",
-    answer: `It depends on the equipment, the venue, the hours and the crew needed, so each event is quoted individually. The one published rate is LED wall dry hire at ${LED_RATE}. Operated packages are quoted all-inclusive.`,
+    answer: `It depends on the equipment, the venue, the hours and the crew needed, so each event is quoted individually. The one published rate is LED wall dry hire, ${LED_RATE}; finer panels cost more. Operated packages are quoted all-inclusive.`,
   },
 ];
