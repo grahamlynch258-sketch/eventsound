@@ -104,6 +104,7 @@ const faqs = [
   { question: "Can you set up video conferencing on a hired screen?", answer: "Yes. We regularly set up screens for hybrid events with Microsoft Teams, Zoom, and Google Meet. We can provide the screen, a conference camera, ceiling or table microphones, and a speaker system — everything needed for remote participants to see and hear the room clearly. This is popular for AGMs, board meetings, and corporate town halls with remote attendees." },
   { question: "What is the difference between an LED screen and an LED video wall?", answer: "An LED screen is a single display unit — like a large TV or monitor — typically ranging from 43 to 98 inches. An LED video wall is built from multiple modular LED panels tiled together to create a seamless display that can be any size, commonly from 6 to 100 square metres. LED screens are ideal for conferences, exhibitions, and meeting rooms. LED video walls are used for main stage visuals, concert backdrops, large conference keynotes, and outdoor events. We offer both — see our LED Video Wall Hire page for modular panel installations." },
   { question: "How much does LED screen hire cost in Ireland?", answer: "Every EventSound screen hire and rental is quoted on an all-inclusive basis covering the screen, stand, cabling, delivery, setup, on-site support, and collection. Pricing depends on screen size, quantity, duration, and venue location. Contact us for a free, no-obligation quote — we'll recommend the best setup for your event and provide a clear breakdown with no hidden fees." },
+  { question: "Where can I hire video conferencing equipment for a meeting?", answer: "You can hire video conferencing equipment from EventSound. We set up screens from 43 to 98 inches for Microsoft Teams, Zoom or Google Meet, with a conference camera, ceiling or table microphones and a speaker system. It is delivered, installed and collected. This suits AGMs, board meetings and town halls where some attendees join remotely." },
 ];
 
 // ── Alternating Service Sections Data ────────────────────────────────────────
@@ -361,6 +362,18 @@ export default function LEDScreenHireV2() {
             <p className="text-lg text-muted-foreground leading-relaxed">
               Our LED screen hire and rental service covers individual displays from 43 inches to 98 inches — ideal for venues and events where a full LED video wall isn't required but you still need professional, high-brightness visually impactful displays. For larger video wall installations using modular LED panels, see our{" "}
               <Link to="/services/led-video-walls/" className="text-accent hover:underline">LED Video Wall Hire</Link> service.
+            </p>
+          </div>
+        </ScrollReveal>
+      </section>
+
+      {/* ── Video conferencing equipment hire ── */}
+      <section className="container mx-auto px-4 mb-16">
+        <ScrollReveal>
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl font-bold mb-4">Video Conferencing Equipment Hire</h2>
+            <p className="text-muted-foreground leading-relaxed">
+              We hire video conferencing equipment for meetings with remote attendees. Screens from 43 to 98 inches are set up for Microsoft Teams, Zoom or Google Meet, with a conference camera, ceiling or table microphones and a speaker system. Everything is delivered, installed and collected. It suits AGMs, board meetings and corporate town halls.
             </p>
           </div>
         </ScrollReveal>

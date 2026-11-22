@@ -50,6 +50,16 @@ describe("LED facts agree everywhere", () => {
     }
   });
 
+  it("no public page publishes a price other than the LED starting rate", () => {
+    // Owner decision (16 and 22 November 2026): no prices, ranges or "from"
+    // figures anywhere except the LED dry-hire starting rate.
+    const rate = String(siteConfig.pricing.ledWallDryHirePerSquareMetrePerDay);
+    for (const file of sources) {
+      const figures = [...read(file).matchAll(/[€£]\s?([\d][\d,]*)/g)].map((m) => m[1]);
+      expect(figures.filter((figure) => figure !== rate), file).toEqual([]);
+    }
+  });
+
   it("no public page mentions a 4.8 mm or 4.9 mm panel", () => {
     for (const file of sources) expect(read(file), file).not.toMatch(/4\.[89] ?mm/);
   });

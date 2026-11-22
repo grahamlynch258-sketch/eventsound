@@ -25,7 +25,8 @@ export default function EventProduction() {
     { question: "Do you provide production for outdoor events?", answer: "Yes. We provide full outdoor event production including weatherproof staging, high-brightness LED screens, outdoor-rated PA systems, and power distribution. We have produced outdoor concerts at Swords Castle and festival events nationwide." },
     { question: "Can you produce events anywhere in Ireland?", answer: "Yes, we produce events nationwide. While we are based in Drogheda, Co. Louth, we regularly deliver events across all 32 counties and have strong relationships with venues throughout Ireland." },
     { question: "What size events do you handle?", answer: "Everything from boardroom presentations for 20 people to outdoor festivals for 10,000+. We scale our crew and equipment to match your event. Recent projects include the Swords Castle Summer Concerts and intimate corporate conferences." },
-    { question: "What happens if equipment fails during my event?", answer: "We carry backup equipment on-site for all critical systems and our technicians are trained to handle any technical issues immediately. In more than 35 years of event production, we have built redundancy into every setup to ensure your event runs smoothly." }
+    { question: "What happens if equipment fails during my event?", answer: "We carry backup equipment on-site for all critical systems and our technicians are trained to handle any technical issues immediately. In more than 35 years of event production, we have built redundancy into every setup to ensure your event runs smoothly." },
+    { question: "What does outdoor event production cover: power, weather and staging?", answer: "Our outdoor production covers weatherproof staging, high-brightness LED screens, outdoor-rated PA systems and power distribution. Staging is TUV-certified with adjustable legs for uneven ground and safety rails. We produced the Swords Castle Summer Concerts for 8,000+ attendees per night. Send us the site and event details and we will plan around them." }
   ];
   const faqSchema = generateFAQSchema({ questions: faqs });
 
@@ -130,7 +131,7 @@ export default function EventProduction() {
           </p>
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Event Production Pricing</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            Event production pricing is based on the scale of your event, equipment requirements, crew size, venue location, and number of event days. Small single-room conference production typically starts from €800 per day. Medium-scale corporate events with LED walls, full lighting, and multi-source audio run from €2,500 to €5,000+. Large outdoor festivals and concerts are quoted individually based on technical requirements. Contact us with your event brief for a detailed proposal and quote.
+            Event production pricing is based on the scale of your event, equipment requirements, crew size, venue location, and number of event days. Every event is quoted individually as one all-inclusive figure covering equipment, delivery, installation, on-site operation and breakdown, with no hidden fees. Contact us with your event brief for a detailed proposal and quote.
           </p>
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Why EventSound for Production?</h2>
           <div className="text-left inline-block">
