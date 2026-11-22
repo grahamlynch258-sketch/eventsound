@@ -10,7 +10,7 @@ primary_keyword: led wall hire cost ireland
 featured_image: ""
 featured_image_alt: ""
 author: Graham Lynch
-published_at: 2026-11-19
+published_at: 2026-11-22
 ---
 
 Here's the straight answer on LED wall hire cost in Ireland, as of November 2026: dry hire starts from €125 per square metre per day. That is our starting price, for P3 panels; finer pixel pitches cost more. The figure answers the first question but not the real one, because panels are only one line of a working quote. Crew, processing, power, rigging, transport and show duration decide the final number. This guide walks through each of them, then shows what an all-inclusive [LED video wall](/services/led-video-walls/) quote should contain, line by line.

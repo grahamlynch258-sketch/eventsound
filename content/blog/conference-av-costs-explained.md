@@ -10,7 +10,7 @@ primary_keyword: conference av costs
 featured_image: ""
 featured_image_alt: ""
 author: Graham Lynch
-published_at: 2026-11-26
+published_at: 2026-11-22
 ---
 
 Ask what conference AV costs and an honest supplier will answer with questions. How many rooms, what format, is it streamed, when do we get access? That's not evasion. The price is genuinely built out of those answers. Conference AV costs are driven by five things: the equipment the format demands, the crew who run it, the time on site, the constraints of the venue, and the contingency that keeps a live event live. A single-room day with sound and screens is one project. A multi-room, streamed programme with rehearsals is a different project with a different number. This guide breaks down where the money goes, so the quotes you gather for [conference AV hire](/services/conference-av-hire/) make sense. And so the cheapest one gets the scrutiny it deserves.
