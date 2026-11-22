@@ -10,7 +10,7 @@ primary_keyword: awards night av production
 featured_image: ""
 featured_image_alt: ""
 author: Graham Lynch
-published_at: 2026-12-22
+published_at: 2026-09-23
 ---
 
 An awards night needs five things technically: a stage and lectern the whole room can see, a screen for nominee and winner slides, sound for the host, the winners and the walk-up music, lighting that separates the stage from the dinner, and someone running cues against the running order. Get those right and the night feels easy. Get one wrong and everyone remembers it. This guide is for whoever is organising a company, industry, council or club awards night, often for the first time. It follows the decisions in order, with the failures to plan out. If you're weighing up full [event production](/services/event-production/) for the night, it also shows what the brief should cover.
