@@ -110,7 +110,7 @@ export const services = [
 export const serviceGridItems = [
   { icon: Radio, title: "Conference AV & Production", description: "Sound, screens, lighting, presentations and crew for single-room and multi-room conferences.", slug: "conference-av", href: "/services/conference-av-hire/" },
   { icon: Mic, title: "Sound & PA Systems", description: "PA, wireless microphones, stage monitors and experienced sound engineers.", slug: "audio-equipment", href: "/services/sound-hire/" },
-  { icon: Clapperboard, title: "AV Production", description: "Sound, screens, presentation systems and crew managed as one production.", slug: "av-production", href: "/services/av-production/" },
+  { icon: Clapperboard, title: "AV Hire", description: "Sound, screens and presentation systems, delivered, set up and run by a technician.", slug: "av-production", href: "/services/av-production/" },
   { icon: Monitor, title: "LED Video Walls", description: "Indoor, outdoor and curved LED walls, installed and operated.", slug: "led-video-display-screens", href: "/services/led-video-walls/" },
   { icon: Lightbulb, title: "Lighting Design", description: "Stage, architectural and camera-ready event lighting.", slug: "lighting-effects", href: "/services/lighting-design/" },
   { icon: Frame, title: "Staging & Drape", description: "Safe staging, risers and pipe-and-drape transformations.", slug: "stage-hire-pipe-drape", href: "/services/staging-pipe-drape/" },

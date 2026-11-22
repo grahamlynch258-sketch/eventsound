@@ -49,7 +49,7 @@ export default function EventProduction() {
 
   useSeo({
     title: "Event Production Company Ireland | Corporate & Live Events",
-    description: "Technical event production for conferences, exhibitions, corporate events, festivals and live shows across Ireland. AV, LED, lighting, staging and crew.",
+    description: "Event production services for conferences, exhibitions, corporate events, festivals and live shows across Ireland. Sound, LED, lighting, staging and crew.",
     canonical: "https://eventsound.ie/services/event-production",
     additionalSchemas: [
       { schema: faqSchema, schemaId: "faq-schema" },
@@ -87,7 +87,7 @@ export default function EventProduction() {
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
             With over 35 years in the Irish event production industry, we work directly with corporate clients, agencies, local authorities, and venue managers. We provide our own equipment alongside experienced technical crew, and coordinate sub-hire and additional resources for larger productions.
           </p>
-          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">What Full-Service Event Production Includes</h2>
+          <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Event Production Services: What Is Included</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
             EventSound's event production service covers every technical element of your event. We begin with a site survey and technical design, assessing your venue's power, rigging, access, and acoustic characteristics. We then provide a detailed production plan and equipment specification tailored to your event format, audience size, and budget.
           </p>

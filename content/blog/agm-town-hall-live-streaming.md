@@ -8,23 +8,23 @@ category: Video & Streaming
 tags: [live-streaming, agm, video-production]
 primary_keyword: agm live streaming
 featured_image: ""
-featured_image_alt: "[TAILOR: real photo + specific alt text]"
+featured_image_alt: ""
 author: Graham Lynch
-published_at: 2026-09-07
+published_at: 2026-12-15
 ---
 
-An AGM is a one-take event. There's no second recording session if the stream fails during the chairperson's report, and the meeting itself has formal standing (motions, votes, minutes). A town hall carries a different pressure: leadership answering unscripted questions in front of the whole organisation. AGM live streaming is therefore less about elaborate production and more about three decisions made properly: how many cameras, which platform, and what happens when something fails.
+An AGM is a one-take event. There's no second recording session if the stream fails during the chairperson's report, and the meeting itself has formal standing (motions and votes, with minutes to follow). A town hall carries a different pressure: leadership answering unscripted questions in front of the whole organisation. AGM live streaming is therefore less about elaborate production and more about three decisions made properly: how many cameras, which platform, and what happens when something fails.
 
-This guide walks through all three. The camera and vision-mixing side of the job sits under our [video production](/services/video-production/) service. The platform, remote-attendee and streaming side sits under [virtual events](/services/virtual-events/).
+The short answer: one to three cameras depending on the length and weight of the meeting, a platform chosen by who must watch and who must interact, and a wired connection with a cellular backup. This guide walks through all three. The camera and vision-mixing side of the job sits under our [video production](/services/video-production/) service. The platform, remote-attendee and streaming side sits under [virtual events](/services/virtual-events/).
 
 ## What makes an AGM different from an ordinary stream
 
 - **It's on the record.** Votes and proceedings may need a complete, accurate recording, not just a live feed.
-- **The audience is defined.** Members, shareholders or staff. That changes the platform decision, because access control suddenly matters.
+- **The audience is defined.** Members and shareholders, or staff. That changes the platform decision, because access control suddenly matters.
 - **Questions come from the floor.** The least controllable audio at any event, and the part remote viewers most need to hear.
 - **Rules may apply.** If remote attendees are meant to count towards quorum or vote, check your constitution or governing rules before you brief any AV supplier. That's a governance question, and it shapes the whole technical setup.
 
-Sometimes a board member joins the meeting remotely. Or an auditor, or a guest speaker. If they're taking part rather than just watching, that's a hybrid session, and it needs its own rehearsal and audio plan. Flag it early. Our [conference AV technical brief guide](/blog/conference-av-technical-brief/) has a line for how many remote presenters are joining.
+Sometimes a board member joins the meeting remotely. Or an auditor, or a guest speaker. If they're taking part rather than just watching, that's a hybrid session, and it needs its own rehearsal and audio plan. Flag it early, and put the number of remote presenters in your written AV brief. Our [conference AV technical brief guide](/blog/conference-av-technical-brief/) shows how to write one.
 
 ## Cameras: how many you actually need
 
@@ -38,8 +38,6 @@ Once the meeting runs past an hour (or has several speakers, or matters reputati
 
 If the room itself is large, the same cameras can feed screens in the room (known as IMAG, or image magnification) so the back rows see faces rather than dots.
 
-> [TAILOR: a real AGM or town-hall job (organisation type, venue, rough in-room versus online attendance split, and the camera count used).]
-
 ## Audio decides whether the stream is watchable
 
 Streams die on audio far more often than on video. Viewers forgive a soft picture. They leave over a voice they can't hear. Three rules:
@@ -47,8 +45,6 @@ Streams die on audio far more often than on video. Viewers forgive a soft pictur
 - Every voice that matters gets a microphone: top table, lectern, and roving handhelds for floor questions.
 - The stream gets its own dedicated audio mix, never a microphone pointed at the room PA.
 - The chair enforces one discipline: no microphone, no question. Repeating the question from the chair's mic is the fallback, not the plan.
-
-> [TAILOR: photo of the vision-mix and encoder position at the back of a meeting room, with specific alt text.]
 
 ## Choosing the platform
 
@@ -70,11 +66,9 @@ We stream to YouTube, Vimeo, Teams, Zoom or a custom RTMP destination through br
 
 Venue wifi isn't a streaming connection. It's shared, variable and unmonitored, and it degrades at the exact moment the room fills with phones. A stream needs three things:
 
-- **A dedicated wired connection.** We recommend a minimum 10Mbps dedicated upload (our working figure as of August 2026), with "dedicated" meaning reserved for the stream, not shared with the venue's guests.
+- **A dedicated wired connection.** We recommend a minimum 10Mbps dedicated upload (our recommendation as of November 2026), with "dedicated" meaning reserved for the stream, not shared with the venue's guests.
 - **A backup path.** We run redundant internet: the wired line backed by bonded cellular, which combines several mobile networks into one connection. If the venue line drops, the stream carries on.
-- **A test in advance.** Measure the upload at the venue, ideally at the same time of day as the meeting, not on a quiet mid-morning.
-
-> [TAILOR: a real venue-internet story, a venue whose broadband tested fine earlier in the day and struggled once the room filled, and what the backup did.]
+- **A test in advance.** Measure the upload at the venue, ideally at the same time of day as the meeting, not on a quiet mid-morning. A line that tests fine at 10am can struggle once a full room is online.
 
 ## What can go wrong, and what prevents it
 
@@ -104,6 +98,9 @@ The table above is the AGM-specific slice of a longer discipline. Name the likel
 
 ## Frequently asked questions
 
+**What equipment and crew do I need to run a properly produced live stream from a corporate event?**
+Equipment: one or more cameras, a vision mixer to cut between them, a broadcast-grade encoder, a dedicated audio mix from your microphones, and redundant internet (a wired line plus bonded cellular, with at least 10Mbps of dedicated upload). Add screens in the room if you want IMAG. Crew, in general trade terms: someone on camera, someone vision mixing, someone on audio, and someone watching the encoder and connection. On a small event one person can cover two of those jobs. A larger one splits them. How crew and kit scale with the event is covered in our guide to [what drives conference AV costs](/blog/conference-av-costs-explained/).
+
 **Do we need to tell attendees the meeting is being streamed?**
 Yes, in advance and on the day. And position cameras to favour the top table rather than the audience. If attendees will be identifiable on the stream, take data-protection advice appropriate to your organisation.
 
@@ -118,4 +115,4 @@ Enough to test the venue's connectivity and fix what the test finds. A few weeks
 
 ## Streaming your next AGM or town hall
 
-Send us the date, the venue, the expected in-room and online numbers, and whether remote attendees need to speak or vote. We'll come back with a camera count, a platform recommendation and the connectivity plan. [Talk to our production team](/contact/).
+Send us the date, the venue, the expected in-room and online numbers, and whether remote attendees need to speak or vote. We'll talk through camera count, platform and connectivity with you. [Talk to our production team](/contact/).

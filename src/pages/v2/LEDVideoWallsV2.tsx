@@ -546,7 +546,7 @@ export default function LEDVideoWallsV2() {
               Many of our clients combine LED video walls with{" "}
               <Link to="/services/lighting-design/" className="text-accent hover:underline">professional event lighting</Link>{" "}
               and{" "}
-              <Link to="/services/av-production/" className="text-accent hover:underline">full AV production</Link>{" "}
+              <Link to="/services/av-production/" className="text-accent hover:underline">AV hire</Link>{" "}
               for a complete visual experience. For events with a remote audience, add our{" "}
               <Link to="/services/virtual-events/" className="text-accent hover:underline">live streaming and hybrid event</Link>{" "}
               services. See how we delivered LED walls for the{" "}

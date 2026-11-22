@@ -333,7 +333,7 @@ export default function MusicalTheatreV2() {
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-lg text-muted-foreground leading-relaxed">
               Whether you're staging a school musical, a community theatre production, a professional touring show, or a Christmas pantomime, EventSound provides the full technical package — or individual elements to supplement your venue's existing equipment. We work with your director and stage manager from tech rehearsal through to final curtain. For corporate event production, see our{" "}
-              <Link to="/services/av-production/" className="text-accent hover:underline">AV Production</Link> service.
+              <Link to="/services/av-production/" className="text-accent hover:underline">AV hire</Link> service.
             </p>
           </div>
         </ScrollReveal>

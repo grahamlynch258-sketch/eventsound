@@ -35,8 +35,8 @@ export const homeIntro = {
     "Either way you get one quote that covers equipment, delivery, installation, on-site operation and breakdown. There are no hidden fees.",
   ],
   links: [
-    { label: "Full event production", href: "/services/event-production/" },
-    { label: "AV hire and production", href: "/services/av-production/" },
+    { label: "Event production services", href: "/services/event-production/" },
+    { label: "AV hire", href: "/services/av-production/" },
   ],
 };
 

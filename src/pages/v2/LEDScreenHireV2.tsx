@@ -582,7 +582,7 @@ export default function LEDScreenHireV2() {
             <h2 className="text-3xl font-bold mb-4">Frequently Combined With</h2>
             <p className="text-muted-foreground leading-relaxed">
               Many of our clients combine LED screen hire with{" "}
-              <Link to="/services/av-production/" className="text-accent hover:underline">full AV production</Link>{" "}
+              <Link to="/services/av-production/" className="text-accent hover:underline">AV hire</Link>{" "}
               for conferences and corporate events. For larger visual displays using modular panels, see our{" "}
               <Link to="/services/led-video-walls/" className="text-accent hover:underline">LED Video Wall Hire</Link>{" "}
               service. Add{" "}
