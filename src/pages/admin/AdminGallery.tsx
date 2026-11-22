@@ -15,6 +15,10 @@ interface GalleryItem {
   category: string | null;
   image_url: string;
   alt_text: string;
+  caption: string | null;
+  event_name: string | null;
+  location: string | null;
+  taken_on: string | null;
   sort_order: number;
   is_published: boolean;
   created_at: string;
@@ -38,6 +42,10 @@ export default function AdminGallery() {
     category: "",
     image_url: "",
     alt_text: "",
+    caption: "",
+    event_name: "",
+    location: "",
+    taken_on: "",
     sort_order: 0,
     is_published: true
   });
@@ -85,6 +93,10 @@ export default function AdminGallery() {
       category: "",
       image_url: "",
       alt_text: "",
+      caption: "",
+      event_name: "",
+      location: "",
+      taken_on: "",
       sort_order: 0,
       is_published: true
     });
@@ -97,6 +109,10 @@ export default function AdminGallery() {
       category: item.category || "",
       image_url: item.image_url,
       alt_text: item.alt_text || "",
+      caption: item.caption || "",
+      event_name: item.event_name || "",
+      location: item.location || "",
+      taken_on: item.taken_on || "",
       sort_order: item.sort_order,
       is_published: item.is_published
     });
@@ -110,6 +126,10 @@ export default function AdminGallery() {
       category: "",
       image_url: "",
       alt_text: "",
+      caption: "",
+      event_name: "",
+      location: "",
+      taken_on: "",
       sort_order: 0,
       is_published: true
     });
@@ -129,18 +149,27 @@ export default function AdminGallery() {
       return;
     }
 
+    // Empty optional fields are stored as null, not as empty strings.
+    const payload = {
+      ...formData,
+      caption: formData.caption.trim() || null,
+      event_name: formData.event_name.trim() || null,
+      location: formData.location.trim() || null,
+      taken_on: formData.taken_on || null,
+    };
+
     try {
       if (isCreating) {
         const { error } = await supabase
           .from("gallery_items")
-          .insert([formData]);
+          .insert([payload]);
 
         if (error) throw error;
         toast.success("Gallery item created successfully");
       } else if (editingId) {
         const { error } = await supabase
           .from("gallery_items")
-          .update(formData)
+          .update(payload)
           .eq("id", editingId);
 
         if (error) throw error;
@@ -262,6 +291,45 @@ export default function AdminGallery() {
             </div>
 
             <div>
+              <Label htmlFor="caption">Caption (shown under the photo)</Label>
+              <Input
+                id="caption"
+                value={formData.caption}
+                onChange={(e) => setFormData({ ...formData, caption: e.target.value })}
+                placeholder="One short sentence a visitor would read"
+              />
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-3">
+              <div>
+                <Label htmlFor="event_name">Event (photos are grouped by this)</Label>
+                <Input
+                  id="event_name"
+                  value={formData.event_name}
+                  onChange={(e) => setFormData({ ...formData, event_name: e.target.value })}
+                  placeholder="Leave empty if not from a named event"
+                />
+              </div>
+              <div>
+                <Label htmlFor="location">Venue or town</Label>
+                <Input
+                  id="location"
+                  value={formData.location}
+                  onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                />
+              </div>
+              <div>
+                <Label htmlFor="taken_on">Date of the event</Label>
+                <Input
+                  id="taken_on"
+                  type="date"
+                  value={formData.taken_on}
+                  onChange={(e) => setFormData({ ...formData, taken_on: e.target.value })}
+                />
+              </div>
+            </div>
+
+            <div>
               <Label htmlFor="sort_order">Sort Order</Label>
               <Input
                 id="sort_order"
@@ -302,6 +370,10 @@ export default function AdminGallery() {
               <div>
                 <h3 className="font-bold">{item.title}</h3>
                 {item.category && <p className="text-sm text-muted-foreground">{item.category}</p>}
+                {item.event_name && <p className="text-sm">{item.event_name}</p>}
+                {item.caption
+                  ? <p className="text-xs text-muted-foreground mt-1">{item.caption}</p>
+                  : <p className="text-xs text-amber-600 mt-1">No caption yet</p>}
                 <p className="text-xs text-muted-foreground mt-1">Order: {item.sort_order}</p>
                 <p className="text-xs text-muted-foreground">
                   {item.is_published ? "✓ Published" : "✗ Unpublished"}

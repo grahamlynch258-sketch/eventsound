@@ -156,6 +156,14 @@ describe("gallery wiring", () => {
     expect(bulk).toContain("let uploaded = queued.uploaded;");
   });
 
+  it("the single-photo form can edit caption, event, place and date, storing blanks as null", () => {
+    const form = read("src/pages/admin/AdminGallery.tsx");
+    for (const id of ["caption", "event_name", "location", "taken_on"]) expect(form).toContain(`id="${id}"`);
+    expect(form).toContain("caption: formData.caption.trim() || null,");
+    expect(form).toContain(".update(payload)");
+    expect(form).not.toContain(".update(formData)");
+  });
+
   it("the migration only adds optional columns", () => {
     const sql = read("supabase/migrations/20261122000001_gallery_event_fields.sql");
     for (const column of ["caption", "event_name", "location", "taken_on", "width", "height", "services"]) {

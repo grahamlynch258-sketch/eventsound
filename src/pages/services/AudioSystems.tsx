@@ -42,6 +42,14 @@ const faqs = [
     question: "What information do you need to quote sound hire?",
     answer: "Send the venue, audience size, event timings, room or site layout, performer or presenter details and any technical riders. For live music, include the band lineup and monitor requirements. This lets us recommend a complete package without pricing equipment you do not need.",
   },
+  {
+    question: "Can I hire a small PA for a launch, a party or a gig?",
+    answer: "Send us the venue, audience size and programme and we will tell you what suits. We size every system from the room and the running order. Our inventory includes compact point-source systems and column speakers as well as line arrays, and sound hire includes setup, tuning, soundcheck and an engineer for the event.",
+  },
+  {
+    question: "What does sound hire cost?",
+    answer: "We do not publish sound hire prices because the cost depends on the job. The main factors are the venue, the audience size, the programme and the crew hours needed. Every quote is all-inclusive: equipment, delivery, setup, an engineer, operation and collection, with no hidden fees. Send us your event details and we will quote.",
+  },
 ];
 
 export default function AudioSystems() {
