@@ -3,19 +3,19 @@ slug: compare-av-quotes-guide
 title: "How to Compare AV Quotes Like-for-Like: A Procurement Guide for Event Organisers"
 meta_title: How to Compare AV Quotes | Procurement Guide | EventSound
 meta_description: Why AV quotes rarely compare cleanly, where the costs hide (crew hours, rehearsals, transport, backup kit) and a checklist for judging quotes like for like.
-excerpt: Two AV quotes for the same event can differ by thousands and both be honest. Where the money hides, and a checklist for comparing event AV quotes like for like.
+excerpt: Two AV quotes for the same event can be far apart and both be honest. Where the money hides, and a checklist for comparing event AV quotes like for like.
 category: Conference AV
 tags: [procurement, av-quotes, conference-av]
 primary_keyword: compare av quotes
 featured_image: ""
-featured_image_alt: "[TAILOR: real photo + specific alt text]"
+featured_image_alt: ""
 author: Graham Lynch
-published_at: 2026-10-01
+published_at: 2026-12-08
 ---
 
-Say two quotes arrive for the same conference: one at €4,900, one at €7,800. Neither supplier is lying and neither number is padded. They're quoting different things. One includes a technician until midnight. The other's price quietly ends at 6pm. One carries spare microphones and backup playback. The other carries exactly what the email asked for.
+Say two quotes arrive for the same conference, and one is far higher than the other. Neither supplier is lying and neither number is padded. They're quoting different things. One includes a technician until midnight. The other's price quietly ends at 6pm. One carries spare microphones and backup playback. The other carries exactly what the email asked for.
 
-There's no standard format for an AV quote, which makes "cheapest wins" a coin toss. This guide shows where the differences hide and how to compare AV quotes on a genuinely like-for-like footing. It also says, honestly, when the cheapest quote is the right choice. It's written for anyone procuring [conference AV](/services/conference-av-hire/), from a one-room seminar to a multi-day programme.
+There's no standard format for an AV quote, which makes "cheapest wins" a coin toss. To compare quotes fairly, send every supplier the same written brief. Then check five things in each reply: crew hours, rehearsal time, access and transport, backup kit, and what is not included. This guide shows where the differences hide, and it says honestly when the cheapest quote is the right choice. It's written for anyone procuring [conference AV](/services/conference-av-hire/), from a one-room seminar to a multi-day programme.
 
 ## Why AV quotes rarely compare cleanly
 
@@ -25,13 +25,13 @@ Two things follow from that. First, the fix starts on your side of the table. Se
 
 ## Where the money hides
 
-The underlying cost drivers (equipment, crew, rehearsals, venue constraints) are unpacked in [what actually drives conference AV costs](/blog/conference-av-costs-explained/). The procurement question is narrower. Which of them has each quote included?
+The underlying cost drivers (equipment, crew, rehearsals, venue constraints) are unpacked in [what actually drives conference AV costs](/blog/conference-av-costs-explained/). The procurement question is narrower: for each of those, what has this quote actually included?
 
 ### Crew hours and the operating day
 
-The commonest gap. A quote includes crew "for the day". Whose day? Yours might run from 7am venue access to an awards finish at 11:30pm, with a get-out after that. That's a very long day, and somebody is paying for it. Either the quote that priced it, or you, later, at an overtime rate you never asked about.
+The commonest gap. A quote includes crew "for the day" without saying whose day. Yours might run from 7am venue access to an awards finish at 11:30pm, with a get-out after that. That's a very long day, and somebody is paying for it. Either the quote that priced it, or you, later, at an overtime rate you never asked about.
 
-Ask every supplier: how many crew, from what time to what time, what happens after that time, and is the de-rig included?
+Ask every supplier how many crew, from what time to what time, what happens after that time, and whether the de-rig is included.
 
 ### Rehearsal time
 
@@ -43,19 +43,17 @@ Delivery isn't just mileage. A venue with a loading dock and a service lift is o
 
 ### Backup equipment
 
-The invisible line. Spare radio microphones, backup playback, redundant processing. None of it appears in the room photos, and none of it is missed until the moment it's needed. A quote without backups is cheaper right up to show day. And you can't see redundancy missing in a quote unless you ask for it by name.
-
-> [TAILOR: a real show-day save from backup kit — what failed, what took over, and whether the audience noticed.]
+The invisible line. Spare radio microphones, backup playback, redundant processing. None of it appears in the room photos, and none of it is missed until the moment it's needed. A quote without backups is cheaper right up to show day. You can't see redundancy missing in a quote unless you ask for it by name.
 
 ### Dry hire, delivered, or operated
 
-The same equipment can be three different products. Dry hire, where you collect and operate it. Delivered and installed. Or operated, with crew running the show. They look alike in a subject line and price entirely differently. As of August 2026, our LED wall dry hire rate is €125 per m² per day, while operated packages are quoted all-inclusive. Same wall, two different products. When quotes disagree sharply, check they're selling the same product before you check anything else.
+The same equipment can be three different products. Dry hire, where you handle and run it yourself. Delivered and installed. Or operated, with crew running the show. They look alike in a subject line and price entirely differently.
+
+LED walls show the gap well. As of November 2026, our LED walls are from €125 per m² per day for dry hire of P3 panels, and finer pitches cost more. Operated packages are quoted all-inclusive. Same wall, two different products. When quotes disagree sharply, check they're selling the same product before you check anything else.
 
 ### The small print that moves money
 
 Consumables and batteries, damage waivers, insurance requirements, cancellation terms, weather contingency for outdoor events, and who pays if the venue's power turns out to be inadequate. None of these is large on its own. Together they move real money, and they only appear when you read past the total.
-
-> [TAILOR: an anonymised real comparison — two quotes seen for the same event, the size of the gap, and what actually explained it.]
 
 ## How to force a like-for-like comparison
 
@@ -66,7 +64,7 @@ Consumables and batteries, damage waivers, insurance requirements, cancellation 
 5. **Ask each supplier to state their assumptions.** The good ones already have.
 6. **Compare crew hours, not crew count.** Two technicians for twelve hours isn't two technicians for eight.
 7. **Ask what backup kit will be on site**, and what the plan is if the main system fails.
-8. **Get the site visit before you sign, not after.** Prices firm up when suppliers stop guessing.
+8. **Ask whether the supplier has seen the venue.** Prices firm up when suppliers stop guessing.
 
 ## The like-for-like checklist
 
@@ -89,7 +87,7 @@ Take the table to each quote in turn. Where a line is silent, you haven't found 
 
 ## When the cheapest quote is genuinely fine
 
-Candour cuts both ways. A forty-person internal seminar with one lectern microphone, one screen and no stream carries very little production risk. A competent dry hire or a delivered-and-installed package is genuinely enough, and paying for rehearsals and layered redundancy there is over-specification, not prudence.
+Candour cuts both ways. A forty-person internal seminar with one lectern microphone, one screen and no stream carries very little production risk. A simple dry hire or a delivered-and-installed package is genuinely enough, and paying for rehearsals and layered redundancy there is over-specification, not prudence.
 
 The way to decide is to price the failure, not the fear. If the worst case is a ten-minute delay and mild embarrassment in front of colleagues, buy simple and keep the budget. If the worst case is four hundred delegates watching a blank screen, a keynote speaker flown in for the day, or an AGM stream failing mid-vote, then the rehearsal and the backup kit are the cheapest insurance available. Cheap is only a false economy when the event was never simple to begin with.
 
@@ -109,6 +107,6 @@ No. Price signals scope, not competence. Judge the stated assumptions, the answe
 
 ## How EventSound quotes
 
-We quote all-inclusive: equipment, delivery, installation, on-site operation and breakdown in one figure, with no hidden fees or line-item pricing, and site visits are free for confirmed bookings. As an indicative marker, a straightforward single-room conference setup with sound and screens starts from around €1,500, as of August 2026.
+We quote all-inclusive: equipment, delivery, installation, on-site operation and breakdown in one figure, with no hidden fees or line-item pricing. Site visits are free for confirmed bookings.
 
-All-inclusive isn't the only honest way to quote. It just moves the comparison work from your desk to ours. If you're weighing up quotes now, send us your brief, and the quotes too if you like. We'll tell you plainly what each one includes and what it doesn't. [Request an AV production quote](/contact/), or ask us to sense-check the specification first.
+All-inclusive isn't the only honest way to quote. It just moves the comparison work from your desk to ours, because there's one total to weigh and no itemised list to decode. If you're weighing up quotes now, send us your venue, audience size and event format, and we'll help you sense-check the brief. [Request an AV production quote](/contact/) when you're ready.
