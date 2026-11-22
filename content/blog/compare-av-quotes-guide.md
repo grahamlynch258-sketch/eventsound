@@ -10,7 +10,7 @@ primary_keyword: compare av quotes
 featured_image: ""
 featured_image_alt: ""
 author: Graham Lynch
-published_at: 2026-12-08
+published_at: 2026-09-09
 ---
 
 Say two quotes arrive for the same conference, and one is far higher than the other. Neither supplier is lying and neither number is padded. They're quoting different things. One includes a technician until midnight. The other's price quietly ends at 6pm. One carries spare microphones and backup playback. The other carries exactly what the email asked for.
@@ -49,7 +49,7 @@ The invisible line. Spare radio microphones, backup playback, redundant processi
 
 The same equipment can be three different products. Dry hire, where you handle and run it yourself. Delivered and installed. Or operated, with crew running the show. They look alike in a subject line and price entirely differently.
 
-LED walls show the gap well. As of November 2026, our LED walls are from €125 per m² per day for dry hire of P3 panels, and finer pitches cost more. Operated packages are quoted all-inclusive. Same wall, two different products. When quotes disagree sharply, check they're selling the same product before you check anything else.
+LED walls show the gap well. Our LED walls are from €125 per m² per day for dry hire of P3 panels, and finer pitches cost more. Operated packages are quoted all-inclusive. Same wall, two different products. When quotes disagree sharply, check they're selling the same product before you check anything else.
 
 ### The small print that moves money
 

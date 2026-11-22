@@ -10,7 +10,7 @@ primary_keyword: av hire vs event production
 featured_image: ""
 featured_image_alt: ""
 author: Graham Lynch
-published_at: 2026-12-01
+published_at: 2026-09-02
 ---
 
 If someone has told you to "sort the AV" for an event, the first decision is not which screen or which microphone. It's whether you need AV hire or full event production. AV hire supplies, sets up and operates equipment for a plan you have already made. Event production means one team plans and runs the whole technical side (sound, lighting, staging, screens and video) to your running order. Hire answers "what do I need?" once you know. Production answers it for you, and then runs the show. This guide explains what each one covers, how to tell which your event needs, and what to send a supplier to get a quote you can trust.
@@ -104,7 +104,7 @@ EventSound quotes are all-inclusive. The figure covers equipment, delivery, inst
 
 The practical benefit is that you compare like with like. A quote that describes the whole job, from arrival to breakdown, is much easier to judge than three that each leave something out. Our [guide to what drives conference AV costs](/blog/conference-av-costs-explained/) explains why two quotes for the same event can look so different, and what to check before you pick the cheaper one.
 
-We don't publish prices for production, because the cost depends entirely on what the event needs. The one published rate is for LED walls hired as panels only, without crew. As of November 2026, that's from €125 per m² per day for dry hire of P3 panels, and finer pitches cost more. Everything else is quoted to the job.
+We don't publish prices for production, because the cost depends entirely on what the event needs. The one published rate is for LED walls hired as panels only, without crew. That's from €125 per m² per day for dry hire of P3 panels, and finer pitches cost more. Everything else is quoted to the job.
 
 ## Frequently asked questions
 

@@ -10,7 +10,7 @@ primary_keyword: agm live streaming
 featured_image: ""
 featured_image_alt: ""
 author: Graham Lynch
-published_at: 2026-12-15
+published_at: 2026-09-16
 ---
 
 An AGM is a one-take event. There's no second recording session if the stream fails during the chairperson's report, and the meeting itself has formal standing (motions and votes, with minutes to follow). A town hall carries a different pressure: leadership answering unscripted questions in front of the whole organisation. AGM live streaming is therefore less about elaborate production and more about three decisions made properly: how many cameras, which platform, and what happens when something fails.
@@ -66,7 +66,7 @@ We stream to YouTube, Vimeo, Teams, Zoom or a custom RTMP destination through br
 
 Venue wifi isn't a streaming connection. It's shared, variable and unmonitored, and it degrades at the exact moment the room fills with phones. A stream needs three things:
 
-- **A dedicated wired connection.** We recommend a minimum 10Mbps dedicated upload (our recommendation as of November 2026), with "dedicated" meaning reserved for the stream, not shared with the venue's guests.
+- **A dedicated wired connection.** We recommend a minimum 10Mbps dedicated upload, with "dedicated" meaning reserved for the stream, not shared with the venue's guests.
 - **A backup path.** We run redundant internet: the wired line backed by bonded cellular, which combines several mobile networks into one connection. If the venue line drops, the stream carries on.
 - **A test in advance.** Measure the upload at the venue, ideally at the same time of day as the meeting, not on a quiet mid-morning. A line that tests fine at 10am can struggle once a full room is online.
 
