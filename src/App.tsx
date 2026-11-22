@@ -67,6 +67,7 @@ const AthaloneConferenceAV = lazy(() => import("@/pages/locations/AthaloneConfer
 const AdminLogin = lazy(() => import("./pages/admin/Login"));
 const Dashboard = lazy(() => import("./pages/admin/Dashboard"));
 const AdminGallery = lazy(() => import("./pages/admin/AdminGallery"));
+const AdminGalleryBulk = lazy(() => import("./pages/admin/AdminGalleryBulk"));
 const AdminSeo = lazy(() => import("./pages/admin/AdminSeo"));
 const AdminContent = lazy(() => import("./pages/admin/Content"));
 const AdminTestimonials = lazy(() => import("./pages/admin/Testimonials"));
@@ -197,6 +198,7 @@ function AppRoutes() {
       <Route path="/admin/login" element={<Suspense fallback={null}><AdminLogin /></Suspense>} />
       <Route path="/admin" element={<AdminRoute><Suspense fallback={null}><Dashboard /></Suspense></AdminRoute>} />
       <Route path="/admin/gallery" element={<AdminRoute><Suspense fallback={null}><AdminGallery /></Suspense></AdminRoute>} />
+      <Route path="/admin/gallery/bulk" element={<AdminRoute><Suspense fallback={null}><AdminGalleryBulk /></Suspense></AdminRoute>} />
       <Route path="/admin/seo" element={<AdminRoute><Suspense fallback={null}><AdminSeo /></Suspense></AdminRoute>} />
       <Route path="/admin/content" element={<AdminRoute><Suspense fallback={null}><AdminContent /></Suspense></AdminRoute>} />
       <Route path="/admin/testimonials" element={<AdminRoute><Suspense fallback={null}><AdminTestimonials /></Suspense></AdminRoute>} />

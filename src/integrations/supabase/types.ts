@@ -322,6 +322,13 @@ export type Database = {
           image_url: string
           is_published: boolean | null
           sort_order: number | null
+          caption: string | null
+          event_name: string | null
+          height: number | null
+          location: string | null
+          services: string[]
+          taken_on: string | null
+          width: number | null
           title: string
         }
         Insert: {
@@ -332,6 +339,13 @@ export type Database = {
           image_url: string
           is_published?: boolean | null
           sort_order?: number | null
+          caption?: string | null
+          event_name?: string | null
+          height?: number | null
+          location?: string | null
+          services?: string[]
+          taken_on?: string | null
+          width?: number | null
           title: string
         }
         Update: {
@@ -342,6 +356,13 @@ export type Database = {
           image_url?: string
           is_published?: boolean | null
           sort_order?: number | null
+          caption?: string | null
+          event_name?: string | null
+          height?: number | null
+          location?: string | null
+          services?: string[]
+          taken_on?: string | null
+          width?: number | null
           title?: string
         }
         Relationships: []

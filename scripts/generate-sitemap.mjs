@@ -58,6 +58,7 @@ async function generateSitemap() {
 
   let caseStudies = [];
   let blogPosts = [];
+  let galleryPhotos = [];
 
   // Only fetch dynamic routes if Supabase env vars are available
   if (supabaseUrl && supabaseAnonKey) {
@@ -65,7 +66,7 @@ async function generateSitemap() {
                 const supabase = createClient(supabaseUrl, supabaseAnonKey);
                 const { data, error } = await supabase
                   .from('case_studies')
-                  .select('slug, updated_at')
+                  .select('slug, updated_at, featured_image_url')
                   .eq('is_published', true)
                   .eq('noindex', false);
 
@@ -74,6 +75,19 @@ async function generateSitemap() {
           } else {
                     caseStudies = data || [];
           }
+
+                // Gallery photos become <image:image> entries on /gallery/.
+                const { data: photos, error: galleryError } = await supabase
+                  .from('gallery_items')
+                  .select('image_url')
+                  .eq('is_published', true)
+                  .order('sort_order', { ascending: true })
+                  .limit(1000);
+                if (galleryError) {
+                          console.warn('Warning: Could not fetch gallery photos:', galleryError.message);
+                } else {
+                          galleryPhotos = (photos || []).map(photo => photo.image_url).filter(Boolean);
+                }
 
                 const { data: posts, error: blogError } = await supabase
                   .from('blog_posts')
@@ -99,12 +113,16 @@ async function generateSitemap() {
 
   // Build sitemap XML
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
-    xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+    xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n';
+
+  const escapeXml = value => String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  const imageTags = urls => urls.map(url => `    <image:image>\n      <image:loc>${escapeXml(url)}</image:loc>\n    </image:image>\n`).join('');
 
   // Add static routes
   staticRoutes.forEach(route => {
         xml += '  <url>\n';
         xml += `    <loc>https://eventsound.ie${canonicalPath(route.path)}</loc>\n`;
+        if (route.path === '/gallery') xml += imageTags(galleryPhotos);
         xml += `    <changefreq>${route.changefreq}</changefreq>\n`;
         xml += `    <priority>${route.priority}</priority>\n`;
         xml += '  </url>\n';
@@ -115,6 +133,7 @@ async function generateSitemap() {
         caseStudies.forEach(cs => {
                 xml += '  <url>\n';
                 xml += `    <loc>https://eventsound.ie/case-studies/${cs.slug}/</loc>\n`;
+                if (cs.featured_image_url) xml += imageTags([cs.featured_image_url]);
                 if (cs.updated_at) {
                           const lastmod = new Date(cs.updated_at).toISOString().split('T')[0];
                           xml += `    <lastmod>${lastmod}</lastmod>\n`;
