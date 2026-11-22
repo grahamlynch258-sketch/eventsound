@@ -126,7 +126,8 @@ function schemasToHtml(schemas, routePath = "") {
     .map(s => {
       const id = idMap[s["@type"]] || "";
       const idAttr = id ? ` id="${id}"` : "";
-      return `    <script type="application/ld+json"${idAttr}>${JSON.stringify(s)}</script>`;
+      // "<" is escaped so text such as "</script>" in a caption cannot end the element.
+      return `    <script type="application/ld+json"${idAttr}>${JSON.stringify(s).replace(/</g, '\\u003c')}</script>`;
     })
     .join('\n');
 }
@@ -1156,7 +1157,7 @@ async function prerender() {
     const schemas = getSchemasForRoute(route.path, route._raw);
     if (schemas.length > 0) {
       const schemaHtml = schemasToHtml(schemas, route.path);
-      html = html.replace('</head>', `\n${schemaHtml}\n  </head>`);
+      html = html.replace('</head>', () => `\n${schemaHtml}\n  </head>`);
     }
 
     // Inject static above-fold shell for the homepage so the browser can

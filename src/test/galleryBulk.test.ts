@@ -110,6 +110,11 @@ describe("public gallery", () => {
     expect(groups[0].location).toBe("The Digital Hub, Dublin");
   });
 
+  it("keeps an event with a non-Latin name apart from untagged photos", () => {
+    const groups = groupByEvent([photo("a"), photo("b", { event_name: "\u6771\u4eac" })]);
+    expect(groups.map((g) => g.eventName)).toEqual(["\u6771\u4eac", null]);
+  });
+
   it("describes every photo to search engines as an ImageObject", () => {
     const schema = galleryJsonLd(
       [photo("a", { caption: "Main stage at dusk", width: 2560, height: 1707, taken_on: "2025-07-01", location: "Swords" }), photo("b", { alt_text: null })],
@@ -142,6 +147,13 @@ describe("gallery wiring", () => {
     expect(bulk).toContain("is_published: false");
     expect(bulk).toContain('await import("heic2any")');
     expect(bulk).toContain("uploadImageToStorage(named, batch.category)");
+    // A failed publish must be reported, not shown as published.
+    expect(bulk).toMatch(/if \(error\) \{ failed \+= 1; patch\(item\.key, \{ error: `Not published/);
+    // Numbering is fixed per photo, and null sort orders never count as the highest.
+    expect(bulk).toContain("descriptiveFileName(batch, queued.seq, queued.originalName)");
+    expect(bulk).toContain("nullsFirst: false");
+    // A photo already in storage is not uploaded again on retry.
+    expect(bulk).toContain("let uploaded = queued.uploaded;");
   });
 
   it("the migration only adds optional columns", () => {
@@ -163,6 +175,8 @@ describe("gallery wiring", () => {
     const prerender = read("scripts/prerender.mjs");
     expect(prerender).toContain('ImageGallery: "gallery-schema"');
     expect(prerender).toContain("if (routePath === '/gallery' && GALLERY_PHOTOS.length)");
+    // Admin-entered captions reach this JSON: "<" must be escaped.
+    expect(prerender).toContain("JSON.stringify(s).replace(/</g, '\\\\u003c')");
     expect(read("src/pages/Gallery.tsx")).toContain('document.getElementById("gallery-schema")?.remove()');
   });
 });

@@ -1,9 +1,9 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import { ArrowLeft, CheckCircle2, Download, FileText, Loader2, Upload, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { uploadImageToStorage } from "@/lib/uploadImage";
+import { type UploadedImage, uploadImageToStorage } from "@/lib/uploadImage";
 import {
   type BatchDetails,
   type PhotoText,
@@ -39,6 +39,8 @@ type Status = "converting" | "ready" | "uploading" | "done" | "error";
 
 type Item = {
   key: string;
+  /** Fixed when the photo is added, so numbering never shifts when others are removed. */
+  seq: number;
   originalName: string;
   file: File | null;
   preview: string;
@@ -46,7 +48,10 @@ type Item = {
   edited: boolean;
   status: Status;
   error?: string;
+  /** Set once the file is in storage, so a retry after a failed save does not upload it twice. */
+  uploaded?: UploadedImage;
   rowId?: string;
+  published?: boolean;
 };
 
 const emptyBatch: BatchDetails = { eventName: "", location: "", date: "", category: "", services: [] };
@@ -65,42 +70,49 @@ export default function AdminGalleryBulk() {
   const [categories, setCategories] = useState<string[]>([]);
   const [dragActive, setDragActive] = useState(false);
   const [busy, setBusy] = useState(false);
-  const [published, setPublished] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const seqRef = useRef(0);
   const batchRef = useRef(batch);
   batchRef.current = batch;
+
+  // The list lives in a ref as well as in state: uploads and conversions run
+  // across many renders and must always read and write the latest list.
+  const itemsRef = useRef<Item[]>([]);
+  function updateItems(change: (current: Item[]) => Item[]) {
+    itemsRef.current = change(itemsRef.current);
+    setItems(itemsRef.current);
+  }
+  function patch(key: string, change: Partial<Item>) {
+    updateItems((current) => current.map((item) => (item.key === key ? { ...item, ...change } : item)));
+  }
 
   useEffect(() => {
     supabase.from("gallery_items").select("category").then(({ data }) => {
       setCategories([...new Set((data || []).map((row) => row.category).filter(Boolean))].sort());
     });
+    // Free the preview images when leaving the screen.
+    return () => itemsRef.current.forEach((item) => item.preview && URL.revokeObjectURL(item.preview));
   }, []);
 
   // Re-draft the placeholder text of photos nobody has edited when the batch details change.
   useEffect(() => {
-    setItems((current) => current.map((item, index) => (item.edited || item.status === "done" ? item : { ...item, text: draftText(batch, index) })));
+    updateItems((current) => current.map((item) => (item.edited || item.status === "done" ? item : { ...item, text: draftText(batch, item.seq) })));
   }, [batch]);
 
-  const waiting = items.filter((item) => item.status === "ready" || item.status === "error");
+  const waiting = items.filter((item) => item.file && (item.status === "ready" || item.status === "error"));
   const done = items.filter((item) => item.status === "done");
-  const undescribed = useMemo(
-    () => items.filter((item, index) => needsDescription(item.text, batch, index)).length,
-    [items, batch],
-  );
+  const unpublished = done.filter((item) => !item.published);
+  const undescribed = items.filter((item) => needsDescription(item.text, batch, item.seq)).length;
   const batchReady = batch.eventName.trim() !== "" && batch.category.trim() !== "";
-
-  function patch(key: string, change: Partial<Item>) {
-    setItems((current) => current.map((item) => (item.key === key ? { ...item, ...change } : item)));
-  }
 
   function applyManifest(text: string, label: string) {
     try {
       const lookup = manifestLookup(parseManifest(text));
-      let matched = 0;
-      setItems((current) => current.map((item) => {
-        const row = lookup.get(manifestKey(item.originalName));
-        if (!row || item.status === "done") return item;
-        matched += 1;
+      const matches = (item: Item) => item.status !== "done" && lookup.has(manifestKey(item.originalName));
+      const matched = itemsRef.current.filter(matches).length;
+      updateItems((current) => current.map((item) => {
+        if (!matches(item)) return item;
+        const row = lookup.get(manifestKey(item.originalName))!;
         return { ...item, edited: true, text: { title: row.title || item.text.title, alt: row.alt || item.text.alt, caption: row.caption ?? item.text.caption } };
       }));
       toast.success(`${label}: descriptions applied to ${matched} of ${lookup.size} listed photos`);
@@ -114,17 +126,20 @@ export default function AdminGalleryBulk() {
     const manifests = files.filter((file) => /\.(csv|json)$/i.test(file.name));
     const photos = files.filter((file) => file.type.startsWith("image/") || isHeic(file));
     if (photos.length) {
-      const startIndex = items.length;
-      const added: Item[] = photos.map((file, offset) => ({
-        key: `${file.name}-${file.size}-${file.lastModified}-${Math.random().toString(36).slice(2)}`,
-        originalName: file.name,
-        file: isHeic(file) ? null : file,
-        preview: isHeic(file) ? "" : URL.createObjectURL(file),
-        text: draftText(batchRef.current, startIndex + offset),
-        edited: false,
-        status: isHeic(file) ? "converting" : "ready",
-      }));
-      setItems((current) => [...current, ...added]);
+      const added: Item[] = photos.map((file) => {
+        const seq = seqRef.current++;
+        return {
+          key: `${seq}-${file.name}-${file.size}-${file.lastModified}`,
+          seq,
+          originalName: file.name,
+          file: isHeic(file) ? null : file,
+          preview: isHeic(file) ? "" : URL.createObjectURL(file),
+          text: draftText(batchRef.current, seq),
+          edited: false,
+          status: isHeic(file) ? "converting" : "ready",
+        };
+      });
+      updateItems((current) => [...current, ...added]);
       // Convert iPhone photos one at a time so the page stays responsive.
       for (const [offset, file] of photos.entries()) {
         if (!isHeic(file)) continue;
@@ -133,7 +148,7 @@ export default function AdminGalleryBulk() {
           const jpeg = await heicToJpeg(file);
           patch(key, { file: jpeg, preview: URL.createObjectURL(jpeg), status: "ready" });
         } catch (error) {
-          patch(key, { status: "error", error: `Could not convert this iPhone photo: ${(error as Error).message}` });
+          patch(key, { status: "error", error: `Could not convert this iPhone photo (${(error as Error).message}). Remove it, or export it as JPEG and add it again.` });
         }
       }
     }
@@ -143,41 +158,50 @@ export default function AdminGalleryBulk() {
   }
 
   function remove(key: string) {
-    setItems((current) => {
-      const item = current.find((entry) => entry.key === key);
-      if (item?.preview) URL.revokeObjectURL(item.preview);
-      return current.filter((entry) => entry.key !== key);
-    });
+    const item = itemsRef.current.find((entry) => entry.key === key);
+    if (item?.preview) URL.revokeObjectURL(item.preview);
+    updateItems((current) => current.filter((entry) => entry.key !== key));
   }
 
   function downloadTemplate() {
-    const blob = new Blob([manifestTemplate(items.map((item) => item.originalName))], { type: "text/csv" });
+    const url = URL.createObjectURL(new Blob([manifestTemplate(items.map((item) => item.originalName))], { type: "text/csv" }));
     const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
+    link.href = url;
     link.download = "manifest.csv";
+    document.body.appendChild(link);
     link.click();
-    URL.revokeObjectURL(link.href);
+    link.remove();
+    // Some browsers cancel the download if the URL is revoked straight away.
+    window.setTimeout(() => URL.revokeObjectURL(url), 10000);
   }
 
   async function uploadAll() {
     if (!batchReady) { toast.error("Give the batch an event name and a category first."); return; }
     setBusy(true);
-    const { data: last } = await supabase.from("gallery_items").select("sort_order").order("sort_order", { ascending: false }).limit(1);
+    // Rows with no sort order must not count as the highest (Postgres sorts nulls first when descending).
+    const { data: last } = await supabase.from("gallery_items").select("sort_order")
+      .order("sort_order", { ascending: false, nullsFirst: false }).limit(1);
     let sortOrder = (last?.[0]?.sort_order ?? 0) + 1;
     let failed = 0;
-    for (const [index, item] of items.entries()) {
-      if (!item.file || (item.status !== "ready" && item.status !== "error")) continue;
-      patch(item.key, { status: "uploading", error: undefined });
+    for (const queued of [...itemsRef.current]) {
+      if (!queued.file || (queued.status !== "ready" && queued.status !== "error")) continue;
+      patch(queued.key, { status: "uploading", error: undefined });
       try {
-        const extension = item.file.name.split(".").pop() || "jpg";
-        const named = new File([item.file], `${descriptiveFileName(batch, index, item.originalName)}.${extension}`, { type: item.file.type });
-        const uploaded = await uploadImageToStorage(named, batch.category);
+        let uploaded = queued.uploaded;
+        if (!uploaded) {
+          const extension = queued.file.name.split(".").pop() || "jpg";
+          const named = new File([queued.file], `${descriptiveFileName(batch, queued.seq, queued.originalName)}.${extension}`, { type: queued.file.type });
+          uploaded = await uploadImageToStorage(named, batch.category);
+          patch(queued.key, { uploaded });
+        }
+        // Read the text again: it may have been edited while earlier photos uploaded.
+        const text = itemsRef.current.find((entry) => entry.key === queued.key)?.text ?? queued.text;
         const { data, error } = await supabase
           .from("gallery_items")
           .insert({
-            title: item.text.title.trim() || draftText(batch, index).title,
-            alt_text: item.text.alt.trim(),
-            caption: item.text.caption.trim() || null,
+            title: text.title.trim() || draftText(batch, queued.seq).title,
+            alt_text: text.alt.trim(),
+            caption: text.caption.trim() || null,
             category: batch.category.trim(),
             image_url: uploaded.publicUrl,
             event_name: batch.eventName.trim(),
@@ -192,10 +216,10 @@ export default function AdminGalleryBulk() {
           .select("id")
           .single();
         if (error) throw error;
-        patch(item.key, { status: "done", rowId: data.id });
+        patch(queued.key, { status: "done", rowId: data.id });
       } catch (error) {
         failed += 1;
-        patch(item.key, { status: "error", error: (error as Error).message });
+        patch(queued.key, { status: "error", error: (error as Error).message });
       }
     }
     setBusy(false);
@@ -204,19 +228,29 @@ export default function AdminGalleryBulk() {
   }
 
   async function saveTextAndPublish() {
-    const ids = done.map((item) => item.rowId!).filter(Boolean);
-    if (!ids.length) return;
+    const targets = itemsRef.current.filter((item) => item.status === "done" && !item.published && item.rowId);
+    if (!targets.length) return;
     if (undescribed > 0 && !window.confirm(`${undescribed} photo(s) still have placeholder alt text. Publish anyway?`)) return;
     setBusy(true);
-    // Save any description edits made after upload, then publish.
-    for (const item of done) {
-      await supabase.from("gallery_items")
-        .update({ title: item.text.title.trim(), alt_text: item.text.alt.trim(), caption: item.text.caption.trim() || null, is_published: true })
+    let failed = 0;
+    // Save any description edits made after upload, then publish. Each photo
+    // is marked published only if its own save succeeded.
+    for (const item of targets) {
+      const { error } = await supabase.from("gallery_items")
+        .update({
+          title: item.text.title.trim() || draftText(batch, item.seq).title,
+          alt_text: item.text.alt.trim(),
+          caption: item.text.caption.trim() || null,
+          is_published: true,
+        })
         .eq("id", item.rowId!);
+      if (error) { failed += 1; patch(item.key, { error: `Not published: ${error.message}` }); }
+      else patch(item.key, { published: true, error: undefined });
     }
     setBusy(false);
-    setPublished(true);
-    toast.success(`${ids.length} photos are now on the gallery. Press "Publish site" on the dashboard so the fast version of the page is rebuilt.`);
+    const ok = targets.length - failed;
+    if (failed) toast.error(`${failed} photo(s) could not be published and are still hidden. ${ok} published.`);
+    else toast.success(`${ok} photos are now on the gallery. Press "Publish site" on the dashboard so the fast version of the page is rebuilt.`);
   }
 
   return (
@@ -269,7 +303,7 @@ export default function AdminGalleryBulk() {
             <Upload className="h-8 w-8 text-muted-foreground" aria-hidden="true" />
             <p className="font-medium">Drop the event's photos here, or click to choose them</p>
             <p className="text-sm text-muted-foreground">JPEG, PNG, WebP and iPhone HEIC. Drop a manifest.csv with them to fill in the descriptions.</p>
-            <input ref={inputRef} type="file" multiple accept="image/*,.heic,.heif,.csv,.json" className="hidden"
+            <input ref={inputRef} type="file" multiple accept="image/*,.heic,.heif,.csv,.json" className="hidden" data-testid="bulk-file-input"
               onChange={(e) => { if (e.target.files) void addFiles(e.target.files); e.target.value = ""; }} />
           </div>
 
@@ -283,14 +317,16 @@ export default function AdminGalleryBulk() {
           )}
 
           <ul className="space-y-3">
-            {items.map((item, index) => {
-              const placeholder = needsDescription(item.text, batch, index);
-              const locked = item.status === "uploading" || item.status === "converting" || busy;
+            {items.map((item) => {
+              const placeholder = needsDescription(item.text, batch, item.seq);
+              const locked = item.status === "uploading" || item.status === "converting" || busy || item.published === true;
               const edit = (change: Partial<PhotoText>) => patch(item.key, { edited: true, text: { ...item.text, ...change } });
               return (
                 <li key={item.key} className="grid gap-3 rounded-lg border border-border p-3 md:grid-cols-[160px_1fr_auto]">
                   <div className="flex h-28 w-full items-center justify-center overflow-hidden rounded-md bg-muted md:w-40">
-                    {item.preview ? <img src={item.preview} alt="" className="h-full w-full object-cover" /> : <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />}
+                    {item.preview ? <img src={item.preview} alt="" className="h-full w-full object-cover" />
+                      : item.status === "converting" ? <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
+                      : <span className="px-2 text-center text-xs text-muted-foreground">No preview</span>}
                   </div>
                   <div className="space-y-2">
                     <p className="text-xs text-muted-foreground">{item.originalName}</p>
@@ -304,7 +340,7 @@ export default function AdminGalleryBulk() {
                   <div className="flex items-start gap-2 text-sm">
                     {item.status === "converting" && <span className="flex items-center gap-1 text-muted-foreground"><Loader2 className="h-4 w-4 animate-spin" />Converting</span>}
                     {item.status === "uploading" && <span className="flex items-center gap-1 text-muted-foreground"><Loader2 className="h-4 w-4 animate-spin" />Uploading</span>}
-                    {item.status === "done" && <span className="flex items-center gap-1 text-emerald-600"><CheckCircle2 className="h-4 w-4" />{published ? "Published" : "Saved, hidden"}</span>}
+                    {item.status === "done" && <span className="flex items-center gap-1 text-emerald-600"><CheckCircle2 className="h-4 w-4" />{item.published ? "Published" : "Saved, hidden"}</span>}
                     {(item.status === "ready" || item.status === "error") && (
                       <Button type="button" size="icon" variant="ghost" aria-label={`Remove ${item.originalName}`} disabled={busy} onClick={() => remove(item.key)}><X className="h-4 w-4" /></Button>
                     )}
@@ -323,8 +359,8 @@ export default function AdminGalleryBulk() {
             {busy ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Upload className="mr-2 h-4 w-4" />}
             Upload {waiting.length || ""} photo{waiting.length === 1 ? "" : "s"} (saved hidden)
           </Button>
-          <Button type="button" variant="outline" onClick={saveTextAndPublish} disabled={busy || done.length === 0 || published}>
-            Publish {done.length || ""} uploaded photo{done.length === 1 ? "" : "s"}
+          <Button type="button" variant="outline" onClick={saveTextAndPublish} disabled={busy || unpublished.length === 0}>
+            Publish {unpublished.length || ""} uploaded photo{unpublished.length === 1 ? "" : "s"}
           </Button>
           {!batchReady && <p className="text-sm text-muted-foreground">Enter the event name and category to enable upload.</p>}
         </CardContent>

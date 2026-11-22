@@ -204,7 +204,7 @@ export function groupByEvent(photos: GalleryPhoto[]): GalleryGroup[] {
   const groups = new Map<string, GalleryGroup & { latest: string }>();
   for (const photo of photos) {
     const eventName = photo.event_name?.trim() || null;
-    const key = eventName ? slugify(eventName) : "";
+    const key = eventName ? slugify(eventName) || `event:${eventName}` : "";
     let group = groups.get(key);
     if (!group) {
       group = { key, eventName, location: null, when: "", photos: [], latest: "" };
