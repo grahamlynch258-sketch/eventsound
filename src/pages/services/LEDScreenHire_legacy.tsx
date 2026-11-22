@@ -127,7 +127,7 @@ export default function LEDScreenHire() {
           <ScrollReveal>
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Frequently Combined With</h2>
           <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-            Many of our clients combine LED screen hire with <Link to="/services/av-production/" className="text-accent hover:underline">full AV production</Link> for conferences and corporate events. For larger visual displays using modular panels, see our <Link to="/services/led-video-walls/" className="text-accent hover:underline">LED Video Wall Hire</Link> service. Add <Link to="/services/virtual-events/" className="text-accent hover:underline">live streaming and hybrid event</Link> production for remote audiences.
+            Many of our clients combine LED screen hire with <Link to="/services/av-production/" className="text-accent hover:underline">AV hire</Link> for conferences and corporate events. For larger visual displays using modular panels, see our <Link to="/services/led-video-walls/" className="text-accent hover:underline">LED Video Wall Hire</Link> service. Add <Link to="/services/virtual-events/" className="text-accent hover:underline">live streaming and hybrid event</Link> production for remote audiences.
           </p>
           </ScrollReveal>
 

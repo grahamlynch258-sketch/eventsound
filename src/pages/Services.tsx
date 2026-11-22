@@ -12,7 +12,7 @@ const services = [
   { title: "LED Video Walls", description: "High-resolution LED displays for conferences, launches, and corporate events. Custom sizes and on-site operation.", href: "/services/led-video-walls/", icon: Monitor },
   { title: "Conference AV Hire", description: "Full-service conference AV across Ireland. Lectern mics, LED walls, confidence monitors, streaming, and breakout room AV.", href: "/services/conference-av-hire/", icon: Presentation },
   { title: "Sound & PA System Hire", description: "Operated PA systems, wireless microphones and stage monitoring for conferences, bands and outdoor events.", href: "/services/sound-hire/", icon: Volume2 },
-  { title: "AV Production", description: "Complete audiovisual solutions for conferences and corporate events. L-Acoustics sound, LED walls, lighting, and crew.", href: "/services/av-production/", icon: Volume2 },
+  { title: "AV Hire", description: "Complete audiovisual solutions for conferences and corporate events. L-Acoustics sound, LED walls, lighting, and crew.", href: "/services/av-production/", icon: Volume2 },
   { title: "Lighting Design", description: "Intelligent stage lighting, architectural washes, and custom designs using Chamsys MagicQ control.", href: "/services/lighting-design/", icon: Lightbulb },
   { title: "Staging, Pipe & Drape", description: "TUV-certified modular staging, pipe and drape, star cloth, and scenic elements for any venue.", href: "/services/staging-pipe-drape/", icon: Theater },
   { title: "Event Production", description: "End-to-end production management, technical direction, and crew coordination from planning to wrap.", href: "/services/event-production/", icon: Clapperboard },
@@ -24,8 +24,8 @@ const services = [
 export default function Services() {
   const { hero, heroAlt } = useServiceImages("hero-services");
   useSeo({
-    title: "Event Production Services | AV Hire Ireland | EventSound",
-    description: "AV hire & event production services across Ireland. LED video walls, PA systems, conference AV, lighting, staging & live streaming. Delivery, setup & operator included.",
+    title: "Our Services | Sound, Lighting, Staging, LED & Video | EventSound",
+    description: "Everything EventSound supplies for events across Ireland: LED video walls, sound and PA, lighting, staging, conference AV, video and live streaming. Setup and operator included.",
     canonical: "https://eventsound.ie/services",
   });
 

@@ -9,7 +9,7 @@ describe("Phase 2 conversion flow", () => {
     render(<MemoryRouter><ServicesGrid /></MemoryRouter>);
 
     expect(screen.getByRole("link", { name: /Sound & PA Systems/i })).toHaveAttribute("href", "/services/sound-hire/");
-    expect(screen.getByRole("link", { name: /AV Production/i })).toHaveAttribute("href", "/services/av-production/");
+    expect(screen.getByRole("link", { name: /AV Hire/i })).toHaveAttribute("href", "/services/av-production/");
     expect(screen.getByRole("link", { name: /LED Video Walls/i })).toHaveAttribute("href", "/services/led-video-walls/");
     expect(screen.getByRole("link", { name: /Conference AV/i })).toHaveAttribute("href", "/services/conference-av-hire/");
     expect(screen.getByRole("link", { name: /Lighting Design/i })).toHaveAttribute("href", "/services/lighting-design/");

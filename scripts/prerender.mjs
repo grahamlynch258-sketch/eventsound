@@ -246,11 +246,11 @@ const SERVICE_PAGE_SCHEMAS = {
       { question: "What happens during a site visit?", answer: "We assess the venue layout, power availability, rigging points, load-in access, and acoustics. This ensures we specify the right equipment and plan the setup efficiently. Site visits are free for all confirmed bookings." },
       { question: "Do you carry backup equipment?", answer: "Yes — we carry backup for all critical equipment including spare microphones, cables, laptops, and switching systems. Our technicians are trained to swap faulty equipment within minutes so your event is never disrupted." },
     ],
-    service: { name: "AV Production & Hire", description: "Professional AV production and equipment hire in Ireland. PA systems, microphones, mixing, projection, and full technical crew for conferences, concerts and corporate events.", serviceType: "AV Equipment Hire", url: "https://eventsound.ie/services/av-production" },
+    service: { name: "AV Hire", description: "Professional AV hire in Ireland. PA systems, microphones, mixing, projection, and full technical crew for conferences, concerts and corporate events.", serviceType: "AV Equipment Hire", url: "https://eventsound.ie/services/av-production" },
     breadcrumb: [
       { name: "Home", url: "https://eventsound.ie/" },
       { name: "Services", url: "https://eventsound.ie/services" },
-      { name: "AV Production", url: "https://eventsound.ie/services/av-production" },
+      { name: "AV Hire", url: "https://eventsound.ie/services/av-production" },
     ],
   },
 
@@ -705,10 +705,10 @@ function getSchemasForRoute(routePath, caseStudyData) {
 const ROUTES = [
   { path: '/', title: 'EventSound | AV Hire & Event Production Ireland', description: 'Professional AV hire and event production across Ireland. Sound systems, LED video walls, conference AV, staging and lighting with an experienced technical crew.' },
   { path: '/about', title: 'About EventSound | 35+ Years of Event Production in Ireland', description: 'EventSound has been delivering professional event production across Ireland for over 35 years. Meet the team behind Ireland\u2019s trusted AV hire and event production company.' },
-  { path: '/services', title: 'Event Production Services | AV Hire Ireland | EventSound', description: 'Full-service event production in Ireland. LED video walls, sound systems, lighting design, staging, video production, and virtual event solutions.' },
+  { path: '/services', title: 'Our Services | Sound, Lighting, Staging, LED & Video | EventSound', description: 'Everything EventSound supplies for events across Ireland: LED video walls, sound and PA, lighting, staging, conference AV, video and live streaming. Setup and operator included.' },
   { path: '/services/led-video-walls', title: 'LED Video Wall Hire Ireland | Indoor & Outdoor Screens', description: 'Indoor and outdoor LED video wall hire across Ireland and Dublin for conferences, corporate events, concerts and theatre. Installation and operator included.' },
   { path: '/services/lighting-design', title: 'Event Lighting Hire Dublin | Corporate & Stage Lighting', description: 'Event lighting design and hire for corporate events, conferences, stages and concerts in Dublin and across Ireland. Programming and operator included.' },
-  { path: '/services/event-production', title: 'Event Production Company Ireland | Corporate & Live Events', description: 'Technical event production for conferences, exhibitions, corporate events, festivals and live shows across Ireland. AV, LED, lighting, staging and crew.' },
+  { path: '/services/event-production', title: 'Event Production Company Ireland | Corporate & Live Events', description: 'Event production services for conferences, exhibitions, corporate events, festivals and live shows across Ireland. Sound, LED, lighting, staging and crew.' },
   { path: '/services/staging-pipe-drape', title: 'Stage Hire Ireland & Dublin | Indoor & Outdoor Stages', description: 'Indoor, outdoor and mobile stage hire across Ireland and Dublin. Modular stages, pipe and drape, delivery, installation and safety planning included.' },
   { path: '/services/video-production', title: 'Event Video Production Ireland | Multi-Camera & Streaming', description: 'Multi-camera event video production, IMAG, recording and live streaming for conferences, concerts and corporate events across Ireland. Crew included.' },
   { path: '/services/virtual-events', title: 'Hybrid Event Production Ireland | Live Streaming & Virtual Events | EventSound', description: 'Hybrid event production across Ireland. Combine in-person and virtual audiences with multi-camera streaming, remote speaker integration, and broadcast-quality AV.' },

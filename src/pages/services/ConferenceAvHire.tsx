@@ -171,6 +171,9 @@ export default function ConferenceAvHire() {
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
             Our hybrid production ensures remote viewers receive the same quality experience as in-room attendees, with broadcast-quality video, clear audio, and real-time content delivery through your chosen streaming platform.
           </p>
+          <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
+            Only need a screen set up for a Teams or Zoom meeting, not a full conference? See <Link to="/services/led-screen-hire/" className="text-accent hover:underline">video conferencing equipment hire</Link>.
+          </p>
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">A Clear Conference AV Quotation</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
             Conference AV pricing depends on the venue, number of rooms, event duration, rehearsal schedule, equipment and crew. Your quotation will set out the recommended system, operator hours, setup and breakdown so the full delivery cost is clear. Send the venue, delegate numbers and running order to start.

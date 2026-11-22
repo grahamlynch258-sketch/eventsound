@@ -154,11 +154,11 @@ export default function AVProduction() {
 
           {gallery.length > 0 && (
             <div className="mt-8">
-              <h2 className="text-2xl font-semibold mb-4">Our AV Production Work</h2>
+              <h2 className="text-2xl font-semibold mb-4">AV Hire Jobs We Have Delivered</h2>
               <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {gallery.map((img) => (
                   <StaggerItem key={img.id}>
-                  <img {...cdnImage(img.image_url, "third")} alt={img.alt_text || "AV production setup at corporate event"} className="rounded-lg w-full aspect-video object-cover" loading="lazy" decoding="async" width={600} height={338} />
+                  <img {...cdnImage(img.image_url, "third")} alt={img.alt_text || "AV hire setup at a corporate event"} className="rounded-lg w-full aspect-video object-cover" loading="lazy" decoding="async" width={600} height={338} />
                   </StaggerItem>
                 ))}
               </StaggerContainer>
@@ -170,7 +170,7 @@ export default function AVProduction() {
           <ScrollReveal>
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Frequently Combined With</h2>
           <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-            Our AV production packages often include <Link to="/services/led-video-walls/" className="text-accent hover:underline">LED video wall hire</Link> and <Link to="/services/lighting-design/" className="text-accent hover:underline">event lighting design</Link> for a unified production. If audio is the main requirement, see our dedicated <Link to="/services/sound-hire/" className="text-accent hover:underline">sound and PA system hire</Link> service. For single-room or multi-room conferences, see our dedicated <Link to="/services/conference-av-hire/" className="text-accent hover:underline">conference equipment hire and production</Link> service. See our full AV setup for the <Link to="/case-studies/prism-immersive-technology-summit/" className="text-accent hover:underline">PRISM Immersive Technology Summit</Link>.
+            Our AV hire packages often include <Link to="/services/led-video-walls/" className="text-accent hover:underline">LED video wall hire</Link> and <Link to="/services/lighting-design/" className="text-accent hover:underline">event lighting design</Link> for a unified production. If you want one team to plan and run the whole technical side of the event, see <Link to="/services/event-production/" className="text-accent hover:underline">event production services</Link>. If audio is the main requirement, see our dedicated <Link to="/services/sound-hire/" className="text-accent hover:underline">sound and PA system hire</Link> service. For single-room or multi-room conferences, see our dedicated <Link to="/services/conference-av-hire/" className="text-accent hover:underline">conference equipment hire and production</Link> service. See our full AV setup for the <Link to="/case-studies/prism-immersive-technology-summit/" className="text-accent hover:underline">PRISM Immersive Technology Summit</Link>.
           </p>
           <p className="mt-4 text-muted-foreground leading-relaxed max-w-3xl mx-auto">
             Preparing a conference enquiry? Use our{" "}

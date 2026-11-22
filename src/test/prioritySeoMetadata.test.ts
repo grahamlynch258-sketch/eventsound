@@ -33,7 +33,7 @@ const priorityPages = [
     path: "/services/event-production",
     source: "src/pages/services/EventProduction.tsx",
     title: "Event Production Company Ireland | Corporate & Live Events",
-    description: "Technical event production for conferences, exhibitions, corporate events, festivals and live shows across Ireland. AV, LED, lighting, staging and crew.",
+    description: "Event production services for conferences, exhibitions, corporate events, festivals and live shows across Ireland. Sound, LED, lighting, staging and crew.",
   },
   {
     path: "/services/video-production",

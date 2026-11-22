@@ -162,9 +162,9 @@ export default function AudioSystems() {
 
           <BrandBanner serviceKey="av-production" />
 
-          <h2 className="text-2xl font-semibold">Sound Hire or Full AV Production?</h2>
+          <h2 className="text-2xl font-semibold">Sound Hire Only, or Sound with Screens and Lighting?</h2>
           <p className="text-muted-foreground leading-relaxed">
-            Choose sound hire when audio is the main requirement. If the event also needs screens, presentation playback, lighting, cameras or several technical departments, our <Link to="/services/av-production/" className="text-accent hover:underline">full AV production service</Link> combines them under one technical plan. Conference organisers can also see our <Link to="/services/conference-av-hire/" className="text-accent hover:underline">conference AV hire packages</Link>.
+            Choose sound hire when audio is the main requirement. If the event also needs screens, presentation playback, lighting, cameras or several technical departments, our <Link to="/services/av-production/" className="text-accent hover:underline">AV hire service</Link> combines them under one technical plan. Conference organisers can also see our <Link to="/services/conference-av-hire/" className="text-accent hover:underline">conference AV hire packages</Link>.
           </p>
 
           <div className="max-w-4xl mx-auto mt-16">
