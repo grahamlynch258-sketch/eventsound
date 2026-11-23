@@ -137,7 +137,7 @@ function schemasToHtml(schemas, routePath = "") {
 const SERVICE_PAGE_SCHEMAS = {
   '/services/led-video-walls': {
     faqs: [
-      { question: "What size LED screen do I need for my event?", answer: "Screen size depends on your audience size and venue. For conferences of 100-300 people, a 3m x 2m screen works well. For outdoor concerts with 1,000+ attendees, you may need 5m x 3m or larger. We do a free site survey to recommend the perfect configuration for your space." },
+      { question: "What size LED screen do I need for my event?", answer: "Screen size depends on your audience size and venue. For conferences of 100-300 people, a 3.5m x 2m screen works well. For outdoor concerts with 1,000+ attendees, you may need 5.5m x 3m or larger. We do a free site survey to recommend the perfect configuration for your space." },
       { question: "Can LED walls be used outdoors in Ireland?", answer: "Yes — our LED panels are rated for outdoor use and can handle Irish weather conditions including rain and wind. We use weatherproof cabinets and provide covered rigging solutions for outdoor festivals, concerts, and council events." },
       { question: "How far in advance should I book LED screen hire?", answer: "We recommend booking 4-6 weeks ahead for standard events and 2-3 months for large festivals or peak season (May-September). However, we can often accommodate shorter notice depending on availability." },
       { question: "What content can be displayed on LED video walls?", answer: "Anything — live camera feeds, pre-recorded video, presentations, social media walls, sponsor logos, and live event graphics. We provide full content playback and can help with content formatting to ensure it looks perfect on screen." },

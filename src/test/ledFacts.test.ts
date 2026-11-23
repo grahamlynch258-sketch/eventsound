@@ -72,7 +72,7 @@ describe("LED facts agree everywhere", () => {
 
   it("the LED page carries the wall size table from the video wall guide", () => {
     const guideRows = read("content/blog/video-wall-hire-guide.md").split("\n")
-      .filter((line) => /^\| \d+m × /.test(line))
+      .filter((line) => /^\| [\d.]+m × /.test(line))
       .map((line) => line.split("|").map((cell) => cell.trim()).filter(Boolean));
     expect(guideRows.length).toBe(5);
     const page = read("src/pages/v2/LEDVideoWallsV2.tsx");

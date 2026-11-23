@@ -31,11 +31,11 @@ Because walls are modular, "what sizes are there" really means "what size does y
 
 | Build | Area | Where it fits |
 |---|---|---|
-| 3m × 2m | 6m² | Boardrooms, breakout rooms, product demos |
-| 4m × 2.5m | 10m² | The typical single-room conference backdrop |
-| 5m × 3m | 15m² | Awards nights, galas and launches |
+| 3.5m × 2m | 7m² | Boardrooms, breakout rooms, product demos |
+| 4.5m × 2.5m | 11.25m² | The typical single-room conference backdrop |
+| 5.5m × 3m | 16.5m² | Awards nights, galas and launches |
 | 6m × 3.5m | 21m² | Large conferences and wide ballrooms |
-| 8m × 5m and up | 40m²+ | Outdoor stages and festival screens |
+| 8m × 4.5m and up | 36m²+ | Outdoor stages and festival screens |
 
 Two measurements decide the right row on that table. The distance to your furthest viewer sets how big the image must be to stay legible from the back. The ceiling height and stage width cap what physically fits. A three-metre-high wall under a 3.2m ceiling leaves no room for structure.
 
