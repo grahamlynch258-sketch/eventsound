@@ -25,6 +25,8 @@ const HealthAndSafety = lazy(() => import("./pages/HealthAndSafety"));
 const CaseStudies = lazy(() => import("./pages/CaseStudies"));
 const CaseStudyDetail = lazy(() => import("./pages/CaseStudyDetail"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+// Preview of the next home page. Not linked, not in the sitemap, noindex.
+const HomeNext = lazy(() => import("./pages/HomeNext"));
 
 // Landing pages — Google Ads only, noindex
 const CorporateAVHireDublin = lazy(() => import("@/pages/landing/CorporateAVHireDublin"));
@@ -150,6 +152,7 @@ function AppRoutes() {
       <Route path="/about" element={<Suspense fallback={null}><About /></Suspense>} />
       <Route path="/contact" element={<Suspense fallback={null}><Contact /></Suspense>} />
       <Route path="/gallery" element={<Suspense fallback={null}><Gallery /></Suspense>} />
+      <Route path="/home-next" element={<Suspense fallback={null}><HomeNext /></Suspense>} />
       <Route path="/reviews" element={<Suspense fallback={null}><Reviews /></Suspense>} />
       <Route path="/faq" element={<Suspense fallback={null}><FAQ /></Suspense>} />
       <Route path="/health-and-safety" element={<Suspense fallback={null}><HealthAndSafety /></Suspense>} />

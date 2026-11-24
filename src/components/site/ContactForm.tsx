@@ -47,6 +47,23 @@ const EMPTY: FormState = {
   honeypot: "",
 };
 
+// The home page preview's four-field brief sends its answers here in the
+// router's navigation state (kept by the browser in history.state.usr). Only
+// the four event fields are read, and only as text.
+const BRIEF_FIELDS = ["event_date", "venue", "event_type", "audience_size"] as const;
+
+function briefFromNavigation(): Partial<FormState> {
+  if (typeof window === "undefined") return {};
+  const brief = (window.history.state as { usr?: { brief?: Record<string, unknown> } } | null)?.usr?.brief;
+  if (!brief || typeof brief !== "object") return {};
+  const picked: Partial<FormState> = {};
+  for (const field of BRIEF_FIELDS) {
+    const value = brief[field];
+    if (typeof value === "string" && value.trim()) picked[field] = value.trim().slice(0, 200);
+  }
+  return picked;
+}
+
 const SERVICES_OPTIONS = [
   "AV Equipment & Production",
   "Conference AV & Full Production",
@@ -67,7 +84,7 @@ interface ContactFormProps {
 
 export function ContactForm({ defaultServices = [], formContext = "General enquiry" }: ContactFormProps) {
   const { toast } = useToast();
-  const [form, setForm] = useState<FormState>(EMPTY);
+  const [form, setForm] = useState<FormState>(() => ({ ...EMPTY, ...briefFromNavigation() }));
   const [servicesNeeded, setServicesNeeded] = useState<string[]>(defaultServices.filter(Boolean));
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
