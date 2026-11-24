@@ -27,7 +27,7 @@ On the day, the wall takes whatever you feed it. Laptop slides over HDMI, playba
 
 ## Video wall sizes for events
 
-Because walls are modular, "what sizes are there" really means "what size does your room need". Builds step up in half-metre increments, and ours run from 6m² conference backdrops to 50m²+ outdoor screens. The shapes below are the ones event organisers ask for most:
+Because walls are modular, "what sizes are there" really means "what size does your room need". Builds step up in half-metre increments, and ours run from 7m² conference backdrops to 50m²+ outdoor screens. The shapes below are the ones event organisers ask for most:
 
 | Build | Area | Where it fits |
 |---|---|---|

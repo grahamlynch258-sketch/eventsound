@@ -32,7 +32,7 @@ If a supplier's recommendation cuts against this pattern, ask why. There are goo
 
 An LED screen, in hire terms, is a single large-format display. A commercial-grade television, in other words. Ours run from 43" to 98" and go up on floor stands, table mounts or wall brackets. One unit, one power lead, one signal cable: it's working minutes after it arrives.
 
-An LED wall is modular. Individual panels (we stock Absen P2.6 and Unilumin) bolt together into whatever size and shape the design needs, from 6m² behind a conference stage to 50m²+ on an outdoor stage. A wall can be ground-supported or rigged, flat, curved or angled. It's a small construction project. It needs build time, and it needs a technician.
+An LED wall is modular. Individual panels (we stock Absen P2.6 and Unilumin) bolt together into whatever size and shape the design needs, from 7m² behind a conference stage to 50m²+ on an outdoor stage. A wall can be ground-supported or rigged, flat, curved or angled. It's a small construction project. It needs build time, and it needs a technician.
 
 Plug-and-play unit versus engineered build. That difference drives the cost, the setup time and the crew each involves.
 
@@ -100,7 +100,7 @@ Yes, and larger conferences usually should: a wall on the main stage, screens fo
 Our quoting is all-inclusive: equipment, delivery, installation, on-site operation where the job needs it, and breakdown. No line items arriving afterwards.
 
 **What is the smallest LED wall worth building?**
-Our conference walls start around 6m². If the space or budget won't carry that, one or two large screens usually serve the room better than a shrunken wall.
+Our conference walls start around 7m². If the space or budget won't carry that, one or two large screens usually serve the room better than a shrunken wall.
 
 ## Planning the screens for your next event
 

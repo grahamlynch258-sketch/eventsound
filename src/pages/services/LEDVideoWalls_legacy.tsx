@@ -72,7 +72,7 @@ export default function LEDVideoWalls() {
             EventSound provides LED video wall hire across Ireland for conferences, corporate events, exhibitions, awards ceremonies, concerts, and outdoor festivals. Based in Drogheda, Co. Louth, we deliver and install LED walls at venues in Dublin, Cork, Galway, Belfast, and nationwide.
           </p>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            We stock Unilumin and Absen LED panels in pixel pitches from 1.9mm to 3.9mm, with screen sizes from 6m² for conference presentations to 100m²+ for large-scale outdoor stages. Every hire includes delivery, installation, content management, a dedicated on-site operator, and full breakdown after your event. For individual screen and TV monitor hire for conferences and exhibitions, see our <Link to="/services/led-screen-hire/" className="text-accent hover:underline">LED Screen Hire</Link> service.
+            We stock Unilumin and Absen LED panels in pixel pitches from 1.9mm to 3.9mm, with screen sizes from 7m² for conference presentations to 100m²+ for large-scale outdoor stages. Every hire includes delivery, installation, content management, a dedicated on-site operator, and full breakdown after your event. For individual screen and TV monitor hire for conferences and exhibitions, see our <Link to="/services/led-screen-hire/" className="text-accent hover:underline">LED Screen Hire</Link> service.
           </p>
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">Indoor LED Wall Hire</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
@@ -127,7 +127,7 @@ export default function LEDVideoWalls() {
             <li>Unilumin and Absen LED panels — industry-leading resolution and colour accuracy</li>
             <li>Over 35 years of event production experience across Ireland</li>
             <li>Full-service: delivery, installation, operation, and breakdown included</li>
-            <li>Indoor and outdoor LED walls from 6m² to 100m²+</li>
+            <li>Indoor and outdoor LED walls from 7m² to 100m²+</li>
             <li>Curved and custom configurations for immersive installations</li>
             <li>Works alongside your creative team or agency for content delivery</li>
             <li>Transparent pricing — no hidden fees or surprise extras</li>

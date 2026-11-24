@@ -70,6 +70,13 @@ describe("LED facts agree everywhere", () => {
     expect(quickAnswers.ledVideoWalls.answer).toContain("100 m²");
   });
 
+  it("no public page says LED walls start at 6 square metres", () => {
+    // Owner decision (24 November 2026): the smallest wall is 7 m2 (3.5m x 2m).
+    for (const file of sources) expect(read(file), file).not.toMatch(/(^|[^\d.])6 ?m²|6–100m²|6 to 100 square metres/);
+    expect(read("content/blog/_FACTS.md")).toContain("screens from 7m²");
+    expect(quickAnswers.ledVideoWalls.answer).toContain("7 m²");
+  });
+
   it("the LED page carries the wall size table from the video wall guide", () => {
     const guideRows = read("content/blog/video-wall-hire-guide.md").split("\n")
       .filter((line) => /^\| [\d.]+m × /.test(line))

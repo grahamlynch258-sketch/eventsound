@@ -26,7 +26,9 @@ stories in. Never invent a venue, client, number or piece of kit.
 ## Equipment (only claim what's listed)
 
 - LED: Absen P2.6 panels and Unilumin LED panels; pixel pitches 1.9mm–3.9mm;
-  screens from 6m² (conferences) to 100m²+ (outdoor stages); 3.9mm is the
+  screens from 7m² (conferences) to 100m²+ (outdoor stages); suggested wall
+  sizes are close to 16:9 and start at 3.5m × 2m (owner, 23 and 24 November
+  2026: the smallest wall is 7m², not 6m²); 3.9mm is the
   coarsest panel held (owner, 22 November 2026: no 4.8mm or 4.9mm); indoor and
   weather-rated outdoor panels; freestanding ground-support or stage rigging;
   curved, angled and custom-shaped configurations possible

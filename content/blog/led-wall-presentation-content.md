@@ -15,7 +15,7 @@ published_at: 2026-09-21
 
 Most presentation problems on show day were baked in weeks earlier, when someone built a deck for a laptop screen instead of the wall it would actually play on. LED walls are modular. They're built to whatever size and shape the event needs, and that shape is often not 16:9. So the result is familiar: stretched logos, cropped titles, text hidden behind a lectern.
 
-This guide covers how to prepare LED wall presentation content properly: confirming the canvas, setting up slides, respecting safe areas, exporting video that behaves and testing playback before doors. The advice applies whichever supplier builds your screen. EventSound builds [LED video walls](/services/led-video-walls/) from 6m² to 50m²+, including curved and custom-shaped configurations. That's exactly where the standard 16:9 assumption falls apart.
+This guide covers how to prepare LED wall presentation content properly: confirming the canvas, setting up slides, respecting safe areas, exporting video that behaves and testing playback before doors. The advice applies whichever supplier builds your screen. EventSound builds [LED video walls](/services/led-video-walls/) from 7m² to 50m²+, including curved and custom-shaped configurations. That's exactly where the standard 16:9 assumption falls apart.
 
 ## Start with the canvas, not the deck
 

@@ -27,12 +27,12 @@ export const quickAnswers = {
   ledVideoWalls: {
     key: "led-video-walls",
     question: "How does LED video wall hire work, and what does it cost?",
-    answer: `EventSound hires modular LED video walls for conferences, concerts, festivals and corporate events across Ireland, from 6 m² conference screens to outdoor stage screens of 100 m² and larger. Dry hire of ${ledPanel} panels starts from ${ledRate} per square metre per day. Operated hire, with delivery, installation, a dedicated operator and breakdown, is quoted per event.`,
+    answer: `EventSound hires modular LED video walls for conferences, concerts, festivals and corporate events across Ireland, from 7 m² conference screens to outdoor stage screens of 100 m² and larger. Dry hire of ${ledPanel} panels starts from ${ledRate} per square metre per day. Operated hire, with delivery, installation, a dedicated operator and breakdown, is quoted per event.`,
     tableCaption: "LED video wall hire at a glance",
     facts: [
       { label: "Dry-hire rate", value: `From ${ledRate} per square metre per day for ${ledPanel} panels; finer pitches cost more` },
       { label: "Operated hire", value: "Delivery, installation, content playback, an on-site operator and breakdown included; quoted per event" },
-      { label: "Screen sizes", value: "From 6 m² for a conference stage to 100 m² and larger for outdoor stages, built to the venue" },
+      { label: "Screen sizes", value: "From 7 m² for a conference stage to 100 m² and larger for outdoor stages, built to the venue" },
       { label: "Pixel pitch", value: "1.9 mm to 3.9 mm; 2.6 mm or 3.9 mm suits most conferences" },
       { label: "Indoor and outdoor", value: "Indoor panels, and weather-rated high-brightness panels for outdoor events" },
       { label: "Builds", value: "Flat, curved and custom shapes, freestanding on ground support or rigged with the stage" },
