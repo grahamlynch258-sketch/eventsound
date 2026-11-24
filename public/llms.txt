@@ -114,7 +114,7 @@ Q: How much does LED wall hire cost in Ireland?
 A: LED wall hire starts from €125 per square metre per day for dry hire of P3 panels. Pricing varies with pixel pitch, screen size and event requirements, and operated hire is quoted per event.
 
 Q: What size LED video wall do I need?
-A: For conference presentations with audiences of 50-200, we typically recommend 3m x 2m to 4m x 2.5m configurations. For large stages and outdoor events, 6m x 3m and above. We recommend the right size based on your venue, audience, and content.
+A: For conference presentations with audiences of 50-200, we typically recommend 3.5m x 2m to 4.5m x 2.5m configurations. For large stages and outdoor events, 8m x 4.5m and above. These sizes are close to 16:9. We recommend the right size based on your venue, audience, and content.
 
 Q: Does EventSound provide LED screen hire for conferences?
 A: Yes. We provide individual LED screens and TV monitors from 43 to 98 inches for conferences, exhibitions, and corporate events, as well as large-format modular LED video walls for main stage and keynote presentations.

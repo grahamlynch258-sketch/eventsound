@@ -70,6 +70,18 @@ describe("LED facts agree everywhere", () => {
     expect(quickAnswers.ledVideoWalls.answer).toContain("100 m²");
   });
 
+  it("the LED page carries the wall size table from the video wall guide", () => {
+    const guideRows = read("content/blog/video-wall-hire-guide.md").split("\n")
+      .filter((line) => /^\| [\d.]+m × /.test(line))
+      .map((line) => line.split("|").map((cell) => cell.trim()).filter(Boolean));
+    expect(guideRows.length).toBe(5);
+    const page = read("src/pages/v2/LEDVideoWallsV2.tsx");
+    expect(page).toContain("What Size LED Wall Do I Need?");
+    for (const [size, area, fits] of guideRows) {
+      expect(page, size).toContain(`{ size: "${size}", area: "${area}", fits: "${fits}" }`);
+    }
+  });
+
   it("the LED cost guide presents the rate as a starting price for P3 dry hire", () => {
     const post = read("content/blog/led-wall-hire-cost-ireland.md");
     expect(post).toContain("dry hire starts from €125 per square metre per day");
