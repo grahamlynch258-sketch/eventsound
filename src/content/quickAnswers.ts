@@ -27,12 +27,12 @@ export const quickAnswers = {
   ledVideoWalls: {
     key: "led-video-walls",
     question: "How does LED video wall hire work, and what does it cost?",
-    answer: `EventSound hires modular LED video walls for conferences, concerts, festivals and corporate events across Ireland, from 6 m² conference screens to outdoor stage screens of 100 m² and larger. Dry hire of ${ledPanel} panels starts from ${ledRate} per square metre per day. Operated hire, with delivery, installation, a dedicated operator and breakdown, is quoted per event.`,
+    answer: `EventSound hires modular LED video walls for conferences, concerts, festivals and corporate events across Ireland, from 7 m² conference screens to outdoor stage screens of 100 m² and larger. Dry hire of ${ledPanel} panels starts from ${ledRate} per square metre per day. Operated hire, with delivery, installation, a dedicated operator and breakdown, is quoted per event.`,
     tableCaption: "LED video wall hire at a glance",
     facts: [
       { label: "Dry-hire rate", value: `From ${ledRate} per square metre per day for ${ledPanel} panels; finer pitches cost more` },
       { label: "Operated hire", value: "Delivery, installation, content playback, an on-site operator and breakdown included; quoted per event" },
-      { label: "Screen sizes", value: "From 6 m² for a conference stage to 100 m² and larger for outdoor stages, built to the venue" },
+      { label: "Screen sizes", value: "From 7 m² for a conference stage to 100 m² and larger for outdoor stages, built to the venue" },
       { label: "Pixel pitch", value: "1.9 mm to 3.9 mm; 2.6 mm or 3.9 mm suits most conferences" },
       { label: "Indoor and outdoor", value: "Indoor panels, and weather-rated high-brightness panels for outdoor events" },
       { label: "Builds", value: "Flat, curved and custom shapes, freestanding on ground support or rigged with the stage" },
@@ -43,11 +43,12 @@ export const quickAnswers = {
   avHire: {
     key: "av-hire",
     question: "What does AV hire from EventSound include?",
-    answer: "EventSound supplies and operates AV equipment for conferences, corporate events, exhibitions and live shows in Dublin and across Ireland. You can hire a single screen or microphone, or a complete package of sound, screens, lighting and staging. Every hire includes delivery, installation, an on-site technician and collection after the event.",
+    answer: "EventSound supplies and operates AV equipment for conferences, corporate events, exhibitions and live shows in Dublin and across Ireland. You can hire a single screen or microphone, or a complete package of sound, screens, lighting and staging. Operated hire includes delivery, installation, an on-site technician and collection. Equipment can also be delivered and collected without a technician.",
     tableCaption: "AV hire at a glance",
     facts: [
       { label: "What you can hire", value: "Single items or a complete AV package specified for the venue and audience" },
-      { label: "Included in every hire", value: "Delivery, installation, an on-site technician and collection" },
+      { label: "Operated hire includes", value: "Delivery, installation, an on-site technician and collection" },
+      { label: "Without a technician", value: "Screens, PA systems and lighting can be delivered and collected; a technician or sound engineer can also be booked for equipment you already have" },
       { label: "Sound", value: "PA systems, digital mixing, and wireless handheld, lapel and headset microphones (Shure, Sennheiser)" },
       { label: "Screens", value: "LED video walls, flat screens from 55 to 86 inches, projectors and confidence monitors" },
       { label: "Lighting and staging", value: "Chamsys-controlled lighting, TUV-certified staging, pipe and drape" },

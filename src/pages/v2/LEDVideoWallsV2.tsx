@@ -101,10 +101,11 @@ const faqs = [
   { question: "What pixel pitch LED wall do I need for a conference?", answer: "For conferences with viewing distances of 3 to 10 metres, we recommend 2.6mm or 3.9mm pixel pitch panels. For exhibitions where attendees stand 1 to 3 metres from the screen, 1.9mm provides the sharpest image. Our team will advise based on your venue layout and audience size." },
   { question: "Can LED walls be used outdoors?", answer: "Yes. We provide weather-rated outdoor LED panels with high-brightness output for daylight visibility. Outdoor screens typically use 3.9mm pixel pitch and are mounted on freestanding ground-support structures." },
   { question: "How much does LED wall hire cost in Ireland?", answer: `LED wall hire and rental starts from €${siteConfig.pricing.ledWallDryHirePerSquareMetrePerDay} per square metre per day for dry hire of P3 panels. Pricing varies depending on pixel pitch, screen size, and event requirements. We recommend speaking to our team to ensure you get the best setup and the most out of your budget.` },
-  { question: "What is the largest LED wall you can provide?", answer: "We install LED walls from 6m² up to 100m² and larger for outdoor festivals and concerts. Screen size is limited only by venue dimensions and structural capacity." },
+  { question: "What size LED wall do I need?", answer: "Two measurements decide it: the distance to your furthest viewer, which sets how big the image must be, and the ceiling height and stage width, which cap what fits. For conference audiences of 50 to 200 we typically recommend 3.5m × 2m to 4.5m × 2.5m (7 to about 11m²). For plenary sessions of 200 to 500 delegates, 15 to 25m² is typical, for example 5.5m × 3m or 6m × 3.5m. Large stages and outdoor events use 8m × 4.5m and above, up to 100m² and larger. These sizes are all close to 16:9, the shape of most slides and video. Tell us your room and audience and we will recommend a size." },
+  { question: "What is the largest LED wall you can provide?", answer: "We install LED walls from 7m² up to 100m² and larger for outdoor festivals and concerts. Screen size is limited only by venue dimensions and structural capacity." },
   { question: "What content can be displayed on LED video walls?", answer: "Anything — live camera feeds, pre-recorded video, presentations, social media walls, sponsor logos, and live event graphics. We provide full content playback and can help with content formatting to ensure it looks perfect on screen." },
   { question: "Do you provide operators with the LED screens?", answer: "Yes, all our LED wall hire packages include experienced technicians for setup, operation throughout your event, and breakdown. You never need to worry about the technical side." },
-  { question: "Should I choose an LED wall or a projector?", answer: `Choose an LED wall for bright rooms, daylight or large audiences, because it makes its own light and needs no projection distance. Projection suits dark rooms and tight budgets. LED walls start at 6m² and hire starts from €${siteConfig.pricing.ledWallDryHirePerSquareMetrePerDay} per square metre per day for dry hire of P3 panels. Tell us your room and audience and we will advise.` },
+  { question: "Should I choose an LED wall or a projector?", answer: `Choose an LED wall for bright rooms, daylight or large audiences, because it makes its own light and needs no projection distance. Projection suits dark rooms and tight budgets. LED walls start at 7m² and hire starts from €${siteConfig.pricing.ledWallDryHirePerSquareMetrePerDay} per square metre per day for dry hire of P3 panels. Tell us your room and audience and we will advise.` },
   { question: "Are hired outdoor LED walls weatherproof, and how are they mounted?", answer: "Yes. We use weather-rated outdoor LED panels with high-brightness output for daylight visibility. They are mounted on freestanding ground-support structures or integrated with stage rigging, in sizes up to 100m² and larger. We provided the outdoor LED wall for the Swords Castle Summer Concerts, with 8,000+ attendees per night." },
 ];
 
@@ -127,13 +128,25 @@ const pixelPitchData = [
   { pitch: "3.9mm", bestFor: "Large conferences, stage backdrops, outdoor festivals and concerts", minDistance: "6.5m" },
 ];
 
+// ── Wall Size Table ──────────────────────────────────────────────────────────
+// Same rows as the "Video wall sizes for events" table in
+// content/blog/video-wall-hire-guide.md. Keep the two in step.
+
+const wallSizeData = [
+  { size: "3.5m × 2m", area: "7m²", fits: "Boardrooms, breakout rooms, product demos" },
+  { size: "4.5m × 2.5m", area: "11.25m²", fits: "The typical single-room conference backdrop" },
+  { size: "5.5m × 3m", area: "16.5m²", fits: "Awards nights, galas and launches" },
+  { size: "6m × 3.5m", area: "21m²", fits: "Large conferences and wide ballrooms" },
+  { size: "8m × 4.5m and up", area: "36m²+", fits: "Outdoor stages and festival screens" },
+];
+
 // ── Why Hire List ────────────────────────────────────────────────────────────
 
 const whyItems = [
   "Unilumin and Absen LED panels — industry-leading resolution and colour accuracy",
   `${siteConfig.companyExperienceYears} years of event production experience across Ireland`,
   "Full-service: delivery, installation, operation, and breakdown included",
-  "Indoor and outdoor LED walls from 6m² to 100m²+",
+  "Indoor and outdoor LED walls from 7m² to 100m²+",
   "Curved and custom configurations for immersive installations",
   "Works alongside your creative team or agency for content delivery",
   "Transparent pricing — no hidden fees or surprise extras",
@@ -297,7 +310,7 @@ export default function LEDVideoWallsV2() {
         <ScrollReveal>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <StatCard label="per m² / day" sublabel="P3 dry hire from" value={<>&euro;<CountUp end={siteConfig.pricing.ledWallDryHirePerSquareMetrePerDay} /></>} />
-            <StatCard label="custom sizes" sublabel="indoor &amp; outdoor" value="6–100m²+" />
+            <StatCard label="custom sizes" sublabel="indoor &amp; outdoor" value="7–100m²+" />
             <StatCard label="event production" sublabel="experience across Ireland" value={`${siteConfig.companyExperienceYears} yrs`} />
             <div className="rounded-xl border border-border/50 bg-card p-5 text-center shadow-lg">
               <div className="flex items-center justify-center gap-0.5 mb-1">
@@ -324,7 +337,7 @@ export default function LEDVideoWallsV2() {
         <ScrollReveal>
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-lg text-muted-foreground leading-relaxed">
-              We stock Unilumin and Absen LED panels in pixel pitches from 1.9mm to 3.9mm, with screen sizes from 6m² for conference presentations to 100m²+ for large-scale outdoor stages. Every hire includes delivery, installation, content management, a dedicated on-site operator, and full breakdown after your event. For individual screen and TV monitor hire for conferences and exhibitions, see our{" "}
+              We stock Unilumin and Absen LED panels in pixel pitches from 1.9mm to 3.9mm, with screen sizes from 7m² for conference presentations to 100m²+ for large-scale outdoor stages. Every hire includes delivery, installation, content management, a dedicated on-site operator, and full breakdown after your event. For individual screen and TV monitor hire for conferences and exhibitions, see our{" "}
               <Link to="/services/led-screen-hire/" className="text-accent hover:underline">LED Screen Hire</Link> service.
             </p>
           </div>
@@ -399,6 +412,50 @@ export default function LEDVideoWallsV2() {
               </tbody>
             </table>
           </div>
+        </ScrollReveal>
+      </section>
+
+      {/* ── Section 5b: Wall sizes ── */}
+      <section className="container mx-auto px-4 mb-16">
+        <ScrollReveal>
+          <div className="max-w-3xl mx-auto text-center mb-8">
+            <h2 className="text-3xl font-bold mb-4">What Size LED Wall Do I Need?</h2>
+            <p className="text-muted-foreground leading-relaxed">
+              An LED wall is built from modular panels, so it is sized to the room rather than to a fixed screen. Two measurements decide the size. The distance to your furthest viewer sets how big the image must be to stay legible from the back. The ceiling height and stage width cap what physically fits. These are the sizes event organisers ask for most. Each is close to 16:9, the shape of most slides and video.
+            </p>
+          </div>
+        </ScrollReveal>
+
+        <ScrollReveal delay={0.15}>
+          <div className="max-w-2xl mx-auto overflow-hidden rounded-xl border border-border/50">
+            <table className="w-full text-sm">
+              <caption className="sr-only">Common LED wall sizes, their area and where each fits</caption>
+              <thead>
+                <tr className="bg-accent/10 text-left">
+                  <th scope="col" className="px-4 py-3 font-semibold">Wall Size (Width × Height)</th>
+                  <th scope="col" className="px-4 py-3 font-semibold">Area</th>
+                  <th scope="col" className="px-4 py-3 font-semibold">Where It Fits</th>
+                </tr>
+              </thead>
+              <tbody>
+                {wallSizeData.map((row, i) => (
+                  <tr key={row.size} className={i % 2 === 0 ? "bg-card" : "bg-muted/30"}>
+                    <td className="px-4 py-3 font-medium text-accent">{row.size}</td>
+                    <td className="px-4 py-3 text-muted-foreground">{row.area}</td>
+                    <td className="px-4 py-3 text-muted-foreground">{row.fits}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </ScrollReveal>
+
+        <ScrollReveal delay={0.2}>
+          <p className="max-w-3xl mx-auto text-center text-muted-foreground leading-relaxed mt-8">
+            For conference audiences of 50 to 200 we typically recommend 3.5m × 2m to 4.5m × 2.5m. For plenary sessions of 200 to 500 delegates, 15 to 25m² is typical. Large stages and outdoor events use 8m × 4.5m and above, up to 100m² and larger. Dry hire of P3 panels starts from €{siteConfig.pricing.ledWallDryHirePerSquareMetrePerDay} per square metre per day, so the area is the figure to multiply; operated hire is quoted per event. Our{" "}
+            <Link to="/blog/video-wall-hire-guide/" className="text-accent hover:underline">video wall hire guide</Link>{" "}
+            explains sizes, build day and what your venue needs.
+          </p>
         </ScrollReveal>
       </section>
 

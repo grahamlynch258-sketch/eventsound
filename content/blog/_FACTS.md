@@ -32,7 +32,9 @@ stories in. Never invent a venue, client, number or piece of kit.
 ## Equipment (only claim what's listed)
 
 - LED: Absen P2.6 panels and Unilumin LED panels; pixel pitches 1.9mm–3.9mm;
-  screens from 6m² (conferences) to 100m²+ (outdoor stages); 3.9mm is the
+  screens from 7m² (conferences) to 100m²+ (outdoor stages); suggested wall
+  sizes are close to 16:9 and start at 3.5m × 2m (owner, 23 and 24 November
+  2026: the smallest wall is 7m², not 6m²); 3.9mm is the
   coarsest panel held (owner, 22 November 2026: no 4.8mm or 4.9mm); indoor and
   weather-rated outdoor panels; freestanding ground-support or stage rigging;
   curved, angled and custom-shaped configurations possible
@@ -61,12 +63,27 @@ stories in. Never invent a venue, client, number or piece of kit.
   included and how to get a quote. The earlier "from around €1,500" conference
   figure is withdrawn.
 
+## Ways to hire, and who the site is for (owner, 24 November 2026)
+
+- Operated hire is the standard: delivery, installation, a technician on site
+  and collection. Do not write "every hire includes a technician"
+- Without a technician: yes. Screens, PA systems and lighting can be delivered
+  and collected with nobody staying for the event
+- Technician only: yes. A sound engineer or AV technician can be booked to
+  operate equipment the client or venue already has
+- Stage canopies or roofs, and frames for printed backdrops: owner said no.
+  The stage page still mentions "small roofed mobile stages" and "outdoor
+  stages with roofing"; that is not settled, so claim neither until it is
+- The website is meant to attract higher-value clients. Do not write content
+  that courts small jobs, and do not state a minimum hire
+
 ## Real events & clients (only these; anything else = TAILOR marker)
 
 - Swords Castle Summer Concerts — outdoor LED screen + event production,
   8,000+ attendees per night; artists incl. Nathan Carter (2025)
-- Beta Festival, The Digital Hub, Dublin — curved LED video wall + sound for
-  art/technology exhibition (2025)
+- Beta Festival, The Digital Hub, Dublin — 18m² curved LED video wall + sound
+  for art/technology exhibition (2025; size confirmed by owner, 24 November
+  2026)
 - PRISM Immersive Technology Summit, Mac Anna Theatre — conference production
 - School Summit, Eikon Arena (2025) — LED wall and conference AV
 - Explore Fingal launch, Grand Hotel Malahide — full event production,

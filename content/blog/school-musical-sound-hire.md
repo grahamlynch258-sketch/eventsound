@@ -8,9 +8,9 @@ category: Theatre
 tags: [theatre, wireless-mics, school-musicals, panto]
 primary_keyword: school musical sound hire
 featured_image: ""
-featured_image_alt: "[TAILOR: real photo of headset radio mics laid out at a prep table, or the mix position during a school show, with specific alt text]"
+featured_image_alt: ""
 author: Graham Lynch
-published_at: 2026-08-27
+published_at: 2026-11-24
 ---
 
 Forty cast members, a live band, a chorus that sings from the wings. And a hall built for assemblies, not theatre. Sound is the part of a school musical or panto that parents notice when it goes wrong and never notice when it goes right. Getting it right means school musical sound hire that covers four things: headset radio mics on the principals, coverage for everyone else, a PA the hall can't provide, and an operator who mixes every performance. This guide works through each, including how a 30-channel rig fills up faster than you'd expect. It draws on our [musical theatre](/services/musical-theatre/) work with schools, musical societies and community theatre groups across Ireland.
@@ -49,8 +49,6 @@ Here is a realistic channel plan for a cast-of-forty school musical or a society
 
 That total is why our wireless rigs support 30-plus simultaneous channels. It's also why a swap chart matters: when one actor plays three roles, the pack follows a written plan through the wings, not a whispered handover in the dark.
 
-> [TAILOR: a real production example. Show, school or society, venue, cast size and the actual channel count used, plus anything that had to be solved mid-run.]
-
 ## The operator matters more than the mic count
 
 Theatre mixing isn't "set it and forget it". Somebody rides fifteen open vocal channels cue by cue, mutes packs the moment actors exit, catches the missed pickup, and keeps the band under the dialogue. An unmuted mic in a toilet or a green room has ruined more school shows than any equipment failure.
@@ -61,13 +59,13 @@ Our quotes are all-inclusive (equipment, delivery, installation, on-site operati
 
 Irish school musicals cluster into late November and December, with a second wave in spring, and panto runs from late November into January. Every group needs the same weekends, and rigs of this size aren't infinite. Rehearsals typically start in September. The right moment to book sound is the week your performance dates are confirmed with the venue.
 
-If your show opens in November, the time to lock in kit and crew is now, not at half-term. Late bookings tend to compromise on dates for the technical rehearsal, which is exactly the day you cannot afford to lose.
+If your show opens in November or December, lock in kit and crew before the autumn half-term rather than after it. Late bookings tend to compromise on dates for the technical rehearsal, which is exactly the day you cannot afford to lose.
 
 ## Working with what your hall already has
 
 If your venue has a house PA, lighting bars or an installed desk, we integrate with existing house rigs rather than duplicating them. We do this in venues nationwide. Sometimes the house system earns its keep for foldback or fills. Sometimes it's best left for interval announcements. A quick conversation about what's installed, ideally with photos, sorts this before quote stage.
 
-Planning a digital backdrop as well? Read our guide to [video walls for theatre, drama and school shows](/blog/video-walls-for-theatre-drama/). The two bookings share a tech rehearsal and are easier to plan together.
+Planning a digital backdrop as well? Our guide to [how video wall hire works](/blog/video-wall-hire-guide/) covers sizes, build day and what a hall needs to host one. The two bookings share a tech rehearsal and are easier to plan together.
 
 ## Common mistakes with school show sound
 
@@ -83,12 +81,12 @@ Planning a digital backdrop as well? Read our guide to [video walls for theatre,
 - Cast list with principals, doubled roles and covers marked
 - Band line-up, including anything on backing track or click
 - Venue name, hall dimensions and what house kit is installed
-- Performance schedule, including the technical and dress rehearsals
+- Performance schedule: one night or a full run, with the technical and dress rehearsals marked
 - Front-of-house mix position (where the desk can physically go)
 - Who supplies consumables: batteries, mic tape, spare elements
 - Budget range, so the channel count can be scaled honestly
 
-> [TAILOR: an indicative all-in price for a typical school musical package. Mics, PA, foldback and operator across a tech rehearsal plus three performances.]
+If the committee is collecting more than one quote, our guide to [comparing AV quotes like for like](/blog/compare-av-quotes-guide/) shows what to check before choosing.
 
 ## Frequently asked questions
 

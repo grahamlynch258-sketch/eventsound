@@ -21,9 +21,11 @@ import { StickyCtaBar } from "@/components/StickyCtaBar";
 export default function AVProduction() {
   const faqs = [
     { question: "What AV equipment do I need for my event?", answer: "It depends on your venue, audience size, and event format. For a simple presentation, a display screen and PA with a wireless microphone may be enough. For larger events, you'll likely need LED walls or projection, a full PA system, stage lighting, and a technician. Tell us about your event and we'll recommend the right setup." },
-    { question: "Do you deliver and set up the equipment?", answer: "Yes. Every AV hire from EventSound includes delivery, installation, on-site operation by a dedicated technician, and full collection after your event. You don't need to handle any equipment yourself." },
+    { question: "Do you deliver and set up the equipment?", answer: "Yes. Operated AV hire from EventSound includes delivery, installation, on-site operation by a dedicated technician, and full collection after your event. You don't need to handle any equipment yourself." },
     { question: "How far in advance should I book AV hire?", answer: "We recommend at least 2 to 4 weeks for standard corporate events. For large-scale productions, festivals, or peak season events (September to December), book 4 to 8 weeks ahead to ensure equipment availability." },
     { question: "Can I hire individual items or do I need a full package?", answer: "Both. We supply individual items like a single screen or microphone, as well as complete AV packages tailored to your event. We'll advise on the most cost-effective option for your requirements." },
+    { question: "Can I hire equipment without a technician?", answer: "Yes. Screens, PA systems and lighting can be delivered and collected without a technician staying for the event. Tell us what you need, where and for how long, and we will confirm what suits that kind of hire. For conferences and live shows, operated hire puts a technician on site throughout." },
+    { question: "Can I book a technician or sound engineer for equipment we already have?", answer: "Yes. We supply sound engineers and AV technicians to operate equipment that you or your venue already have. Send us the equipment list, the venue and the running order, and we will confirm the crew for the job." },
   ];
   const faqSchema = generateFAQSchema({ questions: faqs });
 
@@ -82,7 +84,7 @@ export default function AVProduction() {
             EventSound provides AV equipment hire across Ireland for corporate events, conferences, product launches, exhibitions, gala dinners, and live shows. Based in Drogheda, Co. Louth, we supply and operate professional audio visual equipment at venues in Dublin, Cork, Galway, Belfast, and nationwide.
           </p>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
-            With over 35 years in the event production industry, we supply everything from a single display screen for a boardroom presentation to full multi-source AV production for large-scale corporate events. Every hire includes delivery, setup, on-site technical support, and collection — so you can focus on your event while we handle the technology.
+            With over 35 years in the event production industry, we supply everything from a single display screen for a boardroom presentation to full multi-source AV production for large-scale corporate events. Operated hire includes delivery, setup, on-site technical support, and collection — so you can focus on your event while we handle the technology.
           </p>
           <h2 className="text-2xl font-semibold transition-transform duration-300 hover:scale-[1.05] cursor-default">AV Equipment Available for Hire</h2>
           <p className="text-muted-foreground transition-transform duration-300 hover:scale-[1.04] cursor-default">
@@ -144,7 +146,7 @@ export default function AVProduction() {
             <li>Martin Audio, L-Acoustics, Unilumin, Chamsys — industry-leading brands</li>
             <li>Full-service: delivery, setup, operation, and collection included</li>
             <li>Individual item hire or complete AV packages</li>
-            <li>Dedicated on-site technician for every event</li>
+            <li>Dedicated on-site technician on every operated hire</li>
             <li>Transparent, all-inclusive pricing with no hidden fees</li>
             <li>Serving clients nationwide across Ireland</li>
           </ul>

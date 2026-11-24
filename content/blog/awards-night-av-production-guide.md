@@ -37,7 +37,7 @@ Make three placement decisions deliberately:
 
 For an awards night the screen carries the structure. It shows the category, the nominees, the winner and the sponsor. During dinner it can run a sponsor loop or a welcome slide so the room never looks blank.
 
-Screen size follows the room. Individual screens from 43 to 98 inches suit smaller rooms and side screens. Our LED walls start at 6 m², and the [LED screen or LED wall guide](/blog/led-screen-or-led-wall/) explains which fits which room. The [LED video walls](/services/led-video-walls/) page covers sizes and panel options.
+Screen size follows the room. Individual screens from 43 to 98 inches suit smaller rooms and side screens. Our LED walls start at 7 m², and the [LED screen or LED wall guide](/blog/led-screen-or-led-wall/) explains which fits which room. The [LED video walls](/services/led-video-walls/) page covers sizes and panel options.
 
 Real jobs show the range. We provided an LED wall and lighting for the Mayors Awards in Dublin, and an LED screen for the Music Awards at the Hillgrove Hotel in Monaghan.
 

@@ -44,7 +44,15 @@ const faqs = [
   },
   {
     question: "Can I hire a small PA for a launch, a party or a gig?",
-    answer: "Send us the venue, audience size and programme and we will tell you what suits. We size every system from the room and the running order. Our inventory includes compact point-source systems and column speakers as well as line arrays, and sound hire includes setup, tuning, soundcheck and an engineer for the event.",
+    answer: "Send us the venue, audience size and programme and we will tell you what suits. We size every system from the room and the running order. Our inventory includes compact point-source systems and column speakers as well as line arrays, and operated sound hire includes setup, tuning, soundcheck and an engineer for the event.",
+  },
+  {
+    question: "Can I hire a PA without an engineer?",
+    answer: "Yes. A PA can be delivered and collected without an engineer staying for the event. Tell us the venue, the audience size and who will run it, and we will confirm a system that suits. For conferences, bands and outdoor events, operated hire with an engineer is the better fit.",
+  },
+  {
+    question: "Can I book a sound engineer for a system we already have?",
+    answer: "Yes. We supply sound engineers to run a PA that you or your venue already have, and can add microphones where they are needed. Send us the equipment list, the venue and the running order so the engineer arrives knowing the system.",
   },
   {
     question: "What does sound hire cost?",
