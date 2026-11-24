@@ -533,6 +533,13 @@ export default function MusicalTheatreV2() {
               <Link to="/services/video-production/" className="text-accent hover:underline">video recording and live streaming</Link>{" "}
               to capture your show for on-demand viewing.
             </p>
+            <p className="mt-4 text-muted-foreground leading-relaxed">
+              Planning a school show or panto? Our{" "}
+              <Link to="/blog/school-musical-sound-hire/" className="text-accent hover:underline">
+                guide to sound and wireless microphones for school musicals
+              </Link>{" "}
+              covers how many microphones a cast needs, what the band adds, and when to book.
+            </p>
           </div>
         </ScrollReveal>
       </section>

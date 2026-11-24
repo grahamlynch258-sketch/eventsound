@@ -57,12 +57,27 @@ stories in. Never invent a venue, client, number or piece of kit.
   included and how to get a quote. The earlier "from around €1,500" conference
   figure is withdrawn.
 
+## Ways to hire, and who the site is for (owner, 24 November 2026)
+
+- Operated hire is the standard: delivery, installation, a technician on site
+  and collection. Do not write "every hire includes a technician"
+- Without a technician: yes. Screens, PA systems and lighting can be delivered
+  and collected with nobody staying for the event
+- Technician only: yes. A sound engineer or AV technician can be booked to
+  operate equipment the client or venue already has
+- Stage canopies or roofs, and frames for printed backdrops: owner said no.
+  The stage page still mentions "small roofed mobile stages" and "outdoor
+  stages with roofing"; that is not settled, so claim neither until it is
+- The website is meant to attract higher-value clients. Do not write content
+  that courts small jobs, and do not state a minimum hire
+
 ## Real events & clients (only these; anything else = TAILOR marker)
 
 - Swords Castle Summer Concerts — outdoor LED screen + event production,
   8,000+ attendees per night; artists incl. Nathan Carter (2025)
-- Beta Festival, The Digital Hub, Dublin — curved LED video wall + sound for
-  art/technology exhibition (2025)
+- Beta Festival, The Digital Hub, Dublin — 18m² curved LED video wall + sound
+  for art/technology exhibition (2025; size confirmed by owner, 24 November
+  2026)
 - PRISM Immersive Technology Summit, Mac Anna Theatre — conference production
 - School Summit, Eikon Arena (2025) — LED wall and conference AV
 - Explore Fingal launch, Grand Hotel Malahide — full event production,

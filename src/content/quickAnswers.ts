@@ -43,11 +43,12 @@ export const quickAnswers = {
   avHire: {
     key: "av-hire",
     question: "What does AV hire from EventSound include?",
-    answer: "EventSound supplies and operates AV equipment for conferences, corporate events, exhibitions and live shows in Dublin and across Ireland. You can hire a single screen or microphone, or a complete package of sound, screens, lighting and staging. Every hire includes delivery, installation, an on-site technician and collection after the event.",
+    answer: "EventSound supplies and operates AV equipment for conferences, corporate events, exhibitions and live shows in Dublin and across Ireland. You can hire a single screen or microphone, or a complete package of sound, screens, lighting and staging. Operated hire includes delivery, installation, an on-site technician and collection. Equipment can also be delivered and collected without a technician.",
     tableCaption: "AV hire at a glance",
     facts: [
       { label: "What you can hire", value: "Single items or a complete AV package specified for the venue and audience" },
-      { label: "Included in every hire", value: "Delivery, installation, an on-site technician and collection" },
+      { label: "Operated hire includes", value: "Delivery, installation, an on-site technician and collection" },
+      { label: "Without a technician", value: "Screens, PA systems and lighting can be delivered and collected; a technician or sound engineer can also be booked for equipment you already have" },
       { label: "Sound", value: "PA systems, digital mixing, and wireless handheld, lapel and headset microphones (Shure, Sennheiser)" },
       { label: "Screens", value: "LED video walls, flat screens from 55 to 86 inches, projectors and confidence monitors" },
       { label: "Lighting and staging", value: "Chamsys-controlled lighting, TUV-certified staging, pipe and drape" },
