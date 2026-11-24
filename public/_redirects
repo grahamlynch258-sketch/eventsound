@@ -138,6 +138,9 @@
 /landing/*           /spa.html  200
 /blog/*              /spa.html  200
 /case-studies/*      /spa.html  200
+# Preview of the next home page: not linked, not in the sitemap, noindex.
+/home-next           /spa.html  200
+/home-next/*         /spa.html  200
 
 # --- Everything else is a real 404 (must be LAST) ---
 /*                   /404.html  404
