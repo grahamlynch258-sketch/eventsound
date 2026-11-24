@@ -304,6 +304,7 @@
   .hn-work-track{padding-inline:max(var(--hn-gutter),env(safe-area-inset-left,0px))}
   .hn-h1-main{font-size:clamp(2rem,9.4vw,3.3rem)}
   .hn-bar{z-index:90}
+  .hn-form .hn-two{grid-template-columns:minmax(0,1fr)}
 }
 .hn-day-rail i{transform:none}
 .hn-form select{appearance:auto}
