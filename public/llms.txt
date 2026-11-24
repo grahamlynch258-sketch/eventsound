@@ -21,7 +21,7 @@ Full technical event production management for conferences, award ceremonies, pr
 URL: https://eventsound.ie/services/event-production/
 
 ### AV Hire (complete AV packages)
-Professional audio visual equipment hire for conferences, meetings, seminars, and corporate events. Complete AV packages including sound systems, PA hire, wireless microphones, mixing desks, stage monitors, screens, and technical crew. PA systems are scaled to venue size and audience — from compact column speakers for conference presentations to line array systems for outdoor festivals and concerts. All equipment is professional-grade and maintained to broadcast standards. Every AV hire includes delivery, setup, testing, operation by experienced engineers, and breakdown.
+Professional audio visual equipment hire for conferences, meetings, seminars, and corporate events. Complete AV packages including sound systems, PA hire, wireless microphones, mixing desks, stage monitors, screens, and technical crew. PA systems are scaled to venue size and audience — from compact column speakers for conference presentations to line array systems for outdoor festivals and concerts. All equipment is professional-grade and maintained to broadcast standards. Operated AV hire includes delivery, setup, testing, operation by experienced engineers, and breakdown. Screens, PA systems and lighting can also be delivered and collected without a technician, and a technician or sound engineer can be booked for equipment a client already has.
 URL: https://eventsound.ie/services/av-production/
 
 ### Sound Hire & PA System Hire
@@ -88,6 +88,11 @@ EventSound is based in Drogheda, Co. Louth and serves all of Ireland. Primary se
 - Conference AV technical brief to prepare before requesting quotes: https://eventsound.ie/blog/conference-av-technical-brief/
 - What LED wall hire costs in Ireland (from €125 per m² per day for P3 dry hire, and what a full quote adds): https://eventsound.ie/blog/led-wall-hire-cost-ireland/
 - What drives conference AV costs (equipment, crew, rehearsals, venue): https://eventsound.ie/blog/conference-av-costs-explained/
+- AV hire or full event production, and how to tell which an event needs: https://eventsound.ie/blog/av-hire-or-event-production/
+- How to compare AV quotes like for like: https://eventsound.ie/blog/compare-av-quotes-guide/
+- Live streaming an AGM or town hall (cameras, platforms, what can go wrong): https://eventsound.ie/blog/agm-town-hall-live-streaming/
+- Awards night AV, what a ceremony needs and how to plan it: https://eventsound.ie/blog/awards-night-av-production-guide/
+- Sound and wireless microphones for school musicals and panto: https://eventsound.ie/blog/school-musical-sound-hire/
 - All guides: https://eventsound.ie/blog/
 
 ## Case Studies
@@ -105,7 +110,13 @@ Q: What areas does EventSound cover?
 A: EventSound is based in Drogheda, Co. Louth and provides AV hire and event production services nationwide across Ireland, including Dublin, Cork, Galway, Belfast, Limerick, and all counties.
 
 Q: Does EventSound provide technical crew with equipment hire?
-A: Yes. Every hire includes a dedicated technical operator as standard. For larger events, our crew of experienced technicians manages sound, lighting, video, and staging.
+A: Yes. Operated hire includes a dedicated technical operator as standard. For larger events, our crew of experienced technicians manages sound, lighting, video, and staging.
+
+Q: Can I hire equipment without a technician?
+A: Yes. Screens, PA systems and lighting can be delivered and collected without a technician staying for the event. Operated hire, with a technician on site throughout, suits conferences and live shows.
+
+Q: Can I book just a sound engineer or technician?
+A: Yes. EventSound supplies sound engineers and AV technicians to operate equipment that a client or venue already has.
 
 Q: What is included in an EventSound quote?
 A: Every quote is all-inclusive — equipment, delivery, installation, on-site operation, and breakdown are included. There are no hidden fees or surprise extras.
