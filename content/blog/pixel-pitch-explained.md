@@ -65,7 +65,7 @@ The reliable sequence runs in four steps, and pitch is deliberately step three.
 
 **4. Sanity-check the resolution.** Divide the wall width by the pitch and make sure the pixel canvas suits the content, especially if there's dense text, scoreboard data or a broadcast camera involved.
 
-Our stock is Absen P2.6 and Unilumin panels from 1.9mm to 3.9mm, built from 6m² up beyond 50m². Across that range, the sequence answers almost every event brief. The 2.6mm panels earn their reputation as the default because typical front rows sit right around that three-metre line.
+Our stock is Absen P2.6 and Unilumin panels from 1.9mm to 3.9mm, built from 7m² up beyond 50m². Across that range, the sequence answers almost every event brief. The 2.6mm panels earn their reputation as the default because typical front rows sit right around that three-metre line.
 
 > [TAILOR: a real example of the sequence in action: a named event or venue, the front-row distance, the wall size and the pitch chosen, and why. The Beta Festival curved wall or the School Summit at the Eikon Arena would suit if the pitch details can be confirmed.]
 

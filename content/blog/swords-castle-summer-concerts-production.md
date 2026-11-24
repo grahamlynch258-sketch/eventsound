@@ -52,7 +52,7 @@ Large outdoor shows are won or lost in the planning. Three principles drove the 
 
 ## The AV solution
 
-The centrepiece was the outdoor LED screen. For work at this scale, EventSound builds weather-rated LED panels into freestanding, ground-supported screens. Our configurations run from 6m² for conferences up to 50m²+ for outdoor stages.
+The centrepiece was the outdoor LED screen. For work at this scale, EventSound builds weather-rated LED panels into freestanding, ground-supported screens. Our configurations run from 7m² for conferences up to 50m²+ for outdoor stages.
 
 > [TAILOR: the actual screen specification at Swords Castle. Dimensions in metres, pixel pitch, panel type, ground support or stage structure, and position relative to the stage.]
 

@@ -102,7 +102,7 @@ const faqs = [
   { question: "How many wireless microphones can you provide?", answer: "We carry large-scale wireless systems that can support 30+ simultaneous channels, covering even the largest cast productions. Each performer gets their own body-worn transmitter with a Sennheiser headset microphone as standard, with DPA headset microphones available as a premium upgrade for productions that require the best possible vocal clarity. We bring spare units for every show." },
   { question: "Can you work with our existing venue equipment?", answer: "Absolutely. We regularly integrate with house rigs in theatres, community halls, and school auditoriums across Ireland. We'll do a site visit to assess what's already installed, then bring in additional equipment to fill any gaps — whether that's extra wireless microphones, front fills, or supplementary lighting." },
   { question: "How far in advance should we book for a musical production?", answer: "We recommend booking 6 to 8 weeks before your production opens. This allows time for a site visit, equipment planning, and scheduling around your rehearsal and tech week. For peak season (October to December, panto season) and large-scale productions, booking 3 months ahead is advisable." },
-  { question: "Can I hire a video wall for a theatre or drama production?", answer: "Yes. We hire LED video walls for theatre and drama as a digital backdrop. Walls start at 6m², with pixel pitches from 1.9mm to 3.9mm, and can be flat, curved or custom-shaped. A wall can change scenes instantly without a set change. We handle content formatting, playback and on-stage integration, and the hire is quoted all-inclusive." },
+  { question: "Can I hire a video wall for a theatre or drama production?", answer: "Yes. We hire LED video walls for theatre and drama as a digital backdrop. Walls start at 7m², with pixel pitches from 1.9mm to 3.9mm, and can be flat, curved or custom-shaped. A wall can change scenes instantly without a set change. We handle content formatting, playback and on-stage integration, and the hire is quoted all-inclusive." },
   { question: "What AV can you supply for a school talent show?", answer: "For a school talent show we can supply wireless microphones (Shure and Sennheiser, 30+ channels available), lighting, and operators who attend your tech rehearsal. We regularly work with schools and integrate with the hall's own sound and lighting rig, so you can hire the full package or just the elements the hall is missing." },
 ];
 
@@ -345,7 +345,7 @@ export default function MusicalTheatreV2() {
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-4">Video Walls for Theatre and Drama</h2>
             <p className="text-muted-foreground leading-relaxed">
-              An LED video wall works as a digital backdrop for a play or musical, and scenes change instantly without a set change. Walls start at 6m², with pixel pitches from 1.9mm to 3.9mm, and can be flat, curved or custom-shaped. We handle content formatting, playback and on-stage integration.
+              An LED video wall works as a digital backdrop for a play or musical, and scenes change instantly without a set change. Walls start at 7m², with pixel pitches from 1.9mm to 3.9mm, and can be flat, curved or custom-shaped. We handle content formatting, playback and on-stage integration.
             </p>
           </div>
         </ScrollReveal>

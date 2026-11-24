@@ -77,7 +77,7 @@ Add the sessions up, then note the biggest simultaneous case: "largest session i
 
 State what the audience must read from the back row (slides, video, a live camera feed) and where the room's daylight comes from. Bright, high-windowed rooms are hostile to projection, which is usually what tips a room towards [an LED wall rather than a projector](/blog/led-wall-or-projector/).
 
-Individual screens from 43" to 98" on floor stands or wall brackets suit boardrooms, breakouts and repeater positions down a long room. LED walls start around 6m² for conferences and scale up. Ours run Absen P2.6 and Unilumin panels at pixel pitches from 1.9mm to 3.9mm, which stay sharp at conference viewing distances. For rooms deep enough that faces vanish, note whether you want IMAG (live camera close-ups of the speaker put up on screen).
+Individual screens from 43" to 98" on floor stands or wall brackets suit boardrooms, breakouts and repeater positions down a long room. LED walls start around 7m² for conferences and scale up. Ours run Absen P2.6 and Unilumin panels at pixel pitches from 1.9mm to 3.9mm, which stay sharp at conference viewing distances. For rooms deep enough that faces vanish, note whether you want IMAG (live camera close-ups of the speaker put up on screen).
 
 Two content lines complete the section: the slide aspect ratio (16:9 unless someone says otherwise, and someone should say), and whether speakers get a confidence monitor, the screen at their feet that stops them turning their back on the audience.
 

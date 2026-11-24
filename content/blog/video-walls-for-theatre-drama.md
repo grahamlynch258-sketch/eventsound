@@ -27,7 +27,7 @@ The honest trade-off is that a wall is not a set. Levels, furniture, trucks and 
 
 ### Size: fill the frame the audience sees
 
-The wall should fill the visual frame behind the acting area, not the entire stage. For most school halls and mid-size theatres, that means matching the width of the proscenium opening or masking, with the top edge comfortably above head height on any raised levels. Our walls build from 6m² upwards in modular panels, so the shape is made to fit the venue, including curved and angled configurations where the design calls for them.
+The wall should fill the visual frame behind the acting area, not the entire stage. For most school halls and mid-size theatres, that means matching the width of the proscenium opening or masking, with the top edge comfortably above head height on any raised levels. Our walls build from 7m² upwards in modular panels, so the shape is made to fit the venue, including curved and angled configurations where the design calls for them.
 
 > [TAILOR: a wide production photo showing the LED backdrop behind performers with the front rows of the audience visible. It makes the sizing and sightline points at a glance.]
 
