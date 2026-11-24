@@ -41,7 +41,7 @@ A room of 100 is the size where simple choices still work. The room is usually a
 
 **Staging.** A low-ceilinged room with good sightlines may not need a stage at all. If chairs are in rows and the presenter would be hidden by the heads in front, a small stage solves it.
 
-**Crew.** Even at this size, someone has to run the sound and the slides. Every AV hire from us includes a technician on site, so you're never left operating the kit yourself.
+**Crew.** Even at this size, someone has to run the sound and the slides. Our standard hire is operated: a technician is on site for the event, so you're not left operating the kit yourself.
 
 ## Around 200 people
 
@@ -51,7 +51,7 @@ At 200 the room is bigger, the back rows are further from the front, and small p
 
 **Microphones.** This is where speaker numbers start to matter. A panel session needs a microphone for each speaker, and audience questions need a roving microphone so everyone can hear them. Our wireless rigs use Shure and Sennheiser microphones and support 30+ simultaneous channels, so there is room for every speaker and for spares.
 
-**Screens.** With 200 seats, the back row is a long way from the screen. Text that is fine at 100 can be unreadable. One larger screen, or a pair of screens so nobody is watching from a sharp angle, becomes worth considering. We also supply LED walls from 6 m² where the room and the content call for one.
+**Screens.** With 200 seats, the back row is a long way from the screen. Text that is fine at 100 can be unreadable. One larger screen, or a pair of screens so nobody is watching from a sharp angle, becomes worth considering. We also supply LED walls from 7 m² where the room and the content call for one.
 
 **Staging and lighting.** A stage becomes more useful, because it lets the back rows see the presenter. Lighting also matters more. A presenter who is clearly lit is easier to follow, and it keeps the room from feeling flat.
 
@@ -63,7 +63,7 @@ At 500 you're running a production, whatever you call it. The room is large, the
 
 **Sound.** Coverage is the main design problem. The PA has to deliver clear speech across the whole room, not just near the stage. Presenters and panellists on stage need monitors so they can hear themselves and each other. We supply line array and point source systems and monitors, and the choice depends on the room.
 
-**Screens.** The person on stage will look small from the back row. That is what IMAG is for. It stands for image magnification, which means putting a live camera feed of the presenter on the screens so everyone sees them. A large screen or LED wall behind or beside the stage carries both slides and live video. Our walls run from 6 m² up to 100 m²+, with pixel pitch (the spacing between the LEDs, which affects how close you can sit before the image breaks up) from 1.9 mm to 3.9 mm.
+**Screens.** The person on stage will look small from the back row. That is what IMAG is for. It stands for image magnification, which means putting a live camera feed of the presenter on the screens so everyone sees them. A large screen or LED wall behind or beside the stage carries both slides and live video. Our walls run from 7 m² up to 100 m²+, with pixel pitch (the spacing between the LEDs, which affects how close you can sit before the image breaks up) from 1.9 mm to 3.9 mm.
 
 **Microphones.** A bigger programme usually means more speakers, more panels and more microphones in use at once. Headset and lavalier microphones keep presenters' hands free. Handhelds work for audience questions. Spares are standard practice at this size.
 

@@ -72,7 +72,7 @@ Awards nights run on timing. Walk-on music, winner photos on screen, video packa
 
 ### Anything where someone must operate the show
 
-This is the simplest test. If you can picture a person needed at a desk during the event, mixing audio, switching a camera or calling a cue, then you need an operator. Every AV hire from us includes a technician on site. If you take the house system, ask who fills that role.
+This is the simplest test. If you can picture a person needed at a desk during the event, mixing audio, switching a camera or calling a cue, then you need an operator. Our standard hire is operated, with a technician on site for the event. If you take the house system, ask who fills that role.
 
 ## What to ask the venue before you decide
 

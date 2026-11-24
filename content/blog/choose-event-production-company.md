@@ -27,7 +27,7 @@ This matters because the people who sell you the job are not always the people w
 
 A good answer names the roles. You'll hear how many people are coming, what each one does and who is in charge on the floor. A warning sign is "we'll assign the crew nearer the time" for a large event, or no clear answer on who operates what.
 
-For us, every AV hire includes a technician on site, and larger events get a multi-person crew. We're also owner-led, with 35+ years of event production experience behind the planning.
+For us, operated hire is the standard: a technician is on site for the event, and larger events get a multi-person crew. We're also owner-led, with 35+ years of event production experience behind the planning.
 
 ## 2. Is the quote all-inclusive, and what exactly does it cover
 

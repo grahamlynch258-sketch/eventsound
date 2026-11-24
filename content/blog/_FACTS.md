@@ -26,8 +26,6 @@ stories in. Never invent a venue, client, number or piece of kit.
   critical systems; on production jobs the day runs load-in, installation,
   rehearsal, then the show (source: the live event production page; the
   owner approved posts carrying these statements, 23 November 2026)
-- Every AV hire includes a technician on site (source: the live AV hire
-  page). LED panel dry hire is the one exception
 
 ## Equipment (only claim what's listed)
 
